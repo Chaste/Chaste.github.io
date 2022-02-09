@@ -1,7 +1,7 @@
 ---
 title : "Cell-based Chaste"
-description: "developing software for realistic heart simulations"
-lead: "developing software for realistic heart simulations"
+description: "a multiscale computational framework for modelling cell populations"
+lead: "a multiscale computational framework for modelling cell populations"
 date: 2020-10-06T08:47:36+00:00
 lastmod: 2020-10-06T08:47:36+00:00
 draft: false
@@ -13,12 +13,14 @@ menu:
 ---
 
 ## Introduction and aims
-Computational modelling of the heart is now recognised as a powerful technique in the detailed investigation of cardiac behaviour. One of the major contributions of computational approaches to cardiovascular research has been the ability to dissect various effects and to tease out important relations between parameters, which are not possible using current experimental techniques. Recently, advanced computer models of cardiac electro-mechanical activity have been developed. The electrical properties of the myocardium are generally described by the bidomain equations, a set of coupled parabolic and elliptic partial differential equations (PDEs) that represents the tissue as two separate, distinct continua - one intracellular and the other extracellular. The intracellular and the extracellular media are connected via the cell membrane, and thus the two PDEs are coupled at each point in space through a set of complex, non-linear ordinary differential equations (ODEs), which describe the ionic transport across the cell membrane. Certain modelling environments use the monodomain representation of cardiac activity, which involves solving a single parabolic PDE, by assuming either that the extracellular potentials are negligible, or that the anisotropy ratios are equal in the intracellular and the extracellular domains.
+Mathematical and computational models of biological and physiological systems are rapidly increasing in complexity.
+This is especially true of fields such as cancer modelling, where the amount of available biological data is increasing exponentially.
+Modelling approaches therefore span the range from detailed models of molecular level processes, right through to biomechanical models at the tissue level.
+The aim of cell-based Chaste is to develop a computational framework that bridges across these spatial and temporal scales within a single, generic modelling framework.
 
-Although current cardiac solvers have achieved very good efficiency for particular applications, they all share the following important limitations: (i) they are not generic - they have been developed for specific applications based on the particular scientific interests of the developers; (ii) they have not been developed using state-of-the-art software engineering methods, and therefore have not been completely tested and validated; (iii) they have not achieved maximum efficiency to run on HPC platforms because they have not been designed for this purpose; (iv) they are not freely available to the scientific community; and (v) they do not include state-of-the-art numerical and computational techniques that could speed up the code by several orders of magnitude and would thus allow for full numerical convergence testing (in particular, current simulation tools cannot provide sufficient spatial resolution to test convergence).
-
-The overall objective of the Chaste project is to develop a novel, generic and efficient cardiac software package, accurately tested and validated, and specifically designed to run on large scale, high performance systems such as HPCx and future generations of petascale computers. The use of advanced software engineering techniques, and close interaction with academic and industrial collaborators as well as with end users, ensures that the resulting software forms a robust, user friendly, production level platform for the investigation of important scientific questions related to cardiac function in health and disease. We expect this software to support the user community to move on to investigate the next generation of cardiac physiology research.
-
-### Blah
-
-- asb
+The initial focus of this work was the dynamic mechanisms underlying the onset of colorectal cancers.
+This area was chosen due to the availability of particularly good experimental data, and since its biological understanding is sufficiently advanced to allow such a systems-level approach.
+Colorectal cancers originate from the epithelium that covers the luminal surface of the intestinal tract.
+This epithelium renews itself through a coordinated programme of cell proliferation, migration and differentiation, which begins in the of tiny crypts of Lieberkühn that descend from the epithelium into the underlying connective tissue.
+A specialist crypt code component has been developed in Chaste to study intestinal crypts and the initiation of colorectal cancer.
+This component includes code to define the intestinal crypt geometry, Wnt signalling pathway and intestinal cell-cycle models, and has been used to examine theoretically the concept and role of stem cells in crypt homeostasis and the role of mechanical effects in cell behaviour.
