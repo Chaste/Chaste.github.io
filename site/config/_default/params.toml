@@ -1,0 +1,85 @@
+# Meta Data for SEO
+
+## Homepage
+title = "Chaste"
+titleSeparator = ":"
+titleAddition = "Cancer, Heart and Soft Tissue Environment"
+description = "Chaste (Cancer, Heart and Soft Tissue Environment) is a general purpose simulation package aimed at multi-scale, computationally demanding problems arising in biology and physiology."
+
+## Documentation
+# docsVersion = "0.3"
+
+## Open Graph
+images = ["chaste_1024.png"]
+ogLocale = "en_GB"
+
+## Twitter Cards
+twitterSite = "@Chaste_Project"
+
+## JSON-LD
+schemaType = "Organization"
+schemaName = "Chaste"
+schemaAuthor = "Chaste development team"
+schemaAuthorTwitter = "https://twitter.com/Chaste_Project"
+schemaAuthorGitHub = "https://github.com/Chaste/Chaste"
+schemaLocale = "en-GB"
+schemaLogo = "chaste_1024.png"
+schemaLogoWidth = 1024
+schemaLogoHeight = 1024
+schemaImage = "chaste_1024.png"
+schemaImageWidth = 1024
+schemaImageHeight = 1024
+schemaTwitter = "https://twitter.com/Chaste_Project"
+schemaGitHub = "https://github.com/Chaste/Chaste"
+
+## Sitelinks Search Box
+siteLinksSearchBox = false
+
+## Chrome Browser
+themeColor = "#fff"
+
+# Images
+quality = 85
+bgColor = "#fff"
+landscapePhotoWidths = [900, 800, 700, 600, 500]
+portraitPhotoWidths = [800, 700, 600, 500]
+lqipWidth = "20x"
+smallLimit = "300"
+
+# Footer
+footer = "Powered by <a class=\"text-muted\" href=\"https://www.netlify.com/\">Netlify</a>, <a class=\"text-muted\" href=\"https://gohugo.io/\">Hugo</a>, and <a class=\"text-muted\" href=\"https://getdoks.org/\">Doks</a>"
+
+# Feed
+copyRight = "Copyright (c) 2005-2022 University of Oxford"
+
+# Alert
+alert = false
+alertDismissable = true
+
+# Edit Page
+# repoHost [Github | Gitea | GitLab | Bitbucket | BitbucketServer ] is used for building the edit link based on git hoster
+repoHost = "GitHub"
+docsRepo = "https://github.com/Chaste/Chaste"
+docsRepoBranch = "develop"
+docsRepoSubPath = ""
+editPage = false
+lastMod = false
+
+[options]
+  lazySizes = true
+  clipBoard = true
+  instantPage = true
+  flexSearch = true
+  darkMode = true
+  bootStrapJs = true
+  breadCrumb = false
+  highLight = true
+  kaTex = false
+  multilingualMode = false
+  docsVersioning = false
+  fullWidth = false
+
+[menu]
+  [menu.section]
+    auto = true
+    collapsibleSidebar = true
