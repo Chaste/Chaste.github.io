@@ -16,7 +16,7 @@ Once your changes are merged into `main` the site will be automatically built an
 
 ## Previewing changes locally
 
-Install hugo:
+Install the extended version of hugo:
 
 - macOS
   ```
@@ -25,17 +25,17 @@ Install hugo:
 
 - Windows
   ```
-  $ choco install hugo -confirm
+  $ choco install hugo-extended -confirm
   ```
 
 - Linux
   ```
-  $ snap install hugo
+  $ snap install hugo --channel=extended
   ```
 
 - [other options](https://gohugo.io/getting-started/installing/)
 
-Once installed, from the `PalamaraLab` directory simply run
+Once installed, from the `site` directory simply run
 
 ```bash
 hugo server
