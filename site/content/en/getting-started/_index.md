@@ -20,7 +20,7 @@ Chaste is a software library. To use it you need to obtain and compile the *sour
 * **MacOS**: Chaste is supported and tested on Mac OS X.
 * **Windows**: While there is partial/experimental support for Windows, it is not currently recommended to use Chaste on Windows.
 
-The recommended route for unsupported systems is to install Chaste via [Docker](/docs/InstallGuides/Docker) or virtual machine running Ubuntu Linux.
+The recommended route for unsupported systems is to install Chaste via [Docker](/docs/installguides/docker) or virtual machine running Ubuntu Linux.
 
 ## Getting The Code
 

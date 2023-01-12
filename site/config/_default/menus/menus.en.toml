@@ -32,10 +32,17 @@
   url = "/getting-started/"
 
 [[main]]
-  name = "Developer wiki"
-  weight = 50
-  identifier = "developer-wiki"
-  url = "https://chaste.cs.ox.ac.uk/trac/wiki/"
+  name = "Docs"
+  weight = 41
+  identifier = "docs"
+  url = "/docs/"
+
+[[main]]
+  name = "Install Guides"
+  weight = 42
+  identifier = "InstallGuides"
+  url = "/docs/installguides"
+  parent = "docs"
 
 [[main]]
   name = "Latest news"
