@@ -15,27 +15,28 @@ layout: "single"
 If you want a single citation for Chaste, please use one of these, especially if you publish a paper using Chaste!
 
  - Cooper et al. 2020. Chaste: Cancer, Heart and Soft Tissue Environment. *J Open Source Softw* 5:1848. doi:[10.21105/joss.01848](https://doi.org/10.21105/joss.01848)
- - Mirams et al. 2013. Chaste: An open source C++ library for computational physiology and biology. *PLoS Comput Biol* 9:e1002970. doi: [10.1371/journal.pcbi.1002970](https://doi.org/10.1371/journal.pcbi.1002970)  
- - Pitt-Francis et al. 2009. Chaste: a test-driven approach to software development for biological modelling. *Comput Phys Commun* 180:2452-2471. doi: [10.1016/j.cpc.2009.07.019](https://doi.org/10.1016/j.cpc.2009.07.019)
+ - Mirams et al. 2013. Chaste: An open source C++ library for computational physiology and biology. *PLoS Comput Biol* 9:e1002970. doi:[10.1371/journal.pcbi.1002970](https://doi.org/10.1371/journal.pcbi.1002970)  
+ - Pitt-Francis et al. 2009. Chaste: a test-driven approach to software development for biological modelling. *Comput Phys Commun* 180:2452-2471. doi:[10.1016/j.cpc.2009.07.019](https://doi.org/10.1016/j.cpc.2009.07.019)
  
 ## Publications using Chaste
 
-Here is a list of preprints and peer-reviewed publications that have used Chaste from its inception up to May 2022.
+Here is a list of preprints and peer-reviewed publications that have used Chaste from its inception up to October 2022.
 
 ### 2022
 
- 1. Johnson et al. 2022. ChemChaste: Simulating spatially inhomogenous biochemical reaction-diffusion systems for modelling cell-environment feedbacks. *GigaScience*. In press. 
- 1. Cook et al. 2022. Modelling cellular interactions and dynamics during kidney morphogenesis. *Bull Math Biol* 84:8. doi: [10.1007/s11538-021-00968-3](https://doi.org/10.1007/s11538-021-00968-3)
- 1. Donath et al. 2022. Investigation of colonic regeneration via precise damage application using femtosecond laser-based nanosurgery. *Cells* 11:1143. doi: [10.3390/cells11071143](https://doi.org/10.3390/cells11071143)
- 1. Middleton et al. 2022. Towards a multi-scale computer modeling workflow for simulation of pulmonary ventilation in advanced COVID-19. *Comput Biol Med* 145:105513. doi: [10.1016/j.compbiomed.2022.105513](https://doi.org/10.1016/j.compbiomed.2022.105513)
+ 1. Galappaththige et al. 2022. Credibility assessment of patient-specific computational modeling using patient-specific cardiac modeling as an exemplar. *PLoS Computational Biology* 18(10): e1010541. doi:[10.1371/journal.pcbi.1010541](https://doi.org/10.1371/journal.pcbi.1010541)
+ 2. Johnson et al. 2022. ChemChaste: Simulating spatially inhomogenous biochemical reaction-diffusion systems for modelling cell-environment feedbacks. *GigaScience* 11:giac051. doi:[10.1093/gigascience/giac051](https://doi.org/10.1093/gigascience/giac051)
+ 3. Cook et al. 2022. Modelling cellular interactions and dynamics during kidney morphogenesis. *Bull Math Biol* 84:8. doi:[10.1007/s11538-021-00968-3](https://doi.org/10.1007/s11538-021-00968-3)
+ 4. Donath et al. 2022. Investigation of colonic regeneration via precise damage application using femtosecond laser-based nanosurgery. *Cells* 11:1143. doi:[10.3390/cells11071143](https://doi.org/10.3390/cells11071143)
+ 5. Middleton et al. 2022. Towards a multi-scale computer modeling workflow for simulation of pulmonary ventilation in advanced COVID-19. *Comput Biol Med* 145:105513. doi:[10.1016/j.compbiomed.2022.105513](https://doi.org/10.1016/j.compbiomed.2022.105513)
  
 ### 2021
 
  1. Conrad et al. 2021. The biomechanical basis of biased epithelial tube elongation in lung and kidney development. *Development* 148:dev194209. doi:[10.1242/dev.194209](https://doi.org/10.1242/dev.194209)
  1. Germano & Osborne. 2021. A mathematical model of cell fate selection on a dynamic tissue. *J Theor Biol* 514:110535. doi:[10.1016/j.jtbi.2020.110535](https://doi.org/10.1016/j.jtbi.2020.110535)
- 1. Brunt et al. 2021. Vangl2 promotes the formation of long cytonemes to enable distant Wnt/beta-catenin signaling. *Nat Commun* 12:2058. doi: [10.1038/s41467-021-22393-9](https://doi.org/10.1038/s41467-021-22393-9)
- 1. Miller et al. 2021. Maintaining the proliferative cell niche in multicellular models of epithelia. *J Theor Biol* 527:110807. doi: [10.1016/j.jtbi.2021.110807](https://doi.org/10.1016/j.jtbi.2021.110807)
- 1. Hendrix et al. 2021. chaste codegen: automatic CellML to C++ code generation with fixes for singularities and automatically generated Jacobians. *Wellcome Open Res* 6:261. doi: [10.12688/wellcomeopenres.17206.1](https://doi.org/10.12688/wellcomeopenres.17206.1)
+ 1. Brunt et al. 2021. Vangl2 promotes the formation of long cytonemes to enable distant Wnt/beta-catenin signaling. *Nat Commun* 12:2058. doi:[10.1038/s41467-021-22393-9](https://doi.org/10.1038/s41467-021-22393-9)
+ 1. Miller et al. 2021. Maintaining the proliferative cell niche in multicellular models of epithelia. *J Theor Biol* 527:110807. doi:[10.1016/j.jtbi.2021.110807](https://doi.org/10.1016/j.jtbi.2021.110807)
+ 1. Hendrix et al. 2021. chaste codegen: automatic CellML to C++ code generation with fixes for singularities and automatically generated Jacobians. *Wellcome Open Res* 6:261. doi:[10.12688/wellcomeopenres.17206.1](https://doi.org/10.12688/wellcomeopenres.17206.1)
  
 ### 2020 
 
