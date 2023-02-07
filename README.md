@@ -5,40 +5,24 @@ This repository contains the Chaste website.  It is automatically built from [ma
 This site is available here:
 https://chaste.github.io/
 
-The following branches are important:
-
-- `main`: the markdown files corresponding to the current live version of the website
-- `gh-pages`: the static html site, automatically built by Hugo on new commits to `main` by [this script](.github/workflows/deploy.yaml)
-
-:warning: **Do not commit directly to `main` or `gh-pages`.** :warning:
+:warning: **Do not commit directly to `main`.** :warning:
 Instead, commit changes to any other branch and open a pull request.
 Once your changes are merged into `main` the site will be automatically built and deployed and will be live roughly 1 minute later.
 
 ## Previewing changes locally
 
-Install the extended version of hugo:
+This site uses the [doks theme](https://getdoks.org/) which requires you to have installed [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
 
-- macOS
-  ```
-  $ brew install hugo
-  ```
+From the `site` directory, run the following command, which only needs to be run once:
 
-- Windows
-  ```
-  $ choco install hugo-extended -confirm
-  ```
+```
+npm install
+```
 
-- Linux
-  ```
-  $ snap install hugo --channel=extended
-  ```
+To preview changes, run:
 
-- [other options](https://gohugo.io/getting-started/installing/)
-
-Once installed, from the `site` directory simply run
-
-```bash
-hugo server
+```
+npm run server
 ```
 
 and click through to the localhost link you're given.
