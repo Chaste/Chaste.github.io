@@ -53,8 +53,9 @@ footer = "Powered by <a class=\"text-muted\" href=\"https://www.netlify.com/\">N
 copyRight = "Copyright (c) 2005-2022 University of Oxford"
 
 # Alert
-alert = false
+alert = true
 alertDismissable = true
+alertText = "Save the date: <a class=\"alert-link stretched-link\" href=\"/workshops/2023-09-11/\">2023 Chaste workshop in Oxford, UK, 11-14 September</a>"
 
 # Edit Page
 # repoHost [Github | Gitea | GitLab | Bitbucket | BitbucketServer ] is used for building the edit link based on git hoster
