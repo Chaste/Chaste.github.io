@@ -48,8 +48,6 @@ and, depending on your version of Ubuntu, add **one** of the following lines to 
 | 14.10              | utopic              | `deb http://www.cs.ox.ac.uk/chaste/ubuntu utopic/`                                           |
 | 14.04 LTS          | trusty              | `deb http://www.cs.ox.ac.uk/chaste/ubuntu trusty/`                                           |
 | 13.10 or older     | -                   | `deb http://www.cs.ox.ac.uk/chaste/ubuntu legacy/`                                           |
-| ---                | ---                 | ---                                                                                          |
-
 
 The last component of the line depends on your version of Ubuntu, as listed at https://wiki.ubuntu.com/DevelopmentCodeNames. 
 Type `lsb_release -a` to find this out if you don't already know it.
@@ -61,7 +59,7 @@ Back in the terminal, type:
 sudo wget -O /usr/share/keyrings/chaste.asc https://www.cs.ox.ac.uk/chaste/ubuntu/Chaste%20Team.asc
 ```
 
-or on older Ubuntus if the above doesn't work
+or on older Ubuntus, if the above doesn't work:
 ```
 sudo apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 422C4D99
 ```
