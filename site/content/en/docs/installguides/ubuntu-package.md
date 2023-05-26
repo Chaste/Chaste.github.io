@@ -28,40 +28,42 @@ sudo nano /etc/apt/sources.list.d/chaste.list
 
 and, depending on your version of Ubuntu, add **one** of the following lines to the `chaste.list` text file:
 
-| **Ubuntu Version** | **Ubuntu codename** | **Line to add** |
-|---|---|---|
-| 13.10 or older | - | `deb http://www.cs.ox.ac.uk/chaste/ubuntu legacy/` |
-| 14.04 LTS | trusty | `deb http://www.cs.ox.ac.uk/chaste/ubuntu trusty/` |
-| 14.10 | utopic | `deb http://www.cs.ox.ac.uk/chaste/ubuntu utopic/` |
-| 15.04 | vivid | `deb http://www.cs.ox.ac.uk/chaste/ubuntu vivid/` |
-| 15.10 | wily | `deb http://www.cs.ox.ac.uk/chaste/ubuntu wily/` |
-| 16.04 LTS | xenial | `deb http://www.cs.ox.ac.uk/chaste/ubuntu xenial/` |
-| 16.10 | yakkety | `deb http://www.cs.ox.ac.uk/chaste/ubuntu yakkety/` |
-| 17.04 | zesty | `deb http://www.cs.ox.ac.uk/chaste/ubuntu zesty/` |
-| 17.10 | artful | `deb http://www.cs.ox.ac.uk/chaste/ubuntu artful/` |
-| 18.04 LTS | bionic | `deb http://www.cs.ox.ac.uk/chaste/ubuntu bionic/` |
-| 18.10 | cosmic | `deb http://www.cs.ox.ac.uk/chaste/ubuntu cosmic/` |
-| 19.04 | disco | `deb http://www.cs.ox.ac.uk/chaste/ubuntu disco/` |
-| 19.10 | eoan | `deb http://www.cs.ox.ac.uk/chaste/ubuntu eoan/` |
-| 20.04 LTS | focal | `deb http://www.cs.ox.ac.uk/chaste/ubuntu focal/` |
-| 20.10 | groovy | `deb http://www.cs.ox.ac.uk/chaste/ubuntu groovy/` |
-| 21.04 | hirsute | `deb http://www.cs.ox.ac.uk/chaste/ubuntu hirsute/` |
-| 21.10 | impish | `deb http://www.cs.ox.ac.uk/chaste/ubuntu impish/` |
-| 22.04 LTS | jammy | `deb [signed-by=/usr/share/keyrings/chaste.asc] http://www.cs.ox.ac.uk/chaste/ubuntu jammy/` |
+| **Ubuntu Version** | **Ubuntu codename** | **Line to add**                                                                              |
+| ------------------ | ------------------- | -------------------------------------------------------------------------------------------- |
+| 22.04 LTS          | jammy               | `deb [signed-by=/usr/share/keyrings/chaste.asc] http://www.cs.ox.ac.uk/chaste/ubuntu jammy/` |
+| 21.10              | impish              | `deb http://www.cs.ox.ac.uk/chaste/ubuntu impish/`                                           |
+| 21.04              | hirsute             | `deb http://www.cs.ox.ac.uk/chaste/ubuntu hirsute/`                                          |
+| 20.10              | groovy              | `deb http://www.cs.ox.ac.uk/chaste/ubuntu groovy/`                                           |
+| 20.04 LTS          | focal               | `deb http://www.cs.ox.ac.uk/chaste/ubuntu focal/`                                            |
+| 19.10              | eoan                | `deb http://www.cs.ox.ac.uk/chaste/ubuntu eoan/`                                             |
+| 19.04              | disco               | `deb http://www.cs.ox.ac.uk/chaste/ubuntu disco/`                                            |
+| 18.10              | cosmic              | `deb http://www.cs.ox.ac.uk/chaste/ubuntu cosmic/`                                           |
+| 18.04 LTS          | bionic              | `deb http://www.cs.ox.ac.uk/chaste/ubuntu bionic/`                                           |
+| 17.10              | artful              | `deb http://www.cs.ox.ac.uk/chaste/ubuntu artful/`                                           |
+| 17.04              | zesty               | `deb http://www.cs.ox.ac.uk/chaste/ubuntu zesty/`                                            |
+| 16.10              | yakkety             | `deb http://www.cs.ox.ac.uk/chaste/ubuntu yakkety/`                                          |
+| 16.04 LTS          | xenial              | `deb http://www.cs.ox.ac.uk/chaste/ubuntu xenial/`                                           |
+| 15.10              | wily                | `deb http://www.cs.ox.ac.uk/chaste/ubuntu wily/`                                             |
+| 15.04              | vivid               | `deb http://www.cs.ox.ac.uk/chaste/ubuntu vivid/`                                            |
+| 14.10              | utopic              | `deb http://www.cs.ox.ac.uk/chaste/ubuntu utopic/`                                           |
+| 14.04 LTS          | trusty              | `deb http://www.cs.ox.ac.uk/chaste/ubuntu trusty/`                                           |
+| 13.10 or older     | -                   | `deb http://www.cs.ox.ac.uk/chaste/ubuntu legacy/`                                           |
+| ---                | ---                 | ---                                                                                          |
 
 
-The last component of the line depends on your version of Ubuntu, as listed at https://wiki.ubuntu.com/DevelopmentCodeNames. Type `lsb_release -a` to find this out if you don't already know it.
-Note that the trailing "/" is necessary!
+The last component of the line depends on your version of Ubuntu, as listed at https://wiki.ubuntu.com/DevelopmentCodeNames. 
+Type `lsb_release -a` to find this out if you don't already know it.
+Note that the trailing "/" is necessary!  
 
 Next, install the Chaste public licence key.
-Back in the terminal, type:
-
+Back in the terminal, type:  
 ```
-OLD:
-sudo apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 422C4D99
-
-NEW:
 sudo wget -O /usr/share/keyrings/chaste.asc https://www.cs.ox.ac.uk/chaste/ubuntu/Chaste%20Team.asc
+```
+
+or on older Ubuntus if the above doesn't work
+```
+sudo apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 422C4D99
 ```
 
 Note that you also need to ensure you have enabled 'multiverse' packages; this is normally the default.
@@ -96,7 +98,7 @@ Finally, follow the [CMake First Run](https://github.com/Chaste/trac_archive/wik
 
 #### Installing previous releases
 
-If you want a specific version of Chaste, and do not want to stay up-to-date with new versions on the `release` branch from our Git repository, you can download the source code from [[https://github.com/Chaste/Chaste/releases|our [GitHub](https://github.com/Chaste/trac_archive/wiki/Git-Hub) releases page]], back to Release 3.0.
+If you want a specific version of Chaste, and do not want to stay up-to-date with new versions on the `release` branch from our Git repository, you can download the source code from our [GitHub releases page](https://github.com/Chaste/Chaste/releases), back to Release 3.0.
 
 ### 2b. For Code DEVELOPERS (or users working with the latest trunk code and projects)
 
