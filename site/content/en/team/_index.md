@@ -21,6 +21,7 @@ Chaste development is currently funded through the BBSRC Bioinformatics & Biolog
  * [Kwabena Amponsah](https://www.nottingham.ac.uk/geography/people/kwabena.gyan-amponsah) (RSE, University of Nottingham)
  * [Lutz Brusch](https://tu-dresden.de/zih/die-einrichtung/struktur/lutz-brusch) (collaborator, Technische Universität Dresden)
  * [Fergus Cooper](https://www.cs.ox.ac.uk/people/fergus.cooper/) (RSE, University of Oxford)
+ * [Ben Evans](https://profiles.sussex.ac.uk/p555479-benjamin-evans) (Lecturer, University of Sussex)
  * [Alexander Fletcher](https://maths.dept.shef.ac.uk/maths/staff_info_715.html) (PI, University of Sheffield)
  * [David Gavaghan](https://www.cs.ox.ac.uk/people/david.gavaghan/) (PI, University of Oxford)
  * [Maurice Hendrix](https://www.nottingham.ac.uk/mathematics/people/maurice.hendrix) (RSE, University of Nottingham)
