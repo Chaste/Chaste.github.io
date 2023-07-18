@@ -28,21 +28,42 @@ sudo nano /etc/apt/sources.list.d/chaste.list
 
 and, depending on your version of Ubuntu, add **one** of the following lines to the `chaste.list` text file:
 
-| **Ubuntu Version** | **Line to add**                                                                           |
-| ------------------ | ----------------------------------------------------------------------------------------- |
-| 22.04 LTS          | `deb [signed-by=/usr/share/keyrings/chaste.asc] https://chaste.github.io/ubuntu jammy/`   |
-| 21.10              | `deb [signed-by=/usr/share/keyrings/chaste.asc] https://chaste.github.io/ubuntu impish/`  |
-| 21.04              | `deb [signed-by=/usr/share/keyrings/chaste.asc] https://chaste.github.io/ubuntu hirsute/` |
-| 20.10              | `deb [signed-by=/usr/share/keyrings/chaste.asc] https://chaste.github.io/ubuntu groovy/`  |
-| 20.04 LTS          | `deb [signed-by=/usr/share/keyrings/chaste.asc] https://chaste.github.io/ubuntu focal/`   |
+{{< details "Ubuntu 22.04 LTS" open >}}
+```
+deb [signed-by=/usr/share/keyrings/chaste.asc] https://chaste.github.io/ubuntu jammy/
+```
+{{< /details >}}
 
+{{< details "Ubuntu 21.10" >}}
+```
+deb [signed-by=/usr/share/keyrings/chaste.asc] https://chaste.github.io/ubuntu hirsute/
+```
+{{< /details >}}
 
-The last component of the line depends on your version of Ubuntu, as listed at https://wiki.ubuntu.com/DevelopmentCodeNames. 
+{{< details "Ubuntu 21.04" >}}
+```
+deb [signed-by=/usr/share/keyrings/chaste.asc] https://chaste.github.io/ubuntu impish/
+```
+{{< /details >}}
+
+{{< details "Ubuntu 20.10" >}}
+```
+deb [signed-by=/usr/share/keyrings/chaste.asc] https://chaste.github.io/ubuntu groovy/
+```
+{{< /details >}}
+
+{{< details "Ubuntu 20.04 LTS" >}}
+```
+deb [signed-by=/usr/share/keyrings/chaste.asc] https://chaste.github.io/ubuntu focal/
+```
+{{< /details >}}
+
+The last component of the line depends on your version of Ubuntu, as listed at https://wiki.ubuntu.com/DevelopmentCodeNames.
 Type `lsb_release -a` to find this out if you don't already know it.
-Note that the trailing "/" is necessary!  
+Note that the trailing "/" is necessary!
 
 Next, install the Chaste public licence key.
-Back in the terminal, type:  
+Back in the terminal, type:
 ```
 sudo wget -O /usr/share/keyrings/chaste.asc https://chaste.github.io/ubuntu/ChasteTeam.asc
 ```
