@@ -65,7 +65,7 @@ Note that the trailing "/" is necessary!
 Next, install the Chaste public licence key.
 Back in the terminal, type:
 ```
-sudo wget -O /usr/share/keyrings/chaste.asc https://chaste.github.io/ubuntu/ChasteTeam.asc
+sudo wget -O /usr/share/keyrings/chaste.asc https://chaste.github.io/chaste.asc
 ```
 
 ## 2. Getting the correct dependencies
