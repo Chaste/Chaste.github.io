@@ -11,7 +11,7 @@ toc: true
 **Users:** If you are working with the develop branch and your local code or project has been broken
 by a recent interface change then please see here for fix suggestions.
 
-**Developers:** Please mention any changes to the code which will break users' code here - to be put in the release notes for the next release.  Also mention any significant improvements or new features.  The real definitive release notes will be written in [release notes](release-notes/release-notes)  at the time of release.  To make that process easier, please structure this page in the same manner.
+**Developers:** Please mention any changes to the code which will break users' code here - to be put in the release notes for the next release.  Also mention any significant improvements or new features.  The real definitive release notes will be written in [release notes](/release-notes/release-notes)  at the time of release.  To make that process easier, please structure this page in the same manner.
 
 
 ## Changes since last release appear below
