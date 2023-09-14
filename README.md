@@ -30,6 +30,7 @@ and click through to the localhost link you're given.
 
 ## Editing content
 
+- The top-level banner menu is in `site/config/_default/menus/menus.en.toml`
 - All pages are in `site/content/en`
 - Static content such as photos is in `site/static`, following the directory structure of the page it is required in
 

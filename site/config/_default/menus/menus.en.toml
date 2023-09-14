@@ -45,10 +45,10 @@
   parent = "docs"
 
 [[main]]
-  name = "Latest news"
+  name = "Release notes"
   weight = 60
-  identifier = "latest-news"
-  url = "/latest-news/"
+  identifier = "ReleaseNotes"
+  url = "/release-notes/"
 
 [[main]]
   name = "Methodology & aims"
