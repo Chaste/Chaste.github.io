@@ -10,7 +10,7 @@ layout: "single"
 ---
 
 
-## [Latest](doxygen-latest)
+## [Latest](/doxygen-latest)
 
 The latest doxygen, corresponding to the most recent commit on the Chaste [develop branch](https://github.com/Chaste/Chaste/tree/develop)
 
@@ -18,10 +18,10 @@ The latest doxygen, corresponding to the most recent commit on the Chaste [devel
 
 Doxygen corresponding to specific static releases of Chaste:
 
-### [2021.1](doxygen-releases/release_2021.1)
+### [2021.1](/doxygen-releases/release_2021.1)
 
-### [2019.1](doxygen-releases/release_2019.1)
+### [2019.1](/doxygen-releases/release_2019.1)
 
-### [2018.1](doxygen-releases/release_2018.1)
+### [2018.1](/doxygen-releases/release_2018.1)
 
-### [2017.1](doxygen-releases/release_2017.1)
+### [2017.1](/doxygen-releases/release_2017.1)
