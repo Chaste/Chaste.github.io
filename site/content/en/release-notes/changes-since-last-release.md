@@ -20,16 +20,16 @@ by a recent interface change then please see here for fix suggestions.
 ## (changes since Release 2021.1)
 
 ### Headline features
-**Please add shared pointers on mesh generator**
 ### New dependency support
 
 
 ### Core
+Please add shared pointers on mesh generator
 
 ### Heart
 ### Cell Based
 
-* #3069 See [LatestNews](https://github.com/Chaste/trac_archive/wiki/Latest-News)  **Please fix URL**
+* #3069 See [LatestNews](https://github.com/Chaste/trac_archive/wiki/Latest-News)  **Please replace URL with summary**
 
 
 ### Future Plans
