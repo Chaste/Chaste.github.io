@@ -38,8 +38,15 @@
   url = "/docs/"
 
 [[main]]
+  name = "Doxygen"
+  weight = 10
+  identifier = "Doxygen"
+  url = "/docs/doxygen"
+  parent = "docs"
+
+[[main]]
   name = "Install Guides"
-  weight = 42
+  weight = 20
   identifier = "InstallGuides"
   url = "/docs/installguides"
   parent = "docs"
