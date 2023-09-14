@@ -25,3 +25,25 @@ Doxygen corresponding to specific static releases of Chaste:
 ### [2018.1](/doxygen-releases/release_2018.1)
 
 ### [2017.1](/doxygen-releases/release_2017.1)
+
+### [3.4](/doxygen-releases/release_3.4)
+
+### [3.3](/doxygen-releases/release_3.3)
+
+### [3.2](/doxygen-releases/release_3.2)
+
+### [3.1](/doxygen-releases/release_3.1)
+
+### [3.0](/doxygen-releases/release_3.0)
+
+### [2.3](/doxygen-releases/release_2.3)
+
+### [2.2](/doxygen-releases/release_2.2)
+
+### [2.1](/doxygen-releases/release_2.1)
+
+### [2.0](/doxygen-releases/release_2.0)
+
+### [1.1](/doxygen-releases/release_1.1)
+
+### [1](/doxygen-releases/release_1)
