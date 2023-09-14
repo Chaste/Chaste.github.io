@@ -41,7 +41,14 @@
   name = "Doxygen"
   weight = 10
   identifier = "Doxygen"
-  url = "/docs/doxygen"
+  url = "/docs/doxygen/"
+  parent = "docs"
+
+[[main]]
+  name = "Release notes"
+  weight = 15
+  identifier = "ReleaseNotes"
+  url = "/docs/release-notes/"
   parent = "docs"
 
 [[main]]
@@ -50,12 +57,6 @@
   identifier = "InstallGuides"
   url = "/docs/installguides"
   parent = "docs"
-
-[[main]]
-  name = "Release notes"
-  weight = 60
-  identifier = "ReleaseNotes"
-  url = "/release-notes/"
 
 [[main]]
   name = "Methodology & aims"
