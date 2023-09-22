@@ -22,7 +22,7 @@ npm install
 To preview changes, run:
 
 ```
-npm run server
+npm run dev
 ```
 
 and click through to the localhost link you're given.
