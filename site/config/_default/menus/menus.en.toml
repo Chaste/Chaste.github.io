@@ -52,17 +52,31 @@
   parent = "docs"
 
 [[main]]
-  name = "Install Guides"
+  name = "Install guides"
   weight = 20
   identifier = "InstallGuides"
   url = "/docs/installguides"
   parent = "docs"
 
 [[main]]
-  name = "Methodology & aims"
+  name = "Workshops"
   weight = 70
-  identifier = "methodology"
-  url = "/methodology/"
+  identifier = "workshops"
+  url = "/workshops/"
+
+[[main]]
+  name = "Workshops"
+  weight = 1
+  identifier = "AllWorkshops"
+  url = "/workshops/"
+  parent = "workshops"
+
+[[main]]
+  name = "11-14 Sep 2023"
+  weight = 99
+  identifier = "2023-09-11"
+  url = "/workshops/2023-09-11"
+  parent = "workshops"
 
 [[main]]
   name = "The team"

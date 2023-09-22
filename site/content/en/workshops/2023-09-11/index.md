@@ -12,23 +12,24 @@ layout: "single"
 A workshop on cell-based Chaste: an introduction to basic functionality, and a showcase of the latest additions to the codebase.
 
 ## Event details
-**Resources?**
+
+### Resources
 Links to slides and practical materials are available at [https://github.com/Chaste/chaste-workshop-materials-2023](https://github.com/Chaste/chaste-workshop-materials-2023)
 
-**Where?**
+### Where
 
-Doctoral Training Centre  
-1-4 Keble Road  
-Oxford  
-OX1 3NP 
-UK  
+Doctoral Training Centre
+1-4 Keble Road
+Oxford
+OX1 3NP
+UK
 > [Map](https://www.google.com/maps/place/Doctoral+Training+Center/@51.7595292,-1.2589674,20.42z/data=!4m6!3m5!1s0x4876c7222ec79663:0x3ba4780a53a79561!8m2!3d51.7595188!4d-1.2589991!16s%2Fg%2F11m34j3l93)
 
-**When?**
+### When
 
 Monday 11 September to Thursday 14 September 2023
 
-**Details** 
+### Details
 
 We are pleased to announce a workshop on cell-based modelling within Chaste (Cancer, Heart and Soft-Tissue Environment), an open-source multi-scale framework for the computational modelling of
 biological systems. This software library consists of object-oriented C++ code, developed using an agile approach. All software is tested, robust, reliable and extensible. The library enables general simulations to be undertaken and includes tools to visualise, analyse and automatically curate and store simulation results, thus expediting model development.
