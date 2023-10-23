@@ -1,16 +1,13 @@
 
 ---
 title : "TestSolvingLinearPdesTutorial.hpp"
-description: "
-This tutorial is automatically generated from the file pde/test/tutorials/TestSolvingLinearPdesTutorial.hpp at revision [8927ef86aec6](https://github.com/Chaste/Chaste/commit/8927ef86aec6eb821fa2cc53b95b4025a6cbc5fa).
-Note that the code is given in full at the bottom of the page.
-"
+description: "This tutorial is automatically generated from the file pde/test/tutorials/TestSolvingLinearPdesTutorial.hpp at revision [dc0fc851da33](https://github.com/Chaste/Chaste/commit/dc0fc851da33d398a30adf6f0a3033ba159c438b). Note that the code is given in full at the bottom of the page."
 draft: false
 images: []
 toc: true
 ---
 
-# Examples showing how to solve linear elliptic and parabolic PDEs
+# Examples showing how to solve linear elliptic and parabolic PDEs 
 
 In this tutorial we show how Chaste can be used to solve linear PDEs. The first test
 uses the `SimpleLinearEllipticSolver` to solve a linear elliptic PDE, and the
@@ -67,7 +64,7 @@ cannot be included in the source code.
 #include "PetscSetupAndFinalize.hpp"
 
 ~~~
-## Test 1: Solving a linear elliptic PDE
+## Test 1: Solving a linear elliptic PDE 
 
 Here, we solve the PDE: div(D grad u) + u + x^2^+y^2^ = 0, in 2D, where
 D is the diffusion tensor (2 0; 0 1) (ie D11=2, D12=D21=0, D22=1), on a square
@@ -343,7 +340,7 @@ All PETSc {{{Vec}}}s should be destroyed when they are no longer needed, or you 
     }
 
 ~~~
-## Test 2: Solving a linear parabolic PDE
+## Test 2: Solving a linear parabolic PDE 
 
 Now we solve a parabolic PDE. We choose a simple problem so that the code changes
 needed from the elliptic case are clearer. We will solve
@@ -464,7 +461,7 @@ All PETSc vectors should be destroyed when they are no longer needed.
 The full code is given below
 
 
-## File name `TestSolvingLinearPdesTutorial.hpp`
+## File name `TestSolvingLinearPdesTutorial.hpp` 
 
 ~~~cpp
 #include <cxxtest/TestSuite.h>
