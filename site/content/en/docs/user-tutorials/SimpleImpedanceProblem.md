@@ -1,7 +1,7 @@
 
 ---
 title : "TestSimpleImpedanceProblemTutorial.hpp"
-description: "This tutorial is automatically generated from the file lung/test/tutorials/TestSimpleImpedanceProblemTutorial.hpp at revision [dc0fc851da33](https://github.com/Chaste/Chaste/commit/dc0fc851da33d398a30adf6f0a3033ba159c438b). Note that the code is given in full at the bottom of the page."
+description: "This tutorial is automatically generated from the file lung/test/tutorials/TestSimpleImpedanceProblemTutorial.hpp at revision [1288aa7fe4cc](https://github.com/Chaste/Chaste/commit/1288aa7fe4ccb5438b05f81253fe167e350cdc10). Note that the code is given in full at the bottom of the page."
 draft: false
 images: []
 toc: true
@@ -17,23 +17,23 @@ Note that !SimpleImpedanceProblem uses Poiseuille formulas to calculate impedanc
 rather than more accurate acoustic impedance equations. For the more accurate version see !ImpedanceProblem.
 
 The usual headers are included
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "TrianglesMeshReader.hpp"
 
-~~~
+```
 !SimpleImpedanceProblem does most of the work in calculating impedance.
-~~~cpp
+```cpp
 #include "SimpleImpedanceProblem.hpp"
 
-~~~
+```
 !ImpedancePostProcessor allows easy calculation of a number of clinically relevant measures.
-~~~cpp
+```cpp
 #include "ImpedancePostProcessor.hpp"
 
-~~~
+```
 Define the test
-~~~cpp
+```cpp
 class TestSimpleImpedanceProblemTutorial : public CxxTest::TestSuite
 {
 public: // Tests should be public!
@@ -42,22 +42,22 @@ public: // Tests should be public!
     {
         EXIT_IF_PARALLEL;
 
-~~~
+```
 First, we load up a mesh containing the centre lines and radii of the a complete conducting airway tree.
 The mesh will typically have been developed using a combination of computed tomography (CT) image segmentation
 and algorithmic airway generation.
 
-~~~cpp
+```cpp
         TetrahedralMesh<1,3> mesh;
         TrianglesMeshReader<1,3> mesh_reader("lung/test/data/TestSubject002");
         mesh.ConstructFromMeshReader(mesh_reader);
 
-~~~
+```
 Note that the mesh defined above was developed using a CT scan taken at full inspiration. Impedance is more
 commonly recorded during tidal breathing. Here we use a simple scaling to bring the airway radii down into the
 tidal breathing range.
 
-~~~cpp
+```cpp
         for (TetrahedralMesh<1,3>::NodeIterator node_iter = mesh.GetNodeIteratorBegin();
              node_iter != mesh.GetNodeIteratorEnd();
              ++node_iter)
@@ -65,18 +65,18 @@ tidal breathing range.
             node_iter->rGetNodeAttributes()[0] *= 0.7;
         }
 
-~~~
+```
 Setup a !SimpleImpedanceProblem and tell it that the given mesh is defined in millimetres
 
-~~~cpp
+```cpp
         SimpleImpedanceProblem problem(mesh, 0u);
         problem.SetMeshInMilliMetres();
 
-~~~
+```
 This vector lists the input frequencies at which to calculate impedance. They must be
 monotonically increasing.
 
-~~~cpp
+```cpp
         std::vector<double> test_frequencies;
         test_frequencies.push_back(1.0);
         test_frequencies.push_back(2.0);
@@ -87,33 +87,33 @@ monotonically increasing.
         test_frequencies.push_back(30.0);
         problem.SetFrequencies(test_frequencies);               //Set & get frequencies for coverage
 
-~~~
+```
 The simple impedance model defines a linear spring at each terminal of the airway tree.
 This method allows us to set the elastance of the whole lung (in Pa/m^3). This elastance
 is then evenly distributed over the terminals.
 
-~~~cpp
+```cpp
         problem.SetElastance(5.8*98.0665*1e3);
 
-~~~
+```
 Calculates the impedance at the given frequencies
-~~~cpp
+```cpp
         problem.Solve();
 
-~~~
+```
 Get the calculated impedances. The impedance at each frequency is
 made up of a real component (the resistance) and a complex component
 (the elastance).
 
-~~~cpp
+```cpp
         std::vector<std::complex<double> > impedances = problem.rGetImpedances();
 
-~~~
+```
 The impedances calculated above could at this stage be written to a file
 and plotted. Instead, we make use of !ImpedancePostProcessor to calculate
 a number of common clinical summary statistics from the data.
 
-~~~cpp
+```cpp
         ImpedancePostProcessor processor(test_frequencies, impedances);
 
         std::cout << "\n";
@@ -129,7 +129,7 @@ a number of common clinical summary statistics from the data.
     }
 };
 
-~~~
+```
 
 
 # Code
@@ -138,7 +138,7 @@ The full code is given below
 
 ## File name `TestSimpleImpedanceProblemTutorial.hpp` 
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "TrianglesMeshReader.hpp"
 
@@ -199,5 +199,5 @@ public: // Tests should be public!
     }
 };
 
-~~~
+```
 

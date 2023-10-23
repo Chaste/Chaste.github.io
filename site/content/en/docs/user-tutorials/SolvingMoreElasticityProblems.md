@@ -1,7 +1,7 @@
 
 ---
 title : "TestSolvingMoreElasticityProblemsTutorial.hpp"
-description: "This tutorial is automatically generated from the file continuum_mechanics/test/TestSolvingMoreElasticityProblemsTutorial.hpp at revision [dc0fc851da33](https://github.com/Chaste/Chaste/commit/dc0fc851da33d398a30adf6f0a3033ba159c438b). Note that the code is given in full at the bottom of the page."
+description: "This tutorial is automatically generated from the file continuum_mechanics/test/TestSolvingMoreElasticityProblemsTutorial.hpp at revision [1288aa7fe4cc](https://github.com/Chaste/Chaste/commit/1288aa7fe4ccb5438b05f81253fe167e350cdc10). Note that the code is given in full at the bottom of the page."
 draft: false
 images: []
 toc: true
@@ -16,30 +16,30 @@ displacement boundary conditions only in some directions, and doing compressible
 
 These includes are the same as before
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "TrianglesMeshReader.hpp"
-~~~
+```
 The incompressible solver
-~~~cpp
+```cpp
 #include "IncompressibleNonlinearElasticitySolver.hpp"
-~~~
+```
 An incompressible material law
-~~~cpp
+```cpp
 #include "ExponentialMaterialLaw.hpp"
-~~~
+```
 These two are specific to compressible problems
-~~~cpp
+```cpp
 #include "CompressibleNonlinearElasticitySolver.hpp"
 #include "CompressibleMooneyRivlinMaterialLaw.hpp"
-~~~
+```
 This include should generally go last to avoid issues on old library versions
-~~~cpp
+```cpp
 #include "PetscSetupAndFinalize.hpp"
 
-~~~
+```
 This function is used in the first test
-~~~cpp
+```cpp
 c_vector<double,2> MyTraction(c_vector<double,2>& rX, double time)
 {
     c_vector<double,2> traction = zero_vector<double>(2);
@@ -47,56 +47,56 @@ c_vector<double,2> MyTraction(c_vector<double,2>& rX, double time)
     return traction;
 }
 
-~~~
-~~~cpp
+```
+```cpp
 class TestSolvingMoreElasticityProblemsTutorial : public CxxTest::TestSuite
 {
 public:
 
-~~~
+```
 ## Incompressible deformation: non-zero displacement boundary conditions, functional tractions 
 
 We now consider a more complicated example. We prescribe particular new locations for the nodes
 on the Dirichlet boundary, and also show how to prescribe a traction that is given in functional form
 rather than prescribed for each boundary element.
 
-~~~cpp
+```cpp
     void TestIncompressibleProblemMoreComplicatedExample()
     {
-~~~
+```
 Create a mesh
-~~~cpp
+```cpp
         QuadraticMesh<2> mesh;
         mesh.ConstructRegularSlabMesh(0.1 /*stepsize*/, 1.0 /*width*/, 1.0 /*height*/);
 
-~~~
+```
 Use a different material law this time, an exponential material law.
 The material law needs to inherit from `AbstractIncompressibleMaterialLaw`,
 and there are a few implemented, see `continuum_mechanics/src/problem/material_laws`
-~~~cpp
+```cpp
         ExponentialMaterialLaw<2> law(1.0, 0.5); // First parameter is 'a', second 'b', in W=a*exp(b(I1-3))
-~~~
+```
 Now specify the fixed nodes, and their new locations. Create `std::vector`s for each.
-~~~cpp
+```cpp
         std::vector<unsigned> fixed_nodes;
         std::vector<c_vector<double,2> > locations;
-~~~
+```
 Loop over the mesh nodes
-~~~cpp
+```cpp
         for (unsigned i=0; i<mesh.GetNumNodes(); i++)
         {
-~~~
+```
 If the node is on the Y=0 surface (the LHS)
-~~~cpp
+```cpp
             if (fabs(mesh.GetNode(i)->rGetLocation()[1]) < 1e-6)
             {
-~~~
+```
 Add it to the list of fixed nodes
-~~~cpp
+```cpp
                 fixed_nodes.push_back(i);
-~~~
+```
 and define a new position x=(X,0.1*X^2^)
-~~~cpp
+```cpp
                 c_vector<double,2> new_location;
                 double X = mesh.GetNode(i)->rGetLocation()[0];
                 new_location(0) = X;
@@ -105,19 +105,19 @@ and define a new position x=(X,0.1*X^2^)
             }
         }
 
-~~~
+```
 Now collect all the boundary elements on the top surface, as before, except
 here we don't create the tractions for each element
 
-~~~cpp
+```cpp
         std::vector<BoundaryElement<1,2>*> boundary_elems;
         for (TetrahedralMesh<2,2>::BoundaryElementIterator iter = mesh.GetBoundaryElementIteratorBegin();
              iter != mesh.GetBoundaryElementIteratorEnd();
              ++iter)
         {
-~~~
+```
 If Y=1, have found a boundary element
-~~~cpp
+```cpp
             if (fabs((*iter)->CalculateCentroid()[1] - 1.0)<1e-6)
             {
                 BoundaryElement<1,2>* p_element = *iter;
@@ -125,15 +125,15 @@ If Y=1, have found a boundary element
             }
         }
 
-~~~
+```
 Create a problem definition object, and this time calling `SetFixedNodes`
 which takes in the new locations of the fixed nodes.
 
-~~~cpp
+```cpp
         SolidMechanicsProblemDefinition<2> problem_defn(mesh);
         problem_defn.SetMaterialLaw(INCOMPRESSIBLE,&law);
         problem_defn.SetFixedNodes(fixed_nodes, locations);
-~~~
+```
 Now call `SetTractionBoundaryConditions`, which takes in a vector of
 boundary elements as in the previous test. However this time the second argument
 is a ''function pointer'' (just the name of the function) to a
@@ -144,29 +144,29 @@ using points in the boundary elements being passed in. The function `MyTraction`
 (defined above, before the tests) above defines a horizontal traction (ie a shear stress, since it is
 applied to the top surface) which increases in magnitude across the object.
 
-~~~cpp
+```cpp
         problem_defn.SetTractionBoundaryConditions(boundary_elems, MyTraction);
-~~~
+```
 Note: You can also call `problem_defn.SetBodyForce(MyBodyForce)`, passing in a function
 instead of a vector, although isn't really physically useful, it is only really useful
 for constructing problems with exact solutions.
 
 Create the solver as before
-~~~cpp
+```cpp
         IncompressibleNonlinearElasticitySolver<2> solver(mesh,
                                                           problem_defn,
                                                           "IncompressibleElasticityMoreComplicatedExample");
 
-~~~
+```
 Call `Solve()`
-~~~cpp
+```cpp
         solver.Solve();
 
-~~~
+```
 Another quick check
-~~~cpp
+```cpp
         TS_ASSERT_EQUALS(solver.GetNumNewtonIterations(), 6u);
-~~~
+```
 Visualise as before.
 
 '''Advanced:''' Note that the function `MyTraction` takes in time, which it didn't use. In the above it would have been called
@@ -174,28 +174,28 @@ with t=0. The current time can be set using `SetCurrentTime()`. The idea is that
 sequence of static problems with time-dependent tractions (say), for which they should allow `MyTraction` to
 depend on time, and put the solve inside a time-loop, for example:
 
-~~~cpp
+```cpp
         //for (double t=0; t<T; t+=dt)
         //{
         //    solver.SetCurrentTime(t);
         //    solver.Solve();
         //}
-~~~
+```
 In this the current time would be passed through to `MyTraction`
 
 Create Cmgui output
 
-~~~cpp
+```cpp
         solver.CreateCmguiOutput();
 
-~~~
+```
 This is just to check that nothing has been accidentally changed in this test
-~~~cpp
+```cpp
         TS_ASSERT_DELTA(solver.rGetDeformedPosition()[98](0), 1.4543, 1e-3);
         TS_ASSERT_DELTA(solver.rGetDeformedPosition()[98](1), 0.5638, 1e-3);
     }
 
-~~~
+```
 ## Sliding boundary conditions 
 
 It is common to require a Dirichlet boundary condition where the displacement/position in one dimension
@@ -207,7 +207,7 @@ so that, for the nodes on Y=0, we specify y=0 but leave x free (Here (X,Y)=old p
 translation in the Y direction could be added a solution to obtain another valid solution, so we
 fully fix the node at the origin.)
 
-~~~cpp
+```cpp
     void TestWithSlidingDirichletBoundaryConditions()
     {
         QuadraticMesh<2> mesh;
@@ -215,32 +215,32 @@ fully fix the node at the origin.)
 
         ExponentialMaterialLaw<2> law(1.0, 0.5); // First parameter is 'a', second 'b', in W=a*exp(b(I1-3))
 
-~~~
+```
 Create fixed nodes and locations...
-~~~cpp
+```cpp
         std::vector<unsigned> fixed_nodes;
         std::vector<c_vector<double,2> > locations;
 
-~~~
+```
 Fix node 0 (the node at the origin)
-~~~cpp
+```cpp
         fixed_nodes.push_back(0);
         locations.push_back(zero_vector<double>(2));
 
-~~~
+```
 For the rest, if the node is on the Y=0 surface..
-~~~cpp
+```cpp
         for (unsigned i=1; i<mesh.GetNumNodes(); i++)
         {
             if (fabs(mesh.GetNode(i)->rGetLocation()[1]) < 1e-6)
             {
-~~~
+```
 ..add it to the list of fixed nodes..
-~~~cpp
+```cpp
                 fixed_nodes.push_back(i);
-~~~
+```
 ..and define y to be 0 but x is fixed
-~~~cpp
+```cpp
                 c_vector<double,2> new_location;
                 new_location(0) = SolidMechanicsProblemDefinition<2>::FREE;
                 new_location(1) = 0.0;
@@ -248,9 +248,9 @@ For the rest, if the node is on the Y=0 surface..
             }
         }
 
-~~~
+```
 Set the material law and fixed nodes, add some gravity, and solve
-~~~cpp
+```cpp
         SolidMechanicsProblemDefinition<2> problem_defn(mesh);
         problem_defn.SetMaterialLaw(INCOMPRESSIBLE,&law);
         problem_defn.SetFixedNodes(fixed_nodes, locations);
@@ -264,14 +264,14 @@ Set the material law and fixed nodes, add some gravity, and solve
         solver.Solve();
         solver.CreateCmguiOutput();
 
-~~~
+```
 Check the node at (1,0) has moved but has stayed on Y=0
-~~~cpp
+```cpp
         TS_ASSERT_LESS_THAN(1.0, solver.rGetDeformedPosition()[10](0));
         TS_ASSERT_DELTA(solver.rGetDeformedPosition()[10](1), 0.0, 1e-3);
     }
 
-~~~
+```
 ## Compressible deformation, and other bits and pieces 
 
 In this test, we will show the (very minor) changes required to solve a compressible nonlinear
@@ -283,31 +283,31 @@ changing between the solves.
 Note: for other examples of compressible solves, including problems with an exact solution, see the
 file `continuum_mechanics/test/TestCompressibleNonlinearElasticitySolver.hpp`
 
-~~~cpp
+```cpp
     void TestSolvingCompressibleProblem()
     {
-~~~
+```
 All mechanics problems must take in quadratic meshes, but the mesh files for
 (standard) linear meshes in Triangles/Tetgen can be automatically converted
 to quadratic meshes, by simply doing the following. (The mesh loaded here is a disk
 centred at the origin with radius 1).
 
-~~~cpp
+```cpp
         QuadraticMesh<2> mesh;
         TrianglesMeshReader<2,2> reader("mesh/test/data/disk_522_elements");
         mesh.ConstructFromLinearMeshReader(reader);
 
-~~~
+```
 Compressible problems require a compressible material law, ie one that
 inherits from `AbstractCompressibleMaterialLaw`. The `CompressibleMooneyRivlinMaterialLaw`
 is one such example; instantiate one of these
 
-~~~cpp
+```cpp
         CompressibleMooneyRivlinMaterialLaw<2> law(1.0, 0.5);
 
-~~~
+```
 For this problem, we fix the nodes on the surface for which Y < -0.9
-~~~cpp
+```cpp
         std::vector<unsigned> fixed_nodes;
         for ( TetrahedralMesh<2,2>::BoundaryNodeIterator iter = mesh.GetBoundaryNodeIteratorBegin();
               iter != mesh.GetBoundaryNodeIteratorEnd();
@@ -320,14 +320,14 @@ For this problem, we fix the nodes on the surface for which Y < -0.9
             }
         }
 
-~~~
+```
 We will (later) apply Neumann boundary conditions to surface elements which lie below Y=0,
 and these are collected here. (Minor, subtle, comment: we don't bother here checking Y>-0.9,
 so the surface elements collected here include the ones on the Dirichlet boundary. This doesn't
 matter as the Dirichlet boundary conditions to the nonlinear system essentially overwrite
 an Neumann-related effects).
 
-~~~cpp
+```cpp
         std::vector<BoundaryElement<1,2>*> boundary_elems;
         for (TetrahedralMesh<2,2>::BoundaryElementIterator iter
               = mesh.GetBoundaryElementIteratorBegin();
@@ -342,32 +342,32 @@ an Neumann-related effects).
         }
         assert(boundary_elems.size()>0);
 
-~~~
+```
 Create the problem definition class, and set the law again, this time
 stating that the law is compressible
 
-~~~cpp
+```cpp
         SolidMechanicsProblemDefinition<2> problem_defn(mesh);
         problem_defn.SetMaterialLaw(COMPRESSIBLE,&law);
 
-~~~
+```
 Set the fixed nodes and gravity
-~~~cpp
+```cpp
         problem_defn.SetZeroDisplacementNodes(fixed_nodes);
 
-~~~
+```
 The elasticity solvers have two nonlinear solvers implemented, one hand-coded and one which uses PETSc's SNES
 solver. The latter is not the default but can be more robust (and will probably be the default in later
 versions). This is how it can be used. (This option can also be called if the compiled binary is run from
 the command line (see ChasteGuides/RunningBinariesFromCommandLine) using the option "-mech_use_snes").
 
-~~~cpp
+```cpp
         problem_defn.SetSolveUsingSnes();
-~~~
+```
 This line tells the solver to output info about the nonlinear solve as it progresses, and can be used with
 or without the SNES option above. The corresponding command line option is "-mech_verbose"
 
-~~~cpp
+```cpp
         problem_defn.SetVerboseDuringSolve();
 
         c_vector<double,2> gravity;
@@ -375,17 +375,17 @@ or without the SNES option above. The corresponding command line option is "-mec
         gravity(1) = 0.1;
         problem_defn.SetBodyForce(gravity);
 
-~~~
+```
 Declare the compressible solver, which has the same interface as the incompressible
 one, and call `Solve()`
 
-~~~cpp
+```cpp
         CompressibleNonlinearElasticitySolver<2> solver(mesh,
                                                         problem_defn,
                                                         "CompressibleSolidMechanicsExample");
         solver.Solve();
 
-~~~
+```
 Now we call add additional boundary conditions, and call `Solve() again. Firstly: these
 Neumann conditions here are not specified traction boundary conditions (such BCs are specified
 on the undeformed body), but instead, the (more natural) specification of a pressure
@@ -399,10 +399,10 @@ in 2D, surface element nodes are ordered anticlockwise (looking at the whole mes
 at any surface element from outside the mesh, the three nodes are ordered anticlockwise. (Triangle/tetgen
 automatically create boundary elements like this)).
 
-~~~cpp
+```cpp
         double external_pressure = -0.4; // negative sign => inward pressure
         problem_defn.SetApplyNormalPressureOnDeformedSurface(boundary_elems, external_pressure);
-~~~
+```
 Call `Solve()` again, so now solving with fixed nodes, gravity, and pressure. The solution from
 the previous solve will be used as the initial guess. Although at the moment the solution from the
 previous call to `Solve()` will be over-written, calling `Solve()` repeatedly may be useful for
@@ -411,13 +411,13 @@ be (very) helpful to ''increment'' the loading. For example, set the gravity to 
 then set it to be (0,-2*9.81/3), solve again, and finally set it to be (0,-9.81) and solve for a
 final time
 
-~~~cpp
+```cpp
         solver.Solve();
         solver.CreateCmguiOutput();
     }
 };
 
-~~~
+```
 
 
 # Code
@@ -426,7 +426,7 @@ The full code is given below
 
 ## File name `TestSolvingMoreElasticityProblemsTutorial.hpp` 
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "TrianglesMeshReader.hpp"
 #include "IncompressibleNonlinearElasticitySolver.hpp"
@@ -602,5 +602,5 @@ public:
     }
 };
 
-~~~
+```
 

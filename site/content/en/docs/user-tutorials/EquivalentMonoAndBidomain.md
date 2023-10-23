@@ -1,7 +1,7 @@
 
 ---
 title : "TestEquivalentMonoAndBidomainTutorial.hpp"
-description: "This tutorial is automatically generated from the file heart/test/tutorials/TestEquivalentMonoAndBidomainTutorial.hpp at revision [dc0fc851da33](https://github.com/Chaste/Chaste/commit/dc0fc851da33d398a30adf6f0a3033ba159c438b). Note that the code is given in full at the bottom of the page."
+description: "This tutorial is automatically generated from the file heart/test/tutorials/TestEquivalentMonoAndBidomainTutorial.hpp at revision [1288aa7fe4cc](https://github.com/Chaste/Chaste/commit/1288aa7fe4ccb5438b05f81253fe167e350cdc10). Note that the code is given in full at the bottom of the page."
 draft: false
 images: []
 toc: true
@@ -18,7 +18,7 @@ With equivalent parameters so that the bidomain could be reduced to the monodoma
 
 The bulk of this tutorial is the same as UserTutorials/RunningBidomainSimulations, so for details of each line see that page.
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 // The main classes to be used for running simulations.
 #include "BidomainProblem.hpp"
@@ -118,21 +118,21 @@ public:
     // might not get printed out.
     void TestCompareMonoAndBidomain()
     {
-~~~
+```
 The `HeartConfig`{.cpp} class is used to set various parameters (see the main ChasteGuides page
 for information on default parameter values.
 
 See UserTutorials/RunningBidomainSimulations for more details.
 
-~~~cpp
+```cpp
         HeartConfig::Instance()->SetSimulationDuration(5.0); //ms
         HeartConfig::Instance()->SetMeshFileName("mesh/test/data/2D_0_to_1mm_800_elements");
         HeartConfig::Instance()->SetOutputDirectory("EquivalentMonoAndBidomainTutorial");
 
-~~~
+```
 This is how to reset the surface-area-to-volume ratio and the capacitance.
 (Here, we are actually just resetting them to their default values).
-~~~cpp
+```cpp
         HeartConfig::Instance()->SetSurfaceAreaToVolumeRatio(1400); // 1/cm
         HeartConfig::Instance()->SetCapacitance(1.0); // uF/cm^2
 
@@ -145,10 +145,10 @@ This is how to reset the surface-area-to-volume ratio and the capacitance.
         // Next, we have to create a cell factory of the type we defined above.
         PointStimulus2dCellFactory cell_factory;
 
-~~~
+```
 ## Setting Bidomain Conductivities 
 
-~~~cpp
+```cpp
         c_vector<double,2> intracellular_conductivities = Create_c_vector(1.75, 0.19);
         c_vector<double,2> extracellular_conductivities = Create_c_vector(7, 0.76);
 
@@ -160,7 +160,7 @@ This is how to reset the surface-area-to-volume ratio and the capacitance.
             // Now we create a problem class using (a pointer to) the cell factory.
             BidomainProblem<2> bidomain_problem( &cell_factory );
 
-~~~
+```
 Here we have conductivities that can be expressed as sigma_i = scalar * sigma_e.
 
 Then this is a special case, in which the bidomain equations can be reduced to the monodomain
@@ -174,17 +174,17 @@ and hence a reduction to the monodomain equation can be made.
 
 For more information on this see e.g. Keener & Sneyd, Mathematical Physiology textbook.
 
-~~~cpp
+```cpp
             HeartConfig::Instance()->SetIntracellularConductivities(intracellular_conductivities);
             HeartConfig::Instance()->SetExtracellularConductivities(extracellular_conductivities);
 
-~~~
+```
 Initialise and solve as normal
-~~~cpp
+```cpp
             bidomain_problem.Initialise();
             bidomain_problem.Solve();
 
-~~~
+```
 NB: the easiest way to look at the resultant voltage values from the code
 (for the last timestep - the data for the previous timesteps is written to file
 but not retained) is to use a `ReplicatableVector`{.cpp}.
@@ -194,14 +194,14 @@ of the form (V_0, phi_0, V_1, phi_e_1, ... V_n, phi_e_n), and we can create a
 (This won't be very efficient with huge problems in parallel - the next tutorial
 will mention how to do parallel access).
 
-~~~cpp
+```cpp
             p_bidomain_results = new ReplicatableVector(bidomain_problem.GetSolution());
         }
 
         ReplicatableVector* p_monodomain_results;
         // Monodomain
         {
-~~~
+```
 
 ## Reduction to Monodomain  
 
@@ -213,7 +213,7 @@ So we calculate the equivalent conductivity according to (elementwise)
 
 sigma_monodomain = sigma_i sigma_e / (sigma_i + sigma_e)
 
-~~~cpp
+```cpp
             c_vector<double,2> monodomain_conductivities;
 
             // Just a little check that this reduction is valid in case you copy and paste this code!
@@ -229,9 +229,9 @@ sigma_monodomain = sigma_i sigma_e / (sigma_i + sigma_e)
 
             HeartConfig::Instance()->SetIntracellularConductivities(monodomain_conductivities);
 
-~~~
+```
 Now we create a monodomain problem class in exactly the same way as bidomain above
-~~~cpp
+```cpp
             HeartConfig::Instance()->SetOutputFilenamePrefix("monodomain_results");
             MonodomainProblem<2> monodomain_problem( &cell_factory );
             monodomain_problem.Initialise();
@@ -239,15 +239,15 @@ Now we create a monodomain problem class in exactly the same way as bidomain abo
             p_monodomain_results = new ReplicatableVector(monodomain_problem.GetSolution());
         }
 
-~~~
+```
 The bidomain solution includes extracellular (phi_e) so should be twice as big as monodomain solution.
-~~~cpp
+```cpp
         TS_ASSERT_EQUALS(p_bidomain_results->GetSize(),2*p_monodomain_results->GetSize());
 
-~~~
+```
 We then check that the voltage at each node at the end of the simulation is the same
 whether we did a bidomain simulation, or the equivalent monodomain simulation.
-~~~cpp
+```cpp
         for (unsigned i=0; i<p_monodomain_results->GetSize(); i++)
         {
             TS_ASSERT_DELTA((*p_monodomain_results)[i], (*p_bidomain_results)[2u*i], 1e-6);
@@ -258,7 +258,7 @@ whether we did a bidomain simulation, or the equivalent monodomain simulation.
     }
 };
 
-~~~
+```
 
 
 # Code
@@ -267,7 +267,7 @@ The full code is given below
 
 ## File name `TestEquivalentMonoAndBidomainTutorial.hpp` 
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 // The main classes to be used for running simulations.
 #include "BidomainProblem.hpp"
@@ -440,5 +440,5 @@ public:
     }
 };
 
-~~~
+```
 

@@ -1,7 +1,7 @@
 
 ---
 title : "TestBidomainWithConductivityModifierTutorial.hpp"
-description: "This tutorial is automatically generated from the file heart/test/tutorials/TestBidomainWithConductivityModifierTutorial.hpp at revision [dc0fc851da33](https://github.com/Chaste/Chaste/commit/dc0fc851da33d398a30adf6f0a3033ba159c438b). Note that the code is given in full at the bottom of the page."
+description: "This tutorial is automatically generated from the file heart/test/tutorials/TestBidomainWithConductivityModifierTutorial.hpp at revision [1288aa7fe4cc](https://github.com/Chaste/Chaste/commit/1288aa7fe4ccb5438b05f81253fe167e350cdc10). Note that the code is given in full at the bottom of the page."
 draft: false
 images: []
 toc: true
@@ -24,7 +24,7 @@ In this example we have cooked up a modifier that:
 The first thing to do is include the usual headers, plus ones for the conductivity
 modifier and an example cell factory (not needed if you're using a custom one).
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "BidomainProblem.hpp"
 #include "LuoRudy1991.hpp"
@@ -33,14 +33,14 @@ modifier and an example cell factory (not needed if you're using a custom one).
 #include "AbstractConductivityModifier.hpp"
 #include "ZeroStimulusCellFactory.hpp"
 
-~~~
+```
 Here we define our conductivity modifier. It inherits from the abstract class.
 Make sure to use the right element/space dims.
 
-~~~cpp
+```cpp
 class SimpleConductivityModifier : public AbstractConductivityModifier<2,2>
 {
-~~~
+```
 
 We'll use a c_matrix called mTensor as "working memory" to hold the returned
 modified tensor. This is needed because we return by reference to the problem class,
@@ -48,14 +48,14 @@ so we need to make sure the memory isn't overwritten before it's done with.
 
 mSpecialMatrix will be some constant one.
 
-~~~cpp
+```cpp
 private:
 
     c_matrix<double,2,2> mTensor;
     c_matrix<double,2,2> mSpecialMatrix;
 
 public:
-~~~
+```
 
 The constructor.
 
@@ -63,7 +63,7 @@ In Chaste, all conductivity tensors are diagonal, so if we initialise our "const
 matrix" to zero then we only need to set the diagonal entries in the constructor.
 Strange things will happen if the off-diagonal entries aren't zeroed!
 
-~~~cpp
+```cpp
     SimpleConductivityModifier()
         : AbstractConductivityModifier<2,2>(),
           mSpecialMatrix( zero_matrix<double>(2,2) )
@@ -72,10 +72,10 @@ Strange things will happen if the off-diagonal entries aren't zeroed!
               mSpecialMatrix(1,1) = 0.707;
           }
 
-~~~
+```
 `rCalculateModifiedConductivityTensor` returns a reference to the "processed" conductivity tensor.
 
-~~~cpp
+```cpp
     c_matrix<double,2,2>& rCalculateModifiedConductivityTensor(unsigned elementIndex, const c_matrix<double,2,2>& rOriginalConductivity, unsigned domainIndex)
     {
         if (elementIndex == 0)
@@ -105,41 +105,41 @@ Strange things will happen if the off-diagonal entries aren't zeroed!
     }
 };
 
-~~~
+```
 Now the usual test structure.
 
-~~~cpp
+```cpp
 class TestBidomainWithConductivityModifierTutorial : public CxxTest::TestSuite
 {
 public:
     void TestConductivityModifier()
     {
-~~~
+```
 
 Generate a mesh.
 
-~~~cpp
+```cpp
         DistributedTetrahedralMesh<2,2> mesh;
         mesh.ConstructRegularSlabMesh(0.5, 1.0, 0.5); // Mesh has 4 elements
 
-~~~
+```
 Here we're using a trivial cell factory for simplicity, but usually you'll provide your own one.
 Set up the problem with the factory as usual.
 
-~~~cpp
+```cpp
         ZeroStimulusCellFactory<CellLuoRudy1991FromCellML,2> cell_factory;
         BidomainProblem<2> bidomain_problem( &cell_factory );
         bidomain_problem.SetMesh( &mesh );
 
-~~~
+```
 We need to apply the modifier directly to the tissue, which comes from the problem, but is only
 accessible after `Initialise()`, so let's do that now.
 
-~~~cpp
+```cpp
         bidomain_problem.Initialise();
         BidomainTissue<2>* p_bidomain_tissue = bidomain_problem.GetBidomainTissue();
 
-~~~
+```
 Get the original conductivity tensor values. We haven't set them using
 `HeartConfig->SetIntra/ExtracellularConductivities` so they'll just be the defaults.
 
@@ -153,7 +153,7 @@ owns at least one element.
 
 We then check that we have the correct (default) conductivity values.
 
-~~~cpp
+```cpp
         double orig_intra_conductivity_0 = 0.0;
         double orig_extra_conductivity_0 = 0.0;
         if (mesh.GetElementIteratorBegin() != mesh.GetElementIteratorEnd())
@@ -166,18 +166,18 @@ We then check that we have the correct (default) conductivity values.
             TS_ASSERT_DELTA(orig_extra_conductivity_0, 7.0, 1e-9); // hard-coded using default
         }
 
-~~~
+```
 Now we can make the modifier and apply it to the tissue using `SetConductivityModifier`.
 
-~~~cpp
+```cpp
         SimpleConductivityModifier modifier;
         p_bidomain_tissue->SetConductivityModifier( &modifier );
 
-~~~
+```
 To confirm that the conductivities have changed, let's iterate over all elements owned by this process
 and check their conductivity against what we expect.
 
-~~~cpp
+```cpp
         for (AbstractTetrahedralMesh<2,2>::ElementIterator elt_iter=mesh.GetElementIteratorBegin();
              elt_iter!=mesh.GetElementIteratorEnd();
              ++elt_iter)
@@ -199,7 +199,7 @@ and check their conductivity against what we expect.
     }
 };
 
-~~~
+```
 
 
 # Code
@@ -208,7 +208,7 @@ The full code is given below
 
 ## File name `TestBidomainWithConductivityModifierTutorial.hpp` 
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "BidomainProblem.hpp"
 #include "LuoRudy1991.hpp"
@@ -313,5 +313,5 @@ public:
     }
 };
 
-~~~
+```
 

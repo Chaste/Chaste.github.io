@@ -1,7 +1,7 @@
 
 ---
 title : "TestWritingPdeSolversTwoTutorial.hpp"
-description: "This tutorial is automatically generated from the file pde/test/tutorials/TestWritingPdeSolversTwoTutorial.hpp at revision [dc0fc851da33](https://github.com/Chaste/Chaste/commit/dc0fc851da33d398a30adf6f0a3033ba159c438b). Note that the code is given in full at the bottom of the page."
+description: "This tutorial is automatically generated from the file pde/test/tutorials/TestWritingPdeSolversTwoTutorial.hpp at revision [1288aa7fe4cc](https://github.com/Chaste/Chaste/commit/1288aa7fe4ccb5438b05f81253fe167e350cdc10). Note that the code is given in full at the bottom of the page."
 draft: false
 images: []
 toc: true
@@ -37,28 +37,28 @@ and (iii) an assembler of surface term, c (already written).
 Firstly, include `AbstractFeVolumeIntegralAssembler` which the assembler we write will inherit from,
 and `AbstractDynamicLinearPdeSolver`, which the solver we write will inherit from.
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "AbstractFeVolumeIntegralAssembler.hpp"
 #include "AbstractDynamicLinearPdeSolver.hpp"
-~~~
+```
 Some standard includes
-~~~cpp
+```cpp
 #include "TetrahedralMesh.hpp"
 #include "TrianglesMeshReader.hpp"
 #include "PetscSetupAndFinalize.hpp"
-~~~
+```
 The two assemblers that we can use
-~~~cpp
+```cpp
 #include "MassMatrixAssembler.hpp"
 #include "NaturalNeumannSurfaceTermAssembler.hpp"
-~~~
+```
 Ignore these for the time being
-~~~cpp
+```cpp
 //#include "HeatEquation.hpp"
 //#include "SimpleLinearParabolicSolver.hpp"
 
-~~~
+```
 ## Writing assemblers 
 
 We need to write an assembler for setting up the matrix `M + dt K`.
@@ -71,28 +71,28 @@ a matrix but not a vector. Note that the parent class `AbstractFeVolumeIntegralA
 in the template list (as well as the dimension template parameters as normal) - these booleans say
 whether this class will be assembling a vector or a matrix (or both).
 
-~~~cpp
+```cpp
 template<unsigned DIM>
 class RhsMatrixAssembler
     : public AbstractFeVolumeIntegralAssembler<DIM,DIM,1/*problem dim*/,false /*doesn't assemble vectors*/,true/*assembles a matrix*/,NORMAL /*amount of interpolation*/>
 {
 private:
-~~~
+```
 Even when a class isn't being written for a very general dimensions sometimes it is a good idea
 to define the following, and then use `ELEMENT_DIM` etc in the below, as it can make the code a
 bit easier to understand.
 
-~~~cpp
+```cpp
     static const unsigned ELEMENT_DIM = DIM;
     static const unsigned SPACE_DIM = DIM;
     static const unsigned PROBLEM_DIM = 1;
 
-~~~
+```
 We are assembling a matrix, we means we need to provide a `ComputeMatrixTerm()` method, to return the
 elemental contribution to the RHS matrix. Note that `ELEMENT_DIM+1` is the number of
 nodes in the element (=number of basis functions).
 
-~~~cpp
+```cpp
     c_matrix<double,PROBLEM_DIM*(ELEMENT_DIM+1),PROBLEM_DIM*(ELEMENT_DIM+1)> ComputeMatrixTerm(
                                                                                 c_vector<double, ELEMENT_DIM+1> &rPhi,
                                                                                 c_matrix<double, SPACE_DIM, ELEMENT_DIM+1> &rGradPhi,
@@ -123,19 +123,19 @@ nodes in the element (=number of basis functions).
         // using outer_prod(rPhi, rPhi) and prod(trans(rGradPhi), rGradPhi);
     }
 
-~~~
+```
 (If we were (also) assembling a vector, we would also have to provide a `ComputeVectorTerm()` method, which is
 very similar).
 
 Now write the constructor.
-~~~cpp
+```cpp
 public:
     RhsMatrixAssembler(AbstractTetrahedralMesh<ELEMENT_DIM,SPACE_DIM>* pMesh)
         : AbstractFeVolumeIntegralAssembler<ELEMENT_DIM,SPACE_DIM,1,false,true,NORMAL>(pMesh)
     {
     }
 };
-~~~
+```
 That's the assembler written. The following solver class will show how to use it.
 
 ## Writing the solver class 
@@ -146,28 +146,28 @@ The concrete class needs to implement a `SetupLinearSystem()` method which compl
 up the linear system. In this case, it needs to set the LHS matrix in the linear system to
 be M, and set the RHS vector to be `rhs_matrix * current_soln`.
 
-~~~cpp
+```cpp
 template<unsigned DIM>
 class ExplicitHeatEquationSolver : public AbstractDynamicLinearPdeSolver<DIM,DIM,1>
 {
 private:
-~~~
+```
 The constuctor will take in a mesh and a BCC, the latter will be stored as a member variable
-~~~cpp
+```cpp
     BoundaryConditionsContainer<DIM,DIM,1>* mpBoundaryConditions;
-~~~
+```
 Declare a matrix for the RHS matrix
-~~~cpp
+```cpp
     Mat mRhsMatrix;
 
-~~~
+```
 This is the main method which needs to be implemented. It takes in the current solution, and a
 boolean saying whether the matrix (ie A in Ax=b) is being computed or not.
 
-~~~cpp
+```cpp
     void SetupLinearSystem(Vec currentSolution, bool computeMatrix)
     {
-~~~
+```
 This is how to use assemblers to set up matrices. We declare a mass matrix assembler,
 pass it the LHS matrix of the linear system, and tell it to assemble. We also declare
 one of our purpose-built `RhsMatrixAssemblers`, pass it the matrix `mRhsMatrix`, and
@@ -177,7 +177,7 @@ tell it to assemble.
 at the current timestep), this needs to be passed to the assembler, as in the commented
 line below.
 
-~~~cpp
+```cpp
         if (computeMatrix)
         {
             MassMatrixAssembler<DIM,DIM> mass_matrix_assembler(this->mpMesh);
@@ -194,44 +194,44 @@ line below.
             PetscMatTools::Finalise(mRhsMatrix);       // (Petsc communication)
         }
 
-~~~
+```
 Use the RHS matrix to set up the RHS vector, ie set `b=(M+dtK)U^n`
-~~~cpp
+```cpp
         MatMult(mRhsMatrix, currentSolution, this->mpLinearSystem->rGetRhsVector());
 
-~~~
+```
 The third assembler we use is the `NaturalNeumannSurfaceTermAssembler`, which assembles
 the vector `c` defined above, using the Neumann BCs stored in the `BoundaryConditionsContainer`
 which is passed in in the constructor
 
-~~~cpp
+```cpp
         NaturalNeumannSurfaceTermAssembler<DIM,DIM,1> surface_integral_assembler(this->mpMesh, mpBoundaryConditions);
         surface_integral_assembler.SetVectorToAssemble(this->mpLinearSystem->rGetRhsVector(), false /*don't zero vector before assembling!*/);
         surface_integral_assembler.Assemble();
 
-~~~
+```
 Some necessary PETSc communication before applying Dirichet BCs
-~~~cpp
+```cpp
         this->mpLinearSystem->FinaliseRhsVector();         // (Petsc communication)
         this->mpLinearSystem->SwitchWriteModeLhsMatrix();  // (Petsc communication - needs to called when going from adding entries to inserting entries)
 
-~~~
+```
 Apply the dirichlet BCs from the BCC to the linear system
-~~~cpp
+```cpp
         mpBoundaryConditions->ApplyDirichletToLinearProblem(*(this->mpLinearSystem), computeMatrix);
 
-~~~
+```
 Some necessary PETSc communication to finish
-~~~cpp
+```cpp
         this->mpLinearSystem->FinaliseRhsVector();
         this->mpLinearSystem->FinaliseLhsMatrix();
     }
 public:
-~~~
+```
 The constructor needs to call the parent constructor, save the BCC, ''say that the (LHS) matrix is constant
 in time'' (so it is only computed once), and allocate memory for the RHS matrix.
 
-~~~cpp
+```cpp
     ExplicitHeatEquationSolver(TetrahedralMesh<DIM,DIM>* pMesh,
                                BoundaryConditionsContainer<DIM,DIM,1>* pBoundaryConditions)
          : AbstractDynamicLinearPdeSolver<DIM,DIM,1>(pMesh),
@@ -241,15 +241,15 @@ in time'' (so it is only computed once), and allocate memory for the RHS matrix.
         PetscTools::SetupMat(mRhsMatrix, this->mpMesh->GetNumNodes(), this->mpMesh->GetNumNodes(), 9);
     }
 
-~~~
+```
 Destructor
-~~~cpp
+```cpp
     ~ExplicitHeatEquationSolver()
     {
         PetscTools::Destroy(mRhsMatrix);
     }
 };
-~~~
+```
 That's all that needs to be written to write your own solver using the solver hierarchy
 
 # A test using the solver 
@@ -263,7 +263,7 @@ the implicit solver may seem quite slow in comparison - this is because the line
 much harder to solve (linear system is Ax=b, for explicit A=M, for implicit A=M-dt*K), but
 remember that the implicit solver can use much larger timesteps.
 
-~~~cpp
+```cpp
 class TestWritingPdeSolversTwoTutorial : public CxxTest::TestSuite
 {
 public:
@@ -282,9 +282,9 @@ public:
         //HeatEquation<2> pde;
         //SimpleLinearParabolicSolver<2,2> solver(&mesh,&pde,&bcc);
 
-~~~
+```
 The interface is exactly the same as the `SimpleLinearParabolicSolver`.
-~~~cpp
+```cpp
         solver.SetTimeStep(0.0001);
         solver.SetTimes(0.0, 0.2);
 
@@ -307,9 +307,9 @@ The interface is exactly the same as the `SimpleLinearParabolicSolver`.
         solver.SetOutputToTxt(true);
 
         solver.SetPrintingTimestepMultiple(100);
-~~~
+```
 We are now ready to solve the system.
-~~~cpp
+```cpp
         Vec result = solver.Solve();
         ReplicatableVector result_repl(result);
 
@@ -322,7 +322,7 @@ We are now ready to solve the system.
     }
 };
 
-~~~
+```
 
 
 # Code
@@ -331,7 +331,7 @@ The full code is given below
 
 ## File name `TestWritingPdeSolversTwoTutorial.hpp` 
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "AbstractFeVolumeIntegralAssembler.hpp"
 #include "AbstractDynamicLinearPdeSolver.hpp"
@@ -494,5 +494,5 @@ public:
     }
 };
 
-~~~
+```
 

@@ -1,7 +1,7 @@
 
 ---
 title : "TestRunningDifferentialAdhesionSimulationsTutorial.hpp"
-description: "This tutorial is automatically generated from the file cell_based/test/tutorial/TestRunningDifferentialAdhesionSimulationsTutorial.hpp at revision [dc0fc851da33](https://github.com/Chaste/Chaste/commit/dc0fc851da33d398a30adf6f0a3033ba159c438b). Note that the code is given in full at the bottom of the page."
+description: "This tutorial is automatically generated from the file cell_based/test/tutorial/TestRunningDifferentialAdhesionSimulationsTutorial.hpp at revision [1288aa7fe4cc](https://github.com/Chaste/Chaste/commit/1288aa7fe4ccb5438b05f81253fe167e350cdc10). Note that the code is given in full at the bottom of the page."
 draft: false
 images: []
 toc: true
@@ -22,7 +22,7 @@ As in previous tutorials, we begin by including the necessary header files. We h
 encountered these files already. Recall that often, either `CheckpointArchiveTypes.hpp`{.cpp}
 or `CellBasedSimulationArchiver.hpp`{.cpp} must be included the first Chaste header.
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"
 #include "AbstractCellBasedTestSuite.hpp"
@@ -42,54 +42,54 @@ or `CellBasedSimulationArchiver.hpp`{.cpp} must be included the first Chaste hea
 #include "SmartPointers.hpp"
 #include "FakePetscSetup.hpp"
 
-~~~
+```
 The next header file defines a force law for describing the mechanical interactions
 between neighbouring cells in the cell population, subject to each vertex. This force
 law is a subclass of `NagaiHondaForce`{.cpp}, which we encountered in the `TestRunningVertexBasedSimulationsTutorial`{.cpp},
 that allows for different adhesion energy parameter values depending on the types of
 interacting cells.
 
-~~~cpp
+```cpp
 #include "NagaiHondaDifferentialAdhesionForce.hpp"
 
-~~~
+```
 Having included all the necessary header files, we proceed by defining the test class.
-~~~cpp
+```cpp
 class TestRunningDifferentialAdhesionSimulationsTutorial : public AbstractCellBasedTestSuite
 {
 public:
 
-~~~
+```
 In this test, we demonstrate how to simulate a heterotypic monolayer that incorporates
 differential adhesion, using a vertex-based approach. This may be compared with the
 second test in the TestRunningPottsBasedSimulationsTutorial, which implements a similar
 simulation using a cellular Potts model.
 
-~~~cpp
+```cpp
     void TestVertexBasedDifferentialAdhesionSimulation()
     {
-~~~
+```
 First we create a regular vertex mesh. Here we choose to set the value of the cell rearrangement threshold.
-~~~cpp
+```cpp
         HoneycombVertexMeshGenerator generator(5, 5);
         boost::shared_ptr<MutableVertexMesh<2,2> > p_mesh = generator.GetMesh();
         p_mesh->SetCellRearrangementThreshold(0.1);
 
-~~~
+```
 We then create some cells using the helper class `CellsGenerator`{.cpp}. Note that in this simulation
 the cells are all differentiated, and thus no cell division occurs; if we wished, we could modify
 the three lines below in a straightforward manner to incorporate cell proliferation and investigate
 the effect of this on the cell sorting process.
-~~~cpp
+```cpp
         std::vector<CellPtr> cells;
         MAKE_PTR(DifferentiatedCellProliferativeType, p_diff_type);
         CellsGenerator<FixedG1GenerationalCellCycleModel, 2> cells_generator;
         cells_generator.GenerateBasic(cells, p_mesh->GetNumElements(), std::vector<unsigned>(), p_diff_type);
 
-~~~
+```
 Using the vertex mesh and cells, we create a cell-based population object, and specify which results to
 output to file.
-~~~cpp
+```cpp
         VertexBasedCellPopulation<2> cell_population(*p_mesh, cells);
         cell_population.AddCellPopulationCountWriter<CellMutationStatesCountWriter>();
         cell_population.AddCellPopulationCountWriter<CellProliferativeTypesCountWriter>();
@@ -98,13 +98,13 @@ output to file.
         cell_population.AddCellWriter<CellAgesWriter>();
         cell_population.AddCellWriter<CellVolumesWriter>();
 
-~~~
+```
 We randomly label some cells using the cell property `CellLabel`{.cpp}. We begin by creating a shared pointer to
 this cell property using the helper singleton `CellPropertyRegistry`{.cpp}. We then loop over the cells and label
 each cell independently with probability 0.5. Note that since the cells have been passed to the
 `VertexBasedCellPopulation`{.cpp} object, the vector `cells`{.cpp} above is now empty, so we must use the
 {{{Iterator}}} to loop over cells.
-~~~cpp
+```cpp
          boost::shared_ptr<AbstractCellProperty> p_label(CellPropertyRegistry::Instance()->Get<CellLabel>());
         for (AbstractCellPopulation<2>::Iterator cell_iter = cell_population.Begin();
              cell_iter != cell_population.End();
@@ -116,16 +116,16 @@ each cell independently with probability 0.5. Note that since the cells have bee
             }
         }
 
-~~~
+```
 We are now in a position to create and configure the cell-based simulation object.
 We can make the simulation run for longer to see more cell sorting by increasing the end time.
-~~~cpp
+```cpp
         OffLatticeSimulation<2> simulator(cell_population);
         simulator.SetOutputDirectory("TestVertexBasedDifferentialAdhesionSimulation");
         simulator.SetSamplingTimestepMultiple(10);
         simulator.SetEndTime(1.0);
 
-~~~
+```
 Next we create the differential adhesion force law. This builds upon the model of Nagai, Honda and co-workers
 encounted in the TestRunningVertexBasedSimulationsTutorial by allowing different values of the adhesion
 energy parameters depending on the types of two neighbouring cells. Here we interpret the 'type' of a cell
@@ -134,7 +134,7 @@ force law that took account of a cell's mutation state, for example. Having crea
 values of the parameters. If the adhesion energy for two neighbouring homotypic cells is less than that of two
 heterotypic cells, then we may expect cell sorting to occur, in which the cells of each type will tend to locally
 aggregate over time.
-~~~cpp
+```cpp
         MAKE_PTR(NagaiHondaDifferentialAdhesionForce<2>, p_force);
         p_force->SetNagaiHondaDeformationEnergyParameter(55.0);
         p_force->SetNagaiHondaMembraneSurfaceEnergyParameter(0.0);
@@ -145,21 +145,21 @@ aggregate over time.
         p_force->SetNagaiHondaLabelledCellBoundaryAdhesionEnergyParameter(40.0);
         simulator.AddForce(p_force);
 
-~~~
+```
 Finally, we run the simulation.
-~~~cpp
+```cpp
         simulator.Solve();
     }
 
-~~~
+```
 To visualize the results, use Paraview. See the UserTutorials/VisualizingWithParaview tutorial for more information.
 
 Load the file `/tmp/$USER/testoutput/TestVertexBasedDifferentialAdhesionSimulation/results_from_time_0/results.pvd`{.cpp}.
 
-~~~cpp
+```cpp
 };
 
-~~~
+```
 
 
 # Code
@@ -168,7 +168,7 @@ The full code is given below
 
 ## File name `TestRunningDifferentialAdhesionSimulationsTutorial.hpp` 
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"
 #include "AbstractCellBasedTestSuite.hpp"
@@ -244,5 +244,5 @@ public:
 
 };
 
-~~~
+```
 

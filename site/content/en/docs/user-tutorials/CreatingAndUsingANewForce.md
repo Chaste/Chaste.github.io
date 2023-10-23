@@ -1,7 +1,7 @@
 
 ---
 title : "TestCreatingAndUsingANewForceTutorial.hpp"
-description: "This tutorial is automatically generated from the file cell_based/test/tutorial/TestCreatingAndUsingANewForceTutorial.hpp at revision [dc0fc851da33](https://github.com/Chaste/Chaste/commit/dc0fc851da33d398a30adf6f0a3033ba159c438b). Note that the code is given in full at the bottom of the page."
+description: "This tutorial is automatically generated from the file cell_based/test/tutorial/TestCreatingAndUsingANewForceTutorial.hpp at revision [1288aa7fe4cc](https://github.com/Chaste/Chaste/commit/1288aa7fe4ccb5438b05f81253fe167e350cdc10). Note that the code is given in full at the bottom of the page."
 draft: false
 images: []
 toc: true
@@ -20,20 +20,20 @@ simulation.
 
 As in previous cell-based Chaste tutorials, we begin by including the necessary header files.
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"
 #include "AbstractCellBasedTestSuite.hpp"
 
-~~~
+```
 The next header defines a base class for forces, from which the new class will inherit.
-~~~cpp
+```cpp
 #include "AbstractForce.hpp"
-~~~
+```
 The remaining header files define classes that will be used in the cell-based
 simulation test. We have encountered each of these header files in previous cell-based
 Chaste tutorials.
-~~~cpp
+```cpp
 #include "HoneycombMeshGenerator.hpp"
 #include "FixedG1GenerationalCellCycleModel.hpp"
 #include "GeneralisedLinearSpringForce.hpp"
@@ -42,12 +42,12 @@ Chaste tutorials.
 #include "TransitCellProliferativeType.hpp"
 #include "SmartPointers.hpp"
 
-~~~
+```
 This header ensures that this test is only run on one process, since it doesn't support parallel execution.
-~~~cpp
+```cpp
 #include "FakePetscSetup.hpp"
 
-~~~
+```
 ## Defining the force class 
 
 As an example, let us consider a force for a two-dimensional cell-based
@@ -59,26 +59,26 @@ boundary condition class, `MyForce`{.cpp}, which inherits from
 Note that usually this code would be separated out into a separate declaration
 in a .hpp file and definition in a .cpp file.
 
-~~~cpp
+```cpp
 class MyForce : public AbstractForce<2>
 {
 private:
 
-~~~
+```
 This force class includes a member variable, `mStrength`{.cpp}, which
 defines the strength of the force. This member variable will be set
 in the constructor.
 
-~~~cpp
+```cpp
     double mStrength;
 
-~~~
+```
 We only need to include the next block of code if we wish to be able
 to archive (save or load) the force model object in a cell-based simulation.
 The code consists of a serialize method, in which we first archive the force
 using the serialization code defined in the base class `AbstractForce`{.cpp},
 then archive the member variable.
-~~~cpp
+```cpp
     friend class boost::serialization::access;
     template<class Archive>
     void serialize(Archive & archive, const unsigned int version)
@@ -88,14 +88,14 @@ then archive the member variable.
     }
 
 public:
-~~~
+```
 The first public method is a default constructor, which calls the base
 constructor. There is a single input argument, which defines the strength
 of the force. We provide a default value of 1.0 for this argument. Inside
 the method, we add an assertion to make sure that the strength is strictly
 positive.
 
-~~~cpp
+```cpp
     MyForce(double strength=1.0)
         : AbstractForce<2>(),
           mStrength(strength)
@@ -103,18 +103,18 @@ positive.
         assert(mStrength > 0.0);
     }
 
-~~~
+```
 The second public method overrides `AddForceContribution()`{.cpp}.
 This method takes in one arguments, a reference to the cell population itself.
 
-~~~cpp
+```cpp
     void AddForceContribution(AbstractCellPopulation<2>& rCellPopulation)
     {
-~~~
+```
 Inside the method, we loop over nodes, and add a constant vector to
 each node, in the negative ''y''-direction and of magnitude `mStrength`{.cpp}.
 
-~~~cpp
+```cpp
         c_vector<double, 2> force = zero_vector<double>(2);
         force(1) = -mStrength;
 
@@ -124,20 +124,20 @@ each node, in the negative ''y''-direction and of magnitude `mStrength`{.cpp}.
         }
     }
 
-~~~
+```
 We also add a get method for {{{mStrength}}}, to allow for testing.
-~~~cpp
+```cpp
     double GetStrength()
     {
         return mStrength;
     }
 
-~~~
+```
 Just as we encountered in [wiki:UserTutorials/CreatingAndUsingANewCellKiller], here we must override
 a method that outputs any member variables to a specified results file `rParamsFile`{.cpp}.
 In our case, we output the member variable `mStrength`{.cpp}, then call the method on the base class.
 
-~~~cpp
+```cpp
     void OutputForceParameters(out_stream& rParamsFile)
     {
         *rParamsFile << "\t\t\t<Strength>" << mStrength << "</Strength>\n";
@@ -145,19 +145,19 @@ In our case, we output the member variable `mStrength`{.cpp}, then call the meth
     }
 };
 
-~~~
+```
 As mentioned in previous cell-based Chaste tutorials, we need to include the next block
 of code to be able to archive the force object in a cell-based
 simulation, and to obtain a unique identifier for our new force for writing
 results to file.
 
-~~~cpp
+```cpp
 #include "SerializationExportWrapper.hpp"
 CHASTE_CLASS_EXPORT(MyForce)
 #include "SerializationExportWrapperForCpp.hpp"
 CHASTE_CLASS_EXPORT(MyForce)
 
-~~~
+```
 This completes the code for `MyForce`{.cpp}. Note that usually this code
 would be separated out into a separate declaration in a .hpp file and definition
 in a .cpp file.
@@ -166,25 +166,25 @@ in a .cpp file.
 
 We now define the test class, which inherits from `AbstractCellBasedTestSuite`{.cpp}.
 
-~~~cpp
+```cpp
 class TestCreatingAndUsingANewForceTutorial : public AbstractCellBasedTestSuite
 {
 public:
 
-~~~
+```
 ## Testing the force 
 
 We now test that our new force is implemented correctly.
 
-~~~cpp
+```cpp
     void TestMyForce()
     {
-~~~
+```
 We first create a `MeshBasedCellPopulation`{.cpp} using the helper
 classes `HoneycombMeshGenerator`{.cpp} and `CellsGenerator`{.cpp},
 as in previous cell-based Chaste tutorials.
 
-~~~cpp
+```cpp
         HoneycombMeshGenerator generator(7, 7);
         boost::shared_ptr<MutableMesh<2,2> > p_mesh = generator.GetMesh();
 
@@ -194,23 +194,23 @@ as in previous cell-based Chaste tutorials.
 
         MeshBasedCellPopulation<2> cell_population(*p_mesh, cells);
 
-~~~
+```
 Initialise all node forces to zero
-~~~cpp
+```cpp
         for (unsigned i=0; i<cell_population.GetNumNodes(); i++)
         {
              cell_population.GetNode(i)->ClearAppliedForce();
         }
 
-~~~
+```
 We now create a force object of strength 5.0.
 
-~~~cpp
+```cpp
         MyForce force(5.0);
 
-~~~
+```
 We test that the force calculation is correct.
-~~~cpp
+```cpp
         force.AddForceContribution(cell_population);
 
         for (unsigned node_index=0; node_index<cell_population.GetNumNodes(); node_index++)
@@ -219,7 +219,7 @@ We test that the force calculation is correct.
             TS_ASSERT_DELTA(cell_population.GetNode(node_index)->rGetAppliedForce()[1], -5.0, 1e-4);
         }
 
-~~~
+```
 The last block of code provides an archiving test for the force class,
 in a similar way to previous cell-based Chaste tutorials:
 
@@ -228,7 +228,7 @@ pointer, so that you check that boost can identify and record which
 concrete class it should be dealing with.
 This tests the CHASTE_CLASS_EXPORT(MyForce) lines are implemented correctly.
 
-~~~cpp
+```cpp
         OutputFileHandler handler("archive", false);
         std::string archive_filename = handler.GetOutputDirectoryFullPath() + "my_force.arch";
         {
@@ -252,18 +252,18 @@ This tests the CHASTE_CLASS_EXPORT(MyForce) lines are implemented correctly.
         }
     }
 
-~~~
+```
 ## Using the force in a cell-based simulation 
 
 We now provide a test demonstrating how `MyForce`{.cpp} can be used
 in a cell-based simulation.
 
-~~~cpp
+```cpp
     void TestOffLatticeSimulationWithMyForce()
     {
-~~~
+```
 Once again we create a {{{MeshBasedCellPopulation}}}.
-~~~cpp
+```cpp
         HoneycombMeshGenerator generator(5, 5);
         boost::shared_ptr<MutableMesh<2,2> > p_mesh = generator.GetMesh();
 
@@ -274,34 +274,34 @@ Once again we create a {{{MeshBasedCellPopulation}}}.
 
         MeshBasedCellPopulation<2> cell_population(*p_mesh, cells);
 
-~~~
+```
 We then pass in the cell population into an `OffLatticeSimulation`{.cpp},
 and set the output directory, output multiple, and end time.
-~~~cpp
+```cpp
         OffLatticeSimulation<2> simulator(cell_population);
         simulator.SetOutputDirectory("TestOffLatticeSimulationWithMyForce");
         simulator.SetSamplingTimestepMultiple(12);
         simulator.SetEndTime(5.0);
 
-~~~
+```
 We create our force law and pass it to the {{{OffLatticeSimulation}}}.
-~~~cpp
+```cpp
         MAKE_PTR_ARGS(MyForce, p_force, (0.5));
         simulator.AddForce(p_force);
 
-~~~
+```
 We also create a force law to say how the cells interact and pass it to the {{{OffLatticeSimulation}}}.
-~~~cpp
+```cpp
         MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);
         p_linear_force->SetCutOffLength(1.5);
         simulator.AddForce(p_linear_force);
 
-~~~
+```
 To run the simulation, we call {{{Solve()}}}.
-~~~cpp
+```cpp
         simulator.Solve();
     }
-~~~
+```
 
 When you visualize the results with
 
@@ -309,10 +309,10 @@ When you visualize the results with
 
 you should see a collection of cells moving downwards and proliferating.
 
-~~~cpp
+```cpp
 };
 
-~~~
+```
 
 
 # Code
@@ -321,7 +321,7 @@ The full code is given below
 
 ## File name `TestCreatingAndUsingANewForceTutorial.hpp` 
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"
 #include "AbstractCellBasedTestSuite.hpp"
@@ -468,5 +468,5 @@ public:
     }
 };
 
-~~~
+```
 

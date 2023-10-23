@@ -1,7 +1,7 @@
 
 ---
 title : "TestMonodomain3dRabbitHeartTutorial.hpp"
-description: "This tutorial is automatically generated from the file heart/test/tutorials/TestMonodomain3dRabbitHeartTutorial.hpp at revision [dc0fc851da33](https://github.com/Chaste/Chaste/commit/dc0fc851da33d398a30adf6f0a3033ba159c438b). Note that the code is given in full at the bottom of the page."
+description: "This tutorial is automatically generated from the file heart/test/tutorials/TestMonodomain3dRabbitHeartTutorial.hpp at revision [1288aa7fe4cc](https://github.com/Chaste/Chaste/commit/1288aa7fe4ccb5438b05f81253fe167e350cdc10). Note that the code is given in full at the bottom of the page."
 draft: false
 images: []
 toc: true
@@ -14,7 +14,7 @@ mesh is far too coarse for converged simulations, but provides a useful example.
 
 First include the headers, `MonodomainProblem` this time.
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "MonodomainProblem.hpp"
 #include "LuoRudy1991BackwardEulerOpt.hpp"
@@ -29,11 +29,11 @@ First include the headers, `MonodomainProblem` this time.
 #include <sys/resource.h>
 //#include "Debug.hpp"
 
-~~~
+```
 Here we define a cell factory that gives stimuli to all cells
 below height z = 0.042... this corresponds to the apex of the heart.
 
-~~~cpp
+```cpp
 class RabbitHeartCellFactory : public AbstractCardiacCellFactory<3> // <3> here
 {
 private:
@@ -61,9 +61,9 @@ public:
     }
 };
 
-~~~
+```
 Now define the test
-~~~cpp
+```cpp
 class TestMonodomain3dRabbitHeartTutorial : public CxxTest::TestSuite
 {
 public:
@@ -77,16 +77,16 @@ public:
 
     void TestMonodomain3dRabbitHeart()
     {
-~~~
+```
 
-~~~cpp
+```cpp
         HeartConfig::Instance()->SetMeshFileName("apps/texttest/weekly/Propagation3d/OxfordRabbitHeart_482um",
                                                  cp::media_type::Axisymmetric);
 
 //        HeartConfig::Instance()->SetMeshFileName("OxfordRabbitHeart_ascii",
 //                                                         cp::media_type::Axisymmetric);
 
-~~~
+```
 Specify the conductivity vector to use in the simulation. Since this is going to be
 a monodomain simulation, we only specify intra-cellular conductivities.
 Additionally, because this is an Axi-symmetric mesh then we must specify
@@ -96,47 +96,47 @@ thrown if not).
 The 3rd entry would be different for an orthotropic mesh with fibre, sheet and
 normal directions. For a simulation without fibre directions, there should be one value.
 
-~~~cpp
+```cpp
         HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(1.75, 0.19, 0.19));
 
-~~~
+```
 Set the simulation duration, output directory, filename and VTK visualization.
 
 We have set the simulation duration to be very short here so this tutorial runs
 quickly, increase it to see decent propagation of the wavefront.
 
-~~~cpp
+```cpp
         HeartConfig::Instance()->SetSimulationDuration(2); //ms
         HeartConfig::Instance()->SetOutputDirectory("Monodomain3dRabbitHeart");
         HeartConfig::Instance()->SetOutputFilenamePrefix("results");
         HeartConfig::Instance()->SetVisualizeWithVtk(true);
 
-~~~
+```
 The ODE and PDE timesteps should be refined when using this code for real
 scientific simulations. The values here are sufficient to ensure stability
 in this case, but not sufficient for converged numerical behaviour.
 
-~~~cpp
+```cpp
         HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(0.02, 0.1, 0.2);
 
-~~~
+```
 Here we create an instance of our cell factory, which will tell the `MonodomainProblem`
 class which action potential models to use at which nodes. The rest of the problem is set up
 identically to [wiki:UserTutorials/Monodomain3dExample Monodomain3dExample].
 
-~~~cpp
+```cpp
         RabbitHeartCellFactory cell_factory;
         MonodomainProblem<3> monodomain_problem( &cell_factory );
         monodomain_problem.SetWriteInfo();
         monodomain_problem.Initialise();
         monodomain_problem.Solve();
 
-~~~
+```
 We can access nodes in the mesh using a `NodeIterator`. Here, we check that each node
 has not been assigned to bath, and throw an error if it has. This is not a particularly useful test,
 but it does demonstrate the principle.
 
-~~~cpp
+```cpp
         AbstractTetrahedralMesh<3,3>* p_mesh = &(monodomain_problem.rGetMesh());
 
         /** \todo #2739
@@ -153,7 +153,7 @@ but it does demonstrate the principle.
     }
 };
 
-~~~
+```
 '''Note''' if you were doing a 'real' scientific simulation you would want to use a higher
 resolution mesh. A version of this can be found on the [http://www.cs.ox.ac.uk/chaste/download.html Chaste download website]
 
@@ -174,7 +174,7 @@ The full code is given below
 
 ## File name `TestMonodomain3dRabbitHeartTutorial.hpp` 
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "MonodomainProblem.hpp"
 #include "LuoRudy1991BackwardEulerOpt.hpp"
@@ -266,5 +266,5 @@ public:
     }
 };
 
-~~~
+```
 

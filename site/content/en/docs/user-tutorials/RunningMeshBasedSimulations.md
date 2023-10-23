@@ -1,7 +1,7 @@
 
 ---
 title : "TestRunningMeshBasedSimulationsTutorial.hpp"
-description: "This tutorial is automatically generated from the file cell_based/test/tutorial/TestRunningMeshBasedSimulationsTutorial.hpp at revision [dc0fc851da33](https://github.com/Chaste/Chaste/commit/dc0fc851da33d398a30adf6f0a3033ba159c438b). Note that the code is given in full at the bottom of the page."
+description: "This tutorial is automatically generated from the file cell_based/test/tutorial/TestRunningMeshBasedSimulationsTutorial.hpp at revision [1288aa7fe4cc](https://github.com/Chaste/Chaste/commit/1288aa7fe4ccb5438b05f81253fe167e350cdc10). Note that the code is given in full at the bottom of the page."
 draft: false
 images: []
 toc: true
@@ -20,96 +20,96 @@ We begin by including the necessary header files. The first thing to do is inclu
 following header file, which allows us to use certain methods in our test. This header
 file must be included in any Chaste test.
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
-~~~
+```
 The following header is usually included in all cell-based test suites.  It enables us to write tests where the
 `SimulationTime`{.cpp} is handled automatically and simplifies the tests. It also sets up the random number generator
 and the `CellPropertyRegistry`{.cpp}. You will learn about both of them in later tutorials.
 
-~~~cpp
+```cpp
 #include "AbstractCellBasedTestSuite.hpp"
-~~~
+```
 Any test in which the `GetIdentifier()`{.cpp} method is used, even via the main
 `cell_based` code (through calls to `AbstractCellPopulation`{.cpp} output methods),
 must also include `CheckpointArchiveTypes.hpp`{.cpp} or `CellBasedSimulationArchiver.hpp`{.cpp}
 as the first Chaste header file.
 
-~~~cpp
+```cpp
 #include "CheckpointArchiveTypes.hpp"
-~~~
+```
 The next header includes the Boost shared_ptr smart pointer, and defines some useful
 macros to save typing when using it.
 
-~~~cpp
+```cpp
 #include "SmartPointers.hpp"
-~~~
+```
 The remaining header files define classes that will be used in the cell population
 simulation test. The first defines a helper class for generating a suitable collection
 of cells.
-~~~cpp
+```cpp
 #include "CellsGenerator.hpp"
 #include "TransitCellProliferativeType.hpp"
-~~~
+```
 The next header file defines a stochastic cell-cycle model class.
-~~~cpp
+```cpp
 #include "UniformCellCycleModel.hpp"
-~~~
+```
 The next header file defines a helper class for generating a suitable mesh.
-~~~cpp
+```cpp
 #include "HoneycombMeshGenerator.hpp"
-~~~
+```
 The next header file defines the class that simulates the evolution of an off-lattice {{{CellPopulation}}}.
-~~~cpp
+```cpp
 #include "OffLatticeSimulation.hpp"
-~~~
+```
 The next header files define classes for mesh-based {{{CellPopulation}}}s with and without ghost nodes.
-~~~cpp
+```cpp
 #include "MeshBasedCellPopulation.hpp"
 #include "MeshBasedCellPopulationWithGhostNodes.hpp"
-~~~
+```
 The next header file defines a force law for describing the mechanical interactions
 between neighbouring cells in the cell population.
 
-~~~cpp
+```cpp
 #include "GeneralisedLinearSpringForce.hpp"
-~~~
+```
 The next header file defines a class for writing output that can be visualized in Paraview.
-~~~cpp
+```cpp
 #include "VoronoiDataWriter.hpp"
-~~~
+```
 Finally the following header ensures that the test never runs in parallel.
-~~~cpp
+```cpp
 #include "FakePetscSetup.hpp"
-~~~
+```
 Next, we define the test class.
 
-~~~cpp
+```cpp
 class TestRunningMeshBasedSimulationsTutorial : public AbstractCellBasedTestSuite
 {
 public:
-~~~
+```
 
 ## Test 1 - a basic mesh-based simulation 
 
 In the first test, we run a simple mesh-based simulation, in which we create a monolayer
 of cells, using a mutable mesh. Each cell is assigned a stochastic cell-cycle model.
 
-~~~cpp
+```cpp
     void TestMonolayer()
     {
-~~~
+```
 Next, we generate a mutable mesh. To create a `MutableMesh`{.cpp}, we can use
 the `HoneycombMeshGenerator`{.cpp}. This generates a honeycomb-shaped mesh,
 in which all nodes are equidistant. Here the first and second arguments
 define the size of the mesh - we have chosen a mesh that is 2 nodes (i.e.
 cells) wide, and 2 nodes high.
 
-~~~cpp
+```cpp
         HoneycombMeshGenerator generator(2, 2);    // Parameters are: cells across, cells up
         boost::shared_ptr<MutableMesh<2,2> > p_mesh = generator.GetMesh();
 
-~~~
+```
 Having created a mesh, we now create a `std::vector`{.cpp} of `CellPtr`{.cpp}s.
 To do this, we use the `CellsGenerator` helper class, which is templated over the type
 of cell cycle model required (here `UniformCellCycleModel`{.cpp})
@@ -123,49 +123,49 @@ We create an empty vector of cells and pass this into the
 method along with the mesh. The second argument represents the size of that the vector
 `cells`{.cpp} should become - one cell for each node, the third argument specifies
 the proliferative type of the cell.
-~~~cpp
+```cpp
         std::vector<CellPtr> cells;
         MAKE_PTR(TransitCellProliferativeType, p_transit_type);
         CellsGenerator<UniformCellCycleModel, 2> cells_generator;
         cells_generator.GenerateBasicRandom(cells, p_mesh->GetNumNodes(), p_transit_type);
 
-~~~
+```
 Now we have a mesh and a set of cells to go with it, we can create a `CellPopulation`{.cpp}.
 In general, this class associates a collection of cells with a mesh.
 For this test, because we have a `MutableMesh`{.cpp}, we use a particular type of
 cell population called a `MeshBasedCellPopulation`{.cpp}.
 
-~~~cpp
+```cpp
         MeshBasedCellPopulation<2> cell_population(*p_mesh, cells);
 
-~~~
+```
 To view the results of this and the next test in Paraview it is necessary to explicitly
 generate the required .vtu files. This is detailed in the [wiki:UserTutorials/VisualizingWithParaview] tutorial.
 Note that the results in Paraview may appear different to those in the java based visualizer. This is related
 to the different methods used to generate voronoi tesselations in each and is resolved through the use of
 'ghost nodes', as shown in the next test.
-~~~cpp
+```cpp
         cell_population.AddPopulationWriter<VoronoiDataWriter>();
 
-~~~
+```
 We then pass in the cell population into an `OffLatticeSimulation`{.cpp},
 and set the output directory and end time.
-~~~cpp
+```cpp
         OffLatticeSimulation<2> simulator(cell_population);
         simulator.SetOutputDirectory("MeshBasedMonolayer");
         simulator.SetEndTime(10.0);
 
-~~~
+```
 For longer simulations, we may not want to output the results
 every time step. In this case we can use the following method,
 to print results every 12 time steps instead. As the default time step
 used by the simulator is 30 seconds, this method will cause the
 simulator to print results every 6 minutes (or 0.1 hours).
 
-~~~cpp
+```cpp
         simulator.SetSamplingTimestepMultiple(12);
 
-~~~
+```
 We must now create one or more force laws, which determine the mechanics of the centres
 of each cell in a cell population. For this test, we use one force law, based on the
 spring based model, and pass it to the `OffLatticeSimulation`{.cpp}.
@@ -175,24 +175,24 @@ Note that some of these forces are not compatible with mesh-based simulations,
 see the specific class documentation for details.  If you try to use an incompatible class
 then you will receive a warning.
 
-~~~cpp
+```cpp
         MAKE_PTR(GeneralisedLinearSpringForce<2>, p_force);
         simulator.AddForce(p_force);
 
-~~~
+```
 To run the simulation, we call {{{Solve()}}}.
-~~~cpp
+```cpp
         simulator.Solve();
 
-~~~
+```
 The next two lines are for test purposes only and are not part of this tutorial. If different simulation input parameters are being explored
 the lines should be removed.
-~~~cpp
+```cpp
         TS_ASSERT_EQUALS(cell_population.GetNumRealCells(), 8u);
         TS_ASSERT_DELTA(SimulationTime::Instance()->GetTime(), 10.0, 1e-10);
     }
 
-~~~
+```
 To visualize the results, open a new terminal, `cd`{.cpp} to the Chaste directory,
 then `cd`{.cpp} to `anim`{.cpp}. Then do: `java Visualize2dCentreCells /tmp/$USER/testoutput/MeshBasedMonolayer/results_from_time_0`{.cpp}.
 We may have to do: `javac Visualize2dCentreCells.java`{.cpp} beforehand to create the
@@ -225,41 +225,41 @@ In the second test, we run a simple mesh-based simulation with ghost nodes, in w
 create a monolayer of cells, using a mutable mesh.
 Each cell is assigned a stochastic cell-cycle model.
 
-~~~cpp
+```cpp
     void TestMonolayerWithGhostNodes()
     {
-~~~
+```
 We start by generating a mutable mesh. To create a `MutableMesh`{.cpp}, we can use
 the `HoneycombMeshGenerator`{.cpp} as before. Here the first and second arguments
 define the size of the mesh - we have chosen a mesh that is 2 nodes (i.e.
 cells) wide, and 2 nodes high.  The third argument specifies the number of layers
 of ghost nodes to make.
 
-~~~cpp
+```cpp
         HoneycombMeshGenerator generator(2, 2, 2);
         boost::shared_ptr<MutableMesh<2,2> > p_mesh = generator.GetMesh();
 
-~~~
+```
 We only want to create cells to attach to real nodes, so we
 use the method `GetCellLocationIndices`{.cpp} to get the indices
 of the real nodes in the mesh. This will be passed in to the
 cell population later on.
 
-~~~cpp
+```cpp
         std::vector<unsigned> location_indices = generator.GetCellLocationIndices();
 
-~~~
+```
 Having created a mesh, we now create a `std::vector`{.cpp} of `CellPtr`{.cpp}s.
 To do this, we the `CellsGenerator` helper class again. This time the second
 argument is different and is the number of real nodes in the mesh.
 As before all cells have {{{TransitCellProliferativeType}}}.
-~~~cpp
+```cpp
         std::vector<CellPtr> cells;
         MAKE_PTR(TransitCellProliferativeType, p_transit_type);
         CellsGenerator<UniformCellCycleModel, 2> cells_generator;
         cells_generator.GenerateBasicRandom(cells, location_indices.size(), p_transit_type);
 
-~~~
+```
 Now we have a mesh and a set of cells to go with it, we can create a `CellPopulation`{.cpp}.
 In general, this class associates a collection of cells with a set of elements or a mesh.
 For this test, because we have a `MutableMesh`{.cpp}, and ghost nodes we use a particular type of
@@ -267,52 +267,52 @@ cell population called a `MeshBasedCellPopulationWithGhostNodes`{.cpp}. The thir
 argument of the constructor takes a vector of the indices of the real nodes and should be the
 same length as the vector of cell pointers.
 
-~~~cpp
+```cpp
         MeshBasedCellPopulationWithGhostNodes<2> cell_population(*p_mesh, cells, location_indices); //**Changed**//
 
-~~~
+```
 Again Paraview output is explicitly requested.
-~~~cpp
+```cpp
         cell_population.AddPopulationWriter<VoronoiDataWriter>();
 
-~~~
+```
 We then pass in the cell population into an `OffLatticeSimulation`{.cpp},
 and set the output directory, output multiple and end time.
-~~~cpp
+```cpp
         OffLatticeSimulation<2> simulator(cell_population);
         simulator.SetOutputDirectory("MeshBasedMonolayerWithGhostNodes");
         simulator.SetSamplingTimestepMultiple(12);
         simulator.SetEndTime(10.0);
 
-~~~
+```
 Again we create a force law, and pass it to the `OffLatticeSimulation`{.cpp}. This
 force law ensures that ghost nodes don't exert forces on real nodes but real nodes
 exert forces on ghost nodes.
-~~~cpp
+```cpp
         MAKE_PTR(GeneralisedLinearSpringForce<2>, p_force);
         simulator.AddForce(p_force);
 
-~~~
+```
 To run the simulation, we call {{{Solve()}}}.
-~~~cpp
+```cpp
         simulator.Solve();
 
-~~~
+```
 The next two lines are for test purposes only and are not part of this tutorial.
 
-~~~cpp
+```cpp
         TS_ASSERT_EQUALS(cell_population.GetNumRealCells(), 8u);
         TS_ASSERT_DELTA(SimulationTime::Instance()->GetTime(), 10.0, 1e-10);
     }
-~~~
+```
 
 To visualize the results, open a new terminal, `cd`{.cpp} to the Chaste directory,
 then `cd`{.cpp} to `anim`{.cpp}. Then do: `java Visualize2dCentreCells /tmp/$USER/testoutput/MeshBasedMonolayerWithGhostNodes/results_from_time_0`{.cpp}.
 
-~~~cpp
+```cpp
 };
 
-~~~
+```
 
 
 # Code
@@ -321,7 +321,7 @@ The full code is given below
 
 ## File name `TestRunningMeshBasedSimulationsTutorial.hpp` 
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "AbstractCellBasedTestSuite.hpp"
 #include "CheckpointArchiveTypes.hpp"
@@ -399,5 +399,5 @@ public:
     }
 };
 
-~~~
+```
 

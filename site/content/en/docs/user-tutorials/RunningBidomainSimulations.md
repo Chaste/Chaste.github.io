@@ -1,7 +1,7 @@
 
 ---
 title : "TestRunningBidomainSimulationsTutorial.hpp"
-description: "This tutorial is automatically generated from the file heart/test/tutorials/TestRunningBidomainSimulationsTutorial.hpp at revision [dc0fc851da33](https://github.com/Chaste/Chaste/commit/dc0fc851da33d398a30adf6f0a3033ba159c438b). Note that the code is given in full at the bottom of the page."
+description: "This tutorial is automatically generated from the file heart/test/tutorials/TestRunningBidomainSimulationsTutorial.hpp at revision [1288aa7fe4cc](https://github.com/Chaste/Chaste/commit/1288aa7fe4ccb5438b05f81253fe167e350cdc10). Note that the code is given in full at the bottom of the page."
 draft: false
 images: []
 toc: true
@@ -17,24 +17,24 @@ Note that monodomain simulations are run very similarly.
 The first thing that needs to be done, when writing any Chaste test,
 is to include the following header.
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
-~~~
+```
 The main class to be used for running bidomain simulations is {{{BidomainProblem}}}.
-~~~cpp
+```cpp
 #include "BidomainProblem.hpp"
-~~~
+```
 The type of intracellular stimulus we'll apply.
-~~~cpp
+```cpp
 #include "SimpleStimulus.hpp"
-~~~
+```
 All tests which run cardiac simulations (which use Petsc) should include
 `PetscSetupAndFinalize.hpp`{.cpp}.  This class ensures that `PetscInitialise()`{.cpp}
 is called with the appropriate arguments before any tests in the suite are run.
-~~~cpp
+```cpp
 #include "PetscSetupAndFinalize.hpp"
 
-~~~
+```
 The above files are contained in the source release and can be located and studied. Cardiac cell
 models are different: the C++ code is automatically generated from CellML files. To use a particular
 CellML file, place it in `heart/src/odes/cellml` (there are several in here already). If the CellML
@@ -45,10 +45,10 @@ For example, we will use the !LuoRudy1991 model, so we have to include the follo
 later on use `CellLuoRudy1991FromCellML`{.cpp} as the cell model class.
 See ["ChasteGuides/CodeGenerationFromCellML"] for more information on this process.
 
-~~~cpp
+```cpp
 #include "LuoRudy1991.hpp"
 
-~~~
+```
 ## Defining a cell factory 
 
 All mono/bidomain simulations need a ''cell factory'' as input. This is a class
@@ -64,90 +64,90 @@ a new cell factory will have to be defined by the user for their particular prob
 This cell factory is a simple cell factory where every cell is a Luo-Rudy 91 cell,
 and only the cell at position (0,0) is given a non-zero stimulus.
 
-~~~cpp
+```cpp
 class PointStimulus2dCellFactory : public AbstractCardiacCellFactory<2>
 {
-~~~
+```
 Declare (smart) pointer to a `SimpleStimulus`{.cpp} for the cell which is stimulated.
 Note that `AbstractCardiacCellFactory`{.cpp} also has as protected members: `mpZeroStimulus`{.cpp}
 of type `boost::shared_ptr<ZeroStimulus>`{.cpp}; `mpMesh`{.cpp}, a pointer to the mesh used (the problem
 class will set this before it calls `CreateCardiacCellForTissueNode`{.cpp}, so it can be used
 in that method); `mTimestep`{.cpp}, a double (see below); and `boost::shared_ptr<mpSolver>`{.cpp}
 a forward euler ode solver (see below).
-~~~cpp
+```cpp
 private:
     boost::shared_ptr<SimpleStimulus> mpStimulus;
 
 public:
-~~~
+```
 Our contructor takes in nothing. It calls the constructor of `AbstractCardiacCellFactory`{.cpp}
 and we also initialise the stimulus to have magnitude -500000 uA/cm^3 and duration 0.5 ms.
 
-~~~cpp
+```cpp
     PointStimulus2dCellFactory()
         : AbstractCardiacCellFactory<2>(),
           mpStimulus(new SimpleStimulus(-5e5, 0.5))
     {
     }
 
-~~~
+```
 Now we implement the pure method which needs to be implemented. We return
 a LR91 cell for each node, with the nodes in a 0.2mm block given the non-zero stimulus,
 and all other nodes given the zero stimulus. Note that we use `mpMesh`{.cpp},
 `mTimestep`{.cpp}, `mpZeroStimulus`{.cpp} and `mpSolver`{.cpp} which are all
 members of the base class. The timestep and solver are defined in the base
 class just so that the user doesn't have to create them here.
-~~~cpp
+```cpp
     AbstractCardiacCell* CreateCardiacCellForTissueNode(Node<2>* pNode)
     {
         double x = pNode->rGetLocation()[0];
         double y = pNode->rGetLocation()[1];
         if (x<0.02+1e-6 && y<0.02+1e-6) // ie if x<=0.02 and y<=0.02 (and we are assuming here x,y>=0).
         {
-~~~
+```
 Create a LR91 cell with the non-zero stimulus. This is a volume stimulus, ie
 the function on the right-hand side of the first of the two bidomain equations.
 An equal and opposite extra-cellular stimulus is implicitly enforced by the code,
 which corresponds to having zero on the right-hand side of the second of the
 bidomain equations.
 
-~~~cpp
+```cpp
             return new CellLuoRudy1991FromCellML(mpSolver, mpStimulus);
         }
         else
         {
-~~~
+```
 The other cells have zero stimuli.
-~~~cpp
+```cpp
             return new CellLuoRudy1991FromCellML(mpSolver, mpZeroStimulus);
         }
     }
 
-~~~
+```
 We have no need for a destructor, since the problem class deals with deleting the cells.
-~~~cpp
+```cpp
 };
 
-~~~
+```
 ## Running the bidomain simulation 
 
 Now we can define the test class, which must inherit from `CxxTest::TestSuite`{.cpp}
 as described in the writing basic tests tutorial.
-~~~cpp
+```cpp
 class TestRunningBidomainSimulationsTutorial : public CxxTest::TestSuite
 {
-~~~
+```
 Tests should be public...
-~~~cpp
+```cpp
 public:
-~~~
+```
 Define the test. Note the ``{.cpp} - without this exception messages
 might not get printed out.
 
-~~~cpp
+```cpp
     void TestSimpleSimulation()
     {
-~~~
+```
 The `HeartConfig`{.cpp} class is used to set various parameters (see the main ChasteGuides page
 for information on default parameter values. Parameters in this file can be re-set
 with `HeartConfig`{.cpp} if the user wishes, and other parameters such as end time must be set
@@ -155,78 +155,78 @@ using `HeartConfig`{.cpp}. Let us begin by setting the end time (in ms), the mes
 output directory and filename-prefix. Note that the spatial units in cardiac Chaste is CENTIMETRES,
 so that mesh 2D_0_to_1mm_800_elements is a mesh over [0,0.1]x[0,0.1].
 
-~~~cpp
+```cpp
         HeartConfig::Instance()->SetSimulationDuration(5.0); //ms
         HeartConfig::Instance()->SetMeshFileName("mesh/test/data/2D_0_to_1mm_800_elements");
         HeartConfig::Instance()->SetOutputDirectory("BidomainTutorial");
         HeartConfig::Instance()->SetOutputFilenamePrefix("results");
 
-~~~
+```
 There is an alternate method of loading a mesh that can be seen in [wiki:UserTutorials/Monodomain3dExample Monodomain3dExample],
 using `DistributedTetrahedralMesh`.
 
 It is possible to over-ride the default visualisation output (which is done during simulation
 post-processing).
 
-~~~cpp
+```cpp
         HeartConfig::Instance()->SetVisualizeWithMeshalyzer(true);
         HeartConfig::Instance()->SetVisualizeWithCmgui(true);
         HeartConfig::Instance()->SetVisualizeWithVtk(true);
-~~~
+```
 If the mesh is a DistributedTetrahedralMesh then we can use parallel VTK files (.pvtu)
-~~~cpp
+```cpp
         //HeartConfig::Instance()->SetVisualizeWithParallelVtk(true);
 
-~~~
+```
 Next, we have to create a cell factory of the type we defined above.
-~~~cpp
+```cpp
         PointStimulus2dCellFactory cell_factory;
 
-~~~
+```
 Now we create a problem class using (a pointer to) the cell factory.
-~~~cpp
+```cpp
         BidomainProblem<2> bidomain_problem( &cell_factory );
 
-~~~
+```
 This is enough setup to run a simulation: we could now call `Initialise()`{.cpp}
 and {{{Solve()}}} to run...
-~~~cpp
+```cpp
         // bidomain_problem.Initialise();
         // bidomain_problem.Solve();
 
-~~~
+```
 ..however, instead we show how to set a few more parameters. To set the conductivity values
 in the principal fibre, sheet and normal directions do the following.
 Note that `Create_c_vector`{.cpp} is just a helper method for creating a `c_vector<double,DIM>`{.cpp}
 of the correct size (2, in this case). Make sure these methods are called before
 `Initialise()`{.cpp}.
 
-~~~cpp
+```cpp
         HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(1.75, 0.19));
         HeartConfig::Instance()->SetExtracellularConductivities(Create_c_vector(6.2, 2.4));
 
-~~~
+```
 This is how to reset the surface-area-to-volume ratio and the capacitance.
 (Here, we are actually just resetting them to their default values).
-~~~cpp
+```cpp
         HeartConfig::Instance()->SetSurfaceAreaToVolumeRatio(1400); // 1/cm
         HeartConfig::Instance()->SetCapacitance(1.0); // uF/cm^2
 
-~~~
+```
 This is how to set the ode timestep (the timestep used to solve the cell models)
 the pde timestep (the timestep used in solving the bidomain PDE), and the
 printing timestep (how often the output is written to file). The defaults are
 all 0.01, here we increase the printing timestep.
 
-~~~cpp
+```cpp
         HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(0.01, 0.01, 0.1);
 
-~~~
+```
 Now we call {{{Initialise()}}}...
-~~~cpp
+```cpp
         bidomain_problem.Initialise();
 
-~~~
+```
 Now we call Solve() to run the simulation. The output will be written to
 `/tmp/$USER/testoutput/BidomainTutorial` in HDF5 format.  The
 output will also be converted to selected visualiser formats at the end of the simulation.
@@ -234,10 +234,10 @@ Note that if you want to view the progress of longer simulations
 go to the the output directory and look at the file
 `progress_status.txt`{.cpp}, which will say the percentage of the
 simulation run.
-~~~cpp
+```cpp
         bidomain_problem.Solve();
 
-~~~
+```
 ## Examining the output 
 In order to visualise the results, go to one of the sub-folders
  * `/tmp/$USER/testoutput/BidomainTutorial/output` for Meshalyzer
@@ -256,14 +256,14 @@ of the form (V_0, phi_0, V_1, phi_e_1, ... V_n, phi_e_n), and we can create a
 (This won't be very efficient with huge problems in parallel - the next tutorial
 will mention how to do parallel access).
 
-~~~cpp
+```cpp
         ReplicatableVector res_repl(bidomain_problem.GetSolution());
         for (unsigned i=0; i<res_repl.GetSize(); i++)
         {
         //    std::cout << res_repl[i] << "\n";
         }
 
-~~~
+```
 Behind the scenes there are some logging routines which find out how much time
 has been spent in the major parts of the code (solving ODEs, assembling matrices etc.)
 The logging routines are in `HeartEventHandler`{.cpp} which is enabled by default.
@@ -272,17 +272,17 @@ If you think this is getting in the way, you can turn it off at the top of your 
 In this test, we want to get information out of the `HeartEventHandler`{.cpp}.
 
 {{{Headings()}}} prints a single (very long) line reminding us what catagories of events are being instrumented.
-~~~cpp
+```cpp
         HeartEventHandler::Headings();
-~~~
+```
 `Report()`{.cpp} prints a single line with times spent in each catagory.  When run in parallel it prints one line of times per process and also lines for average
 and maximum times.  (This can be useful if you need to identify a load imbalance.)
-~~~cpp
+```cpp
         HeartEventHandler::Report();
     }
 };
 
-~~~
+```
 
 
 # Code
@@ -291,7 +291,7 @@ The full code is given below
 
 ## File name `TestRunningBidomainSimulationsTutorial.hpp` 
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "BidomainProblem.hpp"
 #include "SimpleStimulus.hpp"
@@ -372,5 +372,5 @@ public:
     }
 };
 
-~~~
+```
 

@@ -1,7 +1,7 @@
 
 ---
 title : "TestRunningNodeBasedSimulationsTutorial.hpp"
-description: "This tutorial is automatically generated from the file cell_based/test/tutorial/TestRunningNodeBasedSimulationsTutorial.hpp at revision [dc0fc851da33](https://github.com/Chaste/Chaste/commit/dc0fc851da33d398a30adf6f0a3033ba159c438b). Note that the code is given in full at the bottom of the page."
+description: "This tutorial is automatically generated from the file cell_based/test/tutorial/TestRunningNodeBasedSimulationsTutorial.hpp at revision [1288aa7fe4cc](https://github.com/Chaste/Chaste/commit/1288aa7fe4ccb5438b05f81253fe167e350cdc10). Note that the code is given in full at the bottom of the page."
 draft: false
 images: []
 toc: true
@@ -19,20 +19,20 @@ discrete mechanical tissue models", Physical Biology. Vol. 6. No. 3. 2009.. DOI 
 
 As in previous cell-based Chaste tutorials (UserTutorials/RunningMeshBasedSimulations), we begin by including the necessary header files.
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"
 
-~~~
+```
 The following header is usually included in all cell-based test suites. It enables us to write tests where the {{{SimulationTime}}} is handled automatically and simplifies the tests.
-~~~cpp
+```cpp
 #include "AbstractCellBasedTestSuite.hpp"
 #include "PetscSetupAndFinalize.hpp"
-~~~
+```
 The remaining header files define classes that will be used in the cell population
 simulation test. We encountered some of these header files in
 UserTutorials/RunningMeshBasedSimulations.
-~~~cpp
+```cpp
 #include "CellsGenerator.hpp"
 #include "TransitCellProliferativeType.hpp"
 #include "UniformCellCycleModel.hpp"
@@ -40,39 +40,39 @@ UserTutorials/RunningMeshBasedSimulations.
 #include "GeneralisedLinearSpringForce.hpp"
 #include "OffLatticeSimulation.hpp"
 #include "SmartPointers.hpp"
-~~~
+```
 The next header file defines the class for storing the spatial information of cells.
-~~~cpp
+```cpp
 #include "NodesOnlyMesh.hpp"
-~~~
+```
 The next header file defines a node-based {{{CellPopulation}}} class.
-~~~cpp
+```cpp
 #include "NodeBasedCellPopulation.hpp"
-~~~
+```
 The next header file defines a boundary condition to be used in the third test.
-~~~cpp
+```cpp
 #include "SphereGeometryBoundaryCondition.hpp"
-~~~
+```
 Next, we define the test class.
 
-~~~cpp
+```cpp
 class TestRunningNodeBasedSimulationsTutorial : public AbstractCellBasedTestSuite
 {
 public:
-~~~
+```
 
 ## Test 1 - a basic node-based simulation 
 
 In the first test, we run a simple node-based simulation, in which we create a monolayer
 of cells, using a nodes only mesh. Each cell is assigned a stochastic cell-cycle model.
 
-~~~cpp
+```cpp
     void TestMonolayer()
     {
         /** The next line is needed because HoneycombMeshGenerator is not designed to be run in parallel */
         EXIT_IF_PARALLEL;
 
-~~~
+```
 The first thing we do is generate a nodes only mesh. To do this we first create a `MutableMesh`{.cpp}
 to use as a generating mesh.
 To do this we can use the `HoneycombMeshGenerator`{.cpp}. This generates a honeycomb-shaped mesh,
@@ -80,24 +80,24 @@ in which all nodes are equidistant. Here the first and second arguments
 define the size of the mesh - we have chosen a mesh that is 2 nodes (i.e.
 cells) wide, and 2 nodes high.
 
-~~~cpp
+```cpp
         HoneycombMeshGenerator generator(2, 2);
         boost::shared_ptr<MutableMesh<2,2> > p_generating_mesh = generator.GetMesh();
-~~~
+```
 Once we have a `MutableMesh`{.cpp} we can generate a `NodesOnlyMesh`{.cpp} from it using the
 following commands. Note you can also generate the `NodesOnlyMesh`{.cpp} from a collection of
 nodes, see  [class:NodesOnlyMesh NodesOnlyMesh] for details.
 
-~~~cpp
+```cpp
         NodesOnlyMesh<2> mesh;
-~~~
+```
 To run node-based simulations you need to define a cut off length (second argument in
 `ConstructNodesWithoutMesh`{.cpp}), which defines the connectivity of the nodes by defining
 a radius of interaction.
-~~~cpp
+```cpp
         mesh.ConstructNodesWithoutMesh(*p_generating_mesh, 1.5);
 
-~~~
+```
 Having created a mesh, we now create a `std::vector`{.cpp} of `CellPtr`{.cpp}s.
 To do this, we the `CellsGenerator` helper class, which is templated over the type
 of cell model required (here `UniformCellCycleModel`{.cpp})
@@ -105,50 +105,50 @@ and the dimension. We create an empty vector of cells and pass this into the
 method along with the mesh. The second argument represents the size of that the vector
 `cells`{.cpp} should become - one cell for each node, the third argument specifies
 the proliferative type of the cell.
-~~~cpp
+```cpp
         std::vector<CellPtr> cells;
         MAKE_PTR(TransitCellProliferativeType, p_transit_type);
         CellsGenerator<UniformCellCycleModel, 2> cells_generator;
         cells_generator.GenerateBasicRandom(cells, mesh.GetNumNodes(), p_transit_type);
 
-~~~
+```
 Now we have a mesh and a set of cells to go with it, we can create a `CellPopulation`{.cpp}.
 In general, this class associates a collection of cells with a mesh.
 For this test, because we have a `NodesOnlyMesh`{.cpp}, we use a particular type of
 cell population called a `NodeBasedCellPopulation`{.cpp}.
 
-~~~cpp
+```cpp
         NodeBasedCellPopulation<2> cell_population(mesh, cells);
 
-~~~
+```
 We then pass in the cell population into an `OffLatticeSimulation`{.cpp},
 and set the output directory, output multiple and end time.
-~~~cpp
+```cpp
         OffLatticeSimulation<2> simulator(cell_population);
         simulator.SetOutputDirectory("NodeBasedMonolayer");
         simulator.SetSamplingTimestepMultiple(12);
         simulator.SetEndTime(10.0);
 
-~~~
+```
 We now pass a force law to the simulation.
-~~~cpp
+```cpp
         MAKE_PTR(GeneralisedLinearSpringForce<2>, p_force);
         simulator.AddForce(p_force);
 
-~~~
+```
 To run the simulation, we call {{{Solve()}}}.
-~~~cpp
+```cpp
         simulator.Solve();
 
-~~~
+```
 The next two lines are for test purposes only and are not part of this tutorial. If different simulation input parameters are being explored
 the lines should be removed.
-~~~cpp
+```cpp
         TS_ASSERT_EQUALS(cell_population.GetNumRealCells(), 8u);
         TS_ASSERT_DELTA(SimulationTime::Instance()->GetTime(), 10.0, 1e-10);
     }
 
-~~~
+```
 To visualize the results, open a new terminal, `cd`{.cpp} to the Chaste directory,
 then `cd`{.cpp} to `anim`{.cpp}. Then do: `java Visualize2dCentreCells /tmp/$USER/testoutput/NodeBasedMonolayer/results_from_time_0`{.cpp}.
 we need to select the 'Cells as circles` option to be able to visualize the cells, as opposed
@@ -167,89 +167,89 @@ In the second test we run a simple node-based simulation in 3D. This is very sim
 to the 2D test with the dimension template (<2,2> and <2>) changed from 2 to 3 and instead of using a mesh
 generator we generate the nodes directly.
 
-~~~cpp
+```cpp
     void TestSpheroid()
     {
         /** The next line is needed because we cannot currently run node based simulations in parallel. */
         EXIT_IF_PARALLEL;
 
-~~~
+```
 First, we generate a nodes only mesh. This time we specify the nodes manually by first
 creating a vector of nodes.
-~~~cpp
+```cpp
         std::vector<Node<3>*> nodes;
-~~~
+```
 We then create some nodes to add to this vector.
-~~~cpp
+```cpp
         nodes.push_back(new Node<3>(0u,  false,  0.5, 0.0, 0.0));
         nodes.push_back(new Node<3>(1u,  false,  -0.5, 0.0, 0.0));
         nodes.push_back(new Node<3>(2u,  false,  0.0, 0.5, 0.0));
         nodes.push_back(new Node<3>(3u,  false,  0.0, -0.5, 0.0));
-~~~
+```
 Finally a `NodesOnlyMesh`{.cpp} is created and the vector of nodes is passed to
 the {{{ConstructNodesWithoutMesh}}} method.
-~~~cpp
+```cpp
         NodesOnlyMesh<3> mesh;
-~~~
+```
 To run node-based simulations you need to define a cut off length (second argument in
 `ConstructNodesWithoutMesh`{.cpp}), which defines the connectivity of the nodes by defining
 a radius of interaction.
-~~~cpp
+```cpp
         mesh.ConstructNodesWithoutMesh(nodes, 1.5);
 
-~~~
+```
 Having created a mesh, we now create a `std::vector`{.cpp} of `CellPtr`{.cpp}s.
 As before, we do this with the `CellsGenerator` helper class (this time with dimension 3).
 
-~~~cpp
+```cpp
         std::vector<CellPtr> cells;
         MAKE_PTR(TransitCellProliferativeType, p_transit_type);
         CellsGenerator<UniformCellCycleModel, 3> cells_generator;
         cells_generator.GenerateBasicRandom(cells, mesh.GetNumNodes(), p_transit_type);
 
-~~~
+```
 We make a `NodeBasedCellPopulation`{.cpp} (this time with dimension 3) as before.
 
-~~~cpp
+```cpp
         NodeBasedCellPopulation<3> cell_population(mesh, cells);
 
-~~~
+```
 We then pass in the cell population into an `OffLatticeSimulation`{.cpp},
 (this time with dimension 3) and set the output directory, output multiple and end time.
-~~~cpp
+```cpp
         OffLatticeSimulation<3> simulator(cell_population);
         simulator.SetOutputDirectory("NodeBasedSpheroid");
         simulator.SetSamplingTimestepMultiple(12);
         simulator.SetEndTime(10.0);
 
-~~~
+```
 Again we create a force law (this time with dimension 3), and pass it to the {{{OffLatticeSimulation}}}.
-~~~cpp
+```cpp
         MAKE_PTR(GeneralisedLinearSpringForce<3>, p_force);
         simulator.AddForce(p_force);
 
-~~~
+```
 To run the simulation, we call {{{Solve()}}}.
-~~~cpp
+```cpp
         simulator.Solve();
 
-~~~
+```
 The next two lines are for test purposes only and are not part of this tutorial.
 
-~~~cpp
+```cpp
         TS_ASSERT_EQUALS(cell_population.GetNumRealCells(), 8u);
         TS_ASSERT_DELTA(SimulationTime::Instance()->GetTime(), 10.0, 1e-10);
 
-~~~
+```
 To avoid memory leaks, we conclude by deleting any pointers that we created in the test.
-~~~cpp
+```cpp
         for (unsigned i=0; i<nodes.size(); i++)
         {
             delete nodes[i];
         }
     }
 
-~~~
+```
 Note that you '''cannot view the results of a 3D simulation using the Java visualiser''' but
 to visualize the results, use Paraview. See the UserTutorials/VisualizingWithParaview tutorial for more information.
 
@@ -260,29 +260,29 @@ and add spherical glyphs to represent cells.
 
 In the third test we run a node-based simulation restricted to the surface of a sphere.
 
-~~~cpp
+```cpp
     void TestOnSurfaceOfSphere()
     {
         /** The next line is needed because we cannot currently run node based simulations in parallel. */
         EXIT_IF_PARALLEL;
 
-~~~
+```
 We begin with exactly the same code as the previous test: we create a cell population
 from a mesh and vector of cells, and use this in turn to create
 a simulation object.
 
-~~~cpp
+```cpp
         std::vector<Node<3>*> nodes;
         nodes.push_back(new Node<3>(0u,  false,  0.5, 0.0, 0.0));
         nodes.push_back(new Node<3>(1u,  false,  -0.5, 0.0, 0.0));
         nodes.push_back(new Node<3>(2u,  false,  0.0, 0.5, 0.0));
         nodes.push_back(new Node<3>(3u,  false,  0.0, -0.5, 0.0));
         NodesOnlyMesh<3> mesh;
-~~~
+```
 To run node-based simulations you need to define a cut off length (second argument in
 `ConstructNodesWithoutMesh`{.cpp}), which defines the connectivity of the nodes by defining
 a radius of interaction.
-~~~cpp
+```cpp
         mesh.ConstructNodesWithoutMesh(nodes, 1.5);
 
         std::vector<CellPtr> cells;
@@ -297,13 +297,13 @@ a radius of interaction.
         simulator.SetSamplingTimestepMultiple(12);
         simulator.SetEndTime(10.0);
 
-~~~
+```
 As before, we create a linear spring force and pass it to the simulation object.
-~~~cpp
+```cpp
         MAKE_PTR(GeneralisedLinearSpringForce<3>, p_force);
         simulator.AddForce(p_force);
 
-~~~
+```
 This time we create a `CellPopulationBoundaryCondition`{.cpp} and pass this to
 the `OffLatticeSimulation`{.cpp}. Here we use a `SphereGeometryBoundaryCondition`{.cpp}
 which restricts cells to lie on a sphere (in 3D) or circle (in 2D).
@@ -315,48 +315,48 @@ if you try to use an incompatible class then you will receive a warning.
 
 First we set the centre (0,0,1) and radius of the sphere (1).
 
-~~~cpp
+```cpp
         c_vector<double,3> centre = zero_vector<double>(3);
         centre(2) = 1.0;
         double radius = 1.0;
-~~~
+```
 We then make a pointer to the boundary condition using the MAKE_PTR_ARGS macro, and pass
 it to the {{{OffLatticeSimulation}}}.
-~~~cpp
+```cpp
         MAKE_PTR_ARGS(SphereGeometryBoundaryCondition<3>, p_boundary_condition, (&cell_population, centre, radius));
         simulator.AddCellPopulationBoundaryCondition(p_boundary_condition);
 
-~~~
+```
 To run the simulation, we call {{{Solve()}}}.
-~~~cpp
+```cpp
         simulator.Solve();
 
-~~~
+```
 The next two lines are for test purposes only and are not part of this tutorial.
 
-~~~cpp
+```cpp
         TS_ASSERT_EQUALS(cell_population.GetNumRealCells(), 8u);
         TS_ASSERT_DELTA(SimulationTime::Instance()->GetTime(), 10.0, 1e-10);
 
-~~~
+```
 To avoid memory leaks, we conclude by deleting any pointers that we created in the test.
-~~~cpp
+```cpp
         for (unsigned i=0; i<nodes.size(); i++)
         {
             delete nodes[i];
         }
     }
-~~~
+```
 
 To visualize the results, use Paraview. See the UserTutorials/VisualizingWithParaview tutorial for more information.
 
 Load the file `/tmp/$USER/testoutput/NodeBasedOnSphere/results_from_time_0/results.pvd`{.cpp},
 and add spherical glyphs to represent cells.
 
-~~~cpp
+```cpp
 };
 
-~~~
+```
 
 
 # Code
@@ -365,7 +365,7 @@ The full code is given below
 
 ## File name `TestRunningNodeBasedSimulationsTutorial.hpp` 
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"
 
@@ -500,5 +500,5 @@ public:
     }
 };
 
-~~~
+```
 

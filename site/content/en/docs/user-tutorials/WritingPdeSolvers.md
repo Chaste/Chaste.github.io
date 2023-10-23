@@ -1,7 +1,7 @@
 
 ---
 title : "TestWritingPdeSolversTutorial.hpp"
-description: "This tutorial is automatically generated from the file pde/test/tutorials/TestWritingPdeSolversTutorial.hpp at revision [dc0fc851da33](https://github.com/Chaste/Chaste/commit/dc0fc851da33d398a30adf6f0a3033ba159c438b). Note that the code is given in full at the bottom of the page."
+description: "This tutorial is automatically generated from the file pde/test/tutorials/TestWritingPdeSolversTutorial.hpp at revision [1288aa7fe4cc](https://github.com/Chaste/Chaste/commit/1288aa7fe4ccb5438b05f81253fe167e350cdc10). Note that the code is given in full at the bottom of the page."
 draft: false
 images: []
 toc: true
@@ -80,7 +80,7 @@ deals with STRIPED data structures.'' Striping is used in the code for paralleli
 
 These are some basic includes as in the solving-PDEs tutorials
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "TetrahedralMesh.hpp"
 #include "TrianglesMeshReader.hpp"
@@ -88,55 +88,55 @@ These are some basic includes as in the solving-PDEs tutorials
 #include "ConstBoundaryCondition.hpp"
 #include "PetscSetupAndFinalize.hpp"
 #include "TrianglesMeshWriter.hpp"
-~~~
+```
 We need to include the following two classes if we are going to use a combination of
 (element_dim, space_dim, problem_dim) that isn't explicitly instantiated in
 `BoundaryConditionsContainer.cpp` (see the bottom of that file) (without these includes this test will
 fail to link).
 
-~~~cpp
+```cpp
 #include "BoundaryConditionsContainerImplementation.hpp"
 #include "AbstractBoundaryConditionsContainerImplementation.hpp"
-~~~
+```
 These two classes will be used in writing the solver
-~~~cpp
+```cpp
 #include "AbstractAssemblerSolverHybrid.hpp"
 #include "AbstractStaticLinearPdeSolver.hpp"
-~~~
+```
 We will solve a second problem, below, which will be time-dependent and will
 require the following class
-~~~cpp
+```cpp
 #include "AbstractDynamicLinearPdeSolver.hpp"
 
-~~~
+```
 The linear system is Ax=b where A and b are FE assembled, so we can use the solver-is-an-assembler
 design. To construct our solver, we inherit from `AbstractAssemblerSolverHybrid` which links
 the solver clases to the assembler classes, and `AbstractStaticLinearPdeSolver`. (For time-dependent
 problems, the second parent would be `AbstractDynamicLinearPdeSolver`). Note the template
 parameter `PROBLEM_DIM` below, in this case it is 2 as there are two unknowns.
 
-~~~cpp
+```cpp
 class MyTwoVariablePdeSolver
     : public AbstractAssemblerSolverHybrid<2/*elem_dim*/,2/*space_dim*/,2/*problem_dim*/,NORMAL/*amount of interpolation*/>,
       public AbstractStaticLinearPdeSolver<2,2,2>
 {
 private:
-~~~
+```
 The function f
-~~~cpp
+```cpp
     double f(double x,double y)
     {
         return -2*M_PI*M_PI*sin(M_PI*x)*sin(M_PI*y) + sin(2*M_PI*x)*sin(2*M_PI*y);
     }
-~~~
+```
 The function g
-~~~cpp
+```cpp
     double g(double x,double y)
     {
         return -8*M_PI*M_PI*sin(2*M_PI*x)*sin(2*M_PI*y) + sin(M_PI*x)*sin(M_PI*y);
     }
 
-~~~
+```
 The abstract assembler parent classes know how to assemble matrices and vectors, but the concrete
 class needs to provide the integrand of the elemental contribution to A and b. This first
 method returns the elemental contribution of the matrix A, given the provided bases
@@ -144,7 +144,7 @@ method returns the elemental contribution of the matrix A, given the provided ba
 of nodes as linear bases are being used). The returned matrix is 6 by 6 (problem_dim *
 num_bases_per_element = 2*3 = 6).
 
-~~~cpp
+```cpp
     c_matrix<double,2*3,2*3> ComputeMatrixTerm(c_vector<double,3>& rPhi /* the three bases for the current element, evaluated at the current quad pt*/,
                                                c_matrix<double,2,3>& rGradPhi /* gradients of the three bases */,
                                                ChastePoint<2>& rX           /* physical coordinate of quad point */,
@@ -152,14 +152,14 @@ num_bases_per_element = 2*3 = 6).
                                                c_matrix<double,2,2>& rGradU /* current solution gradient (unused here as a linear static problem */,
                                                Element<2,2>* pElement)
     {
-~~~
+```
 
 Set up the matrix, which corresponds to the elemental contribution for the matrix
 written above, taking into account the striped nature of the matrices and vectors.
 (Note: the following can be done more efficiently using matrix slices and products,
 see `BidomainAssembler` for example).
 
-~~~cpp
+```cpp
         c_matrix<double,2*3,2*3> ret = zero_matrix<double>(2*3, 2*3);
 
         for (unsigned i=0; i<3; i++)
@@ -181,9 +181,9 @@ see `BidomainAssembler` for example).
         return ret;
     }
 
-~~~
+```
 Similarly compute the elemental contribution to the RHS vector
-~~~cpp
+```cpp
     c_vector<double,2*3> ComputeVectorTerm(c_vector<double, 3>& rPhi,
                                            c_matrix<double, 2, 2+1>& rGradPhi,
                                            ChastePoint<2>& rX,
@@ -200,23 +200,23 @@ Similarly compute the elemental contribution to the RHS vector
         }
         return ret;
     }
-~~~
+```
 These classes which inherit from both assemblers and solvers must
 provide the following method, which links the two. Just copy and paste
 the following.
 
-~~~cpp
+```cpp
     void SetupLinearSystem(Vec currentSolution, bool computeMatrix)
     {
         SetupGivenLinearSystem(currentSolution, computeMatrix, this->mpLinearSystem);
     }
 
 public:
-~~~
+```
 The constructor takes in a mesh and boundary conditions container, and passes
 them to the parent classes.
 
-~~~cpp
+```cpp
     MyTwoVariablePdeSolver(TetrahedralMesh<2,2>* pMesh,
                            BoundaryConditionsContainer<2,2,2>* pBoundaryConditions)
         : AbstractAssemblerSolverHybrid<2,2,2,NORMAL>(pMesh,pBoundaryConditions),
@@ -224,7 +224,7 @@ them to the parent classes.
     {
     }
 };
-~~~
+```
 
 That is the solver written. The usage is the same as see the PDE solvers described in the
 previous tutorials - have a look at the first test below.
@@ -274,24 +274,24 @@ to 3. We don't have to worry about setting up [c1 c2 c3] (we just need to take i
 and the parent will use it in assembling this vector). We do however have to tell it
 how to assemble the volume integral part of the RHS vector, and the LHS matrix.
 
-~~~cpp
+```cpp
 class ThreeParabolicPdesSolver
     : public AbstractAssemblerSolverHybrid<2,2,3,NORMAL>,
       public AbstractDynamicLinearPdeSolver<2,2,3>
 {
 private:
-~~~
+```
 Define the function g(t,x,y)
-~~~cpp
+```cpp
     double g(double t, ChastePoint<2>& rX)
     {
         return t*(rX[0]>0.5);
     }
 
-~~~
+```
 Provide the (elemental contribution to the) LHS matrix. The matrix is 9 by 9, where
 9 = 3*3 = PROBLEM_DIM * NUM_NODES_PER_ELEMENT
-~~~cpp
+```cpp
     c_matrix<double,3*3,3*3> ComputeMatrixTerm(c_vector<double,3>& rPhi,
                                                c_matrix<double,2,3>& rGradPhi,
                                                ChastePoint<2>& rX,
@@ -330,9 +330,9 @@ Provide the (elemental contribution to the) LHS matrix. The matrix is 9 by 9, wh
         return ret;
     }
 
-~~~
+```
 Provide the volume elemental contribution to the RHS vector, ie the vector `[b1 b2 b3]` above
-~~~cpp
+```cpp
     c_vector<double,3*3> ComputeVectorTerm(c_vector<double, 3>& rPhi,
                                            c_matrix<double, 2, 3>& rGradPhi,
                                            ChastePoint<2>& rX,
@@ -361,22 +361,22 @@ Provide the volume elemental contribution to the RHS vector, ie the vector `[b1 
         return ret;
     }
 
-~~~
+```
 Define this method as before
-~~~cpp
+```cpp
     void SetupLinearSystem(Vec currentSolution, bool computeMatrix)
     {
         SetupGivenLinearSystem(currentSolution, computeMatrix, this->mpLinearSystem);
     }
 
 public:
-~~~
+```
 The constructor is similar to before. However: '''important''' - by default the dynamic solvers
 will reassemble the matrix each timestep. In this (and most other) problems the matrix is constant
 and only needs to be assembled once. Make sure we tell the solver this, otherwise performance
 will be destroyed.
 
-~~~cpp
+```cpp
     ThreeParabolicPdesSolver(TetrahedralMesh<2,2>* pMesh,
                              BoundaryConditionsContainer<2,2,3>* pBoundaryConditions)
         : AbstractAssemblerSolverHybrid<2,2,3,NORMAL>(pMesh,pBoundaryConditions),
@@ -386,17 +386,17 @@ will be destroyed.
     }
 };
 
-~~~
+```
 Now the tests using the two solvers
-~~~cpp
+```cpp
 class TestWritingPdeSolversTutorial : public CxxTest::TestSuite
 {
 public:
-~~~
+```
 Use the first solver to solve the static PDE. We apply zero Dirichlet boundary conditions
 on the whole of the boundary for both variables.
 
-~~~cpp
+```cpp
     void TestMyTwoVariablePdeSolver()
     {
         TetrahedralMesh<2,2> mesh;
@@ -410,17 +410,17 @@ on the whole of the boundary for both variables.
         // Use our purpose-made solver for this problem:
         MyTwoVariablePdeSolver solver(&mesh,&bcc);
 
-~~~
+```
 The `AbstractStaticLinearPdeSolver` class from which our solver
 inherits, provides a `Solve` method.
 
-~~~cpp
+```cpp
         Vec result = solver.Solve();
         ReplicatableVector result_repl(result);
 
-~~~
+```
 Compare against the exact solution.
-~~~cpp
+```cpp
         for (unsigned i=0; i<mesh.GetNumNodes(); i++)
         {
             double x = mesh.GetNode(i)->GetPoint()[0];
@@ -438,19 +438,19 @@ Compare against the exact solution.
         PetscTools::Destroy(result);
     }
 
-~~~
+```
 Now run a test solving the parabolic-parabolic-parabolic PDE system.
-~~~cpp
+```cpp
     void TestMyParaEllipticSetOfPdesSolver()
     {
         TetrahedralMesh<2,2> mesh;
         mesh.ConstructRegularSlabMesh(0.05 /*h*/, 1.0 /*width*/, 1.0 /*height*/);
 
-~~~
+```
 Set up the boundary conditions. v and w are zero on the entire boundary,
 and du/dn=1 on the LHS and 0 otherwise.
 
-~~~cpp
+```cpp
         BoundaryConditionsContainer<2,2,3> bcc;
 
         bcc.DefineZeroDirichletOnMeshBoundary(&mesh,1 /*index of unknown, ie v*/);
@@ -467,28 +467,28 @@ and du/dn=1 on the LHS and 0 otherwise.
             iter++;
         }
 
-~~~
+```
 Use our solver
-~~~cpp
+```cpp
         ThreeParabolicPdesSolver solver(&mesh,&bcc);
 
-~~~
+```
 The interface is exactly the same as the `SimpleLinearParabolicSolver`.
-~~~cpp
+```cpp
         solver.SetTimeStep(0.01);
         solver.SetTimes(0.0, 2.0);
 
         Vec initial_condition = PetscTools::CreateAndSetVec(3*mesh.GetNumNodes(), 0.0);
         solver.SetInitialCondition(initial_condition);
 
-~~~
+```
 For this test we show how to output results to file for multiple sampling times. We start by
 specifying an output directory and filename prefix for our results file:
 
-~~~cpp
+```cpp
         solver.SetOutputDirectoryAndPrefix("ThreeVarCoupledProblem","results");
 
-~~~
+```
 When an output directory has been specified, the solver writes output in HDF5 format. To
 convert this to another output format, we call the relevant method. Here, we convert
 the output to plain txt files. We also say how often to write the data, telling the
@@ -498,31 +498,31 @@ results_Variable_0_10 is the results for u, over all nodes, at the 11th printed 
 Have a look in the output directory after running the test. (Note: the HDF5 data can also be
 converted to VTK or cmgui formats).
 
-~~~cpp
+```cpp
         solver.SetOutputToTxt(true);
         solver.SetPrintingTimestepMultiple(10);
 
-~~~
+```
 We are now ready to solve the system.
-~~~cpp
+```cpp
         Vec result = solver.Solve();
         ReplicatableVector result_repl(result);
 
-~~~
+```
 The plain txt output can be loaded into matlab for easy visualisation. For this we
 also need the mesh data - at the very least the nodal locations - so we also write out
 the mesh
 
-~~~cpp
+```cpp
         TrianglesMeshWriter<2,2> mesh_writer("ThreeVarCoupledProblem", "mesh", false /*don't clean (ie delete everything in) directory!*/);
         mesh_writer.WriteFilesUsingMesh(mesh);
 
-~~~
+```
 Note that we need to destroy the initial condition vector as well as the solution.
-~~~cpp
+```cpp
         PetscTools::Destroy(initial_condition);
         PetscTools::Destroy(result);
-~~~
+```
 
 '''Visualisation:''' To visualise in matlab/octave, you can load the node file,
 and then the data files. However, the node file needs to be edited to remove any
@@ -541,11 +541,11 @@ pause;
 end;
 }}}
 
-~~~cpp
+```cpp
     }
 };
 
-~~~
+```
 
 
 # Code
@@ -554,7 +554,7 @@ The full code is given below
 
 ## File name `TestWritingPdeSolversTutorial.hpp` 
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "TetrahedralMesh.hpp"
 #include "TrianglesMeshReader.hpp"
@@ -811,5 +811,5 @@ public:
     }
 };
 
-~~~
+```
 

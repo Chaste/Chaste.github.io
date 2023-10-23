@@ -1,7 +1,7 @@
 
 ---
 title : "TestVisualizingWithParaviewTutorial.hpp"
-description: "This tutorial is automatically generated from the file cell_based/test/tutorial/TestVisualizingWithParaviewTutorial.hpp at revision [dc0fc851da33](https://github.com/Chaste/Chaste/commit/dc0fc851da33d398a30adf6f0a3033ba159c438b). Note that the code is given in full at the bottom of the page."
+description: "This tutorial is automatically generated from the file cell_based/test/tutorial/TestVisualizingWithParaviewTutorial.hpp at revision [1288aa7fe4cc](https://github.com/Chaste/Chaste/commit/1288aa7fe4ccb5438b05f81253fe167e350cdc10). Note that the code is given in full at the bottom of the page."
 draft: false
 images: []
 toc: true
@@ -26,16 +26,16 @@ to ensure that it knows to use VTK.
 
 As in previous cell-based Chaste tutorials, we begin by including the necessary header files.
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"
 #include "AbstractCellBasedTestSuite.hpp"
 
-~~~
+```
 The remaining header files define classes that will be used in the cell population
 simulation test. We have encountered each of these header files in previous cell-based
 Chaste tutorials.
-~~~cpp
+```cpp
 #include "UniformCellCycleModel.hpp"
 #include "FixedG1GenerationalCellCycleModel.hpp"
 #include "HoneycombMeshGenerator.hpp"
@@ -55,15 +55,15 @@ Chaste tutorials.
 
 #include "FakePetscSetup.hpp"
 
-~~~
+```
 Next, we define the test class, which inherits from `AbstractCellBasedTestSuite`{.cpp}
 and defines some test methods.
 
-~~~cpp
+```cpp
 class TestVisualizingWithParaviewTutorial : public AbstractCellBasedTestSuite
 {
 public:
-~~~
+```
 
 ## Test 1 - a mesh-based cell centre monolayer simulation 
 
@@ -71,16 +71,16 @@ In the first test, we run a simple cell-based simulation using a `MeshBasedCellP
 in which we use
 a honeycomb mesh with ghost nodes, and give each cell a stochastic cell-cycle model.
 
-~~~cpp
+```cpp
     void Test2DMeshBasedMonolayerSimulationForVisualizing()
     {
-~~~
+```
 In a similar way to previous cell-based Chaste tutorials,
 we create a mesh-based cell population in which cells are defined by their centres,
 and cell proliferation is governed by a stochastic generation-based cell-cycle model
 with no differentiation.
 
-~~~cpp
+```cpp
         HoneycombMeshGenerator generator(10, 10);
         boost::shared_ptr<MutableMesh<2,2> > p_mesh = generator.GetMesh();
 
@@ -91,61 +91,61 @@ with no differentiation.
 
         MeshBasedCellPopulation<2> cell_population(*p_mesh, cells);
 
-~~~
+```
 The default output method for mesh based simulations is as polytopes
 In order to output the .vtu files required for Paraview, we explicitly
 instruct the simulation to output the data we need.
 
-~~~cpp
+```cpp
         cell_population.AddPopulationWriter<VoronoiDataWriter>();
 
-~~~
+```
 The following line tells the cell population to also write data to .vtu files with cells
 as points, where we may choose the shape used to visualize each cell in Paraview using
 glyphs.
 
-~~~cpp
+```cpp
         cell_population.SetWriteVtkAsPoints(true);
 
-~~~
+```
 In order to visualise the cells on the boundary we apply a bound to the voronoi
 tesselation. Note this defaults to false.
 
-~~~cpp
+```cpp
         cell_population.SetBoundVoronoiTessellation(true);
 
-~~~
+```
 We then pass in the cell population into an `OffLatticeSimulation`{.cpp},
 and set the output directory and end time.
-~~~cpp
+```cpp
         OffLatticeSimulation<2> simulator(cell_population);
         simulator.SetOutputDirectory("Test2DMeshBasedMonolayerSimulationForVisualizing");
         simulator.SetEndTime(1.0);
 
-~~~
+```
 We create a force law and pass it to the {{{OffLatticeSimulation}}}.
-~~~cpp
+```cpp
         MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);
         p_linear_force->SetCutOffLength(1.5);
         simulator.AddForce(p_linear_force);
 
-~~~
+```
 To run the simulation, we call {{{Solve()}}}.
-~~~cpp
+```cpp
         simulator.Solve();
 
-~~~
+```
 The next two lines are for test purposes only and are not part of this tutorial.
 We are checking that we reached the end time of the simulation
 with the correct number of cells. If different simulation input parameters are being explored
 the lines should be removed.
 
-~~~cpp
+```cpp
         TS_ASSERT_EQUALS(cell_population.GetNumRealCells(), 108u);
         TS_ASSERT_DELTA(SimulationTime::Instance()->GetTime(), 1.0, 1e-10);
     }
 
-~~~
+```
 To visualize the results, we must first open Paraview. We open the folder containing our test output using the 'file' menu at
 the top. The output will be located in `/tmp/$USER/testoutput/Test2DMeshBasedMonolayerSimulationForVisualizing/results_from_time_0`{.cpp}.
 There will be a .vtu file generated for every timestep, which must all be opened at once to view the simulation. To do this,
@@ -168,16 +168,16 @@ in which we use
 a honeycomb mesh with ghost nodes, and give each cell a stochastic cell-cycle model. However here we impose periodic boundaries.
 The only difference in this test is the generation of the mesh and use of ghost nodes.
 
-~~~cpp
+```cpp
     void Test2DPeriodicMeshBasedMonolayerSimulationForVisualizing()
     {
-~~~
+```
 
 We setup the simulation in the same way as above but
 here we use a cylindrical mesh as we wish to enforce periodicity
 in the x direction.
 
-~~~cpp
+```cpp
         CylindricalHoneycombMeshGenerator generator(10, 10, 2);
         boost::shared_ptr<Cylindrical2dMesh> p_mesh = generator.GetCylindricalMesh();
         std::vector<unsigned> location_indices = generator.GetCellLocationIndices();
@@ -202,18 +202,18 @@ in the x direction.
 
         simulator.Solve();
 
-~~~
+```
 The next two lines are for test purposes only and are not part of this tutorial.
 We are checking that we reached the end time of the simulation
 with the correct number of cells. If different simulation input parameters are being explored
 the lines should be removed.
 
-~~~cpp
+```cpp
         TS_ASSERT_EQUALS(cell_population.GetNumRealCells(), 108u);
         TS_ASSERT_DELTA(SimulationTime::Instance()->GetTime(), 1.0, 1e-10);
     }
 
-~~~
+```
 To visualize the results, we follow the instructions above for the first simulation, ensuring that we open the
 test output from the new folder, `Test2DPeriodicMeshBasedMonolayerSimulationForVisualizing`{.cpp}. You will see that the left an right sides
 of the monolayer are the same.
@@ -232,15 +232,15 @@ Note that you cant currently output the mesh when using ghost nodes.
 We next run a similar simulation to the first two examples, but now use a `NodeBasedCellPopulation`,
 in which cells are represented as 'overlapping spheres'.
 
-~~~cpp
+```cpp
     void Test2DNodeBasedMonolayerSimulationForVisualizing()
     {
-~~~
+```
 We set up the simulation in much the same way as above, except now using a `NodesOnlyMesh` and
 `NodeBasedCellPopulation`. Further details on how to set up a node-based simulation can be found in
 UserTutorials/RunningNodeBasedSimulations.
 
-~~~cpp
+```cpp
         HoneycombMeshGenerator generator(10, 10, 0);
         boost::shared_ptr<TetrahedralMesh<2,2> > p_generating_mesh = generator.GetMesh();
 
@@ -264,16 +264,16 @@ UserTutorials/RunningNodeBasedSimulations.
 
         simulator.Solve();
 
-~~~
+```
 The next two lines are for test purposes only and are not part of this tutorial.
 We are checking that we reached the end time of the simulation
 with the correct number of cells.
-~~~cpp
+```cpp
         TS_ASSERT_EQUALS(cell_population.GetNumRealCells(), 108u);
         TS_ASSERT_DELTA(SimulationTime::Instance()->GetTime(), 1.0, 1e-10);
     }
 
-~~~
+```
 To visualize the results, we follow the instructions above for the first simulation, ensuring that we open the
 test output from the new folder, `Test2DNodeBasedMonolayerSimulationForVisualizing`{.cpp}.
 After opening Paraview, load the file `results.pvd`{.cpp}, then click "Apply" in the object inspector panel.
@@ -288,15 +288,15 @@ displayed by Paraview.
 Here, we run a simple vertex-based simulation, in which we create a monolayer
 of cells using a mutable vertex mesh. Each cell is assigned a fixed cell-cycle model.
 
-~~~cpp
+```cpp
     void Test2DVertexBasedMonolayerSimulationForVisualizing()
     {
-~~~
+```
 In this test, we create a vertex-based cell population in which cells are defined
 by their vertices, and cell proliferation is governed by a fixed generation-based
 cell-cycle model (with differentiation after a default number of generations).
 
-~~~cpp
+```cpp
         HoneycombVertexMeshGenerator generator(6, 9);
         boost::shared_ptr<MutableVertexMesh<2,2> > p_mesh = generator.GetMesh();
 
@@ -306,50 +306,50 @@ cell-cycle model (with differentiation after a default number of generations).
 
         VertexBasedCellPopulation<2> cell_population(*p_mesh, cells);
 
-~~~
+```
 We then pass in the cell population into an `OffLatticeSimulation`{.cpp},
 and set the output directory and end time.
-~~~cpp
+```cpp
         OffLatticeSimulation<2> simulator(cell_population);
         simulator.SetOutputDirectory("Test2DVertexMonolayerSimulationForVisualizing");
         simulator.SetEndTime(0.1);
 
-~~~
+```
 We create a force law and pass it to the {{{OffLatticeSimulation}}}.
-~~~cpp
+```cpp
         MAKE_PTR(NagaiHondaForce<2>, p_nagai_honda_force);
         simulator.AddForce(p_nagai_honda_force);
 
-~~~
+```
 We also make a pointer to a target area modifier and add it to the simulator.
 The target area modifier assigns target areas to cells throughout the simulation, modelling cell growth.
 
-~~~cpp
+```cpp
         MAKE_PTR(SimpleTargetAreaModifier<2>, p_growth_modifier);
         simulator.AddSimulationModifier(p_growth_modifier);
 
-~~~
+```
 To run the simulation, we call {{{Solve()}}}.
-~~~cpp
+```cpp
         simulator.Solve();
 
-~~~
+```
 The next two lines are for test purposes only and are not part of this tutorial.
 We are checking that we reached the end time of the simulation
 with the correct number of cells.
-~~~cpp
+```cpp
         TS_ASSERT_EQUALS(cell_population.GetNumRealCells(), 84u);
         TS_ASSERT_DELTA(SimulationTime::Instance()->GetTime(), 0.1, 1e-10);
     }
-~~~
+```
 
 To visualize the results, we follow the instructions above for the first simulation, ensuring that we open the
 test output from the new folder, `Test2DVertexMonolayerSimulationForVisualizing`{.cpp}.
 
-~~~cpp
+```cpp
 };
 
-~~~
+```
 
 
 # Code
@@ -358,7 +358,7 @@ The full code is given below
 
 ## File name `TestVisualizingWithParaviewTutorial.hpp` 
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"
 #include "AbstractCellBasedTestSuite.hpp"
@@ -504,5 +504,5 @@ public:
     }
 };
 
-~~~
+```
 

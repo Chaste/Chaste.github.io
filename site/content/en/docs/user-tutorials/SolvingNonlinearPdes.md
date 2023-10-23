@@ -1,7 +1,7 @@
 
 ---
 title : "TestSolvingNonlinearPdesTutorial.hpp"
-description: "This tutorial is automatically generated from the file pde/test/tutorials/TestSolvingNonlinearPdesTutorial.hpp at revision [dc0fc851da33](https://github.com/Chaste/Chaste/commit/dc0fc851da33d398a30adf6f0a3033ba159c438b). Note that the code is given in full at the bottom of the page."
+description: "This tutorial is automatically generated from the file pde/test/tutorials/TestSolvingNonlinearPdesTutorial.hpp at revision [1288aa7fe4cc](https://github.com/Chaste/Chaste/commit/1288aa7fe4ccb5438b05f81253fe167e350cdc10). Note that the code is given in full at the bottom of the page."
 draft: false
 images: []
 toc: true
@@ -23,7 +23,7 @@ matrix A = dF/dU, or at least an approximation of the Jacobian.
 
 The following header files need to be included, as in the linear PDEs tutorial.
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "UblasIncludes.hpp"
 #include "TrianglesMeshReader.hpp"
@@ -32,120 +32,120 @@ The following header files need to be included, as in the linear PDEs tutorial.
 #include "ConstBoundaryCondition.hpp"
 #include "OutputFileHandler.hpp"
 #include "PetscSetupAndFinalize.hpp"
-~~~
+```
 This is the solver for nonlinear elliptic PDEs.
-~~~cpp
+```cpp
 #include "SimpleNonlinearEllipticSolver.hpp"
-~~~
+```
 In this test we also show how to define Neumman boundary conditions which
 depend on spatial location, for which the following class is needed.
-~~~cpp
+```cpp
 #include "FunctionalBoundaryCondition.hpp"
-~~~
+```
 We will choose to use the Chaste Newton solver rather than PETSc's nonlinear
 solver.
-~~~cpp
+```cpp
 #include "SimpleNewtonNonlinearSolver.hpp"
 
-~~~
+```
 As in the linear PDEs tutorial, we have to define the PDE class we want to
 solve (assuming one has not already been created). Nonlinear elliptic PDEs
 should inherit from `AbstractNonlinearEllipticPde`{.cpp}, which has five pure
 methods which have to be implemented in this concrete class. Here, we define
 the PDE div.(u grad u) + 1 = 0.
 
-~~~cpp
+```cpp
 class MyNonlinearPde : public AbstractNonlinearEllipticPde<2>
 {
 public:
 
-~~~
+```
 The first is the part of the source term that is independent of u.
-~~~cpp
+```cpp
     double ComputeLinearSourceTerm(const ChastePoint<2>& rX)
     {
         return 1.0;
     }
 
-~~~
+```
 The second is the part of the source term that is dependent on u.
-~~~cpp
+```cpp
     double ComputeNonlinearSourceTerm(const ChastePoint<2>& rX, double u)
     {
         return 0.0;
     }
 
-~~~
+```
 The third is the diffusion tensor, which unlike in the linear case can be
 dependent on u. The diffusion tensor should be symmetric and positive definite.
-~~~cpp
+```cpp
     c_matrix<double,2,2> ComputeDiffusionTerm(const ChastePoint<2>& rX, double u)
     {
         return identity_matrix<double>(2)*u;
     }
 
-~~~
+```
 We also need to provide the derivatives with respect to u of the last two methods,
 so that the Jacobian matrix can be assembled. The derivative of the nonlinear source
 term is
 
-~~~cpp
+```cpp
     double ComputeNonlinearSourceTermPrime(const ChastePoint<2>& , double )
     {
         return 0.0;
     }
 
-~~~
+```
 And the derivative of the diffusion tensor is just the identity matrix.
-~~~cpp
+```cpp
     c_matrix<double,2,2> ComputeDiffusionTermPrime(const ChastePoint<2>& rX, double u)
     {
         return identity_matrix<double>(2);
     }
 };
 
-~~~
+```
 We also need to define a (global) function that will become the Neumman boundary
 conditions, via the `FunctionalBoundaryCondition`{.cpp} class (see below). This
 function is f(x,y) = y.
 
-~~~cpp
+```cpp
 double MyNeummanFunction(const ChastePoint<2>& rX)
 {
     return rX[1];
 }
 
-~~~
+```
 Next, we define the test suite, as before.
-~~~cpp
+```cpp
 class TestSolvingNonlinearPdesTutorial : public CxxTest::TestSuite
 {
 public:
-~~~
+```
 Define a particular test. Note the ``{.cpp} at the end of the
 declaration. This causes `Exception`{.cpp} messages to be printed out if an
 `Exception`{.cpp} is thrown, rather than just getting the message "terminate
 called after throwing an instance of 'Exception' "
-~~~cpp
+```cpp
     void TestSolvingNonlinearEllipticPde()
     {
-~~~
+```
 As usual, first create a mesh.
-~~~cpp
+```cpp
         TrianglesMeshReader<2,2> mesh_reader("mesh/test/data/square_128_elements");
         TetrahedralMesh<2,2> mesh;
         mesh.ConstructFromMeshReader(mesh_reader);
 
-~~~
+```
 Next, instantiate the PDE to be solved.
-~~~cpp
+```cpp
         MyNonlinearPde pde;
 
-~~~
+```
 Then we have to define the boundary conditions. First, the Dirichlet boundary
 condition, u=0 on x=0, using the boundary node iterator.
 
-~~~cpp
+```cpp
         BoundaryConditionsContainer<2,2,1> bcc;
         ConstBoundaryCondition<2>* p_zero_bc = new ConstBoundaryCondition<2>(0.0);
         for (TetrahedralMesh<2,2>::BoundaryNodeIterator node_iter = mesh.GetBoundaryNodeIteratorBegin();
@@ -158,47 +158,47 @@ condition, u=0 on x=0, using the boundary node iterator.
             }
         }
 
-~~~
+```
 And then the Neumman conditions. Neumann boundary condition are defined on
 surface elements, and for this problem, the Neumman boundary value depends
 on the position in space, so we make use of the `FunctionalBoundaryCondition`{.cpp}
 object, which contains a pointer to a function, and just returns the value
 of that function for the required point when the `GetValue`{.cpp} method is called.
 
-~~~cpp
+```cpp
         FunctionalBoundaryCondition<2>* p_functional_bc = new FunctionalBoundaryCondition<2>(&MyNeummanFunction);
-~~~
+```
 Loop over surface elements.
-~~~cpp
+```cpp
         for (TetrahedralMesh<2,2>::BoundaryElementIterator elt_iter = mesh.GetBoundaryElementIteratorBegin();
              elt_iter != mesh.GetBoundaryElementIteratorEnd();
              elt_iter++)
         {
-~~~
+```
 Get the y value of any node (here, the zero-th).
-~~~cpp
+```cpp
             double y = (*elt_iter)->GetNodeLocation(0,1);
-~~~
+```
 If y=1...
-~~~cpp
+```cpp
             if (fabs(y-1.0) < 1e-12)
             {
-~~~
+```
 ... then associate the functional boundary condition, (Dgradu).n = y,
 with the surface element...
-~~~cpp
+```cpp
                 bcc.AddNeumannBoundaryCondition(*elt_iter, p_functional_bc);
             }
             else
             {
-~~~
+```
 ...else associate the zero boundary condition (i.e. zero flux) with this
 element.
-~~~cpp
+```cpp
                 bcc.AddNeumannBoundaryCondition(*elt_iter, p_zero_bc);
             }
         }
-~~~
+```
 Note that in the above loop, the zero Neumman boundary condition was applied
 to all surface elements for which y!=1, which included the Dirichlet surface
 y=0. This is OK, as Dirichlet boundary conditions are applied to the finite
@@ -207,47 +207,47 @@ in the matrix are overwritten.
 
 This is the solver for solving nonlinear problems, which, as usual,
 takes in the mesh, the PDE, and the boundary conditions.
-~~~cpp
+```cpp
         SimpleNonlinearEllipticSolver<2,2> solver(&mesh, &pde, &bcc);
 
-~~~
+```
 The solver also needs to be given an initial guess, which will be
 a PETSc vector. We can make use of a helper method to create it.
 
-~~~cpp
+```cpp
         Vec initial_guess = PetscTools::CreateAndSetVec(mesh.GetNumNodes(), 0.25);
 
-~~~
+```
 '''Optional:''' To use Chaste's Newton solver to solve nonlinear vector equations that are
 assembled, rather than the default PETSc nonlinear solvers, we can
 do the following:
-~~~cpp
+```cpp
         SimpleNewtonNonlinearSolver newton_solver;
         solver.SetNonlinearSolver(&newton_solver);
-~~~
+```
 '''Optional:''' We can also manually set tolerances, and whether to print statistics, with
 this nonlinear vector equation solver
-~~~cpp
+```cpp
         newton_solver.SetTolerance(1e-10);
         newton_solver.SetWriteStats();
 
-~~~
+```
 Now call {{{Solve}}}, passing in the initial guess
-~~~cpp
+```cpp
         Vec answer = solver.Solve(initial_guess);
 
-~~~
+```
 Note that we could have got the solver to not use an analytical Jacobian
 and use a numerically-calculated Jacobian instead, by passing in false as a second
 parameter:
 
-~~~cpp
+```cpp
         //Vec answer = solver.Solve(initial_guess, false);
 
-~~~
+```
 Once solved, we can check the obtained solution against the analytical
 solution.
-~~~cpp
+```cpp
         ReplicatableVector answer_repl(answer);
         for (unsigned i=0; i<answer_repl.GetSize(); i++)
         {
@@ -256,15 +256,15 @@ solution.
             TS_ASSERT_DELTA(answer_repl[i], exact_u, 0.15);
         }
 
-~~~
+```
 Finally, we have to remember to destroy the PETSc {{{Vec}}}s.
-~~~cpp
+```cpp
         PetscTools::Destroy(initial_guess);
         PetscTools::Destroy(answer);
     }
 };
 
-~~~
+```
 
 
 # Code
@@ -273,7 +273,7 @@ The full code is given below
 
 ## File name `TestSolvingNonlinearPdesTutorial.hpp` 
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "UblasIncludes.hpp"
 #include "TrianglesMeshReader.hpp"
@@ -385,5 +385,5 @@ public:
     }
 };
 
-~~~
+```
 

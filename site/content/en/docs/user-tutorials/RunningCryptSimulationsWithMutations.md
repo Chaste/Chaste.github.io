@@ -1,7 +1,7 @@
 
 ---
 title : "TestRunningCryptSimulationsWithMutationsTutorial.hpp"
-description: "This tutorial is automatically generated from the file crypt/test/tutorial/TestRunningCryptSimulationsWithMutationsTutorial.hpp at revision [dc0fc851da33](https://github.com/Chaste/Chaste/commit/dc0fc851da33d398a30adf6f0a3033ba159c438b). Note that the code is given in full at the bottom of the page."
+description: "This tutorial is automatically generated from the file crypt/test/tutorial/TestRunningCryptSimulationsWithMutationsTutorial.hpp at revision [1288aa7fe4cc](https://github.com/Chaste/Chaste/commit/1288aa7fe4ccb5438b05f81253fe167e350cdc10). Note that the code is given in full at the bottom of the page."
 draft: false
 images: []
 toc: true
@@ -20,111 +20,111 @@ Osborne ''et al.'' (2010) [10.1098/rsta.2010.0173].
 
 As in previous cell-based Chaste tutorials, we begin by including the necessary header files.
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"
 #include "SmartPointers.hpp"
 #include "AbstractCellBasedTestSuite.hpp"
 
-~~~
+```
 The next header file defines a helper class for generating cells for crypt simulations.
-~~~cpp
+```cpp
 #include "CryptCellsGenerator.hpp"
-~~~
+```
 
 The next header file defines a `WntCellCycleModel`{.cpp}, where the proliferative behaviour of a cell is
 dependent on the concentration of Wnt at that point in space. Cells proliferate where there is a plentiful level of Wnt
 and cease proliferation below a given threshold.
 
-~~~cpp
+```cpp
 #include "SimpleWntCellCycleModel.hpp"
-~~~
+```
 The next header file defines a helper class for generating a suitable triangular mesh
 for the crypt simulation, such that the cell corresponding to each node is initially
 in mechanical equilibrium with its neighours and periodic boundary conditions are applied
 at the left- and right-hand sides of the mesh (hence the "cylindrical").
-~~~cpp
+```cpp
 #include "CylindricalHoneycombMeshGenerator.hpp"
-~~~
+```
 The next header file defines a `CellPopulation`{.cpp} class that uses a triangular mesh, and allows
 for the inclusion of 'ghost nodes'. These are nodes in the mesh that do not correspond
 to cells; instead they help ensure that a sensible Delaunay triangulation is generated
 at each timestep. This is because the triangulation algorithm requires a convex hull.
-~~~cpp
+```cpp
 #include "MeshBasedCellPopulationWithGhostNodes.hpp"
-~~~
+```
 
 The next header file defines a force law, based on a linear spring, for describing
 the mechanical interactions between neighbouring cells in the crypt.
 
-~~~cpp
+```cpp
 #include "GeneralisedLinearSpringForce.hpp"
-~~~
+```
 
 The next header file defines the class that simulates the evolution of a `CellPopulation`{.cpp},
 specialized to deal with the cylindrical crypt geometry.
 
-~~~cpp
+```cpp
 #include "CryptSimulation2d.hpp"
-~~~
+```
 
 The next header file defines a Wnt singleton class, which (if used) deals with the
 imposed Wnt gradient in our crypt model. This affects cell proliferation in the case
 where we construct each cell with a `WntCellCycleModel`{.cpp}.
 
-~~~cpp
+```cpp
 #include "WntConcentration.hpp"
-~~~
+```
 
 The next header file defines a cell killer class, which implements sloughing of cells
 into the lumen once they reach the top of the crypt.
 
-~~~cpp
+```cpp
 #include "SloughingCellKiller.hpp"
-~~~
+```
 These headers are used for defining and recording mutations.
-~~~cpp
+```cpp
 #include "ApcTwoHitCellMutationState.hpp"
 #include "CellMutationStatesCountWriter.hpp"
-~~~
+```
 The final header ensures that this test is only ever run sequentially, not in parallel.
-~~~cpp
+```cpp
 #include "FakePetscSetup.hpp"
 
-~~~
+```
 Next, we define the test class, which inherits from `AbstractCellBasedTestSuite`{.cpp}
 and defines some test methods.
 
-~~~cpp
+```cpp
 class TestRunningCryptSimulationsWithMutationsTutorial : public AbstractCellBasedTestSuite
 {
 public:
-~~~
+```
 ## Test 1: a mesh-based crypt simulation with mutations 
 
 In the first test, we demonstrate how to introduce mutations into a simulation of a crypt.
 
-~~~cpp
+```cpp
     void TestMeshBasedCryptWithMutations()
     {
-~~~
+```
 Note that time is re-initialized to zero and the random number generator is re-seeded to zero in the `AbstractCellBasedTestSuite`{.cpp}.
 
 We first create a cylindrical mesh, and get the cell location indices, exactly as before.
-~~~cpp
+```cpp
         CylindricalHoneycombMeshGenerator generator(6, 9, 2);
         boost::shared_ptr<Cylindrical2dMesh> p_mesh = generator.GetCylindricalMesh();
 
         std::vector<unsigned> location_indices = generator.GetCellLocationIndices();
 
-~~~
+```
 We create the cells, using the same method as before. Here, though, we use a {{{SimpleWntCellCycleModel}}}.
-~~~cpp
+```cpp
         std::vector<CellPtr> cells;
         CryptCellsGenerator<SimpleWntCellCycleModel> cells_generator;
         cells_generator.Generate(cells, p_mesh.get(), location_indices, true);
 
-~~~
+```
 We now create boost shared pointers to any mutations we wish to use.
 We need to do this using the `CellPropertyRegistry`{.cpp}, otherwise
 the numbers of each type of mutation aren't correctly tracked. For
@@ -134,27 +134,27 @@ These can be found in the inheritance diagram, here,
 Each mutation has a different effect on the cell cycle models; see the class
 documentation for details.
 
-~~~cpp
+```cpp
         boost::shared_ptr<AbstractCellProperty> p_state(CellPropertyRegistry::Instance()->Get<ApcTwoHitCellMutationState>());
 
-~~~
+```
 We create the cell population, as before.
-~~~cpp
+```cpp
         MeshBasedCellPopulationWithGhostNodes<2> cell_population(*p_mesh, cells, location_indices);
 
-~~~
+```
 In order to visualize mutant cells and to count how many cells there are of each type we need to use the following command.
-~~~cpp
+```cpp
         cell_population.AddCellPopulationCountWriter<CellMutationStatesCountWriter>();
 
-~~~
+```
 We set the height of the crypt. As well as passing this variable into the `SloughingCellKiller`{.cpp},
 we will pass it to the `WntConcentration`{.cpp} object (see below).
 
-~~~cpp
+```cpp
         double crypt_height = 8.0;
 
-~~~
+```
 When using a `SimpleWntCellCycleModel`{.cpp}, we need a way of telling each cell what the Wnt concentration
 is at its location. To do this, we set up a `WntConcentration`{.cpp} object. Like `SimulationTime`{.cpp},
 `WntConcentration`{.cpp} is a singleton class, so when instantiated it is accessible from anywhere in
@@ -163,23 +163,23 @@ the profile of the Wnt concentation should be up the crypt: here, we say it is `
 decreasing from 1 to 0 from the bottom of the crypt to the top). We also need to inform the
 `WntConcentration`{.cpp} of the cell population and the height of the crypt.
 
-~~~cpp
+```cpp
         WntConcentration<2>::Instance()->SetType(LINEAR);
         WntConcentration<2>::Instance()->SetCellPopulation(cell_population);
         WntConcentration<2>::Instance()->SetCryptLength(crypt_height);
 
-~~~
+```
 Create a simulator as before (except setting a different output directory).
-~~~cpp
+```cpp
         CryptSimulation2d simulator(cell_population);
         simulator.SetOutputDirectory("MeshBasedCryptWithMutations");
         simulator.SetSamplingTimestepMultiple(12);
         simulator.SetEndTime(10);
 
-~~~
+```
 As before, we create a force law and cell killer and pass these objects to the simulator, then call
 Solve().
-~~~cpp
+```cpp
         MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);
         simulator.AddForce(p_linear_force);
         MAKE_PTR_ARGS(SloughingCellKiller<2>, p_killer, (&cell_population, crypt_height));
@@ -187,11 +187,11 @@ Solve().
 
         simulator.Solve();
 
-~~~
+```
 Now we have run the simulation to a steady state (where the initial regular configuration is lost) we select a cell to become mutant.
 We select one of the cells and set the mutation state to `ApcTwoHitCellMutationState`{.cpp} (i.e. p_state).
 
-~~~cpp
+```cpp
         for (AbstractCellPopulation<2>::Iterator cell_iter = cell_population.Begin();
              cell_iter != cell_population.End();
              ++cell_iter)
@@ -204,32 +204,32 @@ We select one of the cells and set the mutation state to `ApcTwoHitCellMutationS
             }
         }
 
-~~~
+```
 We also change the value of the damping constant for mutant cells to be
 ten times the normal value.
 
-~~~cpp
+```cpp
        double normal_damping_constant = cell_population.GetDampingConstantNormal();
        cell_population.SetDampingConstantMutant(10*normal_damping_constant);
 
-~~~
+```
 Next we reset the end time to some later time.
-~~~cpp
+```cpp
        simulator.SetEndTime(20);
 
-~~~
+```
 Run the simulation to the new end time.
-~~~cpp
+```cpp
        simulator.Solve();
 
-~~~
+```
 Finally, we must tidy up by destroying the `WntConcentration`{.cpp}
 singleton object. This avoids memory leaks occurring.
 
-~~~cpp
+```cpp
        WntConcentration<2>::Destroy();
     }
-~~~
+```
 To visualize the results, open a new terminal, `cd`{.cpp} to the Chaste directory,
 then `cd`{.cpp} to `anim`{.cpp}. Then do: `java Visualize2dCentreCells /tmp/$USER/testoutput/MeshBasedCryptWithMutations/results_from_time_0`{.cpp}.
 
@@ -242,10 +242,10 @@ java executable.
 In the results folder there is also a file `cellmutationstates.dat`{.cpp} which tracks the numbers of each mutation type in the simulation.
 These results are just tab separated columns so may be visualized by using gnuplot, Matlab or similar.
 
-~~~cpp
+```cpp
 };
 
-~~~
+```
 
 
 # Code
@@ -254,7 +254,7 @@ The full code is given below
 
 ## File name `TestRunningCryptSimulationsWithMutationsTutorial.hpp` 
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"
 #include "SmartPointers.hpp"
@@ -333,5 +333,5 @@ public:
     }
 };
 
-~~~
+```
 

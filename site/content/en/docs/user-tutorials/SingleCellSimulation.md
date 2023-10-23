@@ -1,7 +1,7 @@
 
 ---
 title : "TestSingleCellSimulationTutorial.hpp"
-description: "This tutorial is automatically generated from the file heart/test/tutorials/TestSingleCellSimulationTutorial.hpp at revision [dc0fc851da33](https://github.com/Chaste/Chaste/commit/dc0fc851da33d398a30adf6f0a3033ba159c438b). Note that the code is given in full at the bottom of the page."
+description: "This tutorial is automatically generated from the file heart/test/tutorials/TestSingleCellSimulationTutorial.hpp at revision [1288aa7fe4cc](https://github.com/Chaste/Chaste/commit/1288aa7fe4ccb5438b05f81253fe167e350cdc10). Note that the code is given in full at the bottom of the page."
 draft: false
 images: []
 toc: true
@@ -24,7 +24,7 @@ showing:
  
 The first thing to do is to include the headers.
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "AbstractCvodeCell.hpp"
 #include "CellProperties.hpp"
@@ -32,28 +32,28 @@ The first thing to do is to include the headers.
 #include "RegularStimulus.hpp"
 #include "Shannon2004Cvode.hpp"
 #include "SteadyStateRunner.hpp"
-~~~
+```
 This test is always run sequentially (never in parallel)
-~~~cpp
+```cpp
 #include "FakePetscSetup.hpp"
 
-~~~
+```
 Now we define the test class, which must inherit from `CxxTest::TestSuite`{.cpp}
 as usual, and the (public) test method
 
-~~~cpp
+```cpp
 class TestSingleCellSimulationTutorial : public CxxTest::TestSuite
 {
 public:
     void TestShannonSimulation()
     {
-~~~
+```
 CVODE is still an optional Chaste dependency, but it is highly recommended for
 working with single cell simulations. This tutorial code will only run if CVODE is installed and enabled
 (see InstallCvode and ChasteGuides/CmakeBuildGuide).
-~~~cpp
+```cpp
 #ifdef CHASTE_CVODE
-~~~
+```
 
 ## Defining a CVODE model 
 
@@ -67,12 +67,12 @@ you can define it here instead of giving it an empty stimulus:
 
 the parameters are magnitude, duration, period, and start time of stimulus.
 
-~~~cpp
+```cpp
         boost::shared_ptr<RegularStimulus> p_stimulus;
         boost::shared_ptr<AbstractIvpOdeSolver> p_solver;
         boost::shared_ptr<AbstractCvodeCell> p_model(new CellShannon2004FromCellMLCvode(p_solver, p_stimulus));
 
-~~~
+```
 Once the model is set up we can tell it to use the the default stimulus from CellML,
 (if one has been labelled, you get an exception if not), and return it.
 
@@ -80,16 +80,16 @@ NB. You could automatically check whether one is available with:
 
 `p_model->HasCellMLDefaultStimulus()`{.cpp}
 
-~~~cpp
+```cpp
         boost::shared_ptr<RegularStimulus> p_regular_stim = p_model->UseCellMLDefaultStimulus();
 
-~~~
+```
 Now you can modify certain parameters of the stimulus function, such as the period
 
-~~~cpp
+```cpp
         p_regular_stim->SetPeriod(1000.0);
 
-~~~
+```
 ## Numerical Considerations 
 
 Cardiac cell models can be pretty tricky to deal with, as they are very stiff and sometimes full
@@ -137,10 +137,10 @@ as CVODE goes to look for trouble in areas with steep gradients.
 For this particular test, we are going to specify quite strict tolerances, so that the test gets the same results
 on different versions of CVODE and different compilers.
 
-~~~cpp
+```cpp
         p_model->SetTolerances(1e-8, 1e-8);
 
-~~~
+```
 By default we use an analytic Jacobian for CVODE cells.
 In some cases (the Hund-Rudy model particularly being one) the
 analytic Jacobian contains effectively divide-by-zero entries, even at resting potential. If you observe
@@ -159,10 +159,10 @@ Here we show how to change the parameter dictating the maximal conductance of th
 Note this call actually leaves it unchanged from the default,
 you can experiment with changing it and examine the impact on APD.
 
-~~~cpp
+```cpp
         p_model->SetParameter("membrane_slow_delayed_rectifier_potassium_current_conductance", 0.07);
 
-~~~
+```
 ## Running model to steady state 
 
 Now we run the model to steady state.
@@ -171,20 +171,20 @@ You can detect for steady state alternans by giving it true as a second paramete
 
 You may change the number of maximum paces the runner takes. The default is 1e5.
 
-~~~cpp
+```cpp
         SteadyStateRunner steady_runner(p_model);
         steady_runner.SetMaxNumPaces(100u);
         bool result;
         result = steady_runner.RunToSteadyState();
 
-~~~
+```
 Check that the model has NOT reached steady state
 (this model needs more than 100 paces to reach steady state).
 
-~~~cpp
+```cpp
         TS_ASSERT_EQUALS(result, false);
 
-~~~
+```
 ## Getting detail for paces of interest 
 
 Now we solve for the number of paces we are interested in.
@@ -201,7 +201,7 @@ For example, try changing the line below to 1 ms. The upstroke velocity that is 
 from 339 mV/ms to around 95 mV/ms. APD calculations will only ever be accurate to sampling timestep
 for the same reason.
 
-~~~cpp
+```cpp
         double max_timestep = 0.1;
         p_model->SetMaxTimestep(max_timestep);
 
@@ -210,34 +210,34 @@ for the same reason.
         double end_time = 1000.0;
         OdeSolution solution = p_model->Compute(start_time, end_time, sampling_timestep);
 
-~~~
+```
 This call will add to the solution object the ODE system's labelled "derived quantities"
 these are things that are not state variables, but are calculated from state variables
 (e.g. currents), and have been tagged in the CellML file with metadata.
 See [wiki:ChasteGuides/CodeGenerationFromCellML] for annotation instructions.
 
-~~~cpp
+```cpp
         solution.CalculateDerivedQuantitiesAndParameters(p_model.get());
 
-~~~
+```
 `p_model` retains the state variables at the end of `Solve`, if you call `Solve` again the state
 variables will evolve from their new state, not the original initial conditions.
 
 Write the data out to a file. Here we show the full range of options.
 
-~~~cpp
+```cpp
         unsigned steps_per_row = 1u; // allows you to downsample output.
         bool clean_dir = false;
         unsigned precision = 6u;
         bool include_derived_quantities = true;
         solution.WriteToFile("TestCvodeCells", "Shannon2004Cvode", "ms", steps_per_row, clean_dir, precision, include_derived_quantities);
 
-~~~
+```
 ## Calculating APD and Upstroke Velocity 
 
 Calculate APD and upstroke velocity using `CellProperties`{.cpp}
 
-~~~cpp
+```cpp
         unsigned voltage_index = p_model->GetSystemInformation()->GetStateVariableIndex("membrane_voltage");
         std::vector<double> voltages = solution.GetVariableAtIndex(voltage_index);
         CellProperties cell_props(voltages, solution.rGetTimes());
@@ -248,28 +248,28 @@ Calculate APD and upstroke velocity using `CellProperties`{.cpp}
         std::cout << "APD = " << apd << "ms" << std::endl;
         std::cout << "Upstroke velocity = " << upstroke_velocity << "mV/ms" << std::endl;
 
-~~~
+```
 Here we just check that the values are equal to the ones we expect,
 with appropriate precision to pass on different versions of CVODE.
 
 (These reference values were generated with tolerances of Abs=1e-12, Rel=1e-12.)
 
-~~~cpp
+```cpp
         TS_ASSERT_DELTA(apd, 211.9487, 1e-2);
         TS_ASSERT_DELTA(upstroke_velocity, 337.4159, 1.25);
 
-~~~
+```
 CVODE is still an optional dependency for Chaste, but is required for this tutorial.
 If CVODE is not installed this tutorial will
 not do anything, but we can at least alert the user to this.
-~~~cpp
+```cpp
 #else
         std::cout << "Cvode is not enabled.\n";
 #endif
     }
 };
 
-~~~
+```
 
 
 # Code
@@ -278,7 +278,7 @@ The full code is given below
 
 ## File name `TestSingleCellSimulationTutorial.hpp` 
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "AbstractCvodeCell.hpp"
 #include "CellProperties.hpp"
@@ -348,5 +348,5 @@ public:
     }
 };
 
-~~~
+```
 

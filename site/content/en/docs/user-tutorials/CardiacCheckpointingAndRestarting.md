@@ -1,7 +1,7 @@
 
 ---
 title : "TestCardiacCheckpointingAndRestartingTutorial.hpp"
-description: "This tutorial is automatically generated from the file heart/test/tutorials/TestCardiacCheckpointingAndRestartingTutorial.hpp at revision [dc0fc851da33](https://github.com/Chaste/Chaste/commit/dc0fc851da33d398a30adf6f0a3033ba159c438b). Note that the code is given in full at the bottom of the page."
+description: "This tutorial is automatically generated from the file heart/test/tutorials/TestCardiacCheckpointingAndRestartingTutorial.hpp at revision [1288aa7fe4cc](https://github.com/Chaste/Chaste/commit/1288aa7fe4ccb5438b05f81253fe167e350cdc10). Note that the code is given in full at the bottom of the page."
 draft: false
 images: []
 toc: true
@@ -14,7 +14,7 @@ In this tutorial we show how to save and reload cardiac simulations
 `CardiacSimulationArchiver` is the main class that takes care of checkpointing
 cardiac simulations.
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "CardiacSimulationArchiver.hpp"
 #include "BidomainProblem.hpp"
@@ -25,14 +25,14 @@ cardiac simulations.
 class TestCardiacCheckpointingAndRestartingTutorial : public CxxTest::TestSuite
 {
 public:
-~~~
+```
 First, the checkpointing test.
-~~~cpp
+```cpp
     void TestCheckpointing()
     {
-~~~
+```
 We set up exactly the same simulation as in UserTutorials/AnotherBidomainSimulation
-~~~cpp
+```cpp
         HeartConfig::Instance()->Reset();
 
         PlaneStimulusCellFactory<CellLuoRudy1991FromCellML,2> cell_factory(-2000000);
@@ -48,28 +48,28 @@ We set up exactly the same simulation as in UserTutorials/AnotherBidomainSimulat
         bidomain_problem.Initialise();
         bidomain_problem.Solve();
 
-~~~
+```
 To save the entire simulation, use the `CardiacSimulationArchiver` class, as shown in the following.
 Note the `BidomainProblem<2>` as the template parameter. The output directory is relative to
 CHASTE_TEST_OUTPUT.
-~~~cpp
+```cpp
         CardiacSimulationArchiver<BidomainProblem<2> >::Save(bidomain_problem, "BidomainCheckpointingTutorial/saved_simulation");
     }
 
-~~~
+```
 This is how to restart the test.
-~~~cpp
+```cpp
     void TestRestarting()
     {
-~~~
+```
 To restart from the saved simulation directory we  use the `CardiacSimulationArchiver` class, as shown in the following.
 Note the `BidomainProblem<2>` as the template parameter again.  The dimension (2) must match the one given in the
 saved archive directory.
 The output directory is again relative to CHASTE_TEST_OUTPUT.
-~~~cpp
+```cpp
         BidomainProblem<2>* p_bidomain_problem = CardiacSimulationArchiver<BidomainProblem<2> >::Load("BidomainCheckpointingTutorial/saved_simulation");
 
-~~~
+```
 The simulation duration has to be amended.
 Note that the duration is always given with respect to the origin of the first solve.
 This means that we are running from `t=5 ms`{.cpp} (the end of the previous simulation) to `t=10 ms`{.cpp}.
@@ -78,28 +78,28 @@ The output files are concatenated so that they appear to be made by a single sim
 Note: loading an archive also loads `HeartConfig` options, so `HeartConfig` calls such as this one must appear
 ''after'' CardiacSimulationArchiver::Load().
 
-~~~cpp
+```cpp
         HeartConfig::Instance()->SetSimulationDuration(10); //ms
 
-~~~
+```
 One point of checkpointing and restarting is that there may be something which we want to change
 during the course of experiment.  Here we change the conductivity.
-~~~cpp
+```cpp
         HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(3.0, 0.3));
 
         p_bidomain_problem->Solve();
 
-~~~
+```
 Note that the pointer p_bidomain_problem exists in the scope of this test and that the object
 which was unarchived was created on the CardiacSimulationArchiver::Load() line above.  We are therefore
 responsible for deleting the memory.
 
-~~~cpp
+```cpp
         delete p_bidomain_problem;
     }
 };
 
-~~~
+```
 ## Notes 
 
  * Making a checkpoint does add a significant overhead at present, in particular because the mesh is
@@ -144,7 +144,7 @@ The full code is given below
 
 ## File name `TestCardiacCheckpointingAndRestartingTutorial.hpp` 
 
-~~~cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "CardiacSimulationArchiver.hpp"
 #include "BidomainProblem.hpp"
@@ -189,5 +189,5 @@ public:
     }
 };
 
-~~~
+```
 
