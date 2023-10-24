@@ -1,7 +1,7 @@
 
 ---
-title : "TestAirwayGenerationTutorial.hpp"
-description: "This tutorial is automatically generated from the file lung/test/tutorials/TestAirwayGenerationTutorial.hpp at revision [1288aa7fe4cc](https://github.com/Chaste/Chaste/commit/1288aa7fe4ccb5438b05f81253fe167e350cdc10). Note that the code is given in full at the bottom of the page."
+title : "Airway Generation Tutorial"
+summary: "This tutorial is automatically generated from the file lung/test/tutorials/TestAirwayGenerationTutorial.hpp at revision [c64c70046e25](https://github.com/Chaste/Chaste/commit/c64c70046e25e3f67b47ec3e92f29cb02d5e6830). Note that the code is given in full at the bottom of the page."
 draft: false
 images: []
 toc: true
