@@ -59,6 +59,26 @@
   parent = "docs"
 
 [[main]]
+  name = "PyChaste"
+  weight = 50
+  identifier = "pychaste"
+  url = "/pychaste/"
+
+[[main]]
+  name = "Install guides"
+  weight = 10
+  identifier = "PyChasteInstallGuides"
+  url = "/pychaste/installation/"
+  parent = "pychaste"
+
+[[main]]
+  name = "User tutorials"
+  weight = 20
+  identifier = "PyChasteUserTutorials"
+  url = "/pychaste/tutorials/"
+  parent = "pychaste"
+
+[[main]]
   name = "Workshops"
   weight = 70
   identifier = "workshops"
