@@ -1,9 +1,9 @@
 ---
-title: "User tutorials"
-description: "Chaste user tutorials"
+title: "PyChaste user tutorials"
+description: "PyChaste user tutorials"
 date: 2020-08-27T19:23:18+02:00
 lastmod: 2020-08-27T19:23:18+02:00
 draft: false
 images: []
 ---
-This will become a list of Chaste user tutorials.
+These tutorials demonstrate how to use PyChaste for various applications.
