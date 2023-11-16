@@ -1,0 +1,27 @@
+// Put your custom SCSS code here
+
+.chaste-logo-homepage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 1024px;
+  max-width: 33%;
+  padding: 3%;
+}
+
+.chaste-logo-sidebar {
+  display: block;
+  margin-left: 0;
+  margin-top: 5%;
+  margin-right: auto;
+  max-width: 10vw;
+  width: 50%;
+  max-height: 10%;
+  padding: 0%;
+}
+
+@media (min-width: 1200px) {
+  .docs-content {
+    width: 80%;
+  }
+}
