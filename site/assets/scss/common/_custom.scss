@@ -25,3 +25,8 @@
     width: 80%;
   }
 }
+
+.chaste-header-logo {
+  height: 64px; /* Fixed height */
+  width: auto; /* Width will adjust to maintain aspect ratio */
+}
