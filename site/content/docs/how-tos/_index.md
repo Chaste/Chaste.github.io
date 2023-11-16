@@ -53,11 +53,11 @@ Do not edit it manually, as your changes will be overwritten!
   - [line 1046 of TestBidomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainProblem.hpp#L1046)
 - Specify output formats (for different visualisers)
   - [line 133 of TestAnotherBidomainSimulationTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherBidomainSimulationTutorial.hpp#L133)
-- Calculating and outputting ionic currents ('derived quantities') in a tissue simulation using class:HeartConfig - see also [wiki:ChasteGuidesCodeGenerationFromCellML#Derivedquantities this page].
+- Calculating and outputting ionic currents ('derived quantities') in a tissue simulation using [HeartConfig](https://chaste.github.io/doxygen-latest/classHeartConfig.html) - see also [this page](https://chaste.cs.ox.ac.uk/trac/wiki/ChasteGuides/CodeGenerationFromCellML#Derivedquantities).
   - [line 236 of TestMonodomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/monodomain/TestMonodomainProblem.hpp#L236)
 - On large-scale parallel simulations it is advantageous to cache HDF5 output and only write to disk at end of simulation (or at checkpoint).  This is achieved with `SetUseHdf5DataWriterCache()`
-  - [line 1647 of TestMonodomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/monodomain/TestMonodomainProblem.hpp#L1647)
-- Calculating and outputting ionic currents ('derived quantities') in a single cell simulation using class:OdeSolution - see also [wiki:ChasteGuidesCodeGenerationFromCellML#Derivedquantities this page].
+  - [line 1648 of TestMonodomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/monodomain/TestMonodomainProblem.hpp#L1648)
+- Calculating and outputting ionic currents ('derived quantities') in a single cell simulation using [OdeSolution](https://chaste.github.io/doxygen-latest/classOdeSolution.html) - see also [this page](https://chaste.cs.ox.ac.uk/trac/wiki/ChasteGuides/CodeGenerationFromCellML#Derivedquantities).
   - [line 395 of TestCvodeCells.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/ionicmodels/TestCvodeCells.hpp#L395)
 
 ### Post-processing
@@ -71,9 +71,9 @@ Do not edit it manually, as your changes will be overwritten!
   - [line 59 of TestPseudoEcgCalculator.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/postprocessing/TestPseudoEcgCalculator.hpp#L59)
 
 ### Problem definition
-- Set discrete '''cuboid''' areas to have heterogeneous (intra- andor extra-cellular) conductivity tensors.
+- Set discrete **cuboid** areas to have heterogeneous (intra- and/or extra-cellular) conductivity tensors.
   - [line 82 of TestHeterogeneousConductivities.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/TestHeterogeneousConductivities.hpp#L82)
-- Set discrete '''ellipsoid''' areas to have heterogeneous (intra- andor extra-cellular) conductivity tensors.
+- Set discrete **ellipsoid** areas to have heterogeneous (intra- and/or extra-cellular) conductivity tensors.
   - [line 325 of TestBidomainTissue.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainTissue.hpp#L325)
 - Fix phi_e at particular nodes (note: this is not required)
   - [line 264 of TestBidomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainProblem.hpp#L264)
@@ -105,7 +105,7 @@ Do not edit it manually, as your changes will be overwritten!
   - [line 48 of TestStreeterFibreGenerator.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/fibres/TestStreeterFibreGenerator.hpp#L48)
 
 ### Solver
-- Use [ChasteGuidesStateVariableInterpolation state-variable interpolation] to improve accuracy
+- Use [ChasteGuides/StateVariableInterpolation state-variable interpolation] to improve accuracy
   - [line 118 of TestBidomainWithSvi.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainWithSvi.hpp#L118)
 - Using specialised Backward Euler implementation to solve the cell models (allows for much larger timesteps)
   - [line 64 of TestBidomainWithBathTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestBidomainWithBathTutorial.hpp#L64)
@@ -189,9 +189,9 @@ Do not edit it manually, as your changes will be overwritten!
   - [line 47 of TestSolvingLinearPdesTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestSolvingLinearPdesTutorial.hpp#L47)
 - Output results to file for time-dependent PDE solvers
   - [line 341 of TestSolvingLinearPdesTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestSolvingLinearPdesTutorial.hpp#L341)
-- Define and solve a particular type of coupled ODEPDE system
+- Define and solve a particular type of coupled ODE/PDE system
   - [line 47 of TestSolvingLinearParabolicPdeSystemsWithCoupledOdeSystemsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestSolvingLinearParabolicPdeSystemsWithCoupledOdeSystemsTutorial.hpp#L47)
-- Write new PDE solvers (especially for linear coupled ellipticparabolic systems)
+- Write new PDE solvers (especially for linear coupled elliptic/parabolic systems)
   - [line 52 of TestWritingPdeSolversTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestWritingPdeSolversTutorial.hpp#L52)
 - Define and solve nonlinear elliptic PDEs
   - [line 52 of TestSolvingNonlinearPdesTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestSolvingNonlinearPdesTutorial.hpp#L52)
