@@ -18,7 +18,8 @@
   {{ end -}}
 
     <!-- Site title -->
-    <a class="navbar-brand me-auto me-lg-3" href="{{ site.BaseURL | relLangURL }}">{{ .Site.Title | markdownify }}</a>
+<!--    <a class="navbar-brand me-auto me-lg-3" href="{{ site.BaseURL | relLangURL }}">{{ .Site.Title | markdownify }}</a>-->
+    <a class="navbar-brand me-auto me-lg-3" href="{{ site.BaseURL | relLangURL }}"><img src="/chaste_0256.png" alt="Chaste logo" class="chaste-header-logo"></a>
 
     <!-- FlexSearch mobile -->
     {{ partial "main/showFlexSearch" . }}
