@@ -24,6 +24,19 @@
   .docs-content {
     width: 80%;
   }
+
+  .chaste-figure img {
+    max-height: 512px;
+    margin: 0 auto; /* This centers the image within the figure if the display is block */
+  }
+}
+
+.chaste-figure figcaption {
+  font-style: italic;
+}
+.chaste-figure {
+  padding-top: 1%;
+  padding-bottom: 1%;
 }
 
 .chaste-header-logo {
