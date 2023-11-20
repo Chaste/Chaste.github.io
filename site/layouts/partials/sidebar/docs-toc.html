@@ -1,9 +1,0 @@
-{{ if and (ne .Params.toc false) (ne .TableOfContents "<nav id=\"TableOfContents\"></nav>") -}}
-  <div class="page-links">
-    <div class="chaste-logo-sidebar">
-      <a href="/"><img src="/chaste_1024.png" alt="Chaste logo"></a>
-    </div>
-    <h3>On this page</h3>
-    {{ .TableOfContents }}
-  </div>
-{{ end -}}

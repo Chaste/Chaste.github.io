@@ -9,13 +9,16 @@
     </div>
     <div class="col-lg-9 col-xl-8 text-center">
       <p class="lead">{{ .Params.lead | markdownify | safeHTML }}</p>
-      <a class="btn btn-primary btn-lg px-4 mb-2" href="/docs/{{ if .Site.Params.options.docsVersioning }}{{ .Site.Params.docsVersion }}/{{ end }}prologue/introduction/" role="button">Get Started</a>
+      <a class="btn btn-primary btn-lg px-4 mb-2" href="/getting-started" role="button">Get Started</a>
       <p class="meta">Open-source BSD Licensed. <a href="https://github.com/Chaste/Chaste/releases/tag/release_2021.1">GitHub v2021.1</a></p>
     </div>
   </div>
 </section>
 {{ end }}
 
+{{ define "sidebar-prefooter" }}
+
+{{ end }}
 
 {{ define "sidebar-footer" }}
 <section class="section section-sm container-fluid">
