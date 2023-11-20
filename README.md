@@ -31,7 +31,7 @@ and click through to the localhost link you're given.
 ## Editing content
 
 - The top-level banner menu is in `site/config/_default/menus/menus.en.toml`
-- All pages are in `site/content/en`
+- All pages are in `site/content/`
 - Static content such as photos is in `site/static`, following the directory structure of the page it is required in
 
 Top level navigation pages, e.g. [team](https://chaste.github.io/team/), correspond to subdirectories.
@@ -43,15 +43,15 @@ All subpages are `name.md`, where `name` corresponds to the part of the URL afte
 For almost all changes, you should only need to edit markdown in markdown files.
 Some examples are:
 
-- To edit https://chaste.github.io/team/, modiy [site/content/team/_index.md](site/content/en/team/_index.md) (top level page)
-- To edit https://chaste.github.io/components/cell-based/, modiy [site/content/en/components/cell-based.md](site/content/en/components/cell-based.md) (sub-page of "components")
+- To edit https://chaste.github.io/team/, modiy [site/content/team/_index.md](site/content/team/_index.md) (top level page)
+- To edit https://chaste.github.io/components/cell-based/, modiy [site/content/en/components/cell-based.md](site/content/components/cell-based.md) (sub-page of "components")
 
 :information_source: :information_source: :information_source:
 
 
 ### Creating a new page
 
-To create a new page, copy a directory such as [site/content/team/](site/content/en/team/).
+To create a new page, copy a directory such as [site/content/team/](site/content/team/).
 Edit the new `_index.md` to add page content as required.
 
 To make the page visible in the site navigation, add a relevant section to the data file [site/config/_default/menus/menus.en.toml](site/config/_default/menus/menus.en.toml).
