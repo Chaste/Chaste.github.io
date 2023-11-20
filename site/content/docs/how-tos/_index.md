@@ -29,16 +29,16 @@ Do not edit it manually, as your changes will be overwritten!
 ### Electro-mechanics
 - Set heterogeneous contraction models by using a contraction cell factory.
   - [line 148 of TestAbstractContractionCellFactory.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/TestAbstractContractionCellFactory.hpp#L148)
-- Run electro-mechanical simulations using bidomain instead of monodomain
-  - [line 215 of TestCardiacElectroMechanicsProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/mechanics/TestCardiacElectroMechanicsProblem.hpp#L215)
-- Run electro-mechanics with mechano-electric feedback
-  - [line 100 of TestAnotherCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherCardiacElectroMechanicsTutorial.hpp#L100)
-- Run electro-mechanics with inflation pressures
-  - [line 273 of TestAnotherCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherCardiacElectroMechanicsTutorial.hpp#L273)
 - Run basic electro-mechanics simulations; specify different models, boundary conditions, fibres
   - [line 117 of TestCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestCardiacElectroMechanicsTutorial.hpp#L117)
 - Visualise results in Cmgui (very brief description)
   - [line 205 of TestCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestCardiacElectroMechanicsTutorial.hpp#L205)
+- Run electro-mechanics with mechano-electric feedback
+  - [line 100 of TestAnotherCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherCardiacElectroMechanicsTutorial.hpp#L100)
+- Run electro-mechanics with inflation pressures
+  - [line 273 of TestAnotherCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherCardiacElectroMechanicsTutorial.hpp#L273)
+- Run electro-mechanical simulations using bidomain instead of monodomain
+  - [line 215 of TestCardiacElectroMechanicsProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/mechanics/TestCardiacElectroMechanicsProblem.hpp#L215)
 
 ### Output
 - Collect and print timings to benchmark different parts of the cardiac code.
@@ -65,86 +65,86 @@ Do not edit it manually, as your changes will be overwritten!
   - [line 64 of TestHdf5Converters.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/utilities/TestHdf5Converters.hpp#L64)
 - Convert already generated simulation (HDF5) results to Cmgui format.
   - [line 61 of TestHdf5ToVisualizerConverters.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/postprocessing/TestHdf5ToVisualizerConverters.hpp#L61)
-- Compute action potential properties (APD50, APD90, max upstroke velocities, etc) given voltage traces.
-  - [line 56 of TestCellProperties.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/postprocessing/TestCellProperties.hpp#L56)
 - Compute pseudo-ECGs
   - [line 59 of TestPseudoEcgCalculator.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/postprocessing/TestPseudoEcgCalculator.hpp#L59)
+- Compute action potential properties (APD50, APD90, max upstroke velocities, etc) given voltage traces.
+  - [line 56 of TestCellProperties.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/postprocessing/TestCellProperties.hpp#L56)
 
 ### Problem definition
 - Set discrete **cuboid** areas to have heterogeneous (intra- and/or extra-cellular) conductivity tensors.
   - [line 82 of TestHeterogeneousConductivities.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/TestHeterogeneousConductivities.hpp#L82)
-- Set discrete **ellipsoid** areas to have heterogeneous (intra- and/or extra-cellular) conductivity tensors.
-  - [line 325 of TestBidomainTissue.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainTissue.hpp#L325)
-- Fix phi_e at particular nodes (note: this is not required)
-  - [line 264 of TestBidomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainProblem.hpp#L264)
-- Save ('checkpoint') and reload simulations
-  - [line 49 of TestCardiacCheckpointingAndRestartingTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestCardiacCheckpointingAndRestartingTutorial.hpp#L49)
-- Generate a slab (cuboid) mesh rather than read a mesh in, and pass it to solver
-  - [line 102 of TestMonodomain3dExampleTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestMonodomain3dExampleTutorial.hpp#L102)
-- Do a monodomain simulation with equivalent conductivities to a bidomain simulation.
-  - [line 233 of TestEquivalentMonoAndBidomainTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestEquivalentMonoAndBidomainTutorial.hpp#L233)
-- Run bidomain simulations with a perfusing bath, and apply shocks using electrodes
-  - [line 47 of TestBidomainWithBathTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestBidomainWithBathTutorial.hpp#L47)
-- Tell Chaste that a mesh has been modified
-  - [line 174 of TestBidomainWithBathTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestBidomainWithBathTutorial.hpp#L174)
-- Specify fibre directions
-  - [line 87 of TestAnotherBidomainSimulationTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherBidomainSimulationTutorial.hpp#L87)
-- Set up and run basic bidomain simulations
-  - [line 48 of TestRunningBidomainSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestRunningBidomainSimulationsTutorial.hpp#L48)
-- Use different cell models, defined using CellML files
-  - [line 74 of TestRunningBidomainSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestRunningBidomainSimulationsTutorial.hpp#L74)
-- Read in a mesh from file, via `HeartConfig`.
-  - [line 114 of TestMonodomain3dRabbitHeartTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestMonodomain3dRabbitHeartTutorial.hpp#L114)
+- Generate fibre field definitions for cardiac geometries using a mathematical rule approach
+  - [line 48 of TestStreeterFibreGenerator.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/fibres/TestStreeterFibreGenerator.hpp#L48)
 - Use a CVODE adaptor solver in a tissue simulation
   - [line 121 of Test1dMonodomainShannonCvodeBenchmarks.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/performance/Test1dMonodomainShannonCvodeBenchmarks.hpp#L121)
 - Use a native CVODE cell in a tissue simulation
   - [line 168 of Test1dMonodomainShannonCvodeBenchmarks.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/performance/Test1dMonodomainShannonCvodeBenchmarks.hpp#L168)
+- Set discrete **ellipsoid** areas to have heterogeneous (intra- and/or extra-cellular) conductivity tensors.
+  - [line 325 of TestBidomainTissue.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainTissue.hpp#L325)
+- Fix phi_e at particular nodes (note: this is not required)
+  - [line 264 of TestBidomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainProblem.hpp#L264)
+- Generate a slab (cuboid) mesh rather than read a mesh in, and pass it to solver
+  - [line 102 of TestMonodomain3dExampleTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestMonodomain3dExampleTutorial.hpp#L102)
+- Run bidomain simulations with a perfusing bath, and apply shocks using electrodes
+  - [line 47 of TestBidomainWithBathTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestBidomainWithBathTutorial.hpp#L47)
+- Tell Chaste that a mesh has been modified
+  - [line 174 of TestBidomainWithBathTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestBidomainWithBathTutorial.hpp#L174)
+- Read in a mesh from file, via `HeartConfig`.
+  - [line 114 of TestMonodomain3dRabbitHeartTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestMonodomain3dRabbitHeartTutorial.hpp#L114)
+- Do a monodomain simulation with equivalent conductivities to a bidomain simulation.
+  - [line 233 of TestEquivalentMonoAndBidomainTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestEquivalentMonoAndBidomainTutorial.hpp#L233)
+- Set up and run basic bidomain simulations
+  - [line 48 of TestRunningBidomainSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestRunningBidomainSimulationsTutorial.hpp#L48)
+- Use different cell models, defined using CellML files
+  - [line 74 of TestRunningBidomainSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestRunningBidomainSimulationsTutorial.hpp#L74)
+- Specify fibre directions
+  - [line 87 of TestAnotherBidomainSimulationTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherBidomainSimulationTutorial.hpp#L87)
+- Save ('checkpoint') and reload simulations
+  - [line 49 of TestCardiacCheckpointingAndRestartingTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestCardiacCheckpointingAndRestartingTutorial.hpp#L49)
 - Use a genuinely Neumann intracellular stimulus, rather than default volume stimulus
   - [line 54 of TestNeumannStimulus.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/stimuli/TestNeumannStimulus.hpp#L54)
-- Generate fibre field definitions for cardiac geometries using a mathematical rule approach
-  - [line 48 of TestStreeterFibreGenerator.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/fibres/TestStreeterFibreGenerator.hpp#L48)
 
 ### Solver
 - Use [ChasteGuides/StateVariableInterpolation state-variable interpolation] to improve accuracy
   - [line 118 of TestBidomainWithSvi.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainWithSvi.hpp#L118)
 - Using specialised Backward Euler implementation to solve the cell models (allows for much larger timesteps)
   - [line 64 of TestBidomainWithBathTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestBidomainWithBathTutorial.hpp#L64)
-- Run using operator-splitting
-  - [line 58 of TestOperatorSplittingMonodomainSolver.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/monodomain/TestOperatorSplittingMonodomainSolver.hpp#L58)
 - Run using (simple, user-defined) time-adaptivity
   - [line 51 of TestMonodomainWithTimeAdaptivity.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/monodomain/TestMonodomainWithTimeAdaptivity.hpp#L51)
+- Run using operator-splitting
+  - [line 58 of TestOperatorSplittingMonodomainSolver.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/monodomain/TestOperatorSplittingMonodomainSolver.hpp#L58)
 
 ## Cell Based
 
 ### Simulation
-- Time various aspects of a cell-based simulation using `CellBasedEventHandler`.
-  - [line 434 of TestCryptSimulation2dNightly.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/simulation/TestCryptSimulation2dNightly.hpp#L434)
 - Save and load ('checkpoint') a cell-based simulation to file.
   - [line 135 of TestGenerateSteadyStateCrypt.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/simulation/TestGenerateSteadyStateCrypt.hpp#L135)
+- Time various aspects of a cell-based simulation using `CellBasedEventHandler`.
+  - [line 434 of TestCryptSimulation2dNightly.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/simulation/TestCryptSimulation2dNightly.hpp#L434)
 
 ## Continuum mechanics
-- Solve Stokes' flow problems (this functionality is work-in-progress).
-  - [line 51 of TestStokesFlowSolver.hpp](https://github.com/Chaste/Chaste/blob/develop/continuum_mechanics/test/TestStokesFlowSolver.hpp#L51)
+- Write strain after solve
+  - [line 944 of TestCompressibleNonlinearElasticitySolver.hpp](https://github.com/Chaste/Chaste/blob/develop/continuum_mechanics/test/TestCompressibleNonlinearElasticitySolver.hpp#L944)
 - Solve nonlinear elasticity problems
   - [line 107 of TestSolvingElasticityProblemsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/continuum_mechanics/test/TestSolvingElasticityProblemsTutorial.hpp#L107)
 - Visualise nonlinear elasticity problems solutions, including visualisng strains
   - [line 222 of TestSolvingElasticityProblemsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/continuum_mechanics/test/TestSolvingElasticityProblemsTutorial.hpp#L222)
-- Specify more complicated boundary conditions in elasticity problems
-  - [line 77 of TestSolvingMoreElasticityProblemsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/continuum_mechanics/test/TestSolvingMoreElasticityProblemsTutorial.hpp#L77)
-- Write strain after solve
-  - [line 944 of TestCompressibleNonlinearElasticitySolver.hpp](https://github.com/Chaste/Chaste/blob/develop/continuum_mechanics/test/TestCompressibleNonlinearElasticitySolver.hpp#L944)
 - Get or output stresses during a solve
   - [line 634 of TestIncompressibleNonlinearElasticitySolver.hpp](https://github.com/Chaste/Chaste/blob/develop/continuum_mechanics/test/TestIncompressibleNonlinearElasticitySolver.hpp#L634)
+- Solve Stokes' flow problems (this functionality is work-in-progress).
+  - [line 51 of TestStokesFlowSolver.hpp](https://github.com/Chaste/Chaste/blob/develop/continuum_mechanics/test/TestStokesFlowSolver.hpp#L51)
+- Specify more complicated boundary conditions in elasticity problems
+  - [line 77 of TestSolvingMoreElasticityProblemsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/continuum_mechanics/test/TestSolvingMoreElasticityProblemsTutorial.hpp#L77)
 
 ### Ventilation
-- Solve a simple ventilation problem with no time variation.
-  - [line 272 of TestMatrixVentilationProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/lung/test/ventilation/TestMatrixVentilationProblem.hpp#L272)
-- Solve a simple ventilation problem defined in a file.
-  - [line 390 of TestMatrixVentilationProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/lung/test/ventilation/TestMatrixVentilationProblem.hpp#L390)
 - Solve a simple ventilation problem with no time variation.
   - [line 299 of TestVentilationProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/lung/test/ventilation/TestVentilationProblem.hpp#L299)
 - Solve a simple ventilation problem defined in a file.
   - [line 416 of TestVentilationProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/lung/test/ventilation/TestVentilationProblem.hpp#L416)
+- Solve a simple ventilation problem with no time variation.
+  - [line 272 of TestMatrixVentilationProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/lung/test/ventilation/TestMatrixVentilationProblem.hpp#L272)
+- Solve a simple ventilation problem defined in a file.
+  - [line 390 of TestMatrixVentilationProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/lung/test/ventilation/TestMatrixVentilationProblem.hpp#L390)
 
 ## General
 - Read and use parameters from the command line
@@ -163,38 +163,38 @@ Do not edit it manually, as your changes will be overwritten!
   - [line 47 of TestAirwayGenerationTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/lung/test/tutorials/TestAirwayGenerationTutorial.hpp#L47)
 
 ### Simulation
-- Calculate transfer impedance of an airway tree using a simple impedance model
-  - [line 47 of TestSimpleImpedanceProblemTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/lung/test/tutorials/TestSimpleImpedanceProblemTutorial.hpp#L47)
 - Simulate ventilation on a full lung geometry with acinar dynamics over a breathing cycle.
   - [line 47 of TestDynamicVentilationTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/lung/test/tutorials/TestDynamicVentilationTutorial.hpp#L47)
 - Calculate ventilation distribution in an airway tree for a given flow rate at the trachea
   - [line 47 of TestStaticVentilationTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/lung/test/tutorials/TestStaticVentilationTutorial.hpp#L47)
+- Calculate transfer impedance of an airway tree using a simple impedance model
+  - [line 47 of TestSimpleImpedanceProblemTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/lung/test/tutorials/TestSimpleImpedanceProblemTutorial.hpp#L47)
 
 ## Mesh
+- Convert a linear tetrahedral mesh to quadratic and write back to file.
+  - [line 790 of TestQuadraticMesh.hpp](https://github.com/Chaste/Chaste/blob/develop/mesh/test/TestQuadraticMesh.hpp#L790)
 - Apply transformations to meshes
   - [line 49 of TestTransformations.hpp](https://github.com/Chaste/Chaste/blob/develop/mesh/test/TestTransformations.hpp#L49)
 - Construct a distributed regular mesh (rectangle in 2D or cuboid in 3D) which does not have a default split plane.  The default is for parallel code to split 2-D meshes into slices in the y-dimension and 3-D meshes in the z-dimension.
   - [line 2283 of TestDistributedTetrahedralMesh.hpp](https://github.com/Chaste/Chaste/blob/develop/mesh/test/TestDistributedTetrahedralMesh.hpp#L2283)
-- Convert a linear tetrahedral mesh to quadratic and write back to file.
-  - [line 790 of TestQuadraticMesh.hpp](https://github.com/Chaste/Chaste/blob/develop/mesh/test/TestQuadraticMesh.hpp#L790)
 - Write meshes to file
   - [line 58 of TestMeshWriters.hpp](https://github.com/Chaste/Chaste/blob/develop/mesh/test/writer/TestMeshWriters.hpp#L58)
 
 ## PDE
 - Write a solver for coupled nonlinear PDEs (advanced)
   - [line 53 of TestSolvingCoupledNonlinearPdes.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/TestSolvingCoupledNonlinearPdes.hpp#L53)
-- Evaluate integrals (using a solution from a PDE solve say) over a finite element mesh
-  - [line 49 of TestAbstractFunctionalCalculator.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/utilities/TestAbstractFunctionalCalculator.hpp#L49)
-- Define and solve linear elliptic or parabolic PDEs
-  - [line 47 of TestSolvingLinearPdesTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestSolvingLinearPdesTutorial.hpp#L47)
-- Output results to file for time-dependent PDE solvers
-  - [line 341 of TestSolvingLinearPdesTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestSolvingLinearPdesTutorial.hpp#L341)
+- Define and solve nonlinear elliptic PDEs
+  - [line 52 of TestSolvingNonlinearPdesTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestSolvingNonlinearPdesTutorial.hpp#L52)
 - Define and solve a particular type of coupled ODE/PDE system
   - [line 47 of TestSolvingLinearParabolicPdeSystemsWithCoupledOdeSystemsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestSolvingLinearParabolicPdeSystemsWithCoupledOdeSystemsTutorial.hpp#L47)
 - Write new PDE solvers (especially for linear coupled elliptic/parabolic systems)
   - [line 52 of TestWritingPdeSolversTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestWritingPdeSolversTutorial.hpp#L52)
-- Define and solve nonlinear elliptic PDEs
-  - [line 52 of TestSolvingNonlinearPdesTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestSolvingNonlinearPdesTutorial.hpp#L52)
+- Define and solve linear elliptic or parabolic PDEs
+  - [line 47 of TestSolvingLinearPdesTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestSolvingLinearPdesTutorial.hpp#L47)
+- Output results to file for time-dependent PDE solvers
+  - [line 341 of TestSolvingLinearPdesTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestSolvingLinearPdesTutorial.hpp#L341)
+- Evaluate integrals (using a solution from a PDE solve say) over a finite element mesh
+  - [line 49 of TestAbstractFunctionalCalculator.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/utilities/TestAbstractFunctionalCalculator.hpp#L49)
 
 ## Creating new how-tos
 
