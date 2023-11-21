@@ -46,6 +46,8 @@ module.exports = {
         ...whitelister([
           './assets/scss/**/*.css',
           './assets/scss/**/*.scss',
+          './node_modules/@hyas/doks-core/assets/scss/**/*.scss',
+          './node_modules/@hyas/doks-core/assets/scss/**/*.css',
           './node_modules/katex/dist/katex.css',
         ]),
       ],
