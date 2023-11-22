@@ -21,7 +21,6 @@ First include the headers, `MonodomainProblem` this time.
 #include "SimpleStimulus.hpp"
 #include "TetrahedralMesh.hpp"
 #include "PetscSetupAndFinalize.hpp"
-
 ```
 
 Here we define a cell factory that gives stimuli to cells in the block
@@ -57,10 +56,10 @@ public:
         }
     }
 };
-
 ```
 
 Now define the test
+
 ```cpp
 class TestMonodomain3dExampleTutorial : public CxxTest::TestSuite
 {
@@ -68,7 +67,6 @@ public:
     void TestMonodomain3d()
     {
 ```
-
 
 We will auto-generate a mesh this time, and pass it in, rather than
 provide a mesh file name. This is how to generate a cuboid mesh with
@@ -102,7 +100,6 @@ alter the monodomain conductivity call
         HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(0.005, 0.01, 0.1);
 
         BenchmarkCellFactory cell_factory;
-
 ```
 
 Now we declare the problem class, `MonodomainProblem<3>` instead of `BidomainProblem<2>`.
@@ -110,14 +107,13 @@ The interface for both is the same.
 
 ```cpp
         MonodomainProblem<3> monodomain_problem( &cell_factory );
-
 ```
 
 If a mesh-file-name hasn't been set using `HeartConfig`, we have to pass in
 a mesh using the `SetMesh` method (must be called before `Initialise`).
+
 ```cpp
         monodomain_problem.SetMesh(&mesh);
-
 ```
 
 By default data for all nodes is output, but for big simulations, sometimes this
@@ -137,25 +133,25 @@ simulation however (hence the boolean being set to false).
             nodes_to_be_output.push_back(mesh.GetNumNodes()-1);
             monodomain_problem.SetOutputNodes(nodes_to_be_output);
         }
-
 ```
 
 `SetWriteInfo` is a useful method that means that the min/max voltage is
 printed as the simulation runs (useful for verifying that cells are stimulated
 and the wave propagating, for example)
+
 ```cpp
         monodomain_problem.SetWriteInfo();
-
 ```
 
 Finally, call `Initialise` and `Solve` as before
+
 ```cpp
         monodomain_problem.Initialise();
         monodomain_problem.Solve();
-
 ```
 
 This part is just to check nothing has accidentally been changed in this example
+
 ```cpp
         ReplicatableVector voltage(monodomain_problem.GetSolution());
         TS_ASSERT_DELTA(voltage[0], 34.9032, 1e-2);
@@ -163,9 +159,8 @@ This part is just to check nothing has accidentally been changed in this example
 };
 ```
 
-
-
 ## Full code
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "MonodomainProblem.hpp"

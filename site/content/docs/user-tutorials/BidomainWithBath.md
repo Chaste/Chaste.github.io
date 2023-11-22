@@ -12,11 +12,11 @@ In this tutorial we show how the changes the need to be made when running a simu
 cardiac tissue contained in a bath.
 
 The usual headers are included
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "BidomainProblem.hpp"
 #include "PlaneStimulusCellFactory.hpp"
-
 ```
 
 Cell models can be solved using a specialised (for cardiac cell models) Backward Euler
@@ -31,18 +31,20 @@ using Backward Euler is trivial: just change the .hpp included as follows, and t
 
 This test will show how to load a mesh in the test and pass it into the problem,
 for which the following includes are needed
+
 ```cpp
 #include "DistributedTetrahedralMesh.hpp"
 #include "TrianglesMeshReader.hpp"
 ```
 
 This header is needed for the sqrt function.
+
 ```cpp
 #include <cmath>
-
 ```
 
 Define the test
+
 ```cpp
 class TestBidomainWithBathTutorial : public CxxTest::TestSuite
 {
@@ -60,14 +62,12 @@ to the problem class, so we don't set the mesh file name.
         HeartConfig::Instance()->SetSimulationDuration(3.0);  //ms
         HeartConfig::Instance()->SetOutputDirectory("BidomainTutorialWithBath");
         HeartConfig::Instance()->SetOutputFilenamePrefix("results");
-
 ```
 
 Bath problems seem to require decreased ODE timesteps.
 
 ```cpp
         HeartConfig::Instance()->SetOdeTimeStep(0.001);  //ms
-
 ```
 
 Use the `PlaneStimulusCellFactory` to define a set
@@ -76,7 +76,6 @@ as we don't want any stimulated cells.
 
 ```cpp
         PlaneStimulusCellFactory<CellLuoRudy1991FromCellMLBackwardEulerOpt,2> cell_factory(0.0);
-
 ```
 
 Now, we load up a rectangular mesh (in triangle/tetgen format), done as follows,
@@ -87,7 +86,6 @@ is shared among processes if run in parallel.
         TrianglesMeshReader<2,2> reader("mesh/test/data/2D_0_to_1mm_400_elements");
         DistributedTetrahedralMesh<2,2> mesh;
         mesh.ConstructFromMeshReader(reader);
-
 ```
 
 In most simulations there is one valid tissue identifier and one valid bath identifier
@@ -111,7 +109,6 @@ then we will need different identifiers:
         bath_ids.insert(bath_id2);
 
         HeartConfig::Instance()->SetTissueAndBathIdentifiers(tissue_ids, bath_ids);
-
 ```
 
 In bath problems, each element has an attribute which must be set
@@ -151,7 +148,6 @@ as bath elements (by default, the others are cardiac elements).
                 iter->SetAttribute(tissue_id);
             }
         }
-
 ```
 
 Since we have modified the mesh by setting element attributes, we need to inform Chaste of this fact.
@@ -165,7 +161,6 @@ present.)
 
 ```cpp
         mesh.SetMeshHasChangedSinceLoading();
-
 ```
 
 The external conductivity can set two ways:
@@ -178,7 +173,6 @@ The external conductivity can set two ways:
         multiple_bath_conductivities[bath_id2] = 6.5;  // mS/cm
 
         HeartConfig::Instance()->SetBathMultipleConductivities(multiple_bath_conductivities);
-
 ```
 
 Now we define the electrodes. First define the magnitude of the electrodes
@@ -193,7 +187,6 @@ magnitudes that will work, perhaps because the electrodes are close to the tissu
         double magnitude = -14.0e3; // uA/cm^2
         double start_time = 0.0;
         double duration = 1; //ms
-
 ```
 
 Electrodes work in two ways: the first electrode applies an input flux, and
@@ -207,7 +200,6 @@ x=xmin and x=xmax ought to be form two surfaces of equal area.
 
 ```cpp
         HeartConfig::Instance()->SetElectrodeParameters(false, 0, magnitude, start_time, duration);
-
 ```
 
 Now create the problem class, using the cell factory and passing
@@ -216,20 +208,19 @@ problem..
 
 ```cpp
         BidomainProblem<2> bidomain_problem( &cell_factory, true );
-
 ```
 
 ..set the mesh and electrodes..
+
 ```cpp
         bidomain_problem.SetMesh(&mesh);
-
 ```
 
 ..and solve as before.
+
 ```cpp
         bidomain_problem.Initialise();
         bidomain_problem.Solve();
-
 ```
 
 The results can be visualised as before. **Note:** The voltage is only
@@ -261,12 +252,10 @@ only check the voltage at cardiac cells.
         TS_ASSERT(ap_triggered);
     }
 };
-
 ```
 
-
-
 ## Full code
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "BidomainProblem.hpp"
@@ -376,5 +365,4 @@ public: // Tests should be public!
         TS_ASSERT(ap_triggered);
     }
 };
-
 ```

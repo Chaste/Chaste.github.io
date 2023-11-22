@@ -21,11 +21,13 @@ is to include the following header.
 ```
 
 The main class to be used for running bidomain simulations is `BidomainProblem`.
+
 ```cpp
 #include "BidomainProblem.hpp"
 ```
 
 The type of intracellular stimulus we'll apply.
+
 ```cpp
 #include "SimpleStimulus.hpp"
 ```
@@ -33,9 +35,9 @@ The type of intracellular stimulus we'll apply.
 All tests which run cardiac simulations (which use Petsc) should include
 `PetscSetupAndFinalize.hpp`.  This class ensures that `PetscInitialise()`
 is called with the appropriate arguments before any tests in the suite are run.
+
 ```cpp
 #include "PetscSetupAndFinalize.hpp"
-
 ```
 
 The above files are contained in the source release and can be located and studied. Cardiac cell
@@ -50,7 +52,6 @@ See ["ChasteGuides/CodeGenerationFromCellML"] for more information on this proce
 
 ```cpp
 #include "LuoRudy1991.hpp"
-
 ```
 
 ### Defining a cell factory
@@ -79,6 +80,7 @@ of type `boost::shared_ptr<ZeroStimulus>`; `mpMesh`, a pointer to the mesh used 
 class will set this before it calls `CreateCardiacCellForTissueNode`, so it can be used
 in that method); `mTimestep`, a double (see below); and `boost::shared_ptr<mpSolver>`
 a forward euler ode solver (see below).
+
 ```cpp
 private:
     boost::shared_ptr<SimpleStimulus> mpStimulus;
@@ -95,7 +97,6 @@ and we also initialise the stimulus to have magnitude -500000 uA/cm^3 and durati
           mpStimulus(new SimpleStimulus(-5e5, 0.5))
     {
     }
-
 ```
 
 Now we implement the pure method which needs to be implemented. We return
@@ -104,6 +105,7 @@ and all other nodes given the zero stimulus. Note that we use `mpMesh`,
 `mTimestep`, `mpZeroStimulus` and `mpSolver` which are all
 members of the base class. The timestep and solver are defined in the base
 class just so that the user doesn't have to create them here.
+
 ```cpp
     AbstractCardiacCell* CreateCardiacCellForTissueNode(Node<2>* pNode)
     {
@@ -127,29 +129,31 @@ bidomain equations.
 ```
 
 The other cells have zero stimuli.
+
 ```cpp
             return new CellLuoRudy1991FromCellML(mpSolver, mpZeroStimulus);
         }
     }
-
 ```
 
 We have no need for a destructor, since the problem class deals with deleting the cells.
+
 ```cpp
 };
-
 ```
 
 ### Running the bidomain simulation
 
 Now we can define the test class, which must inherit from `CxxTest::TestSuite`
 as described in the writing basic tests tutorial.
+
 ```cpp
 class TestRunningBidomainSimulationsTutorial : public CxxTest::TestSuite
 {
 ```
 
 Tests should be public...
+
 ```cpp
 public:
 ```
@@ -173,7 +177,6 @@ so that mesh 2D_0_to_1mm_800_elements is a mesh over [0,0.1]x[0,0.1].
         HeartConfig::Instance()->SetMeshFileName("mesh/test/data/2D_0_to_1mm_800_elements");
         HeartConfig::Instance()->SetOutputDirectory("BidomainTutorial");
         HeartConfig::Instance()->SetOutputFilenamePrefix("results");
-
 ```
 
 There is an alternate method of loading a mesh that can be seen in [wiki:UserTutorials/Monodomain3dExample Monodomain3dExample],
@@ -189,29 +192,29 @@ post-processing).
 ```
 
 If the mesh is a DistributedTetrahedralMesh then we can use parallel VTK files (.pvtu)
+
 ```cpp
         //HeartConfig::Instance()->SetVisualizeWithParallelVtk(true);
-
 ```
 
 Next, we have to create a cell factory of the type we defined above.
+
 ```cpp
         PointStimulus2dCellFactory cell_factory;
-
 ```
 
 Now we create a problem class using (a pointer to) the cell factory.
+
 ```cpp
         BidomainProblem<2> bidomain_problem( &cell_factory );
-
 ```
 
 This is enough setup to run a simulation: we could now call `Initialise()`
 and `Solve()` to run...
+
 ```cpp
         // bidomain_problem.Initialise();
         // bidomain_problem.Solve();
-
 ```
 
 ..however, instead we show how to set a few more parameters. To set the conductivity values
@@ -223,15 +226,14 @@ of the correct size (2, in this case). Make sure these methods are called before
 ```cpp
         HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(1.75, 0.19));
         HeartConfig::Instance()->SetExtracellularConductivities(Create_c_vector(6.2, 2.4));
-
 ```
 
 This is how to reset the surface-area-to-volume ratio and the capacitance.
 (Here, we are actually just resetting them to their default values).
+
 ```cpp
         HeartConfig::Instance()->SetSurfaceAreaToVolumeRatio(1400); // 1/cm
         HeartConfig::Instance()->SetCapacitance(1.0); // uF/cm^2
-
 ```
 
 This is how to set the ode timestep (the timestep used to solve the cell models)
@@ -241,13 +243,12 @@ all 0.01, here we increase the printing timestep.
 
 ```cpp
         HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(0.01, 0.01, 0.1);
-
 ```
 
 Now we call `Initialise()`...
+
 ```cpp
         bidomain_problem.Initialise();
-
 ```
 
 Now we call Solve() to run the simulation. The output will be written to
@@ -257,9 +258,9 @@ Note that if you want to view the progress of longer simulations
 go to the the output directory and look at the file
 `progress_status.txt`, which will say the percentage of the
 simulation run.
+
 ```cpp
         bidomain_problem.Solve();
-
 ```
 
 ### Examining the output
@@ -286,7 +287,6 @@ will mention how to do parallel access).
         {
         //    std::cout << res_repl[i] << "\n";
         }
-
 ```
 
 Behind the scenes there are some logging routines which find out how much time
@@ -297,22 +297,22 @@ If you think this is getting in the way, you can turn it off at the top of your 
 In this test, we want to get information out of the `HeartEventHandler`.
 
 `Headings()` prints a single (very long) line reminding us what catagories of events are being instrumented.
+
 ```cpp
         HeartEventHandler::Headings();
 ```
 
 `Report()` prints a single line with times spent in each catagory.  When run in parallel it prints one line of times per process and also lines for average
 and maximum times.  (This can be useful if you need to identify a load imbalance.)
+
 ```cpp
         HeartEventHandler::Report();
     }
 };
-
 ```
 
-
-
 ## Full code
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "BidomainProblem.hpp"
@@ -393,5 +393,4 @@ public:
         HeartEventHandler::Report();
     }
 };
-
 ```

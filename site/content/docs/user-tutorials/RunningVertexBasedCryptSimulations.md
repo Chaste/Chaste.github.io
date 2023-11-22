@@ -22,12 +22,12 @@ As in previous cell-based Chaste tutorials, we begin by including the necessary 
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"
 #include "AbstractCellBasedTestSuite.hpp"
-
 ```
 
 The remaining header files define classes that will be used in the cell population
 simulation test. We have encountered some of these header files in previous cell-based
 Chaste tutorials.
+
 ```cpp
 #include "CellsGenerator.hpp"
 #include "CryptCellsGenerator.hpp"
@@ -37,7 +37,6 @@ Chaste tutorials.
 #include "SmartPointers.hpp"
 #include "FakePetscSetup.hpp"
 ```
-
 
 The next three header files define two different types of cell-cycle model,
 one with fixed cell-cycle times and one
@@ -49,22 +48,26 @@ where the cell-cycle time depends on the Wnt concentration.
 ```
 
 The next header file defines a helper class for generating a suitable mesh.
+
 ```cpp
 #include "HoneycombVertexMeshGenerator.hpp"
 ```
 
 The next header file defines a helper class for generating a periodic vertex mesh.
+
 ```cpp
 #include "CylindricalHoneycombVertexMeshGenerator.hpp"
 ```
 
 The next header file defines the class that simulates the evolution of a crypt `CellPopulation`
 for a vertex mesh.
+
 ```cpp
 #include "CryptSimulation2d.hpp"
 ```
 
 The next header file defines a vertex-based `CellPopulation` class.
+
 ```cpp
 #include "VertexBasedCellPopulation.hpp"
 ```
@@ -82,15 +85,14 @@ Here, we use the `SimpleTargetAreaModifier`.
 
 ```cpp
 #include "SimpleTargetAreaModifier.hpp"
-
 ```
 
 Next, we define the test class.
+
 ```cpp
 class TestRunningVertexBasedCryptSimulationsTutorial : public AbstractCellBasedTestSuite
 {
 public:
-
 ```
 
 ### Test 1 - create a vertex-based crypt simulation
@@ -112,7 +114,6 @@ periodicity.
 ```cpp
          CylindricalHoneycombVertexMeshGenerator generator(6, 9);
          boost::shared_ptr<Cylindrical2dVertexMesh> p_mesh = generator.GetCylindricalMesh();
-
 ```
 
 Having created a mesh, we now create a `std::vector` of `CellPtr`s.
@@ -130,21 +131,20 @@ The last four arguments represent the height below which cells belong to generat
         std::vector<CellPtr> cells;
         CryptCellsGenerator<FixedG1GenerationalCellCycleModel> cells_generator;
         cells_generator.Generate(cells, p_mesh.get(), std::vector<unsigned>(), true, 1.0, 2.0, 3.0, 4.0);
-
 ```
 
 Create a cell population, as before.
+
 ```cpp
         VertexBasedCellPopulation<2> crypt(*p_mesh, cells);
-
 ```
 
 Create a simulator as before (except setting a different output directory).
+
 ```cpp
         CryptSimulation2d simulator(crypt);
         simulator.SetOutputDirectory("VertexCrypt");
         simulator.SetEndTime(0.1);
-
 ```
 
 Before running the simulation, we add a one or more force laws, which determine the mechanics of
@@ -153,7 +153,6 @@ the cell population.  For this test, we use a `NagaiHondaForce`.
 ```cpp
         MAKE_PTR(NagaiHondaForce<2>, p_force);
         simulator.AddForce(p_force);
-
 ```
 
 We next add a child class of `AbstractTargetAreaModifier` to the
@@ -165,7 +164,6 @@ determine the pressure forces on each vertex.
 ```cpp
         MAKE_PTR(SimpleTargetAreaModifier<2>, p_growth_modifier);
         simulator.AddSimulationModifier(p_growth_modifier);
-
 ```
 
 Before running the simulation, we add a cell killer. This object
@@ -176,14 +174,13 @@ a `SloughingCellKiller`, which kills cells above a certain height.
         double crypt_length = 6.0;
         MAKE_PTR_ARGS(SloughingCellKiller<2>, p_killer, (&crypt, crypt_length));
         simulator.AddCellKiller(p_killer);
-
 ```
 
 To run the simulation, we call `Solve()`.
+
 ```cpp
         simulator.Solve();
     }
-
 ```
 
 To visualize the results, open a new terminal, `cd` to the Chaste directory,
@@ -208,10 +205,10 @@ transit cells is then assigned randomly from a uniform distribution.
 ```
 
 Create a cylindrical mesh, and get the cell location indices, as before.
+
 ```cpp
         CylindricalHoneycombVertexMeshGenerator generator(6, 9);
         boost::shared_ptr<Cylindrical2dVertexMesh> p_mesh = generator.GetCylindricalMesh();
-
 ```
 
 Create a `std::vector` of `CellPtr`s.
@@ -223,30 +220,30 @@ to assign randomly chosen birth times.
         std::vector<CellPtr> cells;
         CryptCellsGenerator<SimpleWntCellCycleModel> cells_generator;
         cells_generator.Generate(cells, p_mesh.get(), std::vector<unsigned>(), true);
-
 ```
 
 Create a cell population, as before.
+
 ```cpp
         VertexBasedCellPopulation<2> crypt(*p_mesh, cells);
-
 ```
 
 Define the crypt length; this will be used for sloughing and calculating the Wnt gradient.
+
 ```cpp
         double crypt_length = 6.0;
-
 ```
 
 Set up a `WntConcentration` object, as in UserTutorials/RunningMeshBasedCryptSimulations.
+
 ```cpp
         WntConcentration<2>::Instance()->SetType(LINEAR);
         WntConcentration<2>::Instance()->SetCellPopulation(crypt);
         WntConcentration<2>::Instance()->SetCryptLength(crypt_length);
-
 ```
 
 Create a simulator as before, and add a force law, the target area modifier and a sloughing cell killer to it.
+
 ```cpp
         CryptSimulation2d simulator(crypt);
         simulator.SetOutputDirectory("VertexCryptWithSimpleWntCellCycleModel");
@@ -260,22 +257,21 @@ Create a simulator as before, and add a force law, the target area modifier and 
 
         MAKE_PTR_ARGS(SloughingCellKiller<2>, p_killer, (&crypt, crypt_length));
         simulator.AddCellKiller(p_killer);
-
 ```
 
 Here we impose a boundary condition at the base: that cells
 at the bottom of the crypt are repelled if they move past 0.
+
 ```cpp
         simulator.UseJiggledBottomCells();
-
 ```
 
 Run the simulation, by calling `Solve()`.
+
 ```cpp
         simulator.Solve();
     }
 ```
-
 
 To visualize the results, open a new terminal, `cd` to the Chaste directory,
 then `cd` to `anim`. Then do: `java Visualize2dVertexCells /tmp/$USER/testoutput/VertexCryptWithSimpleWntCellCycleModel/results_from_time_0`.
@@ -287,12 +283,10 @@ cells and pink differentiated cells. Cells above 6.0 will be sloughed off immedi
 
 ```cpp
 };
-
 ```
 
-
-
 ## Full code
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"
@@ -381,5 +375,4 @@ public:
         simulator.Solve();
     }
 };
-
 ```

@@ -50,27 +50,32 @@ macros to save typing when using it.
 The remaining header files define classes that will be used in the cell population
 simulation test. The first defines a helper class for generating a suitable collection
 of cells.
+
 ```cpp
 #include "CellsGenerator.hpp"
 #include "TransitCellProliferativeType.hpp"
 ```
 
 The next header file defines a stochastic cell-cycle model class.
+
 ```cpp
 #include "UniformCellCycleModel.hpp"
 ```
 
 The next header file defines a helper class for generating a suitable mesh.
+
 ```cpp
 #include "HoneycombMeshGenerator.hpp"
 ```
 
 The next header file defines the class that simulates the evolution of an off-lattice `CellPopulation`.
+
 ```cpp
 #include "OffLatticeSimulation.hpp"
 ```
 
 The next header files define classes for mesh-based `CellPopulation`s with and without ghost nodes.
+
 ```cpp
 #include "MeshBasedCellPopulation.hpp"
 #include "MeshBasedCellPopulationWithGhostNodes.hpp"
@@ -84,11 +89,13 @@ between neighbouring cells in the cell population.
 ```
 
 The next header file defines a class for writing output that can be visualized in Paraview.
+
 ```cpp
 #include "VoronoiDataWriter.hpp"
 ```
 
 Finally the following header ensures that the test never runs in parallel.
+
 ```cpp
 #include "FakePetscSetup.hpp"
 ```
@@ -100,7 +107,6 @@ class TestRunningMeshBasedSimulationsTutorial : public AbstractCellBasedTestSuit
 {
 public:
 ```
-
 
 ### Test 1 - a basic mesh-based simulation
 
@@ -121,7 +127,6 @@ cells) wide, and 2 nodes high.
 ```cpp
         HoneycombMeshGenerator generator(2, 2);    // Parameters are: cells across, cells up
         boost::shared_ptr<MutableMesh<2,2> > p_mesh = generator.GetMesh();
-
 ```
 
 Having created a mesh, we now create a `std::vector` of `CellPtr`s.
@@ -138,12 +143,12 @@ We create an empty vector of cells and pass this into the
 method along with the mesh. The second argument represents the size of that the vector
 `cells` should become - one cell for each node, the third argument specifies
 the proliferative type of the cell.
+
 ```cpp
         std::vector<CellPtr> cells;
         MAKE_PTR(TransitCellProliferativeType, p_transit_type);
         CellsGenerator<UniformCellCycleModel, 2> cells_generator;
         cells_generator.GenerateBasicRandom(cells, p_mesh->GetNumNodes(), p_transit_type);
-
 ```
 
 Now we have a mesh and a set of cells to go with it, we can create a `CellPopulation`.
@@ -153,7 +158,6 @@ cell population called a `MeshBasedCellPopulation`.
 
 ```cpp
         MeshBasedCellPopulation<2> cell_population(*p_mesh, cells);
-
 ```
 
 To view the results of this and the next test in Paraview it is necessary to explicitly
@@ -161,18 +165,18 @@ generate the required .vtu files. This is detailed in the [wiki:UserTutorials/Vi
 Note that the results in Paraview may appear different to those in the java based visualizer. This is related
 to the different methods used to generate voronoi tesselations in each and is resolved through the use of
 'ghost nodes', as shown in the next test.
+
 ```cpp
         cell_population.AddPopulationWriter<VoronoiDataWriter>();
-
 ```
 
 We then pass in the cell population into an `OffLatticeSimulation`,
 and set the output directory and end time.
+
 ```cpp
         OffLatticeSimulation<2> simulator(cell_population);
         simulator.SetOutputDirectory("MeshBasedMonolayer");
         simulator.SetEndTime(10.0);
-
 ```
 
 For longer simulations, we may not want to output the results
@@ -183,7 +187,6 @@ simulator to print results every 6 minutes (or 0.1 hours).
 
 ```cpp
         simulator.SetSamplingTimestepMultiple(12);
-
 ```
 
 We must now create one or more force laws, which determine the mechanics of the centres
@@ -199,22 +202,21 @@ then you will receive a warning.
 ```cpp
         MAKE_PTR(GeneralisedLinearSpringForce<2>, p_force);
         simulator.AddForce(p_force);
-
 ```
 
 To run the simulation, we call `Solve()`.
+
 ```cpp
         simulator.Solve();
-
 ```
 
 The next two lines are for test purposes only and are not part of this tutorial. If different simulation input parameters are being explored
 the lines should be removed.
+
 ```cpp
         TS_ASSERT_EQUALS(cell_population.GetNumRealCells(), 8u);
         TS_ASSERT_DELTA(SimulationTime::Instance()->GetTime(), 10.0, 1e-10);
     }
-
 ```
 
 To visualize the results, open a new terminal, `cd` to the Chaste directory,
@@ -264,7 +266,6 @@ of ghost nodes to make.
 ```cpp
         HoneycombMeshGenerator generator(2, 2, 2);
         boost::shared_ptr<MutableMesh<2,2> > p_mesh = generator.GetMesh();
-
 ```
 
 We only want to create cells to attach to real nodes, so we
@@ -274,19 +275,18 @@ cell population later on.
 
 ```cpp
         std::vector<unsigned> location_indices = generator.GetCellLocationIndices();
-
 ```
 
 Having created a mesh, we now create a `std::vector` of `CellPtr`s.
 To do this, we the `CellsGenerator` helper class again. This time the second
 argument is different and is the number of real nodes in the mesh.
 As before all cells have `TransitCellProliferativeType`.
+
 ```cpp
         std::vector<CellPtr> cells;
         MAKE_PTR(TransitCellProliferativeType, p_transit_type);
         CellsGenerator<UniformCellCycleModel, 2> cells_generator;
         cells_generator.GenerateBasicRandom(cells, location_indices.size(), p_transit_type);
-
 ```
 
 Now we have a mesh and a set of cells to go with it, we can create a `CellPopulation`.
@@ -298,38 +298,37 @@ same length as the vector of cell pointers.
 
 ```cpp
         MeshBasedCellPopulationWithGhostNodes<2> cell_population(*p_mesh, cells, location_indices); //**Changed**//
-
 ```
 
 Again Paraview output is explicitly requested.
+
 ```cpp
         cell_population.AddPopulationWriter<VoronoiDataWriter>();
-
 ```
 
 We then pass in the cell population into an `OffLatticeSimulation`,
 and set the output directory, output multiple and end time.
+
 ```cpp
         OffLatticeSimulation<2> simulator(cell_population);
         simulator.SetOutputDirectory("MeshBasedMonolayerWithGhostNodes");
         simulator.SetSamplingTimestepMultiple(12);
         simulator.SetEndTime(10.0);
-
 ```
 
 Again we create a force law, and pass it to the `OffLatticeSimulation`. This
 force law ensures that ghost nodes don't exert forces on real nodes but real nodes
 exert forces on ghost nodes.
+
 ```cpp
         MAKE_PTR(GeneralisedLinearSpringForce<2>, p_force);
         simulator.AddForce(p_force);
-
 ```
 
 To run the simulation, we call `Solve()`.
+
 ```cpp
         simulator.Solve();
-
 ```
 
 The next two lines are for test purposes only and are not part of this tutorial.
@@ -340,18 +339,15 @@ The next two lines are for test purposes only and are not part of this tutorial.
     }
 ```
 
-
 To visualize the results, open a new terminal, `cd` to the Chaste directory,
 then `cd` to `anim`. Then do: `java Visualize2dCentreCells /tmp/$USER/testoutput/MeshBasedMonolayerWithGhostNodes/results_from_time_0`.
 
 ```cpp
 };
-
 ```
 
-
-
 ## Full code
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "AbstractCellBasedTestSuite.hpp"
@@ -429,5 +425,4 @@ public:
         TS_ASSERT_DELTA(SimulationTime::Instance()->GetTime(), 10.0, 1e-10);
     }
 };
-
 ```

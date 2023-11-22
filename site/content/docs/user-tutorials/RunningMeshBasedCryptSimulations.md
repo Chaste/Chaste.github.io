@@ -21,14 +21,13 @@ As in previous cell-based Chaste tutorials, we begin by including the necessary 
 #include "CheckpointArchiveTypes.hpp"
 #include "SmartPointers.hpp"
 #include "AbstractCellBasedTestSuite.hpp"
-
 ```
 
 The next header file defines a helper class for generating cells for crypt simulations.
+
 ```cpp
 #include "CryptCellsGenerator.hpp"
 ```
-
 
 The next two header files define two different types of cell-cycle model.
 In a `FixedG1GenerationalCellCycleModel`, the duration of each phase
@@ -48,6 +47,7 @@ The next header file defines a helper class for generating a suitable triangular
 for the crypt simulation, such that the cell corresponding to each node is initially
 in mechanical equilibrium with its neighours and periodic boundary conditions are applied
 at the left- and right-hand sides of the mesh (hence the "cylindrical").
+
 ```cpp
 #include "CylindricalHoneycombMeshGenerator.hpp"
 ```
@@ -60,11 +60,11 @@ to cells, but help ensure that a sensible Delaunay triangulation is generated
 at each timestep; this is because the triangulation algorithm requires a convex hull.
 The next header file defines a force law, based on a linear spring, for describing
 the mechanical interactions between neighbouring cells in the crypt.
+
 ```cpp
 #include "MeshBasedCellPopulationWithGhostNodes.hpp"
 #include "GeneralisedLinearSpringForce.hpp"
 ```
-
 
 The next header file defines the class that simulates the evolution of a `CellPopulation`,
 specialized to deal with the cylindrical crypt geometry.
@@ -72,7 +72,6 @@ specialized to deal with the cylindrical crypt geometry.
 ```cpp
 #include "CryptSimulation2d.hpp"
 ```
-
 
 The next header file defines a Wnt singleton class, which (if used) deals with the
 imposed Wnt gradient in our crypt model. This affects cell proliferation in the case
@@ -82,28 +81,26 @@ where we construct each cell with a `WntCellCycleModel`.
 #include "WntConcentration.hpp"
 ```
 
-
 The final header file defines a cell killer class, which implements sloughing of cells
 into the lumen once they reach the top of the crypt.
 
 ```cpp
 #include "SloughingCellKiller.hpp"
-
 ```
 
 This header ensures that this test is only run on one process, since it doesn't support parallel execution.
+
 ```cpp
 #include "FakePetscSetup.hpp"
-
 ```
 
 Next, we define the test class.
+
 ```cpp
 class TestRunningMeshBasedCryptSimulationsTutorial : public AbstractCellBasedTestSuite
 {
 public:
 ```
-
 
 ### Test 1: a basic crypt simulation
 
@@ -134,7 +131,6 @@ to ghost nodes).
         CylindricalHoneycombMeshGenerator generator(6, 9, 2);
         boost::shared_ptr<Cylindrical2dMesh> p_mesh = generator.GetCylindricalMesh();
         std::vector<unsigned> location_indices = generator.GetCellLocationIndices();
-
 ```
 
 Having created a mesh, we now create a `std::vector` of `CellPtr`s.
@@ -150,7 +146,6 @@ called. Note that we only ever deal with shared pointers to cells, named `CellPt
         std::vector<CellPtr> cells;
         CryptCellsGenerator<FixedG1GenerationalCellCycleModel> cells_generator;
         cells_generator.Generate(cells, p_mesh.get(), location_indices, true);
-
 ```
 
 Now we have a mesh, a set of cells to go with it, and a vector of node indices
@@ -161,15 +156,14 @@ cell population called a `MeshBasedCellPopulationWithGhostNodes`.
 
 ```cpp
         MeshBasedCellPopulationWithGhostNodes<2> cell_population(*p_mesh, cells, location_indices);
-
 ```
 
 Next we use the `CellPopulation` object to construct a `CryptSimulation2d` object,
 which will be used to simulate the crypt model.
+
 ```cpp
         CryptSimulation2d simulator(cell_population);
 ```
-
 
 We must set the output directory on the simulator (relative to
 "/tmp/<USER_NAME>/testoutput") and the end time (in hours).
@@ -179,7 +173,6 @@ We must set the output directory on the simulator (relative to
         simulator.SetEndTime(1);
 ```
 
-
 For longer simulations, we may not want to output the results
 every time step. In this case we can use the following method,
 to print results every 12 time steps instead. As the time step
@@ -188,7 +181,6 @@ simulator to print results every 6 minutes.
 
 ```cpp
         simulator.SetSamplingTimestepMultiple(12);
-
 ```
 
 Before running the simulation, we must add one or more force laws, which determine the mechanical
@@ -199,7 +191,6 @@ spring.
 ```cpp
         MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);
         simulator.AddForce(p_linear_force);
-
 ```
 
 We also add a cell killer to the simulator. This object
@@ -211,14 +202,13 @@ height (passed as an argument to the constructor).
         double crypt_height = 8.0;
         MAKE_PTR_ARGS(SloughingCellKiller<2>, p_killer, (&cell_population, crypt_height));
         simulator.AddCellKiller(p_killer);
-
 ```
 
 To run the simulation, we call `Solve()`.
+
 ```cpp
         simulator.Solve();
     }
-
 ```
 
 Finally, to visualize the results, we open a new terminal, `cd` to the Chaste directory,
@@ -240,26 +230,26 @@ with the Wnt concentration varying within the crypt in a predefined manner.
 
 First we create a cylindrical mesh, and get the cell location indices, exactly as before.
 Note that time is re-initialized to zero and random number generator is re-seeded to zero in the `AbstractCellBasedTestSuite`.
+
 ```cpp
         CylindricalHoneycombMeshGenerator generator(6, 9, 2);
         boost::shared_ptr<Cylindrical2dMesh> p_mesh = generator.GetCylindricalMesh();
 
         std::vector<unsigned> location_indices = generator.GetCellLocationIndices();
-
 ```
 
 We create the cells, using the same method as before. Here, though, we use a `WntCellCycleModel`.
+
 ```cpp
         std::vector<CellPtr> cells;
         CryptCellsGenerator<WntCellCycleModel> cells_generator;
         cells_generator.Generate(cells, p_mesh.get(), location_indices, true);
-
 ```
 
 We create the cell population, as before.
+
 ```cpp
         MeshBasedCellPopulationWithGhostNodes<2> cell_population(*p_mesh, cells, location_indices);
-
 ```
 
 We set the height of the crypt. As well as passing this variable into the `sloughingCellKiller`,
@@ -267,7 +257,6 @@ we will pass it to the `WntConcentration` object (see below).
 
 ```cpp
         double crypt_height = 8.0;
-
 ```
 
 When using a `WntCellCycleModel`, we need a way of telling each cell what the Wnt concentration
@@ -282,19 +271,19 @@ decreasing from 1 to 0 from the bottom of the crypt to the top). We also need to
         WntConcentration<2>::Instance()->SetType(LINEAR);
         WntConcentration<2>::Instance()->SetCellPopulation(cell_population);
         WntConcentration<2>::Instance()->SetCryptLength(crypt_height);
-
 ```
 
 Create a simulator as before (except setting a different output directory).
+
 ```cpp
         CryptSimulation2d simulator(cell_population);
         simulator.SetOutputDirectory("CryptTutorialWntCellCycle");
         simulator.SetEndTime(1);
-
 ```
 
 As before, we create a force law and cell killer and pass these objects to the simulator, then call
 Solve().
+
 ```cpp
         MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);
         simulator.AddForce(p_linear_force);
@@ -302,23 +291,21 @@ Solve().
         simulator.AddCellKiller(p_killer);
 
         simulator.Solve();
-
 ```
 
 Finally, we must tidy up by destroying the `WntConcentration`
 singleton object. This avoids memory leaks occurring.
+
 ```cpp
         WntConcentration<2>::Destroy();
     }
 };
 ```
 
-
 The results of this test can be visualized as in Test 1, with the correct output directory.
 
-
-
 ## Full code
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"

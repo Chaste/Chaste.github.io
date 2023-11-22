@@ -34,9 +34,9 @@ The first thing to do is to include the headers.
 ```
 
 This test is always run sequentially (never in parallel)
+
 ```cpp
 #include "FakePetscSetup.hpp"
-
 ```
 
 Now we define the test class, which must inherit from `CxxTest::TestSuite`
@@ -53,10 +53,10 @@ public:
 CVODE is still an optional Chaste dependency, but it is highly recommended for
 working with single cell simulations. This tutorial code will only run if CVODE is installed and enabled
 (see InstallCvode and ChasteGuides/CmakeBuildGuide).
+
 ```cpp
 #ifdef CHASTE_CVODE
 ```
-
 
 ### Defining a CVODE model
 
@@ -74,7 +74,6 @@ the parameters are magnitude, duration, period, and start time of stimulus.
         boost::shared_ptr<RegularStimulus> p_stimulus;
         boost::shared_ptr<AbstractIvpOdeSolver> p_solver;
         boost::shared_ptr<AbstractCvodeCell> p_model(new CellShannon2004FromCellMLCvode(p_solver, p_stimulus));
-
 ```
 
 Once the model is set up we can tell it to use the the default stimulus from CellML,
@@ -86,14 +85,12 @@ NB. You could automatically check whether one is available with:
 
 ```cpp
         boost::shared_ptr<RegularStimulus> p_regular_stim = p_model->UseCellMLDefaultStimulus();
-
 ```
 
 Now you can modify certain parameters of the stimulus function, such as the period
 
 ```cpp
         p_regular_stim->SetPeriod(1000.0);
-
 ```
 
 ### Numerical Considerations
@@ -145,7 +142,6 @@ on different versions of CVODE and different compilers.
 
 ```cpp
         p_model->SetTolerances(1e-8, 1e-8);
-
 ```
 
 By default we use an analytic Jacobian for CVODE cells.
@@ -169,7 +165,6 @@ you can experiment with changing it and examine the impact on APD.
 
 ```cpp
         p_model->SetParameter("membrane_slow_delayed_rectifier_potassium_current_conductance", 0.07);
-
 ```
 
 ### Running model to steady state
@@ -185,7 +180,6 @@ You may change the number of maximum paces the runner takes. The default is 1e5.
         steady_runner.SetMaxNumPaces(100u);
         bool result;
         result = steady_runner.RunToSteadyState();
-
 ```
 
 Check that the model has NOT reached steady state
@@ -193,7 +187,6 @@ Check that the model has NOT reached steady state
 
 ```cpp
         TS_ASSERT_EQUALS(result, false);
-
 ```
 
 ### Getting detail for paces of interest
@@ -220,7 +213,6 @@ for the same reason.
         double start_time = 0.0;
         double end_time = 1000.0;
         OdeSolution solution = p_model->Compute(start_time, end_time, sampling_timestep);
-
 ```
 
 This call will add to the solution object the ODE system's labelled "derived quantities"
@@ -231,7 +223,6 @@ for annotation instructions.
 
 ```cpp
         solution.CalculateDerivedQuantitiesAndParameters(p_model.get());
-
 ```
 
 `p_model` retains the state variables at the end of `Solve`, if you call `Solve` again the state
@@ -245,7 +236,6 @@ Write the data out to a file. Here we show the full range of options.
         unsigned precision = 6u;
         bool include_derived_quantities = true;
         solution.WriteToFile("TestCvodeCells", "Shannon2004Cvode", "ms", steps_per_row, clean_dir, precision, include_derived_quantities);
-
 ```
 
 ### Calculating APD and Upstroke Velocity
@@ -262,7 +252,6 @@ Calculate APD and upstroke velocity using `CellProperties`
 
         std::cout << "APD = " << apd << "ms" << std::endl;
         std::cout << "Upstroke velocity = " << upstroke_velocity << "mV/ms" << std::endl;
-
 ```
 
 Here we just check that the values are equal to the ones we expect,
@@ -273,24 +262,22 @@ with appropriate precision to pass on different versions of CVODE.
 ```cpp
         TS_ASSERT_DELTA(apd, 211.9487, 1e-2);
         TS_ASSERT_DELTA(upstroke_velocity, 337.4159, 1.25);
-
 ```
 
 CVODE is still an optional dependency for Chaste, but is required for this tutorial.
 If CVODE is not installed this tutorial will
 not do anything, but we can at least alert the user to this.
+
 ```cpp
 #else
         std::cout << "Cvode is not enabled.\n";
 #endif
     }
 };
-
 ```
 
-
-
 ## Full code
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "AbstractCvodeCell.hpp"
@@ -360,5 +347,4 @@ public:
 #endif
     }
 };
-
 ```

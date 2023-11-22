@@ -74,7 +74,6 @@ public:
         return mColour;
     }
 };
-
 ```
 
 ### Defining a cell writer class
@@ -97,7 +96,6 @@ class CellMotilityWriter : public AbstractCellWriter<ELEMENT_DIM, SPACE_DIM>
 private:
 ```
 
-
 The `serialize()` method defines how a cell writer object itself can be written to file.
 In almost all cases it should just call the base class serializer, using the code below.
 If the new cell writer class has any data members, they should be serialized in this method
@@ -112,7 +110,6 @@ after calling the base class serializer.
     }
 
 public:
-
 ```
 
 The constructor method calls the base class constructor, with the name of the output file as
@@ -123,7 +120,6 @@ a parameter. In this case the filename written to will be "cellmotilityresults.d
         : AbstractCellWriter<ELEMENT_DIM, SPACE_DIM>("cellmotilityresults.dat")
     {
     }
-
 ```
 
 The next method provides functionality that will be used in future for outputting data to VTK.
@@ -133,7 +129,6 @@ The next method provides functionality that will be used in future for outputtin
     {
         return pCell->HasCellProperty<MotileCellProperty>();
     }
-
 ```
 
 The implementation of the `VisitCell()` method defines the data this writer commits to the file.
@@ -159,7 +154,6 @@ don't need to worry about that.
         *this->mpOutStream << pCell->HasCellProperty<MotileCellProperty>() << " ";
     }
 };
-
 ```
 
 As mentioned in previous cell-based Chaste tutorials, we need to include the next block
@@ -177,7 +171,6 @@ EXPORT_TEMPLATE_CLASS_ALL_DIMS(CellMotilityWriter)
 #include "SerializationExportWrapperForCpp.hpp"
 CHASTE_CLASS_EXPORT(MotileCellProperty)
 EXPORT_TEMPLATE_CLASS_ALL_DIMS(CellMotilityWriter)
-
 ```
 
 This completes the code for `MotileCellProperty` and  `CellMotilityWriter`.
@@ -194,7 +187,6 @@ public:
     void TestOffLatticeSimulationWithMotileCellPropertyAndWriters()
     {
 ```
-
 
 We begin by creating a `NodeBasedCellPopulation`, just as in [wiki:UserTutorials/CreatingAndUsingANewCellProperty].
 We add the `MotileCellProperty` to a random selection of cells.
@@ -237,28 +229,28 @@ We also add the `CellLabel` to these cells so that we can easily visualize the d
         }
 
         NodeBasedCellPopulation<2> cell_population(mesh, cells);
-
 ```
 
 In order to write cell motility data using our writer, we must add it to the list of writers
 used by the population. This is achieved using the `AddCellWriter()` method,
 which is templated.
+
 ```cpp
         cell_population.AddCellWriter<CellMotilityWriter>();
-
 ```
 
 We then pass in the cell population into an `OffLatticeSimulation`,
 and set the output directory, output multiple, and end time.
+
 ```cpp
         OffLatticeSimulation<2> simulator(cell_population);
         simulator.SetOutputDirectory("TestOffLatticeSimulationWithMotileCellPropertyAndWriters");
         simulator.SetSamplingTimestepMultiple(12);
         simulator.SetEndTime(10.0);
-
 ```
 
 Next we create a force law and pass it to the `OffLatticeSimulation`, and call `Solve()` to run the simulation.
+
 ```cpp
         MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);
         p_linear_force->SetCutOffLength(1.5);
@@ -269,7 +261,6 @@ Next we create a force law and pass it to the `OffLatticeSimulation`, and call `
 };
 ```
 
-
 As in [wiki:UserTutorials/CreatingAndUsingANewCellProperty], when you visualize the results with
 
 `java Visualize2dCentreCells /tmp/$USER/testoutput/TestOffLatticeSimulationWithMotileCellPropertyAndWriters/results_from_time_0`
@@ -279,9 +270,8 @@ you should see a collection of cells with the `MotileCellProperty` (labelled dar
 Upon running this test, the output file `cellmotilityresults.dat` should be created in the folder
 `tmp/$USER/testoutput/TestOffLatticeSimulationWithMotileCellPropertyAndWriters/results_from_time_0`.
 
-
-
 ## Full code
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"

@@ -17,23 +17,24 @@ can be used in a cell-based simulation.
 ### Including header files
 
 We begin by including the necessary header files.
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"
 #include "AbstractCellBasedTestSuite.hpp"
-
 ```
 
 The next header includes the Boost shared_ptr smart pointer, and defines some useful
 macros to save typing when using it.
+
 ```cpp
 #include "SmartPointers.hpp"
 ```
 
 The next header includes the NEVER_REACHED macro, used in one of the methods below.
+
 ```cpp
 #include "Exception.hpp"
-
 ```
 
 The next header defines a base class for simple generation-based cell-cycle models.
@@ -44,15 +45,16 @@ equations for the concentrations of key cell cycle proteins), and may
 depend on the cell type. A simple cell-cycle model is defined as ''generation-based'' if it keeps track of the
 generation of the corresponding cell, and sets the cell type according
 to this. Our new cell-cycle model will inherit from this abstract class.
+
 ```cpp
 #include "AbstractSimpleGenerationalCellCycleModel.hpp"
-
 ```
 
 The remaining header files define classes that will be used in the cell-based
 simulation test. We have encountered each of these header files in previous cell-based Chaste
 tutorials, except for `CheckReadyToDivideAndPhaseIsUpdated`, which defines a helper
 class for testing a cell-cycle model.
+
 ```cpp
 #include "CheckReadyToDivideAndPhaseIsUpdated.hpp"
 #include "HoneycombMeshGenerator.hpp"
@@ -64,7 +66,6 @@ class for testing a cell-cycle model.
 #include "DifferentiatedCellProliferativeType.hpp"
 //This test is always run sequentially (never in parallel)
 #include "FakePetscSetup.hpp"
-
 ```
 
 ### Defining the cell-cycle model class
@@ -85,7 +86,6 @@ a .hpp file and definition in a .cpp file.
 class MyCellCycleModel : public AbstractSimpleGenerationalCellCycleModel
 {
 private:
-
 ```
 
 We only need to include the next block of code if we wish to be able
@@ -98,6 +98,7 @@ of the `RandomNumberGenerator` singleton class, which is used in the
 must be done with care. Before the object is serialized via a pointer, it must
 be serialized directly, or an assertion will trip when a second instance of the
 class is created on de-serialization.
+
 ```cpp
     friend class boost::serialization::access;
     template<class Archive>
@@ -108,10 +109,10 @@ class is created on de-serialization.
         archive & *p_gen;
         archive & p_gen;
     }
-
 ```
 
 We override the `SetG1Duration()` method as follows.
+
 ```cpp
     void SetG1Duration()
     {
@@ -119,9 +120,9 @@ We override the `SetG1Duration()` method as follows.
 
 As we will access the cell type of the cell associated with this cell
 cycle model, we should assert that this cell exists.
+
 ```cpp
         assert(mpCell != NULL);
-
 ```
 
 We now set the G1 duration based on cell type. For stem and transit cells, we use the `RandomNumberGenerator`
@@ -129,6 +130,7 @@ singleton class to generate a random number U drawn from U![0,1], and
 transform this into a random number T drawn from Exp(λ) using
 the transformation T = -log(U)/λ. For differentiated cells, which do not progress through the
 cell cycle, we set the G1 duration to `DBL_MAX`.
+
 ```cpp
         double uniform_random_number = RandomNumberGenerator::Instance()->ranf();
 
@@ -149,17 +151,16 @@ cell cycle, we set the G1 duration to `DBL_MAX`.
             NEVER_REACHED;
         }
     }
-
 ```
 
 The first public method is a default constructor, which just calls the base
 constructor.
+
 ```cpp
 public:
 
     MyCellCycleModel()
     {}
-
 ```
 
 The second public method overrides `CreateCellCycleModel()`. This is a
@@ -202,7 +203,6 @@ the new cell-cycle model; this occurs when the associated cell has called its
         return p_model;
     }
 };
-
 ```
 
 We need to include the next block of code if you want to be able to archive (save or load)
@@ -210,10 +210,10 @@ the cell-cycle model object in a cell-based simulation. It is also required for 
 the parameters file describing the settings for a simulation - it provides the unique
 identifier for our new cell-cycle model. Thus every cell-cycle model class must provide this,
 or you'll get errors when running simulations.
+
 ```cpp
 #include "SerializationExportWrapper.hpp"
 CHASTE_CLASS_EXPORT(MyCellCycleModel)
-
 ```
 
 Since we're defining the new cell-cycle model within the test file, we need to include the
@@ -225,7 +225,6 @@ more information.
 ```cpp
 #include "SerializationExportWrapperForCpp.hpp"
 CHASTE_CLASS_EXPORT(MyCellCycleModel)
-
 ```
 
 This completes the code for `MyCellCycleModel`. Note that usually this code would
@@ -239,7 +238,6 @@ We now define the test class, which inherits from `AbstractCellBasedTestSuite`.
 class TestCreatingAndUsingANewCellCycleModelTutorial : public AbstractCellBasedTestSuite
 {
 public:
-
 ```
 
 ### Testing the cell-cycle model
@@ -252,13 +250,14 @@ We begin by testing that our new cell-cycle model is implemented correctly.
 ```
 
 Test that we can construct a `MyCellCycleModel` object:
+
 ```cpp
         TS_ASSERT_THROWS_NOTHING(MyCellCycleModel cell_model3);
-
 ```
 
 Now we construct and initialise a large number of `MyCellCycleModel`s and
 associated cells:
+
 ```cpp
         unsigned num_cells = (unsigned) 1e5;
         std::vector<CellPtr> cells;
@@ -273,7 +272,6 @@ associated cells:
             p_cell->InitialiseCellCycleModel();
             cells.push_back(p_cell);
         }
-
 ```
 
 To check the CCM has been set up correctly we get a pointer to the one stored on the first cell.
@@ -292,20 +290,20 @@ the expected value:
         }
 
         TS_ASSERT_DELTA(sample_mean_g1_duration, expected_mean_g1_duration, 0.1);
-
 ```
 
 Now construct another `MyCellCycleModel` and associated cell. To check it works for transit cells.
+
 ```cpp
         MyCellCycleModel* p_my_model = new MyCellCycleModel;
         CellPtr p_my_cell(new Cell(p_state, p_my_model));
         p_my_cell->SetCellProliferativeType(p_transit_type);
         p_my_cell->InitialiseCellCycleModel();
-
 ```
 
 Use the helper method `CheckReadyToDivideAndPhaseIsUpdated()` to
 test that this cell progresses correctly through the cell cycle.
+
 ```cpp
         unsigned num_steps = 100;
         double mean_cell_cycle_time = p_my_model->GetTransitCellG1Duration()
@@ -316,15 +314,14 @@ test that this cell progresses correctly through the cell cycle.
         for (unsigned i=0; i<num_steps; i++)
         {
             SimulationTime::Instance()->IncrementTimeOneStep();
-
 ```
 
 The numbers for the G1 duration below is taken from the first
 random number generated:
+
 ```cpp
             CheckReadyToDivideAndPhaseIsUpdated(p_my_model, 2.35762);
         }
-
 ```
 
 Lastly, we briefly test that archiving of `MyCellCycleModel` has
@@ -334,50 +331,51 @@ this to define a filename for the archive.
 ```cpp
         OutputFileHandler handler("archive", false);
         std::string archive_filename = handler.GetOutputDirectoryFullPath() + "my_cell_cycle_model.arch";
-
 ```
 
 Create an output archive.
+
 ```cpp
         {
 ```
 
 Destroy the current instance of `SimulationTime` and create another instance.
 Set the start time, end time and number of time steps.
+
 ```cpp
             SimulationTime::Destroy();
             SimulationTime::Instance()->SetStartTime(0.0);
             SimulationTime* p_simulation_time = SimulationTime::Instance();
             p_simulation_time->SetEndTimeAndNumberOfTimeSteps(3.0, 4);
-
 ```
 
 Create a cell with associated cell-cycle model.
+
 ```cpp
             MyCellCycleModel* p_model = new MyCellCycleModel;
             CellPtr p_cell(new Cell(p_state, p_model));
             p_cell->SetCellProliferativeType(p_transit_type);
             p_cell->InitialiseCellCycleModel();
-
 ```
 
 Move forward two time steps.
+
 ```cpp
             p_simulation_time->IncrementTimeOneStep();
             p_simulation_time->IncrementTimeOneStep();
-
 ```
 
 Set the birth time of the cell and update the cell cycle phase.
+
 ```cpp
             p_model->SetBirthTime(-1.0);
             p_model->ReadyToDivide();
 
             TS_ASSERT_EQUALS(p_model->GetCurrentCellCyclePhase(), S_PHASE);
-
 ```
 
 Now archive the cell-cycle model through its cell.
+
 ```cpp
             CellPtr const p_const_cell = p_cell;
 
@@ -385,7 +383,6 @@ Now archive the cell-cycle model through its cell.
             boost::archive::text_oarchive output_arch(ofs);
             output_arch << p_const_cell;
         }
-
 ```
 
 Now create an input archive. Begin by again destroying the current
@@ -398,26 +395,26 @@ the start time, end time and number of time steps.
             SimulationTime* p_simulation_time = SimulationTime::Instance();
             p_simulation_time->SetStartTime(0.0);
             p_simulation_time->SetEndTimeAndNumberOfTimeSteps(1.0, 1);
-
 ```
 
 Create a pointer to a cell.
+
 ```cpp
             CellPtr p_cell;
-
 ```
 
 Create an input archive and restore the cell from the archive.
+
 ```cpp
             std::ifstream ifs(archive_filename.c_str(), std::ios::binary);
             boost::archive::text_iarchive input_arch(ifs);
 
             input_arch >> p_cell;
-
 ```
 
 Test that the private data has been restored correctly. Note we cast it to the correct type
 so we can acess all the member variables
+
 ```cpp
             MyCellCycleModel* p_model = static_cast<MyCellCycleModel*>(p_cell->GetCellCycleModel());
 
@@ -426,7 +423,6 @@ so we can acess all the member variables
             TS_ASSERT_EQUALS(p_model->GetCurrentCellCyclePhase(), S_PHASE);
         }
     }
-
 ```
 
 ### Using the cell-cycle model in a cell-based simulation
@@ -447,12 +443,13 @@ circular domain of given radius.
 ```
 
 Get the mesh using the `GetCircularMesh()` method.
+
 ```cpp
         boost::shared_ptr<MutableMesh<2,2> > p_mesh = generator.GetCircularMesh(5);
-
 ```
 
 Next, we create some cells. First, define the cells vector.
+
 ```cpp
         std::vector<CellPtr> cells;
 ```
@@ -460,23 +457,25 @@ Next, we create some cells. First, define the cells vector.
 We must create a shared_ptr to a `CellMutationState` with which to bestow the cells.
 We make use of the macro MAKE_PTR to do this: the first argument is the class and
 the second argument is the name of the shared_ptr.
+
 ```cpp
         MAKE_PTR(WildTypeCellMutationState, p_state);
         MAKE_PTR(StemCellProliferativeType, p_stem_type);
 ```
 
 Then we loop over the nodes.
+
 ```cpp
         for (unsigned i=0; i<p_mesh->GetNumNodes(); i++)
         {
 ```
 
 For each node we create a cell with our cell-cycle model.
+
 ```cpp
             MyCellCycleModel* p_model = new MyCellCycleModel();
             CellPtr p_cell(new Cell(p_state, p_model));
             p_cell->SetCellProliferativeType(p_stem_type);
-
 ```
 
 Now, we define a random birth time, chosen from [-T,0], where
@@ -488,48 +487,47 @@ of a stem cell, and t,,2,, is the basic S+G,,2,,+M phases duration.
 ```
 
 We then set the birth time and push the cell back into the vector of cells.
+
 ```cpp
             p_cell->SetBirthTime(birth_time);
             cells.push_back(p_cell);
         }
-
 ```
 
 Now that we have defined the mesh and cells, we can define the cell population. The constructor
 takes in the mesh and the cells vector.
+
 ```cpp
         MeshBasedCellPopulation<2> cell_population(*p_mesh, cells);
-
 ```
 
 We then pass in the cell population into an `OffLatticeSimulation`,
 and set the output directory and end time.
+
 ```cpp
         OffLatticeSimulation<2> simulator(cell_population);
         simulator.SetOutputDirectory("TestOffLatticeSimulationWithMyCellCycleModel");
         simulator.SetEndTime(10.0);
-
 ```
 
 We create a force law and pass it to the `OffLatticeSimulation`.
+
 ```cpp
         MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);
         p_linear_force->SetCutOffLength(3);
         simulator.AddForce(p_linear_force);
-
 ```
 
 To run the simulation, we call `Solve()`.
+
 ```cpp
         simulator.Solve();
     }
 };
-
 ```
 
-
-
 ## Full code
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"
@@ -750,5 +748,4 @@ public:
         simulator.Solve();
     }
 };
-
 ```

@@ -27,7 +27,6 @@ First include the headers, `MonodomainProblem` this time.
 #include <unistd.h>
 #include <sys/resource.h>
 //#include "Debug.hpp"
-
 ```
 
 Here we define a cell factory that gives stimuli to all cells
@@ -60,10 +59,10 @@ public:
         }
     }
 };
-
 ```
 
 Now define the test
+
 ```cpp
 class TestMonodomain3dRabbitHeartTutorial : public CxxTest::TestSuite
 {
@@ -80,14 +79,12 @@ public:
     {
 ```
 
-
 ```cpp
         HeartConfig::Instance()->SetMeshFileName("apps/texttest/weekly/Propagation3d/OxfordRabbitHeart_482um",
                                                  cp::media_type::Axisymmetric);
 
 //        HeartConfig::Instance()->SetMeshFileName("OxfordRabbitHeart_ascii",
 //                                                         cp::media_type::Axisymmetric);
-
 ```
 
 Specify the conductivity vector to use in the simulation. Since this is going to be
@@ -101,7 +98,6 @@ normal directions. For a simulation without fibre directions, there should be on
 
 ```cpp
         HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(1.75, 0.19, 0.19));
-
 ```
 
 Set the simulation duration, output directory, filename and VTK visualization.
@@ -114,7 +110,6 @@ quickly, increase it to see decent propagation of the wavefront.
         HeartConfig::Instance()->SetOutputDirectory("Monodomain3dRabbitHeart");
         HeartConfig::Instance()->SetOutputFilenamePrefix("results");
         HeartConfig::Instance()->SetVisualizeWithVtk(true);
-
 ```
 
 The ODE and PDE timesteps should be refined when using this code for real
@@ -123,7 +118,6 @@ in this case, but not sufficient for converged numerical behaviour.
 
 ```cpp
         HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(0.02, 0.1, 0.2);
-
 ```
 
 Here we create an instance of our cell factory, which will tell the `MonodomainProblem`
@@ -136,7 +130,6 @@ identically to [wiki:UserTutorials/Monodomain3dExample Monodomain3dExample].
         monodomain_problem.SetWriteInfo();
         monodomain_problem.Initialise();
         monodomain_problem.Solve();
-
 ```
 
 We can access nodes in the mesh using a `NodeIterator`. Here, we check that each node
@@ -159,7 +152,6 @@ but it does demonstrate the principle.
         }
     }
 };
-
 ```
 
  **Note** if you were doing a 'real' scientific simulation you would want to use a higher
@@ -174,9 +166,8 @@ These will probably require HPC resources, and finer ODE and PDE time steps than
 To visualize these results, see ChasteGuides/VisualisationGuides/ParaviewForCardiac. The colour axes in Paraview
 may need to be rescaled in order to see the voltage changes.
 
-
-
 ## Full code
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "MonodomainProblem.hpp"
@@ -268,5 +259,4 @@ public:
         }
     }
 };
-
 ```

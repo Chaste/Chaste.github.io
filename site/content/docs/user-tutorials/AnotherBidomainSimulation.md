@@ -23,9 +23,9 @@ The first thing to do is to include the headers as before.
 
 Rather than write our own cell factory this time, we will use
 the `PlaneStimulusCellFactory`.
+
 ```cpp
 #include "PlaneStimulusCellFactory.hpp"
-
 ```
 
 Now we define the test class, which must inherit from `CxxTest::TestSuite`
@@ -42,9 +42,9 @@ public:
 It is not the case here, but if there were other tests in the file that
 had already been run and might have changed parameters in `HeartConfig`, we
 would need to call `Reset`
+
 ```cpp
         HeartConfig::Instance()->Reset();
-
 ```
 
 Next, we have to create a cell factory of the type we defined above. The plane
@@ -54,15 +54,14 @@ is the stimulus magnitude (the default stimulus duration is used).
 
 ```cpp
         PlaneStimulusCellFactory<CellLuoRudy1991FromCellML,2> cell_factory(-2000000);
-
 ```
 
 Define an end time, output directory and prefix as before
+
 ```cpp
         HeartConfig::Instance()->SetSimulationDuration(5.0); //ms
         HeartConfig::Instance()->SetOutputDirectory("BidomainFibresTutorial");
         HeartConfig::Instance()->SetOutputFilenamePrefix("results");
-
 ```
 
 Define a mesh to be read, saying that we also want to read fibres. The extra part can either be
@@ -71,9 +70,9 @@ or `cp::media_type::Axisymmetric`, in which case `2D_0_to_1mm_800_elements.axi` 
 See the file formats documentation for full descriptions of these formats, but basically .axi
 files provide the fibre direction for each element in the mesh, and .ortho files provide the fibre,
 sheet (and normal in 3D) directions for each element in the mesh.
+
 ```cpp
         HeartConfig::Instance()->SetMeshFileName("mesh/test/data/2D_0_to_1mm_800_elements", cp::media_type::Orthotropic);
-
 ```
 
 The fibre file provided here defines (non-physiological) 'kinked' fibres which are
@@ -98,7 +97,6 @@ The output is the .ortho file minus the header.
 //            }
 //        }
 //        return;
-
 ```
 
 This is of course not enough - by default isotropic conductivities are used so the
@@ -114,7 +112,6 @@ scale = 1 to see the error message).
         double scale = 2;
         HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(1.75*scale, 0.19*scale));
         HeartConfig::Instance()->SetExtracellularConductivities(Create_c_vector(7.0*scale, 2.4*scale));
-
 ```
 
 The output will be written to `/tmp/$USER/testoutput/BidomainFibresTutorial`
@@ -128,23 +125,24 @@ of the simulation using methods in `HeartConfig`,  e.g.
 
 The other option is to write in VTK format (which needs VTK installed), following
 which the results can be loaded in the visualiser Paraview
+
 ```cpp
         //HeartConfig::Instance()->SetVisualizeWithVtk(true);
 ```
 
 If the mesh is a DistributedTetrahedralMesh then we can use parallel VTK files (.pvtu)
+
 ```cpp
         //HeartConfig::Instance()->SetVisualizeWithParallelVtk(true);
-
 ```
 
 Now we create a problem class, initialise and solve
+
 ```cpp
         BidomainProblem<2> bidomain_problem( &cell_factory );
 
         bidomain_problem.Initialise();
         bidomain_problem.Solve();
-
 ```
 
 The results can now be visualised - the effect of the fibres changing direction at x=0.05
@@ -161,10 +159,10 @@ of the voltage owned by that process (for parallel simulations).
         DistributedVector dist_bidomain_voltage = bidomain_problem.GetSolutionDistributedVector();
         DistributedVector::Stripe bidomain_voltage(dist_bidomain_voltage, 0);
         DistributedVector::Stripe extracellular_potential(dist_bidomain_voltage, 1);
-
 ```
 
 A loop over all the components owned by this process..
+
 ```cpp
         for (DistributedVector::Iterator index = dist_bidomain_voltage.Begin();
              index != dist_bidomain_voltage.End();
@@ -173,6 +171,7 @@ A loop over all the components owned by this process..
 ```
 
 .. and a simple test, that the 'last' node was stimulated:
+
 ```cpp
             if (index.Global==bidomain_problem.rGetMesh().GetNumNodes()-1) // ie if the last node
             {
@@ -181,12 +180,10 @@ A loop over all the components owned by this process..
         }
     }
 };
-
 ```
 
-
-
 ## Full code
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "BidomainProblem.hpp"
@@ -255,5 +252,4 @@ public:
         }
     }
 };
-
 ```

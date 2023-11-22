@@ -18,7 +18,6 @@ any includes that will be missing if VTK is not present.
 
 ```cpp
 #ifdef CHASTE_VTK
-
 ```
 
 We include some VTK classes to allow STL files to be read
@@ -30,19 +29,18 @@ We include some VTK classes to allow STL files to be read
 #include "vtkSTLReader.h"
 
 #endif // CHASTE_VTK
-
 ```
 
 The usual headers are included
+
 ```cpp
 #include <cxxtest/TestSuite.h>
-
 ```
 
 `MultiLobeAirwayGenerator` is the class that does most of the work in generating a complete airway tree
+
 ```cpp
 #include "MultiLobeAirwayGenerator.hpp"
-
 ```
 
 All test suites should include either `PetscSetupAndFinalize` or `FakePetscSetup`.  This code does not
@@ -50,10 +48,10 @@ currently use any parallel functionality so it might include either.
 
 ```cpp
 #include "PetscSetupAndFinalize.hpp"
-
 ```
 
 Define the test
+
 ```cpp
 class TestAirwayGenerationTutorial : public CxxTest::TestSuite
 {
@@ -64,7 +62,6 @@ public: // Tests should be public!
 #if defined(CHASTE_VTK) && ( (VTK_MAJOR_VERSION >= 5 && VTK_MINOR_VERSION >= 6) || VTK_MAJOR_VERSION >= 6)
 
         EXIT_IF_PARALLEL;
-
 ```
 
 First, we load up a mesh containing the centre lines and radii of the central airways extracted from
@@ -77,7 +74,6 @@ of cylinders that represent the airways. The second attribute specifies whether 
         TetrahedralMesh<1,3> airways_mesh;
         VtkMeshReader<1,3> airways_mesh_reader("lung/test/data/TestSubject002MajorAirways.vtu");
         airways_mesh.ConstructFromMeshReader(airways_mesh_reader);
-
 ```
 
 Note that the central airways mesh used here is defined in VTK unstructured grid format,
@@ -96,7 +92,6 @@ be unnecessary if using a mesh in !Triangles/Tetgen format.
             iter->AddNodeAttribute(node_radii[iter->GetIndex()]);
             iter->AddNodeAttribute(fmod(terminal_marker[iter->GetIndex()],2));
         }
-
 ```
 
 We now define a `MultiLobeAirwayGenerator` to allow us to generate the distal airways to form a complete
@@ -106,7 +101,6 @@ each lobe separately.
 
 ```cpp
         MultiLobeAirwayGenerator generator(airways_mesh);
-
 ```
 
 We need to set a number of parameters to ensure the resulting airway tree is consistent with known
@@ -120,7 +114,6 @@ decrease between airway orders.
         generator.SetNumberOfPointsPerLung(15000);
         generator.SetBranchingFraction(0.4);
         generator.SetDiameterRatio(1.15);
-
 ```
 
 These parameters are less important for producing a consistent airway tree, but are useful for
@@ -130,7 +123,6 @@ debugging etc.
         generator.SetMinimumBranchLength(0.00001);
         generator.SetPointLimit(1);
         generator.SetAngleLimit(180.0);
-
 ```
 
 We now add lobar surface definitions for the five human lung lobes. Less 'lobes' can be
@@ -163,7 +155,6 @@ by triangle surface definitions defined in STL files.
         rul_reader->SetFileName("lung/test/data/rul.stl");
         rul_reader->Update();
         generator.AddLobe(rul_reader->GetOutput(), RIGHT);
-
 ```
 
 We now perform two preprocessing steps prior to generation. `AssignGrowthApices` determine
@@ -171,7 +162,6 @@ which lobe each of the terminal ends of the central airways segmentation are in.
 
 ```cpp
         generator.AssignGrowthApices();
-
 ```
 
 Distribute points creates the target acinar points within the lung volume. The number
@@ -179,7 +169,6 @@ created is as specified previously using `SetNumberOfPointsPerLung`.
 
 ```cpp
         generator.DistributePoints();
-
 ```
 
 We now generate the distal airways. The output is automatically written as a mesh in
@@ -196,12 +185,10 @@ and radius information to be view as a series of tubes.
 #endif // VTK >= 5.6
     }
 };
-
 ```
 
-
-
 ## Full code
+
 ```cpp
 #ifdef CHASTE_VTK
 
@@ -288,5 +275,4 @@ public: // Tests should be public!
 #endif // VTK >= 5.6
     }
 };
-
 ```

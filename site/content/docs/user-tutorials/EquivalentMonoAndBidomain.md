@@ -127,11 +127,11 @@ See UserTutorials/RunningBidomainSimulations for more details.
         HeartConfig::Instance()->SetSimulationDuration(5.0); //ms
         HeartConfig::Instance()->SetMeshFileName("mesh/test/data/2D_0_to_1mm_800_elements");
         HeartConfig::Instance()->SetOutputDirectory("EquivalentMonoAndBidomainTutorial");
-
 ```
 
 This is how to reset the surface-area-to-volume ratio and the capacitance.
 (Here, we are actually just resetting them to their default values).
+
 ```cpp
         HeartConfig::Instance()->SetSurfaceAreaToVolumeRatio(1400); // 1/cm
         HeartConfig::Instance()->SetCapacitance(1.0); // uF/cm^2
@@ -144,7 +144,6 @@ This is how to reset the surface-area-to-volume ratio and the capacitance.
 
         // Next, we have to create a cell factory of the type we defined above.
         PointStimulus2dCellFactory cell_factory;
-
 ```
 
 ### Setting Bidomain Conductivities
@@ -160,7 +159,6 @@ This is how to reset the surface-area-to-volume ratio and the capacitance.
 
             // Now we create a problem class using (a pointer to) the cell factory.
             BidomainProblem<2> bidomain_problem( &cell_factory );
-
 ```
 
 Here we have conductivities that can be expressed as sigma_i = scalar * sigma_e.
@@ -179,14 +177,13 @@ For more information on this see e.g. Keener & Sneyd, Mathematical Physiology te
 ```cpp
             HeartConfig::Instance()->SetIntracellularConductivities(intracellular_conductivities);
             HeartConfig::Instance()->SetExtracellularConductivities(extracellular_conductivities);
-
 ```
 
 Initialise and solve as normal
+
 ```cpp
             bidomain_problem.Initialise();
             bidomain_problem.Solve();
-
 ```
 
 NB: the easiest way to look at the resultant voltage values from the code
@@ -206,7 +203,6 @@ will mention how to do parallel access).
         // Monodomain
         {
 ```
-
 
 ### Reduction to Monodomain
 
@@ -233,10 +229,10 @@ sigma_monodomain = sigma_i sigma_e / (sigma_i + sigma_e)
             }
 
             HeartConfig::Instance()->SetIntracellularConductivities(monodomain_conductivities);
-
 ```
 
 Now we create a monodomain problem class in exactly the same way as bidomain above
+
 ```cpp
             HeartConfig::Instance()->SetOutputFilenamePrefix("monodomain_results");
             MonodomainProblem<2> monodomain_problem( &cell_factory );
@@ -244,17 +240,17 @@ Now we create a monodomain problem class in exactly the same way as bidomain abo
             monodomain_problem.Solve();
             p_monodomain_results = new ReplicatableVector(monodomain_problem.GetSolution());
         }
-
 ```
 
 The bidomain solution includes extracellular (phi_e) so should be twice as big as monodomain solution.
+
 ```cpp
         TS_ASSERT_EQUALS(p_bidomain_results->GetSize(),2*p_monodomain_results->GetSize());
-
 ```
 
 We then check that the voltage at each node at the end of the simulation is the same
 whether we did a bidomain simulation, or the equivalent monodomain simulation.
+
 ```cpp
         for (unsigned i=0; i<p_monodomain_results->GetSize(); i++)
         {
@@ -265,12 +261,10 @@ whether we did a bidomain simulation, or the equivalent monodomain simulation.
         delete p_bidomain_results;
     }
 };
-
 ```
 
-
-
 ## Full code
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 // The main classes to be used for running simulations.
@@ -442,5 +436,4 @@ public:
         delete p_bidomain_results;
     }
 };
-
 ```

@@ -18,7 +18,6 @@ We include the same headers as in the previous fibre tutorial
 #include "LuoRudy1991BackwardEulerOpt.hpp"
 #include "PetscSetupAndFinalize.hpp"
 #include "PlaneStimulusCellFactory.hpp"
-
 ```
 
 Define the test class as before
@@ -32,7 +31,6 @@ public:
         HeartConfig::Instance()->SetSimulationDuration(5.0);  //ms
         HeartConfig::Instance()->SetOutputDirectory("BidomainTutorialWithBathAndFibres");
         HeartConfig::Instance()->SetOutputFilenamePrefix("results");
-
 ```
 
 Bath problems seem to require decreased ODE timesteps. We use the
@@ -41,7 +39,6 @@ improve code performance.
 
 ```cpp
         HeartConfig::Instance()->SetOdeTimeStep(0.01);  //ms
-
 ```
 
 Use the `PlaneStimulusCellFactory` to define a set of Luo-Rudy cells, in this
@@ -50,7 +47,6 @@ as we don't want any stimulated cells.
 
 ```cpp
         PlaneStimulusCellFactory<CellLuoRudy1991FromCellMLBackwardEulerOpt,2> cell_factory(0.0);
-
 ```
 
 Note that in the previous bath example, a mesh was read in and elements where then set to be
@@ -63,7 +59,6 @@ tutorial).
 
 ```cpp
         HeartConfig::Instance()->SetMeshFileName("mesh/test/data/2D_0_to_1mm_800_elements_bath_sides", cp::media_type::Orthotropic);
-
 ```
 
 Set anistropic conductivities.
@@ -71,16 +66,15 @@ Set anistropic conductivities.
 ```cpp
         HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(1.75, 0.175));
         HeartConfig::Instance()->SetExtracellularConductivities(Create_c_vector(7.0, 0.7));
-
 ```
 
 and now we define the electrodes..
+
 ```cpp
         double magnitude = -9.0e3; // uA/cm^2
         double start_time = 0.0;
         double duration = 2; //ms
         HeartConfig::Instance()->SetElectrodeParameters(false, 0, magnitude, start_time, duration);
-
 ```
 
 Now create the problem class, using the cell factory and passing
@@ -93,12 +87,10 @@ problem, and solve.
         bidomain_problem.Solve();
     }
 };
-
 ```
 
-
-
 ## Full code
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "BidomainProblem.hpp"
@@ -134,5 +126,4 @@ public:
         bidomain_problem.Solve();
     }
 };
-
 ```

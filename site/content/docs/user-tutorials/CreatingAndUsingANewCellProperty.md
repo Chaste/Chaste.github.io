@@ -28,11 +28,11 @@ header file and archiving headers.
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"
 #include "AbstractCellBasedTestSuite.hpp"
-
 ```
 
 The next header defines a base class for cell properties. Our new
 cell property will inherit from this abstract class.
+
 ```cpp
 #include "AbstractCellProperty.hpp"
 ```
@@ -40,6 +40,7 @@ cell property will inherit from this abstract class.
 The remaining header files define classes that will be used in the cell-based
 simulation test. We have encountered each of these header files in previous cell-based
 Chaste tutorials.
+
 ```cpp
 #include "AbstractForce.hpp"
 #include "HoneycombMeshGenerator.hpp"
@@ -54,7 +55,6 @@ Chaste tutorials.
 #include "SmartPointers.hpp"
 //This test is always run sequentially (never in parallel)
 #include "FakePetscSetup.hpp"
-
 ```
 
 ### Defining the cell property class
@@ -74,20 +74,20 @@ in a .hpp file and definition in a .cpp file.
 class MotileCellProperty : public AbstractCellProperty
 {
 private:
-
 ```
 
 We define a member variable `mColour`, which can be used by visualization tools
 to paint cells with this mutation state a distinct colour if required.
+
 ```cpp
     unsigned mColour;
-
 ```
 
 The next block of code allows us to archive (save or load) the cell property object
 in a cell-based simulation. The code consists of a serialize() method, in which we first
 archive the cell property using the serialization code defined in the base class
 `AbstractCellProperty`, then archive the member variable `mColour`.
+
 ```cpp
     friend class boost::serialization::access;
     template<class Archive>
@@ -98,21 +98,21 @@ archive the cell property using the serialization code defined in the base class
     }
 
 public:
-
 ```
 
 The default constructor allows us to specify a value for the member variable `mColour`,
 or leave it with a default value.
+
 ```cpp
     MotileCellProperty(unsigned colour=5)
         : AbstractCellProperty(),
           mColour(colour)
     {
     }
-
 ```
 
 We then define a destructor and a get method for the member variable `mColour`.
+
 ```cpp
     ~MotileCellProperty()
     {}
@@ -142,7 +142,6 @@ in a .hpp file and definition in a .cpp file.
 class MyMotiveForce : public AbstractForce<2>
 {
 private:
-
 ```
 
 This force class includes a member variable, `mStrength`, which
@@ -151,7 +150,6 @@ in the constructor.
 
 ```cpp
     double mStrength;
-
 ```
 
 We only need to include the next block of code if we wish to be able
@@ -159,6 +157,7 @@ to archive (save or load) the force model object in a cell-based simulation.
 The code consists of a serialize method, in which we first archive the force
 using the serialization code defined in the base class `AbstractForce`,
 then archive the member variable.
+
 ```cpp
     friend class boost::serialization::access;
     template<class Archive>
@@ -184,7 +183,6 @@ positive.
     {
         assert(mStrength > 0.0);
     }
-
 ```
 
 The second public method overrides `AddForceContribution()`.
@@ -216,7 +214,6 @@ we associate cells with nodes in the force calculation. However, this could easi
             }
         }
     }
-
 ```
 
 Just as we encountered in [wiki:UserTutorials/CreatingAndUsingANewCellKiller], here we must override
@@ -230,7 +227,6 @@ In our case, we output the member variable `mStrength`, then call the method on 
         AbstractForce<2>::OutputForceParameters(rParamsFile);
     }
 };
-
 ```
 
 As mentioned in previous cell-based Chaste tutorials, we need to include the next block
@@ -248,7 +244,6 @@ CHASTE_CLASS_EXPORT(MyMotiveForce)
 #include "SerializationExportWrapperForCpp.hpp"
 CHASTE_CLASS_EXPORT(MotileCellProperty)
 CHASTE_CLASS_EXPORT(MyMotiveForce)
-
 ```
 
 This completes the code for `MyMotiveForce`. Note that usually this code
@@ -263,7 +258,6 @@ We now define the test class, which inherits from `AbstractCellBasedTestSuite`.
 class TestCreatingAndUsingANewCellPropertyTutorial : public AbstractCellBasedTestSuite
 {
 public:
-
 ```
 
 #### Testing the cell property
@@ -282,14 +276,15 @@ that have the same mutation to share a pointer to the same cell property
 object (although strictly speaking, they are not required to). Observe that
 in this case we have provided a value for the member variable `mColour`
 in the `MotileCellProperty` constructor.
+
 ```cpp
         MAKE_PTR_ARGS(MotileCellProperty, p_property, (8));
-
 ```
 
 Each cell property has a member variable, `mCellCount`, which
 stores the number of cells with this cell property. We can test whether
 `mCellCount` is being updated correctly by our cell property, as follows.
+
 ```cpp
         TS_ASSERT_EQUALS(p_property->GetCellCount(), 0u);
         p_property->IncrementCellCount();
@@ -298,19 +293,19 @@ stores the number of cells with this cell property. We can test whether
         TS_ASSERT_EQUALS(p_property->GetCellCount(), 0u);
         TS_ASSERT_THROWS_THIS(p_property->DecrementCellCount(),
                 "Cannot decrement cell count: no cells have this cell property");
-
 ```
 
 We can also test whether our cell property is of a given type, as follows.
+
 ```cpp
         TS_ASSERT_EQUALS(p_property->IsType<WildTypeCellMutationState>(), false);
         TS_ASSERT_EQUALS(p_property->IsType<MotileCellProperty>(), true);
-
 ```
 
 We can also test that archiving is implemented correctly for our cell
 property, as follows (further details on how to implement and
 test archiving can be found at ChasteGuides/BoostSerialization).
+
 ```cpp
         OutputFileHandler handler("archive", false);
         std::string archive_filename = handler.GetOutputDirectoryFullPath() + "property.arch";
@@ -347,7 +342,6 @@ test archiving can be found at ChasteGuides/BoostSerialization).
             delete p_arch_property;
         }
     }
-
 ```
 
 #### Using the cell property in a cell-based simulation
@@ -366,6 +360,7 @@ yet implemented in parallel.
 We use the `HoneycombMeshGenerator` to create a honeycomb mesh covering a
 circular domain of given radius, and use this to generate a `NodesOnlyMesh`
 as follows.
+
 ```cpp
         HoneycombMeshGenerator generator(10, 10);
         boost::shared_ptr<MutableMesh<2,2> > p_generating_mesh = generator.GetCircularMesh(5);
@@ -378,25 +373,24 @@ connectivity in the mesh.
 
 ```cpp
         mesh.ConstructNodesWithoutMesh(*p_generating_mesh, 1.5);
-
 ```
 
 We now create a shared pointer to our new property, as follows.
+
 ```cpp
         MAKE_PTR(MotileCellProperty, p_motile);
 ```
-
 
 Also create a shared pointer to a cell label so we can visualize the
 different cell types. Note that this is also a `CellProperty`.
 
 ```cpp
         MAKE_PTR(CellLabel, p_label);
-
 ```
 
 Next, we create some cells. We don't use a Generator as we want to give some cells the new cell property, therefore
 we create the cells in a loop, as follows.
+
 ```cpp
         MAKE_PTR(WildTypeCellMutationState, p_state);
         MAKE_PTR(DifferentiatedCellProliferativeType, p_diff_type);
@@ -407,6 +401,7 @@ we create the cells in a loop, as follows.
 
 For each node we create a cell with our cell-cycle model and the wild-type cell mutation state.
 We then add the property `MotileCellProperty` to a random selection of the cells, as follows.
+
 ```cpp
             FixedG1GenerationalCellCycleModel* p_model = new FixedG1GenerationalCellCycleModel();
 
@@ -419,7 +414,6 @@ We then add the property `MotileCellProperty` to a random selection of the cells
 
             CellPtr p_cell(new Cell(p_state, p_model, NULL, false, collection));
             p_cell->SetCellProliferativeType(p_diff_type);
-
 ```
 
 Now, we define a random birth time, chosen from [-T,0], where
@@ -430,62 +424,61 @@ of a stem cell, and t,,2,, is the basic S+G,,2,,+M phases duration.
             double birth_time = - RandomNumberGenerator::Instance()->ranf() *
                                     (p_model->GetStemCellG1Duration()
                                         + p_model->GetSG2MDuration());
-
 ```
 
 Finally, we set the birth time and push the cell back into the vector of cells.
+
 ```cpp
             p_cell->SetBirthTime(birth_time);
             cells.push_back(p_cell);
         }
-
 ```
 
 Now that we have defined the mesh and cells, we can define the cell population. The constructor
 takes in the mesh and the cells vector.
+
 ```cpp
         NodeBasedCellPopulation<2> cell_population(mesh, cells);
-
 ```
 
 In order to visualize labelled cells we need to use the following command.
+
 ```cpp
         cell_population.AddCellPopulationCountWriter<CellMutationStatesCountWriter>();
-
 ```
 
 We then pass in the cell population into an `OffLatticeSimulation`,
 and set the output directory, output multiple, and end time.
+
 ```cpp
         OffLatticeSimulation<2> simulator(cell_population);
         simulator.SetOutputDirectory("TestOffLatticeSimulationWithMotileCellProperty");
         simulator.SetSamplingTimestepMultiple(12);
         simulator.SetEndTime(10.0);
-
 ```
 
 We create a force law and pass it to the `OffLatticeSimulation`.
+
 ```cpp
         MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);
         p_linear_force->SetCutOffLength(1.5);
         simulator.AddForce(p_linear_force);
-
 ```
 
 Now create a `MotlieForce` and pass it to the `OffLatticeSimulation`.
+
 ```cpp
         MAKE_PTR(MyMotiveForce, p_motive_force);
         simulator.AddForce(p_motive_force);
-
 ```
 
 To run the simulation, we call `Solve()`.
+
 ```cpp
         simulator.Solve();
     }
 };
 ```
-
 
 When you visualize the results with
 
@@ -493,9 +486,8 @@ When you visualize the results with
 
 you should see a collection of cells with the `MotileCellProperty` (labelled dark blue) moving towards the origin.
 
-
-
 ## Full code
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"

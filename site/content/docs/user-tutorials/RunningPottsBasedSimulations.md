@@ -23,12 +23,12 @@ As in previous cell-based Chaste tutorials, we begin by including the necessary 
 #include "CheckpointArchiveTypes.hpp"
 #include "AbstractCellBasedWithTimingsTestSuite.hpp"
 #include "PetscSetupAndFinalize.hpp"
-
 ```
 
 The remaining header files define classes that will be used in the cell population
 simulation test. We have encountered some of these header files in previous cell-based
 Chaste tutorials.
+
 ```cpp
 #include "CellsGenerator.hpp"
 #include "DifferentiatedCellProliferativeType.hpp"
@@ -37,21 +37,25 @@ Chaste tutorials.
 ```
 
 The next header file defines a helper class for generating a suitable mesh.
+
 ```cpp
 #include "PottsMeshGenerator.hpp"
 ```
 
 The next header file defines the class that simulates the evolution of an on lattice `CellPopulation`.
+
 ```cpp
 #include "OnLatticeSimulation.hpp"
 ```
 
 The next header file defines a`CellPopulation` class for implementing a cellular Potts model.
+
 ```cpp
 #include "PottsBasedCellPopulation.hpp"
 ```
 
 The next header files define some update rules for describing the Hamiltonian used to define the Potts simulations.
+
 ```cpp
 #include "VolumeConstraintPottsUpdateRule.hpp"
 #include "AdhesionPottsUpdateRule.hpp"
@@ -60,10 +64,10 @@ The next header files define some update rules for describing the Hamiltonian us
 ```
 
 Finally these headers allow us to output cell labels.
+
 ```cpp
 #include "CellLabel.hpp"
 #include "CellLabelWriter.hpp"
-
 ```
 
 Next, we define the test class, which inherits from `AbstractCellBasedTestSuite`
@@ -75,7 +79,6 @@ class TestRunningPottsBasedSimulationsTutorial : public AbstractCellBasedWithTim
 public:
 ```
 
-
 ### Test 1 - a basic Potts-based simulation
 
 In the first test, we run a simple Potts-based simulation, in which we create a monolayer
@@ -86,7 +89,6 @@ of cells, using a Potts mesh. Each cell is assigned a stochastic cell-cycle mode
     {
         /** The next line is needed because we cannot currently run Potts simulations in parallel. */
         EXIT_IF_PARALLEL;
-
 ```
 
 First, we generate a Potts mesh. To create a `PottsMesh`, we can use
@@ -100,7 +102,6 @@ We have chosen a 2 by 2 block of elements, each consisting of 4 by 4  ( = 16) la
 ```cpp
         PottsMeshGenerator<2> generator(50, 2, 4, 50, 2, 4);  // Parameters are: lattice sites across; num elements across; element width; lattice sites up; num elements up; and element height
         boost::shared_ptr<PottsMesh<2> > p_mesh = generator.GetMesh();
-
 ```
 
 Having created a mesh, we now create a `std::vector` of `CellPtr`s.
@@ -110,12 +111,12 @@ and the dimension. We create an empty vector of cells and pass this into the
 method along with the mesh. The second argument represents the size of that the vector
 `cells` should become - one cell for each element. Third argument makes all cells
 proliferate.
+
 ```cpp
         std::vector<CellPtr> cells;
         MAKE_PTR(TransitCellProliferativeType, p_transit_type);
         CellsGenerator<UniformCellCycleModel, 2> cells_generator;
         cells_generator.GenerateBasicRandom(cells, p_mesh->GetNumElements(), p_transit_type);
-
 ```
 
 Now we have a mesh and a set of cells to go with it, we can create a `CellPopulation`.
@@ -125,7 +126,6 @@ cell population called a `PottsBasedCellPopulation`.
 
 ```cpp
         PottsBasedCellPopulation<2> cell_population(*p_mesh, cells);
-
 ```
 
 We can set the "Temperature" to be used in the Potts Simulation using the optional command below.
@@ -135,23 +135,21 @@ The default value is 0.1.
         cell_population.SetTemperature(0.1);
 ```
 
-
 By default the Potts simulation will make 1 sweep over the whole domain per timestep.  To use a different
 number of sweeps per timestep use the command.
 
 ```cpp
         cell_population.SetNumSweepsPerTimestep(1);
-
 ```
 
 We then pass in the cell population into an `OnLatticeSimulation`,
 and set the output directory and end time.
+
 ```cpp
         OnLatticeSimulation<2> simulator(cell_population);
         simulator.SetOutputDirectory("PottsBasedMonolayer");
         simulator.SetEndTime(50.0);
 ```
-
 
 The default timestep is 0.1, but can be changed using the below command. The timestep is used in conjunction with the "Temperature" and
 number of sweeps per timestep to specify the relationship between cell movement and proliferation. We also set the simulation to only output
@@ -160,7 +158,6 @@ every 10 steps i.e. once per hour.
 ```cpp
         simulator.SetDt(0.1);
         simulator.SetSamplingTimestepMultiple(10);
-
 ```
 
 We must now create one or more update rules, which determine the Hamiltonian
@@ -176,13 +173,11 @@ to make a boost shared pointer to our required update rule before specifying par
         MAKE_PTR(VolumeConstraintPottsUpdateRule<2>, p_volume_constraint_update_rule);
 ```
 
-
 Set an appropriate target volume in number of lattice sites. Here we use the default value of 16 lattice sites.
 
 ```cpp
         p_volume_constraint_update_rule->SetMatureCellTargetVolume(16);
 ```
-
 
 You can also vary the deformation energy parameter. The larger the parameter
 the more cells will try to maintain target volume. Here we use the default value of 0.2.
@@ -191,35 +186,32 @@ the more cells will try to maintain target volume. Here we use the default value
         p_volume_constraint_update_rule->SetDeformationEnergyParameter(0.2);
 ```
 
-
 Finally we add the update rule to the simulator.
 
 ```cpp
         simulator.AddUpdateRule(p_volume_constraint_update_rule);
 ```
 
-
 We repeat the process for any other update rules.
 
 ```cpp
         MAKE_PTR(AdhesionPottsUpdateRule<2>, p_adhesion_update_rule);
         simulator.AddUpdateRule(p_adhesion_update_rule);
-
 ```
 
 To run the simulation, we call `Solve()`.
+
 ```cpp
         simulator.Solve();
-
 ```
 
 The next two lines are for test purposes only and are not part of this tutorial. If different simulation input parameters are being explored
 the lines should be removed.
+
 ```cpp
         TS_ASSERT_EQUALS(cell_population.GetNumRealCells(), 64u);
         TS_ASSERT_DELTA(SimulationTime::Instance()->GetTime(), 50.0, 1e-10);
     }
-
 ```
 
 To visualize the results, open a new terminal, `cd` to the Chaste directory,
@@ -264,7 +256,6 @@ cell sorting using a two-dimensional extended Potts model. Phys. Rev. Lett., 69(
     {
         /** The next line is needed because we cannot currently run Potts simulations in parallel. */
         EXIT_IF_PARALLEL;
-
 ```
 
 First, we generate a Potts mesh. To create a `PottsMesh`, we can use
@@ -275,22 +266,22 @@ We have chosen an 8 by 8 block of elements each consisting of 4 by 4  ( = 16) la
 ```cpp
         PottsMeshGenerator<2> generator(50, 8, 4, 50, 8, 4);  // Parameters are: lattice sites across; num elements across; element width; lattice sites up; num elements up; and element height
         boost::shared_ptr<PottsMesh<2> > p_mesh = generator.GetMesh();
-
 ```
 
 Having created a mesh, we now create a `std::vector` of `CellPtr`s.
 To do this, we the `CellsGenerator` helper class, as before but this time
 the third argument is set to make all cells non-proliferative.
+
 ```cpp
         std::vector<CellPtr> cells;
         MAKE_PTR(DifferentiatedCellProliferativeType, p_diff_type);
         CellsGenerator<UniformCellCycleModel, 2> cells_generator;
         cells_generator.GenerateBasicRandom(cells, p_mesh->GetNumElements(), p_diff_type);
-
 ```
 
 Before we make a `CellPopulation` we make a boost shared pointer to a cell label and then assign this
 label to some randomly chosen cells.
+
 ```cpp
         MAKE_PTR(CellLabel, p_label);
         for (unsigned i = 0; i<cells.size(); i++)
@@ -300,30 +291,28 @@ label to some randomly chosen cells.
                 cells[i]->AddCellProperty(p_label);
             }
         }
-
 ```
 
 Now we have a mesh and a set of cells to go with it, we can create a `CellPopulation`.
 
 ```cpp
         PottsBasedCellPopulation<2> cell_population(*p_mesh, cells);
-
 ```
 
 In order to visualize labelled cells we need to use the following command.
+
 ```cpp
         cell_population.AddCellWriter<CellLabelWriter>();
-
 ```
 
 We then pass in the cell population into an `OnLatticeSimulation`,
 and set the output directory and end time.
+
 ```cpp
         OnLatticeSimulation<2> simulator(cell_population);
         simulator.SetOutputDirectory("PottsMonolayerCellSorting");
         simulator.SetEndTime(20.0);
         simulator.SetSamplingTimestepMultiple(10);
-
 ```
 
 We must now create one or more update rules, which determine the Hamiltonian
@@ -346,13 +335,12 @@ a volume constraint (`VolumeConstraintPottsUpdateRule`) and differential adhesio
         simulator.AddUpdateRule(p_differential_adhesion_update_rule);
 ```
 
-
 These parameters cause the cells to sort, for different values you can get different patterns.
 
 To run the simulation, we call `Solve()`.
+
 ```cpp
         simulator.Solve();
-
 ```
 
 The next two lines are for test purposes only and are not part of this tutorial.
@@ -361,7 +349,6 @@ The next two lines are for test purposes only and are not part of this tutorial.
         TS_ASSERT_EQUALS(cell_population.GetNumRealCells(), 64u);
         TS_ASSERT_DELTA(SimulationTime::Instance()->GetTime(), 20.0, 1e-10);
     }
-
 ```
 
 To visualize the results, open a new terminal, `cd` to the Chaste directory,
@@ -380,7 +367,6 @@ The next test extends the previous example to three dimensions.
     {
         /** The next line is needed because we cannot currently run Potts simulations in parallel. */
         EXIT_IF_PARALLEL;
-
 ```
 
 First, we generate a Potts mesh. To create a `PottsMesh`, we can use
@@ -396,22 +382,22 @@ We have chosen an 4 by 4 by 4 ( = 64) block of elements each consisting of 2 by 
 ```cpp
         PottsMeshGenerator<3> generator(10, 4, 2, 10, 4, 2, 10, 4, 2);  // Parameters are: lattice sites across; num elements across; element width; lattice sites up; num elements up; and element height; lattice sites deep; num elements deep; and element depth
         boost::shared_ptr<PottsMesh<3> > p_mesh = generator.GetMesh();
-
 ```
 
 Having created a mesh, we now create a `std::vector` of `CellPtr`s.
 To do this, we the `CellsGenerator` helper class, as before but this time
 the third argument is set to make all cells non-proliferative.
+
 ```cpp
         std::vector<CellPtr> cells;
         MAKE_PTR(DifferentiatedCellProliferativeType, p_diff_type);
         CellsGenerator<UniformCellCycleModel, 3> cells_generator;
         cells_generator.GenerateBasicRandom(cells, p_mesh->GetNumElements(), p_diff_type);
-
 ```
 
 As for the 2D case before we make a `CellPopulation` we make a pointer to a cell label and then assign this
 label to some randomly chosen cells.
+
 ```cpp
         MAKE_PTR(CellLabel, p_label);
         for (unsigned i = 0; i<cells.size(); i++)
@@ -421,7 +407,6 @@ label to some randomly chosen cells.
                 cells[i]->AddCellProperty(p_label);
             }
         }
-
 ```
 
 Now we have a mesh and a set of cells to go with it, we can create a `CellPopulation`.
@@ -431,23 +416,22 @@ cell population called a `PottsBasedCellPopulation`.
 
 ```cpp
         PottsBasedCellPopulation<3> cell_population(*p_mesh, cells);
-
 ```
 
 In order to visualize labelled cells we need to use the following command.
+
 ```cpp
         cell_population.AddCellWriter<CellLabelWriter>();
-
 ```
 
 We then pass in the cell population into an `OnLatticeSimulation`,
 and set the output directory and end time.
+
 ```cpp
         OnLatticeSimulation<3> simulator(cell_population);
         simulator.SetOutputDirectory("PottsCellSorting3D");
         simulator.SetEndTime(20.0);
         simulator.SetSamplingTimestepMultiple(10);
-
 ```
 
 We must now create one or more update rules, which determine the Hamiltonian
@@ -458,14 +442,12 @@ an area constraint and differential adhesion between cells and pass them to the 
         MAKE_PTR(VolumeConstraintPottsUpdateRule<3>, p_volume_constraint_update_rule);
 ```
 
-
 Now set the target volume to be appropriate for this 3D simulation.
 
 ```cpp
         p_volume_constraint_update_rule->SetMatureCellTargetVolume(8.0);
         p_volume_constraint_update_rule->SetDeformationEnergyParameter(0.2);
         simulator.AddUpdateRule(p_volume_constraint_update_rule);
-
 ```
 
 We use the same differential adhesion parameters as in the 2D case.
@@ -478,13 +460,12 @@ We use the same differential adhesion parameters as in the 2D case.
         p_differential_adhesion_update_rule->SetLabelledCellBoundaryAdhesionEnergyParameter(0.16);
         p_differential_adhesion_update_rule->SetCellBoundaryAdhesionEnergyParameter(0.16);
         simulator.AddUpdateRule(p_differential_adhesion_update_rule);
-
 ```
 
 To run the simulation, we call `Solve()`.
+
 ```cpp
         simulator.Solve();
-
 ```
 
 The next two lines are for test purposes only and are not part of this tutorial.
@@ -494,7 +475,6 @@ The next two lines are for test purposes only and are not part of this tutorial.
         TS_ASSERT_DELTA(SimulationTime::Instance()->GetTime(), 20.0, 1e-10);
     }
 ```
-
 
 To visualize the results, we need to use Paraview. Note that we don't output the cell boundaries (outlines) in 3D.
 See UserTutorials/VisualizingWithParaview for more information.
@@ -516,12 +496,10 @@ You should see that the cells sort into ones of the same type.
 
 ```cpp
 };
-
 ```
 
-
-
 ## Full code
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"
@@ -682,5 +660,4 @@ public:
         TS_ASSERT_DELTA(SimulationTime::Instance()->GetTime(), 20.0, 1e-10);
     }
 };
-
 ```

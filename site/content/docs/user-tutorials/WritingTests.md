@@ -15,9 +15,9 @@ Tests are used both as:
 This tutorial shows how to write a test using !CxxTest. Note that the full code is given at the bottom of the page.
 
 First, the following header file needs to be included.
+
 ```cpp
 #include <cxxtest/TestSuite.h>
-
 ```
 
 Now we have to define a class containing the tests. It is sensible to name the class with the same name as the file name. The class should inherit from `CxxTest::TestSuite`.
@@ -27,7 +27,6 @@ class TestWritingTestsTutorial: public CxxTest::TestSuite
 {
 ```
 
-
 Now we define some tests, which must be **public**, begin with the word 'Test', return `void`, and take in no parameters.
 
 ```cpp
@@ -36,14 +35,12 @@ public:
     {
 ```
 
-
 To test whether two integers are equal, we can use the macro `TS_ASSERT_EQUALS`.
 
 ```cpp
         int some_number = 1 + 1;
         TS_ASSERT_EQUALS(some_number, 2);
 ```
-
 
 To test whether two numbers are equal to within a certain (absolute) tolerance we can use `TS_ASSERT_DELTA`.
 This should almost always be used when comparing two `double`s.  (See also
@@ -55,7 +52,6 @@ for more advanced comparisons.)
         TS_ASSERT_DELTA(another_number, 2.0, 1e-2);
     }
 ```
-
 
 This second test shows some of the other `TS_ASSERT` macros that are available.
 
@@ -74,7 +70,6 @@ This second test shows some of the other `TS_ASSERT` macros that are available.
         TS_ASSERT_THROWS_NOTHING(x=1;);  // normally you would put a function call inside the brackets
         TS_ASSERT_EQUALS(x, 1u); //Note that x and 1u are of the same type: unsigned integer
     }
-
 ```
 
 Other useful macros include `TS_ASSERT_THROWS_THIS` and `TS_ASSERT_THROWS_CONTAINS` for testing exception
@@ -93,7 +88,6 @@ test running, just put an 'x' or a 'donot' (for instance) before its name.
 };
 ```
 
-
 To run this code, first copy it into a file, say, called `TestWritingTests.hpp` in the directory `global/test/`.
 Second, add the full name of your new file to the relevant continuous test pack, say `[path/to/Chaste]/global/test/ContinuousTestPack.txt`.
 Third, from the command line, run
@@ -110,9 +104,8 @@ make global
 ctest -V -R TestWritingTests
 ```
 
-
-
 ## Full code
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 

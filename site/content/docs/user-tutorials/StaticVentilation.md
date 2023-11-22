@@ -13,31 +13,32 @@ tree model. Homogeneous pressure boundary conditions are used at the terminals o
 is used at the trachea. We demonstrate how to calculate the total bronchial pressure drop at different flow rates.
 
 The usual headers are included
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "TrianglesMeshReader.hpp"
-
 ```
 
 !MatrixVentilationProblem does most of the work in calculating a ventilation distribution.
+
 ```cpp
 #include "MatrixVentilationProblem.hpp"
-
 ```
 
 Note that this tutorial only works with UMFPACK or KLU -- we need to warn the user if it's not installed
+
 ```cpp
 #include "Warnings.hpp"
-
 ```
 
 !MatrixVentilationProblem uses the Petsc solver library. This setups up Petsc ready for use.
+
 ```cpp
 #include "PetscSetupAndFinalize.hpp"
-
 ```
 
 Define the test
+
 ```cpp
 class TestStaticVentilationTutorial : public CxxTest::TestSuite
 {
@@ -46,7 +47,6 @@ public: // Tests should be public!
     void TestCalculatePressureDrop()
     {
         EXIT_IF_PARALLEL;
-
 ```
 
 First we setup a !MatrixVentilationProblem and tell it to load an airway centerline mesh.
@@ -66,14 +66,13 @@ mesh.
         WARNING("Not compiled with UMFPACK or KLU.  Using non-realistic airway tree.");
         MatrixVentilationProblem problem("mesh/test/data/y_branch_3d_mesh", 0u);
 #endif
-
 ```
 
 Matrix ventilation problem uses SI units but the mesh is specified in mm. This method allows the solver
 to handle this discrepancy.
+
 ```cpp
         problem.SetMeshInMilliMetres();
-
 ```
 
 Airway meshes can have radii defined either on nodes (default) or on edges. Here we tell the solver
@@ -81,7 +80,6 @@ that the mesh has radii defined on edges.
 
 ```cpp
         problem.SetRadiusOnEdge();
-
 ```
 
 The ventilation solver can use different flow models. By default it uses the simplest Poiseuille flow
@@ -91,7 +89,6 @@ simulations take longer!
 
 ```cpp
         problem.SetDynamicResistance();
-
 ```
 
 We define some tracheal flow rates to test. The values are specified in m^3/s
@@ -103,26 +100,26 @@ These give a range from 10 L/min to 100 L/min.
         flows.push_back(0.00083);
         flows.push_back(0.00167);
         flows.push_back(0.003);
-
 ```
 
 Loop over the tracheal flow rates and solve
+
 ```cpp
         for (unsigned i = 0; i < flows.size(); ++i)
         {
 ```
 
 This sets the boundary conditions: flow at the trachea and homogeneous zero pressure at the terminal airways
+
 ```cpp
             problem.SetOutflowFlux(flows[i]);
             problem.SetConstantInflowPressures(0.0);
-
 ```
 
 Calculates flow on the tree
+
 ```cpp
             problem.Solve();
-
 ```
 
 Here we obtain vectors containing the calculated pressures and fluxes at all nodes and elements in the mesh.
@@ -130,7 +127,6 @@ Here we obtain vectors containing the calculated pressures and fluxes at all nod
 ```cpp
             std::vector<double> flux, pressure;
             problem.GetSolutionAsFluxesAndPressures(flux, pressure);
-
 ```
 
 The vectors can be used to analyse the flow distribution in detail.
@@ -144,7 +140,6 @@ airways.
 
         }
     }
-
 ```
 
 ### IMPORTANT: Using UMFPACK/KLU
@@ -165,12 +160,10 @@ open the file `lung/src/ventilation/MatrixVentilationProblem.hpp` and uncomment 
 
 ```cpp
 };
-
 ```
 
-
-
 ## Full code
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "TrianglesMeshReader.hpp"
@@ -226,5 +219,4 @@ public: // Tests should be public!
     }
 
 };
-
 ```

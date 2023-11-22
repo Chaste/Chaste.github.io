@@ -53,7 +53,6 @@ or `CellBasedSimulationArchiver.hpp` must be included the first Chaste header.
 #include "UniformG1GenerationalCellCycleModel.hpp"
 ```
 
-
 The next header file defines a simple subcellular reaction network model that includes the functionality
 for solving each cell's Delta/Notch signalling ODE system at each time step, using information about neighbouring
 cells through the `CellData` class.
@@ -62,13 +61,11 @@ cells through the `CellData` class.
 #include "DeltaNotchSrnModel.hpp"
 ```
 
-
 The next header defines the simulation class modifier corresponding to the Delta-Notch SRN model.
 This modifier leads to the `CellData` cell property being updated at each timestep to deal with Delta-Notch signalling.
 
 ```cpp
 #include "DeltaNotchTrackingModifier.hpp"
-
 ```
 
 Having included all the necessary header files, we proceed by defining the test class.
@@ -77,7 +74,6 @@ Having included all the necessary header files, we proceed by defining the test 
 class TestRunningDeltaNotchSimulationsTutorial : public AbstractCellBasedTestSuite
 {
 public:
-
 ```
 
 ### Test 1: a vertex-based monolayer with Delta/Notch signalling
@@ -91,16 +87,16 @@ Delta/Notch signalling, using a vertex-based approach.
 ```
 
 We include the next line because Vertex simulations cannot be run in parallel
+
 ```cpp
         EXIT_IF_PARALLEL;
-
 ```
 
 First we create a regular vertex mesh.
+
 ```cpp
         HoneycombVertexMeshGenerator generator(5, 5);
         boost::shared_ptr<MutableVertexMesh<2,2> > p_mesh = generator.GetMesh();
-
 ```
 
 We then create some cells, each with a cell-cycle model, `UniformG1GenerationalCellCycleModel` and a subcellular reaction network model
@@ -108,6 +104,7 @@ We then create some cells, each with a cell-cycle model, `UniformG1GenerationalC
 incorporates a Delta/Notch ODE system, here we use the hard coded initial conditions of 1.0 and 1.0.
 In this example we choose to make each cell differentiated,
 so that no cell division occurs.
+
 ```cpp
         std::vector<CellPtr> cells;
         MAKE_PTR(WildTypeCellMutationState, p_state);
@@ -117,10 +114,10 @@ so that no cell division occurs.
         {
             UniformG1GenerationalCellCycleModel* p_cc_model = new UniformG1GenerationalCellCycleModel();
             p_cc_model->SetDimension(2);
-
 ```
 
 We choose to initialise the concentrations to random levels in each cell.
+
 ```cpp
             std::vector<double> initial_conditions;
             initial_conditions.push_back(RandomNumberGenerator::Instance()->ranf());
@@ -134,11 +131,11 @@ We choose to initialise the concentrations to random levels in each cell.
             p_cell->SetBirthTime(birth_time);
             cells.push_back(p_cell);
         }
-
 ```
 
 Using the vertex mesh and cells, we create a cell-based population object, and specify which results to
 output to file.
+
 ```cpp
         VertexBasedCellPopulation<2> cell_population(*p_mesh, cells);
         cell_population.AddCellPopulationCountWriter<CellMutationStatesCountWriter>();
@@ -147,27 +144,26 @@ output to file.
         cell_population.AddCellWriter<CellProliferativePhasesWriter>();
         cell_population.AddCellWriter<CellAgesWriter>();
         cell_population.AddCellWriter<CellVolumesWriter>();
-
 ```
 
 We are now in a position to create and configure the cell-based simulation object, pass a force law to it,
 and run the simulation. We can make the simulation run for longer to see more patterning by increasing the end time.
+
 ```cpp
         OffLatticeSimulation<2> simulator(cell_population);
         simulator.SetOutputDirectory("TestVertexBasedMonolayerWithDeltaNotch");
         simulator.SetSamplingTimestepMultiple(10);
         simulator.SetEndTime(1.0);
-
 ```
 
 Then, we define the modifier class, which automatically updates the values of Delta and Notch within the cells in `CellData` and passes it to the simulation.
+
 ```cpp
         MAKE_PTR(DeltaNotchTrackingModifier<2>, p_modifier);
         simulator.AddSimulationModifier(p_modifier);
 
         MAKE_PTR(NagaiHondaForce<2>, p_force);
         simulator.AddForce(p_force);
-
 ```
 
 This modifier assigns target areas to each cell.
@@ -177,7 +173,6 @@ This modifier assigns target areas to each cell.
         simulator.AddSimulationModifier(p_growth_modifier);
         simulator.Solve();
     }
-
 ```
 
 To visualize the results, use Paraview. See the UserTutorials/VisualizingWithParaview tutorial for more information.
@@ -196,9 +191,9 @@ In the next test we run a similar simulation as before, but this time with node-
 
 We include the next line because HoneycombMeshGenerator, used in this test, is not
 yet implemented in parallel.
+
 ```cpp
         EXIT_IF_PARALLEL;
-
 ```
 
 Most of the code in this test is the same as in the previous test,
@@ -223,10 +218,10 @@ neighbours for the purpose of the Delta/Notch intercellular signalling model.
         {
             UniformG1GenerationalCellCycleModel* p_cc_model = new UniformG1GenerationalCellCycleModel();
             p_cc_model->SetDimension(2);
-
 ```
 
 We choose to initialise the concentrations to random levels in each cell.
+
 ```cpp
             std::vector<double> initial_conditions;
             initial_conditions.push_back(RandomNumberGenerator::Instance()->ranf());
@@ -252,17 +247,17 @@ We choose to initialise the concentrations to random levels in each cell.
         simulator.SetOutputDirectory("TestNodeBasedMonolayerWithDeltaNotch");
         simulator.SetSamplingTimestepMultiple(10);
         simulator.SetEndTime(5.0);
-
 ```
 
 Again we define the modifier class, which automatically updates the values of Delta and Notch within the cells in `CellData` and passes it to the simulation.
+
 ```cpp
         MAKE_PTR(DeltaNotchTrackingModifier<2>, p_modifier);
         simulator.AddSimulationModifier(p_modifier);
-
 ```
 
 As we are using a node-based cell population, we use an appropriate force law.
+
 ```cpp
         MAKE_PTR(GeneralisedLinearSpringForce<2>, p_force);
         p_force->SetCutOffLength(1.5);
@@ -271,7 +266,6 @@ As we are using a node-based cell population, we use an appropriate force law.
         simulator.Solve();
     }
 ```
-
 
 To visualize the results, use Paraview. See the UserTutorials/VisualizingWithParaview tutorial for more information.
 
@@ -283,12 +277,10 @@ displayed by Paraview.
 
 ```cpp
 };
-
 ```
 
-
-
 ## Full code
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"
@@ -425,5 +417,4 @@ public:
         simulator.Solve();
     }
 };
-
 ```

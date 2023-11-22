@@ -27,12 +27,14 @@ public:
 ```
 
 First, the checkpointing test.
+
 ```cpp
     void TestCheckpointing()
     {
 ```
 
 We set up exactly the same simulation as in UserTutorials/AnotherBidomainSimulation
+
 ```cpp
         HeartConfig::Instance()->Reset();
 
@@ -48,19 +50,19 @@ We set up exactly the same simulation as in UserTutorials/AnotherBidomainSimulat
 
         bidomain_problem.Initialise();
         bidomain_problem.Solve();
-
 ```
 
 To save the entire simulation, use the `CardiacSimulationArchiver` class, as shown in the following.
 Note the `BidomainProblem<2>` as the template parameter. The output directory is relative to
 CHASTE_TEST_OUTPUT.
+
 ```cpp
         CardiacSimulationArchiver<BidomainProblem<2> >::Save(bidomain_problem, "BidomainCheckpointingTutorial/saved_simulation");
     }
-
 ```
 
 This is how to restart the test.
+
 ```cpp
     void TestRestarting()
     {
@@ -70,9 +72,9 @@ To restart from the saved simulation directory we  use the `CardiacSimulationArc
 Note the `BidomainProblem<2>` as the template parameter again.  The dimension (2) must match the one given in the
 saved archive directory.
 The output directory is again relative to CHASTE_TEST_OUTPUT.
+
 ```cpp
         BidomainProblem<2>* p_bidomain_problem = CardiacSimulationArchiver<BidomainProblem<2> >::Load("BidomainCheckpointingTutorial/saved_simulation");
-
 ```
 
 The simulation duration has to be amended.
@@ -85,16 +87,15 @@ Note: loading an archive also loads `HeartConfig` options, so `HeartConfig` call
 
 ```cpp
         HeartConfig::Instance()->SetSimulationDuration(10); //ms
-
 ```
 
 One point of checkpointing and restarting is that there may be something which we want to change
 during the course of experiment.  Here we change the conductivity.
+
 ```cpp
         HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(3.0, 0.3));
 
         p_bidomain_problem->Solve();
-
 ```
 
 Note that the pointer p_bidomain_problem exists in the scope of this test and that the object
@@ -105,7 +106,6 @@ responsible for deleting the memory.
         delete p_bidomain_problem;
     }
 };
-
 ```
 
 ### Notes
@@ -145,8 +145,8 @@ responsible for deleting the memory.
  may not know about all classes when loading, and give the "unregistered class" error.
  
 
-
 ## Full code
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "CardiacSimulationArchiver.hpp"
@@ -191,5 +191,4 @@ public:
         delete p_bidomain_problem;
     }
 };
-
 ```

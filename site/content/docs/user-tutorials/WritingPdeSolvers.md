@@ -49,7 +49,6 @@ where the solver IS AN assembler. We illustrate how to do this in the first tuto
 ### Writing solvers
 
 Let us write a solver for the coupled 2-unknown problem
-
 ```
 Laplacian(u) + v = f(x,y)
 Laplacian(v) + u = g(x,y)
@@ -65,7 +64,6 @@ save a discussion on general Dirichlet-Neumann boundary conditions for the secon
 
 Using linear basis functions, and a mesh with N nodes, the linear system that needs to be set up is
 of size 2N by 2N, and in block form is:
-
 ```
 [ K   -M  ] [U]  =  [b1]
 [ -M   K  ] [V]     [b2]
@@ -104,6 +102,7 @@ fail to link).
 ```
 
 These two classes will be used in writing the solver
+
 ```cpp
 #include "AbstractAssemblerSolverHybrid.hpp"
 #include "AbstractStaticLinearPdeSolver.hpp"
@@ -111,9 +110,9 @@ These two classes will be used in writing the solver
 
 We will solve a second problem, below, which will be time-dependent and will
 require the following class
+
 ```cpp
 #include "AbstractDynamicLinearPdeSolver.hpp"
-
 ```
 
 The linear system is Ax=b where A and b are FE assembled, so we can use the solver-is-an-assembler
@@ -131,6 +130,7 @@ private:
 ```
 
 The function f
+
 ```cpp
     double f(double x,double y)
     {
@@ -139,12 +139,12 @@ The function f
 ```
 
 The function g
+
 ```cpp
     double g(double x,double y)
     {
         return -8*M_PI*M_PI*sin(2*M_PI*x)*sin(2*M_PI*y) + sin(M_PI*x)*sin(M_PI*y);
     }
-
 ```
 
 The abstract assembler parent classes know how to assemble matrices and vectors, but the concrete
@@ -163,7 +163,6 @@ num_bases_per_element = 2*3 = 6).
                                                Element<2,2>* pElement)
     {
 ```
-
 
 Set up the matrix, which corresponds to the elemental contribution for the matrix
 written above, taking into account the striped nature of the matrices and vectors.
@@ -191,10 +190,10 @@ see `BidomainAssembler` for example).
         }
         return ret;
     }
-
 ```
 
 Similarly compute the elemental contribution to the RHS vector
+
 ```cpp
     c_vector<double,2*3> ComputeVectorTerm(c_vector<double, 3>& rPhi,
                                            c_matrix<double, 2, 2+1>& rGradPhi,
@@ -240,14 +239,12 @@ them to the parent classes.
 };
 ```
 
-
 That is the solver written. The usage is the same as see the PDE solvers described in the
 previous tutorials - have a look at the first test below.
 
 ### A solver of 3 parabolic equations
 
 Let us also write a solver for the following problem, which is composed of 3 parabolic PDEs
-
 ```
 u_t = Laplacian(u) + v
 v_t = Laplacian(v) + u + 2w
@@ -265,7 +262,6 @@ suppose the last equation was `w_t = Laplacian(w) + Div(D grad(u))`, then the na
 `du/dn = s1, dv/dn = s2, dw/dn + (Dgradu).n = s3`.
 
 We need to choose a time-discretisation. Let us choose an implicit discretisation, ie
-
 ```
 (u^{n+1} - u^{n})/dt = Laplacian(u^{n+1}) + v^{n+1}
 (v^{n+1} - v^{n})/dt = Laplacian(v^{n+1}) + u^{n+1} + 2w^{n+1}
@@ -274,7 +270,6 @@ We need to choose a time-discretisation. Let us choose an implicit discretisatio
 
 Using linear basis functions, and a mesh with N nodes, the linear system that needs to be set up is
 of size 3N by 3N, and in block form is:
-
 ```
 [ M/dt+K     -M       0    ] [U^{n+1}]  =  [b1]  +  [c1]
 [   -M     M/dt+K    -2M   ] [V^{n+1}]     [b2]  +  [c2]
@@ -303,16 +298,17 @@ private:
 ```
 
 Define the function g(t,x,y)
+
 ```cpp
     double g(double t, ChastePoint<2>& rX)
     {
         return t*(rX[0]>0.5);
     }
-
 ```
 
 Provide the (elemental contribution to the) LHS matrix. The matrix is 9 by 9, where
 9 = 3*3 = PROBLEM_DIM * NUM_NODES_PER_ELEMENT
+
 ```cpp
     c_matrix<double,3*3,3*3> ComputeMatrixTerm(c_vector<double,3>& rPhi,
                                                c_matrix<double,2,3>& rGradPhi,
@@ -351,10 +347,10 @@ Provide the (elemental contribution to the) LHS matrix. The matrix is 9 by 9, wh
         }
         return ret;
     }
-
 ```
 
 Provide the volume elemental contribution to the RHS vector, ie the vector `[b1 b2 b3]` above
+
 ```cpp
     c_vector<double,3*3> ComputeVectorTerm(c_vector<double, 3>& rPhi,
                                            c_matrix<double, 2, 3>& rGradPhi,
@@ -383,10 +379,10 @@ Provide the volume elemental contribution to the RHS vector, ie the vector `[b1 
         }
         return ret;
     }
-
 ```
 
 Define this method as before
+
 ```cpp
     void SetupLinearSystem(Vec currentSolution, bool computeMatrix)
     {
@@ -410,10 +406,10 @@ will be destroyed.
         this->mMatrixIsConstant = true;
     }
 };
-
 ```
 
 Now the tests using the two solvers
+
 ```cpp
 class TestWritingPdeSolversTutorial : public CxxTest::TestSuite
 {
@@ -436,7 +432,6 @@ on the whole of the boundary for both variables.
 
         // Use our purpose-made solver for this problem:
         MyTwoVariablePdeSolver solver(&mesh,&bcc);
-
 ```
 
 The `AbstractStaticLinearPdeSolver` class from which our solver
@@ -445,10 +440,10 @@ inherits, provides a `Solve` method.
 ```cpp
         Vec result = solver.Solve();
         ReplicatableVector result_repl(result);
-
 ```
 
 Compare against the exact solution.
+
 ```cpp
         for (unsigned i=0; i<mesh.GetNumNodes(); i++)
         {
@@ -466,16 +461,15 @@ Compare against the exact solution.
         }
         PetscTools::Destroy(result);
     }
-
 ```
 
 Now run a test solving the parabolic-parabolic-parabolic PDE system.
+
 ```cpp
     void TestMyParaEllipticSetOfPdesSolver()
     {
         TetrahedralMesh<2,2> mesh;
         mesh.ConstructRegularSlabMesh(0.05 /*h*/, 1.0 /*width*/, 1.0 /*height*/);
-
 ```
 
 Set up the boundary conditions. v and w are zero on the entire boundary,
@@ -497,23 +491,22 @@ and du/dn=1 on the LHS and 0 otherwise.
             }
             iter++;
         }
-
 ```
 
 Use our solver
+
 ```cpp
         ThreeParabolicPdesSolver solver(&mesh,&bcc);
-
 ```
 
 The interface is exactly the same as the `SimpleLinearParabolicSolver`.
+
 ```cpp
         solver.SetTimeStep(0.01);
         solver.SetTimes(0.0, 2.0);
 
         Vec initial_condition = PetscTools::CreateAndSetVec(3*mesh.GetNumNodes(), 0.0);
         solver.SetInitialCondition(initial_condition);
-
 ```
 
 For this test we show how to output results to file for multiple sampling times. We start by
@@ -521,7 +514,6 @@ specifying an output directory and filename prefix for our results file:
 
 ```cpp
         solver.SetOutputDirectoryAndPrefix("ThreeVarCoupledProblem","results");
-
 ```
 
 When an output directory has been specified, the solver writes output in HDF5 format. To
@@ -536,14 +528,13 @@ converted to VTK or cmgui formats).
 ```cpp
         solver.SetOutputToTxt(true);
         solver.SetPrintingTimestepMultiple(10);
-
 ```
 
 We are now ready to solve the system.
+
 ```cpp
         Vec result = solver.Solve();
         ReplicatableVector result_repl(result);
-
 ```
 
 The plain txt output can be loaded into matlab for easy visualisation. For this we
@@ -553,15 +544,14 @@ the mesh
 ```cpp
         TrianglesMeshWriter<2,2> mesh_writer("ThreeVarCoupledProblem", "mesh", false /*don't clean (ie delete everything in) directory!*/);
         mesh_writer.WriteFilesUsingMesh(mesh);
-
 ```
 
 Note that we need to destroy the initial condition vector as well as the solution.
+
 ```cpp
         PetscTools::Destroy(initial_condition);
         PetscTools::Destroy(result);
 ```
-
 
  **Visualisation:** To visualise in matlab/octave, you can load the node file,
  and then the data files. However, the node file needs to be edited to remove any
@@ -584,12 +574,10 @@ end;
 ```cpp
     }
 };
-
 ```
 
-
-
 ## Full code
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "TetrahedralMesh.hpp"
@@ -846,5 +834,4 @@ public:
         PetscTools::Destroy(result);
     }
 };
-
 ```

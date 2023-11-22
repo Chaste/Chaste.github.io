@@ -17,56 +17,58 @@ can be used in a cell-based simulation.
 ### Including header files
 
 We begin by including the necessary header files.
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"
 #include "AbstractCellBasedTestSuite.hpp"
-
 ```
 
 The next header includes the Boost shared_ptr smart pointer, and defines some useful
 macros to save typing when using it.
+
 ```cpp
 #include "SmartPointers.hpp"
 ```
 
 The next header includes the NEVER_REACHED macro, used in one of the methods below.
+
 ```cpp
 #include "Exception.hpp"
-
 ```
 
 The next header defines a base class for ode-based SRN models.
 Our new SRN model will inherit from this abstract class.
+
 ```cpp
 #include "AbstractOdeSrnModel.hpp"
-
 ```
 
 These headers specify the methods to solve the ODE system.
+
 ```cpp
 #include "AbstractOdeSystem.hpp"
 #include "OdeSystemInformation.hpp"
 #include "RungeKutta4IvpOdeSolver.hpp"
-
 ```
 
 This header specifies the ODE solvers.
+
 ```cpp
 #include "CellCycleModelOdeSolver.hpp"
-
 ```
 
 The following headers are needed for checkpointing.
+
 ```cpp
 #include <boost/serialization/base_object.hpp>
 #include <boost/serialization/shared_ptr.hpp>
-
 ```
 
 The remaining header files define classes that will be used in the cell-based
 simulation test. We have encountered each of these header files in previous cell-based Chaste
 tutorials.
+
 ```cpp
 #include "CheckReadyToDivideAndPhaseIsUpdated.hpp"
 #include "HoneycombVertexMeshGenerator.hpp"
@@ -81,7 +83,6 @@ tutorials.
 
 //This test is always run sequentially (never in parallel)
 #include "FakePetscSetup.hpp"
-
 ```
 
 ### Defining the SRN model and ODE system classes
@@ -137,7 +138,6 @@ public:
         rDY[1] = rY[0];
     }
 };
-
 ```
 
 As in the ODE tutorials we need to define the ODE system information.
@@ -160,7 +160,6 @@ void OdeSystemInformation<MyOdeSystem>::Initialise()
 class MySrnModel : public AbstractOdeSrnModel
 {
 private:
-
 ```
 
 We only need to include the next block of code if we wish to be able
@@ -193,18 +192,17 @@ protected:
     {
 ```
 
-
 These lines copy the ODE system.
 
 ```cpp
         assert(rModel.GetOdeSystem());
         SetOdeSystem(new MyOdeSystem(rModel.GetOdeSystem()->rGetStateVariables()));
     }
-
 ```
 
 The first public method is a constructor, which just calls the base
 constructor.  Note you can include an optional argument to specify the ODE solver.
+
 ```cpp
 public:
 
@@ -218,7 +216,6 @@ public:
 
         assert(mpOdeSolver->IsSetUp());
     }
-
 ```
 
 The second public method overrides `CreateSrnModel()`. This is a
@@ -230,35 +227,35 @@ the (protected) copy constructor which creates a copy of the cell cycle model.
     {
         return new MySrnModel(*this);
     }
-
 ```
 
 The third public method overrides `Initialise()`.
+
 ```cpp
     void Initialise()
     {
         AbstractOdeSrnModel::Initialise(new MyOdeSystem);
     }
-
 ```
 
 The fourth public method runs the ODEs at each timestep and saves some results to `CellData`.
+
 ```cpp
     void SimulateToCurrentTime()
     {
         // run the ODE simulation as needed
         AbstractOdeSrnModel::SimulateToCurrentTime();
-
 ```
 
 this line outputs the ODE system variable to `CellData`.
+
 ```cpp
         mpCell->GetCellData()->SetItem("x",mpOdeSystem->rGetStateVariables()[0]);
     }
-
 ```
 
 Finally we define a method to output any parameters in our model, this needs to be included in every SRN model.
+
 ```cpp
     void OutputSrnModelParameters(out_stream& rParamsFile)
     {
@@ -266,7 +263,6 @@ Finally we define a method to output any parameters in our model, this needs to 
         AbstractOdeSrnModel::OutputSrnModelParameters(rParamsFile);
     }
 };
-
 ```
 
 We need to include the next block of code if you want to be able to archive (save or load)
@@ -274,6 +270,7 @@ the SRN model object in a cell-based simulation. It is also required for writing
 the parameters file describing the settings for a simulation - it provides the unique
 identifier for our new SRN model. Thus every SRN model class must provide this,
 or you'll get errors when running simulations.
+
 ```cpp
 #include "SerializationExportWrapper.hpp"
 CHASTE_CLASS_EXPORT(MyOdeSystem)
@@ -281,7 +278,6 @@ CHASTE_CLASS_EXPORT(MySrnModel)
 
 #include "CellCycleModelOdeSolverExportWrapper.hpp"
 EXPORT_CELL_CYCLE_MODEL_ODE_SOLVER(MySrnModel)
-
 ```
 
 Since we're defining the new SRN model and ODEs within the test file, we need to include the
@@ -294,7 +290,6 @@ more information.
 #include "SerializationExportWrapperForCpp.hpp"
 CHASTE_CLASS_EXPORT(MyOdeSystem)
 CHASTE_CLASS_EXPORT(MySrnModel)
-
 ```
 
 Need to re-include this after `SerializationExportWrapperForCpp.hpp`. This is to export the
@@ -303,7 +298,6 @@ components that would normally be in a seperate cpp file.
 ```cpp
 #include "CellCycleModelOdeSolverExportWrapper.hpp"
 EXPORT_CELL_CYCLE_MODEL_ODE_SOLVER(MySrnModel)
-
 ```
 
 This completes the code for `MySrnModel`. Note that usually this code would
@@ -317,7 +311,6 @@ We now define the test class, which inherits from `AbstractCellBasedTestSuite`.
 class TestCreatingAndUsingANewSrnModelTutorial : public AbstractCellBasedTestSuite
 {
 public:
-
 ```
 
 ### Testing the SRN model
@@ -330,12 +323,13 @@ We begin by testing that our new cell-cycle model is implemented correctly.
 ```
 
 Test that we can construct a `MySrnModel` object:
+
 ```cpp
         TS_ASSERT_THROWS_NOTHING(MySrnModel srn_model);
-
 ```
 
 Now we construct and initialise a cell with a `MySrnModel`.
+
 ```cpp
         MAKE_PTR(WildTypeCellMutationState, p_state);
         MAKE_PTR(DifferentiatedCellProliferativeType, p_diff_type);
@@ -345,10 +339,10 @@ Now we construct and initialise a cell with a `MySrnModel`.
         p_cell->SetCellProliferativeType(p_diff_type);
         p_cell->InitialiseCellCycleModel();
         p_cell->InitialiseSrnModel();
-
 ```
 
 Now increment time and check the ODE in `MySrnModel` is solved correctly.
+
 ```cpp
         double end_time = 10;
         unsigned num_steps = 1000;
@@ -359,17 +353,16 @@ Now increment time and check the ODE in `MySrnModel` is solved correctly.
             SimulationTime::Instance()->IncrementTimeOneStep();
 
             double current_time = SimulationTime::Instance()->GetTime();
-
 ```
 
 Check that the ODE system is solved correctly
+
 ```cpp
             p_srn_model->SimulateToCurrentTime();
 
             // Test converged to steady state
             TS_ASSERT_DELTA(p_cell->GetCellData()->GetItem("x"), cos(0.5*current_time), 1e-4);
         }
-
 ```
 
 Lastly, we briefly test that archiving of `MySrnModel` has
@@ -379,25 +372,26 @@ this to define a filename for the archive.
 ```cpp
         OutputFileHandler handler("archive", false);
         std::string archive_filename = handler.GetOutputDirectoryFullPath() + "my_srn_model.arch";
-
 ```
 
 Create an output archive.
+
 ```cpp
         {
 ```
 
 Destroy the current instance of `SimulationTime` and create another instance.
 Set the start time, end time and number of time steps.
+
 ```cpp
             SimulationTime::Destroy();
             SimulationTime::Instance()->SetStartTime(0.0);
             SimulationTime* p_simulation_time = SimulationTime::Instance();
             p_simulation_time->SetEndTimeAndNumberOfTimeSteps(3.0, 4);
-
 ```
 
 Create a cell with associated srn and cell-cycle model.
+
 ```cpp
             UniformG1GenerationalCellCycleModel* p_cell_cycle_model = new UniformG1GenerationalCellCycleModel();
             AbstractSrnModel* p_srn_model = new MySrnModel;
@@ -405,25 +399,26 @@ Create a cell with associated srn and cell-cycle model.
             p_cell->SetCellProliferativeType(p_diff_type);
             p_cell->InitialiseCellCycleModel();
             p_cell->InitialiseSrnModel();
-
 ```
 
 Move forward two time steps.
+
 ```cpp
             p_simulation_time->IncrementTimeOneStep();
             p_simulation_time->IncrementTimeOneStep();
 ```
 
 Solve the SRN.
+
 ```cpp
             p_srn_model->SimulateToCurrentTime();
 
             double current_time = 1.5;
             TS_ASSERT_DELTA(p_cell->GetCellData()->GetItem("x"), cos(0.5*current_time), 1e-4);
-
 ```
 
 Now archive the cell-cycle model through its cell.
+
 ```cpp
             CellPtr const p_const_cell = p_cell;
 
@@ -431,7 +426,6 @@ Now archive the cell-cycle model through its cell.
             boost::archive::text_oarchive output_arch(ofs);
             output_arch << p_const_cell;
         }
-
 ```
 
 Now create an input archive. Begin by again destroying the current
@@ -446,51 +440,51 @@ overwritten when you load the archive.
             p_simulation_time->SetStartTime(0.0);
             p_simulation_time->SetEndTimeAndNumberOfTimeSteps(1.0, 1);
             TS_ASSERT_DELTA(p_simulation_time->GetTime(), 0.0, 1e-4);
-
 ```
 
 Create a pointer to a cell.
+
 ```cpp
             CellPtr p_cell;
-
 ```
 
 Create an input archive and restore the cell from the archive.
+
 ```cpp
             std::ifstream ifs(archive_filename.c_str(), std::ios::binary);
             boost::archive::text_iarchive input_arch(ifs);
             input_arch >> p_cell;
-
 ```
 
 Test that the state of the ODES has been restored correctly.
+
 ```cpp
             double current_time = 1.5;
             TS_ASSERT_DELTA(p_simulation_time->GetTime(), current_time, 1e-4);
             TS_ASSERT_DELTA(p_cell->GetCellData()->GetItem("x"), cos(0.5*current_time), 1e-4);
-
 ```
 
 Move forward two more time steps.
+
 ```cpp
             p_simulation_time->IncrementTimeOneStep();
             p_simulation_time->IncrementTimeOneStep();
 ```
 
 Solve the SRN.
+
 ```cpp
             p_cell->GetSrnModel()->SimulateToCurrentTime();
-
 ```
 
 Check it's moved on OK
+
 ```cpp
             current_time = 3.0;
             TS_ASSERT_DELTA(p_simulation_time->GetTime(), current_time, 1e-4);
             TS_ASSERT_DELTA(p_cell->GetCellData()->GetItem("x"), cos(0.5*current_time), 1e-4);
         }
     }
-
 ```
 
 ### Using the SRN model in a cell-based simulation
@@ -508,10 +502,10 @@ We use the honeycomb vertex mesh generator to create a vertex mesh.
 ```cpp
         HoneycombVertexMeshGenerator generator(2, 2);
         boost::shared_ptr<MutableVertexMesh<2,2> > p_mesh = generator.GetMesh();
-
 ```
 
 Next, we create some cells. First, define the cells vector.
+
 ```cpp
         std::vector<CellPtr> cells;
 ```
@@ -519,25 +513,28 @@ Next, we create some cells. First, define the cells vector.
 We must create a shared_ptr to a `CellMutationState` with which to bestow the cells.
 We make use of the macro MAKE_PTR to do this: the first argument is the class and
 the second argument is the name of the shared_ptr.
+
 ```cpp
         MAKE_PTR(WildTypeCellMutationState, p_state);
         MAKE_PTR(StemCellProliferativeType, p_stem_type);
 ```
 
 Then we loop over the nodes.
+
 ```cpp
         for (unsigned i=0; i<p_mesh->GetNumElements(); i++)
         {
 ```
 
 For each node we create a cell with our SRN model and simple Stochastic cell cycle model.
+
 ```cpp
             UniformG1GenerationalCellCycleModel* p_cell_cycle_model = new UniformG1GenerationalCellCycleModel();
             MySrnModel* p_srn_model = new MySrnModel;
-
 ```
 
 We choose to initialise the concentrations to random levels in each cell.
+
 ```cpp
             std::vector<double> initial_conditions;
             initial_conditions.push_back(1.0-2.0*RandomNumberGenerator::Instance()->ranf());
@@ -546,7 +543,6 @@ We choose to initialise the concentrations to random levels in each cell.
 
             CellPtr p_cell(new Cell(p_state, p_cell_cycle_model, p_srn_model));
             p_cell->SetCellProliferativeType(p_stem_type);
-
 ```
 
 Now, we define a random birth time, chosen from [-T,0], where
@@ -557,15 +553,16 @@ T is the typical cell cycle duration
 ```
 
 We then set the birth time and push the cell back into the vector of cells.
+
 ```cpp
             p_cell->SetBirthTime(birth_time);
             cells.push_back(p_cell);
         }
-
 ```
 
 Now that we have defined the mesh and cells, we can define the cell population, forces, target area modifier, and simulation
 in the same way as the other tutorials.
+
 ```cpp
         VertexBasedCellPopulation<2> cell_population(*p_mesh, cells);
 
@@ -579,15 +576,14 @@ in the same way as the other tutorials.
 
         MAKE_PTR(SimpleTargetAreaModifier<2>, p_growth_modifier);
         simulator.AddSimulationModifier(p_growth_modifier);
-
 ```
 
 Finally to run the simulation, we call `Solve()`.
+
 ```cpp
         simulator.Solve();
     }
 ```
-
 
 To visualize the results, use Paraview. See the UserTutorials/VisualizingWithParaview tutorial for more information
 
@@ -596,12 +592,10 @@ and color by `x`.
 
 ```cpp
 };
-
 ```
 
-
-
 ## Full code
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"
@@ -891,5 +885,4 @@ public:
         simulator.Solve();
     }
 };
-
 ```

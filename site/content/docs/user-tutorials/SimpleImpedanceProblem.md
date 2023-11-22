@@ -16,25 +16,26 @@ Note that !SimpleImpedanceProblem uses Poiseuille formulas to calculate impedanc
 rather than more accurate acoustic impedance equations. For the more accurate version see !ImpedanceProblem.
 
 The usual headers are included
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "TrianglesMeshReader.hpp"
-
 ```
 
 !SimpleImpedanceProblem does most of the work in calculating impedance.
+
 ```cpp
 #include "SimpleImpedanceProblem.hpp"
-
 ```
 
 !ImpedancePostProcessor allows easy calculation of a number of clinically relevant measures.
+
 ```cpp
 #include "ImpedancePostProcessor.hpp"
-
 ```
 
 Define the test
+
 ```cpp
 class TestSimpleImpedanceProblemTutorial : public CxxTest::TestSuite
 {
@@ -43,7 +44,6 @@ public: // Tests should be public!
     void TestCalculateImpedance()
     {
         EXIT_IF_PARALLEL;
-
 ```
 
 First, we load up a mesh containing the centre lines and radii of the a complete conducting airway tree.
@@ -54,7 +54,6 @@ and algorithmic airway generation.
         TetrahedralMesh<1,3> mesh;
         TrianglesMeshReader<1,3> mesh_reader("lung/test/data/TestSubject002");
         mesh.ConstructFromMeshReader(mesh_reader);
-
 ```
 
 Note that the mesh defined above was developed using a CT scan taken at full inspiration. Impedance is more
@@ -68,7 +67,6 @@ tidal breathing range.
         {
             node_iter->rGetNodeAttributes()[0] *= 0.7;
         }
-
 ```
 
 Setup a !SimpleImpedanceProblem and tell it that the given mesh is defined in millimetres
@@ -76,7 +74,6 @@ Setup a !SimpleImpedanceProblem and tell it that the given mesh is defined in mi
 ```cpp
         SimpleImpedanceProblem problem(mesh, 0u);
         problem.SetMeshInMilliMetres();
-
 ```
 
 This vector lists the input frequencies at which to calculate impedance. They must be
@@ -92,7 +89,6 @@ monotonically increasing.
         test_frequencies.push_back(20.0);
         test_frequencies.push_back(30.0);
         problem.SetFrequencies(test_frequencies);               //Set & get frequencies for coverage
-
 ```
 
 The simple impedance model defines a linear spring at each terminal of the airway tree.
@@ -101,13 +97,12 @@ is then evenly distributed over the terminals.
 
 ```cpp
         problem.SetElastance(5.8*98.0665*1e3);
-
 ```
 
 Calculates the impedance at the given frequencies
+
 ```cpp
         problem.Solve();
-
 ```
 
 Get the calculated impedances. The impedance at each frequency is
@@ -116,7 +111,6 @@ made up of a real component (the resistance) and a complex component
 
 ```cpp
         std::vector<std::complex<double> > impedances = problem.rGetImpedances();
-
 ```
 
 The impedances calculated above could at this stage be written to a file
@@ -138,12 +132,10 @@ a number of common clinical summary statistics from the data.
         std::cout << "\n";
     }
 };
-
 ```
 
-
-
 ## Full code
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "TrianglesMeshReader.hpp"
@@ -204,5 +196,4 @@ public: // Tests should be public!
         std::cout << "\n";
     }
 };
-
 ```

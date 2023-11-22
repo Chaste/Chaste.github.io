@@ -17,34 +17,34 @@ NB. UMFPACK or KLU is required for this test to execute. The test has a reasonab
 Progress can be followed by watching the file $CHASTE_TEST_OUTPUT/TestDynamicVentilationTutorial/progress_status.txt
 
 The usual headers are included
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "TrianglesMeshReader.hpp"
-
 ```
 
 !DynamicVentilationProblem does most of the work in calculating a ventilation distribution.
+
 ```cpp
 #include "DynamicVentilationProblem.hpp"
-
 ```
 
 A number of acinar models could be used. Here we include the simplest possible model: a linear elastic balloon.
+
 ```cpp
 #include "SimpleBalloonAcinarUnit.hpp"
-
 ```
 
 Note that this tutorial only works with UMFPACK or KLU -- we need to warn the user if it's not installed.
+
 ```cpp
 #include "Warnings.hpp"
-
 ```
 
 !DynamicVentilationProblem uses the Petsc solver library. This setups up Petsc ready for use.
+
 ```cpp
 #include "PetscSetupAndFinalize.hpp"
-
 ```
 
 ### Acinar Unit Factory
@@ -61,7 +61,6 @@ public:
                             double frequency = 0.5) : mAcinarCompliance(acinarCompliance),
                                                       mFrequency(frequency)
     {}
-
 ```
 
 !DynamicVentilationProblem calls this method once for each terminal node.
@@ -73,12 +72,10 @@ model is subsequently used in the ventilation simulation.
     {
 ```
 
-
 Here we use the simplest possible acinar model: a linear elastic balloon.
 
 ```cpp
         SimpleBalloonAcinarUnit* p_acinus = new SimpleBalloonAcinarUnit;
-
 ```
 
 The acinar model can be configured in different ways.
@@ -94,7 +91,6 @@ location (obtained from pNode->rGetLocation()).
 
         return p_acinus;
     }
-
 ```
 
 !DynamicVentilationProblems are driven by a change in Pleural pressure. !DynamicVentilationProblem
@@ -111,10 +107,10 @@ private:
     double mAcinarCompliance;
     double mFrequency;
 };
-
 ```
 
 Define the test
+
 ```cpp
 class TestDynamicVentilationTutorial : public CxxTest::TestSuite
 {
@@ -124,12 +120,10 @@ public: // Tests should be public!
     {
 ```
 
-
 !DynamicVentilationProblem is not (yet) parallel.
 
 ```cpp
         EXIT_IF_PARALLEL;
-
 ```
 
 ### IMPORTANT
@@ -137,7 +131,6 @@ See the note below about use of direct solvers. This tutorial cannot be run with
 
 ```cpp
 #if defined(LUNG_USE_UMFPACK) || defined(LUNG_USE_KLU)
-
 ```
 
 First we need to create an acinar unit factory object from the class we specified earlier.
@@ -147,7 +140,6 @@ of 0.1 cmH2O/L (assuming there are 30000 acini).
 ```cpp
         double acinar_compliance = 0.1/98.0665/1e3/30000;
         SimpleAcinarUnitFactory factory(acinar_compliance);
-
 ```
 
 We now create a !DynamicVentilationProblem object that does most of the work in simulating ventilation.
@@ -155,31 +147,30 @@ The factory we just created is passed to the constructor along with the location
 
 ```cpp
         DynamicVentilationProblem problem(&factory, "lung/test/data/simplified_airways", 0u);
-
 ```
 
 We assign a zero pressure boundary condition at the entrance to the trachea.
+
 ```cpp
         problem.rGetMatrixVentilationProblem().SetOutflowPressure(0.0);
-
 ```
 
 The mesh we are using is specified in millimetres rather than in metres.
+
 ```cpp
         problem.rGetMatrixVentilationProblem().SetMeshInMilliMetres();
-
 ```
 
 The mesh we are using specifies airway radii on the edges rather than the nodes.
+
 ```cpp
         problem.rGetMatrixVentilationProblem().SetRadiusOnEdge();
-
 ```
 
 Tell the solver to use a more accurate Pedley based dynamic resistance scheme.
+
 ```cpp
         problem.rGetMatrixVentilationProblem().SetDynamicResistance();
-
 ```
 
 Here we tell the solver the time step size to use. The given value will typically
@@ -189,7 +180,6 @@ up their own simulations.
 
 ```cpp
         problem.SetTimeStep(0.02);
-
 ```
 
 Tell the solver where to write its output to.
@@ -197,17 +187,17 @@ The solver will also write out a progress_status.txt file to
 this directory to allow the user to monitor progress.
 We specify output in VTK format for
 easy visualisation.
+
 ```cpp
         problem.SetOutputDirectory("TestDynamicVentilationTutorial");
         problem.SetOutputFilenamePrefix("tidal_breathing");
         problem.SetWriteVtkOutput();
-
 ```
 
 Tell the solver how often to write output. Here we ask for output every 5 time steps.
+
 ```cpp
         problem.SetSamplingTimeStepMultiple(5u);
-
 ```
 
 Specify when to end the simulation (in seconds) and solve. Note that
@@ -219,7 +209,6 @@ end time to see a full breathing cycle.
 ```cpp
         problem.SetEndTime(1.0);
         problem.Solve();
-
 ```
 
 It is now possible to analyse the data produced by the ventilation simulation. Typically
@@ -243,7 +232,6 @@ For demonstration purposes we perform a simple check of the final lung volume he
         WARNING("Not compiled with a direct solver. Test not executed.");
 #endif
     }
-
 ```
 
 ### IMPORTANT: Using UMFPACK/KLU
@@ -264,12 +252,10 @@ open the file `lung/src/ventilation/MatrixVentilationProblem.hpp` and uncomment 
 
 ```cpp
 };
-
 ```
 
-
-
 ## Full code
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "TrianglesMeshReader.hpp"
@@ -361,5 +347,4 @@ public: // Tests should be public!
     }
 
 };
-
 ```

@@ -29,12 +29,12 @@ As in previous cell-based Chaste tutorials, we begin by including the necessary 
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"
 #include "AbstractCellBasedTestSuite.hpp"
-
 ```
 
 The remaining header files define classes that will be used in the cell population
 simulation test. We have encountered each of these header files in previous cell-based
 Chaste tutorials.
+
 ```cpp
 #include "UniformCellCycleModel.hpp"
 #include "FixedG1GenerationalCellCycleModel.hpp"
@@ -54,7 +54,6 @@ Chaste tutorials.
 #include "VoronoiDataWriter.hpp"
 
 #include "FakePetscSetup.hpp"
-
 ```
 
 Next, we define the test class, which inherits from `AbstractCellBasedTestSuite`
@@ -65,7 +64,6 @@ class TestVisualizingWithParaviewTutorial : public AbstractCellBasedTestSuite
 {
 public:
 ```
-
 
 ### Test 1 - a mesh-based cell centre monolayer simulation
 
@@ -93,7 +91,6 @@ with no differentiation.
         cells_generator.GenerateBasicRandom(cells, p_mesh->GetNumNodes(), p_transit_type);
 
         MeshBasedCellPopulation<2> cell_population(*p_mesh, cells);
-
 ```
 
 The default output method for mesh based simulations is as polytopes
@@ -102,7 +99,6 @@ instruct the simulation to output the data we need.
 
 ```cpp
         cell_population.AddPopulationWriter<VoronoiDataWriter>();
-
 ```
 
 The following line tells the cell population to also write data to .vtu files with cells
@@ -111,7 +107,6 @@ glyphs.
 
 ```cpp
         cell_population.SetWriteVtkAsPoints(true);
-
 ```
 
 In order to visualise the cells on the boundary we apply a bound to the voronoi
@@ -119,30 +114,29 @@ tesselation. Note this defaults to false.
 
 ```cpp
         cell_population.SetBoundVoronoiTessellation(true);
-
 ```
 
 We then pass in the cell population into an `OffLatticeSimulation`,
 and set the output directory and end time.
+
 ```cpp
         OffLatticeSimulation<2> simulator(cell_population);
         simulator.SetOutputDirectory("Test2DMeshBasedMonolayerSimulationForVisualizing");
         simulator.SetEndTime(1.0);
-
 ```
 
 We create a force law and pass it to the `OffLatticeSimulation`.
+
 ```cpp
         MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);
         p_linear_force->SetCutOffLength(1.5);
         simulator.AddForce(p_linear_force);
-
 ```
 
 To run the simulation, we call `Solve()`.
+
 ```cpp
         simulator.Solve();
-
 ```
 
 The next two lines are for test purposes only and are not part of this tutorial.
@@ -154,7 +148,6 @@ the lines should be removed.
         TS_ASSERT_EQUALS(cell_population.GetNumRealCells(), 108u);
         TS_ASSERT_DELTA(SimulationTime::Instance()->GetTime(), 1.0, 1e-10);
     }
-
 ```
 
 To visualize the results, we must first open Paraview. We open the folder containing our test output using the 'file' menu at
@@ -184,7 +177,6 @@ The only difference in this test is the generation of the mesh and use of ghost 
     {
 ```
 
-
 We setup the simulation in the same way as above but
 here we use a cylindrical mesh as we wish to enforce periodicity
 in the x direction.
@@ -213,7 +205,6 @@ in the x direction.
         simulator.AddForce(p_linear_force);
 
         simulator.Solve();
-
 ```
 
 The next two lines are for test purposes only and are not part of this tutorial.
@@ -225,7 +216,6 @@ the lines should be removed.
         TS_ASSERT_EQUALS(cell_population.GetNumRealCells(), 108u);
         TS_ASSERT_DELTA(SimulationTime::Instance()->GetTime(), 1.0, 1e-10);
     }
-
 ```
 
 To visualize the results, we follow the instructions above for the first simulation, ensuring that we open the
@@ -278,17 +268,16 @@ UserTutorials/RunningNodeBasedSimulations.
         simulator.AddForce(p_linear_force);
 
         simulator.Solve();
-
 ```
 
 The next two lines are for test purposes only and are not part of this tutorial.
 We are checking that we reached the end time of the simulation
 with the correct number of cells.
+
 ```cpp
         TS_ASSERT_EQUALS(cell_population.GetNumRealCells(), 108u);
         TS_ASSERT_DELTA(SimulationTime::Instance()->GetTime(), 1.0, 1e-10);
     }
-
 ```
 
 To visualize the results, we follow the instructions above for the first simulation, ensuring that we open the
@@ -323,23 +312,22 @@ cell-cycle model (with differentiation after a default number of generations).
         cells_generator.GenerateBasic(cells, p_mesh->GetNumElements());
 
         VertexBasedCellPopulation<2> cell_population(*p_mesh, cells);
-
 ```
 
 We then pass in the cell population into an `OffLatticeSimulation`,
 and set the output directory and end time.
+
 ```cpp
         OffLatticeSimulation<2> simulator(cell_population);
         simulator.SetOutputDirectory("Test2DVertexMonolayerSimulationForVisualizing");
         simulator.SetEndTime(0.1);
-
 ```
 
 We create a force law and pass it to the `OffLatticeSimulation`.
+
 ```cpp
         MAKE_PTR(NagaiHondaForce<2>, p_nagai_honda_force);
         simulator.AddForce(p_nagai_honda_force);
-
 ```
 
 We also make a pointer to a target area modifier and add it to the simulator.
@@ -348,36 +336,33 @@ The target area modifier assigns target areas to cells throughout the simulation
 ```cpp
         MAKE_PTR(SimpleTargetAreaModifier<2>, p_growth_modifier);
         simulator.AddSimulationModifier(p_growth_modifier);
-
 ```
 
 To run the simulation, we call `Solve()`.
+
 ```cpp
         simulator.Solve();
-
 ```
 
 The next two lines are for test purposes only and are not part of this tutorial.
 We are checking that we reached the end time of the simulation
 with the correct number of cells.
+
 ```cpp
         TS_ASSERT_EQUALS(cell_population.GetNumRealCells(), 84u);
         TS_ASSERT_DELTA(SimulationTime::Instance()->GetTime(), 0.1, 1e-10);
     }
 ```
 
-
 To visualize the results, we follow the instructions above for the first simulation, ensuring that we open the
 test output from the new folder, `Test2DVertexMonolayerSimulationForVisualizing`.
 
 ```cpp
 };
-
 ```
 
-
-
 ## Full code
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"
@@ -523,5 +508,4 @@ public:
         TS_ASSERT_DELTA(SimulationTime::Instance()->GetTime(), 0.1, 1e-10);
     }
 };
-
 ```

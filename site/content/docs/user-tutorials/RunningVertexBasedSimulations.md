@@ -22,12 +22,12 @@ As in previous cell-based Chaste tutorials, we begin by including the necessary 
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"
 #include "AbstractCellBasedTestSuite.hpp"
-
 ```
 
 The remaining header files define classes that will be used in the cell-based
 simulation. We have encountered some of these header files in previous cell-based
 Chaste tutorials.
+
 ```cpp
 #include "CellsGenerator.hpp"
 #include "OffLatticeSimulation.hpp"
@@ -36,17 +36,20 @@ Chaste tutorials.
 ```
 
 The next header file defines the cell cycle model.
+
 ```cpp
 #include "UniformG1GenerationalCellCycleModel.hpp"
 ```
 
 The next two header files define a helper class for generating suitable meshes: one planar and one periodic.
+
 ```cpp
 #include "HoneycombVertexMeshGenerator.hpp"
 #include "CylindricalHoneycombVertexMeshGenerator.hpp"
 ```
 
 The next header file defines a vertex-based `CellPopulation` class.
+
 ```cpp
 #include "VertexBasedCellPopulation.hpp"
 ```
@@ -67,20 +70,21 @@ the next header file.
 ```
 
 The next header file defines a boundary condition for the cells.
+
 ```cpp
 #include "PlaneBoundaryCondition.hpp"
 ```
 
 The next header file defines a cell killer, which specifies how cells are removed from the simulation.
+
 ```cpp
 #include "PlaneBasedCellKiller.hpp"
-
 ```
 
 Finally, we include a header that enforces running this test only on one process.
+
 ```cpp
 #include "FakePetscSetup.hpp"
-
 ```
 
 Next, we define the test class, which inherits from `AbstractCellBasedTestSuite`
@@ -91,7 +95,6 @@ class TestRunningVertexBasedSimulationsTutorial : public AbstractCellBasedTestSu
 {
 public:
 ```
-
 
 ### Test 1 - a basic vertex-based simulation
 
@@ -112,7 +115,6 @@ cells) wide, and 2 elements high.
 ```cpp
         HoneycombVertexMeshGenerator generator(2, 2);    // Parameters are: cells across, cells up
         boost::shared_ptr<MutableVertexMesh<2,2> > p_mesh = generator.GetMesh();
-
 ```
 
 Having created a mesh, we now create a `std::vector` of `CellPtr`s.
@@ -122,12 +124,12 @@ and the dimension. We create an empty vector of cells and pass this into the
 method along with the mesh. The second argument represents the size of that the vector
 `cells` should become - one cell for each element, the third argument specifies
 the proliferative type of the cell.
+
 ```cpp
         std::vector<CellPtr> cells;
         MAKE_PTR(TransitCellProliferativeType, p_transit_type);
         CellsGenerator<UniformG1GenerationalCellCycleModel, 2> cells_generator;
         cells_generator.GenerateBasicRandom(cells, p_mesh->GetNumElements(), p_transit_type);
-
 ```
 
 Now we have a mesh and a set of cells to go with it, we can create a `CellPopulation`.
@@ -137,16 +139,15 @@ cell population called a `VertexBasedCellPopulation`.
 
 ```cpp
         VertexBasedCellPopulation<2> cell_population(*p_mesh, cells);
-
 ```
 
 We then pass the cell population into an `OffLatticeSimulation`,
 and set the output directory and end time.
+
 ```cpp
         OffLatticeSimulation<2> simulator(cell_population);
         simulator.SetOutputDirectory("VertexBasedMonolayer");
         simulator.SetEndTime(1.0);
-
 ```
 
 For longer simulations, we may not want to output the results
@@ -157,7 +158,6 @@ simulator to print results every 6 minutes (i.e. 0.1 hours).
 
 ```cpp
         simulator.SetSamplingTimestepMultiple(50);
-
 ```
 
 We must now create one or more force laws, which determine the mechanics of the vertices
@@ -172,7 +172,6 @@ if you try to use an incompatible class then you will receive a warning.
 ```cpp
         MAKE_PTR(NagaiHondaForce<2>, p_force);
         simulator.AddForce(p_force);
-
 ```
 
 A `NagaiHondaForce` assumes that each cell has a target area. The target areas of cells are used to determine pressure
@@ -183,22 +182,21 @@ and update them in each time step to model growth, we add a `SimpleTargetAreaMod
 ```cpp
         MAKE_PTR(SimpleTargetAreaModifier<2>, p_growth_modifier);
         simulator.AddSimulationModifier(p_growth_modifier);
-
 ```
 
 To run the simulation, we call `Solve()`.
+
 ```cpp
         simulator.Solve();
-
 ```
 
 The next two lines are for test purposes only and are not part of this tutorial. If different simulation input parameters are being explored
 the lines should be removed.
+
 ```cpp
         TS_ASSERT_EQUALS(cell_population.GetNumRealCells(), 4u);
         TS_ASSERT_DELTA(SimulationTime::Instance()->GetTime(), 1.0, 1e-10);
     }
-
 ```
 
 To visualize the results, open a new terminal, `cd` to the Chaste directory,
@@ -227,17 +225,16 @@ is 4 elements (i.e. cells) wide, and 4 elements high.
 ```cpp
         CylindricalHoneycombVertexMeshGenerator generator(4, 4);    // Parameters are: cells across, cells up
         boost::shared_ptr<Cylindrical2dVertexMesh> p_mesh = generator.GetCylindricalMesh();
-
 ```
 
 Having created a mesh, we now create a `std::vector` of `CellPtr`s.
 This is exactly the same as the above test.
+
 ```cpp
         std::vector<CellPtr> cells;
         MAKE_PTR(TransitCellProliferativeType, p_transit_type);
         CellsGenerator<UniformG1GenerationalCellCycleModel, 2> cells_generator;
         cells_generator.GenerateBasicRandom(cells, p_mesh->GetNumElements(), p_transit_type);
-
 ```
 
 Now we have a mesh and a set of cells to go with it, we can create a `CellPopulation`.
@@ -245,17 +242,16 @@ This is also the same as in the above test.
 
 ```cpp
         VertexBasedCellPopulation<2> cell_population(*p_mesh, cells);
-
 ```
 
 As always we then pass the cell population into an `OffLatticeSimulation`,
 and set the output directory, output multiple and end time.
+
 ```cpp
         OffLatticeSimulation<2> simulator(cell_population);
         simulator.SetOutputDirectory("VertexBasedPeriodicMonolayer");
         simulator.SetSamplingTimestepMultiple(50);
         simulator.SetEndTime(1.0);
-
 ```
 
 We now make a pointer to an appropriate force and pass it to the
@@ -264,7 +260,6 @@ We now make a pointer to an appropriate force and pass it to the
 ```cpp
         MAKE_PTR(NagaiHondaForce<2>, p_force);
         simulator.AddForce(p_force);
-
 ```
 
 We also make a pointer to a target area modifier and add it to the simulator.
@@ -272,7 +267,6 @@ We also make a pointer to a target area modifier and add it to the simulator.
 ```cpp
         MAKE_PTR(SimpleTargetAreaModifier<2>, p_growth_modifier);
         simulator.AddSimulationModifier(p_growth_modifier);
-
 ```
 
 We now create one or more `CellPopulationBoundaryCondition`s, which determine
@@ -295,10 +289,10 @@ The first step is to define a point on the plane boundary and a normal to the pl
 
 We can now make a pointer to a `PlaneBoundaryCondition` (passing the point
 and normal to the plane) and pass it to the `OffLatticeSimulation`.
+
 ```cpp
         MAKE_PTR_ARGS(PlaneBoundaryCondition<2>, p_bc, (&cell_population, point, normal));
         simulator.AddCellPopulationBoundaryCondition(p_bc);
-
 ```
 
 We now create one or more `CellKiller`s, which determine how cells are removed
@@ -317,16 +311,16 @@ We reuse the point and normal from the `PlaneBoundaryCondition`.
 
 Finally we now make a pointer to a `PlaneBasedCellKiller` (passing the point
 and normal to the plane) and pass it to the `OffLatticeSimulation`.
+
 ```cpp
         MAKE_PTR_ARGS(PlaneBasedCellKiller<2>, p_killer, (&cell_population, point, normal));
         simulator.AddCellKiller(p_killer);
-
 ```
 
 To run the simulation, we call `Solve()`.
+
 ```cpp
         simulator.Solve();
-
 ```
 
 The next two lines are for test purposes only and are not part of this tutorial.
@@ -337,7 +331,6 @@ The next two lines are for test purposes only and are not part of this tutorial.
     }
 ```
 
-
 To visualize the results, open a new terminal, `cd` to the Chaste directory,
 then `cd` to `anim`. Then do: `java Visualize2dVertexCells /tmp/$USER/testoutput/VertexBasedPeriodicMonolayer/results_from_time_0`.
 
@@ -346,12 +339,10 @@ longer pass through the line y=0; and cells are removed at y=3.
 
 ```cpp
 };
-
 ```
 
-
-
 ## Full code
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"
@@ -445,5 +436,4 @@ public:
         TS_ASSERT_DELTA(SimulationTime::Instance()->GetTime(), 1.0, 1e-10);
     }
 };
-
 ```

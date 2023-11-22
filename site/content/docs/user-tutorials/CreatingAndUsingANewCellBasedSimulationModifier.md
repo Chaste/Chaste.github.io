@@ -24,11 +24,11 @@ header file and archiving headers.
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"
 #include "AbstractCellBasedTestSuite.hpp"
-
 ```
 
 The next header defines a base class for cell-based simulation modifiers.
 Our new modifier class will inherit from this abstract class.
+
 ```cpp
 #include "AbstractCellBasedSimulationModifier.hpp"
 ```
@@ -36,6 +36,7 @@ Our new modifier class will inherit from this abstract class.
 The remaining header files define classes that will be used in the cell-based
 simulation test. We have encountered each of these header files in previous cell-based
 Chaste tutorials.
+
 ```cpp
 #include "AbstractForce.hpp"
 #include "HoneycombMeshGenerator.hpp"
@@ -48,7 +49,6 @@ Chaste tutorials.
 #include "SmartPointers.hpp"
 //This test is always run sequentially (never in parallel)
 #include "FakePetscSetup.hpp"
-
 ```
 
 ### Defining the cell-based simulation modifier class
@@ -73,18 +73,17 @@ class CellHeightTrackingModifier : public AbstractCellBasedSimulationModifier<2,
     {
         archive & boost::serialization::base_object<AbstractCellBasedSimulationModifier<2,2> >(*this);
     }
-
 ```
 
 The first public method is a default constructor, which simply calls the base
 constructor.
+
 ```cpp
 public:
 
     CellHeightTrackingModifier()
         : AbstractCellBasedSimulationModifier<2,2>()
     {}
-
 ```
 
 The next public method is a destructor, which calls the base destructor.
@@ -92,7 +91,6 @@ The next public method is a destructor, which calls the base destructor.
 ```cpp
     ~CellHeightTrackingModifier()
     {}
-
 ```
 
 Next, we override the `UpdateAtEndOfTimeStep()` method, which specifies what
@@ -105,7 +103,6 @@ defined later in the class definition.
     {
         UpdateCellData(rCellPopulation);
     }
-
 ```
 
 The next overridden method, `SetupSolve()`, specifies what to do to the
@@ -121,7 +118,6 @@ the main time loop of the simulation.
 
         UpdateCellData(rCellPopulation);
     }
-
 ```
 
 Next, we define the `UpdateCellData()` method itself. This is a helper
@@ -133,13 +129,11 @@ and stores this in the `CellData` property.
     {
 ```
 
-
 We begin by calling `Update()` on the cell population, which ensures that
 it is in a coherent state.
 
 ```cpp
         rCellPopulation.Update();
-
 ```
 
 Next, we iterate over the cell population...
@@ -151,12 +145,10 @@ Next, we iterate over the cell population...
         {
 ```
 
-
 ...find its height...
 
 ```cpp
             double cell_height = rCellPopulation.GetLocationOfCellCentre(*cell_iter)[1];
-
 ```
 
 ...and store this in the `CellData` item "height".
@@ -165,7 +157,6 @@ Next, we iterate over the cell population...
             cell_iter->GetCellData()->SetItem("height", cell_height);
         }
     }
-
 ```
 
 Finally, we must override the `OutputSimulationModifierParameters()` method, which
@@ -179,7 +170,6 @@ parent class (in this case, the abstract class).
         AbstractCellBasedSimulationModifier<2>::OutputSimulationModifierParameters(rParamsFile);
     }
 };
-
 ```
 
 This concludes the definition of the `CellHeightTrackingModifier` class.
@@ -197,7 +187,6 @@ the class's header file, and the second #include and export would go in in the .
 CHASTE_CLASS_EXPORT(CellHeightTrackingModifier)
 #include "SerializationExportWrapperForCpp.hpp"
 CHASTE_CLASS_EXPORT(CellHeightTrackingModifier)
-
 ```
 
 ### The Tests
@@ -208,7 +197,6 @@ We now define the test class, which inherits from `AbstractCellBasedTestSuite`.
 class TestCreatingAndUsingANewCellBasedSimulationModifierTutorial : public AbstractCellBasedTestSuite
 {
 public:
-
 ```
 
 #### Using the modifier in a cell-based simulation
@@ -220,7 +208,6 @@ in a cell-based simulation.
     void TestOffLatticeSimulationWithCellHeightTrackingModifier()
     {
 ```
-
 
 In this case, we choose to create a small `NodeBasedCellPopulation` comprising 25 cells.
 We choose a cut-off for mechanical interactions between cells of 1.5 units and add a
@@ -247,7 +234,6 @@ to implement some random proliferation in the simulation.
 
         MAKE_PTR(RepulsionForce<2>, p_force);
         simulator.AddForce(p_force);
-
 ```
 
 Finally, we add a `CellHeightTrackingModifier` to the simulation.
@@ -255,24 +241,22 @@ Finally, we add a `CellHeightTrackingModifier` to the simulation.
 ```cpp
         MAKE_PTR(CellHeightTrackingModifier, p_modifier);
         simulator.AddSimulationModifier(p_modifier);
-
 ```
 
 To run the simulation, we call `Solve()`.
+
 ```cpp
         simulator.Solve();
     }
 };
 ```
 
-
 It is most straightforward to visualize the results of this simulation in Paraview.
 Load the file `/tmp/$USER/testoutput/TestOffLatticeSimulationWithCellHeightTrackingModifier/results_from_time_0/results.pvd`,
 and add glyphs to represent cells.
 
-
-
 ## Full code
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"

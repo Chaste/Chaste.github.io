@@ -23,27 +23,29 @@ We then go on to consider the behaviour of a vertex-based population in a box th
 ### Including header files
 
 We begin by including the necessary header files.
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 ```
 
 This header needs to be included here to ensure archiving of `CelwiseData` works on all Boost versions.
+
 ```cpp
 #include "CheckpointArchiveTypes.hpp"
 #include "AbstractCellBasedTestSuite.hpp"
-
 ```
 
 The next header includes the Boost `shared_ptr` smart pointer, and defines some useful
 macros to save typing when using it.
+
 ```cpp
 #include "SmartPointers.hpp"
 ```
 
 The next header include the `NEVER_REACHED` macro, which is used in one of the methods below.
+
 ```cpp
 #include "Exception.hpp"
-
 ```
 
 The next header file defines the contact inhibition cell-cycle model that inherits from `AbstractCellCycleModel`.
@@ -60,7 +62,6 @@ using the cell property `CellData`.
 
 ```cpp
 #include "ContactInhibitionCellCycleModel.hpp"
-
 ```
 
 The next header defines the simulation class modifier corresponding to the contact inhibition cell-cycle model.
@@ -68,10 +69,10 @@ This modifier updates the `CellData` cell property at each timestep with the vol
 
 ```cpp
 #include "VolumeTrackingModifier.hpp"
-
 ```
 
 The remaining header files define classes that will be also be used and are presented in other tutorials.
+
 ```cpp
 #include "OffLatticeSimulation.hpp"
 #include "MeshBasedCellPopulation.hpp"
@@ -92,16 +93,15 @@ The remaining header files define classes that will be also be used and are pres
 #include "MutableVertexMesh.hpp"
 #include "PlaneBoundaryCondition.hpp"
 #include "FakePetscSetup.hpp"
-
 ```
 
 We first define the global test class that inherits from `AbstractCellBasedTestSuite`.
+
 ```cpp
 class TestRunningContactInhibitionSimulationsTutorial : public AbstractCellBasedTestSuite
 {
 public:
 ```
-
 
 ### Testing healthy cell contact inhibition with mesh-based population
 
@@ -115,29 +115,30 @@ Each cell will only divide if there is sufficient room.
 
 We use the honeycomb mesh generator to create a honeycomb mesh and
 the associated mutable mesh.
+
 ```cpp
         HoneycombMeshGenerator generator(3, 3);
         boost::shared_ptr<MutableMesh<2,2> > p_mesh = generator.GetMesh();
-
 ```
 
 We now create a vector of cell pointers.
+
 ```cpp
         std::vector<CellPtr> cells;
-
 ```
 
 We then define the mutation state of the cells we are working with. We will just consider
 wild type mutations here.
+
 ```cpp
         MAKE_PTR(WildTypeCellMutationState, p_state);
         MAKE_PTR(TransitCellProliferativeType, p_transit_type);
-
 ```
 
 We now create a cell-cycle (only contact inhibited) model for these cells and loop over the
 nodes of the mesh to create as many elements in the vector of cell pointers as there are
 in the initial mesh.
+
 ```cpp
         for (unsigned i=0; i<p_mesh->GetNumNodes(); i++)
         {
@@ -153,45 +154,44 @@ in the initial mesh.
 
             cells.push_back(p_cell);
         }
-
 ```
 
 We now create a cell population, that takes several inputs: the mesh (for the position); and
 the vector of cell pointers (for cycles and states)
+
 ```cpp
         MeshBasedCellPopulation<2> cell_population(*p_mesh, cells);
-
 ```
 
 In order to visualize labelled cells (i.e. those that are inhibited from division) you need to use the following command.
+
 ```cpp
         cell_population.AddCellPopulationCountWriter<CellMutationStatesCountWriter>();
-
 ```
 
 Here we create a simulation as before. We also set up the output directory, the end time and the output multiple.
+
 ```cpp
         OffLatticeSimulation<2> simulator(cell_population);
         simulator.SetOutputDirectory("TestContactInhibitionInBox");
         simulator.SetSamplingTimestepMultiple(12);
         simulator.SetEndTime(20.0);
-
 ```
 
 Then, we define the modifier class, which automatically updates the volumes of the cells in `CellData` and passes it to the simulation.
+
 ```cpp
         MAKE_PTR(VolumeTrackingModifier<2>, p_modifier);
         simulator.AddSimulationModifier(p_modifier);
-
 ```
 
 Next, we create a force law (springs) to be applied between cell centres and set up a
 cut-off length beyond which cells stop interacting. We then pass this to the `VolumeTrackedOffLatticeSimulation`.
+
 ```cpp
         MAKE_PTR(GeneralisedLinearSpringForce<2>, p_force);
         p_force->SetCutOffLength(1.5);
         simulator.AddForce(p_force);
-
 ```
 
 To study the behaviour of the cells with varying volume, we trap them in the square domain [0,2.5]x[0,2.5].
@@ -200,6 +200,7 @@ These planes are indicated by a point and a normal and then passed to the `Volum
 The domain is chosen to be quite small so as to make the test run in a short amount of time.
 
 First we impose a wall at x=0:
+
 ```cpp
         c_vector<double,2> point = zero_vector<double>(2);
         c_vector<double,2> normal = zero_vector<double>(2);
@@ -209,6 +210,7 @@ First we impose a wall at x=0:
 ```
 
 Then we impose a wall at x<=2.5:
+
 ```cpp
         point(0) = 2.5;
         normal(0) = 1.0;
@@ -217,6 +219,7 @@ Then we impose a wall at x<=2.5:
 ```
 
 Then we impose a wall at y>0:
+
 ```cpp
         point(0) = 0.0;
         point(1) = 0.0;
@@ -227,20 +230,20 @@ Then we impose a wall at y>0:
 ```
 
 Finally we impose a wall at y<2.5:
+
 ```cpp
         point(1) = 2.5;
         normal(1) = 1.0;
         MAKE_PTR_ARGS(PlaneBoundaryCondition<2>, p_bc4, (&cell_population, point, normal));
         simulator.AddCellPopulationBoundaryCondition(p_bc4);
-
 ```
 
 To run the simulation, we call `Solve()`.
+
 ```cpp
         simulator.Solve();
     }
 ```
-
 
 To visualize the results, open a new terminal, `cd` to the Chaste directory,
 then `cd` to `anim`. Then do: `java Visualize2dCentreCells /tmp/$USER/testoutput/TestContactInhibitionInBox/results_from_time_0`.
@@ -260,14 +263,15 @@ divide if there is sufficient room whereas tumour cells will divide regardless.
 ```
 
 Just as before we create a simple mesh.
+
 ```cpp
         HoneycombMeshGenerator generator(3, 3);
         boost::shared_ptr<MutableMesh<2,2> > p_mesh = generator.GetMesh();
-
 ```
 
 We again create the cells. The difference here is that one of the cells is not contact-inhibited, but rather
 is defined by a `UniformCellCycleModel`.
+
 ```cpp
         MAKE_PTR(WildTypeCellMutationState, p_state);
         MAKE_PTR(StemCellProliferativeType, p_stem_type);
@@ -299,48 +303,48 @@ is defined by a `UniformCellCycleModel`.
                 cells.push_back(p_cell);
             }
         }
-
 ```
 
 We now create a cell population, that takes several inputs: the mesh; and
 the vector of cell pointers
+
 ```cpp
         MeshBasedCellPopulation<2> cell_population(*p_mesh, cells);
-
 ```
 
 In order to visualize labelled cells (i.e those that are inhibited from division) you need to use the following command.
+
 ```cpp
         cell_population.AddCellPopulationCountWriter<CellMutationStatesCountWriter>();
-
 ```
 
 Here we create a simulation as before. We also set up the output directory, the end time and the output multiple.
+
 ```cpp
         OffLatticeSimulation<2> simulator(cell_population);
         simulator.SetOutputDirectory("TestContactInhibitionTumourInBox");
         simulator.SetSamplingTimestepMultiple(12);
         simulator.SetEndTime(20.0);
-
 ```
 
 Then, we define the modifier class, which automatically updates the volumes of the cells in `CellData` and passes it to the simulation.
+
 ```cpp
         MAKE_PTR(VolumeTrackingModifier<2>, p_modifier);
         simulator.AddSimulationModifier(p_modifier);
-
 ```
 
 Next, we create a force law (springs) to be applied between cell centres and set up a
 cut-off length beyond which cells stop interacting. We then pass this to the `VolumeTrackedOffLatticeSimulation`
+
 ```cpp
         MAKE_PTR(GeneralisedLinearSpringForce<2>, p_force);
         p_force->SetCutOffLength(1.5);
         simulator.AddForce(p_force);
-
 ```
 
 As in the previous test, we trap the cells in the square domain [0,2.5]x[0,2.5]:
+
 ```cpp
         c_vector<double,2> point = zero_vector<double>(2);
         c_vector<double,2> normal = zero_vector<double>(2);
@@ -364,15 +368,14 @@ As in the previous test, we trap the cells in the square domain [0,2.5]x[0,2.5]:
         normal(1) = 1.0;
         MAKE_PTR_ARGS(PlaneBoundaryCondition<2>, p_bc4, (&cell_population, point, normal));
         simulator.AddCellPopulationBoundaryCondition(p_bc4);
-
 ```
 
 Finally, to run the simulation, we call `Solve()`.
+
 ```cpp
         simulator.Solve();
     }
 ```
-
 
 To visualize the results, open a new terminal, `cd` to the Chaste directory,
 then `cd` to `anim`. Then do: `java Visualize2dCentreCells /tmp/$USER/testoutput/TestContactInhibitionTumourInBox/results_from_time_0`.
@@ -393,10 +396,10 @@ The example we use is a growing monolayer.
 ```
 
 First we create a simple 2D MutableVertexMesh.
+
 ```cpp
         HoneycombVertexMeshGenerator generator(2, 2);
         boost::shared_ptr<MutableVertexMesh<2,2> > p_mesh = generator.GetMesh();
-
 ```
 
 We then create cells as before, only this time we need one per element. We also create the cell population (a `VertexBasedCellPopulation`).
@@ -421,31 +424,30 @@ We then create cells as before, only this time we need one per element. We also 
 
         VertexBasedCellPopulation<2> cell_population(*p_mesh, cells);
         cell_population.AddCellPopulationCountWriter<CellMutationStatesCountWriter>();
-
 ```
 
 Here we create a simulation as before. We also set up the output directory, the end time and the output multiple.
+
 ```cpp
         OffLatticeSimulation<2> simulator(cell_population);
         simulator.SetOutputDirectory("TestVertexContactInhibition");
         simulator.SetSamplingTimestepMultiple(50);
         simulator.SetEndTime(10.0);
-
 ```
 
 Then, we define the modifier class, which automatically updates the volumes of the cells in `CellData` and passes it to the simulation.
+
 ```cpp
         MAKE_PTR(VolumeTrackingModifier<2>, p_modifier);
         simulator.AddSimulationModifier(p_modifier);
-
 ```
 
 Next, we create a force law, `NagaiHondaForce`, to be applied to vertices.
 We then pass this to the `VolumeTrackedOffLatticeSimulation`.
+
 ```cpp
         MAKE_PTR(NagaiHondaForce<2>, p_nagai_honda_force);
         simulator.AddForce(p_nagai_honda_force);
-
 ```
 
 In order to model cell growth between divisions, we add a `SimpleTargetAreaModifier`
@@ -454,15 +456,14 @@ to the simulator.
 ```cpp
         MAKE_PTR(SimpleTargetAreaModifier<2>, p_growth_modifier);
         simulator.AddSimulationModifier(p_growth_modifier);
-
 ```
 
 To run the simulation, we call `Solve()`.
+
 ```cpp
         simulator.Solve();
     }
 ```
-
 
 To visualize the results, open a new terminal, `cd` to the Chaste directory,
 then `cd` to `anim`. Then do: `java Visualize2dVertexCells /tmp/$USER/testoutput/TestVertexContactInhibition/results_from_time_0`.
@@ -474,12 +475,10 @@ If you run the simulation for a long time these cells occur primarily towards th
 
 ```cpp
 };
-
 ```
 
-
-
 ## Full code
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"
@@ -697,5 +696,4 @@ public:
         simulator.Solve();
     }
 };
-
 ```

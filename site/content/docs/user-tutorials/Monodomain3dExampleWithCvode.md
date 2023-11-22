@@ -39,11 +39,11 @@ So here we do the `#include` to import the native CVODE version of the cell mode
 ```
 
 then include the rest of the headers as usual
+
 ```cpp
 #include "TetrahedralMesh.hpp"
 #include "SimpleStimulus.hpp"
 #include "PetscSetupAndFinalize.hpp"
-
 ```
 
 Since CVODE is an optional extra dependency for Chaste - albeit now
@@ -56,7 +56,6 @@ See the end of the file python/hostconfig/default.py for an example of this.
 
 ```cpp
 #ifdef CHASTE_CVODE
-
 ```
 
 The major changes required to run with CVODE cells are in the cell factory.
@@ -73,7 +72,6 @@ public:
           mpStimulus(new SimpleStimulus(-100000.0, 2))
     {
     }
-
 ```
 
 The following method definition changes to return an `AbstractCvodeCell`
@@ -84,7 +82,6 @@ instead of an `AbstractCardiacCell`.
     {
         AbstractCvodeCell* p_cell;
 ```
-
 
 Purely in order to maintain a consistent interface,
 an `AbstractCvodeCell` expects an `AbstractIvpOdeSolver` in its
@@ -97,7 +94,6 @@ pointer can be passed.
         double x = pNode->rGetLocation()[0];
         double y = pNode->rGetLocation()[1];
         double z = pNode->rGetLocation()[2];
-
 ```
 
 We then create a 'native' CVODE cell - each cell has its own solver embedded within it.
@@ -118,7 +114,6 @@ between runs to perform its adaptive scheme.
         }
 ```
 
-
 We can also set the tolerances of the ODE solver (in this case,
 the method is just setting them to the same as the default, but is shown for completeness).
 
@@ -134,7 +129,6 @@ that are better than anything but a ridiculously small Forward Euler step).
 };
 
 #endif // CHASTE_CVODE
-
 ```
 
 The rest of the test is almost identical to the non-CVODE cell case,
@@ -155,7 +149,6 @@ public:
         HeartConfig::Instance()->SetSimulationDuration(5); //ms
         HeartConfig::Instance()->SetOutputDirectory("Monodomain3dExampleWithCvode");
         HeartConfig::Instance()->SetOutputFilenamePrefix("results");
-
 ```
 
 Note - when using CVODE in cardiac tissue simulations the ODE timestep
@@ -174,7 +167,6 @@ accurately before reducing the step just to get faster ODE solution!
 
 ```cpp
         HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(0.01, 0.01, 0.1);
-
 ```
 
 The rest of the code is unchanged.
@@ -199,7 +191,6 @@ The rest of the code is unchanged.
         monodomain_problem.Solve();
 
         ReplicatableVector voltage(monodomain_problem.GetSolution());
-
 ```
 
  **NB**: CVODE almost certainly gives a more accurate ODE solution than
@@ -207,7 +198,6 @@ The rest of the code is unchanged.
 
 ```cpp
         TS_ASSERT_DELTA(voltage[0], 34.7740, 1e-1); // Slack tolerance for different CVODE versions.
-
 ```
 
 Here we add a visual warning in case CVODE is not installed and/or set up.
@@ -226,9 +216,8 @@ but note that if this is the case, then the test is not doing anything!
 };
 ```
 
-
-
 ## Full code
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "MonodomainProblem.hpp"
