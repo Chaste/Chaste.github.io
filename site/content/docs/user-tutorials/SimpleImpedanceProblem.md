@@ -1,13 +1,12 @@
-
 ---
-title : "Simple Impedance Problem Tutorial"
-summary: "This tutorial is automatically generated from the file lung/test/tutorials/TestSimpleImpedanceProblemTutorial.hpp at revision [c64c70046e25](https://github.com/Chaste/Chaste/commit/c64c70046e25e3f67b47ec3e92f29cb02d5e6830). Note that the code is given in full at the bottom of the page."
+title : "Simple Impedance Problem"
+summary: "An example showing how to calculate transfer impedance of an airway tree using a simple impedance model"
 draft: false
 images: []
 toc: true
 ---
-
-# An example showing how to calculate transfer impedance of an airway tree using a simple impedance model 
+This tutorial is automatically generated from [TestSimpleImpedanceProblemTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/lung/test/tutorials/TestSimpleImpedanceProblemTutorial.hpp) at revision [8081f57380d8](https://github.com/Chaste/Chaste/commit/8081f57380d857b24947a7a4a70e55ddfef322da). Note that the code is given in full at the bottom of the page.
+## An example showing how to calculate transfer impedance of an airway tree using a simple impedance model
 
 In this tutorial we demonstrate the use of !SimpleImpedanceProblem to calculate transfer impedance on an
 airway tree model. We further demonstrate post-processing of the output using !ImpedancePostProcessor to
@@ -22,16 +21,19 @@ The usual headers are included
 #include "TrianglesMeshReader.hpp"
 
 ```
+
 !SimpleImpedanceProblem does most of the work in calculating impedance.
 ```cpp
 #include "SimpleImpedanceProblem.hpp"
 
 ```
+
 !ImpedancePostProcessor allows easy calculation of a number of clinically relevant measures.
 ```cpp
 #include "ImpedancePostProcessor.hpp"
 
 ```
+
 Define the test
 ```cpp
 class TestSimpleImpedanceProblemTutorial : public CxxTest::TestSuite
@@ -43,6 +45,7 @@ public: // Tests should be public!
         EXIT_IF_PARALLEL;
 
 ```
+
 First, we load up a mesh containing the centre lines and radii of the a complete conducting airway tree.
 The mesh will typically have been developed using a combination of computed tomography (CT) image segmentation
 and algorithmic airway generation.
@@ -53,6 +56,7 @@ and algorithmic airway generation.
         mesh.ConstructFromMeshReader(mesh_reader);
 
 ```
+
 Note that the mesh defined above was developed using a CT scan taken at full inspiration. Impedance is more
 commonly recorded during tidal breathing. Here we use a simple scaling to bring the airway radii down into the
 tidal breathing range.
@@ -66,6 +70,7 @@ tidal breathing range.
         }
 
 ```
+
 Setup a !SimpleImpedanceProblem and tell it that the given mesh is defined in millimetres
 
 ```cpp
@@ -73,6 +78,7 @@ Setup a !SimpleImpedanceProblem and tell it that the given mesh is defined in mi
         problem.SetMeshInMilliMetres();
 
 ```
+
 This vector lists the input frequencies at which to calculate impedance. They must be
 monotonically increasing.
 
@@ -88,6 +94,7 @@ monotonically increasing.
         problem.SetFrequencies(test_frequencies);               //Set & get frequencies for coverage
 
 ```
+
 The simple impedance model defines a linear spring at each terminal of the airway tree.
 This method allows us to set the elastance of the whole lung (in Pa/m^3). This elastance
 is then evenly distributed over the terminals.
@@ -96,11 +103,13 @@ is then evenly distributed over the terminals.
         problem.SetElastance(5.8*98.0665*1e3);
 
 ```
+
 Calculates the impedance at the given frequencies
 ```cpp
         problem.Solve();
 
 ```
+
 Get the calculated impedances. The impedance at each frequency is
 made up of a real component (the resistance) and a complex component
 (the elastance).
@@ -109,6 +118,7 @@ made up of a real component (the resistance) and a complex component
         std::vector<std::complex<double> > impedances = problem.rGetImpedances();
 
 ```
+
 The impedances calculated above could at this stage be written to a file
 and plotted. Instead, we make use of !ImpedancePostProcessor to calculate
 a number of common clinical summary statistics from the data.
@@ -132,12 +142,8 @@ a number of common clinical summary statistics from the data.
 ```
 
 
-# Code
-The full code is given below
 
-
-## File name `TestSimpleImpedanceProblemTutorial.hpp` 
-
+## Full code
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "TrianglesMeshReader.hpp"
@@ -200,4 +206,3 @@ public: // Tests should be public!
 };
 
 ```
-

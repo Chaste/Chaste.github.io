@@ -1,13 +1,12 @@
-
 ---
-title : "Another Cardiac Electro Mechanics Tutorial"
-summary: "This tutorial is automatically generated from the file heart/test/tutorials/TestAnotherCardiacElectroMechanicsTutorial.hpp at revision [c64c70046e25](https://github.com/Chaste/Chaste/commit/c64c70046e25e3f67b47ec3e92f29cb02d5e6830). Note that the code is given in full at the bottom of the page."
+title : "Another Cardiac Electro Mechanics"
+summary: "Cardiac Electro-mechanical Problems (cont.)"
 draft: false
 images: []
 toc: true
 ---
-
-# Cardiac Electro-mechanical Problems (cont.) 
+This tutorial is automatically generated from [TestAnotherCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherCardiacElectroMechanicsTutorial.hpp) at revision [8081f57380d8](https://github.com/Chaste/Chaste/commit/8081f57380d857b24947a7a4a70e55ddfef322da). Note that the code is given in full at the bottom of the page.
+## Cardiac Electro-mechanical Problems (cont.)
 
 It is worth running this test suite with `build=GccOpt_ndebug`
 
@@ -28,6 +27,7 @@ The same includes as the previous tutorial
 #include "FileFinder.hpp"
 
 ```
+
 A cell factory used in one of the tests
 ```cpp
 class PointStimulus2dCellFactory : public AbstractCardiacCellFactory<2>
@@ -62,7 +62,8 @@ class TestAnotherCardiacElectroMechanicsTutorial : public CxxTest::TestSuite
 public:
 ```
 
-## Mechano-electric feedback, and alternative boundary conditions 
+
+### Mechano-electric feedback, and alternative boundary conditions
 
 Let us now run a simulation with mechano-electric feedback (MEF), and with different boundary conditions.
 
@@ -70,6 +71,7 @@ Let us now run a simulation with mechano-electric feedback (MEF), and with diffe
     void TestWithMef()
     {
 ```
+
 If we want to use MEF, where the stretch (in the fibre-direction) couples back to the cell
 model and is used in stretch-activated channels (SACs), we can't just let Chaste convert
 from cellml to C++ code as usual (see electro-physiology tutorials on how cell model files
@@ -85,7 +87,7 @@ It is found in the file !NobleVargheseKohlNoble1998WithSac.hpp, and is called
 To add a SAC current to (or otherwise alter) your favourite cell model, you have to do the following.
 Auto-generate the C++ code, by running the following on the cellml file:
 `./python/ConvertCellModel.py heart/src/odes/cellml/LuoRudy1991.cellml`
-(see [wiki:ChasteGuides/CodeGenerationFromCellML#Usingthehelperscript ChasteGuides/CodeGenerationFromCellML#Usingthehelperscript]
+(see [ChasteGuides/CodeGenerationFromCellML#Usingthehelperscript](https://chaste.cs.ox.ac.uk/trac/wiki/ChasteGuides/CodeGenerationFromCellML#Usingthehelperscript)
 if you want further documentation on this script).
 
 Copy and rename the resultant .hpp and .cpp files (which can be found in the same folder as the
@@ -101,6 +103,7 @@ SAC switching on will lead be to activation.
         ZeroStimulusCellFactory<CML_noble_varghese_kohl_noble_1998_basic_with_sac, 2> cell_factory;
 
 ```
+
 Construct two meshes are before, in 2D
 ```cpp
         TetrahedralMesh<2,2> electrics_mesh;
@@ -110,6 +113,7 @@ Construct two meshes are before, in 2D
         mechanics_mesh.ConstructRegularSlabMesh(0.02, 0.1, 0.1, 0.1 /*as above with a different stepsize*/);
 
 ```
+
 Collect the fixed nodes. This time we directly specify the new locations. We say the
 nodes on X=0 are to be fixed, setting the deformed x=0, but leaving y to be free
 (sliding boundary conditions). This functionality is described in more detail in the
@@ -137,6 +141,7 @@ solid mechanics tutorials.
         }
 
 ```
+
 Now specify tractions on the top and bottom surfaces. For full descriptions of how
 to apply tractions see the solid mechanics tutorials. Here, we collect the boundary
 elements on the bottom and top surfaces, and apply inward tractions - this will have the
@@ -173,6 +178,7 @@ effect of stretching the tissue in the X-direction.
         }
 
 ```
+
 Now set up the problem. We will use a compressible approach.
 ```cpp
         ElectroMechanicsProblemDefinition<2> problem_defn(mechanics_mesh);
@@ -180,17 +186,20 @@ Now set up the problem. We will use a compressible approach.
         problem_defn.SetUseDefaultCardiacMaterialLaw(INCOMPRESSIBLE);
         problem_defn.SetMechanicsSolveTimestep(1.0);
 ```
+
 Set the fixed node and traction info.
 ```cpp
         problem_defn.SetFixedNodes(fixed_nodes, fixed_node_locations);
         problem_defn.SetTractionBoundaryConditions(boundary_elems, tractions);
 
 ```
+
 Now say that the deformation should affect the electro-physiology
 ```cpp
         problem_defn.SetDeformationAffectsElectrophysiology(false /*deformation affects conductivity*/, true /*deformation affects cell models*/);
 
 ```
+
 Set the end time, create the problem, and solve
 ```cpp
         HeartConfig::Instance()->SetSimulationDuration(50.0);
@@ -205,6 +214,7 @@ Set the end time, create the problem, and solve
         problem.Solve();
 
 ```
+
 Nothing exciting happens in the simulation as it is currently written. To get some interesting occurring,
 alter the SAC conductance in the cell model from 0.035 to 0.35 (micro-Siemens).
 (look for the line `const double g_sac = 0.035` in `NobleVargheseKohlNoble1998WithSac.hpp`).
@@ -225,16 +235,17 @@ to post-process:
                                                  HeartConfig::Instance()->GetVisualizerOutputPrecision());
 
 ```
+
 Some other notes. If you want to apply time-dependent traction boundary conditions, this is possible by
 specifying the traction in functional form - see solid mechanics tutorials. Similarly, more natural
 'pressure acting on the deformed body' boundary conditions are possible - see below tutorial.
 
-'''Robustness:''' Sometimes the nonlinear solver doesn't converge, and will give an error. This can be due to either
-a non-physical (or not very physical) situation, or just because the current guess is quite far
-from the solution and the solver can't find the solution (this can occur in nonlinear elasticity
-problems if the loading is large, for example). Current work in progress is on making the solver
-more robust, and also on parallelising the solver. One option when a solve fails is to decrease the
-mechanics timestep.
+ **Robustness:** Sometimes the nonlinear solver doesn't converge, and will give an error. This can be due to either
+ a non-physical (or not very physical) situation, or just because the current guess is quite far
+ from the solution and the solver can't find the solution (this can occur in nonlinear elasticity
+ problems if the loading is large, for example). Current work in progress is on making the solver
+ more robust, and also on parallelising the solver. One option when a solve fails is to decrease the
+ mechanics timestep.
 
 Ignore the following, it is just to check nothing has changed.
 ```cpp
@@ -251,7 +262,8 @@ Ignore the following, it is just to check nothing has changed.
     }
 
 ```
-## Internal pressures 
+
+### Internal pressures
 
 Next, we run a simulation on a 2d annulus, with an internal pressure applied.
 
@@ -259,6 +271,7 @@ Next, we run a simulation on a 2d annulus, with an internal pressure applied.
     void TestAnnulusWithInternalPressure()
     {
 ```
+
 The following should require little explanation now
 ```cpp
         TetrahedralMesh<2,2> electrics_mesh;
@@ -299,6 +312,7 @@ The following should require little explanation now
         }
 
 ```
+
 Increase this end time to see more contraction
 ```cpp
         HeartConfig::Instance()->SetSimulationDuration(30.0);
@@ -315,6 +329,7 @@ Increase this end time to see more contraction
         problem_defn.SetVariableFibreSheetDirectionsFile(finder, false);
 
 ```
+
 The elasticity solvers have two nonlinear solvers implemented, one hand-coded and one which uses PETSc's SNES
 solver. The latter is not the default but can be more robust (and will probably be the default in later
 versions). This is how it can be used. (This option can also be called if the compiled binary is run from
@@ -324,6 +339,7 @@ the command line (see ChasteGuides/RunningBinariesFromCommandLine) using the opt
         problem_defn.SetSolveUsingSnes();
 
 ```
+
 Now let us collect all the boundary elements on the inner (endocardial) surface. The following
 uses knowledge about the geometry - the inner surface is r=0.3, the outer is r=0.5.
 ```cpp
@@ -344,12 +360,14 @@ uses knowledge about the geometry - the inner surface is r=0.3, the outer is r=0
         }
 
 ```
+
 This is how to set the pressure to be applied to these boundary elements. The negative sign implies
 inward pressure.
 
 ```cpp
         problem_defn.SetApplyNormalPressureOnDeformedSurface(boundary_elems, -1.0 /*1 KPa is about 8mmHg*/);
 ```
+
 The solver computes the equilibrium solution (given the pressure loading) before the first timestep.
 As there is a big deformation from the undeformed state to this loaded state, the nonlinear solver may
 not converge. The following increments the loading (solves with p=-1/3, then p=-2/3, then p=-1), which
@@ -367,18 +385,21 @@ allows convergence to occur.
                                                     "TestAnnulusWithInternalPressure");
 
 ```
+
 If we want stresses and strains output, we can do the following. The deformation gradients and 2nd PK stresses
 for each element will be written at the requested times.
 ```cpp
         problem.SetOutputDeformationGradientsAndStress(10.0 /*how often (in ms) to write - should be a multiple of mechanics timestep*/);
 
 ```
+
 Since this test involves a large deformation at t=0, several Newton iterations are required. To see how the nonlinear
 solve is progressing, you can run from the binary from the command line with the command line argument "-mech_verbose".
 
 ```cpp
         problem.Solve();
 ```
+
 Visualise using cmgui, and note the different shapes at t=-1 (undeformed) and t=0 (loaded)
 
 Note: if you want to have a time-dependent pressure, you can replace the second parameter (the pressure)
@@ -389,7 +410,8 @@ the pressure as a function of time.
     }
 ```
 
-'''More examples:''' For a 3d ellipsoid geometry test, see heart/test/mechanics/TestCardiacElectroMechanicsOnEllipsoid.hpp
+
+ **More examples:** For a 3d ellipsoid geometry test, see heart/test/mechanics/TestCardiacElectroMechanicsOnEllipsoid.hpp
 
 ```cpp
 };
@@ -397,12 +419,8 @@ the pressure as a function of time.
 ```
 
 
-# Code
-The full code is given below
 
-
-## File name `TestAnotherCardiacElectroMechanicsTutorial.hpp` 
-
+## Full code
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "PlaneStimulusCellFactory.hpp"
@@ -632,4 +650,3 @@ public:
 };
 
 ```
-

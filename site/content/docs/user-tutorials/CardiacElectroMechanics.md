@@ -1,22 +1,21 @@
-
 ---
-title : "Cardiac Electro Mechanics Tutorial"
-summary: "This tutorial is automatically generated from the file heart/test/tutorials/TestCardiacElectroMechanicsTutorial.hpp at revision [c64c70046e25](https://github.com/Chaste/Chaste/commit/c64c70046e25e3f67b47ec3e92f29cb02d5e6830). Note that the code is given in full at the bottom of the page."
+title : "Cardiac Electro Mechanics"
+summary: "Cardiac Electro-mechanical Problems"
 draft: false
 images: []
 toc: true
 ---
+This tutorial is automatically generated from [TestCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestCardiacElectroMechanicsTutorial.hpp) at revision [8081f57380d8](https://github.com/Chaste/Chaste/commit/8081f57380d857b24947a7a4a70e55ddfef322da). Note that the code is given in full at the bottom of the page.
+## Cardiac Electro-mechanical Problems
 
-# Cardiac Electro-mechanical Problems 
-
-## Introduction 
+### Introduction
 
 The tutorial explains how electro-mechanics problems can be solved in Chaste. The reader should certainly read
 the electro-physiological tutorials before this tutorial, and really they should have also had a look at
 the tutorial(s) on solving general solid mechanics problems.
 
 The equations of cardiac electro-mechanics are written down in Section 4.2 of the PDF on equations and
-finite element implementations in ChasteGuides -> Miscellaneous information. '''Note:''' By default we do
+finite element implementations in ChasteGuides -> Miscellaneous information. **Note:** By default we do
 not solve these full equations: the mechanics information is not coupled back to electrics, ie by default
 the conductivities do not depend on deformation, and cell models do not get affected by stretch.
 This has to be switched on if required, as will be described further below.
@@ -56,9 +55,9 @@ Notes:
  * ''Timesteps:'' Should-divide rules are: (a) ode_timestep should-divide pde_timestep should-divide
  mechanics_update_timestep and (b) contraction_model_ode_timestep should-divide mechanics_update_timestep.
  
-'''Another important note:''' mechanics problems are not currently implemented to scale in parallel yet. This
-is work in progress.
-
+ **Another important note:** mechanics problems are not currently implemented to scale in parallel yet. This
+ is work in progress.
+ 
 The basic includes are
 ```cpp
 #include <cxxtest/TestSuite.h>
@@ -68,6 +67,7 @@ The basic includes are
 #include "CardiacElectroMechanicsProblem.hpp"
 #include "LuoRudy1991.hpp"
 ```
+
 Some other includes that are used
 ```cpp
 #include "NonlinearElasticityTools.hpp"
@@ -79,19 +79,20 @@ Some other includes that are used
 #include "FileFinder.hpp"
 
 ```
-## IMPORTANT: using HYPRE 
+
+### IMPORTANT: using HYPRE
 
 Mechanics solves being nonlinear are expensive, so it is recommended you also use a `Release` build type for `cmake`
 on larger problems. Also:
 
 Mechanics solves involve solving a nonlinear system, which is broken down into a sequence of linear solves.
-When running '''incompressible''' problems '''in 3D, or with more elements than in the first test below''',
+When running **incompressible** problems **in 3D, or with more elements than in the first test below**,
 it is vital to change the linear solver to use HYPRE, an algebraic multigrid solver.
 Without HYRPE, the linear solve (i) may become very very slow; or
 (ii) may not converge, in which case the nonlinear solve will (probably) not converge. See the comments on using
 HYPRE in the first solid mechanics tutorial.
 
-## Simple 2d test 
+### Simple 2d test
 
 This test shows how to use the `CardiacElectroMechProbRegularGeom` class, which
 inherits from a more general class, `CardiacElectroMechanicsProblem`, and
@@ -108,12 +109,14 @@ public:
     void TestCardiacElectroMechanicsExample()
     {
 ```
+
 All electro-mechanics problems require a cell factory as normal. This particular
 factory stimulates the LHS side (X=0) surface.
 ```cpp
         PlaneStimulusCellFactory<CellLuoRudy1991FromCellML, 2> cell_factory(-5000*1000);
 
 ```
+
 Electro-physiology parameters, such as the cell-model ODE timestep, the monodomain PDE timestep,
 the conductivities, capacitance etc, are set using `HeartConfig` as in electro-physiological
 (ie not mechanical) simulations. We use the defaults for all of these. The one variable that
@@ -123,6 +126,7 @@ has to be set on `HeartConfig` is the end time of the simulation.
         HeartConfig::Instance()->SetSimulationDuration(40.0);
 
 ```
+
 The main solver class for electro-mechanics, equivalent to `MonodomainProblem` or `BidomainProblem`,
 is `CardiacElectroMechanicsProblem`. We will show how to use this class in later tests. The
 subclass of `CardiacElectroMechanicsProblem` called `CardiacElectroMechProbRegularGeom`
@@ -145,6 +149,7 @@ the monodomain one.
                                                      0.01, // contraction model ode timestep
                                                      "TestCardiacElectroMechanicsExample" /* output directory */);
 ```
+
 The contraction model chosen above is 'KERCHOFFS2003' (Kerchoffs, Journal of Engineering Mathematics, 2003). Other possibilities
 are 'NHS' (Niederer, Hunter, Smith, 2006), and 'NASH2004' (Nash, Progress in Biophysics and Molecular Biology, 2004).
 
@@ -163,6 +168,7 @@ All we now have to do is call Solve.
         problem.Solve();
 
 ```
+
 Go to the output directory. There should be log file (which, note, can be used to watch progress
 during a simulation), and a directory for the electrics output and the mechanics output. The electrics
 directory is not the same as when running an electrics solve: the basic HDF5 data is there but
@@ -190,18 +196,21 @@ To observe the tissue relaxing you can re-run the simulation with an end time of
     }
 
 ```
-## Same simulation, this time using `CardiacElectroMechanicsProblem` 
+
+### Same simulation, this time using `CardiacElectroMechanicsProblem`
 
 Let us repeat the above test using `CardiacElectroMechanicsProblem`.
 ```cpp
     void TestCardiacElectroMechanicsExampleAgain()
     {
 ```
+
 This lines is as above
 ```cpp
         PlaneStimulusCellFactory<CellLuoRudy1991FromCellML, 2> cell_factory(-5000*1000);
 
 ```
+
 Create two meshes, one for the electrics, one for the mechanics, covering the same
 region, with different mesh resolutions. The first mesh should be a `TetrahedralMesh`,
 (as used in monodomain/bidomain), the second should be a `QuadraticMesh` (as used
@@ -215,11 +224,13 @@ in mechanics problems).
         mechanics_mesh.ConstructRegularSlabMesh(0.02, 0.1, 0.1, 0.1 /*as above with a different stepsize*/);
 
 ```
+
 Set the end time as above
 ```cpp
         HeartConfig::Instance()->SetSimulationDuration(40.0);
 
 ```
+
 In the solid mechanics tutorials, you can see how to use the class `SolidMechanicsProblemDefinition`
 to set up a mechanics problem to be solved. The class allows you to specify things like: material law,
 fixed nodes, traction boundary conditions, gravity, and so on. For electro-mechanics problems, we use
@@ -232,9 +243,10 @@ is helpful. The static method called below returns all nodes for which the X val
 
 ```cpp
         std::vector<unsigned> fixed_nodes
-# NonlinearElasticityTools<2>::GetNodesByComponentValue(mechanics_mesh, 0, 0.0); // all the X
+            = NonlinearElasticityTools<2>::GetNodesByComponentValue(mechanics_mesh, 0, 0.0); // all the X=0.0 nodes
 
 ```
+
 Now we create the problem definition class, tell it about the fixed nodes, the contraction model to be used,
 that we want to use the default cardiac material law, and the mechanics
 solve timestep (how often the mechanics is solved). An error would occur if we failed to provide
@@ -252,6 +264,7 @@ material law is transversely isotropic, so sheet and normal directions do not ma
         problem_defn.SetMechanicsSolveTimestep(1.0);
 
 ```
+
 Now create the problem class, passing in the compressibility type (COMPRESSIBLE or INCOMPRESSIBLE),
 the type of electrics propagation equation (MONODOMAIN in this case),the meshes, the cell factory, and the problem_definition class,
 and call solve. The first template parameter (2) is the dimension of the space, the second one is the number of unknowns
@@ -267,6 +280,7 @@ in the electrics problem (1 for MONODOMAIN, 2 for BIDOMAIN)
 
         problem.Solve();
 ```
+
 Visualise as above.
 
 Some comments: to use compressibility instead of incompressibility, just change the two
@@ -284,7 +298,8 @@ material law, call `SetMaterialLaw()`, as in a normal solid mechanics simulation
         CompressibleMooneyRivlinMaterialLaw<2> law(2.0,1.0); // random (non-cardiac) material law
         problem_defn.SetMaterialLaw(COMPRESSIBLE,&law);
 ```
-As mentioned above, by default the deformation does '''not''' couple back to the electrics.
+
+As mentioned above, by default the deformation does **not** couple back to the electrics.
 The stretch is not passed to the cell model to allow for stretch-activated channels (M.E.F.),
 and the deformation is not used in altering the conductivity tensor (the latter simplifications has
 little effect in
@@ -293,6 +308,7 @@ Annals of Biomedical Engineering). To set the solver to use either of these, do,
 ```cpp
         problem_defn.SetDeformationAffectsElectrophysiology(false /*deformation affects conductivity*/, true /*deformation affects cell models*/);
 ```
+
 before calling `problem.Solve()`. Deformation affecting cell models is described in more detail
 later in this tutorial. For deformation affecting conductivity, note that the electrics solve will
 slow down, since the linear system matrix now varies with time (as conductivities depend
@@ -304,11 +320,13 @@ Finally, `SetNoElectricsOutput` is a method that is sometimes useful with a fine
         problem.SetNoElectricsOutput();
 
 ```
+
 The final position of the nodes can be obtained as follows (same interface in described in the solid mechanics tutorials).
 ```cpp
         TS_ASSERT_DELTA(problem.rGetDeformedPosition()[5](0), 0.090464, 1e-4);
 
 ```
+
 Ignore these tests, they are they to check nothing has changed in this tutorial
 ```cpp
         FileFinder finder1("TestCardiacElectroMechanicsExample/deformation/solution_40.nodes", RelativeTo::ChasteTestOutput);
@@ -318,7 +336,8 @@ Ignore these tests, they are they to check nothing has changed in this tutorial
     }
 
 ```
-## Twisting cube: 3d example with varying fibre directions 
+
+### Twisting cube: 3d example with varying fibre directions
 
 The third test is a longer running 3d test - the 'dont' in the name of the test
 means it isn't run automatically. To run, remove the 'dont'. It is worth running
@@ -332,11 +351,13 @@ fibre directions for the mechanics mesh. It also uses a compressible law.
     void dontTestTwistingCube()
     {
 ```
+
 Cell factory as normal
 ```cpp
         PlaneStimulusCellFactory<CellLuoRudy1991FromCellML, 3> cell_factory(-1000*1000);
 
 ```
+
 Set up two meshes of 1mm by 1mm by 1mm, one a `TetrahedralMesh`
 for the electrics solve, one a (coarser) `QuadraticMesh` for the mechanics
 solve.
@@ -348,17 +369,20 @@ solve.
         mechanics_mesh.ConstructRegularSlabMesh(0.02, 0.1, 0.1, 0.1 /*as above with a different stepsize*/);
 
 ```
+
 Collect the nodes on Z=0
 ```cpp
         std::vector<unsigned> fixed_nodes
             = NonlinearElasticityTools<3>::GetNodesByComponentValue(mechanics_mesh, 2, 0.0);
 
 ```
+
 Set the simulation end time as before
 ```cpp
         HeartConfig::Instance()->SetSimulationDuration(50.0);
 
 ```
+
 Create the problem definition object as before (except now the template parameter is 3).
 ```cpp
         ElectroMechanicsProblemDefinition<3> problem_defn(mechanics_mesh);
@@ -368,6 +392,7 @@ Create the problem definition object as before (except now the template paramete
         problem_defn.SetMechanicsSolveTimestep(1.0);
 
 ```
+
 The default fibre direction is the X-direction (and the default sheet plane is the XY plane). Now we show
 how this can be changed.
 
@@ -396,6 +421,7 @@ we can do:
         }
         p_file->close();
 ```
+
 This will generate a file, TutorialFibreFiles/5by5by5_fibres.ortho. Note that out_streams are essentially
 pointers to a C++ ofstream.
 
@@ -422,6 +448,7 @@ fibre file, which we name similarly to the above but change the extension.
         p_file2->close();
 
 ```
+
 We use the `FileFinder` class to identify locations of files.
 `OutputFileHandler` has a handy method called `FindFile()` which returns a `FileFinder` to a file in the folder it points to.
 
@@ -430,6 +457,7 @@ We use the `FileFinder` class to identify locations of files.
         problem_defn.SetVariableFibreSheetDirectionsFile(finder, true);
 
 ```
+
 Create the problem object
 ```cpp
         CardiacElectroMechanicsProblem<3,1> problem(COMPRESSIBLE,
@@ -441,6 +469,7 @@ Create the problem object
                                                     "TestCardiacElectroMech3dTwistingCube");
 
 ```
+
 Now call `Solve`. This will take a while to run, so watch progress using the log file to estimate when
 it will finish. `build=GccOpt_ndebug` will speed this up by a factor of about 5. Visualise in Cmgui as usual.
 
@@ -452,12 +481,8 @@ it will finish. `build=GccOpt_ndebug` will speed this up by a factor of about 5.
 ```
 
 
-# Code
-The full code is given below
 
-
-## File name `TestCardiacElectroMechanicsTutorial.hpp` 
-
+## Full code
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "PlaneStimulusCellFactory.hpp"
@@ -508,7 +533,7 @@ public:
         HeartConfig::Instance()->SetSimulationDuration(40.0);
 
         std::vector<unsigned> fixed_nodes
-# NonlinearElasticityTools<2>::GetNodesByComponentValue(mechanics_mesh, 0, 0.0); // all the X
+            = NonlinearElasticityTools<2>::GetNodesByComponentValue(mechanics_mesh, 0, 0.0); // all the X=0.0 nodes
 
         ElectroMechanicsProblemDefinition<2> problem_defn(mechanics_mesh);
         problem_defn.SetContractionModel(KERCHOFFS2003,0.01/*contraction model ODE timestep*/);
@@ -605,4 +630,3 @@ public:
 };
 
 ```
-

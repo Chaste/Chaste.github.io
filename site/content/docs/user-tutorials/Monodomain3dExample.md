@@ -1,13 +1,12 @@
-
 ---
-title : "Monodomain Example Tutorial"
-summary: "This tutorial is automatically generated from the file heart/test/tutorials/TestMonodomain3dExampleTutorial.hpp at revision [c64c70046e25](https://github.com/Chaste/Chaste/commit/c64c70046e25e3f67b47ec3e92f29cb02d5e6830). Note that the code is given in full at the bottom of the page."
+title : "Monodomain Example"
+summary: "3D monodomain example"
 draft: false
 images: []
 toc: true
 ---
-
-# 3D monodomain example 
+This tutorial is automatically generated from [TestMonodomain3dExampleTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestMonodomain3dExampleTutorial.hpp) at revision [8081f57380d8](https://github.com/Chaste/Chaste/commit/8081f57380d857b24947a7a4a70e55ddfef322da). Note that the code is given in full at the bottom of the page.
+## 3D monodomain example
 
 In this tutorial we show how to run a 3D simulation using the monodomain equation.
 To go from monodomain to bidomain or vice versa is trivial, and for 2d to 3d is
@@ -24,6 +23,7 @@ First include the headers, `MonodomainProblem` this time.
 #include "PetscSetupAndFinalize.hpp"
 
 ```
+
 Here we define a cell factory that gives stimuli to cells in the block
 0<x<0.1, 0<y<0.1, 0<z<0.1. Note that it inherits from `AbstractCardiacCellFactory<3>`
 this time (not `<2>`).
@@ -59,6 +59,7 @@ public:
 };
 
 ```
+
 Now define the test
 ```cpp
 class TestMonodomain3dExampleTutorial : public CxxTest::TestSuite
@@ -67,6 +68,7 @@ public:
     void TestMonodomain3d()
     {
 ```
+
 
 We will auto-generate a mesh this time, and pass it in, rather than
 provide a mesh file name. This is how to generate a cuboid mesh with
@@ -83,6 +85,7 @@ original node ordering for the output.
         mesh.ConstructRegularSlabMesh(h, 0.8 /*length*/, 0.3 /*width*/, 0.3 /*depth*/);
         HeartConfig::Instance()->SetOutputUsingOriginalNodeOrdering(true);
 ```
+
 (In 2D the call is identical, but without the depth parameter).
 
 Set the simulation duration, etc, and create an instance of the cell factory.
@@ -101,6 +104,7 @@ alter the monodomain conductivity call
         BenchmarkCellFactory cell_factory;
 
 ```
+
 Now we declare the problem class, `MonodomainProblem<3>` instead of `BidomainProblem<2>`.
 The interface for both is the same.
 
@@ -108,12 +112,14 @@ The interface for both is the same.
         MonodomainProblem<3> monodomain_problem( &cell_factory );
 
 ```
+
 If a mesh-file-name hasn't been set using `HeartConfig`, we have to pass in
 a mesh using the `SetMesh` method (must be called before `Initialise`).
 ```cpp
         monodomain_problem.SetMesh(&mesh);
 
 ```
+
 By default data for all nodes is output, but for big simulations, sometimes this
 might not be required, and the action potential only at certain nodes required.
 The following code shows how to output the results at the first, middle and last
@@ -133,6 +139,7 @@ simulation however (hence the boolean being set to false).
         }
 
 ```
+
 `SetWriteInfo` is a useful method that means that the min/max voltage is
 printed as the simulation runs (useful for verifying that cells are stimulated
 and the wave propagating, for example)
@@ -140,12 +147,14 @@ and the wave propagating, for example)
         monodomain_problem.SetWriteInfo();
 
 ```
+
 Finally, call `Initialise` and `Solve` as before
 ```cpp
         monodomain_problem.Initialise();
         monodomain_problem.Solve();
 
 ```
+
 This part is just to check nothing has accidentally been changed in this example
 ```cpp
         ReplicatableVector voltage(monodomain_problem.GetSolution());
@@ -155,12 +164,8 @@ This part is just to check nothing has accidentally been changed in this example
 ```
 
 
-# Code
-The full code is given below
 
-
-## File name `TestMonodomain3dExampleTutorial.hpp` 
-
+## Full code
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "MonodomainProblem.hpp"
@@ -238,4 +243,3 @@ public:
     }
 };
 ```
-

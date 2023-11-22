@@ -1,21 +1,20 @@
-
 ---
-title : "Creating And Using A New Cell Mutation State Tutorial"
-summary: "This tutorial is automatically generated from the file cell_based/test/tutorial/TestCreatingAndUsingANewCellMutationStateTutorial.hpp at revision [c64c70046e25](https://github.com/Chaste/Chaste/commit/c64c70046e25e3f67b47ec3e92f29cb02d5e6830). Note that the code is given in full at the bottom of the page."
+title : "Creating And Using A New Cell Mutation State"
+summary: "An example showing how to create a new cell mutation state and use it in a cell-based simulation"
 draft: false
 images: []
 toc: true
 ---
+This tutorial is automatically generated from [TestCreatingAndUsingANewCellMutationStateTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellMutationStateTutorial.hpp) at revision [96e6e662bf78](https://github.com/Chaste/Chaste/commit/96e6e662bf780f36e39eabcae9f3d4d843677a5b). Note that the code is given in full at the bottom of the page.
+## An example showing how to create a new cell mutation state and use it in a cell-based simulation
 
-# An example showing how to create a new cell mutation state and use it in a cell-based simulation 
-
-## Introduction 
+### Introduction
 
 In the tumour spheroid tutorial we noted that a cell mutation state is always required
 when constructing a cell. In this tutorial, we show how to create a new cell mutation
 state class, and how this can be used in a cell-based simulation.
 
-## 1. Including header files 
+### 1. Including header files
 
 As in previous cell-based Chaste tutorials, we begin by including the necessary
 header file and archiving headers.
@@ -26,11 +25,13 @@ header file and archiving headers.
 #include "AbstractCellBasedTestSuite.hpp"
 
 ```
+
 The next header defines a base class for cell mutation states. Our new
 cell mutation state will inherit from this abstract class.
 ```cpp
 #include "AbstractCellMutationState.hpp"
 ```
+
 The remaining header files define classes that will be used in the cell-based
 simulation test. We have encountered each of these header files in previous cell-based
 Chaste tutorials.
@@ -46,7 +47,8 @@ Chaste tutorials.
 #include "FakePetscSetup.hpp"
 
 ```
-## Defining the cell mutation state class 
+
+### Defining the cell mutation state class
 
 As an example, let us consider a cell mutation state representing the p53
 172R-H gain-of-function mutant, which is equivalent to the common 175R-H
@@ -80,9 +82,10 @@ private:
 
 public:
 ```
+
 The only public method is a default constructor, which just calls the base
 constructor with a single unsigned parameter. This sets the value of the
-base class member variable `mColour`{.cpp}, which can be used by visualization tools
+base class member variable `mColour`, which can be used by visualization tools
 to paint cells with this mutation state a distinct colour if required.
 ```cpp
     P53GainOfFunctionCellMutationState()
@@ -92,6 +95,7 @@ to paint cells with this mutation state a distinct colour if required.
 };
 
 ```
+
 As mentioned in previous cell-based Chaste tutorials, we need to include the next block
 of code to be able to archive the cell mutation state object in a cell-based
 simulation, and to obtain a unique identifier for our new cell mutation state for writing
@@ -104,12 +108,13 @@ CHASTE_CLASS_EXPORT(P53GainOfFunctionCellMutationState)
 CHASTE_CLASS_EXPORT(P53GainOfFunctionCellMutationState)
 
 ```
-This completes the code for `P53GainOfFunctionCellMutationState`{.cpp}. Note that usually this code would
+
+This completes the code for `P53GainOfFunctionCellMutationState`. Note that usually this code would
 be separated out into a separate declaration in a .hpp file and definition in a .cpp file.
 
-### The Tests 
+#### The Tests
 
-We now define the test class, which inherits from `AbstractCellBasedTestSuite`{.cpp}.
+We now define the test class, which inherits from `AbstractCellBasedTestSuite`.
 
 ```cpp
 class TestCreatingAndUsingANewCellMutationStateTutorial : public AbstractCellBasedTestSuite
@@ -117,7 +122,8 @@ class TestCreatingAndUsingANewCellMutationStateTutorial : public AbstractCellBas
 public:
 
 ```
-## Testing the cell mutation state 
+
+### Testing the cell mutation state
 
 We begin by testing that our new cell mutation state is implemented correctly.
 
@@ -125,6 +131,7 @@ We begin by testing that our new cell mutation state is implemented correctly.
     void TestP53GainOfFunctionCellMutationState()
     {
 ```
+
 We begin by testing that some of the base class methods work correctly.
 We typically use shared pointers to create and access cell mutation states, as
 follows. This is because it makes sense for all cells that have the same mutation
@@ -134,11 +141,12 @@ they are not required to).
         MAKE_PTR(P53GainOfFunctionCellMutationState, p_state);
 
 ```
-Each cell mutation state has a member variable, `mCellCount`{.cpp}, which
-stores the number of cells with this mutation state. In fact, `mCellCount`{.cpp}
-is defined in the class `AbstractCellProperty`{.cpp}, from which
-`AbstractCellMutationState`{.cpp} inherits, as well as other cell properties
-such as `CellLabel`{.cpp}. We can test whether `mCellCount`{.cpp} is being
+
+Each cell mutation state has a member variable, `mCellCount`, which
+stores the number of cells with this mutation state. In fact, `mCellCount`
+is defined in the class `AbstractCellProperty`, from which
+`AbstractCellMutationState` inherits, as well as other cell properties
+such as `CellLabel`. We can test whether `mCellCount` is being
 updated correctly by our cell mutation state, as follows.
 ```cpp
         TS_ASSERT_EQUALS(p_state->GetCellCount(), 0u);
@@ -150,17 +158,20 @@ updated correctly by our cell mutation state, as follows.
                 "Cannot decrement cell count: no cells have this cell property");
 
 ```
-We can also test that {{{mColour}}} has been set correctly by our constructor, as follows.
+
+We can also test that `mColour` has been set correctly by our constructor, as follows.
 ```cpp
         TS_ASSERT_EQUALS(p_state->GetColour(), 5u);
 
 ```
+
 We can also test whether our cell mutation state is of a given type, as follows.
 ```cpp
         TS_ASSERT_EQUALS(p_state->IsType<WildTypeCellMutationState>(), false);
         TS_ASSERT_EQUALS(p_state->IsType<P53GainOfFunctionCellMutationState>(), true);
 
 ```
+
 We can also test that archiving is implemented correctly for our cell
 mutation state, as follows (further details on how to implement and
 test archiving can be found at ChasteGuides/BoostSerialization).
@@ -202,27 +213,31 @@ test archiving can be found at ChasteGuides/BoostSerialization).
     }
 
 ```
-## Using the cell mutation state in a cell-based simulation 
 
-We conclude with a brief test demonstrating how `P53GainOfFunctionCellMutationState`{.cpp} can be used
+### Using the cell mutation state in a cell-based simulation
+
+We conclude with a brief test demonstrating how `P53GainOfFunctionCellMutationState` can be used
 in a cell-based simulation.
 
 ```cpp
     void TestOffLatticeSimulationWithP53GainOfFunctionCellMutationState()
     {
 ```
-We use the `HoneycombMeshGenerator`{.cpp} to create a honeycomb mesh covering a
+
+We use the `HoneycombMeshGenerator` to create a honeycomb mesh covering a
 circular domain of given radius, as follows.
 ```cpp
         HoneycombMeshGenerator generator(10, 10);
         boost::shared_ptr<MutableMesh<2,2> > p_mesh = generator.GetCircularMesh(5);
 
 ```
+
 We now create a shared pointer to our new cell mutation state, as follows.
 ```cpp
         MAKE_PTR(P53GainOfFunctionCellMutationState, p_state);
 
 ```
+
 Next, we create some cells, as follows.
 ```cpp
         std::vector<CellPtr> cells;
@@ -230,24 +245,28 @@ Next, we create some cells, as follows.
         cells_generator.GenerateBasicRandom(cells, p_mesh->GetNumNodes());
 
 ```
+
 We now assign the mutation to the 11th and 51st cells.
 ```cpp
         cells[10]->SetMutationState(p_state);
         cells[50]->SetMutationState(p_state);
 
 ```
+
 Now that we have defined the mesh and cells, we can define the cell population. The constructor
 takes in the mesh and the cells vector.
 ```cpp
         MeshBasedCellPopulation<2> cell_population(*p_mesh, cells);
 
 ```
+
 In order to visualize labelled cells we need to use the following command.
 ```cpp
         cell_population.AddCellPopulationCountWriter<CellMutationStatesCountWriter>();
 
 ```
-We then pass in the cell population into an `OffLatticeSimulation`{.cpp},
+
+We then pass in the cell population into an `OffLatticeSimulation`,
 and set the output directory, output multiple, and end time.
 ```cpp
         OffLatticeSimulation<2> simulator(cell_population);
@@ -256,25 +275,28 @@ and set the output directory, output multiple, and end time.
         simulator.SetEndTime(10.0);
 
 ```
-We create a force law and pass it to the {{{OffLatticeSimulation}}}.
+
+We create a force law and pass it to the `OffLatticeSimulation`.
 ```cpp
         MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);
         p_linear_force->SetCutOffLength(3);
         simulator.AddForce(p_linear_force);
 
 ```
-To run the simulation, we call {{{Solve()}}}.
+
+To run the simulation, we call `Solve()`.
 ```cpp
         simulator.Solve();
     }
 ```
 
+
 When you visualize the results with
 
-`java Visualize2dCentreCells /tmp/$USER/testoutput/TestOffLatticeSimulationWithNewMutationState/results_from_time_0`{.cpp}
+`java Visualize2dCentreCells /tmp/$USER/testoutput/TestOffLatticeSimulationWithNewMutationState/results_from_time_0`
 
 you should see two cells in black which are the cells with the new mutation. If we want these cells to behave differently we
-would need to write an new `CellCycleModel`{.cpp}, `CellKiller`{.cpp}, `Force`{.cpp}, or `CellPopulationBoundaryCondition`{.cpp}
+would need to write an new `CellCycleModel`, `CellKiller`, `Force`, or `CellPopulationBoundaryCondition`
 which checks for the new mutation.
 
 ```cpp
@@ -283,12 +305,8 @@ which checks for the new mutation.
 ```
 
 
-# Code
-The full code is given below
 
-
-## File name `TestCreatingAndUsingANewCellMutationStateTutorial.hpp` 
-
+## Full code
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"
@@ -417,4 +435,3 @@ public:
 };
 
 ```
-

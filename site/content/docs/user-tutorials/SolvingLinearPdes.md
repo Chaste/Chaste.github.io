@@ -1,13 +1,12 @@
-
 ---
-title : "Solving Linear Pdes Tutorial"
-summary: "This tutorial is automatically generated from the file pde/test/tutorials/TestSolvingLinearPdesTutorial.hpp at revision [c64c70046e25](https://github.com/Chaste/Chaste/commit/c64c70046e25e3f67b47ec3e92f29cb02d5e6830). Note that the code is given in full at the bottom of the page."
+title : "Solving Linear Pdes"
+summary: "Examples showing how to solve linear elliptic and parabolic PDEs"
 draft: false
 images: []
 toc: true
 ---
-
-# Examples showing how to solve linear elliptic and parabolic PDEs 
+This tutorial is automatically generated from [TestSolvingLinearPdesTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestSolvingLinearPdesTutorial.hpp) at revision [96e6e662bf78](https://github.com/Chaste/Chaste/commit/96e6e662bf780f36e39eabcae9f3d4d843677a5b). Note that the code is given in full at the bottom of the page.
+## Examples showing how to solve linear elliptic and parabolic PDEs
 
 In this tutorial we show how Chaste can be used to solve linear PDEs. The first test
 uses the `SimpleLinearEllipticSolver` to solve a linear elliptic PDE, and the
@@ -19,52 +18,63 @@ First we include the header needed to define this class as a test suite
 ```cpp
 #include <cxxtest/TestSuite.h>
 ```
+
 On some systems (with Boost 1.33.1 and PETSc 2.2) there is a clash between Boost Ublas includes and PETSc.  This can be
 resolved by making sure that Chaste's interface to the Ublas library is included as early as possible.
 
 ```cpp
 #include "UblasIncludes.hpp"
 ```
+
 This is the class that is needed to solve a linear elliptic PDE.
 ```cpp
 #include "SimpleLinearEllipticSolver.hpp"
 ```
+
 This is the class that is needed to solve a linear parabolic PDE.
 ```cpp
 #include "SimpleLinearParabolicSolver.hpp"
 ```
+
 This is a parabolic PDE, one of the PDEs we will solve.
 ```cpp
 #include "HeatEquationWithSourceTerm.hpp"
 ```
+
 We will also solve this PDE.
 ```cpp
 #include "SimplePoissonEquation.hpp"
 ```
+
 This is needed to read mesh datafiles of the 'Triangles' format.
 ```cpp
 #include "TrianglesMeshReader.hpp"
 ```
+
 This class represents the mesh internally.
 ```cpp
 #include "TetrahedralMesh.hpp"
 ```
+
 These are used to specify boundary conditions for the PDEs.
 ```cpp
 #include "BoundaryConditionsContainer.hpp"
 #include "ConstBoundaryCondition.hpp"
 ```
+
 This class helps us deal with output files.
 ```cpp
 #include "OutputFileHandler.hpp"
 ```
+
 The following header must be included in every test that uses PETSc. Note that it
 cannot be included in the source code.
 ```cpp
 #include "PetscSetupAndFinalize.hpp"
 
 ```
-## Test 1: Solving a linear elliptic PDE 
+
+### Test 1: Solving a linear elliptic PDE
 
 Here, we solve the PDE: div(D grad u) + u + x^2^+y^2^ = 0, in 2D, where
 D is the diffusion tensor (2 0; 0 1) (ie D11=2, D12=D21=0, D22=1), on a square
@@ -73,7 +83,7 @@ where n is the surface normal.
 
 We need to create a class representing the PDE we want to solve, which will be
 passed into the solver. The PDE we are solving is of the type
-`AbstractLinearEllipticPde`{.cpp}, which is an abstract class with 3 pure methods
+`AbstractLinearEllipticPde`, which is an abstract class with 3 pure methods
 which have to be implemented. The template variables in the following line are both the dimension
 of the space.
 
@@ -82,10 +92,11 @@ class MyPde : public AbstractLinearEllipticPde<2,2>
 {
 private:
 ```
+
 For efficiency, we will save the diffusion tensor that will be returned by one of the
 class' methods as a member variable. The diffusion tensor which has to be returned
-by the `GetDiffusionTensor`{.cpp} method in PDE classes is of the type
-`c_matrix<double,SIZE,SIZE>`{.cpp}, which is a uBLAS matrix. We use uBLAS vectors
+by the `GetDiffusionTensor` method in PDE classes is of the type
+`c_matrix<double,SIZE,SIZE>`, which is a uBLAS matrix. We use uBLAS vectors
 and matrices where small vectors and matrices are needed. Note that uBLAS objects
 are only particularly efficient if optimisation is on (`CMAKE_BUILD_TYPE=Release``).
 ```cpp
@@ -93,6 +104,7 @@ are only particularly efficient if optimisation is on (`CMAKE_BUILD_TYPE=Release
 
 public:
 ```
+
 The constructor just sets up the diffusion tensor. We choose a diffusion tensor which
 corresponds to twice as much diffusion in the x-direction compared to the y-direction
 ```cpp
@@ -105,6 +117,7 @@ corresponds to twice as much diffusion in the x-direction compared to the y-dire
     }
 
 ```
+
 The first method which has to be implemented returns the constant
 (not dependent on u) part of the source term, which for our PDE is
 x^2^ + y^2^.
@@ -115,6 +128,7 @@ x^2^ + y^2^.
     }
 
 ```
+
 The second method which has to be implemented returns the coefficient in the linear-in-u
 part of the source term, which for our PDE is just 1.0.
 ```cpp
@@ -124,6 +138,7 @@ part of the source term, which for our PDE is just 1.0.
     }
 
 ```
+
 The third method returns the diffusion tensor D. Note that the diffusion tensor should
 be symmetric and positive definite for a physical, well-posed problem.
 ```cpp
@@ -134,50 +149,58 @@ be symmetric and positive definite for a physical, well-posed problem.
 };
 
 ```
+
 Next, we define the test suite (a class). It is sensible to name it the same
-as the filename. The class should inherit from {{{CxxTest::TestSuite}}}.
+as the filename. The class should inherit from `CxxTest::TestSuite`.
 ```cpp
 class TestSolvingLinearPdesTutorial : public CxxTest::TestSuite
 {
 ```
-All individual test defined in this test suite '''must''' be declared as public.
+
+All individual test defined in this test suite **must** be declared as public.
 ```cpp
 public:
     void TestSolvingEllipticPde()
     {
 ```
+
 First we declare a mesh reader which reads mesh data files of the 'Triangle'
 format. The path given is relative to the main Chaste directory. As we are in 2d,
 the reader will look for three datafiles, [name].nodes, [name].ele and [name].edge.
 Note that the first template argument here is the spatial dimension of the
-elements in the mesh (`ELEMENT_DIM`{.cpp}), and the second is the dimension of the nodes,
-i.e. the dimension of the space the mesh lives in (`SPACE_DIM`{.cpp}). Usually
-{{{ELEMENT_DIM}}} and {{{SPACE_DIM}}} will be equal.
+elements in the mesh (`ELEMENT_DIM`), and the second is the dimension of the nodes,
+i.e. the dimension of the space the mesh lives in (`SPACE_DIM`). Usually
+`ELEMENT_DIM` and `SPACE_DIM` will be equal.
 ```cpp
         TrianglesMeshReader<2,2> mesh_reader("mesh/test/data/square_128_elements");
 ```
+
 Now declare a tetrahedral mesh with the same dimensions...
 ```cpp
         TetrahedralMesh<2,2> mesh;
 ```
+
 ... and construct the mesh using the mesh reader.
 ```cpp
         mesh.ConstructFromMeshReader(mesh_reader);
 
 ```
+
 Next we instantiate an instance of our PDE we wish to solve.
 ```cpp
         MyPde pde;
 
 ```
-A set of boundary conditions are stored in a `BoundaryConditionsContainer`{.cpp}. The
+
+A set of boundary conditions are stored in a `BoundaryConditionsContainer`. The
 three template arguments are ELEMENT_DIM, SPACE_DIM and PROBLEM_DIM, the latter being
 the number of unknowns we are solving for. We have one unknown (ie u is a scalar, not
-a vector), so in this case {{{PROBLEM_DIM}}}=1.
+a vector), so in this case `PROBLEM_DIM`=1.
 ```cpp
         BoundaryConditionsContainer<2,2,1> bcc;
 
 ```
+
 Defining the boundary conditions is the only particularly fiddly part of solving PDEs,
 unless they are very simple, such as u=0 on the boundary, which could be done
 as follows:
@@ -185,6 +208,7 @@ as follows:
         //bcc.DefineZeroDirichletOnMeshBoundary(&mesh);
 
 ```
+
 We want to specify u=0 on x=0 and y=0.  To do this, we first create the boundary condition
 object saying what the value of the condition is at any particular point in space.  Here
 we use the class `ConstBoundaryCondition`, a subclass of `AbstractBoundaryCondition` that
@@ -198,10 +222,12 @@ more memory efficient.
 ```cpp
         ConstBoundaryCondition<2>* p_zero_boundary_condition = new ConstBoundaryCondition<2>(0.0);
 ```
+
 We then get a boundary node iterator from the mesh...
 ```cpp
         TetrahedralMesh<2,2>::BoundaryNodeIterator iter = mesh.GetBoundaryNodeIteratorBegin();
 ```
+
 ...and loop over the boundary nodes, getting the x and y values.
 ```cpp
         while (iter < mesh.GetBoundaryNodeIteratorEnd())
@@ -209,13 +235,15 @@ We then get a boundary node iterator from the mesh...
             double x = (*iter)->GetPoint()[0];
             double y = (*iter)->GetPoint()[1];
 ```
+
 If x=0 or y=0...
 ```cpp
             if ((x==0) || (y==0))
             {
 ```
+
 ...associate the zero boundary condition created above with this boundary node
-(`*iter`{.cpp} being a pointer to a `Node<2>`{.cpp}).
+(`*iter` being a pointer to a `Node<2>`).
 
 ```cpp
                 bcc.AddDirichletBoundaryCondition(*iter, p_zero_boundary_condition);
@@ -224,6 +252,7 @@ If x=0 or y=0...
         }
 
 ```
+
 Now we create Neumann boundary conditions for the ''surface elements'' on x=1 and y=1. Note that
 Dirichlet boundary conditions are defined on nodes, whereas Neumann boundary conditions are
 defined on surface elements. Note also that the natural boundary condition statement for this
@@ -231,10 +260,10 @@ PDE is (D grad u).n = g(x) (where n is the outward-facing surface normal), and g
 function, ''not'' something like du/dn=g(x). Hence the boundary condition we are specifying is
 (D grad u).n = 0.
 
-'''Important note for 1D:''' This means that if we were solving 2u,,xx,,=f(x) in 1D, and
-wanted to specify du/dx=1 on the LHS boundary, the Neumann boundary value we have to specify is
--2, as n=-1 (outward facing normal) so (D gradu).n = -2 when du/dx=1.
-
+ **Important note for 1D:** This means that if we were solving 2u,,xx,,=f(x) in 1D, and
+ wanted to specify du/dx=1 on the LHS boundary, the Neumann boundary value we have to specify is
+ -2, as n=-1 (outward facing normal) so (D gradu).n = -2 when du/dx=1.
+ 
 To define Neumann bcs, we reuse the zero boundary condition object defined above, but apply it
 at surface elements.  We loop over these using another iterator provided by the mesh class.
 
@@ -244,6 +273,7 @@ at surface elements.  We loop over these using another iterator provided by the 
         while (surf_iter != mesh.GetBoundaryElementIteratorEnd())
         {
 ```
+
 Get the x and y values of any node (here, the 0th) in the element.
 ```cpp
             unsigned node_index = (*surf_iter)->GetNodeGlobalIndex(0);
@@ -251,96 +281,110 @@ Get the x and y values of any node (here, the 0th) in the element.
             double y = mesh.GetNode(node_index)->GetPoint()[1];
 
 ```
+
 If x=1 or y=1...
 ```cpp
             if ((fabs(x-1.0) < 1e-6) || (fabs(y-1.0) < 1e-6))
             {
 ```
+
 ...associate the boundary condition with the surface element.
 ```cpp
                 bcc.AddNeumannBoundaryCondition(*surf_iter, p_zero_boundary_condition);
             }
 
 ```
+
 Finally increment the iterator.
 ```cpp
             surf_iter++;
         }
 
 ```
+
 Next we define the solver of the PDE.
-To solve an `AbstractLinearEllipticPde`{.cpp} (which is the type of PDE `MyPde`{.cpp} is),
-we use a `SimpleLinearEllipticSolver`{.cpp}. The solver, again templated over
-`ELEMENT_DIM`{.cpp} and `SPACE_DIM`{.cpp}, needs to be given (pointers to) the mesh,
+To solve an `AbstractLinearEllipticPde` (which is the type of PDE `MyPde` is),
+we use a `SimpleLinearEllipticSolver`. The solver, again templated over
+`ELEMENT_DIM` and `SPACE_DIM`, needs to be given (pointers to) the mesh,
 pde and boundary conditions.
 
 ```cpp
         SimpleLinearEllipticSolver<2,2> solver(&mesh, &pde, &bcc);
 
 ```
-To solve, just call {{{Solve()}}}. A PETSc vector is returned.
+
+To solve, just call `Solve()`. A PETSc vector is returned.
 ```cpp
         Vec result = solver.Solve();
 
 ```
+
 It is a pain to access the individual components of a PETSc vector, even when running only on
-one process. A helper class called `ReplicatableVector`{.cpp} has been created. Create
-an instance of one of these, using the PETSc `Vec`{.cpp} as the data. The ''i''th
-component of `result`{.cpp} can now be obtained by simply doing `result_repl[i]`{.cpp}.
+one process. A helper class called `ReplicatableVector` has been created. Create
+an instance of one of these, using the PETSc `Vec` as the data. The ''i''th
+component of `result` can now be obtained by simply doing `result_repl[i]`.
 
 ```cpp
         ReplicatableVector result_repl(result);
 
 ```
+
 Let us write out the solution to a file. To do this, create an
-`OutputFileHandler`{.cpp}, passing in the directory we want files written to.
+`OutputFileHandler`, passing in the directory we want files written to.
 This is relative to the directory defined by the CHASTE_TEST_OUTPUT environment
 variable - usually `/tmp/$USER/testoutput`. Note by default the output directory
-passed in is emptied by this command. To avoid this, `false`{.cpp} can be passed in as a second
+passed in is emptied by this command. To avoid this, `false` can be passed in as a second
 parameter.
 
 ```cpp
         OutputFileHandler output_file_handler("TestSolvingLinearPdeTutorial");
 
 ```
-Create an `out_stream`{.cpp}, which is a stream to a particular file. An `out_stream`{.cpp}
+
+Create an `out_stream`, which is a stream to a particular file. An `out_stream`
 is a smart pointer to a `std::ofstream`.
 ```cpp
         out_stream p_file = output_file_handler.OpenOutputFile("linear_solution.txt");
 
 ```
+
 Loop over the entries of the solution.
 ```cpp
         for (unsigned i=0; i<result_repl.GetSize(); i++)
         {
 ```
+
 Get the x and y-values of the node corresponding to this entry. The method
-{{{GetNode}}} on the mesh class returns a pointer to a {{{Node}}}.
+`GetNode` on the mesh class returns a pointer to a `Node`.
 ```cpp
             double x = mesh.GetNode(i)->rGetLocation()[0];
             double y = mesh.GetNode(i)->rGetLocation()[1];
 
 ```
-Get the computed solution at this node from the {{{ReplicatableVector}}}.
+
+Get the computed solution at this node from the `ReplicatableVector`.
 ```cpp
             double u = result_repl[i];
 
 ```
+
 Finally, write x, y and u to the output file. The solution could then be
 visualised in (eg) matlab, using the commands:
-{{{sol=load('linear_solution.txt'); plot3(sol(:,1),sol(:,2),sol(:,3),'.');}}}
+`sol=load('linear_solution.txt'); plot3(sol(:,1),sol(:,2),sol(:,3),'.');`
 ```cpp
             (*p_file) << x << " " << y << " " << u << "\n";
         }
 
 ```
-All PETSc {{{Vec}}}s should be destroyed when they are no longer needed, or you will have a memory leak.
+
+All PETSc `Vec`s should be destroyed when they are no longer needed, or you will have a memory leak.
 ```cpp
         PetscTools::Destroy(result);
     }
 
 ```
-## Test 2: Solving a linear parabolic PDE 
+
+### Test 2: Solving a linear parabolic PDE
 
 Now we solve a parabolic PDE. We choose a simple problem so that the code changes
 needed from the elliptic case are clearer. We will solve
@@ -351,14 +395,16 @@ conditions u=1.
     void TestSolvingParabolicPde()
     {
 ```
-Create a 10 by 10 by 10 mesh in 3D, this time using the `ConstructRegularSlabMesh`{.cpp} method
+
+Create a 10 by 10 by 10 mesh in 3D, this time using the `ConstructRegularSlabMesh` method
 on the mesh. The first parameter is the cartesian space-step and the other three parameters are the width, height and depth of the mesh.
 ```cpp
         TetrahedralMesh<3,3> mesh;
         mesh.ConstructRegularSlabMesh(0.1, 1.0, 1.0, 1.0);
 
 ```
-Our PDE object should be a class that is derived from the `AbstractLinearParabolicPde`{.cpp}.
+
+Our PDE object should be a class that is derived from the `AbstractLinearParabolicPde`.
 We could write it ourselves as in the previous test, but since the PDE we want to solve is
 so simple, it has already been defined (look it up! - it is located in pde/test/pdes).
 
@@ -366,28 +412,32 @@ so simple, it has already been defined (look it up! - it is located in pde/test/
         HeatEquationWithSourceTerm<3> pde;
 
 ```
+
 Create a new boundary conditions container and specify u=1.0 on the boundary.
 ```cpp
         BoundaryConditionsContainer<3,3,1> bcc;
         bcc.DefineConstantDirichletOnMeshBoundary(&mesh, 1.0);
 
 ```
+
 Create an instance of the solver, passing in the mesh, pde and boundary conditions.
 
 ```cpp
         SimpleLinearParabolicSolver<3,3> solver(&mesh,&pde,&bcc);
 
 ```
+
 For parabolic problems, initial conditions are also needed. The solver will expect
 a PETSc vector, where the i-th entry is the initial solution at node i, to be passed
-in. To create this PETSc `Vec`{.cpp}, we will use a helper function in the `PetscTools`{.cpp}
-class to create a `Vec`{.cpp} of size num_nodes, with each entry set to 1.0. Then we
+in. To create this PETSc `Vec`, we will use a helper function in the `PetscTools`
+class to create a `Vec` of size num_nodes, with each entry set to 1.0. Then we
 set the initial condition on the solver.
 ```cpp
         Vec initial_condition = PetscTools::CreateAndSetVec(mesh.GetNumNodes(), 1.0);
         solver.SetInitialCondition(initial_condition);
 
 ```
+
 Next define the start time, end time, and timestep, and set them.
 ```cpp
         double t_start = 0;
@@ -397,6 +447,7 @@ Next define the start time, end time, and timestep, and set them.
         solver.SetTimeStep(dt);
 
 ```
+
 When we call Solve() below we will just get the solution at the final time. If we want
 to have intermediate solutions written to file, we do the following. We start by
 specifying an output directory and filename prefix for our results file:
@@ -404,6 +455,7 @@ specifying an output directory and filename prefix for our results file:
 ```cpp
         solver.SetOutputDirectoryAndPrefix("ParabolicSolverTutorial","results");
 ```
+
 When an output directory has been specified, the solver writes output in HDF5 format. To
 convert this to another output format, we call the relevant method. Here, we convert
 the output to plain text files (VTK or cmgui formats are also possible). We also say how
@@ -419,14 +471,16 @@ matlab or octave, see the end of the tutorial UserTutorials/WritingPdeSolvers.)
         solver.SetPrintingTimestepMultiple(10);
 
 ```
-Now we can solve the problem. The `Vec`{.cpp} that is returned can be passed into a
-`ReplicatableVector`{.cpp} as before.
+
+Now we can solve the problem. The `Vec` that is returned can be passed into a
+`ReplicatableVector` as before.
 
 ```cpp
         Vec solution = solver.Solve();
         ReplicatableVector solution_repl(solution);
 
 ```
+
 Let's also solve the equivalent static PDE, i.e. set du/dt=0, so 0=div(gradu) + u. This
 is easy, as the PDE class has already been defined.
 ```cpp
@@ -436,6 +490,7 @@ is easy, as the PDE class has already been defined.
         ReplicatableVector static_solution_repl(static_solution);
 
 ```
+
 We can now compare the solution of the parabolic PDE at t=1 with the static solution,
 to see if the static equilibrium solution was reached in the former. (Ideally we should
 compute some relative error, but we just compute an absolute error for simplicity.)
@@ -446,6 +501,7 @@ compute some relative error, but we just compute an absolute error for simplicit
         }
 
 ```
+
 All PETSc vectors should be destroyed when they are no longer needed.
 ```cpp
         PetscTools::Destroy(initial_condition);
@@ -457,12 +513,8 @@ All PETSc vectors should be destroyed when they are no longer needed.
 ```
 
 
-# Code
-The full code is given below
 
-
-## File name `TestSolvingLinearPdesTutorial.hpp` 
-
+## Full code
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "UblasIncludes.hpp"
@@ -619,4 +671,3 @@ public:
 };
 
 ```
-

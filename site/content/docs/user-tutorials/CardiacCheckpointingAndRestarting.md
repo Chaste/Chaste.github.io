@@ -1,13 +1,12 @@
-
 ---
-title : "Cardiac Checkpointing And Restarting Tutorial"
-summary: "This tutorial is automatically generated from the file heart/test/tutorials/TestCardiacCheckpointingAndRestartingTutorial.hpp at revision [c64c70046e25](https://github.com/Chaste/Chaste/commit/c64c70046e25e3f67b47ec3e92f29cb02d5e6830). Note that the code is given in full at the bottom of the page."
+title : "Cardiac Checkpointing And Restarting"
+summary: "Checkpointing and restarting cardiac simulations"
 draft: false
 images: []
 toc: true
 ---
-
-# Checkpointing and restarting cardiac simulations 
+This tutorial is automatically generated from [TestCardiacCheckpointingAndRestartingTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestCardiacCheckpointingAndRestartingTutorial.hpp) at revision [96e6e662bf78](https://github.com/Chaste/Chaste/commit/96e6e662bf780f36e39eabcae9f3d4d843677a5b). Note that the code is given in full at the bottom of the page.
+## Checkpointing and restarting cardiac simulations
 
 In this tutorial we show how to save and reload cardiac simulations
 
@@ -26,11 +25,13 @@ class TestCardiacCheckpointingAndRestartingTutorial : public CxxTest::TestSuite
 {
 public:
 ```
+
 First, the checkpointing test.
 ```cpp
     void TestCheckpointing()
     {
 ```
+
 We set up exactly the same simulation as in UserTutorials/AnotherBidomainSimulation
 ```cpp
         HeartConfig::Instance()->Reset();
@@ -49,6 +50,7 @@ We set up exactly the same simulation as in UserTutorials/AnotherBidomainSimulat
         bidomain_problem.Solve();
 
 ```
+
 To save the entire simulation, use the `CardiacSimulationArchiver` class, as shown in the following.
 Note the `BidomainProblem<2>` as the template parameter. The output directory is relative to
 CHASTE_TEST_OUTPUT.
@@ -57,11 +59,13 @@ CHASTE_TEST_OUTPUT.
     }
 
 ```
+
 This is how to restart the test.
 ```cpp
     void TestRestarting()
     {
 ```
+
 To restart from the saved simulation directory we  use the `CardiacSimulationArchiver` class, as shown in the following.
 Note the `BidomainProblem<2>` as the template parameter again.  The dimension (2) must match the one given in the
 saved archive directory.
@@ -70,11 +74,12 @@ The output directory is again relative to CHASTE_TEST_OUTPUT.
         BidomainProblem<2>* p_bidomain_problem = CardiacSimulationArchiver<BidomainProblem<2> >::Load("BidomainCheckpointingTutorial/saved_simulation");
 
 ```
+
 The simulation duration has to be amended.
 Note that the duration is always given with respect to the origin of the first solve.
-This means that we are running from `t=5 ms`{.cpp} (the end of the previous simulation) to `t=10 ms`{.cpp}.
+This means that we are running from `t=5 ms` (the end of the previous simulation) to `t=10 ms`.
 The output files are concatenated so that they appear to be made by a single simulation running from
-`t=0 ms`{.cpp} to `t=10 ms`{.cpp}.
+`t=0 ms` to `t=10 ms`.
 Note: loading an archive also loads `HeartConfig` options, so `HeartConfig` calls such as this one must appear
 ''after'' CardiacSimulationArchiver::Load().
 
@@ -82,6 +87,7 @@ Note: loading an archive also loads `HeartConfig` options, so `HeartConfig` call
         HeartConfig::Instance()->SetSimulationDuration(10); //ms
 
 ```
+
 One point of checkpointing and restarting is that there may be something which we want to change
 during the course of experiment.  Here we change the conductivity.
 ```cpp
@@ -90,6 +96,7 @@ during the course of experiment.  Here we change the conductivity.
         p_bidomain_problem->Solve();
 
 ```
+
 Note that the pointer p_bidomain_problem exists in the scope of this test and that the object
 which was unarchived was created on the CardiacSimulationArchiver::Load() line above.  We are therefore
 responsible for deleting the memory.
@@ -100,7 +107,8 @@ responsible for deleting the memory.
 };
 
 ```
-## Notes 
+
+### Notes
 
  * Making a checkpoint does add a significant overhead at present, in particular because the mesh is
  written out to disk at each checkpoint. This is to ensure that each checkpoint directory contains everything
@@ -138,12 +146,7 @@ responsible for deleting the memory.
  
 
 
-# Code
-The full code is given below
-
-
-## File name `TestCardiacCheckpointingAndRestartingTutorial.hpp` 
-
+## Full code
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "CardiacSimulationArchiver.hpp"
@@ -190,4 +193,3 @@ public:
 };
 
 ```
-

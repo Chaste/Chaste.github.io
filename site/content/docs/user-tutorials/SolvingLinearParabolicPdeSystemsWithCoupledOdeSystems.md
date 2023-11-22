@@ -1,13 +1,12 @@
-
 ---
-title : "Solving Linear Parabolic Pde Systems With Coupled Ode Systems Tutorial"
-summary: "This tutorial is automatically generated from the file pde/test/tutorials/TestSolvingLinearParabolicPdeSystemsWithCoupledOdeSystemsTutorial.hpp at revision [c64c70046e25](https://github.com/Chaste/Chaste/commit/c64c70046e25e3f67b47ec3e92f29cb02d5e6830). Note that the code is given in full at the bottom of the page."
+title : "Solving Linear Parabolic Pde Systems With Coupled Ode Systems"
+summary: "Examples showing how to solve a system of coupled linear parabolic PDEs and ODEs"
 draft: false
 images: []
 toc: true
 ---
-
-# Examples showing how to solve a system of coupled linear parabolic PDEs and ODEs 
+This tutorial is automatically generated from [TestSolvingLinearParabolicPdeSystemsWithCoupledOdeSystemsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestSolvingLinearParabolicPdeSystemsWithCoupledOdeSystemsTutorial.hpp) at revision [96e6e662bf78](https://github.com/Chaste/Chaste/commit/96e6e662bf780f36e39eabcae9f3d4d843677a5b). Note that the code is given in full at the bottom of the page.
+## Examples showing how to solve a system of coupled linear parabolic PDEs and ODEs
 
 In this tutorial we show how Chaste can be used to solve a system of coupled linear
 parabolic PDEs and ODEs. This test uses the `LinearParabolicPdeSystemWithCoupledOdeSystemSolver`.
@@ -19,6 +18,7 @@ First we include the header needed to define this class as a test suite.
 #include <cxxtest/TestSuite.h>
 ```
 
+
 On some systems there is a clash between Boost Ublas includes and PETSc.  This can be
 resolved by making sure that Chaste's interface to the Boost libraries are included
 as early as possible.
@@ -27,12 +27,14 @@ as early as possible.
 #include "UblasIncludes.hpp"
 ```
 
+
 This is the class that is needed to solve a system of coupled linear
 parabolic PDEs and ODEs.
 
 ```cpp
 #include "LinearParabolicPdeSystemWithCoupledOdeSystemSolver.hpp"
 ```
+
 
 The next header file defines the Schnackenberg system, which comprises
 two reaction-diffusion PDEs that are coupled through their reaction terms.
@@ -41,11 +43,13 @@ two reaction-diffusion PDEs that are coupled through their reaction terms.
 #include "SchnackenbergCoupledPdeSystem.hpp"
 ```
 
+
 The next header file will allow us to specify a random initial condition.
 
 ```cpp
 #include "RandomNumberGenerator.hpp"
 ```
+
 
 We then include header files that allow us to specify boundary conditions for the PDEs,
 deal with meshes and output files, and use PETSc. As noted before, !PetscSetupAndFinalize.hpp
@@ -59,7 +63,8 @@ must be included in every test that uses PETSc.
 #include "PetscSetupAndFinalize.hpp"
 
 ```
-## Test 1: Solving the Schnackenberg system 
+
+### Test 1: Solving the Schnackenberg system
 
 Here, we solve the Schnackenberg system of PDEs, given by
 
@@ -72,18 +77,20 @@ perturbation of the spatially uniform steady state of the
 system.
 
 To do this we define the test suite (a class). It is sensible to name it the same
-as the filename. The class should inherit from `CxxTest::TestSuite`{.cpp}.
+as the filename. The class should inherit from `CxxTest::TestSuite`.
 
 ```cpp
 class TestSolvingLinearParabolicPdeSystemsWithCoupledOdeSystemsTutorial : public CxxTest::TestSuite
 {
 ```
 
-All individual tests defined in this test suite '''must''' be declared as public.
+
+All individual tests defined in this test suite **must** be declared as public.
 
 ```cpp
 public:
 ```
+
 
 Define a particular test.
 
@@ -91,6 +98,7 @@ Define a particular test.
     void TestSchnackenbergSystemOnButterflyMesh()
     {
 ```
+
 As usual, we first create a mesh. Here we are using a 2d mesh of a butterfly-shaped domain.
 ```cpp
         TrianglesMeshReader<2,2> mesh_reader("mesh/test/data/butterfly");
@@ -98,20 +106,23 @@ As usual, we first create a mesh. Here we are using a 2d mesh of a butterfly-sha
         mesh.ConstructFromMeshReader(mesh_reader);
 
 ```
+
 We scale the mesh to an appropriate size.
 ```cpp
         mesh.Scale(0.2, 0.2);
 
 ```
+
 Next, we instantiate the PDE system to be solved. We pass the parameter values into the
 constructor.  (The order is D,,1,,  D,,2,,  k,,1,,  k,,-1,,  k,,2,,  k,,3,,)
 ```cpp
         SchnackenbergCoupledPdeSystem<2> pde(1e-4, 1e-2, 0.1, 0.2, 0.3, 0.1);
 
 ```
-Then we have to define the boundary conditions. As we are in 2d, `SPACE_DIM`{.cpp}=2 and
-`ELEMENT_DIM`{.cpp}=2. We also have two unknowns u and v,
-so in this case `PROBLEM_DIM`{.cpp}=2. The value of each boundary condition is
+
+Then we have to define the boundary conditions. As we are in 2d, `SPACE_DIM`=2 and
+`ELEMENT_DIM`=2. We also have two unknowns u and v,
+so in this case `PROBLEM_DIM`=2. The value of each boundary condition is
 given by the spatially uniform steady state solution of the Schnackenberg system,
 given by u = (k,,1,, + k,,2,,)/k,,-1,,, v = k,,2,,k,,-1,,^2^/k,,3,,(k,,1,, + k,,2,,)^2^.
 
@@ -128,6 +139,7 @@ given by u = (k,,1,, + k,,2,,)/k,,-1,,, v = k,,2,,k,,-1,,^2^/k,,3,,(k,,1,, + k,,
         }
 
 ```
+
 This is the solver for solving coupled systems of linear parabolic PDEs and ODEs,
 which takes in the mesh, the PDE system, the boundary conditions and optionally
 a vector of ODE systems (one for each node in the mesh). Since in this example
@@ -136,6 +148,7 @@ we are solving a system of coupled PDEs only, we do not supply this last argumen
         LinearParabolicPdeSystemWithCoupledOdeSystemSolver<2,2,2> solver(&mesh, &pde, &bcc);
 
 ```
+
 Then we set the end time and time step and the output directory to which results will be written.
 ```cpp
         double t_end = 10;
@@ -145,6 +158,7 @@ Then we set the end time and time step and the output directory to which results
         solver.SetOutputDirectory("TestSchnackenbergSystemOnButterflyMesh");
 
 ```
+
 We create a vector of initial conditions for u and v that are random perturbations
 of the spatially uniform steady state and pass this to the solver.
 ```cpp
@@ -158,6 +172,7 @@ of the spatially uniform steady state and pass this to the solver.
         solver.SetInitialCondition(initial_condition);
 
 ```
+
 We now solve the PDE system and write results to VTK files, for
 visualization using Paraview.  Results will be written to CHASTE_TEST_OUTPUT/TestSchnackenbergSystemOnButterflyMesh
 as a results.pvd file and several results_[time].vtu files.
@@ -167,7 +182,8 @@ You should see something like [[Image(u.png, 350px)]] for u and [[Image(v.png, 3
         solver.SolveAndWriteResultsToFile();
 
 ```
-All PETSc `Vec`{.cpp}s should be destroyed when they are no longer needed.
+
+All PETSc `Vec`s should be destroyed when they are no longer needed.
 
 ```cpp
         PetscTools::Destroy(initial_condition);
@@ -176,12 +192,8 @@ All PETSc `Vec`{.cpp}s should be destroyed when they are no longer needed.
 ```
 
 
-# Code
-The full code is given below
 
-
-## File name `TestSolvingLinearParabolicPdeSystemsWithCoupledOdeSystemsTutorial.hpp` 
-
+## Full code
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "UblasIncludes.hpp"
@@ -241,4 +253,3 @@ public:
     }
 };
 ```
-

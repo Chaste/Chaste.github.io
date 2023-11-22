@@ -1,15 +1,14 @@
-
 ---
-title : "Cell Based Demo Tutorial"
-summary: "This tutorial is automatically generated from the file cell_based/test/tutorial/TestCellBasedDemoTutorial.hpp at revision [c64c70046e25](https://github.com/Chaste/Chaste/commit/c64c70046e25e3f67b47ec3e92f29cb02d5e6830). Note that the code is given in full at the bottom of the page."
+title : "Cell Based Demo"
+summary: "Examples showing how to create, run and cell-based simulations in Chaste"
 draft: false
 images: []
 toc: true
 ---
+This tutorial is automatically generated from [TestCellBasedDemoTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCellBasedDemoTutorial.hpp) at revision [96e6e662bf78](https://github.com/Chaste/Chaste/commit/96e6e662bf780f36e39eabcae9f3d4d843677a5b). Note that the code is given in full at the bottom of the page.
+## Examples showing how to create, run and cell-based simulations in Chaste
 
-# Examples showing how to create, run and cell-based simulations in Chaste 
-
-## Introduction 
+### Introduction
 
 This tutorial is designed to give you a quick introduction to running cell-based
 simulations in Chaste. Full details are postponed until later tutorials.
@@ -21,7 +20,7 @@ We begin with a simple monolayer simulation and see how to:
  * how to specify how to remove cells; and
  * how to change cell-cycle models.
  
-## The test 
+### The test
 
 We begin by including the necessary header files. These will be described in detail in
 subsequent cell-based tutorials.
@@ -58,13 +57,14 @@ subsequent cell-based tutorials.
 #include "FakePetscSetup.hpp"
 
 ```
-Next, we define the test class which inherits from `AbstractCellBasedTestSuite`{.cpp}.
-We inherit from `AbstractCellBasedTestSuite`{.cpp} rather than `CxxTest::TestSuite`{.cpp} directly because
+
+Next, we define the test class which inherits from `AbstractCellBasedTestSuite`.
+We inherit from `AbstractCellBasedTestSuite` rather than `CxxTest::TestSuite` directly because
 this class sets up and destroys some singleton objects for us. Singletons are objects that we want to exist only
 once in each simulation and will be covered in detail in later tutorials.
-Since we are using `AbstractCellBasedTestSuite`{.cpp} the singleton `SimulationTime`{.cpp} is initialised to zero at the beginning of the test and destroyed at the end
-of the test; `RandomNumberGenerator`{.cpp} is re-seeded with zero at the beginning and destroyed at the end of the test;
-and `CellPropertyRegistry`{.cpp} (which stores `CellProperties`{.cpp}, you learn about these in a later tutorial
+Since we are using `AbstractCellBasedTestSuite` the singleton `SimulationTime` is initialised to zero at the beginning of the test and destroyed at the end
+of the test; `RandomNumberGenerator` is re-seeded with zero at the beginning and destroyed at the end of the test;
+and `CellPropertyRegistry` (which stores `CellProperties`, you learn about these in a later tutorial
 [wiki:UserTutorials/CreatingAndUsingANewCellProperty]) is cleared at the beginning of the test.
 This makes for cleaner code.
 
@@ -74,7 +74,8 @@ class TestCellBasedDemoTutorial : public AbstractCellBasedTestSuite
 public:
 ```
 
-## Test 1 - a basic vertex-based simulation 
+
+### Test 1 - a basic vertex-based simulation
 
 In the first test, we run a simple vertex-based simulation of an epithelial monolayer.
 Each cell in the simulation is assigned a simple stochastic cell-cycle model, the cells will divide randomly and never stop proliferating.
@@ -83,15 +84,17 @@ Each cell in the simulation is assigned a simple stochastic cell-cycle model, th
     void TestVertexBasedMonolayer()
     {
 ```
+
 The first thing we define is a 2D (specified by the <2,2>) mesh which holds the spatial information of the simulation. To do this we use one of a
-number of {{{MeshGenerators}}}.
+number of `MeshGenerators`.
 ```cpp
         HoneycombVertexMeshGenerator generator(2, 2);
         boost::shared_ptr<MutableVertexMesh<2,2> > p_mesh = generator.GetMesh();
 
 ```
-We now generate a collection of cells. We do this by using a `CellsGenerator`{.cpp} and we specify the proliferative
-behaviour of the cell by choosing a `CellCycleModel`{.cpp}, here we choose a `UniformG1GenerationalCellCycleModel`{.cpp} where
+
+We now generate a collection of cells. We do this by using a `CellsGenerator` and we specify the proliferative
+behaviour of the cell by choosing a `CellCycleModel`, here we choose a `UniformG1GenerationalCellCycleModel` where
 each cell is given a division time, drawn from a uniform distribution when it is created.
 (Note that here we need to use a phase based cell cycle model so that we can use the target area modifiers which are needed by the vertex
 based simulations).
@@ -104,14 +107,16 @@ we need as may cells as elements in the mesh.
         cells_generator.GenerateBasicRandom(cells, p_mesh->GetNumElements(), p_transit_type);
 
 ```
-We now create a `CellPopulation`{.cpp} object (passing in the mesh and cells) to connect the mesh and the cells together.
-Here that is a {{{VertexBasedCellPopulation}}} and the dimension is <2>.
+
+We now create a `CellPopulation` object (passing in the mesh and cells) to connect the mesh and the cells together.
+Here that is a `VertexBasedCellPopulation` and the dimension is <2>.
 ```cpp
         VertexBasedCellPopulation<2> cell_population(*p_mesh, cells);
 
 ```
-We now create an `OffLatticeSimulation`{.cpp} object and pass in the
-`CellPopulation`{.cpp}. We also set some options on the simulation
+
+We now create an `OffLatticeSimulation` object and pass in the
+`CellPopulation`. We also set some options on the simulation
 like output directory, output multiple (so we don't visualize every
 timestep), and end time.
 
@@ -122,14 +127,16 @@ timestep), and end time.
         simulator.SetEndTime(20.0);
 
 ```
+
 To specify how cells move around, we create a "shared pointer" to a
-`Force`{.cpp} object and pass it to the `OffLatticeSimulation`{.cpp}. This is done using the MAKE_PTR macro as follows.
+`Force` object and pass it to the `OffLatticeSimulation`. This is done using the MAKE_PTR macro as follows.
 
 ```cpp
         MAKE_PTR(NagaiHondaForce<2>, p_force);
         simulator.AddForce(p_force);
 
 ```
+
 We now pass a "target area modifier" to the simulation.
 This modifies the target area of individual cells and thus alters the relative forces
 between neighbouring cells.
@@ -139,11 +146,13 @@ between neighbouring cells.
         simulator.AddSimulationModifier(p_growth_modifier);
 
 ```
-Finally we call the {{{Solve}}} method on the simulation to run the simulation.
+
+Finally we call the `Solve` method on the simulation to run the simulation.
 ```cpp
         simulator.Solve();
 
 ```
+
 The next two lines are for test purposes only and are not part of this tutorial.
 We are checking that we reached the end time of the simulation
 with the correct number of cells. If different simulation input parameters are being explored
@@ -155,20 +164,21 @@ the lines should be removed.
     }
 
 ```
-To visualize the results, open a new terminal, `cd`{.cpp} to the Chaste directory,
-then `cd`{.cpp} to `anim`{.cpp}. Then do: `java Visualize2dVertexCells /tmp/$USER/testoutput/CellBasedDemo1/results_from_time_0`{.cpp}.
-We may have to do: `javac Visualize2dVertexCells.java`{.cpp} beforehand to create the
+
+To visualize the results, open a new terminal, `cd` to the Chaste directory,
+then `cd` to `anim`. Then do: `java Visualize2dVertexCells /tmp/$USER/testoutput/CellBasedDemo1/results_from_time_0`.
+We may have to do: `javac Visualize2dVertexCells.java` beforehand to create the
 java executable.
 
-The `make_a_movie`{.cpp} script can be used to generate a video based on the results of your simulation.
-To do this, first visualize the results using `Visualize2dVertexCells`{.cpp} as described above. Click
-on the box marked "Output" and play through the whole simulation to generate a sequence of `.png`{.cpp}
-images, one for each time step. Next, still in the `anim`{.cpp} folder, do: `./make_a_movie`{.cpp}.
-This reads in the `.png`{.cpp} files and creates a video file called `simulation.mpeg`{.cpp}.
+The `make_a_movie` script can be used to generate a video based on the results of your simulation.
+To do this, first visualize the results using `Visualize2dVertexCells` as described above. Click
+on the box marked "Output" and play through the whole simulation to generate a sequence of `.png`
+images, one for each time step. Next, still in the `anim` folder, do: `./make_a_movie`.
+This reads in the `.png` files and creates a video file called `simulation.mpeg`.
 
 Results can also be visualized using Paraview. See the UserTutorials/VisualizingWithParaview tutorial for more information.
 
-## Test 2 - basic node-based simulation 
+### Test 2 - basic node-based simulation
 
 We next show how to modify the previous test to implement a 'node-based' simulation,
 in which cells are represented by overlapping spheres (actually circles, since we're
@@ -178,8 +188,9 @@ in 2D).
     void TestNodeBasedMonolayer()
     {
 ```
-We now need to create a `NodesOnlyMesh`{.cpp} we do this by first creating a `MutableMesh`{.cpp}
-and passing this to a helper method `ConstructNodesWithoutMesh`{.cpp} along with a interaction cut off length
+
+We now need to create a `NodesOnlyMesh` we do this by first creating a `MutableMesh`
+and passing this to a helper method `ConstructNodesWithoutMesh` along with a interaction cut off length
 that defines the connectivity in the mesh.
 
 ```cpp
@@ -189,6 +200,7 @@ that defines the connectivity in the mesh.
         mesh.ConstructNodesWithoutMesh(*p_generating_mesh, 1.5); //**Changed**//
 
 ```
+
 We create the cells as before, only this time we need one cell per node.
 ```cpp
         std::vector<CellPtr> cells;
@@ -197,12 +209,14 @@ We create the cells as before, only this time we need one cell per node.
         cells_generator.GenerateBasicRandom(cells, mesh.GetNumNodes(), p_transit_type); //**Changed**//
 
 ```
-This time we create a {{{NodeBasedCellPopulation}}} as we are using a {{{NodesOnlyMesh}}}.
+
+This time we create a `NodeBasedCellPopulation` as we are using a `NodesOnlyMesh`.
 ```cpp
         NodeBasedCellPopulation<2> cell_population(mesh, cells);//**Changed**//
 
 ```
-We create an `OffLatticeSimulation`{.cpp} object as before, all we change is the output directory
+
+We create an `OffLatticeSimulation` object as before, all we change is the output directory
 and output results more often as a larger default timestep is used for these simulations.
 ```cpp
         OffLatticeSimulation<2> simulator(cell_population);
@@ -211,28 +225,32 @@ and output results more often as a larger default timestep is used for these sim
         simulator.SetEndTime(20.0);
 
 ```
-We use a different `Force`{.cpp} which is suitable for node based simulations.
+
+We use a different `Force` which is suitable for node based simulations.
 
 ```cpp
         MAKE_PTR(RepulsionForce<2>, p_force); //**Changed**//
         simulator.AddForce(p_force);
 
 ```
+
 In all types of simulation you may specify how cells are removed from the simulation by specifying
-a `CellKiller`{.cpp}. You create these in the same was as the `Force`{.cpp} and pass them to the `CellBasedSimulation`{.cpp}.
-Note that here the constructor for `RandomCellKiller`{.cpp} requires some arguments to be passed to it, therefore we use the
-`MAKE_PTR_ARGS`{.cpp} macro.
+a `CellKiller`. You create these in the same was as the `Force` and pass them to the `CellBasedSimulation`.
+Note that here the constructor for `RandomCellKiller` requires some arguments to be passed to it, therefore we use the
+`MAKE_PTR_ARGS` macro.
 
 ```cpp
         MAKE_PTR_ARGS(RandomCellKiller<2>, p_cell_killer, (&cell_population, 0.01)); //**Changed**//
         simulator.AddCellKiller(p_cell_killer);
 
 ```
-Again we call the {{{Solve}}} method on the simulation to run the simulation.
+
+Again we call the `Solve` method on the simulation to run the simulation.
 ```cpp
         simulator.Solve();
 
 ```
+
 The next two lines are for test purposes only and are not part of this tutorial.
 Again, we are checking that we reached the end time of the simulation
 with the correct number of cells.
@@ -243,14 +261,15 @@ with the correct number of cells.
     }
 
 ```
-To visualize the results, open a new terminal, `cd`{.cpp} to the Chaste directory,
-then `cd`{.cpp} to `anim`{.cpp}. Then do: `java Visualize2dCentreCells /tmp/$USER/testoutput/CellBasedDemo2/results_from_time_0`{.cpp}.
-We may have to do: `javac Visualize2dCentreCells.java`{.cpp} beforehand to create the
+
+To visualize the results, open a new terminal, `cd` to the Chaste directory,
+then `cd` to `anim`. Then do: `java Visualize2dCentreCells /tmp/$USER/testoutput/CellBasedDemo2/results_from_time_0`.
+We may have to do: `javac Visualize2dCentreCells.java` beforehand to create the
 java executable.
 
-As described above, the `make_a_movie`{.cpp} script can be used to generate a video based on the results of your simulation.
+As described above, the `make_a_movie` script can be used to generate a video based on the results of your simulation.
 
-## Test 3 - basic mesh-based simulation 
+### Test 3 - basic mesh-based simulation
 
 We next show how to modify the previous test to implement a 'mesh-based' simulation,
 in which cells are represented by their centres and a Voronoi tessellation is used to
@@ -260,12 +279,14 @@ find nearest neighbours.
     void TestMeshBasedMonolayer()
     {
 ```
-This time we just create a {{{MutableMesh}}} and use that to specify the spatial locations of cells.
+
+This time we just create a `MutableMesh` and use that to specify the spatial locations of cells.
 ```cpp
         HoneycombMeshGenerator generator(2, 2);
         boost::shared_ptr<MutableMesh<2,2> > p_mesh = generator.GetMesh();  //**Changed**//
 
 ```
+
 We create the same number of cells as the previous test.
 ```cpp
         std::vector<CellPtr> cells;
@@ -274,11 +295,13 @@ We create the same number of cells as the previous test.
         cells_generator.GenerateBasicRandom(cells, p_mesh->GetNumNodes(), p_transit_type);
 
 ```
-This time we create a {{{MeshBasedCellPopulation}}} as we are using a {{{MutableMesh}}}.
+
+This time we create a `MeshBasedCellPopulation` as we are using a `MutableMesh`.
 ```cpp
         MeshBasedCellPopulation<2> cell_population(*p_mesh, cells); //**Changed**//
 
 ```
+
 To view the results of this and the subsequent mesh based tutorials in Paraview it is necessary to explicitly
 generate the required .vtu files. This is detailed in the [wiki:UserTutorials/VisualizingWithParaview] tutorial.
 Note that the results in Paraview may appear different to those in the java based visualizer. This is related
@@ -288,7 +311,8 @@ to the different methods used to generate voronoi tesselations in each and is re
         cell_population.AddPopulationWriter<VoronoiDataWriter>();
 
 ```
-We create an {{{OffLatticeSimulation}}} object as before, all we change is the output directory.
+
+We create an `OffLatticeSimulation` object as before, all we change is the output directory.
 ```cpp
         OffLatticeSimulation<2> simulator(cell_population);
         simulator.SetOutputDirectory("CellBasedDemo3"); //**Changed**//
@@ -296,17 +320,20 @@ We create an {{{OffLatticeSimulation}}} object as before, all we change is the o
         simulator.SetEndTime(20.0);
 
 ```
-We use a different {{{Force}}} which is suitable for mesh based simulations.
+
+We use a different `Force` which is suitable for mesh based simulations.
 ```cpp
         MAKE_PTR(GeneralisedLinearSpringForce<2>, p_force); //**Changed**//
         simulator.AddForce(p_force);
 
 ```
-Again we call the {{{Solve}}} method on the simulation to run the simulation.
+
+Again we call the `Solve` method on the simulation to run the simulation.
 ```cpp
         simulator.Solve();
 
 ```
+
 The next two lines are for test purposes only and are not part of this tutorial.
 
 ```cpp
@@ -315,10 +342,11 @@ The next two lines are for test purposes only and are not part of this tutorial.
     }
 
 ```
-The results may be visualized using `Visualize2dCentreCells`{.cpp} as described in the
-previous test, with the results directory changed from `CellBasedDemo2`{.cpp} to `CellBasedDemo3`{.cpp}.
 
-## Test 4 - basic mesh-based simulation with ghost nodes 
+The results may be visualized using `Visualize2dCentreCells` as described in the
+previous test, with the results directory changed from `CellBasedDemo2` to `CellBasedDemo3`.
+
+### Test 4 - basic mesh-based simulation with ghost nodes
 
 We next show how to modify the previous test to include 'ghost nodes', which do not
 correspond to cells but are sometimes needed when using a Voronoi tessellation. We
@@ -328,17 +356,19 @@ will discuss ghost nodes in more detail in subsequent cell-based tutorials.
     void TestMeshBasedMonolayerWithGhostNodes()
     {
 ```
-This time we just create a `MutableMesh`{.cpp} and use that to specify the spatial locations of cells.
-Here we pass an extra argument to the `HoneycombMeshGenerator`{.cpp} which adds another 2 rows of
+
+This time we just create a `MutableMesh` and use that to specify the spatial locations of cells.
+Here we pass an extra argument to the `HoneycombMeshGenerator` which adds another 2 rows of
 nodes round the mesh, known as ghost nodes.
 ```cpp
         HoneycombMeshGenerator generator(2, 2, 2); //**Changed**//
         boost::shared_ptr<MutableMesh<2,2> > p_mesh = generator.GetMesh();
 
 ```
-We only want to create cells for non ghost nodes. To find these we get them from the `HoneycombMeshGenerator`{.cpp}
-using the method `GetCellLocationIndices`{.cpp}. We also use a different `CellCycleModel`{.cpp}. Here we use a
-{{{TysonNovakCellCycleModel}}} which solves a coupled set of ODEs for each cell to calculate when each cell divides.
+
+We only want to create cells for non ghost nodes. To find these we get them from the `HoneycombMeshGenerator`
+using the method `GetCellLocationIndices`. We also use a different `CellCycleModel`. Here we use a
+`TysonNovakCellCycleModel` which solves a coupled set of ODEs for each cell to calculate when each cell divides.
 ```cpp
         std::vector<unsigned> location_indices = generator.GetCellLocationIndices();//**Changed**//
         std::vector<CellPtr> cells;
@@ -347,18 +377,21 @@ using the method `GetCellLocationIndices`{.cpp}. We also use a different `CellCy
         cells_generator.GenerateBasicRandom(cells, location_indices.size(), p_transit_type); //**Changed**//
 
 ```
-This time we create a `MeshBasedCellPopulation`{.cpp} as we are using a `MutableMesh`{.cpp} and have ghost nodes.
+
+This time we create a `MeshBasedCellPopulation` as we are using a `MutableMesh` and have ghost nodes.
 We also need to pass the indices of non ghost nodes as an extra argument.
 ```cpp
         MeshBasedCellPopulationWithGhostNodes<2> cell_population(*p_mesh, cells, location_indices); //**Changed**//
 
 ```
+
 Again Paraview output is explicitly requested.
 ```cpp
         cell_population.AddPopulationWriter<VoronoiDataWriter>();
 
 ```
-We create an `OffLatticeSimulation`{.cpp} object as before, all we change is the output directory and the end time.
+
+We create an `OffLatticeSimulation` object as before, all we change is the output directory and the end time.
 The Tyson Novak model is for yeast cells and therefore cells proliferate much more often and so we run the simulation for
 less time to keep cell numbers relatively small for this demo.
 
@@ -369,13 +402,15 @@ less time to keep cell numbers relatively small for this demo.
         simulator.SetEndTime(2.0); //**Changed**//
 
 ```
-We use the same {{{Force}}} as before and run the simulation in the same way.
+
+We use the same `Force` as before and run the simulation in the same way.
 ```cpp
         MAKE_PTR(GeneralisedLinearSpringForce<2>, p_force);
         simulator.AddForce(p_force);
         simulator.Solve();
 
 ```
+
 The next two lines are for test purposes only and are not part of this tutorial.
 
 ```cpp
@@ -384,10 +419,11 @@ The next two lines are for test purposes only and are not part of this tutorial.
     }
 
 ```
-The results may be visualized using `Visualize2dCentreCells`{.cpp} as described in the
-previous test, with the results directory changed from `CellBasedDemo3`{.cpp} to `CellBasedDemo4`{.cpp}.
 
-## Test 5 - basic periodic mesh-based simulation 
+The results may be visualized using `Visualize2dCentreCells` as described in the
+previous test, with the results directory changed from `CellBasedDemo3` to `CellBasedDemo4`.
+
+### Test 5 - basic periodic mesh-based simulation
 
 We next show how to modify the previous test to implement a periodic boundary to the
 left and right of the domain.
@@ -396,14 +432,16 @@ left and right of the domain.
     void TestMeshBasedMonolayerPeriodic()
     {
 ```
-We now want to impose periodic boundaries on the domain. To do this we create a `Cylindrical2dMesh`{.cpp}
-using a {{{CylindricalHoneycombMeshGenerator}}}.
+
+We now want to impose periodic boundaries on the domain. To do this we create a `Cylindrical2dMesh`
+using a `CylindricalHoneycombMeshGenerator`.
 ```cpp
         CylindricalHoneycombMeshGenerator generator(5, 2, 2); //**Changed**//
         boost::shared_ptr<Cylindrical2dMesh> p_mesh = generator.GetCylindricalMesh(); //**Changed**//
 
 ```
-Again we create one cell for each non ghost node. Note that we have changed back to using a {{{UniformG1GenerationalCellCycleModel}}}.
+
+Again we create one cell for each non ghost node. Note that we have changed back to using a `UniformG1GenerationalCellCycleModel`.
 ```cpp
         std::vector<unsigned> location_indices = generator.GetCellLocationIndices();
         std::vector<CellPtr> cells;
@@ -412,11 +450,13 @@ Again we create one cell for each non ghost node. Note that we have changed back
         cells_generator.GenerateBasicRandom(cells, location_indices.size(), p_transit_type);
 
 ```
-We use the same {{{CellPopulation}}}, {{{CellBasedSimulation}}} (only changing the output directory and end time) and {{{Force}}} as before and run the simulation.
+
+We use the same `CellPopulation`, `CellBasedSimulation` (only changing the output directory and end time) and `Force` as before and run the simulation.
 ```cpp
         MeshBasedCellPopulationWithGhostNodes<2> cell_population(*p_mesh, cells, location_indices);
 
 ```
+
 Again Paraview output is explicitly requested.
 ```cpp
         cell_population.AddPopulationWriter<VoronoiDataWriter>();
@@ -432,6 +472,7 @@ Again Paraview output is explicitly requested.
         simulator.Solve();
 
 ```
+
 The next two lines are for test purposes only and are not part of this tutorial.
 
 ```cpp
@@ -440,10 +481,11 @@ The next two lines are for test purposes only and are not part of this tutorial.
     }
 
 ```
-The results may be visualized using `Visualize2dCentreCells`{.cpp} as described in the
-previous test, with the results directory changed from `CellBasedDemo4`{.cpp} to `CellBasedDemo5`{.cpp}.
 
-## Test 6 - basic periodic mesh-based simulation with obstructions 
+The results may be visualized using `Visualize2dCentreCells` as described in the
+previous test, with the results directory changed from `CellBasedDemo4` to `CellBasedDemo5`.
+
+### Test 6 - basic periodic mesh-based simulation with obstructions
 
 We next show how to modify the previous test to include one
 or more 'obstructions' within the domain.
@@ -452,8 +494,9 @@ or more 'obstructions' within the domain.
     void TestMeshBasedMonolayerPeriodicSolidBottomBoundary()
     {
 ```
-We make the same `Mesh`{.cpp}, `Cells`{.cpp}, `CellPopulation`{.cpp},
-{{{CellBasedSimulation}}} and forces as before, all we change is the output directory.
+
+We make the same `Mesh`, `Cells`, `CellPopulation`,
+`CellBasedSimulation` and forces as before, all we change is the output directory.
 ```cpp
         CylindricalHoneycombMeshGenerator generator(5, 2, 2);
         boost::shared_ptr<Cylindrical2dMesh> p_mesh = generator.GetCylindricalMesh();
@@ -476,8 +519,9 @@ We make the same `Mesh`{.cpp}, `Cells`{.cpp}, `CellPopulation`{.cpp},
         simulator.AddForce(p_force);
 
 ```
-We now want to impose the condition y>0 on the cells. To do this we create a "shared pointer" to a `PlaneBoundaryCondition`{.cpp}.
-Much like the {{{RandomCellKiller}}} earlier we pass arguments to the constructor (a point (0,0) on the plane (line in 2D) and an outward pointing normal to the plane (0,-1) ) using the {{{MAKE_PTR_ARGS}}} macro.
+
+We now want to impose the condition y>0 on the cells. To do this we create a "shared pointer" to a `PlaneBoundaryCondition`.
+Much like the `RandomCellKiller` earlier we pass arguments to the constructor (a point (0,0) on the plane (line in 2D) and an outward pointing normal to the plane (0,-1) ) using the `MAKE_PTR_ARGS` macro.
 ```cpp
         c_vector<double,2> point = zero_vector<double>(2);
         c_vector<double,2> normal = zero_vector<double>(2);
@@ -486,11 +530,13 @@ Much like the {{{RandomCellKiller}}} earlier we pass arguments to the constructo
         simulator.AddCellPopulationBoundaryCondition(p_bc);
 
 ```
-Finally we call the {{{Solve}}} method as in all other simulations.
+
+Finally we call the `Solve` method as in all other simulations.
 ```cpp
         simulator.Solve();
 
 ```
+
 The next two lines are for test purposes only and are not part of this tutorial.
 
 ```cpp
@@ -499,10 +545,11 @@ The next two lines are for test purposes only and are not part of this tutorial.
     }
 ```
 
-The results may be visualized using `Visualize2dCentreCells`{.cpp} as described in the
-previous test, with the results directory changed from `CellBasedDemo5`{.cpp} to `CellBasedDemo6`{.cpp}.
 
-## Test 7 - basic Potts-based simulation 
+The results may be visualized using `Visualize2dCentreCells` as described in the
+previous test, with the results directory changed from `CellBasedDemo5` to `CellBasedDemo6`.
+
+### Test 7 - basic Potts-based simulation
 
 In the final test we show how to modify the earlier tests (using off lattice models) to implement a 'Potts-based' simulation,
 in which cells are represented by collections of sites on a fixed lattice.
@@ -511,9 +558,10 @@ in which cells are represented by collections of sites on a fixed lattice.
     void TestPottsBasedMonolayer()
     {
 ```
-In common with the off lattice simulations we begin by creating a mesh. Here we use the `PottsMeshGenerator`{.cpp}
-class to generate a `PottsMesh`{.cpp} each element in the mesh is a collection of lattice sites (represented by nodes at their centres).
-All the connectivity between lattice sites is defined by the `PottsMeshGenerator`{.cpp},
+
+In common with the off lattice simulations we begin by creating a mesh. Here we use the `PottsMeshGenerator`
+class to generate a `PottsMesh` each element in the mesh is a collection of lattice sites (represented by nodes at their centres).
+All the connectivity between lattice sites is defined by the `PottsMeshGenerator`,
 and there are arguments to make the domains periodic.
 
 ```cpp
@@ -521,6 +569,7 @@ and there are arguments to make the domains periodic.
         boost::shared_ptr<PottsMesh<2> > p_mesh = generator.GetMesh(); //**Changed**//
 
 ```
+
 We generate one cell for each element as in vertex based simulations.
 ```cpp
         std::vector<CellPtr> cells;
@@ -529,15 +578,17 @@ We generate one cell for each element as in vertex based simulations.
         cells_generator.GenerateBasicRandom(cells, p_mesh->GetNumElements(), p_transit_type);
 
 ```
-As we have a `PottsMesh`{.cpp} we use a `PottsBasedCellPopulation`{.cpp}. Note here we also change the
+
+As we have a `PottsMesh` we use a `PottsBasedCellPopulation`. Note here we also change the
 "temperature" of the Potts simulation to make cells more motile.
 ```cpp
         PottsBasedCellPopulation<2> cell_population(*p_mesh, cells);//**Changed**//
         cell_population.SetTemperature(1.0);
 
 ```
-As a Potts simulation is restricted to a lattice we create a `OnSimulation`{.cpp} object and pass in the `CellPopulation`{.cpp} in much the same
-way as an `OffLatticeSimulation`{.cpp} in the above examples. We also set some
+
+As a Potts simulation is restricted to a lattice we create a `OnSimulation` object and pass in the `CellPopulation` in much the same
+way as an `OffLatticeSimulation` in the above examples. We also set some
 options on the simulation like output directory and end time.
 
 ```cpp
@@ -546,9 +597,10 @@ options on the simulation like output directory and end time.
         simulator.SetEndTime(20.0);
 
 ```
+
 In order to specify how cells move around we create "shared pointers" to
-`UpdateRule`{.cpp} objects and pass them to the `OnLatticeSimulation`{.cpp}.
-This is analogous to `Forces`{.cpp} in earlier examples.
+`UpdateRule` objects and pass them to the `OnLatticeSimulation`.
+This is analogous to `Forces` in earlier examples.
 
 ```cpp
         MAKE_PTR(VolumeConstraintPottsUpdateRule<2>, p_volume_constraint_update_rule); //**Changed**//
@@ -559,17 +611,20 @@ This is analogous to `Forces`{.cpp} in earlier examples.
         simulator.AddUpdateRule(p_adhesion_update_rule); //**Changed**//
 
 ```
-We can add {{{CellKillers}}} as before.
+
+We can add `CellKillers` as before.
 ```cpp
         MAKE_PTR_ARGS(RandomCellKiller<2>, p_cell_killer, (&cell_population, 0.01));
         simulator.AddCellKiller(p_cell_killer);
 
 ```
-Again we run the simulation by calling the {{{Solve}}} method.
+
+Again we run the simulation by calling the `Solve` method.
 ```cpp
         simulator.Solve();
 
 ```
+
 The next two lines are for test purposes only and are not part of this tutorial.
 
 ```cpp
@@ -578,9 +633,10 @@ The next two lines are for test purposes only and are not part of this tutorial.
     }
 ```
 
-To visualize the results, open a new terminal, `cd`{.cpp} to the Chaste directory,
-then `cd`{.cpp} to `anim`{.cpp}. Then do: `java Visualize2dVertexCells /tmp/$USER/testoutput/CellBasedDemo7/results_from_time_0`{.cpp}.
-We may have to do: `javac Visualize2dVertexCells.java`{.cpp} beforehand to create the
+
+To visualize the results, open a new terminal, `cd` to the Chaste directory,
+then `cd` to `anim`. Then do: `java Visualize2dVertexCells /tmp/$USER/testoutput/CellBasedDemo7/results_from_time_0`.
+We may have to do: `javac Visualize2dVertexCells.java` beforehand to create the
 java executable.
 
 ```cpp
@@ -589,12 +645,8 @@ java executable.
 ```
 
 
-# Code
-The full code is given below
 
-
-## File name `TestCellBasedDemoTutorial.hpp` 
-
+## Full code
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "CellBasedSimulationArchiver.hpp"
@@ -842,4 +894,3 @@ public:
 };
 
 ```
-

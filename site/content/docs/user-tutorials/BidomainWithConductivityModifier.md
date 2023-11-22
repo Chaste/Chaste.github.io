@@ -1,13 +1,12 @@
-
 ---
-title : "Bidomain With Conductivity Modifier Tutorial"
-summary: "This tutorial is automatically generated from the file heart/test/tutorials/TestBidomainWithConductivityModifierTutorial.hpp at revision [c64c70046e25](https://github.com/Chaste/Chaste/commit/c64c70046e25e3f67b47ec3e92f29cb02d5e6830). Note that the code is given in full at the bottom of the page."
+title : "Bidomain With Conductivity Modifier"
+summary: "A bidomain simulation with spatially varying conductivities."
 draft: false
 images: []
 toc: true
 ---
-
-# A bidomain simulation with spatially varying conductivities. 
+This tutorial is automatically generated from [TestBidomainWithConductivityModifierTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestBidomainWithConductivityModifierTutorial.hpp) at revision [8081f57380d8](https://github.com/Chaste/Chaste/commit/8081f57380d857b24947a7a4a70e55ddfef322da). Note that the code is given in full at the bottom of the page.
+## A bidomain simulation with spatially varying conductivities.
 
 Tissue conductivity can be altered in simple (cuboid and ellipsoid) regions using
 the `HeartConfig` `SetConductivityHeterogeneities` methods. This tutorial describes a
@@ -34,6 +33,7 @@ modifier and an example cell factory (not needed if you're using a custom one).
 #include "ZeroStimulusCellFactory.hpp"
 
 ```
+
 Here we define our conductivity modifier. It inherits from the abstract class.
 Make sure to use the right element/space dims.
 
@@ -41,6 +41,7 @@ Make sure to use the right element/space dims.
 class SimpleConductivityModifier : public AbstractConductivityModifier<2,2>
 {
 ```
+
 
 We'll use a c_matrix called mTensor as "working memory" to hold the returned
 modified tensor. This is needed because we return by reference to the problem class,
@@ -56,6 +57,7 @@ private:
 
 public:
 ```
+
 
 The constructor.
 
@@ -73,6 +75,7 @@ Strange things will happen if the off-diagonal entries aren't zeroed!
           }
 
 ```
+
 `rCalculateModifiedConductivityTensor` returns a reference to the "processed" conductivity tensor.
 
 ```cpp
@@ -106,6 +109,7 @@ Strange things will happen if the off-diagonal entries aren't zeroed!
 };
 
 ```
+
 Now the usual test structure.
 
 ```cpp
@@ -116,6 +120,7 @@ public:
     {
 ```
 
+
 Generate a mesh.
 
 ```cpp
@@ -123,6 +128,7 @@ Generate a mesh.
         mesh.ConstructRegularSlabMesh(0.5, 1.0, 0.5); // Mesh has 4 elements
 
 ```
+
 Here we're using a trivial cell factory for simplicity, but usually you'll provide your own one.
 Set up the problem with the factory as usual.
 
@@ -132,6 +138,7 @@ Set up the problem with the factory as usual.
         bidomain_problem.SetMesh( &mesh );
 
 ```
+
 We need to apply the modifier directly to the tissue, which comes from the problem, but is only
 accessible after `Initialise()`, so let's do that now.
 
@@ -140,6 +147,7 @@ accessible after `Initialise()`, so let's do that now.
         BidomainTissue<2>* p_bidomain_tissue = bidomain_problem.GetBidomainTissue();
 
 ```
+
 Get the original conductivity tensor values. We haven't set them using
 `HeartConfig->SetIntra/ExtracellularConductivities` so they'll just be the defaults.
 
@@ -167,6 +175,7 @@ We then check that we have the correct (default) conductivity values.
         }
 
 ```
+
 Now we can make the modifier and apply it to the tissue using `SetConductivityModifier`.
 
 ```cpp
@@ -174,6 +183,7 @@ Now we can make the modifier and apply it to the tissue using `SetConductivityMo
         p_bidomain_tissue->SetConductivityModifier( &modifier );
 
 ```
+
 To confirm that the conductivities have changed, let's iterate over all elements owned by this process
 and check their conductivity against what we expect.
 
@@ -202,12 +212,8 @@ and check their conductivity against what we expect.
 ```
 
 
-# Code
-The full code is given below
 
-
-## File name `TestBidomainWithConductivityModifierTutorial.hpp` 
-
+## Full code
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "BidomainProblem.hpp"
@@ -314,4 +320,3 @@ public:
 };
 
 ```
-

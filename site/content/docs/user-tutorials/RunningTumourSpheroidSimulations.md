@@ -1,15 +1,14 @@
-
 ---
-title : "Running Tumour Spheroid Simulations Tutorial"
-summary: "This tutorial is automatically generated from the file cell_based/test/tutorial/TestRunningTumourSpheroidSimulationsTutorial.hpp at revision [c64c70046e25](https://github.com/Chaste/Chaste/commit/c64c70046e25e3f67b47ec3e92f29cb02d5e6830). Note that the code is given in full at the bottom of the page."
+title : "Running Tumour Spheroid Simulations"
+summary: "An example showing how to run tumour spheroid simulations"
 draft: false
 images: []
 toc: true
 ---
+This tutorial is automatically generated from [TestRunningTumourSpheroidSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningTumourSpheroidSimulationsTutorial.hpp) at revision [96e6e662bf78](https://github.com/Chaste/Chaste/commit/96e6e662bf780f36e39eabcae9f3d4d843677a5b). Note that the code is given in full at the bottom of the page.
+## An example showing how to run tumour spheroid simulations
 
-# An example showing how to run tumour spheroid simulations 
-
-## Introduction 
+### Introduction
 
 In this tutorial we show how Chaste can be used to simulate a growing cell monolayer culture or
 multicellular tumour spheroid. Like the crypt simulations, tumour spheroid simulations
@@ -23,11 +22,11 @@ progresses.
 In summary, the main difference between this tutorial and the other cell-based simulation
 tutorials is that a PDE is defined, which is used in the simulation.
 
-## The test 
+### The test
 
 As in the other cell-based simulation tutorials, we begin by including the necessary header files. We have
-encountered some of these files already. Recall that often `CheckpointArchiveTypes.hpp`{.cpp}
-or `CellBasedSimulationArchiver.hpp`{.cpp} must be included as the first Chaste header.
+encountered some of these files already. Recall that often `CheckpointArchiveTypes.hpp`
+or `CellBasedSimulationArchiver.hpp` must be included as the first Chaste header.
 
 ```cpp
 #include <cxxtest/TestSuite.h>
@@ -39,12 +38,13 @@ or `CellBasedSimulationArchiver.hpp`{.cpp} must be included as the first Chaste 
 #include "SmartPointers.hpp"
 ```
 
-The `SimpleOxygenBasedCellCycleModel`{.cpp} header file defines a cell-cycle model in which
+
+The `SimpleOxygenBasedCellCycleModel` header file defines a cell-cycle model in which
 a cell's rate of progress through G1 phase changes over time in a simple manner, according
-to the local oxygen concentration. We also include the `WildTypeCellMutationState`{.cpp}
+to the local oxygen concentration. We also include the `WildTypeCellMutationState`
 header file, which defines a wild type cell mutation state that we will use to construct
 cells. A cell mutation state is always required when constructing a cell, however
-in earlier simulation tutorial we used a helper classes ((`CellsGenerator`{.cpp} and `CryptCellsGenerator`{.cpp}) that
+in earlier simulation tutorial we used a helper classes ((`CellsGenerator` and `CryptCellsGenerator`) that
 allowed us to avoid having to construct cells directly.
 
 ```cpp
@@ -52,6 +52,7 @@ allowed us to avoid having to construct cells directly.
 #include "WildTypeCellMutationState.hpp"
 #include "StemCellProliferativeType.hpp"
 ```
+
 
 The next three header files define: a PDE that describes how oxygen is transported via through the
 domain via diffusion and is consumed by live cells; a constant-valued boundary condition to
@@ -64,13 +65,15 @@ handles the numerical solution of any PDEs.
 #include "EllipticGrowingDomainPdeModifier.hpp"
 
 ```
-We use an `OffLatticeSimulation`{.cpp}.
+
+We use an `OffLatticeSimulation`.
 
 ```cpp
 #include "OffLatticeSimulation.hpp"
 ```
 
-The header file `PetscSetupAndFinalize.hpp`{.cpp} must be included in all tests which use Petsc. This is
+
+The header file `PetscSetupAndFinalize.hpp` must be included in all tests which use Petsc. This is
 a suite of data structures and routines that are used in the finite element
 PDE solvers, which is how we solve the oxygen transport PDE.
 
@@ -78,6 +81,7 @@ PDE solvers, which is how we solve the oxygen transport PDE.
 #include "PetscSetupAndFinalize.hpp"
 
 ```
+
 Having included all the necessary header files, we proceed by defining the test class.
 
 ```cpp
@@ -88,6 +92,7 @@ public:
     {
 ```
 
+
 This first line can be ignored: it is a macro which just says
 don't run this test if in parallel.
 
@@ -95,27 +100,30 @@ don't run this test if in parallel.
         EXIT_IF_PARALLEL;
 
 ```
-First we want to create a '''non-periodic''' 'honeycomb' mesh.
+
+First we want to create a **non-periodic** 'honeycomb' mesh.
 We use the honeycomb mesh generator, as before, saying 10 cells wide
 and 10 cells high. Note that the thickness of the ghost nodes layer is
-0, i.e. there are no ghost nodes, and the `false`{.cpp} indicates that the
-returned mesh is '''not''' cylindrical. In contrast to the crypt simulation
-tutorial, here we call `GetMesh()`{.cpp} on the `HoneycombMeshGenerator`{.cpp}
-object to return the mesh, which is of type `MutableMesh`{.cpp}.
+0, i.e. there are no ghost nodes, and the `false` indicates that the
+returned mesh is **not** cylindrical. In contrast to the crypt simulation
+tutorial, here we call `GetMesh()` on the `HoneycombMeshGenerator`
+object to return the mesh, which is of type `MutableMesh`.
 
 ```cpp
         HoneycombMeshGenerator generator(10, 10, 0);
         boost::shared_ptr<MutableMesh<2,2> > p_mesh = generator.GetMesh();
 
 ```
+
 Next, we need to create some cells. Unlike in the the crypt simulation
-tutorial, we don't just use a `CellsGenerator`{.cpp} class, but do it manually,
-in a loop. First, we define a `std::vector`{.cpp} of cell pointers.
+tutorial, we don't just use a `CellsGenerator` class, but do it manually,
+in a loop. First, we define a `std::vector` of cell pointers.
 
 ```cpp
         std::vector<CellPtr> cells;
 
 ```
+
 This line defines a mutation state to be used for all cells, of type
 `WildTypeCellMutationState` (i.e. 'healthy'):
 
@@ -124,6 +132,7 @@ This line defines a mutation state to be used for all cells, of type
         MAKE_PTR(StemCellProliferativeType, p_stem_type);
 
 ```
+
 Now we loop over the nodes...
 
 ```cpp
@@ -131,7 +140,8 @@ Now we loop over the nodes...
         {
 ```
 
-...then create a cell, giving it a `SimpleOxygenBasedCellCycleModel`{.cpp}.
+
+...then create a cell, giving it a `SimpleOxygenBasedCellCycleModel`.
 The spatial dimension (1, 2 or 3) needs to be set on the cell-cycle model before it is passed to the cell.
 
 ```cpp
@@ -141,6 +151,7 @@ The spatial dimension (1, 2 or 3) needs to be set on the cell-cycle model before
             p_cell->SetCellProliferativeType(p_stem_type);
 
 ```
+
 We also alter the default cell-cycle times.
 
 ```cpp
@@ -148,6 +159,7 @@ We also alter the default cell-cycle times.
             p_model->SetTransitCellG1Duration(8.0);
 
 ```
+
 We now define a random birth time, chosen from [-T,0], where
 T = t,,1,, + t,,2,,, where t,,1,, is a parameter representing the G,,1,, duration
 of a 'stem' cell, and t,,2,, is the basic S+G,,2,,+M phases duration...
@@ -158,6 +170,7 @@ of a 'stem' cell, and t,,2,, is the basic S+G,,2,,+M phases duration...
                                   + p_model->GetSG2MDuration() );
 ```
 
+
 ...then we set the birth time and push the cell back into the vector
 of cells.
 
@@ -167,18 +180,20 @@ of cells.
         }
 
 ```
-Now that we have defined the cells, we can define the `CellPopulation`{.cpp}. We use a
-`MeshBasedCellPopulation`{.cpp} since although the cell population is mesh-based, it does
+
+Now that we have defined the cells, we can define the `CellPopulation`. We use a
+`MeshBasedCellPopulation` since although the cell population is mesh-based, it does
 not include any ghost nodes. The constructor takes in the mesh and the cells vector.
 
 ```cpp
         MeshBasedCellPopulation<2> cell_population(*p_mesh, cells);
 
 ```
+
 Next we instantiate an instance of the PDE class which we defined above.
-This will be passed into the `OffLatticeSimulationWithPdes`{.cpp} object. The
-`CellwiseSourceEllipticPde`{.cpp} is a `PDE`{.cpp} class which inherits from
-`AbstractLinearEllipticPde`{.cpp} and represents
+This will be passed into the `OffLatticeSimulationWithPdes` object. The
+`CellwiseSourceEllipticPde` is a `PDE` class which inherits from
+`AbstractLinearEllipticPde` and represents
 the PDE ''u_xx'' + ''u_yy'' = ''k''(''x'',''y'') ''u'', where ''u''(''x'',''y'') denotes
 the oxygen concentration at
 position (''x'',''y'') and the function ''k''(''x'',''y'') specifies the rate of consumption by live cells
@@ -190,6 +205,7 @@ to oxygen deprivation.
         MAKE_PTR_ARGS(CellwiseSourceEllipticPde<2>, p_pde, (cell_population, -0.03));
 
 ```
+
 We also create a constant-valued boundary condition to associate with the PDE.
 This boundary condition object takes in a single argument in its constructor,
 the value at the boundary. We also introduce a boolean to specify whether this value is the flux at the boundary
@@ -201,6 +217,7 @@ the value at the boundary. We also introduce a boolean to specify whether this v
         bool is_neumann_bc = false;
 
 ```
+
 To pass the PDE to our simulator, it must first be encapsulated in a
 cell-based PDE modifier object, together with the boundary condition for
 the PDE. The latter is specified by the second and third arguments of the
@@ -215,14 +232,15 @@ the boundary condition itself can be made spatially varying or time-dependent.
 The PDE is tagged to show that the quantity to be solved for (the quantity of interest in
 the cells' data is "oxygen".
 
-The `CellData`{.cpp} class, is used to stores the value of the current nutrient concentration for each cell.
+The `CellData` class, is used to stores the value of the current nutrient concentration for each cell.
 
 ```cpp
         MAKE_PTR_ARGS(EllipticGrowingDomainPdeModifier<2>, p_pde_modifier, (p_pde, p_bc, is_neumann_bc));
         p_pde_modifier->SetDependentVariableName("oxygen");
 
 ```
-We are now in a position to construct an `OffLatticeSimulationWithPdes`{.cpp} object,
+
+We are now in a position to construct an `OffLatticeSimulationWithPdes` object,
 using the cell population. We then pass the PDE modifier object to the simulation.
 
 ```cpp
@@ -230,6 +248,7 @@ using the cell population. We then pass the PDE modifier object to the simulatio
         simulator.AddSimulationModifier(p_pde_modifier);
 
 ```
+
 We next set the output directory and end time.
 
 ```cpp
@@ -237,12 +256,13 @@ We next set the output directory and end time.
         simulator.SetEndTime(1.0);
 
 ```
+
 We must now create one or more force laws, which determine the mechanics of
 the cell population. As in the crypt simulation tutorial, we assume that a cell
 experiences a force from each neighbour that can be represented as a linear overdamped
-spring, so we use a `GeneralisedLinearSpringForce`{.cpp} object.
-Note that we have called the method `SetCutOffLength`{.cpp} on the
-`GeneralisedLinearSpringForce`{.cpp} before passing it to the simulator: this call
+spring, so we use a `GeneralisedLinearSpringForce` object.
+Note that we have called the method `SetCutOffLength` on the
+`GeneralisedLinearSpringForce` before passing it to the simulator: this call
 modifies the force law so that two neighbouring cells do not impose
 a force on each other if they are located more than 3 units (=3 cell widths)
 away from each other. This modification is necessary when no ghost nodes are used,
@@ -255,15 +275,17 @@ on the spheroid boundary.
         simulator.AddForce(p_linear_force);
 
 ```
-We call `Solve()`{.cpp} on the simulator to run the simulation.
+
+We call `Solve()` on the simulator to run the simulation.
 
 ```cpp
         simulator.Solve();
     }
 ```
 
-To visualize the results, open a new terminal, `cd`{.cpp} to the Chaste directory,
-then `cd`{.cpp} to `anim`{.cpp}. Then do: `java Visualize2dCentreCells /tmp/$USER/testoutput/SpheroidTutorial/results_from_time_0`{.cpp}.
+
+To visualize the results, open a new terminal, `cd` to the Chaste directory,
+then `cd` to `anim`. Then do: `java Visualize2dCentreCells /tmp/$USER/testoutput/SpheroidTutorial/results_from_time_0`.
 
 Or use Paraview, see [wiki:UserTutorials/VisualizingWithParaview] for details.
 
@@ -273,12 +295,8 @@ Or use Paraview, see [wiki:UserTutorials/VisualizingWithParaview] for details.
 ```
 
 
-# Code
-The full code is given below
 
-
-## File name `TestRunningTumourSpheroidSimulationsTutorial.hpp` 
-
+## Full code
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"
@@ -354,4 +372,3 @@ public:
 };
 
 ```
-
