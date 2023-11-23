@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestCreatingAndUsingANewCellKillerTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellKillerTutorial.hpp) at revision [96e6e662bf78](https://github.com/Chaste/Chaste/commit/96e6e662bf780f36e39eabcae9f3d4d843677a5b). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCreatingAndUsingANewCellKillerTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellKillerTutorial.hpp) at revision [6ae21367d74b](https://github.com/Chaste/Chaste/commit/6ae21367d74bae0b21b25884bc6d70ec91bd1d14). Note that the code is given in full at the bottom of the page.
 ## An example showing how to create a new cell killer and use it in a cell-based simulation
 
 ### Introduction
@@ -62,8 +62,8 @@ Chaste tutorials.
 
 As an example, let us consider a cell killer that labels any cells in a
 two-dimensional cell population which lie outside the elliptical domain given in
-Cartesian coordinates by the equation (''x''/20)^2^ + (''y''/10)^2^ < 1. To
-implement this we define a new cell killer class, `MyCellKiller`,
+Cartesian coordinates by the equation $\left(\frac{x}{20}\right)^2 + \left(\frac{y}{10}\right)^2 < 1$.
+To implement this we define a new cell killer class, `MyCellKiller`,
 which inherits from `AbstractCellKiller` and overrides the
 `CheckAndLabelCellsForApoptosisOrDeath()` method.
 
