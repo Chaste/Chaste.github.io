@@ -88,7 +88,7 @@ Do not edit it manually, as your changes will be overwritten!
 - Save ('checkpoint') and reload simulations
   - [line 49 of TestCardiacCheckpointingAndRestartingTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestCardiacCheckpointingAndRestartingTutorial.hpp#L49)
 - Do a monodomain simulation with equivalent conductivities to a bidomain simulation.
-  - [line 233 of TestEquivalentMonoAndBidomainTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestEquivalentMonoAndBidomainTutorial.hpp#L233)
+  - [line 232 of TestEquivalentMonoAndBidomainTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestEquivalentMonoAndBidomainTutorial.hpp#L232)
 - Set discrete **cuboid** areas to have heterogeneous (intra- and/or extra-cellular) conductivity tensors.
   - [line 82 of TestHeterogeneousConductivities.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/TestHeterogeneousConductivities.hpp#L82)
 - Generate a slab (cuboid) mesh rather than read a mesh in, and pass it to solver
