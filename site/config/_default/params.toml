@@ -65,7 +65,7 @@ images = ["chaste_1024.png"]
   imageSingle = true # true (default) or false
 
   # KaTex
-  katex = false
+  katex = true
 
   # Repository
   editPage = false # false (default) or true

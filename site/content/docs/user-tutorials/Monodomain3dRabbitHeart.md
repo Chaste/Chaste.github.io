@@ -1,13 +1,12 @@
-
 ---
-title : "Monodomain Rabbit Heart Tutorial"
-summary: "This tutorial is automatically generated from the file heart/test/tutorials/TestMonodomain3dRabbitHeartTutorial.hpp at revision [c64c70046e25](https://github.com/Chaste/Chaste/commit/c64c70046e25e3f67b47ec3e92f29cb02d5e6830). Note that the code is given in full at the bottom of the page."
+title : "Monodomain Rabbit Heart"
+summary: "3D monodomain rabbit heart example"
 draft: false
 images: []
 toc: true
 ---
-
-# 3D monodomain rabbit heart example 
+This tutorial is automatically generated from [TestMonodomain3dRabbitHeartTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestMonodomain3dRabbitHeartTutorial.hpp) at revision [8081f57380d8](https://github.com/Chaste/Chaste/commit/8081f57380d857b24947a7a4a70e55ddfef322da). Note that the code is given in full at the bottom of the page.
+## 3D monodomain rabbit heart example
 
 This tutorial runs a simulation on a whole rabbit heart mesh. Note that this
 mesh is far too coarse for converged simulations, but provides a useful example.
@@ -28,8 +27,8 @@ First include the headers, `MonodomainProblem` this time.
 #include <unistd.h>
 #include <sys/resource.h>
 //#include "Debug.hpp"
-
 ```
+
 Here we define a cell factory that gives stimuli to all cells
 below height z = 0.042... this corresponds to the apex of the heart.
 
@@ -60,9 +59,10 @@ public:
         }
     }
 };
-
 ```
+
 Now define the test
+
 ```cpp
 class TestMonodomain3dRabbitHeartTutorial : public CxxTest::TestSuite
 {
@@ -85,8 +85,8 @@ public:
 
 //        HeartConfig::Instance()->SetMeshFileName("OxfordRabbitHeart_ascii",
 //                                                         cp::media_type::Axisymmetric);
-
 ```
+
 Specify the conductivity vector to use in the simulation. Since this is going to be
 a monodomain simulation, we only specify intra-cellular conductivities.
 Additionally, because this is an Axi-symmetric mesh then we must specify
@@ -98,8 +98,8 @@ normal directions. For a simulation without fibre directions, there should be on
 
 ```cpp
         HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(1.75, 0.19, 0.19));
-
 ```
+
 Set the simulation duration, output directory, filename and VTK visualization.
 
 We have set the simulation duration to be very short here so this tutorial runs
@@ -110,16 +110,16 @@ quickly, increase it to see decent propagation of the wavefront.
         HeartConfig::Instance()->SetOutputDirectory("Monodomain3dRabbitHeart");
         HeartConfig::Instance()->SetOutputFilenamePrefix("results");
         HeartConfig::Instance()->SetVisualizeWithVtk(true);
-
 ```
+
 The ODE and PDE timesteps should be refined when using this code for real
 scientific simulations. The values here are sufficient to ensure stability
 in this case, but not sufficient for converged numerical behaviour.
 
 ```cpp
         HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(0.02, 0.1, 0.2);
-
 ```
+
 Here we create an instance of our cell factory, which will tell the `MonodomainProblem`
 class which action potential models to use at which nodes. The rest of the problem is set up
 identically to [wiki:UserTutorials/Monodomain3dExample Monodomain3dExample].
@@ -130,8 +130,8 @@ identically to [wiki:UserTutorials/Monodomain3dExample Monodomain3dExample].
         monodomain_problem.SetWriteInfo();
         monodomain_problem.Initialise();
         monodomain_problem.Solve();
-
 ```
+
 We can access nodes in the mesh using a `NodeIterator`. Here, we check that each node
 has not been assigned to bath, and throw an error if it has. This is not a particularly useful test,
 but it does demonstrate the principle.
@@ -152,11 +152,11 @@ but it does demonstrate the principle.
         }
     }
 };
-
 ```
-'''Note''' if you were doing a 'real' scientific simulation you would want to use a higher
-resolution mesh. A version of this can be found on the [http://www.cs.ox.ac.uk/chaste/download.html Chaste download website]
 
+ **Note** if you were doing a 'real' scientific simulation you would want to use a higher
+ resolution mesh. A version of this can be found on the [http://www.cs.ox.ac.uk/chaste/download.html Chaste download website]
+ 
 Navigate to the "Data" tab, and download either
  * [source:/data/public/OxfordRabbitHeart/OxfordRabbitHeart_binary.tgz OxfordRabbitHeart_binary.tgz]  - 599MB, or
  * [source:/data/public/OxfordRabbitHeart/OxfordRabbitHeartWithBath_binary.tgz OxfordRabbitHeartWithBath_binary.tgz]  - 846MB.
@@ -166,13 +166,7 @@ These will probably require HPC resources, and finer ODE and PDE time steps than
 To visualize these results, see ChasteGuides/VisualisationGuides/ParaviewForCardiac. The colour axes in Paraview
 may need to be rescaled in order to see the voltage changes.
 
-
-
-# Code
-The full code is given below
-
-
-## File name `TestMonodomain3dRabbitHeartTutorial.hpp` 
+## Full code
 
 ```cpp
 #include <cxxtest/TestSuite.h>
@@ -265,6 +259,4 @@ public:
         }
     }
 };
-
 ```
-

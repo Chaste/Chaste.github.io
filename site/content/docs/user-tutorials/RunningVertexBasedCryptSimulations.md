@@ -1,21 +1,20 @@
-
 ---
-title : "Running Vertex Based Crypt Simulations Tutorial"
-summary: "This tutorial is automatically generated from the file crypt/test/tutorial/TestRunningVertexBasedCryptSimulationsTutorial.hpp at revision [c64c70046e25](https://github.com/Chaste/Chaste/commit/c64c70046e25e3f67b47ec3e92f29cb02d5e6830). Note that the code is given in full at the bottom of the page."
+title : "Running Vertex Based Crypt Simulations"
+summary: "Examples showing how to create, run and visualize vertex-based simulations on periodic meshes with different cell-cycle models"
 draft: false
 images: []
 toc: true
 ---
+This tutorial is automatically generated from [TestRunningVertexBasedCryptSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/tutorial/TestRunningVertexBasedCryptSimulationsTutorial.hpp) at revision [96e6e662bf78](https://github.com/Chaste/Chaste/commit/96e6e662bf780f36e39eabcae9f3d4d843677a5b). Note that the code is given in full at the bottom of the page.
+## Examples showing how to create, run and visualize vertex-based simulations on periodic meshes with different cell-cycle models
 
-# Examples showing how to create, run and visualize vertex-based simulations on periodic meshes with different cell-cycle models 
-
-## Introduction 
+### Introduction
 
 In this tutorial we show how Chaste can be used to create, run and visualize vertex-based simulations.
 This mechanical model was originally proposed by T. Nagai and H. Honda ("A dynamic cell model for
 the formation of epithelial tissues", Philosophical Magazine Part B 81:699-719).
 
-## The test 
+### The test
 
 As in previous cell-based Chaste tutorials, we begin by including the necessary header files.
 
@@ -23,11 +22,12 @@ As in previous cell-based Chaste tutorials, we begin by including the necessary 
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"
 #include "AbstractCellBasedTestSuite.hpp"
-
 ```
+
 The remaining header files define classes that will be used in the cell population
 simulation test. We have encountered some of these header files in previous cell-based
 Chaste tutorials.
+
 ```cpp
 #include "CellsGenerator.hpp"
 #include "CryptCellsGenerator.hpp"
@@ -46,45 +46,56 @@ where the cell-cycle time depends on the Wnt concentration.
 #include "FixedG1GenerationalCellCycleModel.hpp"
 #include "SimpleWntCellCycleModel.hpp"
 ```
+
 The next header file defines a helper class for generating a suitable mesh.
+
 ```cpp
 #include "HoneycombVertexMeshGenerator.hpp"
 ```
+
 The next header file defines a helper class for generating a periodic vertex mesh.
+
 ```cpp
 #include "CylindricalHoneycombVertexMeshGenerator.hpp"
 ```
-The next header file defines the class that simulates the evolution of a crypt `CellPopulation`{.cpp}
+
+The next header file defines the class that simulates the evolution of a crypt `CellPopulation`
 for a vertex mesh.
+
 ```cpp
 #include "CryptSimulation2d.hpp"
 ```
-The next header file defines a vertex-based {{{CellPopulation}}} class.
+
+The next header file defines a vertex-based `CellPopulation` class.
+
 ```cpp
 #include "VertexBasedCellPopulation.hpp"
 ```
+
 The next header file defines a force law for describing the mechanical interactions
 between neighbouring cells in the cell population, subject to each vertex.
 
 ```cpp
 #include "NagaiHondaForce.hpp"
 ```
-In conjunction with the `NagaiHondaForce`{.cpp}, we choose to use a child class
-of `AbstractTargetAreaModifier`{.cpp} to model cell growth between divisions.
-Here, we use the `SimpleTargetAreaModifier`{.cpp}.
+
+In conjunction with the `NagaiHondaForce`, we choose to use a child class
+of `AbstractTargetAreaModifier` to model cell growth between divisions.
+Here, we use the `SimpleTargetAreaModifier`.
 
 ```cpp
 #include "SimpleTargetAreaModifier.hpp"
-
 ```
+
 Next, we define the test class.
+
 ```cpp
 class TestRunningVertexBasedCryptSimulationsTutorial : public AbstractCellBasedTestSuite
 {
 public:
-
 ```
-## Test 1 - create a vertex-based crypt simulation 
+
+### Test 1 - create a vertex-based crypt simulation
 
 The first test generates a crypt, in which we use a cylindrical vertex mesh,
 give each cell a fixed cell-cycle model, and enforce sloughing at the top of
@@ -94,23 +105,24 @@ the crypt.
     void TestVertexBasedCrypt()
     {
 ```
+
 Create a cylindrical mesh, and get the cell location indices. To enforce
 periodicity at the left and right hand sides of the mesh, we use a subclass
-called `Cylindrical2dMesh`{.cpp}, which has extra methods for maintaining
+called `Cylindrical2dMesh`, which has extra methods for maintaining
 periodicity.
 
 ```cpp
          CylindricalHoneycombVertexMeshGenerator generator(6, 9);
          boost::shared_ptr<Cylindrical2dVertexMesh> p_mesh = generator.GetCylindricalMesh();
-
 ```
-Having created a mesh, we now create a `std::vector`{.cpp} of `CellPtr`{.cpp}s.
+
+Having created a mesh, we now create a `std::vector` of `CellPtr`s.
 To do this, we the `CryptCellsGenerator` helper class, which is templated over the type
-of cell model required (here `FixedG1GenerationalCellCycleModel`{.cpp})
+of cell model required (here `FixedG1GenerationalCellCycleModel`)
 and the dimension. We create an empty vector of cells and pass this into the
 method along with the mesh. The third argument 'true' indicates that the cells
 should be assigned random birth times, to avoid synchronous division. The
-`cells`{.cpp} vector is populated once the method `Generate`{.cpp} is
+`cells` vector is populated once the method `Generate` is
 called.
 The last four arguments represent the height below which cells belong to generations 0,
 1, 2, 3 and 4, respectively.
@@ -119,29 +131,31 @@ The last four arguments represent the height below which cells belong to generat
         std::vector<CellPtr> cells;
         CryptCellsGenerator<FixedG1GenerationalCellCycleModel> cells_generator;
         cells_generator.Generate(cells, p_mesh.get(), std::vector<unsigned>(), true, 1.0, 2.0, 3.0, 4.0);
-
 ```
+
 Create a cell population, as before.
+
 ```cpp
         VertexBasedCellPopulation<2> crypt(*p_mesh, cells);
-
 ```
+
 Create a simulator as before (except setting a different output directory).
+
 ```cpp
         CryptSimulation2d simulator(crypt);
         simulator.SetOutputDirectory("VertexCrypt");
         simulator.SetEndTime(0.1);
-
 ```
+
 Before running the simulation, we add a one or more force laws, which determine the mechanics of
-the cell population.  For this test, we use a `NagaiHondaForce`{.cpp}.
+the cell population.  For this test, we use a `NagaiHondaForce`.
 
 ```cpp
         MAKE_PTR(NagaiHondaForce<2>, p_force);
         simulator.AddForce(p_force);
-
 ```
-We next add a child class of `AbstractTargetAreaModifier`{.cpp} to the
+
+We next add a child class of `AbstractTargetAreaModifier` to the
 simulation. This modifier assigns and updates target areas to each
 cell throughout the simulation, modelling cell growth between
 divisions. The target areas are in turn used by the force law to
@@ -150,33 +164,34 @@ determine the pressure forces on each vertex.
 ```cpp
         MAKE_PTR(SimpleTargetAreaModifier<2>, p_growth_modifier);
         simulator.AddSimulationModifier(p_growth_modifier);
-
 ```
+
 Before running the simulation, we add a cell killer. This object
 dictates conditions under which cells die. For this test, we use
-a `SloughingCellKiller`{.cpp}, which kills cells above a certain height.
+a `SloughingCellKiller`, which kills cells above a certain height.
 
 ```cpp
         double crypt_length = 6.0;
         MAKE_PTR_ARGS(SloughingCellKiller<2>, p_killer, (&crypt, crypt_length));
         simulator.AddCellKiller(p_killer);
-
 ```
-To run the simulation, we call {{{Solve()}}}.
+
+To run the simulation, we call `Solve()`.
+
 ```cpp
         simulator.Solve();
     }
-
 ```
-To visualize the results, open a new terminal, `cd`{.cpp} to the Chaste directory,
-then `cd`{.cpp} to `anim`{.cpp}. Then do: `java Visualize2dVertexCells /tmp/$USER/testoutput/VertexCrypt/results_from_time_0`{.cpp}.
-You may have to do: `javac Visualize2dVertexCells.java`{.cpp} beforehand to create the
+
+To visualize the results, open a new terminal, `cd` to the Chaste directory,
+then `cd` to `anim`. Then do: `java Visualize2dVertexCells /tmp/$USER/testoutput/VertexCrypt/results_from_time_0`.
+You may have to do: `javac Visualize2dVertexCells.java` beforehand to create the
 java executable.
 
 When we visualize the results, we should see three colours of cells: a row of blue stem cells, 3 rows of yellow transit
 cells, and 5 rows of pink differentiated cells. Cells above 6.0 will be sloughed off immediately.
 
-## Test 2 - create a vertex-based crypt simulation with a simple wnt dependent cell-cycle model 
+### Test 2 - create a vertex-based crypt simulation with a simple wnt dependent cell-cycle model
 
 The next test generates a crypt, in which we use a cylindrical vertex mesh, and
 impose a linearly decreasing concentration gradient of Wnt. Cells detect the level of Wnt
@@ -188,41 +203,47 @@ transit cells is then assigned randomly from a uniform distribution.
     void TestVertexBasedCryptWithSimpleWntCellCycleModel()
     {
 ```
+
 Create a cylindrical mesh, and get the cell location indices, as before.
+
 ```cpp
         CylindricalHoneycombVertexMeshGenerator generator(6, 9);
         boost::shared_ptr<Cylindrical2dVertexMesh> p_mesh = generator.GetCylindricalMesh();
-
 ```
-Create a `std::vector`{.cpp} of `CellPtr`{.cpp}s.
-Generate cells, which are assigned a `SimpleWntCellCycleModel`{.cpp} using
-the `CryptCellsGenerator`{.cpp}. The final boolean argument 'true' indicates
+
+Create a `std::vector` of `CellPtr`s.
+Generate cells, which are assigned a `SimpleWntCellCycleModel` using
+the `CryptCellsGenerator`. The final boolean argument 'true' indicates
 to assign randomly chosen birth times.
 
 ```cpp
         std::vector<CellPtr> cells;
         CryptCellsGenerator<SimpleWntCellCycleModel> cells_generator;
         cells_generator.Generate(cells, p_mesh.get(), std::vector<unsigned>(), true);
-
 ```
+
 Create a cell population, as before.
+
 ```cpp
         VertexBasedCellPopulation<2> crypt(*p_mesh, cells);
-
 ```
+
 Define the crypt length; this will be used for sloughing and calculating the Wnt gradient.
+
 ```cpp
         double crypt_length = 6.0;
-
 ```
-Set up a {{{WntConcentration}}} object, as in UserTutorials/RunningMeshBasedCryptSimulations.
+
+Set up a `WntConcentration` object, as in UserTutorials/RunningMeshBasedCryptSimulations.
+
 ```cpp
         WntConcentration<2>::Instance()->SetType(LINEAR);
         WntConcentration<2>::Instance()->SetCellPopulation(crypt);
         WntConcentration<2>::Instance()->SetCryptLength(crypt_length);
-
 ```
+
 Create a simulator as before, and add a force law, the target area modifier and a sloughing cell killer to it.
+
 ```cpp
         CryptSimulation2d simulator(crypt);
         simulator.SetOutputDirectory("VertexCryptWithSimpleWntCellCycleModel");
@@ -236,23 +257,25 @@ Create a simulator as before, and add a force law, the target area modifier and 
 
         MAKE_PTR_ARGS(SloughingCellKiller<2>, p_killer, (&crypt, crypt_length));
         simulator.AddCellKiller(p_killer);
-
 ```
+
 Here we impose a boundary condition at the base: that cells
 at the bottom of the crypt are repelled if they move past 0.
+
 ```cpp
         simulator.UseJiggledBottomCells();
-
 ```
-Run the simulation, by calling {{{Solve()}}}.
+
+Run the simulation, by calling `Solve()`.
+
 ```cpp
         simulator.Solve();
     }
 ```
 
-To visualize the results, open a new terminal, `cd`{.cpp} to the Chaste directory,
-then `cd`{.cpp} to `anim`{.cpp}. Then do: `java Visualize2dVertexCells /tmp/$USER/testoutput/VertexCryptWithSimpleWntCellCycleModel/results_from_time_0`{.cpp}.
-You may have to do: `javac Visualize2dVertexCells.java`{.cpp} beforehand to create the
+To visualize the results, open a new terminal, `cd` to the Chaste directory,
+then `cd` to `anim`. Then do: `java Visualize2dVertexCells /tmp/$USER/testoutput/VertexCryptWithSimpleWntCellCycleModel/results_from_time_0`.
+You may have to do: `javac Visualize2dVertexCells.java` beforehand to create the
 java executable.
 
 When we visualize the results, we should see two colours of cells: yellow transit
@@ -260,15 +283,9 @@ cells and pink differentiated cells. Cells above 6.0 will be sloughed off immedi
 
 ```cpp
 };
-
 ```
 
-
-# Code
-The full code is given below
-
-
-## File name `TestRunningVertexBasedCryptSimulationsTutorial.hpp` 
+## Full code
 
 ```cpp
 #include <cxxtest/TestSuite.h>
@@ -358,6 +375,4 @@ public:
         simulator.Solve();
     }
 };
-
 ```
-

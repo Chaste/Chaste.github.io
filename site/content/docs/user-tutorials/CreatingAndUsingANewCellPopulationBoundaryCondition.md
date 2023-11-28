@@ -1,21 +1,20 @@
-
 ---
-title : "Creating And Using A New Cell Population Boundary Condition Tutorial"
-summary: "This tutorial is automatically generated from the file cell_based/test/tutorial/TestCreatingAndUsingANewCellPopulationBoundaryConditionTutorial.hpp at revision [c64c70046e25](https://github.com/Chaste/Chaste/commit/c64c70046e25e3f67b47ec3e92f29cb02d5e6830). Note that the code is given in full at the bottom of the page."
+title : "Creating And Using A New Cell Population Boundary Condition"
+summary: "An example showing how to create and use a new cell population boundary condition"
 draft: false
 images: []
 toc: true
 ---
+This tutorial is automatically generated from [TestCreatingAndUsingANewCellPopulationBoundaryConditionTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellPopulationBoundaryConditionTutorial.hpp) at revision [96e6e662bf78](https://github.com/Chaste/Chaste/commit/96e6e662bf780f36e39eabcae9f3d4d843677a5b). Note that the code is given in full at the bottom of the page.
+## An example showing how to create and use a new cell population boundary condition
 
-# An example showing how to create and use a new cell population boundary condition 
-
-## Introduction 
+### Introduction
 
 In this tutorial we show how to create a new cell population boundary condition
 class to specify a fixed domain within which cells are constrained to lie, and
 how to use this in a cell-based simulation.
 
-## 1. Including header files 
+### 1. Including header files
 
 As in previous cell-based Chaste tutorials, we begin by including the necessary header files.
 
@@ -23,16 +22,19 @@ As in previous cell-based Chaste tutorials, we begin by including the necessary 
 #include <cxxtest/TestSuite.h>
 #include "CheckpointArchiveTypes.hpp"
 #include "AbstractCellBasedTestSuite.hpp"
-
 ```
+
 The next header defines a base class for cell population boundary conditions,
 from which the new class will inherit.
+
 ```cpp
 #include "AbstractCellPopulationBoundaryCondition.hpp"
 ```
+
 The remaining header files define classes that will be used in the cell-based
 simulation test. You will have encountered some these files already in previous
 cell-based Chaste tutorials.
+
 ```cpp
 #include "OffLatticeSimulation.hpp"
 #include "HoneycombMeshGenerator.hpp"
@@ -43,17 +45,17 @@ cell-based Chaste tutorials.
 #include "GeneralisedLinearSpringForce.hpp"
 #include "SmartPointers.hpp"
 #include "FakePetscSetup.hpp"
-
 ```
-## Defining the cell population boundary condition class 
+
+### Defining the cell population boundary condition class
 
 As an example, let us consider a boundary condition for a two-dimensional cell-based
 simulation, in which all cells are constrained to lie within the domain given in
 Cartesian coordinates by 0 <= y <= 5. To implement this we define a cell population
-boundary condition class, `MyBoundaryCondition`{.cpp}, which inherits from
-`AbstractCellPopulationBoundaryCondition`{.cpp} and overrides the methods
-`ImposeBoundaryCondition()`{.cpp}, `VerifyBoundaryCondition()`{.cpp} and
-`OutputCellPopulationBoundaryConditionParameters()`{.cpp}.
+boundary condition class, `MyBoundaryCondition`, which inherits from
+`AbstractCellPopulationBoundaryCondition` and overrides the methods
+`ImposeBoundaryCondition()`, `VerifyBoundaryCondition()` and
+`OutputCellPopulationBoundaryConditionParameters()`.
 
 ```cpp
 class MyBoundaryCondition : public AbstractCellPopulationBoundaryCondition<2>
@@ -69,6 +71,7 @@ private:
 
 public:
 ```
+
 The first public method is a default constructor, which calls the base
 constructor. There is a single input argument, a pointer to a cell population.
 
@@ -77,10 +80,10 @@ constructor. There is a single input argument, a pointer to a cell population.
         : AbstractCellPopulationBoundaryCondition<2>(pCellPopulation)
     {
     }
-
 ```
-The second public method overrides `ImposeBoundaryCondition()`{.cpp}.
-This method is called during the `Solve()`{.cpp} method in `OffLatticeSimulation`{.cpp}
+
+The second public method overrides `ImposeBoundaryCondition()`.
+This method is called during the `Solve()` method in `OffLatticeSimulation`
 at the end of each timestep, just after the position of each node
 in the cell population has been updated according to its equation of motion.
 The method iterates over all cells in the population, and moves any cell whose
@@ -117,12 +120,12 @@ would correspond not to a cell centre but to a vertex.
             }
         }
     }
-
 ```
-The third public method overrides `VerifyBoundaryCondition()`{.cpp}.
-This method is called during the `Solve()`{.cpp} method in `OffLatticeSimulation`{.cpp}
-at the end of each timestep, just after `ImposeBoundaryCondition()`{.cpp}, and checks
-that each cell in the population now satisfies `MyBoundaryCondition`{.cpp}.
+
+The third public method overrides `VerifyBoundaryCondition()`.
+This method is called during the `Solve()` method in `OffLatticeSimulation`
+at the end of each timestep, just after `ImposeBoundaryCondition()`, and checks
+that each cell in the population now satisfies `MyBoundaryCondition`.
 
 ```cpp
     bool VerifyBoundaryCondition()
@@ -144,10 +147,10 @@ that each cell in the population now satisfies `MyBoundaryCondition`{.cpp}.
         }
         return condition_satisfied;
     }
-
 ```
+
 Just as we encountered in [wiki:UserTutorials/CreatingAndUsingANewCellKiller], here we must override
-a method that outputs any member variables to a specified results file `rParamsFile`{.cpp}.
+a method that outputs any member variables to a specified results file `rParamsFile`.
 In our case, there are no parameters, so we simply call the method on the base class.
 Nonetheless, we still need to override the method, since it is pure virtual in the base
 class.
@@ -158,8 +161,8 @@ class.
         AbstractCellPopulationBoundaryCondition<2>::OutputCellPopulationBoundaryConditionParameters(rParamsFile);
     }
 };
-
 ```
+
 As mentioned in previous cell-based Chaste tutorials, we need to include the next block
 of code to be able to archive the cell population boundary condition object in a cell-based
 simulation, and to obtain a unique identifier for our new boundary condition for writing
@@ -194,23 +197,23 @@ namespace boost
         }
     }
 }
-
 ```
-This completes the code for `MyBoundaryCondition`{.cpp}. Note that usually this code
+
+This completes the code for `MyBoundaryCondition`. Note that usually this code
 would be separated out into a separate declaration in a .hpp file and definition
 in a .cpp file.
 
-### The Tests 
+#### The Tests
 
-We now define the test class, which inherits from `AbstractCellBasedTestSuite`{.cpp}.
+We now define the test class, which inherits from `AbstractCellBasedTestSuite`.
 
 ```cpp
 class TestCreatingAndUsingANewCellPopulationBoundaryConditionTutorial : public AbstractCellBasedTestSuite
 {
 public:
-
 ```
-## Testing the cell population boundary condition 
+
+### Testing the cell population boundary condition
 
 We now test that our new cell population boundary condition is implemented correctly.
 
@@ -218,8 +221,9 @@ We now test that our new cell population boundary condition is implemented corre
     void TestMyBoundaryCondition()
     {
 ```
-We first create a `MeshBasedCellPopulation`{.cpp} using the helper
-classes `HoneycombMeshGenerator`{.cpp} and `CellsGenerator`{.cpp},
+
+We first create a `MeshBasedCellPopulation` using the helper
+classes `HoneycombMeshGenerator` and `CellsGenerator`,
 as in previous cell-based Chaste tutorials.
 
 ```cpp
@@ -231,14 +235,14 @@ as in previous cell-based Chaste tutorials.
         cells_generator.GenerateBasic(cells, p_mesh->GetNumNodes());
 
         MeshBasedCellPopulation<2> cell_population(*p_mesh, cells);
-
 ```
+
 We now use the cell population to construct a cell population boundary condition object.
 
 ```cpp
         MyBoundaryCondition bc(&cell_population);
-
 ```
+
 We start by verifying that some cells do not satisfy the boundary condition:
 
 ```cpp
@@ -252,22 +256,22 @@ We start by verifying that some cells do not satisfy the boundary condition:
         {
             old_node_locations[&(*node_iter)] = node_iter->rGetLocation();
         }
-
 ```
+
 To test that we have implemented the cell population boundary condition correctly,
-we call the overridden method `ImposeBoundaryCondition()`{.cpp}...
+we call the overridden method `ImposeBoundaryCondition()`...
 
 ```cpp
         bc.ImposeBoundaryCondition(old_node_locations);
-
 ```
+
 ... and check that the cell population does indeed now satisfy the boundary condition:
 
 ```cpp
         population_satisfies_bc = bc.VerifyBoundaryCondition();
         TS_ASSERT_EQUALS(population_satisfies_bc, true);
-
 ```
+
 The last block of code provides an archiving test for the cell population boundary
 condition, in a similar way to previous cell-based Chaste tutorials:
 
@@ -292,18 +296,20 @@ condition, in a similar way to previous cell-based Chaste tutorials:
             delete p_bc;
         }
     }
-
 ```
-## Using the boundary condition in a cell-based simulation 
 
-We now provide a test demonstrating how `MyBoundaryCondition`{.cpp} can be used
+### Using the boundary condition in a cell-based simulation
+
+We now provide a test demonstrating how `MyBoundaryCondition` can be used
 in a cell-based simulation.
 
 ```cpp
     void TestOffLatticeSimulationWithMyBoundaryCondition()
     {
 ```
-Once again we create a {{{MeshBasedCellPopulation}}}.
+
+Once again we create a `MeshBasedCellPopulation`.
+
 ```cpp
         HoneycombMeshGenerator generator(7, 7, 0);
         boost::shared_ptr<MutableMesh<2,2> > p_mesh = generator.GetMesh();
@@ -313,35 +319,40 @@ Once again we create a {{{MeshBasedCellPopulation}}}.
         cells_generator.GenerateBasic(cells, p_mesh->GetNumNodes());
 
         MeshBasedCellPopulation<2> cell_population(*p_mesh, cells);
-
 ```
+
 We use the cell population to construct a cell population boundary condition object.
+
 ```cpp
         MAKE_PTR_ARGS(MyBoundaryCondition, p_bc, (&cell_population));
-
 ```
-We then pass in the cell population into an `OffLatticeSimulation`{.cpp},
+
+We then pass in the cell population into an `OffLatticeSimulation`,
 and set the output directory, output multiple, and end time.
+
 ```cpp
         OffLatticeSimulation<2> simulator(cell_population);
         simulator.SetOutputDirectory("TestOffLatticeSimulationWithMyBoundaryCondition");
         simulator.SetSamplingTimestepMultiple(12);
         simulator.SetEndTime(1.0);
-
 ```
-We create a force law and pass it to the {{{OffLatticeSimulation}}}.
+
+We create a force law and pass it to the `OffLatticeSimulation`.
+
 ```cpp
         MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);
         p_linear_force->SetCutOffLength(3);
         simulator.AddForce(p_linear_force);
-
 ```
+
 We now pass the cell population boundary condition into the cell-based simulation.
+
 ```cpp
         simulator.AddCellPopulationBoundaryCondition(p_bc);
-
 ```
-To run the simulation, we call {{{Solve()}}}.
+
+To run the simulation, we call `Solve()`.
+
 ```cpp
         simulator.Solve();
     }
@@ -349,21 +360,15 @@ To run the simulation, we call {{{Solve()}}}.
 
 When you visualize the results with
 
-`java Visualize2dCentreCells /tmp/$USER/testoutput/TestOffLatticeSimulationWithMyBoundaryCondition/results_from_time_0`{.cpp}
+`java Visualize2dCentreCells /tmp/$USER/testoutput/TestOffLatticeSimulationWithMyBoundaryCondition/results_from_time_0`
 
 you should see that cells are restricted to the domain 0 <= y <= 5.
 
 ```cpp
 };
-
 ```
 
-
-# Code
-The full code is given below
-
-
-## File name `TestCreatingAndUsingANewCellPopulationBoundaryConditionTutorial.hpp` 
+## Full code
 
 ```cpp
 #include <cxxtest/TestSuite.h>
@@ -555,6 +560,4 @@ public:
         simulator.Solve();
     }
 };
-
 ```
-

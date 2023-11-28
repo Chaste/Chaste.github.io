@@ -1,24 +1,24 @@
-
 ---
-title : "Bidomain With Bath Tutorial"
-summary: "This tutorial is automatically generated from the file heart/test/tutorials/TestBidomainWithBathTutorial.hpp at revision [c64c70046e25](https://github.com/Chaste/Chaste/commit/c64c70046e25e3f67b47ec3e92f29cb02d5e6830). Note that the code is given in full at the bottom of the page."
+title : "Bidomain With Bath"
+summary: "An example showing how to run a bidomain simulation for tissue contained in a perfusing bath"
 draft: false
 images: []
 toc: true
 ---
-
-# An example showing how to run a bidomain simulation for tissue contained in a perfusing bath 
+This tutorial is automatically generated from [TestBidomainWithBathTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestBidomainWithBathTutorial.hpp) at revision [96e6e662bf78](https://github.com/Chaste/Chaste/commit/96e6e662bf780f36e39eabcae9f3d4d843677a5b). Note that the code is given in full at the bottom of the page.
+## An example showing how to run a bidomain simulation for tissue contained in a perfusing bath
 
 In this tutorial we show how the changes the need to be made when running a simulation of
 cardiac tissue contained in a bath.
 
 The usual headers are included
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "BidomainProblem.hpp"
 #include "PlaneStimulusCellFactory.hpp"
-
 ```
+
 Cell models can be solved using a specialised (for cardiac cell models) Backward Euler
 implementation, with again the code being automatically generated from the cellml files.
 Backward Euler allows greater ODE timesteps to be used. For cellml models provided with Chaste,
@@ -28,18 +28,23 @@ using Backward Euler is trivial: just change the .hpp included as follows, and t
 #include "LuoRudy1991BackwardEulerOpt.hpp"
 #include "PetscSetupAndFinalize.hpp"
 ```
+
 This test will show how to load a mesh in the test and pass it into the problem,
 for which the following includes are needed
+
 ```cpp
 #include "DistributedTetrahedralMesh.hpp"
 #include "TrianglesMeshReader.hpp"
 ```
+
 This header is needed for the sqrt function.
+
 ```cpp
 #include <cmath>
-
 ```
+
 Define the test
+
 ```cpp
 class TestBidomainWithBathTutorial : public CxxTest::TestSuite
 {
@@ -48,6 +53,7 @@ public: // Tests should be public!
     void TestWithBathAndElectrodes()
     {
 ```
+
 First, set the end time and output info. In this simulation
 we'll explicitly read the mesh, alter it, then pass it
 to the problem class, so we don't set the mesh file name.
@@ -56,37 +62,37 @@ to the problem class, so we don't set the mesh file name.
         HeartConfig::Instance()->SetSimulationDuration(3.0);  //ms
         HeartConfig::Instance()->SetOutputDirectory("BidomainTutorialWithBath");
         HeartConfig::Instance()->SetOutputFilenamePrefix("results");
-
 ```
+
 Bath problems seem to require decreased ODE timesteps.
 
 ```cpp
         HeartConfig::Instance()->SetOdeTimeStep(0.001);  //ms
-
 ```
-Use the `PlaneStimulusCellFactory`{.cpp} to define a set
+
+Use the `PlaneStimulusCellFactory` to define a set
 of Luo-Rudy cells. We pass the stimulus magnitude as 0.0
 as we don't want any stimulated cells.
 
 ```cpp
         PlaneStimulusCellFactory<CellLuoRudy1991FromCellMLBackwardEulerOpt,2> cell_factory(0.0);
-
 ```
+
 Now, we load up a rectangular mesh (in triangle/tetgen format), done as follows,
-using `TrianglesMeshReader`{.cpp}.  Note that we use a distributed mesh, so the data
+using `TrianglesMeshReader`.  Note that we use a distributed mesh, so the data
 is shared among processes if run in parallel.
 
 ```cpp
         TrianglesMeshReader<2,2> reader("mesh/test/data/2D_0_to_1mm_400_elements");
         DistributedTetrahedralMesh<2,2> mesh;
         mesh.ConstructFromMeshReader(reader);
-
 ```
+
 In most simulations there is one valid tissue identifier and one valid bath identifier
 (for elements).
 One of these can be assigned to an element with
- * `mesh.GetElement(i)->SetAttribute(HeartRegionCode::GetValidTissueId());`{.cpp}
- * `mesh.GetElement(i)->SetAttribute(HeartRegionCode::GetValidBathId());`{.cpp}
+ * `mesh.GetElement(i)->SetAttribute(HeartRegionCode::GetValidTissueId());`
+ * `mesh.GetElement(i)->SetAttribute(HeartRegionCode::GetValidBathId());`
  
 If we want heterogeneous conductivities outside the heart (for example for torso and blood)
 then we will need different identifiers:
@@ -103,8 +109,8 @@ then we will need different identifiers:
         bath_ids.insert(bath_id2);
 
         HeartConfig::Instance()->SetTissueAndBathIdentifiers(tissue_ids, bath_ids);
-
 ```
+
 In bath problems, each element has an attribute which must be set
 to 0 (cardiac tissue) or 1 (bath). This can be done by having an
 extra column in the element file (see the file formats documentation,
@@ -142,8 +148,8 @@ as bath elements (by default, the others are cardiac elements).
                 iter->SetAttribute(tissue_id);
             }
         }
-
 ```
+
 Since we have modified the mesh by setting element attributes, we need to inform Chaste of this fact.
 If we do not, problems will arise when [wiki:UserTutorials/CardiacCheckpointingAndRestarting checkpointing],
 since the code that saves the simulation state will assume that it can just reuse the original mesh files,
@@ -155,11 +161,11 @@ present.)
 
 ```cpp
         mesh.SetMeshHasChangedSinceLoading();
-
 ```
+
 The external conductivity can set two ways:
- * the default conductivity in the bath is set with `SetBathConductivity(double)`{.cpp}
- * heterogeneous overides can be set with `SetBathMultipleConductivities(std::map<unsigned, double> )`{.cpp}
+ * the default conductivity in the bath is set with `SetBathConductivity(double)`
+ * heterogeneous overides can be set with `SetBathMultipleConductivities(std::map<unsigned, double> )`
 
 ```cpp
         HeartConfig::Instance()->SetBathConductivity(7.0);  //bath_id1 tags will take the default value (actually 7.0 is the default)
@@ -167,8 +173,8 @@ The external conductivity can set two ways:
         multiple_bath_conductivities[bath_id2] = 6.5;  // mS/cm
 
         HeartConfig::Instance()->SetBathMultipleConductivities(multiple_bath_conductivities);
-
 ```
+
 Now we define the electrodes. First define the magnitude of the electrodes
 (ie the magnitude of the boundary extracellular stimulus), and the duration
 it lasts for. Currently, electrodes switch on at time 0 and have constant magnitude
@@ -181,8 +187,8 @@ magnitudes that will work, perhaps because the electrodes are close to the tissu
         double magnitude = -14.0e3; // uA/cm^2
         double start_time = 0.0;
         double duration = 1; //ms
-
 ```
+
 Electrodes work in two ways: the first electrode applies an input flux, and
 the opposite electrode can either be grounded or apply an equal and opposite
 flux (ie an output flux). The `false` here indicates the second electrode
@@ -194,28 +200,30 @@ x=xmin and x=xmax ought to be form two surfaces of equal area.
 
 ```cpp
         HeartConfig::Instance()->SetElectrodeParameters(false, 0, magnitude, start_time, duration);
-
 ```
+
 Now create the problem class, using the cell factory and passing
 in `true` as the second argument to indicate we are solving a bath
 problem..
 
 ```cpp
         BidomainProblem<2> bidomain_problem( &cell_factory, true );
-
 ```
+
 ..set the mesh and electrodes..
+
 ```cpp
         bidomain_problem.SetMesh(&mesh);
-
 ```
+
 ..and solve as before.
+
 ```cpp
         bidomain_problem.Initialise();
         bidomain_problem.Solve();
-
 ```
-The results can be visualised as before. '''Note:''' The voltage is only
+
+The results can be visualised as before. **Note:** The voltage is only
 defined at cardiac nodes (a node contained in ''any'' cardiac element), but
 for visualisation and computation a 'fake' value of ZERO is given for the
 voltage at bath nodes.
@@ -244,15 +252,9 @@ only check the voltage at cardiac cells.
         TS_ASSERT(ap_triggered);
     }
 };
-
 ```
 
-
-# Code
-The full code is given below
-
-
-## File name `TestBidomainWithBathTutorial.hpp` 
+## Full code
 
 ```cpp
 #include <cxxtest/TestSuite.h>
@@ -363,6 +365,4 @@ public: // Tests should be public!
         TS_ASSERT(ap_triggered);
     }
 };
-
 ```
-

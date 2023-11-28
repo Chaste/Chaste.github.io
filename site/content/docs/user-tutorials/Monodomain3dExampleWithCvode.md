@@ -1,13 +1,12 @@
-
 ---
-title : "Monodomain Example With Cvode Tutorial"
-summary: "This tutorial is automatically generated from the file heart/test/tutorials/TestMonodomain3dExampleWithCvodeTutorial.hpp at revision [c64c70046e25](https://github.com/Chaste/Chaste/commit/c64c70046e25e3f67b47ec3e92f29cb02d5e6830). Note that the code is given in full at the bottom of the page."
+title : "Monodomain Example With Cvode"
+summary: "3D monodomain example using CVODE for ODE solution"
 draft: false
 images: []
 toc: true
 ---
-
-# 3D monodomain example using CVODE for ODE solution 
+This tutorial is automatically generated from [TestMonodomain3dExampleWithCvodeTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestMonodomain3dExampleWithCvodeTutorial.hpp) at revision [8081f57380d8](https://github.com/Chaste/Chaste/commit/8081f57380d857b24947a7a4a70e55ddfef322da). Note that the code is given in full at the bottom of the page.
+## 3D monodomain example using CVODE for ODE solution
 
 This tutorial is based on [wiki:UserTutorials/Monodomain3dExample Monodomain3dExample] except this time we will
 use CVODE solvers. To highlight the changes needed to run with CVODE we omit the usual
@@ -19,31 +18,34 @@ First include the headers
 #include <cxxtest/TestSuite.h>
 #include "MonodomainProblem.hpp"
 ```
+
 Chaste actually has two ways of using CVODE for solution of cardiac action potential model ODEs:
 
 1. via a `CvodeAdaptor` solver - this would work on the usual cell model as in the previous tutorial.
 
 2. via an `AbstractCvodeCell` instead of an `AbstractCardiacCell` - this class uses native CVODE vectors and is preferred.
 
-In order to generate CVODE cells please see [wiki:ChasteGuides/CodeGenerationFromCellML CodeGenerationFromCellML].
+In order to generate CVODE cells please see [CodeGenerationFromCellML](https://chaste.cs.ox.ac.uk/trac/wiki/ChasteGuides/CodeGenerationFromCellML).
 
-'''NB:''' recent improvements (available from release 2021.1) mean that
-an ''analytic jacobian'' is automatically made available to CVODE via the
-native `AbstractCvodeCell`, and this will provide a speed up of between 5-30% (depending on the size of
-the ODE system).
-
+ **NB:** recent improvements (available from release 2021.1) mean that
+ an ''analytic jacobian'' is automatically made available to CVODE via the
+ native `AbstractCvodeCell`, and this will provide a speed up of between 5-30% (depending on the size of
+ the ODE system).
+ 
 So here we do the `#include` to import the native CVODE version of the cell model.
 
 ```cpp
 #include "LuoRudy1991Cvode.hpp"
 ```
+
 then include the rest of the headers as usual
+
 ```cpp
 #include "TetrahedralMesh.hpp"
 #include "SimpleStimulus.hpp"
 #include "PetscSetupAndFinalize.hpp"
-
 ```
+
 Since CVODE is an optional extra dependency for Chaste - albeit now
 one that is highly recommended - see the [wiki:InstallGuides/InstallGuide InstallGuide].
 
@@ -54,8 +56,8 @@ See the end of the file python/hostconfig/default.py for an example of this.
 
 ```cpp
 #ifdef CHASTE_CVODE
-
 ```
+
 The major changes required to run with CVODE cells are in the cell factory.
 
 ```cpp
@@ -70,8 +72,8 @@ public:
           mpStimulus(new SimpleStimulus(-100000.0, 2))
     {
     }
-
 ```
+
 The following method definition changes to return an `AbstractCvodeCell`
 instead of an `AbstractCardiacCell`.
 
@@ -92,14 +94,14 @@ pointer can be passed.
         double x = pNode->rGetLocation()[0];
         double y = pNode->rGetLocation()[1];
         double z = pNode->rGetLocation()[2];
-
 ```
+
 We then create a 'native' CVODE cell - each cell has its own solver embedded within it.
 Each cell needs its own solver because CVODE saves information about the solver state
 between runs to perform its adaptive scheme.
 
-'''NB:''' this will use more memory than the standard approach of sharing one solver
-object between all of the action potential models on a processor.
+ **NB:** this will use more memory than the standard approach of sharing one solver
+ object between all of the action potential models on a processor.
 
 ```cpp
         if ((x<0.1+1e-6) && (y<0.1+1e-6) && (z<0.1+1e-6))
@@ -127,8 +129,8 @@ that are better than anything but a ridiculously small Forward Euler step).
 };
 
 #endif // CHASTE_CVODE
-
 ```
+
 The rest of the test is almost identical to the non-CVODE cell case,
 - just note the #ifdef tag and the comment about ODE timesteps.
 
@@ -147,8 +149,8 @@ public:
         HeartConfig::Instance()->SetSimulationDuration(5); //ms
         HeartConfig::Instance()->SetOutputDirectory("Monodomain3dExampleWithCvode");
         HeartConfig::Instance()->SetOutputFilenamePrefix("results");
-
 ```
+
 Note - when using CVODE in cardiac tissue simulations the ODE timestep
 should be set to the same as the PDE timestep.
 
@@ -156,17 +158,17 @@ CVODE will take as many adaptive internal timesteps as it requires each time
 it is called, so we should just call it once per PDE timestep - i.e. set the
 ODE and PDE timesteps to be the same.
 
-'''NB''': CVODE will only give you a big speedup when the ODE/PDE timestep is larger than
-a typical Forward Euler timestep would be for that model. But it doesn't
-seem to be any slower than Forward Euler, even at this PDE resolution.
-
+ **NB**: CVODE will only give you a big speedup when the ODE/PDE timestep is larger than
+ a typical Forward Euler timestep would be for that model. But it doesn't
+ seem to be any slower than Forward Euler, even at this PDE resolution.
+ 
 A convergence analysis should be performed to ensure that the PDE is being solved
 accurately before reducing the step just to get faster ODE solution!
 
 ```cpp
         HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(0.01, 0.01, 0.1);
-
 ```
+
 The rest of the code is unchanged.
 
 ```cpp
@@ -189,15 +191,15 @@ The rest of the code is unchanged.
         monodomain_problem.Solve();
 
         ReplicatableVector voltage(monodomain_problem.GetSolution());
-
 ```
-'''NB''': CVODE almost certainly gives a more accurate ODE solution than
-Forward Euler, so this result has been tweaked from previous tutorial (34.9032mV previously).
+
+ **NB**: CVODE almost certainly gives a more accurate ODE solution than
+ Forward Euler, so this result has been tweaked from previous tutorial (34.9032mV previously).
 
 ```cpp
         TS_ASSERT_DELTA(voltage[0], 34.7740, 1e-1); // Slack tolerance for different CVODE versions.
-
 ```
+
 Here we add a visual warning in case CVODE is not installed and/or set up.
 If you want to make sure CVODE is run in your own tests you could add in
 the `TS_ASSERT(false);` line.
@@ -214,12 +216,7 @@ but note that if this is the case, then the test is not doing anything!
 };
 ```
 
-
-# Code
-The full code is given below
-
-
-## File name `TestMonodomain3dExampleWithCvodeTutorial.hpp` 
+## Full code
 
 ```cpp
 #include <cxxtest/TestSuite.h>
@@ -314,4 +311,3 @@ public:
     }
 };
 ```
-

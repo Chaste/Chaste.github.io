@@ -1,13 +1,12 @@
-
 ---
-title : "Solving Elasticity Problems Tutorial"
-summary: "This tutorial is automatically generated from the file continuum_mechanics/test/TestSolvingElasticityProblemsTutorial.hpp at revision [c64c70046e25](https://github.com/Chaste/Chaste/commit/c64c70046e25e3f67b47ec3e92f29cb02d5e6830). Note that the code is given in full at the bottom of the page."
+title : "Solving Elasticity Problems"
+summary: "Solving solid mechanics problems"
 draft: false
 images: []
 toc: true
 ---
-
-# Solving solid mechanics problems 
+This tutorial is automatically generated from [TestSolvingElasticityProblemsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/continuum_mechanics/test/TestSolvingElasticityProblemsTutorial.hpp) at revision [8081f57380d8](https://github.com/Chaste/Chaste/commit/8081f57380d857b24947a7a4a70e55ddfef322da). Note that the code is given in full at the bottom of the page.
+## Solving solid mechanics problems
 
 In this tutorial we show how Chaste can be used to solve solid mechanics problems.
 We assume the reader has some familiarity with solid mechanics problems (the
@@ -38,15 +37,17 @@ To solve a mechanics problem we need to
  * Specify TRACTION BOUNDARY CONDITIONS (if non-zero) on the rest of the boundary -- tractions are forces per unit area applied
  the rest of the surface of the deformable object.
  
-'''VERY IMPORTANT NOTE:''' For incompressible problems, make sure you read the comment about HYPRE below before going to
-3D or refining meshes in these tests.
-
-'''Another note:''' mechanics problems are not currently implemented to scale in parallel yet.
-
+ **VERY IMPORTANT NOTE:** For incompressible problems, make sure you read the comment about HYPRE below before going to
+ 3D or refining meshes in these tests.
+ 
+ **Another note:** mechanics problems are not currently implemented to scale in parallel yet.
+ 
 As always we include this first class as a test suite
+
 ```cpp
 #include <cxxtest/TestSuite.h>
 ```
+
 On some systems there is a clash between Boost Ublas includes and PETSc.  This can be
 resolved by making sure that Chaste's interface to the Boost libraries are included
 as early as possible.
@@ -54,40 +55,53 @@ as early as possible.
 ```cpp
 #include "UblasCustomFunctions.hpp"
 ```
+
 The incompressible solver is called `IncompressibleNonlinearElasticitySolver`
+
 ```cpp
 #include "IncompressibleNonlinearElasticitySolver.hpp"
 ```
+
 The simplest incompressible material law is the Mooney-Rivlin material law (of which
 Neo-Hookean laws are a subset)
+
 ```cpp
 #include "MooneyRivlinMaterialLaw.hpp"
 ```
+
 Another incompressible material law
+
 ```cpp
 #include "ExponentialMaterialLaw.hpp"
 ```
+
 This is a useful helper class
+
 ```cpp
 #include "NonlinearElasticityTools.hpp"
 ```
+
 For visualising results in Paraview
+
 ```cpp
 #include "VtkNonlinearElasticitySolutionWriter.hpp"
 ```
+
 As before: !PetscSetupAndFinalize.hpp must be included in every test that uses PETSc. Note that it
 cannot be included in the source code.
+
 ```cpp
 #include "PetscSetupAndFinalize.hpp"
-
 ```
-## Simple incompressible deformation: 2D shape hanging under gravity 
+
+### Simple incompressible deformation: 2D shape hanging under gravity
 
 ```cpp
 class TestSolvingElasticityProblemsTutorial : public CxxTest::TestSuite
 {
 public:
 ```
+
 In the first test we use INCOMPRESSIBLE nonlinear elasticity. For incompressible elasticity, there
 is a constraint on the deformation, which results in a pressure field (a Lagrange multiplier)
 which is solved for together with the deformation.
@@ -104,6 +118,7 @@ by linear interpolation).
     void TestSimpleIncompressibleProblem()
     {
 ```
+
 First, define the geometry. This should be specified using the `QuadraticMesh` class, which inherits from `TetrahedralMesh`
 and has mostly the same interface. Here we define a 0.8 by 1 rectangle, with elements 0.1 wide.
 (`QuadraticMesh`s can also be read in using `TrianglesMeshReader`; see next tutorial/rest of code base for examples of this).
@@ -111,16 +126,16 @@ and has mostly the same interface. Here we define a 0.8 by 1 rectangle, with ele
 ```cpp
         QuadraticMesh<2> mesh;
         mesh.ConstructRegularSlabMesh(0.1 /*stepsize*/, 0.8 /*width*/, 1.0 /*height*/);
-
 ```
+
 We use a Mooney-Rivlin material law, which applies to isotropic materials and has two parameters.
 Restricted to 2D however, it only has one parameter, which can be thought of as the total
 stiffness. We declare a Mooney-Rivlin law, setting the parameter to 1.
 
 ```cpp
         MooneyRivlinMaterialLaw<2> law(1.0);
-
 ```
+
 Next, the body force density. In realistic problems this will either be
 acceleration due to gravity (ie b=(0,-9.81)) or zero if the effect of gravity can be neglected.
 In this problem we apply a gravity-like downward force.
@@ -129,8 +144,8 @@ In this problem we apply a gravity-like downward force.
         c_vector<double,2> body_force;
         body_force(0) =  0.0;
         body_force(1) = -2.0;
-
 ```
+
 Two types of boundary condition are required: displacement and traction. As with the other PDE solvers,
 the displacement (Dirichlet) boundary conditions are specified at nodes, whereas traction (Neumann) boundary
 conditions are specified on boundary elements.
@@ -146,8 +161,8 @@ argument (the '1') indicates Y . (So, for example, `GetNodesByComponentValue(mes
 
 ```cpp
         std::vector<unsigned> fixed_nodes = NonlinearElasticityTools<2>::GetNodesByComponentValue(mesh, 1, 1.0);
-
 ```
+
 Before creating the solver we create a `SolidMechanicsProblemDefinition` object,  which contains
 everything that defines the problem: mesh, material law, body force,
 the fixed nodes and their locations, any traction boundary conditions, and the density
@@ -155,28 +170,31 @@ the fixed nodes and their locations, any traction boundary conditions, and the d
 
 ```cpp
         SolidMechanicsProblemDefinition<2> problem_defn(mesh);
-
 ```
+
 Set the material problem on the problem definition object, saying that the problem, and
 the material law, is incompressible. All material law files can be found in
 `continuum_mechanics/src/problem/material_laws`.
+
 ```cpp
         problem_defn.SetMaterialLaw(INCOMPRESSIBLE,&law);
-
 ```
+
 Set the fixed nodes, choosing zero displacement for these nodes (see later for how
 to provide locations for the fixed nodes).
+
 ```cpp
         problem_defn.SetZeroDisplacementNodes(fixed_nodes);
 ```
+
 Set the body force and the density. (Note that the second line isn't technically
 needed, as internally the density is initialised to 1)
 
 ```cpp
         problem_defn.SetBodyForce(body_force);
         problem_defn.SetDensity(1.0);
-
 ```
+
 Now we create the (incompressible) solver, passing in the mesh, problem definition
 and output directory
 
@@ -184,18 +202,19 @@ and output directory
         IncompressibleNonlinearElasticitySolver<2> solver(mesh,
                                                           problem_defn,
                                                           "SimpleIncompressibleElasticityTutorial");
-
 ```
+
 .. and to compute the solution, just call `Solve()`
+
 ```cpp
         solver.Solve();
-
 ```
-'''Visualisation'''. Go to the folder `SimpleIncompressibleElasticityTutorial` in your test-output directory.
-There should be 2 files, initial.nodes and solution.nodes. These are the original nodal positions and the deformed
-positions. Each file has two columns, the x and y locations of each node. To visualise the solution in say
-Matlab or Octave, you could do: `x=load('solution.nodes'); plot(x(:,1),x(:,2),'k*')`. For Cmgui output, see below.
 
+ **Visualisation**. Go to the folder `SimpleIncompressibleElasticityTutorial` in your test-output directory.
+ There should be 2 files, initial.nodes and solution.nodes. These are the original nodal positions and the deformed
+ positions. Each file has two columns, the x and y locations of each node. To visualise the solution in say
+ Matlab or Octave, you could do: `x=load('solution.nodes'); plot(x(:,1),x(:,2),'k*')`. For Cmgui output, see below.
+ 
 To get the actual solution from the solver, use these two methods. Note that the first
 gets the deformed position (ie the new location, not the displacement). They are both of size
 num_total_nodes.
@@ -204,15 +223,17 @@ num_total_nodes.
         std::vector<c_vector<double,2> >& r_deformed_positions = solver.rGetDeformedPosition();
         std::vector<double>& r_pressures = solver.rGetPressures();
 ```
+
 Let us obtain the values of the new position, and the pressure, at the bottom right corner node.
+
 ```cpp
         unsigned node_index = 8;
         assert( fabs(mesh.GetNode(node_index)->rGetLocation()[0] - 0.8) < 1e-6); // check that X=0.8, ie that we have the correct node,
         assert( fabs(mesh.GetNode(node_index)->rGetLocation()[1] - 0.0) < 1e-6); // check that Y=0.0, ie that we have the correct node,
         std::cout << "New position: " << r_deformed_positions[node_index](0) << " " << r_deformed_positions[node_index](1) << "\n";
         std::cout << "Pressure: " << r_pressures[node_index] << "\n";
-
 ```
+
 One visualiser is Cmgui. This method can be used to convert all the output files to Cmgui format.
 They are placed in `[OUTPUT_DIRECTORY]/cmgui`. A script is created to easily load the data: in a
 terminal cd to this directory and call `cmgui LoadSolutions.com`. (In this directory, the initial position is given by
@@ -220,8 +241,8 @@ solution_0.exnode, the deformed by solution_1.exnode).
 
 ```cpp
         solver.CreateCmguiOutput();
-
 ```
+
 The recommended visualiser is Paraview, for which Chaste must be installed with VTK. With paraview, strains (and in the future
 stresses) can be visualised on the undeformed/deformed geometry). We can create VTK output using
 the `VtkNonlinearElasticitySolutionWriter` class. The undeformed geometry, solution displacement, and pressure (if incompressible
@@ -231,8 +252,8 @@ problem) are written to file, and below we also choose to write the deformation 
         VtkNonlinearElasticitySolutionWriter<2> vtk_writer(solver);
         vtk_writer.SetWriteElementWiseStrains(DEFORMATION_TENSOR_C); // other options are DEFORMATION_GRADIENT_F and LAGRANGE_STRAIN_E
         vtk_writer.Write();
-
 ```
+
 These are just to check that nothing has been accidentally changed in this test.
 Newton's method (with damping) was used to solve the nonlinear problem, and we check that
 4 iterations were needed to converge.
@@ -243,6 +264,7 @@ Newton's method (with damping) was used to solve the nonlinear problem, and we c
         TS_ASSERT_EQUALS(solver.GetNumNewtonIterations(), 4u);
     }
 ```
+
 ''Exercise'': convert to a compressible solver and compare the resultant deformations.
 The next tutorial describes how to solve for a compressible deformation,
 but the changes are essentially trivial: `IncompressibleNonlinearElasticitySolver` needs to be changed to
@@ -251,7 +273,7 @@ the material law itself should be of type `AbstractCompressibleMaterialLaw`. An 
 `CompressibleMooneyRivlinMaterialLaw`. Also `solver.rGetPressures()` doesn't exist (or make sense)
 when the solver is an `CompressibleNonlinearElasticitySolver`.
 
-## Incompressible deformation: 2D shape hanging under gravity with a balancing traction 
+### Incompressible deformation: 2D shape hanging under gravity with a balancing traction
 
 We now repeat the above test but include a traction on the bottom surface (Y=0). We apply this
 in the inward direction so that is counters (somewhat) the effect of gravity. We also show how stresses
@@ -261,7 +283,9 @@ and strains can be written to file.
     void TestIncompressibleProblemWithTractions()
     {
 ```
+
 All of this is exactly as above
+
 ```cpp
         QuadraticMesh<2> mesh;
         mesh.ConstructRegularSlabMesh(0.1 /*stepsize*/, 0.8 /*width*/, 1.0 /*height*/);
@@ -273,8 +297,8 @@ All of this is exactly as above
         body_force(1) = -2.0;
 
         std::vector<unsigned> fixed_nodes = NonlinearElasticityTools<2>::GetNodesByComponentValue(mesh, 1, 1.0);
-
 ```
+
 Now the traction boundary conditions. We need to collect all the boundary elements on the surface which we want to
 apply non-zero tractions, put them in a `std::vector`, and create a corresponding `std::vector` of the tractions
 for each of the boundary elements. Note that the each traction is a 2D vector with dimensions of pressure.
@@ -285,25 +309,33 @@ First, declare the data structures:
         std::vector<BoundaryElement<1,2>*> boundary_elems;
         std::vector<c_vector<double,2> > tractions;
 ```
+
 Create a constant traction
+
 ```cpp
         c_vector<double,2> traction;
         traction(0) = 0;
         traction(1) = 1.0; // this choice of sign corresponds to an inward force (if applied to the bottom surface)
 ```
+
 Loop over boundary elements
+
 ```cpp
         for (TetrahedralMesh<2,2>::BoundaryElementIterator iter = mesh.GetBoundaryElementIteratorBegin();
              iter != mesh.GetBoundaryElementIteratorEnd();
              ++iter)
         {
 ```
+
 If the centre of the element has Y value of 0.0, it is on the surface we need
+
 ```cpp
             if (fabs((*iter)->CalculateCentroid()[1] - 0.0) < 1e-6)
             {
 ```
+
 Put the boundary element and the constant traction into the stores.
+
 ```cpp
                 BoundaryElement<1,2>* p_element = *iter;
                 boundary_elems.push_back(p_element);
@@ -311,11 +343,13 @@ Put the boundary element and the constant traction into the stores.
             }
         }
 ```
+
 A quick check
+
 ```cpp
         assert(boundary_elems.size() == 8u);
-
 ```
+
 Now create the problem definition object, setting the material law, fixed nodes and body force as
 before (this time not calling `SetDensity()`, so using the default density of 1.0,
 and also calling a method for setting tractions, which takes in the boundary elements
@@ -327,27 +361,29 @@ and tractions for each of those elements.
         problem_defn.SetZeroDisplacementNodes(fixed_nodes);
         problem_defn.SetBodyForce(body_force);
         problem_defn.SetTractionBoundaryConditions(boundary_elems, tractions);
-
 ```
+
 Create solver as before
+
 ```cpp
         IncompressibleNonlinearElasticitySolver<2> solver(mesh,
                                                           problem_defn,
                                                           "IncompressibleElasticityWithTractionsTutorial");
-
 ```
+
 In this test we also output the stress and strain. For the former, we have to tell the solver to store
 the stresses that are computed during the solve.
 
 ```cpp
         solver.SetComputeAverageStressPerElementDuringSolve();
-
 ```
+
 Call `Solve()`
+
 ```cpp
         solver.Solve();
-
 ```
+
 If VTK output is written (discussed above) strains can be visualised. Alternatively, we can create text files
 for strains and stresses by doing the following.
 
@@ -357,8 +393,8 @@ can also be DEFORMATION_TENSOR_C or LAGRANGE_STRAIN_E to write C or E. The secon
 
 ```cpp
         solver.WriteCurrentStrains(DEFORMATION_GRADIENT_F,"deformation_grad");
-
 ```
+
 Since we called `SetComputeAverageStressPerElementDuringSolve`, we can write the stresses to file too. However,
 note that for each element this is not the stress evaluated at the centroid, but the mean average of the stresses
 evaluated at the quadrature points - for technical cardiac electromechanics reasons, it is difficult to
@@ -366,13 +402,14 @@ define the stress at non-quadrature points.
 
 ```cpp
         solver.WriteCurrentAverageElementStresses("2nd_PK_stress");
-
 ```
+
 Another quick check
+
 ```cpp
         TS_ASSERT_EQUALS(solver.GetNumNewtonIterations(), 4u);
-
 ```
+
 Visualise as before by going to the output directory and doing
 `x=load('solution.nodes'); plot(x(:,1),x(:,2),'m*')` in Matlab/octave, or by using Cmgui.
 The effect of the traction should be clear (especially when compared to
@@ -382,23 +419,25 @@ Create Cmgui output
 
 ```cpp
         solver.CreateCmguiOutput();
-
 ```
+
 This is just to check that nothing has been accidentally changed in this test
+
 ```cpp
         TS_ASSERT_DELTA(solver.rGetDeformedPosition()[8](0), 0.8561, 1e-3);
         TS_ASSERT_DELTA(solver.rGetDeformedPosition()[8](1), 0.0310, 1e-3);
     }
 };
 ```
+
 More examples are given in the next tutorial
 
-## IMPORTANT: Using HYPRE 
+### IMPORTANT: Using HYPRE
 
 Mechanics solves being nonlinear are expensive, so it is recommended you also use `CMAKE_BUILD_TYPE=Release` when running with CMake
 on larger problems.
 
-When running '''incompressible''' problems in 3D, or with more elements, it is vital to also change the linear solver to use HYPRE, an algebraic multigrid
+When running **incompressible** problems in 3D, or with more elements, it is vital to also change the linear solver to use HYPRE, an algebraic multigrid
 solver. Without HYRPE, the linear solve (i) may become very very slow; or (ii) may not converge, in which case the nonlinear
 solve will (probably) not converge. HYPRE is (currently) not a pre-requisite for installing Chaste, hence this is not (currently)
 the default linear solver for incompressible mechanics problems, although this will change in the future.
@@ -414,13 +453,7 @@ near the top of the file (currently: line 57).
 
 Note: PETSc unfortunately doesn't quit if you try to use HYPRE without it being installed, but it spew lots of error messages.
 
-
-
-# Code
-The full code is given below
-
-
-## File name `TestSolvingElasticityProblemsTutorial.hpp` 
+## Full code
 
 ```cpp
 #include <cxxtest/TestSuite.h>
@@ -538,4 +571,3 @@ public:
     }
 };
 ```
-

@@ -1,15 +1,14 @@
-
 ---
-title : "Running Delta Notch Simulations Tutorial"
-summary: "This tutorial is automatically generated from the file cell_based/test/tutorial/TestRunningDeltaNotchSimulationsTutorial.hpp at revision [c64c70046e25](https://github.com/Chaste/Chaste/commit/c64c70046e25e3f67b47ec3e92f29cb02d5e6830). Note that the code is given in full at the bottom of the page."
+title : "Running Delta Notch Simulations"
+summary: "An example showing how to run Delta/Notch simulations"
 draft: false
 images: []
 toc: true
 ---
+This tutorial is automatically generated from [TestRunningDeltaNotchSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningDeltaNotchSimulationsTutorial.hpp) at revision [96e6e662bf78](https://github.com/Chaste/Chaste/commit/96e6e662bf780f36e39eabcae9f3d4d843677a5b). Note that the code is given in full at the bottom of the page.
+## An example showing how to run Delta/Notch simulations
 
-# An example showing how to run Delta/Notch simulations 
-
-## Introduction 
+### Introduction
 
 In this tutorial we show how Chaste can be used to simulate a growing cell monolayer culture
 into which a simple model of Delta/Notch signalling is incorporated. This model was developed
@@ -18,15 +17,15 @@ model of delta-notch intercellular signalling", J. Theor. Biol. 183:429-446) and
 two ODEs to describe the evolution in concentrations of Delta and Notch in each cell. The ODE
 for Notch includes a reaction term that depends on the mean Delta concentration among neighbouring
 cells. Thus in this simulation each cell needs to be able to access information about its
-neighbours. We use the `CellData`{.cpp} class to facilitate this, and introduce a subclass
-of `OffLatticeSimulation`{.cpp} called `DeltaNotchOffLatticeSimulation`{.cpp} to handle the updating
-of `CellData`{.cpp} at each time step as cell neighbours change.
+neighbours. We use the `CellData` class to facilitate this, and introduce a subclass
+of `OffLatticeSimulation` called `DeltaNotchOffLatticeSimulation` to handle the updating
+of `CellData` at each time step as cell neighbours change.
 
-## The test 
+### The test
 
 As in previous tutorials, we begin by including the necessary header files. We have
-encountered these files already. Recall that often, either `CheckpointArchiveTypes.hpp`{.cpp}
-or `CellBasedSimulationArchiver.hpp`{.cpp} must be included the first Chaste header.
+encountered these files already. Recall that often, either `CheckpointArchiveTypes.hpp`
+or `CellBasedSimulationArchiver.hpp` must be included the first Chaste header.
 
 ```cpp
 #include <cxxtest/TestSuite.h>
@@ -56,28 +55,28 @@ or `CellBasedSimulationArchiver.hpp`{.cpp} must be included the first Chaste hea
 
 The next header file defines a simple subcellular reaction network model that includes the functionality
 for solving each cell's Delta/Notch signalling ODE system at each time step, using information about neighbouring
-cells through the `CellData`{.cpp} class.
+cells through the `CellData` class.
 
 ```cpp
 #include "DeltaNotchSrnModel.hpp"
 ```
 
 The next header defines the simulation class modifier corresponding to the Delta-Notch SRN model.
-This modifier leads to the `CellData`{.cpp} cell property being updated at each timestep to deal with Delta-Notch signalling.
+This modifier leads to the `CellData` cell property being updated at each timestep to deal with Delta-Notch signalling.
 
 ```cpp
 #include "DeltaNotchTrackingModifier.hpp"
-
 ```
+
 Having included all the necessary header files, we proceed by defining the test class.
 
 ```cpp
 class TestRunningDeltaNotchSimulationsTutorial : public AbstractCellBasedTestSuite
 {
 public:
-
 ```
-## Test 1: a vertex-based monolayer with Delta/Notch signalling 
+
+### Test 1: a vertex-based monolayer with Delta/Notch signalling
 
 In the first test, we demonstrate how to simulate a monolayer that incorporates
 Delta/Notch signalling, using a vertex-based approach.
@@ -86,22 +85,26 @@ Delta/Notch signalling, using a vertex-based approach.
     void TestVertexBasedMonolayerWithDeltaNotch()
     {
 ```
+
 We include the next line because Vertex simulations cannot be run in parallel
+
 ```cpp
         EXIT_IF_PARALLEL;
-
 ```
+
 First we create a regular vertex mesh.
+
 ```cpp
         HoneycombVertexMeshGenerator generator(5, 5);
         boost::shared_ptr<MutableVertexMesh<2,2> > p_mesh = generator.GetMesh();
-
 ```
-We then create some cells, each with a cell-cycle model, `UniformG1GenerationalCellCycleModel`{.cpp} and a subcellular reaction network model
-`DeltaNotchSrnModel`{.cpp}, which
+
+We then create some cells, each with a cell-cycle model, `UniformG1GenerationalCellCycleModel` and a subcellular reaction network model
+`DeltaNotchSrnModel`, which
 incorporates a Delta/Notch ODE system, here we use the hard coded initial conditions of 1.0 and 1.0.
 In this example we choose to make each cell differentiated,
 so that no cell division occurs.
+
 ```cpp
         std::vector<CellPtr> cells;
         MAKE_PTR(WildTypeCellMutationState, p_state);
@@ -111,9 +114,10 @@ so that no cell division occurs.
         {
             UniformG1GenerationalCellCycleModel* p_cc_model = new UniformG1GenerationalCellCycleModel();
             p_cc_model->SetDimension(2);
-
 ```
+
 We choose to initialise the concentrations to random levels in each cell.
+
 ```cpp
             std::vector<double> initial_conditions;
             initial_conditions.push_back(RandomNumberGenerator::Instance()->ranf());
@@ -127,10 +131,11 @@ We choose to initialise the concentrations to random levels in each cell.
             p_cell->SetBirthTime(birth_time);
             cells.push_back(p_cell);
         }
-
 ```
+
 Using the vertex mesh and cells, we create a cell-based population object, and specify which results to
 output to file.
+
 ```cpp
         VertexBasedCellPopulation<2> cell_population(*p_mesh, cells);
         cell_population.AddCellPopulationCountWriter<CellMutationStatesCountWriter>();
@@ -139,26 +144,28 @@ output to file.
         cell_population.AddCellWriter<CellProliferativePhasesWriter>();
         cell_population.AddCellWriter<CellAgesWriter>();
         cell_population.AddCellWriter<CellVolumesWriter>();
-
 ```
+
 We are now in a position to create and configure the cell-based simulation object, pass a force law to it,
 and run the simulation. We can make the simulation run for longer to see more patterning by increasing the end time.
+
 ```cpp
         OffLatticeSimulation<2> simulator(cell_population);
         simulator.SetOutputDirectory("TestVertexBasedMonolayerWithDeltaNotch");
         simulator.SetSamplingTimestepMultiple(10);
         simulator.SetEndTime(1.0);
-
 ```
-Then, we define the modifier class, which automatically updates the values of Delta and Notch within the cells in {{{CellData}}} and passes it to the simulation.
+
+Then, we define the modifier class, which automatically updates the values of Delta and Notch within the cells in `CellData` and passes it to the simulation.
+
 ```cpp
         MAKE_PTR(DeltaNotchTrackingModifier<2>, p_modifier);
         simulator.AddSimulationModifier(p_modifier);
 
         MAKE_PTR(NagaiHondaForce<2>, p_force);
         simulator.AddForce(p_force);
-
 ```
+
 This modifier assigns target areas to each cell.
 
 ```cpp
@@ -166,13 +173,13 @@ This modifier assigns target areas to each cell.
         simulator.AddSimulationModifier(p_growth_modifier);
         simulator.Solve();
     }
-
 ```
+
 To visualize the results, use Paraview. See the UserTutorials/VisualizingWithParaview tutorial for more information.
 
-Load the file `/tmp/$USER/testoutput/TestVertexBasedMonolayerWithDeltaNotch/results_from_time_0/results.pvd`{.cpp}.
+Load the file `/tmp/$USER/testoutput/TestVertexBasedMonolayerWithDeltaNotch/results_from_time_0/results.pvd`.
 
-## Test 2 - a node-based monolayer with Delta/Notch signalling 
+### Test 2 - a node-based monolayer with Delta/Notch signalling
 
 In the next test we run a similar simulation as before, but this time with node-based
 'overlapping spheres' model.
@@ -181,20 +188,23 @@ In the next test we run a similar simulation as before, but this time with node-
     void TestNodeBasedMonolayerWithDeltaNotch()
     {
 ```
+
 We include the next line because HoneycombMeshGenerator, used in this test, is not
 yet implemented in parallel.
+
 ```cpp
         EXIT_IF_PARALLEL;
-
 ```
+
 Most of the code in this test is the same as in the previous test,
-except we now create a 'nodes-only mesh' and `NodeBasedCellPopulation`{.cpp}.
+except we now create a 'nodes-only mesh' and `NodeBasedCellPopulation`.
 
 ```cpp
         HoneycombMeshGenerator generator(5, 5);
         boost::shared_ptr<MutableMesh<2,2> > p_generating_mesh = generator.GetMesh();
         NodesOnlyMesh<2> mesh;
 ```
+
 The mechanics cut-off length (second argument) is used in this simulation to determine nearest
 neighbours for the purpose of the Delta/Notch intercellular signalling model.
 
@@ -208,9 +218,10 @@ neighbours for the purpose of the Delta/Notch intercellular signalling model.
         {
             UniformG1GenerationalCellCycleModel* p_cc_model = new UniformG1GenerationalCellCycleModel();
             p_cc_model->SetDimension(2);
-
 ```
+
 We choose to initialise the concentrations to random levels in each cell.
+
 ```cpp
             std::vector<double> initial_conditions;
             initial_conditions.push_back(RandomNumberGenerator::Instance()->ranf());
@@ -236,15 +247,17 @@ We choose to initialise the concentrations to random levels in each cell.
         simulator.SetOutputDirectory("TestNodeBasedMonolayerWithDeltaNotch");
         simulator.SetSamplingTimestepMultiple(10);
         simulator.SetEndTime(5.0);
-
 ```
-Again we define the modifier class, which automatically updates the values of Delta and Notch within the cells in {{{CellData}}} and passes it to the simulation.
+
+Again we define the modifier class, which automatically updates the values of Delta and Notch within the cells in `CellData` and passes it to the simulation.
+
 ```cpp
         MAKE_PTR(DeltaNotchTrackingModifier<2>, p_modifier);
         simulator.AddSimulationModifier(p_modifier);
-
 ```
+
 As we are using a node-based cell population, we use an appropriate force law.
+
 ```cpp
         MAKE_PTR(GeneralisedLinearSpringForce<2>, p_force);
         p_force->SetCutOffLength(1.5);
@@ -256,7 +269,7 @@ As we are using a node-based cell population, we use an appropriate force law.
 
 To visualize the results, use Paraview. See the UserTutorials/VisualizingWithParaview tutorial for more information.
 
-Load the file `/tmp/$USER/testoutput/TestNodeBasedMonolayerWithDeltaNotch/results_from_time_0/results.pvd`{.cpp},
+Load the file `/tmp/$USER/testoutput/TestNodeBasedMonolayerWithDeltaNotch/results_from_time_0/results.pvd`,
 and add a spherical glyph.
 
 Note that, for larger simulations, you may need to unclick "Mask Points" (or similar) so as not to limit the number of glyphs
@@ -264,15 +277,9 @@ displayed by Paraview.
 
 ```cpp
 };
-
 ```
 
-
-# Code
-The full code is given below
-
-
-## File name `TestRunningDeltaNotchSimulationsTutorial.hpp` 
+## Full code
 
 ```cpp
 #include <cxxtest/TestSuite.h>
@@ -410,6 +417,4 @@ public:
         simulator.Solve();
     }
 };
-
 ```
-
