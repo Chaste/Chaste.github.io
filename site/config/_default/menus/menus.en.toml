@@ -29,7 +29,7 @@
   name = "Getting started"
   weight = 40
   identifier = "getting-started"
-  url = "/getting-started/"
+  url = "/docs/"
 
 [[main]]
   name = "Docs"
@@ -42,13 +42,6 @@
   weight = 10
   identifier = "Doxygen"
   url = "/docs/doxygen/"
-  parent = "docs"
-
-[[main]]
-  name = "Releases"
-  weight = 14
-  identifier = "Releases"
-  url = "/docs/releases/"
   parent = "docs"
 
 [[main]]
@@ -91,6 +84,12 @@
   identifier = "PyChasteUserTutorials"
   url = "/pychaste/tutorials/"
   parent = "pychaste"
+
+[[main]]
+  name = "Releases"
+  weight = 45
+  identifier = "Releases"
+  url = "/releases/"
 
 [[main]]
   name = "Workshops"
