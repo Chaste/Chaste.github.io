@@ -45,6 +45,13 @@
   parent = "docs"
 
 [[main]]
+  name = "Releases"
+  weight = 14
+  identifier = "Releases"
+  url = "/docs/releases/"
+  parent = "docs"
+
+[[main]]
   name = "Release notes"
   weight = 15
   identifier = "ReleaseNotes"

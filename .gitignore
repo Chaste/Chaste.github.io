@@ -6,3 +6,5 @@ resources
 hugo
 hugo.exe
 .idea
+
+venv
