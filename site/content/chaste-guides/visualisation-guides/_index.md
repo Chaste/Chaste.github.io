@@ -1,4 +1,11 @@
-# Visualising simulation results
+---
+title: "Visualising simulation results"
+description: "Visualising simulation results"
+draft: false
+images: []
+toc: true
+layout: "single"
+---
 
 The links below provide some further information on how to visualise simulation results. Visualisation is also discussed in some of the tutorials, and some of the visualiser tools supported have extensive online documentation and examples ([cmgui](http://www.cmiss.org/cmgui) and [Paraview](http://www.paraview.org/) in particular).
 
@@ -6,11 +13,11 @@ The links below provide some further information on how to visualise simulation 
 
 Visualise the results of **cardiac** simulations, using:
 
-* [Meshalyzer](https://github.com/Chaste/trac_archive/wiki/Chaste-Guides-_-Visualisation-Guides-_-Using-Meshalyzer)
-* [Cmgui](https://github.com/Chaste/trac_archive/wiki/Chaste-Guides-_-Visualisation-Guides-_-Using-Cmgui)
-* [Paraview](https://github.com/Chaste/trac_archive/wiki/Chaste-Guides-_-Visualisation-Guides-_-Paraview-For-Cardiac)
+* [Meshalyzer](using-meshalyzer)
+* [Cmgui](using-cmgui)
+* [Paraview](paraview-for-cardiac)
 
 
 Visualise the results of **cell_based** simulations:
 
-* [Combining consecutive cell-based simulations](https://github.com/Chaste/trac_archive/wiki/Chaste-Guides-_-Visualisation-Guides-_-Combine-Consecutive-Simulations)
+* [Combining consecutive cell-based simulations](combine-consecutive-simulations)
