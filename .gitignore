@@ -6,3 +6,4 @@ resources
 hugo
 hugo.exe
 .idea
+package-lock.json
