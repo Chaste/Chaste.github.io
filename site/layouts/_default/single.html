@@ -29,6 +29,9 @@
 					</ol>
 				</nav>
 			{{ end }}
+			{{ if .Params.version -}}
+			{{ partial "version_banner.html" . }}
+			{{ end -}}
 			<h1>{{ .Title }}</h1>
 			<!-- <p class="lead">{{ .Params.lead | safeHTML }}</p> -->
 			{{ if ne .Params.toc false -}}
