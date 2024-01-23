@@ -21,14 +21,11 @@ Occasionally broken code is committed to the Chaste repository, or some unexpect
 | **Branch** | **What it's for** |
 |---|---|
 | `develop` | Bleeding-edge development code, new feature (ticket) branches should branch off here to minimise conflicts |
-| `passed_continuous` | latest code that passed continuous tests and isn't disastrous |
-| `passed_nightly` | latest code that passed above tests, plus some longer nightly ones including coverage and memory testing |
-| `passed_portability` | latest code that passed above tests, plus our suite of tests for different dependency versions |
-| `master` | Latest release-candidate quality code that has passed all tests |
 | `release` | The last full release of the code. |
+| Release Tags | Released code for past Chaste versions (e.g. v3.4), also accessible from https://github.com/Chaste/Chaste/releases with nice instructions and zips/tar files | |
 
 
-You can get these revisions by [cloning the repository](https://github.com/Chaste/trac_archive/wiki/Chaste-Guides-_-Access-Code-Repository) and then doing
+You can get these revisions by cloning the repository and then doing
 
 ```
 
@@ -40,40 +37,38 @@ e.g.
 
 ```
 
-git checkout master
+git checkout develop
 
 ```
 
 
-# Contributing Code Back to Chaste
+## Contributing Code Back to Chaste
 
-## Before you start
+### Before you start
 
 If you intend to submit code back to the main Chaste repository, please see ChasteGuides/BestPracticeGuide.
 
 ### Coding Standards
 
-To understand why Chaste variables, methods and classes are named like they are please see our [C++ naming conventions](https://github.com/Chaste/trac_archive/wiki/Coding-Standards-Strategy).
+To understand why Chaste variables, methods and classes are named like they are please see our [C++ naming conventions](Coding-Standards-Strategy).
 
 We also lay out and document our code in a particular way, see CodeStructureStrategy.
 
 You may also want to read through the other 'strategies' that we use to keep things consistent and well tested at ChasteStrategies.
 
-## Open a ticket
+### Creating an Issue
 
-First start a new ticket on this wiki (buttons in top right) and describe the problem you are trying to solve.
+First [create a new issue](https://github.com/Chaste/Chaste/issues) on GitHub and describe the problem you are trying to solve.
 
-## Working in a new branch
+### Working in a new branch
 
-Please see ChasteGuides/GitGuide#Ticketworkflow for how to work in a new branch - you should branch off `develop` if you want to contribute code back to the main Chaste repository.
+Please see the [issue workflow]( {{< ref "#issue-workflow" >}} ) for how to work in a new branch - you should branch off `develop` if you want to contribute code back to the main Chaste repository.
 
 Make sure you merge in the latest `develop` branch into your ticket regularly to keep up to date and avoid lots of changes before merging back in to our main repo.
 
-If you would like to work with our repository, please contact the developers via the mailing list and we will create an account for you.
+Ideally, write a comment on your issue about any commits that you have done and pushed to your branch.
 
-Ideally, write a comment on your ticket about any commits that you have done and pushed to your ticket branch on the chaste.cs.ox.ac.uk git repo.
-
-## Testing
+### Testing
 
 Run all tests (continuous, nightly, parallel, coverage, memory) as per ChasteGuides/CmakeBuildGuide#OtherUsefulTargets
 
@@ -558,7 +553,7 @@ $ git config --global credential.https://chaste.cs.ox.ac.uk.username <your-usern
 ```
 
 
-# Ticket workflow
+# Issue workflow
 
 Unlike Subversion, Git branches do not use directories to manage branches and
 are lightweight and considerably faster to use and merge with each other. Each
