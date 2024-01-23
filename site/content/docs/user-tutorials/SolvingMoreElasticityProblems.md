@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestSolvingMoreElasticityProblemsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/continuum_mechanics/test/TestSolvingMoreElasticityProblemsTutorial.hpp) at revision [0a2ab4e09adf](https://github.com/Chaste/Chaste/commit/0a2ab4e09adf884a22cb443bfb10d94d8efb5ed3). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestSolvingMoreElasticityProblemsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/continuum_mechanics/test/TestSolvingMoreElasticityProblemsTutorial.hpp) at revision [4d762407bc1f](https://github.com/Chaste/Chaste/commit/4d762407bc1f327ded5b48cd8174d30f465f87fc). Note that the code is given in full at the bottom of the page.
 ### Introduction
 
 In this second solid mechanics tutorial, we illustrate some other possibilities: using tractions
@@ -160,7 +160,7 @@ which takes in the new locations of the fixed nodes.
 
 Now call `SetTractionBoundaryConditions`, which takes in a vector of
 boundary elements as in the previous test. However this time the second argument
-is a ''function pointer'' (just the name of the function) to a
+is a *function pointer* (just the name of the function) to a
 function returning traction in terms of position (and time [see below]).
 This function is defined above, before the tests. It has to take in a `c_vector` (position)
 and a double (time), and returns a `c_vector` (traction), and will only be called
@@ -433,7 +433,7 @@ one, and call `Solve()`
 Now we call add additional boundary conditions, and call `Solve() again. Firstly: these
 Neumann conditions here are not specified traction boundary conditions (such BCs are specified
 on the undeformed body), but instead, the (more natural) specification of a pressure
-exactly in the ''normal direction on the deformed body''. We have to provide a set of boundary
+exactly in the *normal direction on the deformed body*. We have to provide a set of boundary
 elements of the mesh, and a pressure to act on those elements. The solver will automatically
 compute the deformed normal directions on which the pressure acts. Note: with this type of
 BC, the ordering of the nodes on the boundary elements needs to be consistent, otherwise some
@@ -452,7 +452,7 @@ Call `Solve()` again, so now solving with fixed nodes, gravity, and pressure. Th
 the previous solve will be used as the initial guess. Although at the moment the solution from the
 previous call to `Solve()` will be over-written, calling `Solve()` repeatedly may be useful for
 some problems: sometimes, Newton's method will fail to converge for given force/pressures etc, and it can
-be (very) helpful to ''increment'' the loading. For example, set the gravity to be (0,-9.81/3), solve,
+be (very) helpful to *increment* the loading. For example, set the gravity to be (0,-9.81/3), solve,
 then set it to be (0,-2*9.81/3), solve again, and finally set it to be (0,-9.81) and solve for a
 final time
 

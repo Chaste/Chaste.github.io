@@ -5,12 +5,15 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestAnotherBidomainSimulationTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherBidomainSimulationTutorial.hpp) at revision [0a2ab4e09adf](https://github.com/Chaste/Chaste/commit/0a2ab4e09adf884a22cb443bfb10d94d8efb5ed3). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestAnotherBidomainSimulationTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherBidomainSimulationTutorial.hpp) at revision [7ade7e284900](https://github.com/Chaste/Chaste/commit/7ade7e284900924a4777da9dc3f8d5a2647f9c55). Note that the code is given in full at the bottom of the page.
 ## Another example showing how to run a bidomain simulation
 
 In this tutorial we run another bidomain simulation,
-showing (i) an example using one of the source cell factories, (ii) how to define
-and use fibre directions, and (iii) mentioning how to write other output file formats.
+showing:
+
+i) an example using one of the source cell factories,
+ii) how to define and use fibre directions, and
+iii) mentioning how to write other output file formats.
 
 The first thing to do is to include the headers as before.
 

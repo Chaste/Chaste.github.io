@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestCreatingAndUsingANewForceTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewForceTutorial.hpp) at revision [0a2ab4e09adf](https://github.com/Chaste/Chaste/commit/0a2ab4e09adf884a22cb443bfb10d94d8efb5ed3). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCreatingAndUsingANewForceTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewForceTutorial.hpp) at revision [e9d760bdf232](https://github.com/Chaste/Chaste/commit/e9d760bdf232107ee9c8c52c9fda40505fb7b666). Note that the code is given in full at the bottom of the page.
 ## An example showing how to create and use a new force
 
 ### Introduction
@@ -78,7 +78,7 @@ in the constructor.
 
 We only need to include the next block of code if we wish to be able
 to archive (save or load) the force model object in a cell-based simulation.
-The code consists of a serialize method, in which we first archive the force
+The code consists of a `serialize()` method, in which we first archive the force
 using the serialization code defined in the base class `AbstractForce`,
 then archive the member variable.
 
@@ -118,7 +118,7 @@ This method takes in one arguments, a reference to the cell population itself.
 ```
 
 Inside the method, we loop over nodes, and add a constant vector to
-each node, in the negative ''y''-direction and of magnitude `mStrength`.
+each node, in the negative y-direction and of magnitude `mStrength`.
 
 ```cpp
         c_vector<double, 2> force = zero_vector<double>(2);
@@ -140,7 +140,7 @@ We also add a get method for `mStrength`, to allow for testing.
     }
 ```
 
-Just as we encountered in [wiki:UserTutorials/CreatingAndUsingANewCellKiller], here we must override
+Just as we encountered in [Creating And Using A New Cell Killer](docs/user-tutorials/creatingandusinganewcellkiller), here we must override
 a method that outputs any member variables to a specified results file `rParamsFile`.
 In our case, we output the member variable `mStrength`, then call the method on the base class.
 
@@ -236,7 +236,7 @@ in a similar way to previous cell-based Chaste tutorials:
 Note that it is important to test archiving by using an abstract
 pointer, so that you check that boost can identify and record which
 concrete class it should be dealing with.
-This tests the CHASTE_CLASS_EXPORT(MyForce) lines are implemented correctly.
+This tests the `CHASTE_CLASS_EXPORT(MyForce)` lines are implemented correctly.
 
 ```cpp
         OutputFileHandler handler("archive", false);
