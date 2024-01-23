@@ -42,7 +42,7 @@ Do not edit it manually, as your changes will be overwritten!
 
 ### Output
 - Specify output formats (for different visualisers)
-  - [line 133 of TestAnotherBidomainSimulationTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherBidomainSimulationTutorial.hpp#L133)
+  - [line 136 of TestAnotherBidomainSimulationTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherBidomainSimulationTutorial.hpp#L136)
 - Collect and print timings to benchmark different parts of the cardiac code.
   - [line 124 of TestBidomain3D.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomain3D.hpp#L124)
 - Only output data for particular nodes
@@ -76,7 +76,7 @@ Do not edit it manually, as your changes will be overwritten!
 - Use a native CVODE cell in a tissue simulation
   - [line 168 of Test1dMonodomainShannonCvodeBenchmarks.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/performance/Test1dMonodomainShannonCvodeBenchmarks.hpp#L168)
 - Specify fibre directions
-  - [line 87 of TestAnotherBidomainSimulationTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherBidomainSimulationTutorial.hpp#L87)
+  - [line 90 of TestAnotherBidomainSimulationTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherBidomainSimulationTutorial.hpp#L90)
 - Fix phi_e at particular nodes (note: this is not required)
   - [line 264 of TestBidomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainProblem.hpp#L264)
 - Set discrete **ellipsoid** areas to have heterogeneous (intra- and/or extra-cellular) conductivity tensors.
@@ -88,7 +88,7 @@ Do not edit it manually, as your changes will be overwritten!
 - Save ('checkpoint') and reload simulations
   - [line 49 of TestCardiacCheckpointingAndRestartingTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestCardiacCheckpointingAndRestartingTutorial.hpp#L49)
 - Do a monodomain simulation with equivalent conductivities to a bidomain simulation.
-  - [line 232 of TestEquivalentMonoAndBidomainTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestEquivalentMonoAndBidomainTutorial.hpp#L232)
+  - [line 172 of TestEquivalentMonoAndBidomainTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestEquivalentMonoAndBidomainTutorial.hpp#L172)
 - Set discrete **cuboid** areas to have heterogeneous (intra- and/or extra-cellular) conductivity tensors.
   - [line 82 of TestHeterogeneousConductivities.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/TestHeterogeneousConductivities.hpp#L82)
 - Generate a slab (cuboid) mesh rather than read a mesh in, and pass it to solver
