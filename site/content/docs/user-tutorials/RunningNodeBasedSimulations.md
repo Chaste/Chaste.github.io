@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningNodeBasedSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningNodeBasedSimulationsTutorial.hpp) at revision [0a2ab4e09adf](https://github.com/Chaste/Chaste/commit/0a2ab4e09adf884a22cb443bfb10d94d8efb5ed3). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningNodeBasedSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningNodeBasedSimulationsTutorial.hpp) at revision [c50b2730f334](https://github.com/Chaste/Chaste/commit/c50b2730f334225b1f345b10aa363472c7baa41a). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to create, run and visualize node-based simulations
 
 ### Introduction
@@ -16,7 +16,7 @@ discrete mechanical tissue models", Physical Biology. Vol. 6. No. 3. 2009.. DOI 
 
 ### The test
 
-As in previous cell-based Chaste tutorials (UserTutorials/RunningMeshBasedSimulations), we begin by including the necessary header files.
+As in previous cell-based Chaste tutorials ([Running Mesh Based Simulations](docs/user-tutorials/runningmeshbasedsimulations)), we begin by including the necessary header files.
 
 ```cpp
 #include <cxxtest/TestSuite.h>
@@ -32,7 +32,7 @@ The following header is usually included in all cell-based test suites. It enabl
 
 The remaining header files define classes that will be used in the cell population
 simulation test. We encountered some of these header files in
-UserTutorials/RunningMeshBasedSimulations.
+[Running Mesh Based Simulations](docs/user-tutorials/runningmeshbasedsimulations).
 
 ```cpp
 #include "CellsGenerator.hpp"
@@ -279,7 +279,7 @@ To avoid memory leaks, we conclude by deleting any pointers that we created in t
 ```
 
 Note that you **cannot view the results of a 3D simulation using the Java visualiser** but
-to visualize the results, use Paraview. See the UserTutorials/VisualizingWithParaview tutorial for more information.
+to visualize the results, use Paraview. See the [Visualizing With Paraview](docs/user-tutorials/visualizingwithparaview) tutorial for more information.
 
 Load the file `/tmp/$USER/testoutput/NodeBasedSpheroid/results_from_time_0/results.pvd`,
 and add spherical glyphs to represent cells.
@@ -384,7 +384,7 @@ To avoid memory leaks, we conclude by deleting any pointers that we created in t
     }
 ```
 
-To visualize the results, use Paraview. See the UserTutorials/VisualizingWithParaview tutorial for more information.
+To visualize the results, use Paraview. See the [Visualizing With Paraview](docs/user-tutorials/visualizingwithparaview) tutorial for more information.
 
 Load the file `/tmp/$USER/testoutput/NodeBasedOnSphere/results_from_time_0/results.pvd`,
 and add spherical glyphs to represent cells.

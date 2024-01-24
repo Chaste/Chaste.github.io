@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestSolvingLinearParabolicPdeSystemsWithCoupledOdeSystemsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestSolvingLinearParabolicPdeSystemsWithCoupledOdeSystemsTutorial.hpp) at revision [0a2ab4e09adf](https://github.com/Chaste/Chaste/commit/0a2ab4e09adf884a22cb443bfb10d94d8efb5ed3). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestSolvingLinearParabolicPdeSystemsWithCoupledOdeSystemsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestSolvingLinearParabolicPdeSystemsWithCoupledOdeSystemsTutorial.hpp) at revision [c50b2730f334](https://github.com/Chaste/Chaste/commit/c50b2730f334225b1f345b10aa363472c7baa41a). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to solve a system of coupled linear parabolic PDEs and ODEs
 
 In this tutorial we show how Chaste can be used to solve a system of coupled linear
@@ -47,7 +47,7 @@ The next header file will allow us to specify a random initial condition.
 ```
 
 We then include header files that allow us to specify boundary conditions for the PDEs,
-deal with meshes and output files, and use PETSc. As noted before, !PetscSetupAndFinalize.hpp
+deal with meshes and output files, and use PETSc. As noted before, `PetscSetupAndFinalize.hpp`
 must be included in every test that uses PETSc.
 
 ```cpp

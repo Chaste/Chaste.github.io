@@ -5,17 +5,17 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningCryptSimulationsWithMutationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/tutorial/TestRunningCryptSimulationsWithMutationsTutorial.hpp) at revision [0a2ab4e09adf](https://github.com/Chaste/Chaste/commit/0a2ab4e09adf884a22cb443bfb10d94d8efb5ed3). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningCryptSimulationsWithMutationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/tutorial/TestRunningCryptSimulationsWithMutationsTutorial.hpp) at revision [5a432c6a6ab9](https://github.com/Chaste/Chaste/commit/5a432c6a6ab964dda40e675653e33f529df90320). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to run crypt simulations with various mutations
 
 ### Introduction
 
-This tutorial assumes you have already read UserTutorials/RunningMeshBasedCryptSimulations.
+This tutorial assumes you have already read the tutorial [Running Mesh Based Simulations](docs/user-tutorials/runningmeshbasedsimulations).
 
 In this tutorial we show how Chaste can be used to simulate a cylindrical model of an
 intestinal crypt with mutations using both mesh and vertex-based simulations.
 Full details of the computational model can be found in the paper by
-Osborne ''et al.'' (2010) [10.1098/rsta.2010.0173].
+Osborne et al. (2010) [10.1098/rsta.2010.0173](https://doi.org/10.1098/rsta.2010.0173).
 
 As in previous cell-based Chaste tutorials, we begin by including the necessary header files.
 
@@ -141,8 +141,8 @@ We now create boost shared pointers to any mutations we wish to use.
 We need to do this using the `CellPropertyRegistry`, otherwise
 the numbers of each type of mutation aren't correctly tracked. For
 a list of possible mutations, see subclasses of `AbstractCellMutationState`.
-These can be found in the inheritance diagram, here,
-[AbstractCellMutationState](https://chaste.github.io/doxygen-latest/classAbstractCellMutationState.html).
+These can be found in the
+[inheritance diagram for AbstractCellMutationState](https://chaste.github.io/doxygen-latest/classAbstractCellMutationState.html).
 Each mutation has a different effect on the cell cycle models; see the class
 documentation for details.
 
@@ -205,7 +205,7 @@ Solve().
 ```
 
 Now we have run the simulation to a steady state (where the initial regular configuration is lost) we select a cell to become mutant.
-We select one of the cells and set the mutation state to `ApcTwoHitCellMutationState` (i.e. p_state).
+We select one of the cells and set the mutation state to `ApcTwoHitCellMutationState` (i.e. `p_state`).
 
 ```cpp
         for (AbstractCellPopulation<2>::Iterator cell_iter = cell_population.Begin();

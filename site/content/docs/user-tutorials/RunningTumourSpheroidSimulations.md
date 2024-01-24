@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningTumourSpheroidSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningTumourSpheroidSimulationsTutorial.hpp) at revision [0a2ab4e09adf](https://github.com/Chaste/Chaste/commit/0a2ab4e09adf884a22cb443bfb10d94d8efb5ed3). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningTumourSpheroidSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningTumourSpheroidSimulationsTutorial.hpp) at revision [c50b2730f334](https://github.com/Chaste/Chaste/commit/c50b2730f334225b1f345b10aa363472c7baa41a). Note that the code is given in full at the bottom of the page.
 ## An example showing how to run tumour spheroid simulations
 
 ### Introduction
@@ -264,7 +264,7 @@ We call `Solve()` on the simulator to run the simulation.
 To visualize the results, open a new terminal, `cd` to the Chaste directory,
 then `cd` to `anim`. Then do: `java Visualize2dCentreCells /tmp/$USER/testoutput/SpheroidTutorial/results_from_time_0`.
 
-Or use Paraview, see [wiki:UserTutorials/VisualizingWithParaview] for details.
+Or use Paraview, see the [Visualizing With Paraview](docs/user-tutorials/visualizingwithparaview) tutorial for details.
 
 ```cpp
 };

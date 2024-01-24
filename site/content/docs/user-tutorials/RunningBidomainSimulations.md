@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningBidomainSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestRunningBidomainSimulationsTutorial.hpp) at revision [0a2ab4e09adf](https://github.com/Chaste/Chaste/commit/0a2ab4e09adf884a22cb443bfb10d94d8efb5ed3). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningBidomainSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestRunningBidomainSimulationsTutorial.hpp) at revision [4d762407bc1f](https://github.com/Chaste/Chaste/commit/4d762407bc1f327ded5b48cd8174d30f465f87fc). Note that the code is given in full at the bottom of the page.
 ## An example showing how to run bidomain simulations
 
 ### Introduction
@@ -46,7 +46,7 @@ CellML file, place it in `heart/src/odes/cellml` (there are several in here alre
 is called `<CELLMODEL>.cellml`, a file `<CELLMODEL>.hpp` will be automatically generated, which will define
 a class called `Cell<CELLMODEL>FromCellML`. So to use a particular cell model in a tissue simulation,
 given the CellML, you just have to do two things: include this `.hpp` file, and then use the class.
-For example, we will use the !LuoRudy1991 model, so we have to include the following, and
+For example, we will use the Luo-Rudy 1991 model, so we have to include the following, and
 later on use `CellLuoRudy1991FromCellML` as the cell model class.
 See ["ChasteGuides/CodeGenerationFromCellML"] for more information on this process.
 
@@ -56,7 +56,7 @@ See ["ChasteGuides/CodeGenerationFromCellML"] for more information on this proce
 
 ### Defining a cell factory
 
-All mono/bidomain simulations need a ''cell factory'' as input. This is a class
+All mono/bidomain simulations need a *cell factory* as input. This is a class
 which tells the problem class what type of cardiac cells to create. The cell-factory
 class has to inherit from `AbstractCardiacCellFactory<DIM>`, which means it must
 implement the method `CreateCardiacCellForTissueNode(Node<DIM>*)`, which returns
@@ -179,7 +179,7 @@ so that mesh 2D_0_to_1mm_800_elements is a mesh over [0,0.1]x[0,0.1].
         HeartConfig::Instance()->SetOutputFilenamePrefix("results");
 ```
 
-There is an alternate method of loading a mesh that can be seen in [wiki:UserTutorials/Monodomain3dExample Monodomain3dExample],
+There is an alternate method of loading a mesh that can be seen in [Monodomain 3d Example](docs/user-tutorials/monodomain3dexample),
 using `DistributedTetrahedralMesh`.
 
 It is possible to over-ride the default visualisation output (which is done during simulation
@@ -270,14 +270,14 @@ In order to visualise the results, go to one of the sub-folders
  * `/tmp/$USER/testoutput/BidomainTutorial/vtk_output` for Paraview (VTK)
  where you should find the geometric mesh data and simulation output.
  
-Please see ChasteGuides/VisualisationGuides for details of using !Meshalyzer/Cmgui/Paraview.
+Please see ChasteGuides/VisualisationGuides for details of using Meshalyzer/Cmgui/Paraview.
 
 Note: the easiest way to look at the resultant voltage values from the code
 (for the last timestep - the data for the previous timesteps is written to file
 but not retained) is to use a `ReplicatableVector`.
-`bidomain_problem.GetSolution())` returns a !PetSc vector
+`bidomain_problem.GetSolution())` returns a PETSc vector
 of the form (V_0, phi_0, V_1, phi_e_1, ... V_n, phi_e_n), and we can create a
-`ReplicatableVector` for easy access to this !PetSc vector's data.
+`ReplicatableVector` for easy access to this PETSc vector's data.
 (This won't be very efficient with huge problems in parallel - the next tutorial
 will mention how to do parallel access).
 

@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestCreatingAndUsingANewSrnModelTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewSrnModelTutorial.hpp) at revision [0a2ab4e09adf](https://github.com/Chaste/Chaste/commit/0a2ab4e09adf884a22cb443bfb10d94d8efb5ed3). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCreatingAndUsingANewSrnModelTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewSrnModelTutorial.hpp) at revision [5a432c6a6ab9](https://github.com/Chaste/Chaste/commit/5a432c6a6ab964dda40e675653e33f529df90320). Note that the code is given in full at the bottom of the page.
 ## An example showing how to create a new subcellular reaction network (SRN) model and use it in a cell-based simulation.
 
 ### Introduction
@@ -31,7 +31,7 @@ macros to save typing when using it.
 #include "SmartPointers.hpp"
 ```
 
-The next header includes the NEVER_REACHED macro, used in one of the methods below.
+The next header includes the `NEVER_REACHED` macro, used in one of the methods below.
 
 ```cpp
 #include "Exception.hpp"
@@ -88,9 +88,9 @@ tutorials.
 ### Defining the SRN model and ODE system classes
 
 As an example, let us consider a SRN model in which we solve a simple ODE
-dx/dt = -0.25*y
-dy/dt = x
-This has exact solution x = A cos 0.5t + B sin 0.5t
+dx/dt = -0.25*y,
+dy/dt = x.
+This has exact solution x = A cos 0.5t + B sin 0.5t.
 where A and B are determined by the initial condions.
 
 To implement this model we define a new SRN model, `MySrnModel`,
@@ -109,7 +109,7 @@ private:
 
 We only need to include the next block of code if we wish to be able
 to archive (save or load) the ODE system (and therefore the SRN model) object in a cell-based simulation.
-The code consists of a serialize method, in which we archive the ODE system
+The code consists of a `serialize()` method, in which we archive the ODE system
 using the serialization code defined in the base class
 `AbstractOdeSystem`.
 
@@ -355,7 +355,7 @@ Now increment time and check the ODE in `MySrnModel` is solved correctly.
             double current_time = SimulationTime::Instance()->GetTime();
 ```
 
-Check that the ODE system is solved correctly
+Check that the ODE system is solved correctly.
 
 ```cpp
             p_srn_model->SimulateToCurrentTime();
@@ -456,7 +456,7 @@ Create an input archive and restore the cell from the archive.
             input_arch >> p_cell;
 ```
 
-Test that the state of the ODES has been restored correctly.
+Test that the state of the ODEs has been restored correctly.
 
 ```cpp
             double current_time = 1.5;
@@ -510,9 +510,9 @@ Next, we create some cells. First, define the cells vector.
         std::vector<CellPtr> cells;
 ```
 
-We must create a shared_ptr to a `CellMutationState` with which to bestow the cells.
-We make use of the macro MAKE_PTR to do this: the first argument is the class and
-the second argument is the name of the shared_ptr.
+We must create a `shared_ptr` to a `CellMutationState` with which to bestow the cells.
+We make use of the macro `MAKE_PTR` to do this: the first argument is the class and
+the second argument is the name of the `shared_ptr`.
 
 ```cpp
         MAKE_PTR(WildTypeCellMutationState, p_state);
@@ -526,7 +526,7 @@ Then we loop over the nodes.
         {
 ```
 
-For each node we create a cell with our SRN model and simple Stochastic cell cycle model.
+For each node we create a cell with our SRN model and simple stochastic uniformly distributed cell cycle model.
 
 ```cpp
             UniformG1GenerationalCellCycleModel* p_cell_cycle_model = new UniformG1GenerationalCellCycleModel();
@@ -585,7 +585,7 @@ Finally to run the simulation, we call `Solve()`.
     }
 ```
 
-To visualize the results, use Paraview. See the UserTutorials/VisualizingWithParaview tutorial for more information
+To visualize the results, use Paraview. See the [Visualizing With Paraview](docs/user-tutorials/visualizingwithparaview) tutorial for more information.
 
 Load the file `/tmp/$USER/testoutput/TestOffLatticeSimulationWithMySrnModel/results_from_time_0/results.pvd`,
 and color by `x`.

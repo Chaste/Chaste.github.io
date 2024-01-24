@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestCreatingAndUsingANewCellPopulationBoundaryConditionTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellPopulationBoundaryConditionTutorial.hpp) at revision [0a2ab4e09adf](https://github.com/Chaste/Chaste/commit/0a2ab4e09adf884a22cb443bfb10d94d8efb5ed3). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCreatingAndUsingANewCellPopulationBoundaryConditionTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellPopulationBoundaryConditionTutorial.hpp) at revision [c50b2730f334](https://github.com/Chaste/Chaste/commit/c50b2730f334225b1f345b10aa363472c7baa41a). Note that the code is given in full at the bottom of the page.
 ## An example showing how to create and use a new cell population boundary condition
 
 ### Introduction
@@ -149,7 +149,7 @@ that each cell in the population now satisfies `MyBoundaryCondition`.
     }
 ```
 
-Just as we encountered in [wiki:UserTutorials/CreatingAndUsingANewCellKiller], here we must override
+Just as we encountered in the tutorial [Creating And Using A New Cell Killer](docs/user-tutorials/creatingandusinganewcellkiller), here we must override
 a method that outputs any member variables to a specified results file `rParamsFile`.
 In our case, there are no parameters, so we simply call the method on the base class.
 Nonetheless, we still need to override the method, since it is pure virtual in the base
