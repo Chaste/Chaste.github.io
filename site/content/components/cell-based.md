@@ -50,20 +50,23 @@ User functionality
 
 ### Screenshots
 
-<figure class="chaste-figure">
-  ![Snapshot of an intestinal crypt simulation.](clonal_expansion.jpg)
-  <figcaption>Snapshot of an intestinal crypt simulation. Here the crypt is modelled on a cylindrical geometry, by performing the simulation on a plane and enforcing periodicity on the left and right edges. Transit cells are shown in yellow, differentiated cells in red, and the blue cells are the progeny of a single cell that was dyed at the beginning of the simulation.</figcaption>
-</figure>
+{{< chaste-figure
+  src="/fig/clonal_expansion.jpg"
+  alt="Snapshot of an intestinal crypt simulation."
+  caption="Snapshot of an intestinal crypt simulation. Here the crypt is modelled on a cylindrical geometry, by performing the simulation on a plane and enforcing periodicity on the left and right edges. Transit cells are shown in yellow, differentiated cells in red, and the blue cells are the progeny of a single cell that was dyed at the beginning of the simulation."
+>}}
 
-<figure class="chaste-figure">
-  ![An intestinal crypt simulation in which the membrane-bound and cytoplasmic levels of the protein beta-catenin are illustrated.](betacat.jpg)
-  <figcaption>An intestinal crypt simulation in which the membrane-bound and cytoplasmic levels of the protein beta-catenin are illustrated.</figcaption>
-</figure>
+{{< chaste-figure
+  src="/fig/betacat.jpg"
+  alt="An intestinal crypt simulation in which the membrane-bound and cytoplasmic levels of the protein beta-catenin are illustrated."
+  caption="An intestinal crypt simulation in which the membrane-bound and cytoplasmic levels of the protein beta-catenin are illustrated."
+>}}
 
-<figure class="chaste-figure">
-  ![Simulation of a growing multicell tumour spheroid, showing formation of a necrotic core.](growing_spheroid.jpg)
-  <figcaption>Simulation of a growing multicell tumour spheroid, showing formation of a necrotic core.</figcaption>
-</figure>
+{{< chaste-figure
+  src="/fig/growing_spheroid.jpg"
+  alt="Simulation of a growing multicell tumour spheroid, showing formation of a necrotic core."
+  caption="Simulation of a growing multicell tumour spheroid, showing formation of a necrotic core."
+>}}
 
 ### Videos
 
