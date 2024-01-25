@@ -29,7 +29,7 @@
   name = "Getting started"
   weight = 40
   identifier = "getting-started"
-  url = "/getting-started/"
+  url = "/docs"
 
 [[main]]
   name = "Docs"
@@ -52,15 +52,22 @@
   parent = "docs"
 
 [[main]]
-  name = "Install guides"
+  name = "Chaste guides"
   weight = 20
+  identifier = "ChasteGuides"
+  url = "/docs/chaste-guides"
+  parent = "docs"
+
+[[main]]
+  name = "Install guides"
+  weight = 25
   identifier = "InstallGuides"
   url = "/docs/installguides"
   parent = "docs"
 
 [[main]]
   name = "How-tos"
-  weight = 25
+  weight = 30
   identifier = "HowTos"
   url = "/docs/how-tos"
   parent = "docs"
@@ -84,6 +91,19 @@
   identifier = "PyChasteUserTutorials"
   url = "/pychaste/tutorials/"
   parent = "pychaste"
+
+[[main]]
+  name = "Projects"
+  weight = 70
+  identifier = "projects"
+  url = "/projects/"
+
+[[main]]
+  name = "AP Predict"
+  weight = 1
+  identifier = "APPredict"
+  url = "/projects/ap-predict"
+  parent = "projects"
 
 [[main]]
   name = "Workshops"
