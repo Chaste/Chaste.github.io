@@ -1,15 +1,11 @@
 ---
-title: "Coding Standards Strategy"
-description: "Coding Standards Strategy"
+title: "C++ Naming Conventions"
+description: "C++ Naming Conventions"
 draft: false
 images: []
 toc: true
 layout: "single"
 ---
-
-# C++ Naming Conventions
-
-[PageOutline(2,Table of Contents,inline)](PageOutline(2,Table of Contents,inline))
 
 ## Introduction
 
@@ -17,16 +13,15 @@ Coding standards are crucial to enable humans to understand the code.  Both code
 
 [This article](http://queue.acm.org/detail.cfm?id=1039535) is a good introduction to writing well laid out code.
 
-(See also: CodeStructureStrategy, DistributedAndReplicatedVectors, [EffectiveC++](https://github.com/Chaste/trac_archive/wiki/EffectiveC++))
+(See also: [Code Structure Strategy](../code-structure-strategy), [Distributed and Replicated Vectors](distributed-and-replicated-vectors), [EffectiveC++](effective-cpp))
+
 
 Names are the key to program readability. If the name is appropriate everything fits together naturally,
 relationships are clear, meaning is derivable, and reasoning from common human expectations
 works as expected. Good names save time when debugging and save time when extending.  "Good" naming includes
 not using names which might be ambiguous in a particular situation:
 
-```
-
-#!c
+```c++
 Problem complex_problem;  //Does "complex" mean "complicated" or "involving imaginary numbers"?
 Vec mCurrentSolution; //Is this the solution of an electrical current or the solution to the voltage/whatever *now*?
 unsigned index;  //Is dangerous in situations where several objects are indexed or there are global/local indices.
@@ -39,14 +34,12 @@ Avoid the temptation to have short names everywhere, and avoid non-standard abbr
 
 **Source code is meant to be read by humans.** This is the most important thing to
 remember. As well as communicating your intent to the machine, you must make it clear what
-that intent is to those who will read the source code. This includes you! Code you’ve written more
+that intent is to those who will read the source code. This includes you! Code you've written more
 than about 3 weeks ago may as well have been written by somebody else.
 
 A cryptic example:
 
-```
-
-#!c
+```c++
 Dog d;
 Lion l;
 l.dvr(d);
@@ -55,34 +48,29 @@ l.dvr(d);
 
 A more descriptive version:
 
-```
-
+```c++
 Dog my_pet_dog;
 Lion escaped_lion;
 escaped_lion.Devour(my_pet_dog);
-
 ```
 
 
 
 ## Class Names
 
-Name the class after what it is. If you can’t think of what it is that is a clue you have not thought
+Name the class after what it is. If you can't think of what it is that is a clue you have not thought
 through the design well enough.
 
 
 * Use upper case letters as word separators, lower case for the rest of a word
 * First character in a name must be upper case
-* No underscores (’_’) are permitted
+* No underscores (`_`) are permitted
 
 
 
-```
-
-#!c
+```c++
 class OdeSolver
 class ParameterFile
-
 ```
 
 
@@ -105,37 +93,30 @@ verb.
    For example: `RetryMax` to mean the maximum number of retries, `RetryCount` to mean the current retry count.
 
 * Prefixes are sometimes useful:
-    * `Is/Has` - to ask a question about something. Whenever someone sees `Is` or `Has` they will know it’s a question.
+    * `Is/Has` - to ask a question about something. Whenever someone sees `Is` or `Has` they will know it's a question.
     * `Get` - get a value.
     * `Set` - set a value.
 
 
  For example:
 
-```
-
-#!c
+```c++
 if (HasHitRetryLimit())
 {
-    // try something else
+  // try something else
 }
-
 ```
 
 
 * Use the same naming rules as for class names:
 
-```
-
-#!c
+```c++
 class OdeSolver
 {
 public:
-    int SolveEquation();
-    void HandleError();
+  int SolveEquation();
+  void HandleError();
 }
-
-
 ```
 
 
@@ -146,29 +127,24 @@ When confronted with a situation where you could use an all upper case abbreviat
 an initial upper case letter followed by all lower case letters. No matter what.
 
 Take for example 
-```
+```c++
 NetworkABCKey
 ```
-. Notice how the C from ABC and K from key are confused.
+Notice how the C from ABC and K from key are confused.
 
 
-```
-
-#!c
+```c++
 class FluidOz         // NOT FluidOZ
 class NetworkAbcKey   // NOT NetworkABCKey
-
 ```
 
 
 
 ## Pointer Variables
 
-Pointers should be prepended by a ’p’ in most cases. Place the * close to the pointer type rather than the variable name.  Only one pointer type should be declared per line (with no non-pointer types) in order to avoid confusion. We generally only declare one variable per line.
+Pointers should be prepended by a `p` in most cases. Place the * close to the pointer type rather than the variable name.  Only one pointer type should be declared per line (with no non-pointer types) in order to avoid confusion. We generally only declare one variable per line.
 
-```
-
-#!c
+```c++
 Car my_car;
 Car* p_your_car = new Car;
 
@@ -177,7 +153,6 @@ Car* p_your_car = new Car;
 // AND NOT:
 // Car* p_your_car, p_my_car;
 // since only p_your_car is a pointer here.  We declare only one pointer type at a time.
-
 ```
 
 
@@ -185,52 +160,45 @@ Car* p_your_car = new Car;
 ## Class Attribute Names
 
 
-* Private attribute names should be prepended with the underscore character ’m’.
-* After the ’m’ use the same rules as for class names.
-* ’m’ always precedes other name modifiers like ’p’ for pointer.
+* Private attribute names should be prepended with the underscore character `m`.
+* After the `m` use the same rules as for class names.
+* `m` always precedes other name modifiers like `p` for pointer.
 
 
-
-```
-
-#!c
+```c++
 class CleaningDepartment
 {
 public:
-    int ComputeErrorNumber();
+  int ComputeErrorNumber();
 private:
-    int mCleanHouse;
-    int mErrorNumber;
-    String* mpName;
+  int mCleanHouse;
+  int mErrorNumber;
+  String* mpName;
 }
-
 ```
 
 
 
 ## Reference Variables and Functions Returning References
 
-References should be prepended with ’r’. This applies to input arguments as well as method names, and establishes the difference between a method returning by value and a method returning by reference.
+References should be prepended with `r`. This applies to input arguments as well as method names, and establishes the difference between a method returning by value and a method returning by reference.
 
 
-```
-
-#!c
+```c++
 class Test
 {
 public:
-    void TestConveyorStart(StatusInfo& rStatus);
+  void TestConveyorStart(StatusInfo& rStatus);
 
-    // returns by reference so requires the ’r’ prefix
-    StatusInfo& rGetStatus();
+  // returns by reference so requires the `r` prefix
+  StatusInfo& rGetStatus();
 
-    // returns by value so doesn’t have the ’r’ prefix
-    StatusInfo GetStatus();
+  // returns by value so doesn't have the `r` prefix
+  StatusInfo GetStatus();
 
 private:
-    StatusInfo& mrStatus;
+  StatusInfo& mrStatus;
 }
-
 ```
 
 
@@ -241,15 +209,12 @@ The first character should be lower case. All word beginnings after the first le
 case as with class names.
 
 
-```
-
-#!c
+```c++
 class WackyRace
 {
 public:
-    int StartYourEngines(Engine& rSomeEngine, Engine anotherEngine);
+  int StartYourEngines(Engine& rSomeEngine, Engine anotherEngine);
 }
-
 ```
 
 
@@ -264,52 +229,43 @@ is taken from the heap.
 
 
 * Use all lower case letters
-* Use ’_’ as the word separator.
+* Use `_` as the word separator.
 
 
 With this approach the scope of the variable is clear in the code. And now all variables look
 different and are identifiable in the code.
 
 
-```
-
-#!c
+```c++
 int ProcessMonitor::HandleError(int errorNumber)
 {
-    int error = OsErr();
-    Time time_of_error;
-    ErrorProcessor error_processor;
+  int error = OsErr();
+  Time time_of_error;
+  ErrorProcessor error_processor;
 }
-
 ```
 
 
 
 ## Global Constants
 
-Global constants should be all caps with ’_’ separators.
+Global constants should be all caps with `_` separators.
 
 
-```
-
-#!c
+```c++
 const double TWO_PI = 6.28318531;
-
 ```
 
 
 
 ## Static Variables
 
-Static variables should be prepended with ’s’.
+Static variables should be prepended with `s`.
 
 
-```
-
-#!c
+```c++
 private:
-    static StatusInfo msStatus;
-
+  static StatusInfo msStatus;
 ```
 
 
