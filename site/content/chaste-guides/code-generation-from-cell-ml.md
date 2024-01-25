@@ -500,7 +500,7 @@ Parameters to be modified in this way must be annotated specially in the CellML 
 
 ```
 
-Such a block may be placed inside any CellML element, but placing it within or next to the annotated variable is recommended. See [Model annotation with RDF](#Model-annotation-wit-hRDF) for more. The older scale factor support, which was hardcoded is no longer supported
+Such a block may be placed inside any CellML element, but placing it within or next to the annotated variable is recommended. See [Model annotation with RDF](#Model-annotation-with-RDF) for more. The older scale factor support, which was hardcoded is no longer supported
 
 Variable annotation as a parameter or derived quantity is also important to support the OutputVariables functionality in the executable. Any variable thus annotated, or any state variable, may be specified to be included in the output data along with `V` and `phi_e`.
 
