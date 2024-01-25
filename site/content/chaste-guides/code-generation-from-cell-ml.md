@@ -3,13 +3,13 @@
 
 **Please note: This is the guide for chaste_codegen the Python3 code generator.** For the Python2 version (PyCml) used up to release 2019.1 see the [release 2019.1 version of this guide](https://chaste.cs.ox.ac.uk/chaste/tutorials/release_2019.1/ChasteGuides/CodeGenerationFromCellML.html).
 
-**Please note:** experienced Chaste users may want to skip to the [Summary of changes compared to PyCml](#SummaryofchangescomparedtoPyCml)
+**Please note:** experienced Chaste users may want to skip to the [Summary of changes compared to PyCml](#Summary-of-changes-compared-to-PyCml)
 
 This page contains some notes on generating Chaste code for cardiac cell models from CellML files, using [chaste_codegen](https://github.com/ModellingWebLab/chaste-codegen), the Python3 Chaste CellML toolkit. [chaste_codegen](https://github.com/ModellingWebLab/chaste-codegen) is developed in Python3 and distributed via [The Python Package Index (PyPI)](https://pypi.org/project/chaste-codegen/). The chaste build process automatically creates a Python3 virtual environment and installes chaste_codegen in this for generating code from cellml files.
 
-The process is mostly automatic, although some of the options require some human intervention, and the CellML file itself may need to be [annotated](#ModelannotationwithRDF) in order to allow successful conversion (for example, to indicate which variables represent the transmembrane potential and stimulus current).  Many annotated CellML files may be found in the Chaste repository, either in the [heart/src/odes/cellml](/trunk/heart/src/odes/cellml) folder, or the [cellml project](https://github.com/Chaste/cellml).
+The process is mostly automatic, although some of the options require some human intervention, and the CellML file itself may need to be [annotated](#Model-annotation-with-RDF) in order to allow successful conversion (for example, to indicate which variables represent the transmembrane potential and stimulus current).  Many annotated CellML files may be found in the Chaste repository, either in the [heart/src/odes/cellml](/trunk/heart/src/odes/cellml) folder, or the [cellml project](https://github.com/Chaste/cellml).
 
-There are two main ways of using CellML within Chaste.  If you are a cardiac executable user, then providing you compiled the executable from source yourself, CellML files may be loaded on the fly, as [described below](#UseofCellMLinthecardiacexecutable).  If however you are using the source release of Chaste directly, the sections on [using dynamically loaded CellML models](#UsingdynamicallyloadedCellMLmodelsinChastetestsorprojects) and [using CellML files as sources in Chaste](#UsingCellMLfilesassourcesdirectlyinChaste) will be relevant.
+There are two main ways of using CellML within Chaste.  If you are a cardiac executable user, then providing you compiled the executable from source yourself, CellML files may be loaded on the fly, as [described below](#Use-of-Cell-ML-in-the-cardiac-executable).  If however you are using the source release of Chaste directly, the sections on [using dynamically loaded CellML models](#Using-dynamically-loaded-Cell-ML-models-in-Chaste-tests-or-projects) and [using CellML files as sources in Chaste](#Using-Cell-ML-files-as-sources-directly-in-Chaste) will be relevant.
 
 ## Using CellML files as sources directly in Chaste
 
@@ -101,7 +101,7 @@ The [cellml project](https://github.com/Chaste/cellml) contains many annotated C
 
 CellML files may include metadata through the use of [RDF](http://en.wikipedia.org/wiki/Resource_Description_Framework), the Resource Description Framework (see the [CellML metadata specification](http://www.cellml.org/specifications/metadata) for more information).  chaste_codegen makes use of several different annotations when generating C++ source code for Chaste.
 
-Some annotations are be required to enable successful code generation.  In particular, chaste_codegen needs to know which variables represent voltage, the transmembrane potential and stimulus current, in order to link the models into the mono/bi-domain equations.  (If the model does not have a stimulus current because it represents a self-excitatory cell, it should be [annotated to indicate this](#Self-excitatorymodels).) Unlike its predecessor chaste_codegen does not try to guess based on names in the model. so [name annotations](#Standardisednames) must be used. You may also need to annotate the membrane capacitance if its value is required for automatic units conversions (if the model uses amps as the dimensions of transmembrane currents).
+Some annotations are be required to enable successful code generation.  In particular, chaste_codegen needs to know which variables represent voltage, the transmembrane potential and stimulus current, in order to link the models into the mono/bi-domain equations.  (If the model does not have a stimulus current because it represents a self-excitatory cell, it should be [annotated to indicate this](#Self-excitatory-models).) Unlike its predecessor chaste_codegen does not try to guess based on names in the model. so [name annotations](#Standardised-names) must be used. You may also need to annotate the membrane capacitance if its value is required for automatic units conversions (if the model uses amps as the dimensions of transmembrane currents).
 
 All metadata annotations must occur within an `<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">` element.  Such an element may occur within any CellML element, so you may place annotations next to the variable being annotated, or in a single `rdf:RDF` element at the top level of the model, as you prefer.  Variables to be annotated must have a `cmeta:id` attribute, which is used to identify the variable in the annotation.
 
@@ -193,7 +193,7 @@ The namespace for this annotation is named `https://chaste.comlab.ox.ac.uk/cellm
 ```
 
 
-This specifies that the variable should become a named parameter within the C++ class, with name given by its `cmeta:id` (unless it has a [standardised name](#Standardisednames), in which case that is used).  The variable can then be altered at run-time, via calls to the `SetParameter` method.  Such parameters can also be set via the `ChasteParameters` XML file, as described [above](#UseofCellMLinthecardiacexecutable), and selected for output using the `OutputVariables` functionality.
+This specifies that the variable should become a named parameter within the C++ class, with name given by its `cmeta:id` (unless it has a [standardised name](#Standardised-names), in which case that is used).  The variable can then be altered at run-time, via calls to the `SetParameter` method.  Such parameters can also be set via the `ChasteParameters` XML file, as described [above](#Use-of-CellML-in-the-cardiac-executable), and selected for output using the `OutputVariables` functionality.
 
 Full example:
 
@@ -222,7 +222,7 @@ Full example:
 ```
 
 
-This specifies that the variable should become a derived quantity within the C++ class, with name given by its `cmeta:id` (unless it has a [standardised name](#Standardisednames), in which case that is used).  Derived quantities may be computed using the `ComputeDerivedQuantities` and `ComputeDerivedQuantitiesFromCurrentState` methods, and selected for output using the `OutputVariables` functionality.  This is useful for quantities which are not necessary for computing the time evolution of the model, but still of interest.
+This specifies that the variable should become a derived quantity within the C++ class, with name given by its `cmeta:id` (unless it has a [standardised name](#Standardised-names), in which case that is used).  Derived quantities may be computed using the `ComputeDerivedQuantities` and `ComputeDerivedQuantitiesFromCurrentState` methods, and selected for output using the `OutputVariables` functionality.  This is useful for quantities which are not necessary for computing the time evolution of the model, but still of interest.
 
 Full example:
 
@@ -352,7 +352,7 @@ Alternatively you can prefix the chaste_codegen command with the full path to th
 
 `chaste_codegen -h` displays the help giving a full overview of what is available.
 
-There are a number of different arguments: [the cellml file](#Thecellmlfile), [model types](#Modeltypes), [Chaste options](#Chasteoptions) and [Generated code options](#Generatedcodeoptions). Below is a summery of some of the most common options.
+There are a number of different arguments: [the cellml file](#The-cellml-file), [model types](#Model-types), [Chaste options](#Chaste-options) and [Generated code options](#Generated-code-options). Below is a summery of some of the most common options.
 
 ### The cellml file
 chaste_codegen takes what the help calls a "positional argument". This is the cellml file being converted e.g. `chaste_codegen hodgkin_huxley_squid_axon_model_1952_modified.cellml`.
@@ -500,16 +500,16 @@ Parameters to be modified in this way must be annotated specially in the CellML 
 
 ```
 
-Such a block may be placed inside any CellML element, but placing it within or next to the annotated variable is recommended. See [Model annotation with RDF](#ModelannotationwithRDF) for more. The older scale factor support, which was hardcoded is no longer supported
+Such a block may be placed inside any CellML element, but placing it within or next to the annotated variable is recommended. See [Model annotation with RDF](#Model-annotation-wit-hRDF) for more. The older scale factor support, which was hardcoded is no longer supported
 
 Variable annotation as a parameter or derived quantity is also important to support the OutputVariables functionality in the executable. Any variable thus annotated, or any state variable, may be specified to be included in the output data along with `V` and `phi_e`.
 
 **Please note:** As chaste_codegen does not use config files, options controlling the code generation process for the CellML file are as follows:
 
-- Set [Project-specific conversion options](#Project-specificconversionoptions).
-- Use chaste_codegen to manually create .cpp and .hpp files (see [chaste_codegen command line arguments](#chaste_codegencommandlinearguments)), include these in your project source and either directly include or point your parameters file at the shared library that results from its compilation.
-- Use [dynamic loading](#UsingdynamicallyloadedCellMLmodelsinChastetestsorprojects) to convert the code and point the parameters file at the cellml file in the conversion folder, it will pick up the converted version.
-- Use [dynamic loading](#UsingdynamicallyloadedCellMLmodelsinChastetestsorprojects) via code instead.
+- Set [Project-specific conversion options](#Project-specific-conversion-options).
+- Use chaste_codegen to manually create .cpp and .hpp files (see [chaste_codegen command line arguments](#chaste_codegen-command-line-arguments)), include these in your project source and either directly include or point your parameters file at the shared library that results from its compilation.
+- Use [dynamic loading](#Using-dynamically-loaded-Cell-ML-models-in-Chaste-tests-or-projects) to convert the code and point the parameters file at the cellml file in the conversion folder, it will pick up the converted version.
+- Use [dynamic loading](#Using-dynamically-loaded-Cell-ML-models-in-Chaste-tests-or-projects) via code instead.
 
 
 ## Installing chaste_codegen
@@ -518,7 +518,7 @@ See InstallCodegen.
 
 ## [TroubleShooting](/trouble-shooting)
 
-See [TroubleShooting#chaste_codegenErrors](/troubleshooting#chaste_codegenerrors)
+See [TroubleShooting#chaste_codegenErrors](/troubleshooting#chaste_codegen-errors)
 
 ## Summary of changes compared to PyCml
 This section highlights the main difference between chaste_codegen and its predecessor PyCml. The two work in broadly similar ways, but there are some key differences.
@@ -526,6 +526,6 @@ This section highlights the main difference between chaste_codegen and its prede
 - chaste_codegen generates its own analytic jacobians and the `--use-analytic-jacobian` (or `-j`) argument is now used without specifying an out file. Where a two-step process was required it is no longer required.
 - chaste_codegen does not make use of config files.
     - The only way to specify what kind of code to generate is now via the command line arguments.
-    - To generate different models from the default, use [dynamic loading](#UsingdynamicallyloadedCellMLmodelsinChastetestsorprojects) or set [Project-specific conversion options](#Project-specificconversionoptions).
-    - Lookup table settings can also be specified via the command line see [Chaste options](#Chasteoptions)
+    - To generate different models from the default, use [dynamic loading](#Using-dynamically-loaded-CellML-models-in-Chaste-tests-or-projects) or set [Project-specific conversion options](#Project-specific-conversion-options).
+    - Lookup table settings can also be specified via the command line see [Chaste options](#Chaste-options)
 - chaste_codegen is fully re-written for python3 and during the build process a virtual environment is set up with the required packages, see InstallCodegen.
