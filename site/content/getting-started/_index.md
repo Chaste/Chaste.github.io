@@ -48,7 +48,7 @@ In addition to software dependencies, if you wish to do programming yourself, th
 
 ## Next Steps
 
-Once you installed the dependencies, and have obtained the source code, go to [ChasteGuides](https://github.com/Chaste/trac_archive/wiki/ChasteGuides) and read and run the [tutorials](https://github.com/Chaste/trac_archive/wiki/UserTutorials) on the kind of simulation you wish to run.
+Once you installed the dependencies, and have obtained the source code, go to [ChasteGuides](/chaste-guides) and read and run the [tutorials](https://github.com/Chaste/trac_archive/wiki/UserTutorials) on the kind of simulation you wish to run.
 
 ## Getting Help
 

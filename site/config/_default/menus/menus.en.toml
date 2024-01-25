@@ -86,6 +86,19 @@
   parent = "pychaste"
 
 [[main]]
+  name = "Projects"
+  weight = 70
+  identifier = "projects"
+  url = "/projects/"
+
+[[main]]
+  name = "AP Predict"
+  weight = 1
+  identifier = "APPredict"
+  url = "/projects/ap-predict"
+  parent = "projects"
+
+[[main]]
   name = "Workshops"
   weight = 70
   identifier = "workshops"
