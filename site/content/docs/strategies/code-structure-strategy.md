@@ -7,8 +7,7 @@ toc: true
 layout: "single"
 ---
 
-Coding standards are crucial to enable humans to understand both code they wrote, and code written by other developers. This page documents code standards we adhere to in Chaste. If you are writing Chaste code, please follow them! See also DistributedAndReplicatedVectors, [EffectiveC++](https://github.com/Chaste/trac_archive/wiki/EffectiveC++) and [C++ naming conventions](https://github.com/Chaste/trac_archive/wiki/Coding-Standards-Strategy).
-
+Coding standards are crucial to enable humans to understand both code they wrote, and code written by other developers. This page documents code standards we adhere to in Chaste. If you are writing Chaste code, please follow them! See also [Distributed and Replicated Vectors](distributed-and-replicated-vectors), [Effective C++](effective-cpp) and [C++ naming conventions](../cpp-naming-strategy).
 
 
 ## What to put in .hpp and .cpp files
@@ -16,8 +15,7 @@ Coding standards are crucial to enable humans to understand both code they wrote
 A normal class should be declared in a .hpp file and implemented separately in a .cpp file. For example, the definition of `MyClass` in `MyClass.hpp` would look like
 
 
-```
-
+```c++
 class MyClass
 {
 private:
@@ -25,28 +23,25 @@ private:
 public:
    MyClass(int i); // a constructor
 }
-
 ```
 
 
 and the implementation in `MyClass.cpp` would look like
 
 
-```
-
+```c++
 #include "MyClass.hpp"
 
 MyClass::MyClass(int) : mVariable(i)
 {
-    // Do something here
+  // Do something here
 }
-
 ```
 
 
 Where possible, a templated class should also be defined in a .hpp file and implemented in a .cpp file, using explicit instantiation (see below). If this is not possible, then the class should be defined at the top of the .hpp hile and implemented separately underneath, to avoid implicitly inlining methods where this is not appropriate, and to ease reading of the code.  (A method defined within a class declaration is implicitly marked as inline, although a compiler may choose to ignore this suggestion if it considers the method to be too large.)
 
-## Policy on `#include`s
+## Policy on includes
 
 Good use of the `#include` statement helps to keep code tidy, and results in shorter compilation times as a bonus.
 
@@ -58,17 +53,16 @@ Good use of the `#include` statement helps to keep code tidy, and results in sho
 
 Point 2 can even be expanded upon.  Often you might not need to include `B.hpp` in `A.hpp` even in the cases mentioned there, instead just using a forward declaration of `B`: "`class B;`".  In this case `A.cpp` will need to `#include` `B.hpp`.  This technique is useful for breaking circular include chains, and this is currently the only situation in which we use it, as widespread use would mean many more `#include` lines.  We may revisit this decision, as it can reduce compilation time.
 
-See also https://code.google.com/p/include-what-you-use/wiki/WhyIWYU for more about this kind of includes policy.
+See also [Include What You Use](https://code.google.com/p/include-what-you-use/wiki/WhyIWYU) for more about this kind of includes policy.
 
-Some includes, particularly of the Boost Ublas and Serialization libraries, also need to be given in a particular order.  Generally Ublas headers (`#include "UblasIncludes.hpp"` or `#include "UblasCustomFunctions.hpp"`) should come first, in particular they must appear before any PETSc headers (or the PETSc 2.2/Boost 1.33.1 build will break).  See ChasteGuides/BoostSerialization for details on the archiving headers.
+Some includes, particularly of the Boost Ublas and Serialization libraries, also need to be given in a particular order.  Generally Ublas headers (`#include "UblasIncludes.hpp"` or `#include "UblasCustomFunctions.hpp"`) should come first, in particular they must appear before any PETSc headers (or the PETSc 2.2/Boost 1.33.1 build will break).  See [boost-serialization](../../chaste-guides/boost-serialization) for details on the archiving headers.
 
 ## Explicit instantiation for templated classes
 
-We use explicit instantiation for templated classes wherever possible. For more information, see StaticAndDynamicPolymorphism. For example, if `MyClass` is templated over spatial dimension:
+We use explicit instantiation for templated classes wherever possible. For more information, see [Static and Dynamic Polymorphism](static-and-dynamic-polymorphism). For example, if `MyClass` is templated over spatial dimension:
 
 
-```
-
+```c++
 template<unsigned DIM>
 class MyClass
 {
@@ -77,27 +71,24 @@ private:
 public:
    MyClass(int i); // a constructor
 }
-
 ```
 
 
 then in the .cpp file, we define the methods for all spatial dimensions expected:
 
 
-```
-
+```c++
 #include "MyClass.hpp"
 
 template<unsigned DIM>
 MyClass<DIM>::MyClass(int) : mVariable(i)
 {
-    // Do something here
+  // Do something here
 }
 
 template class MyClass<1>;
 template class MyClass<2>;
 template class MyClass<3>;
-
 ```
 
 
@@ -108,28 +99,23 @@ We use C++ initialisers to initialise member variables. This is because when a c
 As an example, we prefer this
 
 
-```
-
+```c++
 MyClass(int i) : mVariable(i)
 {
-    // Do something
+  // Do something
 }
-
-
 ```
 
 
 to this
 
 
-```
-
+```c++
 MyClass(int i)
 {
-    mVariable = i;
-    // Do something
+  mVariable = i;
+  // Do something
 }
-
 ```
 
 
@@ -141,41 +127,35 @@ If classes are only used by a single test file, they should remain in that test 
 
 ## Documenting the code with Doxygen
 
-We use the doxygen package to automatically generate HTML documentation from comments in the Chaste code. More information on doxygen commands can be found [here](http://www.stack.nl/~dimitri/doxygen/). We document each class, as well as each member and method in that class, by adding a doxygen code block of the form
+We use the doxygen package to automatically generate HTML documentation from comments in the Chaste code. More information on doxygen commands can be found in the [doxygen manual](https://www.doxygen.nl/manual/commands.html). We document each class, as well as each member and method in that class, by adding a doxygen code block of the form
 
 
-```
-
-    /**
-     * This is a doxygen code block
-     */
-
+```c++
+/**
+* This is a doxygen code block
+*/
 ```
 
 
 just before the code being documented (we tend to place all such documentation in the header file where the class is defined, although this doesn't matter). To document inputs and outputs to a particular method, we use the commands `@param` and `@return`, as shown by the following example from `AbstractElement.hpp`:
 
 
-```
-
-    /**
-     * Get the node with a given local index in this element.
-     *
-     * @param localIndex local index of the node in this element
-     * @return a pointer to the node.
-     */
-    Node<SPACE_DIM>* GetNode(unsigned localIndex) const;
-
+```c++
+/**
+* Get the node with a given local index in this element.
+*
+* @param localIndex local index of the node in this element
+* @return a pointer to the node.
+*/
+Node<SPACE_DIM>* GetNode(unsigned localIndex) const;
 ```
 
 
 In addition to the standard doxygen commands, we have added the ability to completely ignore auto-generated files (for example, those such as `BackwardEulerFoxModel2002Modified.hpp` that are processed by chaste_codegen). Such files should include the doxygen block
 
 
-```
-
+```c++
 /** @autogenerated */
-
 ```
 
 
@@ -183,50 +163,44 @@ In addition to the standard doxygen commands, we have added the ability to compl
 
 Generally to be avoided: if at all possible, write a test to cover each line of code!
 
-If you really need to exclude some code from coverage you can use special comments [provided by lcov settings](http://ltp.sourceforge.net/coverage/lcov/lcovrc.5.php):
+If you really need to exclude some code from coverage you can use special comments provided by [lcov settings](https://github.com/linux-test-project/ltp/wiki):
 
-```
-
+```c++
 // LCOV_EXCL_LINE
-
 ```
 
 for a single line of code, or
 
-```
-
+```c++
 // LCOV_EXCL_START
 <uncovered code>
 // LCOV_EXCL_STOP
-
 ```
 
 for a block of code. For instance:
 
-```
-
+```c++
 std::string GetCurrentWorkingDirectory()
 {
-    fs::path cwd;
-    try
-    {
-        cwd = fs::current_path();
-    }
+  fs::path cwd;
+  try
+  {
+    cwd = fs::current_path();
+  }
 // LCOV_EXCL_START
-    catch (...)
-    {
-        // Not sure what could cause this, so not covered, but just in case...
-        EXCEPTION("Unable to determine current working directory");
-    }
+  catch (...)
+  {
+    // Not sure what could cause this, so not covered, but just in case...
+    EXCEPTION("Unable to determine current working directory");
+  }
 // LCOV_EXCL_STOP
-    return cwd.string();
+  return cwd.string();
 }
-
 ```
 
 
-A common use-case of this is a hard-exit which indicates an error (likely in programming rather than usage), which we indicate with `NEVER_REACHED` as per ExceptionStrategy, this line is automatically excluded from coverage testing.
+A common use-case of this is a hard-exit which indicates an error (likely in programming rather than usage), which we indicate with `NEVER_REACHED` as per [Exception Strategy](../exception-strategy), this line is automatically excluded from coverage testing.
 
 ## Other Conventions
 
-If no advice is offered on the [ChasteStrategies](https://github.com/Chaste/trac_archive/wiki/Chaste-Strategies) pages, we informally follow many/most of the Joint Strike Fighter C++ coding standards, attached [below](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//JSF_AV_C++_Coding_Standards_Rev_C.doc).
+If no advice is offered on the [Chaste Strategies](../) pages, we informally follow many/most of the [Joint Strike Fighter C++ coding standards](https://www.stroustrup.com/JSF-AV-rules.pdf).

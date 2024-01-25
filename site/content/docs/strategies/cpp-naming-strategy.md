@@ -1,6 +1,6 @@
 ---
-title: "C++ Naming Conventions"
-description: "C++ Naming Conventions"
+title: "C++ Naming Strategy"
+description: "C++ Naming Strategy"
 draft: false
 images: []
 toc: true
