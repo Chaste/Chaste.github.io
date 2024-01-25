@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestSolvingLinearParabolicPdeSystemsWithCoupledOdeSystemsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestSolvingLinearParabolicPdeSystemsWithCoupledOdeSystemsTutorial.hpp) at revision [c50b2730f334](https://github.com/Chaste/Chaste/commit/c50b2730f334225b1f345b10aa363472c7baa41a). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestSolvingLinearParabolicPdeSystemsWithCoupledOdeSystemsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestSolvingLinearParabolicPdeSystemsWithCoupledOdeSystemsTutorial.hpp) at revision [0c2d4e11822f](https://github.com/Chaste/Chaste/commit/0c2d4e11822f2c4524b3e44ff8fd33f5b8c3de8d). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to solve a system of coupled linear parabolic PDEs and ODEs
 
 In this tutorial we show how Chaste can be used to solve a system of coupled linear
@@ -167,8 +167,8 @@ of the spatially uniform steady state and pass this to the solver.
 We now solve the PDE system and write results to VTK files, for
 visualization using Paraview.  Results will be written to CHASTE_TEST_OUTPUT/TestSchnackenbergSystemOnButterflyMesh
 as a results.pvd file and several results_[time].vtu files.
-You should see something like {{< img src="/fig/schnackenberg_u.png" alt="Schnackenberg u" h="200px" >}} for u and
-{{< img src="/fig/schnackenberg_v.png" alt="Schnackenberg v" h="200px" >}} for v.
+You should see something like {{< img src="/fig/schnackenberg_u.png" alt="Schnackenberg u" h="200px" >}} for
+u and {{< img src="/fig/schnackenberg_v.png" alt="Schnackenberg v" h="200px" >}} for v.
 
 ```cpp
         solver.SolveAndWriteResultsToFile();
