@@ -30,7 +30,7 @@ by a recent interface change then please see here for fix suggestions.
 ### Cell Based
 
 #### July 2023
-* [#3089](https://github.com/Chaste/trac_archive/blob/master/issues/3077.md) [#142](https://github.com/Chaste/Chaste/issues/142) You can now have voids in bounded voronoi tesselations of cylindrical meshes.
+* [#3089](https://github.com/Chaste/trac_archive/blob/master/issues/3077.md) [#142](https://github.com/Chaste/Chaste/issues/142) You can now have voids in bounded voronoi tesselations of cylindrical meshes. This works by creating a finite voronoi tesselation for each bounday cell, as described in [https://doi.org/10.1007/s11538-023-01214-8](https://doi.org/10.1007/s11538-023-01214-8).
 
 #### April 2022
 * [#3077](https://github.com/Chaste/trac_archive/blob/master/issues/3077.md) You can now add new and remove ghost nodes from mesh based tissue simulations.
