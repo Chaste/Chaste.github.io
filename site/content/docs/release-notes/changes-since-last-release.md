@@ -38,7 +38,7 @@ by a recent interface change then please see here for fix suggestions.
 
 #### September 2021
 * [#3076](https://github.com/Chaste/trac_archive/blob/master/issues/3076.md) you can now output the underlying mesh during simulations with `MeshBasedPopulationWithGhostNodes` use `SetWriteVtkAsPoints(true)`.
-* [#3043](https://github.com/Chaste/trac_archive/blob/master/issues/3043.md) added a Toroidal2dMesh which allows 2d mesh based simulations (with or without ghost nodes) with periodicity in x and y.
+* [#3043](https://github.com/Chaste/trac_archive/blob/master/issues/3043.md) added a `Toroidal2dMesh` which allows 2d mesh based simulations (with or without ghost nodes) with periodicity in x and y.
 
 #### August 2021
 * [#3071](https://github.com/Chaste/trac_archive/blob/master/issues/3071.md) Can now bound the voronoi tesselation in mesh based simulations. Use the method SetBoundVoronoiTessellation(true) on the population to use the bounded voronoi tesselation.
