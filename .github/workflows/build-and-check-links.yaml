@@ -50,4 +50,4 @@ jobs:
           run: pip install linkchecker
 
         - name: Check links
-          run: linkchecker ./public
+          run: linkchecker site/public
