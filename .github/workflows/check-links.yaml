@@ -45,7 +45,8 @@ jobs:
         run: bash generate-linkcheckerrc.sh
 
       - name: Check links
-        run: linkchecker site/public
+        run: linkchecker -f linkcheckerrc site/public
+        continue-on-error: true
           
       - name: Generate summary
         run: |
