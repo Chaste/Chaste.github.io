@@ -9,7 +9,7 @@ toc: true
 layout: "single"
 ---
 
-Chaste uses `cmake` to configure a build, `make` to compile the configured build, and `ctest` to run the resulting executables.  Each of these steps is described in more detail in other parts of this Wiki (e.g. see [the detailed CMake guide](/chaste-guides/cmake-build-guide)), but this page serves simply as a quick-start guide to verify your installation.
+Chaste uses `cmake` to configure a build, `make` to compile the configured build, and `ctest` to run the resulting executables.  Each of these steps is described in more detail in other parts of this Wiki (e.g. see [the detailed CMake guide](/docs/chaste-guides/cmake-build-guide)), but this page serves simply as a quick-start guide to verify your installation.
 
 This page will walk you through a *first run* of Chaste: building and running the *Continuous Test Pack*.
 
@@ -59,7 +59,7 @@ This command will print a bunch of things to the terminal.  If it runs without a
 ```
 
 
-If you do see errors, you may need to set some paths to dependencies manually, see [Finding Chaste Dependencies](/chaste-guides/finding-chaste-dependencies).
+If you do see errors, you may need to set some paths to dependencies manually, see [Finding Chaste Dependencies](/docs/chaste-guides/finding-chaste-dependencies).
 
 ## Build step
 Next, we compile Chaste using the `make` utility.
@@ -112,7 +112,7 @@ Label Time Summary:
 
 
 If you see this, you're good to go!
-Head over to [the chaste guides](/chaste-guides/running-chaste) for next steps.
+Head over to [the chaste guides](/docs/chaste-guides/running-chaste) for next steps.
 
 ## Troubleshooting
 
@@ -125,7 +125,7 @@ After re-trying these steps, please let us know on our [users' mailing list](htt
 First, check that the version of each dependency is listed as *supported* on our [dependency versions page](/install-guides/dependency-versions).
 
 If you are using supported package versions, you may need to provide CMake with some hints for finding dependencies, during the configure step.
-You can find details in the more detailed [CMake build guide](/chaste-guides/cmake-build-guide#ConfigureStep).
+You can find details in the more detailed [CMake build guide](/docs/chaste-guides/cmake-build-guide#ConfigureStep).
 
 If you are still having problems, please let us know on our [users' mailing list](https://web.maillist.ox.ac.uk/ox/subscribe/chaste-users).
 
@@ -139,4 +139,4 @@ If you are still having problems, please let us know on our [users' mailing list
 Good luck!
 
 ## See also
-chaste-guides/CmakeBuildGuide for a list of all available cmake configuration options - how to do optimised builds, parallel builds, run memory testing etc. etc.
+[CMake Build Guide](/docs/chaste-guides/cmake-build-guide) for a list of all available cmake configuration options - how to do optimised builds, parallel builds, run memory testing etc.

@@ -49,7 +49,7 @@ New *developers* should, rather than downloading the release, follow the install
 New developers (including users based in Compbio/CMB) should read the 'users of the source code' section above, and also see
 
 * [External developer guide](external-developer-guide) -- Helpful resources for external users of development versions of Chaste including how to use the git Chaste repository, in particular see [the issue workflow section](external-developer-guide#issue-workflow).
-* [Cmake build guide](cmake-build-guide) for a detailed guide of all the cmake options.
+* [Cmake build guide](cmake-build-guide) -- for a detailed guide of all the cmake options.
 * [Building executable apps](building-executable-apps) -- making standalone executables that don't use the CxxTest framework.
 * [Chaste strategies](/docs/strategies) -- see in particular the coding standards guide
 

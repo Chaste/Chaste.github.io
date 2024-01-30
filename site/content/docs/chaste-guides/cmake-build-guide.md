@@ -74,7 +74,7 @@ cmake /path/to/source
 
 This should work on (at least) Ubuntu with all required dependencies installed. Note that the `ccmake` graphical user interface provides a nice way to see what options are available.
 
-If you have any problems with dependencies not being found, or if you wish to select one specific dependency when you have multiple versions installed, more information can be found on the [ChasteGuides/FindingChasteDependencies](/chaste-guides-_-finding-chaste-dependencies) page.
+If you have any problems with dependencies not being found, or if you wish to select one specific dependency when you have multiple versions installed, more information can be found on the [ChasteGuides/FindingChasteDependencies](/docs/chaste-guides/finding-chaste-dependencies) page.
 
 ### Chaste Configuration Options
 
