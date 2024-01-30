@@ -1,3 +1,12 @@
+---
+title: "Building Non-Test Executables"
+description: "Building Non-Test Executables"
+draft: false
+images: []
+toc: true
+layout: "single"
+---
+
 Sometimes one wants to create an executable which is not a test. ie. has a main function.
 
 For the spiral wave project, we created `SpiralWaveProject.cpp` with a main function in the root of the source tree and ran the following

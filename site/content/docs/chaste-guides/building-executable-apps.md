@@ -1,12 +1,19 @@
-# Building Executable Applications
+---
+title: "Building Executable Applications"
+description: "Building Executable Applications"
+draft: false
+images: []
+toc: true
+layout: "single"
+---
 
 By *Executable Applications* or *app*, we mean any `.cpp` file with its own `main` function, making use of Chaste functionality.
 
 
-The [Chaste build system](/docs/chaste-guides/cmake-build-guide) assumes that the following locations may contain apps:
+The [Chaste build system](../cmake-build-guide) assumes that the following locations may contain apps:
 
 * `Chaste/apps/src` (contains the Cardiac executable)
-* `Chaste/projects/<project_name>/apps/src` (see [User Projects](/docs/chaste-guides/user-projects) if you are unfamiliar with user projects)
+* `Chaste/projects/<project_name>/apps/src` (see [User Projects](../user-projects) if you are unfamiliar with user projects)
 
 
 To build an app, first configure Chaste as normal:
