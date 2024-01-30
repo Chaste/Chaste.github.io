@@ -1,0 +1,49 @@
+# Workflow which builds the site and checks hyperlinks are valid using linkchecker
+name: Build site and check hyperlinks
+
+on:
+  # Runs on pushes targeting the default branch and any pull request
+  pull_request:
+    branches: ["**"]
+  
+  push:
+    branches: ["main"]
+      
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  # Single deploy job since we're just deploying
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    
+      - name: Checkout
+        uses: actions/checkout@v3
+          
+      - name: Build site
+        run: |
+          npm install
+          npm run build
+        working-directory: site
+
+      - name: Install linkchecker
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+        run: pip install linkchecker
+
+      - name: Check links
+        run: linkchecker ./public
