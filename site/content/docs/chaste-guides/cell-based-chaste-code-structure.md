@@ -1,6 +1,16 @@
+---
+title: "Cell-based Chaste Code Structure"
+description: "Cell-based Chaste Code Structure"
+date: 2020-08-27T19:23:18+02:00
+lastmod: 2020-08-27T19:23:18+02:00
+draft: false
+images: []
+toc: true
+layout: "single"
+---
 # Overview of the cell-based Chaste code structure
 
-This wiki page is intended for new cell-based Chaste users/developers and was written as part of #872. For information, see the technical Chaste papers (details available at the Chaste public [website](http://www.cs.ox.ac.uk/chaste/publications.html)).
+This page is intended for new cell-based Chaste users/developers. For information, see the technical [Chaste papers](/publications).
 
 ## Language and external libraries
 

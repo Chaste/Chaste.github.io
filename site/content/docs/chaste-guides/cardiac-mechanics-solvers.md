@@ -13,14 +13,11 @@ layout: "single"
 
 There are (as of the time of writing, Nov 11) two mechanics solvers, an incompressible nonlinear elasticity solver and a compressible nonlinear elasticity solver, with the following hierarchy:
 
-```
-
-#!c
+```c++
        AbstractNonlinearElasticitySolver
          ^                          ^
          |                          |
 IncompressibleSolver        CompressibleSolver
-
 ```
 
 (Here and throughout this page we shorten class names - for example `CompressibleSolver` is actually called `CompressibleNonlinearElasticitySolver`). See mechanics tutorials for more information on these classes.
@@ -30,12 +27,11 @@ IncompressibleSolver        CompressibleSolver
 Cardiac mechanics solvers solve mechanics problems for which the forcing comes from active tension developed in the tissue. Both incompressible and compressible versions are required, and the cardiac-specific part of a `CardiacMechanicsSolver` doesn't really care whether it is a compressible or incompressible problem.
 
 To complicate matters, there are two types of `CardiacMechanicsSolver`, an implicit solver and an explicit solver. The explicit solver basically uses active tensions computed
-at the previous timestep, whereas the implicit solver uses the current solution in computing the active tensions. (The appropriate choice of solver depends on the types of contraction model used). For more details on all of this see http://dx.doi.org/10.1093/qjmam/hbq014.
+at the previous timestep, whereas the implicit solver uses the current solution in computing the active tensions. (The appropriate choice of solver depends on the types of contraction model used). For more details on all of this see [http://dx.doi.org/10.1093/qjmam/hbq014](http://dx.doi.org/10.1093/qjmam/hbq014).
 
 There are therefore four combinations: `{incompressible,compressible} x {implicit,explicit}`. The cardiac mechanics solvers are templated over the solver they should inherit from.
 
-```
-
+```c++
                 IncompressibleSolver or CompressibleSolver
                                      ^
                                      |
@@ -45,15 +41,11 @@ There are therefore four combinations: `{incompressible,compressible} x {implici
                       |                    |
   template<class SOLVER>                  template<class SOLVER>
   ExplicitSolver                          ImplicitSolver
-
 ```
-
 
 To avoid `CardiacElectroMechanicsProblem` (the class used by a user) also having to be templated over the solver to use, which would be a pain for a user, all declarations of the methods in `AbstractCardiacMechanicsSolver<SOLVER,DIM>` are in `AbstractCardiacMechanicsSolverInterface<DIM>`, so that the problem class can just hold a pointer to the latter:
 
-```
-
-#!c
+```c++
            AbstractNonlinearElasticitySolver
                            ^
                            |
@@ -66,7 +58,6 @@ To avoid `CardiacElectroMechanicsProblem` (the class used by a user) also having
                   |                    |
 template<class SOLVER>                template<class SOLVER>
 ExplicitSolver                        ImplicitSolver
-
 ```
 
 
