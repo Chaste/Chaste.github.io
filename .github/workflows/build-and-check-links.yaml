@@ -1,5 +1,5 @@
 # Simple workflow for deploying static content to GitHub Pages
-name: Build static content
+name: Build static content and check links
 
 on:
   # Runs on pushes targeting the default branch
@@ -34,13 +34,13 @@ jobs:
           npm run build
         working-directory: site
   
-  check-links:
-
-      needs: build
-
-      runs-on: ubuntu-latest
-
-      steps: 
+#  check-links:
+#
+#      needs: build
+#
+#      runs-on: ubuntu-latest
+#
+#      steps: 
         - name: Setup python
           uses: actions/setup-python@v5
           with:
