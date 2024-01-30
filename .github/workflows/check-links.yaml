@@ -46,10 +46,11 @@ jobs:
 
       - name: Check links
         run: linkchecker -f linkcheckerrc site/public
-        continue-on-error: true
           
       - name: Generate summary
+        if: always()
         run: |
           bash generate-summary.sh
           cat broken-links.md > $GITHUB_STEP_SUMMARY
+      
 
