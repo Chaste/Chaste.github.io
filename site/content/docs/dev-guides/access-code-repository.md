@@ -1,8 +1,6 @@
 ---
 title: "Access Code Repository"
-description: "Information on getting started with Chaste"
-date: 2020-08-27T19:23:18+02:00
-lastmod: 2020-08-27T19:23:18+02:00
+description: "Access Code Repository"
 draft: false
 images: []
 toc: true
