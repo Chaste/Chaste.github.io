@@ -131,7 +131,7 @@
   name = "Getting started"
   weight = 500
   identifier = "pychaste-getting-started"
-  url = "/pychaste/getting-started"
+  url = "/pychaste/"
   parent = "pychaste"
 
 [[main]]

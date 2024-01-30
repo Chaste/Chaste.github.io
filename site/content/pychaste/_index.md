@@ -1,8 +1,6 @@
 ---
-title : "PyChaste Docs"
-description: "PyChaste documentation"
-date: 2020-10-06T08:47:36+00:00
-lastmod: 2020-10-06T08:47:36+00:00
+title : "PyChaste Documentation"
+description: "PyChaste Documentation"
 draft: false
 images: []
 ---
