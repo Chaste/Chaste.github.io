@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestCreatingAndUsingANewForceTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewForceTutorial.hpp) at revision [e9d760bdf232](https://github.com/Chaste/Chaste/commit/e9d760bdf232107ee9c8c52c9fda40505fb7b666). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCreatingAndUsingANewForceTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewForceTutorial.hpp) at revision [9ccbb9cb6db8](https://github.com/Chaste/Chaste/commit/9ccbb9cb6db82df6a0b826c92e756309c24e1c93). Note that the code is given in full at the bottom of the page.
 ## An example showing how to create and use a new force
 
 ### Introduction
@@ -140,7 +140,7 @@ We also add a get method for `mStrength`, to allow for testing.
     }
 ```
 
-Just as we encountered in [Creating And Using A New Cell Killer](docs/user-tutorials/creatingandusinganewcellkiller), here we must override
+Just as we encountered in [Creating And Using A New Cell Killer](/docs/user-tutorials/creatingandusinganewcellkiller), here we must override
 a method that outputs any member variables to a specified results file `rParamsFile`.
 In our case, we output the member variable `mStrength`, then call the method on the base class.
 
@@ -317,6 +317,7 @@ To run the simulation, we call `Solve()`.
 ```cpp
         simulator.Solve();
     }
+};
 ```
 
 When you visualize the results with
@@ -324,10 +325,6 @@ When you visualize the results with
 `java Visualize2dCentreCells /tmp/$USER/testoutput/TestOffLatticeSimulationWithMyForce/results_from_time_0`
 
 you should see a collection of cells moving downwards and proliferating.
-
-```cpp
-};
-```
 
 ## Full code
 

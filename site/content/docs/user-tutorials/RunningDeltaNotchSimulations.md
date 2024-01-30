@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningDeltaNotchSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningDeltaNotchSimulationsTutorial.hpp) at revision [5a432c6a6ab9](https://github.com/Chaste/Chaste/commit/5a432c6a6ab964dda40e675653e33f529df90320). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningDeltaNotchSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningDeltaNotchSimulationsTutorial.hpp) at revision [9ccbb9cb6db8](https://github.com/Chaste/Chaste/commit/9ccbb9cb6db82df6a0b826c92e756309c24e1c93). Note that the code is given in full at the bottom of the page.
 ## An example showing how to run Delta/Notch simulations
 
 ### Introduction
@@ -175,7 +175,7 @@ This modifier assigns target areas to each cell.
     }
 ```
 
-To visualize the results, use Paraview. See the [Visualizing With Paraview](docs/user-tutorials/visualizingwithparaview) tutorial for more information.
+To visualize the results, use Paraview. See the [Visualizing With Paraview](/docs/user-tutorials/visualizingwithparaview) tutorial for more information.
 
 Load the file `/tmp/$USER/testoutput/TestVertexBasedMonolayerWithDeltaNotch/results_from_time_0/results.pvd`.
 
@@ -265,19 +265,16 @@ As we are using a node-based cell population, we use an appropriate force law.
 
         simulator.Solve();
     }
+};
 ```
 
-To visualize the results, use Paraview. See the [Visualizing With Paraview](docs/user-tutorials/visualizingwithparaview) tutorial for more information.
+To visualize the results, use Paraview. See the [Visualizing With Paraview](/docs/user-tutorials/visualizingwithparaview) tutorial for more information.
 
 Load the file `/tmp/$USER/testoutput/TestNodeBasedMonolayerWithDeltaNotch/results_from_time_0/results.pvd`,
 and add a spherical glyph.
 
 Note that, for larger simulations, you may need to unclick "Mask Points" (or similar) so as not to limit the number of glyphs
 displayed by Paraview.
-
-```cpp
-};
-```
 
 ## Full code
 

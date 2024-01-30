@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestCreatingAndUsingANewCellPopulationBoundaryConditionTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellPopulationBoundaryConditionTutorial.hpp) at revision [c50b2730f334](https://github.com/Chaste/Chaste/commit/c50b2730f334225b1f345b10aa363472c7baa41a). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCreatingAndUsingANewCellPopulationBoundaryConditionTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellPopulationBoundaryConditionTutorial.hpp) at revision [9ccbb9cb6db8](https://github.com/Chaste/Chaste/commit/9ccbb9cb6db82df6a0b826c92e756309c24e1c93). Note that the code is given in full at the bottom of the page.
 ## An example showing how to create and use a new cell population boundary condition
 
 ### Introduction
@@ -51,7 +51,7 @@ cell-based Chaste tutorials.
 
 As an example, let us consider a boundary condition for a two-dimensional cell-based
 simulation, in which all cells are constrained to lie within the domain given in
-Cartesian coordinates by 0 <= y <= 5. To implement this we define a cell population
+Cartesian coordinates by $0 \leqslant y \leqslant 5$. To implement this we define a cell population
 boundary condition class, `MyBoundaryCondition`, which inherits from
 `AbstractCellPopulationBoundaryCondition` and overrides the methods
 `ImposeBoundaryCondition()`, `VerifyBoundaryCondition()` and
@@ -91,7 +91,7 @@ centre has y coordinate less than 0 or greater than 5 back into the domain.
 
 Implicit in this method is the assumption that, when a node hits the
 boundary of the domain, it does so inelastically. This means, for example,
-that a node hitting the boundary at y=0 has its location moved to y=0. A
+that a node hitting the boundary at $y=0$ has its location moved to $y=0$. A
 more physically realistic modelling assumption might be to assume that
 momentum is conserved in the collision.
 
@@ -149,7 +149,7 @@ that each cell in the population now satisfies `MyBoundaryCondition`.
     }
 ```
 
-Just as we encountered in the tutorial [Creating And Using A New Cell Killer](docs/user-tutorials/creatingandusinganewcellkiller), here we must override
+Just as we encountered in the tutorial [Creating And Using A New Cell Killer](/docs/user-tutorials/creatingandusinganewcellkiller), here we must override
 a method that outputs any member variables to a specified results file `rParamsFile`.
 In our case, there are no parameters, so we simply call the method on the base class.
 Nonetheless, we still need to override the method, since it is pure virtual in the base
@@ -356,17 +356,14 @@ To run the simulation, we call `Solve()`.
 ```cpp
         simulator.Solve();
     }
+};
 ```
 
 When you visualize the results with
 
 `java Visualize2dCentreCells /tmp/$USER/testoutput/TestOffLatticeSimulationWithMyBoundaryCondition/results_from_time_0`
 
-you should see that cells are restricted to the domain 0 <= y <= 5.
-
-```cpp
-};
-```
+you should see that cells are restricted to the domain $0 \leqslant y \leqslant 5$.
 
 ## Full code
 

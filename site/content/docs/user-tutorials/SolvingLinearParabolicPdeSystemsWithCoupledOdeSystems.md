@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestSolvingLinearParabolicPdeSystemsWithCoupledOdeSystemsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestSolvingLinearParabolicPdeSystemsWithCoupledOdeSystemsTutorial.hpp) at revision [0c2d4e11822f](https://github.com/Chaste/Chaste/commit/0c2d4e11822f2c4524b3e44ff8fd33f5b8c3de8d). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestSolvingLinearParabolicPdeSystemsWithCoupledOdeSystemsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestSolvingLinearParabolicPdeSystemsWithCoupledOdeSystemsTutorial.hpp) at revision [8422a2c1f0b1](https://github.com/Chaste/Chaste/commit/8422a2c1f0b1fba98f0449f6202f9c3b154b3cc9). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to solve a system of coupled linear parabolic PDEs and ODEs
 
 In this tutorial we show how Chaste can be used to solve a system of coupled linear
@@ -62,8 +62,12 @@ must be included in every test that uses PETSc.
 
 Here, we solve the Schnackenberg system of PDEs, given by
 
-u,,t,, = div(D1 grad u) + k,,1,, - k,,-1,,*u + k,,3,,u^2^v,
-v,,t,, = div(D2 grad v) + k,,2,, - k,,3,,u^2^v,
+$$
+\begin{align*}
+u_t &= \nabla. (D_1 \nabla u) + k_1 - k_{-1}u + k_3 u^2 v,\\\\\\
+v_t &= \nabla. (D_2 \nabla v) + k_2 -k_3 u^2 v,
+\end{align*}
+$$
 
 on a 2d butterfly-shaped domain. We impose non-zero Dirichlet
 boundary conditions and an initial condition that is a random
@@ -106,7 +110,7 @@ We scale the mesh to an appropriate size.
 ```
 
 Next, we instantiate the PDE system to be solved. We pass the parameter values into the
-constructor.  (The order is D,,1,,  D,,2,,  k,,1,,  k,,-1,,  k,,2,,  k,,3,,)
+constructor.  (The order is $D_1, D_2, k_1, k_{-1}, k_2, k_3$)
 
 ```cpp
         SchnackenbergCoupledPdeSystem<2> pde(1e-4, 1e-2, 0.1, 0.2, 0.3, 0.1);
@@ -116,7 +120,7 @@ Then we have to define the boundary conditions. As we are in 2d, `SPACE_DIM`=2 a
 `ELEMENT_DIM`=2. We also have two unknowns u and v,
 so in this case `PROBLEM_DIM`=2. The value of each boundary condition is
 given by the spatially uniform steady state solution of the Schnackenberg system,
-given by u = (k,,1,, + k,,2,,)/k,,-1,,, v = k,,2,,k,,-1,,^2^/k,,3,,(k,,1,, + k,,2,,)^2^.
+given by $u = (k_1 + k_2)/k_{-1}$, $v = k_2 k_{-1}^2 / k_3(k_1 + k_2)^2$.
 
 ```cpp
         BoundaryConditionsContainer<2,2,2> bcc;
@@ -165,8 +169,8 @@ of the spatially uniform steady state and pass this to the solver.
 ```
 
 We now solve the PDE system and write results to VTK files, for
-visualization using Paraview.  Results will be written to CHASTE_TEST_OUTPUT/TestSchnackenbergSystemOnButterflyMesh
-as a results.pvd file and several results_[time].vtu files.
+visualization using Paraview.  Results will be written to `$CHASTE_TEST_OUTPUT/TestSchnackenbergSystemOnButterflyMesh`
+as a `results.pvd` file and several `results_[time].vtu` files.
 You should see something like {{< img src="/fig/schnackenberg_u.png" alt="Schnackenberg u" h="200px" >}} for
 u and {{< img src="/fig/schnackenberg_v.png" alt="Schnackenberg v" h="200px" >}} for v.
 

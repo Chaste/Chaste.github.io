@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestCreatingAndUsingANewCellMutationStateTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellMutationStateTutorial.hpp) at revision [e9d760bdf232](https://github.com/Chaste/Chaste/commit/e9d760bdf232107ee9c8c52c9fda40505fb7b666). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCreatingAndUsingANewCellMutationStateTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellMutationStateTutorial.hpp) at revision [9ccbb9cb6db8](https://github.com/Chaste/Chaste/commit/9ccbb9cb6db82df6a0b826c92e756309c24e1c93). Note that the code is given in full at the bottom of the page.
 ## An example showing how to create a new cell mutation state and use it in a cell-based simulation
 
 ### Introduction
@@ -287,6 +287,7 @@ To run the simulation, we call `Solve()`.
 ```cpp
         simulator.Solve();
     }
+};
 ```
 
 When you visualize the results with
@@ -296,10 +297,6 @@ When you visualize the results with
 you should see two cells in black which are the cells with the new mutation. If we want these cells to behave differently we
 would need to write an new `CellCycleModel`, `CellKiller`, `Force`, or `CellPopulationBoundaryCondition`
 which checks for the new mutation.
-
-```cpp
-};
-```
 
 ## Full code
 

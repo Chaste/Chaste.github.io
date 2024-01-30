@@ -32,7 +32,7 @@ Do not edit it manually, as your changes will be overwritten!
 - Run electro-mechanics with mechano-electric feedback
   - [line 100 of TestAnotherCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherCardiacElectroMechanicsTutorial.hpp#L100)
 - Run electro-mechanics with inflation pressures
-  - [line 273 of TestAnotherCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherCardiacElectroMechanicsTutorial.hpp#L273)
+  - [line 270 of TestAnotherCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherCardiacElectroMechanicsTutorial.hpp#L270)
 - Run electro-mechanical simulations using bidomain instead of monodomain
   - [line 215 of TestCardiacElectroMechanicsProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/mechanics/TestCardiacElectroMechanicsProblem.hpp#L215)
 - Run basic electro-mechanics simulations; specify different models, boundary conditions, fibres
