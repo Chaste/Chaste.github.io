@@ -19,7 +19,7 @@ concurrency:
 
 jobs:
   # Single deploy job since we're just deploying
-  build:
+  build-and-check-links:
 
     runs-on: ubuntu-latest
     
