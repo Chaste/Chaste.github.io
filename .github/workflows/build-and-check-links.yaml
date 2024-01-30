@@ -33,7 +33,7 @@ jobs:
           npm install
           npm run build
         working-directory: site
-  
+
 #  check-links:
 #
 #      needs: build
@@ -41,13 +41,13 @@ jobs:
 #      runs-on: ubuntu-latest
 #
 #      steps: 
-        - name: Setup python
-          uses: actions/setup-python@v5
-          with:
-            python-version: '3.10'
+      - name: Setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
 
-        - name: Install linkchecker
-          run: pip install linkchecker
+      - name: Install linkchecker
+        run: pip install linkchecker
 
-        - name: Check links
-          run: linkchecker site/public
+      - name: Check links
+        run: linkchecker site/public
