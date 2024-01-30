@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestVisualizingWithParaviewTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestVisualizingWithParaviewTutorial.hpp) at revision [c50b2730f334](https://github.com/Chaste/Chaste/commit/c50b2730f334225b1f345b10aa363472c7baa41a). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestVisualizingWithParaviewTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestVisualizingWithParaviewTutorial.hpp) at revision [9ccbb9cb6db8](https://github.com/Chaste/Chaste/commit/9ccbb9cb6db82df6a0b826c92e756309c24e1c93). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to visualize simulations in Paraview
 
 ### Introduction
@@ -151,7 +151,7 @@ the lines should be removed.
 ```
 
 To visualize the results, we must first open Paraview. We open the folder containing our test output using the 'file' menu at
-the top. The output will be located in `/tmp/$USER/testoutput/Test2DMeshBasedMonolayerSimulationForVisualizing/results_from_time_0`.
+the top. The output will be located in `$CHASTE_TEST_OUTPUT/Test2DMeshBasedMonolayerSimulationForVisualizing/results_from_time_0`.
 There will be a .vtu file generated for every timestep, which must all be opened at once to view the simulation. To do this,
 simply select `voronoi_results_..vtu`. We should now see `voronoi_results*`  in the pipeline browser. We click `Apply` in the properties tab
 of the object inspector, and we should now see a visualization in the right hand window.
@@ -243,7 +243,7 @@ in which cells are represented as 'overlapping spheres'.
 
 We set up the simulation in much the same way as above, except now using a `NodesOnlyMesh` and
 `NodeBasedCellPopulation`. Further details on how to set up a node-based simulation can be found in
-[Running Node Based Simulations](docs/user-tutorials/runningnodebasedsimulations).
+[Running Node Based Simulations](/docs/user-tutorials/runningnodebasedsimulations).
 
 ```cpp
         HoneycombMeshGenerator generator(10, 10, 0);
@@ -352,14 +352,11 @@ with the correct number of cells.
         TS_ASSERT_EQUALS(cell_population.GetNumRealCells(), 84u);
         TS_ASSERT_DELTA(SimulationTime::Instance()->GetTime(), 0.1, 1e-10);
     }
+};
 ```
 
 To visualize the results, we follow the instructions above for the first simulation, ensuring that we open the
 test output from the new folder, `Test2DVertexMonolayerSimulationForVisualizing`.
-
-```cpp
-};
-```
 
 ## Full code
 

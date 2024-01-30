@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestCreatingAndUsingANewSrnModelTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewSrnModelTutorial.hpp) at revision [5a432c6a6ab9](https://github.com/Chaste/Chaste/commit/5a432c6a6ab964dda40e675653e33f529df90320). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCreatingAndUsingANewSrnModelTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewSrnModelTutorial.hpp) at revision [dbf6b196a091](https://github.com/Chaste/Chaste/commit/dbf6b196a091781fc0b4bf6effddf352080111e1). Note that the code is given in full at the bottom of the page.
 ## An example showing how to create a new subcellular reaction network (SRN) model and use it in a cell-based simulation.
 
 ### Introduction
@@ -583,16 +583,13 @@ Finally to run the simulation, we call `Solve()`.
 ```cpp
         simulator.Solve();
     }
+};
 ```
 
-To visualize the results, use Paraview. See the [Visualizing With Paraview](docs/user-tutorials/visualizingwithparaview) tutorial for more information.
+To visualize the results, use Paraview. See the [Visualizing With Paraview](/docs/user-tutorials/visualizingwithparaview) tutorial for more information.
 
 Load the file `/tmp/$USER/testoutput/TestOffLatticeSimulationWithMySrnModel/results_from_time_0/results.pvd`,
 and color by `x`.
-
-```cpp
-};
-```
 
 ## Full code
 

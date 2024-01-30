@@ -5,12 +5,12 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningCryptSimulationsWithMutationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/tutorial/TestRunningCryptSimulationsWithMutationsTutorial.hpp) at revision [5a432c6a6ab9](https://github.com/Chaste/Chaste/commit/5a432c6a6ab964dda40e675653e33f529df90320). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningCryptSimulationsWithMutationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/tutorial/TestRunningCryptSimulationsWithMutationsTutorial.hpp) at revision [2f612b67237e](https://github.com/Chaste/Chaste/commit/2f612b67237e745272b908248d2348f4f8ffee2a). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to run crypt simulations with various mutations
 
 ### Introduction
 
-This tutorial assumes you have already read the tutorial [Running Mesh Based Simulations](docs/user-tutorials/runningmeshbasedsimulations).
+This tutorial assumes you have already read the tutorial [Running Mesh Based Simulations](/docs/user-tutorials/runningmeshbasedsimulations).
 
 In this tutorial we show how Chaste can be used to simulate a cylindrical model of an
 intestinal crypt with mutations using both mesh and vertex-based simulations.
@@ -247,6 +247,7 @@ singleton object. This avoids memory leaks occurring.
 ```cpp
        WntConcentration<2>::Destroy();
     }
+};
 ```
 
 To visualize the results, open a new terminal, `cd` to the Chaste directory,
@@ -260,10 +261,6 @@ java executable.
 
 In the results folder there is also a file `cellmutationstates.dat` which tracks the numbers of each mutation type in the simulation.
 These results are just tab separated columns so may be visualized by using gnuplot, Matlab or similar.
-
-```cpp
-};
-```
 
 ## Full code
 

@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningVertexBasedCryptSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/tutorial/TestRunningVertexBasedCryptSimulationsTutorial.hpp) at revision [c50b2730f334](https://github.com/Chaste/Chaste/commit/c50b2730f334225b1f345b10aa363472c7baa41a). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningVertexBasedCryptSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/tutorial/TestRunningVertexBasedCryptSimulationsTutorial.hpp) at revision [9ccbb9cb6db8](https://github.com/Chaste/Chaste/commit/9ccbb9cb6db82df6a0b826c92e756309c24e1c93). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to create, run and visualize vertex-based simulations on periodic meshes with different cell-cycle models
 
 ### Introduction
@@ -234,7 +234,7 @@ Define the crypt length; this will be used for sloughing and calculating the Wnt
         double crypt_length = 6.0;
 ```
 
-Set up a `WntConcentration` object, as in the tutorial [Running Mesh Based Simulations](docs/user-tutorials/runningmeshbasedsimulations).
+Set up a `WntConcentration` object, as in the tutorial [Running Mesh Based Simulations](/docs/user-tutorials/runningmeshbasedsimulations).
 
 ```cpp
         WntConcentration<2>::Instance()->SetType(LINEAR);
@@ -311,7 +311,6 @@ cells and pink differentiated cells. Cells above 6.0 will be sloughed off immedi
 class TestRunningVertexBasedCryptSimulationsTutorial : public AbstractCellBasedTestSuite
 {
 public:
-
     void TestVertexBasedCrypt()
     {
          CylindricalHoneycombVertexMeshGenerator generator(6, 9);
