@@ -7,4 +7,6 @@ hugo
 hugo.exe
 .idea
 package-lock.json
-hugo_stats.json
+broken-links.csv
+broken-links.md
+linkcheckerrc
