@@ -9,7 +9,7 @@ toc: true
 layout: "single"
 ---
 
-Before reading this have a look at [Getting Started](/docs) to decide whether you are a *user* of releases or a *developer* contributing back to Chaste core code.
+Before reading this have a look at [Getting Started](../) to decide whether you are a *user* of releases or a *developer* contributing back to Chaste core code.
 
 *Users* can download the latest stable release of the source code from our [GitHub releases page](https://github.com/Chaste/Chaste/releases), or check out a [tested development branch](https://github.com/Chaste/Chaste/branches) to get the latest features.
 
@@ -19,18 +19,18 @@ New *developers* should, rather than downloading the release, follow the install
 
 ### Installation
 
-* [Install guides](/docs/installguides) -- How to install Chaste and its dependencies.
+* [Install guides](../installguides) -- How to install Chaste and its dependencies.
 * [CMake first run](cmake-first-run) -- How to configure, build, and run tests to check the installation.
 
 
 ### Running Chaste Simulations
 
-* [Release notes](/docs/release-notes/release-notes) and [latest news](/docs/release-notes/changes-since-last-release) on changes since the last release
-* [Tutorials](/docs/user-tutorials)
+* [Release notes](../release-notes/release-notes) and [latest news](../release-notes/changes-since-last-release) on changes since the last release
+* [Tutorials](../user-tutorials)
 * [Visualisation guides](visualisation-guides)
-* [How-to index](/docs/how-tos) -- links to test code illustrating how various things can be done
+* [How-to index](../how-tos) -- links to test code illustrating how various things can be done
 * [CMake first run guide](cmake-first-run). For all available options, including compiling optimised code, see the full [Cmake build guide](cmake-build-guide).
-* [Public API documentation for the latest revision](/docs/doxygen) and [API documentation for release versions](//chaste/tutorials/)
+* [Public API documentation for the latest revision](../doxygen) and [API documentation for release versions](https://github.com/Chaste/Chaste/releases)
 
 
 ### Writing your own code that uses Chaste
@@ -51,7 +51,7 @@ New developers (including users based in Compbio/CMB) should read the 'users of 
 * [External developer guide](external-developer-guide) -- Helpful resources for external users of development versions of Chaste including how to use the git Chaste repository, in particular see [the issue workflow section](external-developer-guide#issue-workflow).
 * [Cmake build guide](cmake-build-guide) -- for a detailed guide of all the cmake options.
 * [Building executable apps](building-executable-apps) -- making standalone executables that don't use the CxxTest framework.
-* [Chaste strategies](/docs/strategies) -- see in particular the coding standards guide
+* [Chaste strategies](../strategies) -- see in particular the coding standards guide
 
 
 ## 3. Advanced

@@ -417,7 +417,7 @@ The arguments are:
 
 ## Use of CellML in the cardiac executable
 
-The [cardiac executable](/docs/chaste-guides/building-executable-apps) has the ability to automatically load cell models encoded as CellML files at run-time. In order to take advantage of this, you need (at present) to have built the executable from source yourself, as it uses your Chaste source tree to convert the CellML file into runnable code.
+The [cardiac executable](../building-executable-apps) has the ability to automatically load cell models encoded as CellML files at run-time. In order to take advantage of this, you need (at present) to have built the executable from source yourself, as it uses your Chaste source tree to convert the CellML file into runnable code.
 
 To specify one of the models included within Chaste in the parameters file, you now need to wrap it in a <Hardcoded> element, e.g.
 
