@@ -38,6 +38,15 @@ jobs:
 
       - name: Install linkchecker
         run: pip install linkchecker
+          
+      - name: Generate link checking config
+        run: bash generate-linkcheckerrc.sh
 
       - name: Check links
         run: linkchecker site/public
+          
+      - name: Generate summary
+        run: |
+          bash generate-summary.sh
+          broken-links.md > $GITHUB_STEP_SUMMARY
+
