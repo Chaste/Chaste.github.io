@@ -41,7 +41,7 @@ by a recent interface change then please see here for fix suggestions.
 * [#3043](https://github.com/Chaste/trac_archive/blob/master/issues/3043.md) added a `Toroidal2dMesh` which allows 2d mesh based simulations (with or without ghost nodes) with periodicity in x and y.
 
 #### August 2021
-* [#3071](https://github.com/Chaste/trac_archive/blob/master/issues/3071.md) Can now bound the voronoi tesselation in mesh based simulations by using the method `SetBoundVoronoiTessellation(true)` on the cell population. This works by creating a finite voronoi tesselation for each bounday cell, as described in [https://doi.org/10.1007/s11538-023-01214-8](https://doi.org/10.1007/s11538-023-01214-8).
+* [#3071](https://github.com/Chaste/trac_archive/blob/master/issues/3071.md) Can now bound the voronoi tesselation in mesh based simulations by using the method `SetBoundVoronoiTessellation(true)` on the cell population. This works by creating a finite voronoi tesselation for each bounday cell, as described in Appendix A of [https://doi.org/10.1007/s11538-023-01214-8](https://doi.org/10.1007/s11538-023-01214-8) the extra nodes (used to bound the Voronoi Tesselation) are placed 1CD away from the tissue boundary to maintian an approximate voronoi cell diameter of 1CD.
 * [#3071](https://github.com/Chaste/trac_archive/blob/master/issues/3071.md) You can now output both the Voronoi tesselation (add `VoronoiDataWriter`) and mesh (`SetWriteVtkAsPoints(true)`) in mesh based simulations, the output files are now `voronoi_results_xxx.vtu` and `mesh_results_xxx.vtu`.
 
 #### July 2021
