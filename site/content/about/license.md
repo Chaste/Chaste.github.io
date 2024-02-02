@@ -14,11 +14,9 @@ Chaste depends on many third-party packages to provide some of the core function
 
 In most cases, source code for these packages is not distributed with Chaste
 (notable exceptions are triangle, Tetgen and CxxTest).  They must instead be
-installed separately.  When using the standalone cardiac executable, statically
-linked binaries of some of these libraries are incorporated within the executable.
+installed separately.  
 The 'Used by' column indicates where these libraries are used:
 <dl>
-<dt>Executable:</dt><dd> linked to the standalone cardiac executable, and distributed with it in binary form</dd>
 <dt>Tests:</dt><dd> only required for testing Chaste</dd>
 <dt>Source:</dt><dd> required for building Chaste from source</dd>
 <dt>Cardiac:</dt><dd> only really needed if you're building the cardiac-specific source</dd>
@@ -45,7 +43,7 @@ The 'Used by' column indicates where these libraries are used:
   <td> Boost </td>
   <td> <a href="http://www.boost.org/users/license.html">http://www.boost.org/users/license.html</a> </td>
   <td> <a href="licences/Boost.txt"> Boost.txt </a> </td>
-  <td> Executable, Source </td>
+  <td> Source </td>
 </tr>
 
 <tr>
@@ -53,7 +51,7 @@ The 'Used by' column indicates where these libraries are used:
   <td> <a href="http://www.codesynthesis.com/products/xsd/license.xhtml">http://www.codesynthesis.com/products/xsd/license.xhtml</a>,
        <a href="http://www.codesynthesis.com/projects/xsd/FLOSSE">http://www.codesynthesis.com/projects/xsd/FLOSSE</a> </td>
   <td> (GPL) <a href="licences/CodeSynthesis_Exception.txt">CodeSynthesis_Exception.txt</a> </td>
-  <td> Executable, Source, Cardiac </td>
+  <td> Source, Cardiac </td>
 </tr>
 
 <tr>
@@ -74,7 +72,7 @@ The 'Used by' column indicates where these libraries are used:
   <td> HDF5 </td>
   <td> <a href="http://www.hdfgroup.org/products/licenses.html">http://www.hdfgroup.org/products/licenses.html</a> </td>
   <td> <a href="licences/HDF5.txt"> HDF5.txt </a> </td>
-  <td> Executable, Source </td>
+  <td> Source </td>
 </tr>
 
 <tr>
@@ -82,7 +80,7 @@ The 'Used by' column indicates where these libraries are used:
   <td> <a href="http://glaros.dtc.umn.edu/gkhome/metis/metis/faq?q=metis/metis/faq#distribute">http://glaros.dtc.umn.edu/gkhome/metis/metis/faq?q=metis/metis/faq#distribute</a> </td>
   <td><a href="licences/METIS.txt"> METIS.txt</a>,
       <a href="licences/METIS_manual.pdf"> METIS manual </a></td>
-  <td> Executable, Source </td>
+  <td> Source </td>
 </tr>
 
 <tr>
@@ -91,14 +89,14 @@ The 'Used by' column indicates where these libraries are used:
        <a href="http://www.mcs.anl.gov/research/projects/mpi/mpich1/romio-license.txt">http://www.mcs.anl.gov/research/projects/mpi/mpich1/romio-license.txt</a> </td>
   <td><a href="licences/mpich-license.txt">mpich-license.txt</a>
       <a href="licences/romio-license.txt">romio-license.txt</a></td>
-  <td> Executable, Source (although note that other MPI implementations may be used instead, e.g. OpenMPI) </td>
+  <td> Source (although note that other MPI implementations may be used instead, e.g. OpenMPI) </td>
 </tr>
 
 <tr>
   <td> PETSc </td>
   <td><a href="http://www.mcs.anl.gov/petsc/petsc-as/documentation/copyright.html">http://www.mcs.anl.gov/petsc/petsc-as/documentation/copyright.html</a></td>
   <td><a href="licences/PETSc.html">PETSc.html</a> </td>
-  <td> Executable, Source </td>
+  <td> Source </td>
 </tr>
 
 <tr>
@@ -140,14 +138,14 @@ The 'Used by' column indicates where these libraries are used:
   <td> VTK </td>
   <td> <a href="http://www.vtk.org/VTK/project/license.html">http://www.vtk.org/VTK/project/license.html</a></td>
   <td> (BSD) <a href="licences/VTK.txt">VTK.txt</a> </td>
-  <td> Executable, Optional </td>
+  <td> Optional </td>
 </tr>
 
 <tr>
   <td> Xerces </td>
   <td><a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a></td>
   <td> (Apache 2) <a href="licences/Xerces-Apache2.0.txt">Xerces-Apache2.0.txt</a></td>
-  <td> Executable, Source, Cardiac </td>
+  <td> Source, Cardiac </td>
 </tr>
 
 </table>
