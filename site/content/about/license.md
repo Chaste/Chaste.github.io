@@ -6,15 +6,11 @@ images: []
 toc: true
 layout: "single"
 ---
-
-# Licence
-
 Chaste is released under an open source [BSD 3-Clause License](https://opensource.org/license/bsd-3-clause/).
 
-##Third party packages
+## Third party packages
 
 Chaste depends on many third-party packages to provide some of the core functionality. A full list of these, together with their licences, is given below.
-
 
 In most cases, source code for these packages is not distributed with Chaste
 (notable exceptions are triangle, Tetgen and CxxTest).  They must instead be
