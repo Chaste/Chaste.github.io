@@ -33,13 +33,6 @@ The 'Used by' column indicates where these libraries are used:
 </tr>
 
 <tr>
-  <td> Amara </td>
-  <td> <a href="http://pypi.python.org/pypi/Amara/1.2.0.2">PyPI information page</a></td>
-  <td> (Apache 1.1) <a href="licences/Amara.txt"> Amara.txt </a> </td>
-  <td> Source, Cardiac </td>
-</tr>
-
-<tr>
   <td> Boost </td>
   <td> <a href="http://www.boost.org/users/license.html">http://www.boost.org/users/license.html</a> </td>
   <td> <a href="licences/Boost.txt"> Boost.txt </a> </td>
