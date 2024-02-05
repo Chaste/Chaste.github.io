@@ -6,21 +6,26 @@ images: []
 toc: true
 layout: "single"
 ---
+
 Chaste is released under an open source [BSD 3-Clause License](https://opensource.org/license/bsd-3-clause/).
+
+This means that anyone is free to use Chaste for any purpose, to modify it, to redistribute a modified version, or to use it in closed-source and/or commercial projects. Please see [this guide](https://fossa.com/blog/open-source-software-licenses-101-bsd-3-clause-license/) for more information and comparison with other licenses.
 
 ## Third party packages
 
-Chaste depends on many third-party packages to provide some of the core functionality. A full list of these, together with their licences, is given below.
+Chaste depends on many third-party packages to provide some of the core functionality. 
+A full list of these, together with their licences, is given below.
 
 In most cases, source code for these packages is not distributed with Chaste
 (notable exceptions are triangle, Tetgen and CxxTest).  They must instead be
 installed separately.  
+
 The 'Used by' column indicates where these libraries are used:
 <dl>
-<dt>Tests:</dt><dd> only required for testing Chaste</dd>
+<dt>Distributed:</dt><dd> source code that is distributed with the Chaste source</dd>
 <dt>Source:</dt><dd> required for building Chaste from source</dd>
+<dt>Tests:</dt><dd> only required for testing Chaste</dd>
 <dt>Cardiac:</dt><dd> only really needed if you're building the cardiac-specific source</dd>
-<dt>Distributed:</dt><dd> source code is distributed with the Chaste source</dd>
 <dt>Optional:</dt><dd> may be used by Chaste if installed, but not essential</dd>
 </dl>
 
