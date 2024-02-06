@@ -13,7 +13,7 @@ on:
 
 # Allow one concurrent deployment
 concurrency:
-  group: "link-check"
+  group: link-check-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
