@@ -51,7 +51,4 @@ The actual simulation of a cell-based model is implemented by calling the method
 * Close output files.
 * Note that a helper class, `CellBasedEventHandler`, can be used to evaluate the time spent in each part of the cell-based code.
 
-
-Further details on how to visualize the results of cell-based simulations are available [here](https://github.com/Chaste/trac_archive/wiki/Chaste-Guides-_-Running-Cell-Based-Visualization).
-
-File format information is given in the file `docs/FileFormats.html`, supplied with the release. (The latest version of this file may also be viewed [here](https://chaste.cs.ox.ac.uk/cgi-bin/trac.cgi/browser/trunk/docs/FileFormats.html) - click on the 'download in original format' link at the bottom of the page).
+File format information is given in the file `docs/FileFormats.html`, supplied with the release. (The latest version of this file may also be viewed [here](https://raw.githubusercontent.com/Chaste/Chaste/develop/docs/FileFormats.html)).
