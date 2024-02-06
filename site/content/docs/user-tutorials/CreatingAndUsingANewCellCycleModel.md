@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestCreatingAndUsingANewCellCycleModelTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellCycleModelTutorial.hpp) at revision [96e6e662bf78](https://github.com/Chaste/Chaste/commit/96e6e662bf780f36e39eabcae9f3d4d843677a5b). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCreatingAndUsingANewCellCycleModelTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellCycleModelTutorial.hpp) at revision [e9d760bdf232](https://github.com/Chaste/Chaste/commit/e9d760bdf232107ee9c8c52c9fda40505fb7b666). Note that the code is given in full at the bottom of the page.
 ## An example showing how to create a new cell-cycle model and use it in a cell-based simulation
 
 ### Introduction
@@ -24,14 +24,14 @@ We begin by including the necessary header files.
 #include "AbstractCellBasedTestSuite.hpp"
 ```
 
-The next header includes the Boost shared_ptr smart pointer, and defines some useful
+The next header includes the Boost `shared_ptr` smart pointer, and defines some useful
 macros to save typing when using it.
 
 ```cpp
 #include "SmartPointers.hpp"
 ```
 
-The next header includes the NEVER_REACHED macro, used in one of the methods below.
+The next header includes the `NEVER_REACHED` macro, used in one of the methods below.
 
 ```cpp
 #include "Exception.hpp"
@@ -52,7 +52,7 @@ to this. Our new cell-cycle model will inherit from this abstract class.
 
 The remaining header files define classes that will be used in the cell-based
 simulation test. We have encountered each of these header files in previous cell-based Chaste
-tutorials, except for `CheckReadyToDivideAndPhaseIsUpdated`, which defines a helper
+tutorials, except for `CheckReadyToDivideAndPhaseIsUpdated()`, which defines a helper
 class for testing a cell-cycle model.
 
 ```cpp
@@ -126,7 +126,7 @@ cycle model, we should assert that this cell exists.
 ```
 
 We now set the G1 duration based on cell type. For stem and transit cells, we use the `RandomNumberGenerator`
-singleton class to generate a random number U drawn from U![0,1], and
+singleton class to generate a random number U drawn from U[0,1], and
 transform this into a random number T drawn from Exp(λ) using
 the transformation T = -log(U)/λ. For differentiated cells, which do not progress through the
 cell cycle, we set the G1 duration to `DBL_MAX`.
@@ -275,7 +275,7 @@ associated cells:
 ```
 
 To check the CCM has been set up correctly we get a pointer to the one stored on the first cell.
-We use a static_cast so we can access all the member variables in the concrete class MyCellCycleModel.
+We use a static_cast so we can access all the member variables in the concrete class `MyCellCycleModel`.
 
 Find the mean G1 duration and test that it is within some tolerance of
 the expected value:

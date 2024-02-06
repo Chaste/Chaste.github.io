@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestSolvingLinearPdesTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestSolvingLinearPdesTutorial.hpp) at revision [96e6e662bf78](https://github.com/Chaste/Chaste/commit/96e6e662bf780f36e39eabcae9f3d4d843677a5b). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestSolvingLinearPdesTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestSolvingLinearPdesTutorial.hpp) at revision [12a884ad33c0](https://github.com/Chaste/Chaste/commit/12a884ad33c0b988ec7818800f6ab4a9b34a729c). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to solve linear elliptic and parabolic PDEs
 
 In this tutorial we show how Chaste can be used to solve linear PDEs. The first test
@@ -107,7 +107,7 @@ class' methods as a member variable. The diffusion tensor which has to be return
 by the `GetDiffusionTensor` method in PDE classes is of the type
 `c_matrix<double,SIZE,SIZE>`, which is a uBLAS matrix. We use uBLAS vectors
 and matrices where small vectors and matrices are needed. Note that uBLAS objects
-are only particularly efficient if optimisation is on (`CMAKE_BUILD_TYPE=Release``).
+are only particularly efficient if optimisation is on (`CMAKE_BUILD_TYPE=Release`).
 
 ```cpp
     c_matrix<double,2,2> mDiffusionTensor;

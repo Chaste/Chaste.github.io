@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningDeltaNotchSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningDeltaNotchSimulationsTutorial.hpp) at revision [96e6e662bf78](https://github.com/Chaste/Chaste/commit/96e6e662bf780f36e39eabcae9f3d4d843677a5b). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningDeltaNotchSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningDeltaNotchSimulationsTutorial.hpp) at revision [9ccbb9cb6db8](https://github.com/Chaste/Chaste/commit/9ccbb9cb6db82df6a0b826c92e756309c24e1c93). Note that the code is given in full at the bottom of the page.
 ## An example showing how to run Delta/Notch simulations
 
 ### Introduction
@@ -13,7 +13,7 @@ This tutorial is automatically generated from [TestRunningDeltaNotchSimulationsT
 In this tutorial we show how Chaste can be used to simulate a growing cell monolayer culture
 into which a simple model of Delta/Notch signalling is incorporated. This model was developed
 by Collier et al. ("Pattern formation by lateral inhibition with feedback: a mathematical
-model of delta-notch intercellular signalling", J. Theor. Biol. 183:429-446) and comprises
+model of delta-notch intercellular signalling", [J. Theor. Biol. 183:429-446](https://doi.org/10.1006/jtbi.1996.0233)) and comprises
 two ODEs to describe the evolution in concentrations of Delta and Notch in each cell. The ODE
 for Notch includes a reaction term that depends on the mean Delta concentration among neighbouring
 cells. Thus in this simulation each cell needs to be able to access information about its
@@ -86,7 +86,7 @@ Delta/Notch signalling, using a vertex-based approach.
     {
 ```
 
-We include the next line because Vertex simulations cannot be run in parallel
+We include the next line because vertex simulations cannot be run in parallel
 
 ```cpp
         EXIT_IF_PARALLEL;
@@ -175,7 +175,7 @@ This modifier assigns target areas to each cell.
     }
 ```
 
-To visualize the results, use Paraview. See the UserTutorials/VisualizingWithParaview tutorial for more information.
+To visualize the results, use Paraview. See the [Visualizing With Paraview](/docs/user-tutorials/visualizingwithparaview) tutorial for more information.
 
 Load the file `/tmp/$USER/testoutput/TestVertexBasedMonolayerWithDeltaNotch/results_from_time_0/results.pvd`.
 
@@ -189,7 +189,7 @@ In the next test we run a similar simulation as before, but this time with node-
     {
 ```
 
-We include the next line because HoneycombMeshGenerator, used in this test, is not
+We include the next line because `HoneycombMeshGenerator`, used in this test, is not
 yet implemented in parallel.
 
 ```cpp
@@ -265,19 +265,16 @@ As we are using a node-based cell population, we use an appropriate force law.
 
         simulator.Solve();
     }
+};
 ```
 
-To visualize the results, use Paraview. See the UserTutorials/VisualizingWithParaview tutorial for more information.
+To visualize the results, use Paraview. See the [Visualizing With Paraview](/docs/user-tutorials/visualizingwithparaview) tutorial for more information.
 
 Load the file `/tmp/$USER/testoutput/TestNodeBasedMonolayerWithDeltaNotch/results_from_time_0/results.pvd`,
 and add a spherical glyph.
 
 Note that, for larger simulations, you may need to unclick "Mask Points" (or similar) so as not to limit the number of glyphs
 displayed by Paraview.
-
-```cpp
-};
-```
 
 ## Full code
 

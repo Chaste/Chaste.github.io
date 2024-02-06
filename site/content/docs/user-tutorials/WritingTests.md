@@ -5,14 +5,18 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestWritingTestsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/global/test/TestWritingTestsTutorial.hpp) at revision [ea156f65b506](https://github.com/Chaste/Chaste/commit/ea156f65b5060d2d711624f573a9ee17d1a6231a). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestWritingTestsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/global/test/TestWritingTestsTutorial.hpp) at revision [b83418055112](https://github.com/Chaste/Chaste/commit/b834180551121b13b1f7c722549dafb9b5e9bb1c). Note that the code is given in full at the bottom of the page.
 ## Writing tests
-We do not use `int main()` methods in Chaste. Instead, we write ''tests'', which are run using !CxxTest.
+We do not use `int main()` methods in Chaste. Instead, we write *tests*, which are run using CxxTest.
 Tests are used both as:
-(i) part of the testing environment - every class in the source code has an equivalent test file which tests each aspect of its functionality, making use of the `TS_ASSERT`s as described below; and
-(ii) for experimental work, which involve writing a 'test' as below but generally without `TS_ASSERT`s.
 
-This tutorial shows how to write a test using !CxxTest. Note that the full code is given at the bottom of the page.
+ * (i) part of the testing environment - every class in the source code has an equivalent test file
+ which tests each aspect of its functionality, making use of the `TS_ASSERT`s as described below; and
+ * (ii) for experimental/simulation work, which involve writing a 'test' as below but generally without `TS_ASSERT`s,
+ just to hijack the testing framework as a convenient way to run things without linking to Chaste as an external library
+ (which is also possible but a little bit more fuss to set up)
+ 
+This tutorial shows how to write a test using CxxTest. Note that the full code is given at the bottom of the page.
 
 First, the following header file needs to be included.
 

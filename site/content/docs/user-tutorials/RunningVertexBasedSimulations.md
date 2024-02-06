@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningVertexBasedSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningVertexBasedSimulationsTutorial.hpp) at revision [96e6e662bf78](https://github.com/Chaste/Chaste/commit/96e6e662bf780f36e39eabcae9f3d4d843677a5b). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningVertexBasedSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningVertexBasedSimulationsTutorial.hpp) at revision [9ccbb9cb6db8](https://github.com/Chaste/Chaste/commit/9ccbb9cb6db82df6a0b826c92e756309c24e1c93). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to create, run and visualize vertex-based simulations
 
 ### Introduction
@@ -329,6 +329,7 @@ The next two lines are for test purposes only and are not part of this tutorial.
         TS_ASSERT_EQUALS(cell_population.GetNumRealCells(), 12u);
         TS_ASSERT_DELTA(SimulationTime::Instance()->GetTime(), 1.0, 1e-10);
     }
+};
 ```
 
 To visualize the results, open a new terminal, `cd` to the Chaste directory,
@@ -336,10 +337,6 @@ then `cd` to `anim`. Then do: `java Visualize2dVertexCells /tmp/$USER/testoutput
 
 You should see that the edges of the mesh are identical on both sides; cells no
 longer pass through the line y=0; and cells are removed at y=3.
-
-```cpp
-};
-```
 
 ## Full code
 

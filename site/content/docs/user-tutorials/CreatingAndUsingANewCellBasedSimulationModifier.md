@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestCreatingAndUsingANewCellBasedSimulationModifierTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellBasedSimulationModifierTutorial.hpp) at revision [96e6e662bf78](https://github.com/Chaste/Chaste/commit/96e6e662bf780f36e39eabcae9f3d4d843677a5b). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCreatingAndUsingANewCellBasedSimulationModifierTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellBasedSimulationModifierTutorial.hpp) at revision [9ccbb9cb6db8](https://github.com/Chaste/Chaste/commit/9ccbb9cb6db82df6a0b826c92e756309c24e1c93). Note that the code is given in full at the bottom of the page.
 ## An example showing how to create a new cell-based simulation modifier and use it in a simulation
 
 ### Introduction
@@ -55,7 +55,7 @@ Chaste tutorials.
 
 As an example, let us consider a simulation modifier that, at each simulation
 time step, calculates each cell's height (y coordinate) in a two-dimensional
-domain and stores it in in the CellData property as "height". This might be
+domain and stores it in in the `CellData` property as "height". This might be
 used, for example in cell-based simulations where cell behaviour is dictated
 through some form of positional information along a tissue axis.
 

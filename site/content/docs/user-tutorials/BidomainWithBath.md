@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestBidomainWithBathTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestBidomainWithBathTutorial.hpp) at revision [96e6e662bf78](https://github.com/Chaste/Chaste/commit/96e6e662bf780f36e39eabcae9f3d4d843677a5b). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestBidomainWithBathTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestBidomainWithBathTutorial.hpp) at revision [9ccbb9cb6db8](https://github.com/Chaste/Chaste/commit/9ccbb9cb6db82df6a0b826c92e756309c24e1c93). Note that the code is given in full at the bottom of the page.
 ## An example showing how to run a bidomain simulation for tissue contained in a perfusing bath
 
 In this tutorial we show how the changes the need to be made when running a simulation of
@@ -115,8 +115,8 @@ In bath problems, each element has an attribute which must be set
 to 0 (cardiac tissue) or 1 (bath). This can be done by having an
 extra column in the element file (see the file formats documentation,
 or for example
-mesh/test/data/1D_0_to_1_10_elements_with_two_attributes.ele,
-and note that the header in this file has 1 at the end to indicate that
+`mesh/test/data/1D_0_to_1_10_elements_with_two_attributes.ele`,
+and note that the header in this file has `1` at the end to indicate that
 the file defines an attribute for each element). We have read in a mesh
 without this type of information set up, so we set it up manually,
 by looping over elements and setting those more than 2mm from the centre
@@ -151,7 +151,7 @@ as bath elements (by default, the others are cardiac elements).
 ```
 
 Since we have modified the mesh by setting element attributes, we need to inform Chaste of this fact.
-If we do not, problems will arise when [wiki:UserTutorials/CardiacCheckpointingAndRestarting checkpointing],
+If we do not, problems will arise when [checkpointing](/docs/user-tutorials/cardiaccheckpointingandrestarting/),
 since the code that saves the simulation state will assume that it can just reuse the original mesh files,
 and thus won't save the new element attributes.
 
@@ -194,9 +194,9 @@ the opposite electrode can either be grounded or apply an equal and opposite
 flux (ie an output flux). The `false` here indicates the second electrode
 is not grounded, ie has an equal and opposite flux. The "0" indicates
 that the electrodes should be applied to the bounding surfaces in the x-direction
-(1 would be y-direction, 2 z-direction), which are X=0.0 and X=0.1 in the given mesh.
+(1 would be $y$-direction, 2 the $z$-direction), which are $X=0.0$ and $X=0.1$ in the given mesh.
 (This explains why the full mesh ought to be rectangular/cuboid - the nodes on
-x=xmin and x=xmax ought to be form two surfaces of equal area.
+$x=xmin$ and $x=xmax$ ought to be form two surfaces of equal area.
 
 ```cpp
         HeartConfig::Instance()->SetElectrodeParameters(false, 0, magnitude, start_time, duration);
@@ -225,7 +225,7 @@ problem..
 
 The results can be visualised as before. **Note:** The voltage is only
 defined at cardiac nodes (a node contained in ''any'' cardiac element), but
-for visualisation and computation a 'fake' value of ZERO is given for the
+for visualisation and computation a 'fake' value of `ZERO` is given for the
 voltage at bath nodes.
 
 Finally, we can check that an AP was induced in any of the cardiac

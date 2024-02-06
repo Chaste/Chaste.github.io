@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningContactInhibitionSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningContactInhibitionSimulationsTutorial.hpp) at revision [96e6e662bf78](https://github.com/Chaste/Chaste/commit/96e6e662bf780f36e39eabcae9f3d4d843677a5b). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningContactInhibitionSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningContactInhibitionSimulationsTutorial.hpp) at revision [9ccbb9cb6db8](https://github.com/Chaste/Chaste/commit/9ccbb9cb6db82df6a0b826c92e756309c24e1c93). Note that the code is given in full at the bottom of the page.
 ## An example showing how to use a contact inhibition cell cycle model and volume tracking simulation modifier
 
 ### Introduction
@@ -463,6 +463,7 @@ To run the simulation, we call `Solve()`.
 ```cpp
         simulator.Solve();
     }
+};
 ```
 
 To visualize the results, open a new terminal, `cd` to the Chaste directory,
@@ -472,10 +473,6 @@ java executable.
 
 You will notice that once the healthy cells (yellow) are below a certain size they no longer proliferate and turn dark blue in the visualisation.
 If you run the simulation for a long time these cells occur primarily towards the centre of the monolayer.
-
-```cpp
-};
-```
 
 ## Full code
 

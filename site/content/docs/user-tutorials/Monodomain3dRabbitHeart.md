@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestMonodomain3dRabbitHeartTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestMonodomain3dRabbitHeartTutorial.hpp) at revision [8081f57380d8](https://github.com/Chaste/Chaste/commit/8081f57380d857b24947a7a4a70e55ddfef322da). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestMonodomain3dRabbitHeartTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestMonodomain3dRabbitHeartTutorial.hpp) at revision [8011c551be09](https://github.com/Chaste/Chaste/commit/8011c551be097258a784dc2d17a1bd9435cc4cf9). Note that the code is given in full at the bottom of the page.
 ## 3D monodomain rabbit heart example
 
 This tutorial runs a simulation on a whole rabbit heart mesh. Note that this
@@ -122,7 +122,7 @@ in this case, but not sufficient for converged numerical behaviour.
 
 Here we create an instance of our cell factory, which will tell the `MonodomainProblem`
 class which action potential models to use at which nodes. The rest of the problem is set up
-identically to [wiki:UserTutorials/Monodomain3dExample Monodomain3dExample].
+identically to the tutorial [Monodomain 3D Example](docs/user-tutorials/monodomain3dexample).
 
 ```cpp
         RabbitHeartCellFactory cell_factory;

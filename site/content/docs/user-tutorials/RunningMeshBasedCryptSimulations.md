@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningMeshBasedCryptSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/tutorial/TestRunningMeshBasedCryptSimulationsTutorial.hpp) at revision [96e6e662bf78](https://github.com/Chaste/Chaste/commit/96e6e662bf780f36e39eabcae9f3d4d843677a5b). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningMeshBasedCryptSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/tutorial/TestRunningMeshBasedCryptSimulationsTutorial.hpp) at revision [9ccbb9cb6db8](https://github.com/Chaste/Chaste/commit/9ccbb9cb6db82df6a0b826c92e756309c24e1c93). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to run crypt simulations on periodic meshes with different cell-cycle models
 
 ### Introduction
@@ -52,9 +52,8 @@ at the left- and right-hand sides of the mesh (hence the "cylindrical").
 #include "CylindricalHoneycombMeshGenerator.hpp"
 ```
 
-The next two header files were encountered in UserTutorials/RunningMeshBasedSimulations.
-The first header
-defines a `CellPopulation` class that uses a triangular mesh, and allows
+The next two header files were encountered in the tutorial [Running Mesh Based Simulations](/docs/user-tutorials/runningmeshbasedsimulations).
+The first header defines a `CellPopulation` class that uses a triangular mesh, and allows
 for the inclusion of 'ghost nodes': these are nodes in the mesh that do not correspond
 to cells, but help ensure that a sensible Delaunay triangulation is generated
 at each timestep; this is because the triangulation algorithm requires a convex hull.

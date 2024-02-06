@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningPottsBasedSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningPottsBasedSimulationsTutorial.hpp) at revision [96e6e662bf78](https://github.com/Chaste/Chaste/commit/96e6e662bf780f36e39eabcae9f3d4d843677a5b). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningPottsBasedSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningPottsBasedSimulationsTutorial.hpp) at revision [9ccbb9cb6db8](https://github.com/Chaste/Chaste/commit/9ccbb9cb6db82df6a0b826c92e756309c24e1c93). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to create, run and visualize Potts-based simulations
 
 ### Introduction
@@ -221,7 +221,7 @@ java executable.
 
 We could also visualize the results using paraview.
 
-See UserTutorials/VisualizingWithParaview for more information.
+See the [Visualizing With Paraview](/docs/user-tutorials/visualizingwithparaview) tutorial for more information.
 
 Load the file `/tmp/$USER/testoutput/PottsBasedMonolayer/results_from_time_0/results.pvd`, and click apply.
 
@@ -474,10 +474,11 @@ The next two lines are for test purposes only and are not part of this tutorial.
         TS_ASSERT_EQUALS(cell_population.GetNumRealCells(), 64u);
         TS_ASSERT_DELTA(SimulationTime::Instance()->GetTime(), 20.0, 1e-10);
     }
+};
 ```
 
 To visualize the results, we need to use Paraview. Note that we don't output the cell boundaries (outlines) in 3D.
-See UserTutorials/VisualizingWithParaview for more information.
+See the [Visualizing With Paraview](/docs/user-tutorials/visualizingwithparaview) tutorial for more information.
 
 Load the file `/tmp/$USER/testoutput/PottsCellSorting3D/results_from_time_0/results.pvd`, and click apply.
 
@@ -493,10 +494,6 @@ Add a "Threshold" filter, filter by cell type and make the lower threshold 0 or 
 Click play to see the evolution of the simulation.
 
 You should see that the cells sort into ones of the same type.
-
-```cpp
-};
-```
 
 ## Full code
 
