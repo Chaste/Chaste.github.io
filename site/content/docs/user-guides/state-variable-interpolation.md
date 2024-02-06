@@ -1,3 +1,12 @@
+---
+title: "State-variable Interpolation"
+description: "State-variable Interpolation"
+draft: false
+images: []
+toc: true
+layout: "single"
+---
+
 State-variable interpolation is an alternative way of computing the ionic current in tissue simulations, which can improve accuracy, in particular in the conduction velocity, without too great a loss in efficiency.
 
  == What is State Variable Interpolation (SVI)? ==

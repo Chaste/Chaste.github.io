@@ -1,4 +1,11 @@
-# Developer Install Guide
+---
+title: "Developer Install Guide"
+description: "Developer Install Guide"
+draft: false
+images: []
+toc: true
+layout: "single"
+---
 
 The easiest ways to install Chaste are
 

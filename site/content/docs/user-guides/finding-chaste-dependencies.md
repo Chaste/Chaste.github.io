@@ -1,4 +1,11 @@
-# Finding Chaste Dependencies
+---
+title: "Finding Chaste Dependencies"
+description: "Finding Chaste Dependencies"
+draft: false
+images: []
+toc: true
+layout: "single"
+---
 
 Running the Chaste configure step
 

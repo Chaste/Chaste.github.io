@@ -1,6 +1,11 @@
-# Setting up dependency versions with environment modules
-
-
+---
+title: "Setting Up Dependency Versions With Environment Modules"
+description: "Setting Up Dependency Versions With Environment Modules"
+draft: false
+images: []
+toc: true
+layout: "single"
+---
 
 The Chaste [dependency-modules](https://github.com/Chaste/dependency-modules) repository contains a collection of scripts that can be used for installing multiple versions of Chaste dependencies side-by-side as [Environment Modules](https://modules.readthedocs.io/en/latest/).
 

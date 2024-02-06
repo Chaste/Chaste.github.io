@@ -1,4 +1,11 @@
-# Notes on fixing memory leaks
+---
+title: "Notes on Fixing Memory Leaks"
+description: "Notes on Fixing Memory Leaks"
+draft: false
+images: []
+toc: true
+layout: "single"
+---
 
 I thought I'd make a page listing some of the common sources of memory leaks and how to fix them - this is a work in progress.
 

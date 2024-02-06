@@ -1,4 +1,11 @@
-# Best practices for Chaste developers
+---
+title: "Best Practices for Chaste Developers"
+description: "Best Practices for Chaste Developers"
+draft: false
+images: []
+toc: true
+layout: "single"
+---
 
 This page enumerates some best practices that have developed over the lifetime of Chaste, and help to make all developers' lives happier.  They are similar to ChasteStrategies, but less formal.
 

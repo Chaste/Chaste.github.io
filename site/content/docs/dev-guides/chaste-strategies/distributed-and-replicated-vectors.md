@@ -1,3 +1,12 @@
+---
+title: "Distributed and Replicated Vectors"
+description: "Distributed and Replicated Vectors"
+draft: false
+images: []
+toc: true
+layout: "single"
+---
+
 ## Index naming conventions for parallel data structures
 
 If a local data structure is a part of larger global data structure there will be a mapping between the local and global indices. Its important to distibguish between the two, especially as in some loops (e.g. when replicating data), both indicies will need to be used.

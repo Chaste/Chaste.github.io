@@ -1,3 +1,12 @@
+---
+title: "Element Local Index Numbering Convention"
+description: "Element Local Index Numbering Convention"
+draft: false
+images: []
+toc: true
+layout: "single"
+---
+
 ## Linear elements
 
 See attached image of the local numbering of 1D 2D and 3D simplices (tetrahedral elements).

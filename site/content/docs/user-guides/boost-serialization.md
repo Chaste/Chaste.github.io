@@ -1,4 +1,11 @@
-# Implementing checkpointing for classes with Boost Serialization
+---
+title: "Implementing Checkpointing for Classes with Boost Serialization"
+description:  "Implementing Checkpointing for Classes with Boost Serialization"
+draft: false
+images: []
+toc: true
+layout: "single"
+---
 
 In order to checkpoint and save/resume simulations, we use the [Serialization](http://www.boost.org/libs/serialization/doc/index.html) library from [Boost](http://www.boost.org/).  This page contains some notes on how to use this functionality well in Chaste.  Full documentation can be found at http://www.boost.org/libs/serialization/doc/index.html
 

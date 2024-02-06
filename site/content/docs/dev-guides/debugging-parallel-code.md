@@ -1,4 +1,11 @@
-# Useful notes for debugging parallel code
+---
+title: "Useful Notes for Debugging Parallel Code"
+description: "Useful Notes for Debugging Parallel Code"
+draft: false
+images: []
+toc: true
+layout: "single"
+---
 
 ## GDB in parallel
 

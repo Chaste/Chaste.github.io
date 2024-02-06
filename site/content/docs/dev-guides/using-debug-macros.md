@@ -1,4 +1,11 @@
-# Using Debug Macros
+---
+title: "Using Debug Macros"
+description:  "Using Debug Macros"
+draft: false
+images: []
+toc: true
+layout: "single"
+---
 
 If you are having trouble and want to debug without writing
 

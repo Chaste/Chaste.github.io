@@ -1,4 +1,11 @@
-# Time stepping algorithms
+---
+title: "Time Stepping Algorithms"
+description:  "Time Stepping Algorithms"
+draft: false
+images: []
+toc: true
+layout: "single"
+---
 
 Many places in Chaste need to take discrete steps through time: the ODE and PDE solvers are prime examples!  We want to refactor common logic into a single location (TimeStepper class), and experiment with different ways to implement time stepping logic.  See also #313 #152.
 
