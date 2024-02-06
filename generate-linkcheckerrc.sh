@@ -21,4 +21,4 @@ echo "[filtering]" >> linkcheckerrc
 echo "ignore=" >> linkcheckerrc
 echo "  doxygen-releases" >>linkcheckerrc
 echo "  publications" >>linkcheckerrc
-echo "checkextern=0" >> linkcheckerrc
+echo "checkextern=1" >> linkcheckerrc
