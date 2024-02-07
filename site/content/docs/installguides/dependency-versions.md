@@ -17,7 +17,7 @@ dependency.
 This page reflects the status of the current trunk code. 
 If you are looking for information about supported dependency versions for 
 a [previous release](https://github.com/Chaste/Chaste/releases) of Chaste, see 
-instead the copy of this page associated with that release.
+instead the copy of this page bundled with that release.
 {{< /callout >}}
 
 The [main install guide](InstallGuides/InstallGuide) should generally be 
