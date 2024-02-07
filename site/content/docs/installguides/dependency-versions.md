@@ -9,12 +9,12 @@ layout: "single"
 
 Chaste has a number of dependencies. If you are using the 
 [Ubuntu package](../ubuntu-package) then the best versions are selected and 
-installed automatically for you.
-
-If you are doing a manual linux installation, then this page shows you the 
-supported and preferred versions of each dependency. Note that it reflects the 
-status of the current trunk code, rather than previous releases of Chaste; see 
-instead the copy of this page associated with a release for that information.
+installed automatically for you. If you are doing a manual Linux installation, 
+then this page shows you the supported and preferred versions of each 
+dependency. Note that this page reflects the status of the current trunk code. 
+If you are looking for information about supported dependency versions for 
+a [previous release](https://github.com/Chaste/Chaste/releases) of Chaste, see 
+instead the copy of this page associated with that release.
 
 The [main install guide](InstallGuides/InstallGuide) should generally be 
 updated to reflect installation instructions for one of the preferred versions.
@@ -32,15 +32,17 @@ updated to reflect installation instructions for one of the preferred versions.
 
 ## Build Systems
 
-The supported build system is now CMake - preferred versions are those that are 
+The supported build system is now CMake. Preferred versions are those that are 
 default on Ubuntu LTS releases, but we expect every version of CMake above the 
 minimum required to work fine.
 
-Scons was the legacy build system and is no longer supported.
-
-| CMake |
-|----|----|----|----|----|----|----|----|----|----|----|----|----|----|
+| CMake    |
+|----------|----------|-------|-------|-------|--------|-------|-------|-------|-------|-------|-------|-------|--------|
 |🟥 <3.16.3|🟩 3.16.3+|🟨 3.17|🟨 3.18|🟨 3.19|🟨 3.20|🟨 3.21|🟢 3.22|🟨 3.23|🟨 3.24|🟨 3.25|🟨 3.26|🟨 3.27|🟨 3.28|
+
+{{< callout context="note" title="Note" icon="info-circle" >}}
+Scons was the legacy build system and is no longer supported.
+{{< /callout >}}
 
 ## Compilers
 
@@ -68,7 +70,9 @@ Clang and Intel to compile Chaste with no problems.
 
 ## Libraries
 
+{{< callout context="note" title="Note" icon="info-circle" >}}
 In some instances the version number is linked to the GitHub issue in which support was/is being introduced.
+{{< /callout >}}
 
 |Boost   |HDF5       |ParMETIS|PETSc   |SUNDIALS|VTK    |Xerces  |XSD   |
 |:-------|:----------|:-------|:-------|:-------|:------|:-------|:-----|
