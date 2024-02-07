@@ -11,10 +11,14 @@ Chaste has a number of dependencies. If you are using the
 [Ubuntu package](../ubuntu-package) then the best versions are selected and 
 installed automatically for you. If you are doing a manual Linux installation, 
 then this page shows you the supported and preferred versions of each 
-dependency. Note that this page reflects the status of the current trunk code. 
+dependency.
+
+{{< callout context="note" title="Note" icon="info-circle" >}}
+This page reflects the status of the current trunk code. 
 If you are looking for information about supported dependency versions for 
 a [previous release](https://github.com/Chaste/Chaste/releases) of Chaste, see 
 instead the copy of this page associated with that release.
+{{< /callout >}}
 
 The [main install guide](InstallGuides/InstallGuide) should generally be 
 updated to reflect installation instructions for one of the preferred versions.
@@ -70,32 +74,44 @@ Clang and Intel to compile Chaste with no problems.
 
 ## Libraries
 
+Preferred library versions are the default versions on Ubuntu LTS releases, and specific versions that we regularly test Chaste with.
+
 {{< callout context="note" title="Note" icon="info-circle" >}}
 In some instances the version number is linked to the GitHub issue in which support was/is being introduced.
 {{< /callout >}}
 
-|Boost   |HDF5       |ParMETIS|PETSc   |SUNDIALS|VTK    |Xerces  |XSD   |
-|:-------|:----------|:-------|:-------|:-------|:------|:-------|:-----|
-|🟥 <1.62|🟥 1.8.x   |🟥 3.x |🟥 <3.5 |🟥 2.x  |🟥 <6.2|🟥 3.1  |🟥 3.x|
-|🟪 1.62 |🟪 <1.10.4 |🟢 4.0 |🟪 <3.11|🟪 3.0  |🟪 6.2 |🟩 3.2.1|🟢 4.0|
-|🟪 1.63 |🟢 1.10.4  |       |🟢 3.12 |🟢 3.1  |🟩 6.3 |🟢 3.2.2| |
-|🟪 1.64 |🟩 1.10.5  |       |🟩 3.13 |🟩 3.2  |🟨 7.0 |🟢 3.2.3| |
-|🟥 1.65 |🟩 1.10.6  |       |🟩 3.14 |🟨 4.0  |🟢 7.1 |🟩 3.2.4| |
-|🟪 1.66 |🟢 1.10.7  |       |🟢 3.15 |🟩 4.1  |🟨 8.0 |        | |
-|🟢 1.67 |🟩 1.10.8  |       |🟦 3.16 |🟨 5.0  |🟨 8.1 |        | |
-|🟨 1.68 |🟦 1.10.9  |       |🟦 3.17 |🟨 5.1  |🟩 8.2 |        | |
-|🟩 1.69 |🟦 1.10.10 |       |🟦 3.18 |🟨 5.2  |🟩 9.0 |        | |
-|🟨 1.70 |🟦 1.10.11 |       |🟦 3.19 |🟨 5.3  |🟢 9.1 |        | |
-|🟩 1.71 |🟨 1.12.0  |       |        |🟨 5.4  |🟩 9.2 |        | |
-|🟨 1.72 |🟨 1.12.1  |       |        |🟨 5.5  |🟦 9.3 |        | |
-|🟩 1.73 |🟩 1.12.2  |       |        |🟨 5.6  |       |        | |
-|🟢 1.74 |🟦 1.12.3  |       |        |🟨 5.7  |       |        | |
-|🟨 1.75 |🟦 1.14.0  |       |        |🟢 5.8  |       |        | |
-|🟨 1.76 |🟦 1.14.1  |       |        |🟩 6.0  |       |        | |
-|🟨 1.77 |🟦 1.14.2  |       |        |🟦 6.1  |       |        | |
-|🟨 1.78 |🟦 1.14.3  |       |        |🟦 6.2  |       |        | |
-|🟦 1.79 |           |       |        |🟦 6.3  |       |        | |
-|🟦 1.80 |           |       |        |🟦 6.4  |       |        | |
-|🟦 1.81 |           |       |        |🟦 6.5  |       |        | |
-|🟦 1.82 |           |       |        |🟦 6.6  |       |        | |
-|🟦 1.83 |           |       |        |        |       |        | |
+|Boost        |HDF5       |ParMETIS|PETSc   |SUNDIALS|VTK    |Xerces  |XSD   |
+|:------------|:----------|:-------|:-------|:-------|:------|:-------|:-----|
+|🟥 <1.62     |🟥 1.8.x   |🟥 3.x |🟥 <3.5 |🟥 2.x  |🟥 <6.2|🟥 3.1  |🟥 3.x|
+|🟪 1.62      |🟪 <1.10.4 |🟢 4.0 |🟪 <3.11|🟪 3.0  |🟪 6.2 |🟩 3.2.1|🟢 4.0|
+|🟪 1.63      |🟢 1.10.4  |       |🟢 3.12 |🟢 3.1  |🟩 6.3 |🟢 3.2.2| |
+|🟪 1.64 [^1] |🟩 1.10.5  |       |🟩 3.13 |🟩 3.2  |🟨 7.0 |🟢 3.2.3| |
+|🟥 1.65      |🟩 1.10.6  |       |🟩 3.14 |🟨 4.0  |🟢 7.1 |🟩 3.2.4| |
+|🟪 1.66      |🟢 1.10.7  |       |🟢 3.15 |🟩 4.1  |🟨 8.0 |        | |
+|🟢 1.67      |🟩 1.10.8  |       |🟦 3.16 |🟨 5.0  |🟨 8.1 |        | |
+|🟨 1.68      |🟦 1.10.9  |       |🟦 3.17 |🟨 5.1  |🟩 8.2 |        | |
+|🟩 1.69      |🟦 1.10.10 |       |🟦 3.18 |🟨 5.2  |🟩 9.0 |        | |
+|🟨 1.70      |🟦 1.10.11 |       |🟦 3.19 |🟨 5.3  |🟢 9.1 |        | |
+|🟩 1.71      |🟨 1.12.0  |       |        |🟨 5.4  |🟩 9.2 |        | |
+|🟨 1.72      |🟨 1.12.1  |       |        |🟨 5.5  |🟦 9.3 |        | |
+|🟩 1.73      |🟩 1.12.2  |       |        |🟨 5.6  |       |        | |
+|🟢 1.74      |🟦 1.12.3  |       |        |🟨 5.7  |       |        | |
+|🟨 1.75      |🟦 1.14.0  |       |        |🟢 5.8  |       |        | |
+|🟨 1.76      |🟦 1.14.1  |       |        |🟩 6.0  |       |        | |
+|🟨 1.77      |🟦 1.14.2  |       |        |🟦 6.1  |       |        | |
+|🟨 1.78      |🟦 1.14.3  |       |        |🟦 6.2  |       |        | |
+|🟦 1.79      |           |       |        |🟦 6.3  |       |        | |
+|🟦 1.80      |           |       |        |🟦 6.4  |       |        | |
+|🟦 1.81      |           |       |        |🟦 6.5  |       |        | |
+|🟦 1.82      |           |       |        |🟦 6.6  |       |        | |
+|🟦 1.83      |           |       |        |        |       |        | |
+
+{{< callout context="caution" title="Caution" icon="alert-triangle" >}}
+Some versions of dependencies have quirks that may not be documented on this 
+page, but you may find hints in the documentation for the dependency.
+{{< /callout >}}
+
+[^1]: Boost 1.64 has a bug in serialization that means it needs patching before 
+use in Chaste, otherwise it breaks compilation, so it is not recommended if you 
+can avoid it.
+
