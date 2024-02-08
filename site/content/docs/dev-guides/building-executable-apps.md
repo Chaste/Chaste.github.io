@@ -7,8 +7,11 @@ toc: true
 layout: "single"
 ---
 
-By _Executable Application_ or _app_, we mean any `.cpp` file with its own
-`main` function, making use of Chaste functionality.
+This page is a guide on making standalone executable applications that don’t use
+the CxxTest framework. By _executable application_ or _app_, we mean any `.cpp`
+file with its own `main` function, making use of Chaste functionality.
+
+## App locations
 
 The [Chaste build system](../cmake-build-guide) assumes that the following
 locations may contain apps:
@@ -16,6 +19,8 @@ locations may contain apps:
 - `Chaste/apps/src` (contains the Cardiac executable)
 - `Chaste/projects/<project_name>/apps/src` (see
   [User Projects](../../user-guides/user-projects) if you are unfamiliar with user projects)
+
+## Building the app
 
 To build an app, first configure Chaste as normal:
 

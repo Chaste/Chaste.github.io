@@ -18,6 +18,7 @@ New developers should read the [User Guides](../user-guides/), and also see:
 - [Building Executable Apps](building-executable-apps):
   Making standalone executables that don't use the CxxTest framework.
 - [CMake Build Guide](cmake-build-guide): A detailed guide of all the CMake options.
+- [Code Repository Access](access-code-repository): Access to the Chaste repository for non-core developers.
 - [Debugging Parallel Code](debugging-parallel-code): Useful notes for debugging parallel code.
 - [Developer Install Guide](developer-install-guide): A guide to installing Chaste dependencies manually.
 - [Distributing Cell-Based Executables](distributing-cell-based-executables): A
@@ -26,7 +27,6 @@ New developers should read the [User Guides](../user-guides/), and also see:
 - [External Developer Guide](external-developer-guide): Helpful resources for
   external users of development versions of Chaste.
 - [Fixing Memory Testing](fixing-memory-testing): Notes on fixing memory leaks.
-- [Repository Access](access-code-repository): Access to the Chaste repository for non-core developers.
 - [Time Stepping Algorithms](time-stepping): Notes on time stepping algorithms.
 - [Using Debug Macros](using-debug-macros): A guide on using the debug macros in Chaste.
 
