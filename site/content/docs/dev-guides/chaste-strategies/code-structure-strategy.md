@@ -9,13 +9,13 @@ layout: "single"
 
 ## Introduction
 
-Coding standards are crucial to enable humans to understand the code. Both code 
+Coding standards are crucial to enable humans understand the code. Both code 
 they wrote, and code written by other developers. This page documents 
 code standards we adhere to in Chaste. If you are writing Chaste code, 
 please follow them!
 
 {{< callout context="tip" title="See Also" icon="rocket" >}}
-* [C++ naming conventions](../cpp-naming-strategy)
+* [C++ Naming Strategy](../cpp-naming-strategy)
 * [Distributed and Replicated Vectors](../distributed-and-replicated-vectors)
 * [How Not to Write FORTRAN in Any Language](http://queue.acm.org/detail.cfm?id=1039535)
 {{< /callout >}}
@@ -115,7 +115,7 @@ public:
 }
 ```
 
-then in the .cpp file, we define the methods for all spatial dimensions expected:
+then in the `.cpp` file, we define the methods for all spatial dimensions expected:
 
 ```c++
 #include "MyClass.hpp"
@@ -212,7 +212,7 @@ Such files should include the doxygen block
 ## Excluding lines from coverage testing
 
 {{< callout context="caution" title="Caution" icon="alert-triangle" >}}
-Generally to be avoided . If at all possible, write a test to cover each 
+Generally to be avoided. If at all possible, write a test to cover each 
 line of code!
 {{< /callout >}}
 

@@ -1,6 +1,6 @@
 ---
 title: "Using Debug Macros"
-description:  "Using Debug Macros"
+description: "Using Debug Macros"
 draft: false
 images: []
 toc: true
@@ -18,6 +18,7 @@ std::cout << "blah" << std::endl << std::flush;
 (etc) there is a handy helper macro list in source:trunk/global/src/Debug.hpp .
 
 ## Trace
+
 For the above example
 
 ```
@@ -34,9 +35,7 @@ DEBUG: Some trace
 
 ```
 
-
 ## Printing variables
-
 
 ```
 
@@ -48,9 +47,7 @@ PRINT_VECTOR(vector); // std::vector of anything
 
 ```
 
-
 will result in the following output
-
 
 ```
 
@@ -62,9 +59,7 @@ DEBUG: vector = {0,1,2.7,3.1}
 
 ```
 
-
 ## Determining if lines are reached
-
 
 ```
 

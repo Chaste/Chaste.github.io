@@ -7,19 +7,38 @@ toc: true
 layout: "single"
 ---
 
-Before reading this have a look at [Getting Started](../) to decide whether you are a *user* of releases or a *developer* contributing back to Chaste core code.
+{{< callout context="note" title="Note" icon="info-circle" >}}
+Before reading this have a look at [Getting Started](../) to decide whether you
+are a _user_ of releases or a _developer_ contributing back to Chaste core code.
+{{< /callout >}}
 
-New developers (including users based in Compbio/CMB) should read the [User Guides](../user-guides/), and also see
+New developers should read the [User Guides](../user-guides/), and also see:
 
-* [External developer guide](external-developer-guide) -- Helpful resources for external users of development versions of Chaste including how to use the git Chaste repository, in particular see [the issue workflow section](external-developer-guide#issue-workflow).
-* [Cmake build guide](cmake-build-guide) -- for a detailed guide of all the cmake options.
-* [Building executable apps](building-executable-apps) -- making standalone executables that don't use the CxxTest framework.
-* [Chaste strategies](chaste-strategies/) -- see in particular the coding standards guide
+- [Best Practice Guide](best-practice-guide): Best practices for Chaste developers.
+- [Building Executable Apps](building-executable-apps):
+  Making standalone executables that don't use the CxxTest framework.
+- [CMake Build Guide](cmake-build-guide): A detailed guide of all the CMake options.
+- [Debugging Parallel Code](debugging-parallel-code): Useful notes for debugging parallel code.
+- [Developer Install Guide](developer-install-guide): A guide to installing Chaste dependencies manually.
+- [Distributing Cell-Based Executables](distributing-cell-based-executables): A
+  guide on creating a stand-alone cell-based executable.
+- [Element Local Index Numbering Convention](element-local-index-numbering-convention): Numbering convention for simplex elements.
+- [External Developer Guide](external-developer-guide): Helpful resources for
+  external users of development versions of Chaste.
+- [Fixing Memory Testing](fixing-memory-testing): Notes on fixing memory leaks.
+- [Repository Access](access-code-repository): Access to the Chaste repository for non-core developers.
+- [Time Stepping Algorithms](time-stepping): Notes on time stepping algorithms.
+- [Using Debug Macros](using-debug-macros): A guide on using the debug macros in Chaste.
 
-* [Repository access](access-code-repository) for non-core developers (see also [external developer guide](external-developer-guide))
+{{< callout context="tip" title="See Also" icon="rocket" >}}
+[Chaste Strategies](chaste-strategies/): Guidelines for
+[naming variables](chaste-strategies/cpp-naming-strategy),
+[structuring code](chaste-strategies/code-structure-strategy) etc. in the
+Chaste project.
+{{< /callout >}}
 
------
-
+<!--
 ## Automatically generated alphabetical listing of guide pages
 
-[SubWiki(ChasteGuides/)](SubWiki(ChasteGuides/))
+[SubWiki(ChasteGuides/)](<SubWiki(ChasteGuides/)>)
+-->

@@ -7,14 +7,15 @@ toc: true
 layout: "single"
 ---
 
-By *Executable Applications* or *app*, we mean any `.cpp` file with its own `main` function, making use of Chaste functionality.
+By _Executable Application_ or _app_, we mean any `.cpp` file with its own
+`main` function, making use of Chaste functionality.
 
+The [Chaste build system](../cmake-build-guide) assumes that the following
+locations may contain apps:
 
-The [Chaste build system](../cmake-build-guide) assumes that the following locations may contain apps:
-
-* `Chaste/apps/src` (contains the Cardiac executable)
-* `Chaste/projects/<project_name>/apps/src` (see [User Projects](../user-projects) if you are unfamiliar with user projects)
-
+- `Chaste/apps/src` (contains the Cardiac executable)
+- `Chaste/projects/<project_name>/apps/src` (see
+  [User Projects](../../user-guides/user-projects) if you are unfamiliar with user projects)
 
 To build an app, first configure Chaste as normal:
 
@@ -22,7 +23,8 @@ To build an app, first configure Chaste as normal:
 cmake /path/to/Chaste
 ```
 
-If you are building an app in `Chaste/apps/src`, you should see something similar to the following as part of the output:
+If you are building an app in `Chaste/apps/src`, you should see something
+similar to the following as part of the output:
 
 ```
 ...
@@ -54,7 +56,8 @@ make -j4 <app_name>
 
 The executable app will be created in either:
 
-* `/path/to/build_dir/apps`
-* `/path/to/build_dir/projects/<project_name>/apps`
+- `/path/to/build_dir/apps`
+- `/path/to/build_dir/projects/<project_name>/apps`
 
-depending on whether the app is in the main Chaste apps directory, or a project directory.
+depending on whether the app is in the main Chaste apps directory, or a project
+directory.

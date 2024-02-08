@@ -1,13 +1,13 @@
 ---
-title: "Cmake Build Guide"
-description: "Cmake Build Guide"
+title: "CMake Build Guide"
+description: "CMake Build Guide"
 draft: false
 images: []
 toc: true
 layout: "single"
 ---
 
-This page details all the available options for cmake builds.
+This page details all the available options for CMake builds.
 
 ## General CMake Concepts
 

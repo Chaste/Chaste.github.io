@@ -21,3 +21,7 @@ How developers should create, review and merge pull requests on GitHub.
 When to refactor.
 * [Testing Strategy](testing-strategy): 
 How to write tests.
+
+{{< callout context="tip" title="See Also" icon="rocket" >}}
+[Developer Guides](../)
+{{< /callout >}}
