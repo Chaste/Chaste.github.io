@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestCreatingAndUsingANewCellMutationStateTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellMutationStateTutorial.hpp) at revision [9ccbb9cb6db8](https://github.com/Chaste/Chaste/commit/9ccbb9cb6db82df6a0b826c92e756309c24e1c93). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCreatingAndUsingANewCellMutationStateTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellMutationStateTutorial.hpp) at revision [4fe05a0e1d9c](https://github.com/Chaste/Chaste/commit/4fe05a0e1d9c1c8a9bf287a759806efd561f77cc). Note that the code is given in full at the bottom of the page.
 ## An example showing how to create a new cell mutation state and use it in a cell-based simulation
 
 ### Introduction
@@ -172,7 +172,7 @@ We can also test whether our cell mutation state is of a given type, as follows.
 
 We can also test that archiving is implemented correctly for our cell
 mutation state, as follows (further details on how to implement and
-test archiving can be found at ChasteGuides/BoostSerialization).
+test archiving can be found at [Boost Serialization Guide](/docs/user-guides/boost-serialization/)).
 
 ```cpp
         OutputFileHandler handler("archive", false);

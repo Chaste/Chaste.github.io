@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestCardiacCheckpointingAndRestartingTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestCardiacCheckpointingAndRestartingTutorial.hpp) at revision [9ccbb9cb6db8](https://github.com/Chaste/Chaste/commit/9ccbb9cb6db82df6a0b826c92e756309c24e1c93). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCardiacCheckpointingAndRestartingTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestCardiacCheckpointingAndRestartingTutorial.hpp) at revision [1dfba06b4d82](https://github.com/Chaste/Chaste/commit/1dfba06b4d8265be2322817e6dfe1536071d9a0a). Note that the code is given in full at the bottom of the page.
 ## Checkpointing and restarting cardiac simulations
 
 In this tutorial we show how to save and reload cardiac simulations.
@@ -33,7 +33,7 @@ First, the checkpointing test.
     {
 ```
 
-We set up exactly the same simulation as in the [Another Bidomain Simulation](/docs/user-tutorials/anotherbidomainsimulation) tutorial.
+We set up exactly the same simulation as in the [Another Bidomain Simulation](/docs/user-tutorials/anotherbidomainsimulation/) tutorial.
 
 ```cpp
         HeartConfig::Instance()->Reset();
@@ -116,7 +116,7 @@ responsible for deleting the memory.
  partitioned for a parallel simulation.
  * To make this process slightly more efficient, Chaste will copy the original mesh files if the mesh was loaded
  from disk and hasn't been modified (e.g. by permuting).  Because of this, if you modify the mesh in memory,
- e.g. by setting element attributes as in the [bidomain-with-bath](/docs/user-tutorials/bidomainwithbath) tutorial, then
+ e.g. by setting element attributes as in the [bidomain-with-bath](/docs/user-tutorials/bidomainwithbath/) tutorial, then
  you need to inform Chaste by calling `mesh.SetMeshHasChangedSinceLoading()`, so your modifications aren't lost.
  * Meshes written in checkpoints use a binary form of the Triangle/Tetgen mesh format. This makes checkpoints
  significantly smaller but will cause portability problems if checkpoints are moved between little-endian systems

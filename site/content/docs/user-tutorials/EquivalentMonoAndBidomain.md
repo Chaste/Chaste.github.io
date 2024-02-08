@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestEquivalentMonoAndBidomainTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestEquivalentMonoAndBidomainTutorial.hpp) at revision [d37e353cb0ff](https://github.com/Chaste/Chaste/commit/d37e353cb0ff429cb76c9279e953407fc77169bb). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestEquivalentMonoAndBidomainTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestEquivalentMonoAndBidomainTutorial.hpp) at revision [1dfba06b4d82](https://github.com/Chaste/Chaste/commit/1dfba06b4d8265be2322817e6dfe1536071d9a0a). Note that the code is given in full at the bottom of the page.
 ## How to run a Bidomain simulation and its equivalent Monodomain reduction
 
 ### Introduction
@@ -13,7 +13,7 @@ This tutorial is automatically generated from [TestEquivalentMonoAndBidomainTuto
 In this tutorial we show how Chaste is used to run a standard mono and a standard bidomain simulation.
 With equivalent parameters so that the bidomain could be reduced to the monodomain case.
 
-The bulk of this tutorial is the same as the tutorial [Running Bidomain Simulations](docs/user-tutorials/runningbidomainsimulations),
+The bulk of this tutorial is the same as the tutorial [Running Bidomain Simulations](/docs/user-tutorials/runningbidomainsimulations/),
 so for details of the following code block see that page.
 
 ```cpp
@@ -61,7 +61,7 @@ public:
 The `HeartConfig` class is used to set various parameters (see the main ChasteGuides page
 for information on default parameter values.
 
-See the [Running Bidomain Simulations](docs/user-tutorials/runningbidomainsimulations) tutorial for more details.
+See the [Running Bidomain Simulations](/docs/user-tutorials/runningbidomainsimulations/) tutorial for more details.
 
 ```cpp
         HeartConfig::Instance()->SetSimulationDuration(5.0); //ms

@@ -5,18 +5,18 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningNodeBasedSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningNodeBasedSimulationsTutorial.hpp) at revision [9ccbb9cb6db8](https://github.com/Chaste/Chaste/commit/9ccbb9cb6db82df6a0b826c92e756309c24e1c93). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningNodeBasedSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningNodeBasedSimulationsTutorial.hpp) at revision [a2c88fcf7c1b](https://github.com/Chaste/Chaste/commit/a2c88fcf7c1bffc543d87ac149e90bd20885c026). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to create, run and visualize node-based simulations
 
 ### Introduction
 
 In this tutorial we show how Chaste can be used to create, run and visualize node-based simulations.
-Full details of the mechanical model can be found in Pathamathan et al "A computational study of
-discrete mechanical tissue models", Physical Biology. Vol. 6. No. 3. 2009.. DOI (10.1088/1478-3975/6/3/036001).
+Full details of the mechanical model can be found in Pathamathan *et al.* "A computational study of
+discrete mechanical tissue models", Physical Biology. Vol. 6. No. 3. 2009. doi:[10.1088/1478-3975/6/3/036001](https://doi.org/10.1088/1478-3975/6/3/036001).
 
 ### The test
 
-As in previous cell-based Chaste tutorials ([Running Mesh Based Simulations](/docs/user-tutorials/runningmeshbasedsimulations)), we begin by including the necessary header files.
+As in previous cell-based Chaste tutorials ([Running Mesh Based Simulations](/docs/user-tutorials/runningmeshbasedsimulations/)), we begin by including the necessary header files.
 
 ```cpp
 #include <cxxtest/TestSuite.h>
@@ -32,7 +32,7 @@ The following header is usually included in all cell-based test suites. It enabl
 
 The remaining header files define classes that will be used in the cell population
 simulation test. We encountered some of these header files in
-[Running Mesh Based Simulations](/docs/user-tutorials/runningmeshbasedsimulations).
+[Running Mesh Based Simulations](/docs/user-tutorials/runningmeshbasedsimulations/).
 
 ```cpp
 #include "CellsGenerator.hpp"
@@ -96,7 +96,7 @@ cells) wide, and 2 nodes high.
 
 Once we have a `MutableMesh` we can generate a `NodesOnlyMesh` from it using the
 following commands. Note you can also generate the `NodesOnlyMesh` from a collection of
-nodes, see  [NodesOnlyMesh](https://chaste.github.io/doxygen-latest/classNodesOnlyMesh.html) for details.
+nodes, see  [NodesOnlyMesh](/doxygen-latest/classNodesOnlyMesh.html) for details.
 
 ```cpp
         NodesOnlyMesh<2> mesh;
@@ -167,11 +167,11 @@ the lines should be removed.
 ```
 
 To visualize the results, open a new terminal, `cd` to the Chaste directory,
-then `cd` to `anim`. Then do: `java Visualize2dCentreCells /tmp/$USER/testoutput/NodeBasedMonolayer/results_from_time_0`.
-we need to select the 'Cells as circles` option to be able to visualize the cells, as opposed
+then `cd anim`. Then do `java Visualize2dCentreCells /tmp/$USER/testoutput/NodeBasedMonolayer/results_from_time_0`.
+We need to select the `Cells as circles` option to be able to visualize the cells, as opposed
 to just the centres.
-We may have to do: `javac Visualize2dCentreCells.java` beforehand to create the
-java executable.
+You may have to do: `javac Visualize2dCentreCells.java` beforehand to create the
+java executable if you haven't done that before.
 
 Alternatively, to view in Paraview, load the file `/tmp/$USER/testoutput/NodeBasedMonolayer/results_from_time_0/results.pvd`
 and add glyphs to represent cells. An option is to use 3D spherical glyphs and then make a planar cut.
@@ -279,7 +279,8 @@ To avoid memory leaks, we conclude by deleting any pointers that we created in t
 ```
 
 Note that you **cannot view the results of a 3D simulation using the Java visualiser** but
-to visualize the results, use Paraview. See the [Visualizing With Paraview](/docs/user-tutorials/visualizingwithparaview) tutorial for more information.
+to visualize the results, use Paraview.
+See the [Visualizing With Paraview](/docs/user-tutorials/visualizingwithparaview/) tutorial for more information.
 
 Load the file `/tmp/$USER/testoutput/NodeBasedSpheroid/results_from_time_0/results.pvd`,
 and add spherical glyphs to represent cells.
@@ -340,8 +341,7 @@ the `OffLatticeSimulation`. Here we use a `SphereGeometryBoundaryCondition`
 which restricts cells to lie on a sphere (in 3D) or circle (in 2D).
 
 For a list of possible boundary conditions see subclasses of `AbstractCellPopulationBoundaryCondition`.
-These can be found in the inheritance diagram, here,
-[AbstractCellPopulationBoundaryCondition](https://chaste.github.io/doxygen-latest/classAbstractCellPopulationBoundaryCondition.html).
+These can be found in the inheritance diagram, [here for AbstractCellPopulationBoundaryCondition](/doxygen-latest/classAbstractCellPopulationBoundaryCondition.html).
 Note that some of these boundary conditions are not compatible with node-based simulations see the specific class documentation for details,
 if you try to use an incompatible class then you will receive a warning.
 
@@ -353,7 +353,7 @@ First we set the centre (0,0,1) and radius of the sphere (1).
         double radius = 1.0;
 ```
 
-We then make a pointer to the boundary condition using the MAKE_PTR_ARGS macro, and pass
+We then make a pointer to the boundary condition using the `MAKE_PTR_ARGS` macro, and pass
 it to the `OffLatticeSimulation`.
 
 ```cpp
@@ -385,7 +385,7 @@ To avoid memory leaks, we conclude by deleting any pointers that we created in t
 };
 ```
 
-To visualize the results, use Paraview. See the [Visualizing With Paraview](/docs/user-tutorials/visualizingwithparaview) tutorial for more information.
+To visualize the results, use Paraview. See the [Visualizing With Paraview](/docs/user-tutorials/visualizingwithparaview/) tutorial for more information.
 
 Load the file `/tmp/$USER/testoutput/NodeBasedOnSphere/results_from_time_0/results.pvd`,
 and add spherical glyphs to represent cells.

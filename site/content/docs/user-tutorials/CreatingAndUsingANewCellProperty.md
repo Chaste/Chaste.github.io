@@ -5,12 +5,12 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestCreatingAndUsingANewCellPropertyTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellPropertyTutorial.hpp) at revision [9ccbb9cb6db8](https://github.com/Chaste/Chaste/commit/9ccbb9cb6db82df6a0b826c92e756309c24e1c93). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCreatingAndUsingANewCellPropertyTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellPropertyTutorial.hpp) at revision [614d6f177ea6](https://github.com/Chaste/Chaste/commit/614d6f177ea6ffd15672741d162935167d671bb9). Note that the code is given in full at the bottom of the page.
 ## An example showing how to create a new cell property and use it in a cell-based simulation
 
 ### Introduction
 
-This tutorial assumes you have already read [Creating And Using A New Force](/docs/user-tutorials/creatingandusinganewforce).
+This tutorial assumes you have already read [Creating And Using A New Force](/docs/user-tutorials/creatingandusinganewforce/).
 
 In the [Creating And Using A New Cell Mutation State](/docs/user-tutorials/creatingandusinganewcellmutationstate/)
 tutorial we showed how to create a new cell mutation state class,
@@ -66,7 +66,7 @@ implementing some form of chemotaxis down an imposed chemoattractant gradient,
 as occurs for example when macrophages migrate within a tumour towards high
 concentrations of the vascular endothelial growth factor VEGF; for further
 details, see for example
-[Owen ''et al.'', J. Theor. Biol. 226: 377-391 (2004).](https://doi.org/10.1016/j.jtbi.2003.09.004)
+[Owen *et al.*, J. Theor. Biol. 226: 377-391 (2004).](https://doi.org/10.1016/j.jtbi.2003.09.004)
 
 Note that usually this code would be separated out into a separate declaration
 in a .hpp file and definition in a .cpp file.
@@ -217,7 +217,7 @@ we associate cells with nodes in the force calculation. However, this could easi
     }
 ```
 
-Just as we encountered in [Creating And Using A New Cell Killer](/docs/user-tutorials/creatingandusinganewcellkiller), here we must override
+Just as we encountered in [Creating And Using A New Cell Killer](/docs/user-tutorials/creatingandusinganewcellkiller/), here we must override
 a method that outputs any member variables to a specified results file `rParamsFile`.
 In our case, we output the member variable `mStrength`, then call the method on the base class.
 
@@ -305,7 +305,7 @@ We can also test whether our cell property is of a given type, as follows.
 
 We can also test that archiving is implemented correctly for our cell
 property, as follows (further details on how to implement and
-test archiving can be found at ChasteGuides/BoostSerialization).
+test archiving can be found at [Boost Serialization Guide](/docs/user-guides/boost-serialization/)).
 
 ```cpp
         OutputFileHandler handler("archive", false);
@@ -417,9 +417,9 @@ We then add the property `MotileCellProperty` to a random selection of the cells
             p_cell->SetCellProliferativeType(p_diff_type);
 ```
 
-Now, we define a random birth time, chosen from [-T,0], where
-T = t,,1,, + t,,2,,, where t,,1,, is a parameter representing the G,,1,, duration
-of a stem cell, and t,,2,, is the basic S+G,,2,,+M phases duration.
+Now, we define a random birth time, chosen from $[-T,0]$, where
+$T = t_1 + t_2$, where $t_1$ is a parameter representing the $G_1$ duration
+of a stem cell, and $t_2=S+G_2+M$ phases duration.
 
 ```cpp
             double birth_time = - RandomNumberGenerator::Instance()->ranf() *
