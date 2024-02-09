@@ -12,13 +12,14 @@ then the best versions are selected and installed automatically for you. If you
 are doing a manual Linux installation, then this page shows you the supported
 and preferred versions of each dependency.
 
-{{< callout context="note" title="Note" icon="info-circle" >}} This page
-reflects the status of the current trunk code. If you are looking for
+{{< callout context="note" title="Note" icon="info-circle" >}}
+This page reflects the status of the current trunk code. If you are looking for
 information about supported dependency versions for a
 [previous release](https://github.com/Chaste/Chaste/releases) of Chaste, see
-instead the copy of this page bundled with that release. {{< /callout >}}
+instead the copy of this page bundled with that release.
+{{< /callout >}}
 
-The [main install guide](InstallGuides/InstallGuide) should generally be
+The [Developer Install Guide](../../dev-guides/developer-install-guide) should generally be
 updated to reflect installation instructions for one of the preferred versions.
 
 ## Key to tables
@@ -35,7 +36,7 @@ updated to reflect installation instructions for one of the preferred versions.
 ## Build Systems
 
 The supported build system is now CMake. Preferred versions are those that are
-efault on Ubuntu LTS releases, but we expect every version of CMake above the
+default on Ubuntu LTS releases, but we expect every version of CMake above the
 minimum required to work fine.
 
 | CMake         |            |         |         |         |         |         |         |         |         |         |         |         |         |
