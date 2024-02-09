@@ -27,21 +27,21 @@ and the output of these tests can be viewed on the
 
 ## Tests with specific output
 
-- [Profiling](https://github.com/Chaste/Chaste/actions/workflows/profiling-gprof.yml): this verifies that Chaste
+- [`Profiling GProf`](https://github.com/Chaste/Chaste/actions/workflows/profiling-gprof.yml): this verifies that Chaste
 performance is not degraded over time. It logs profiling information, including compilation time and the time taken 
 to run each test. 
-- [Memory testing](https://github.com/Chaste/Chaste/blob/develop/.github/workflows/memory-testing.yml): this checks 
+- [`Memory testing`](https://github.com/Chaste/Chaste/actions/workflows/memory-testing.yml): this checks 
 for memory leaks in the code.
-- [Coverage](https://github.com/Chaste/Chaste/actions/workflows/coverage.yml): this checks for portions of the code 
+- [`Coverage`](https://github.com/Chaste/Chaste/actions/workflows/coverage.yml): this checks for portions of the code 
 that are not covered by tests. We aim for 100% test coverage.
-- [Portability](https://github.com/Chaste/Chaste/actions/workflows/portability.yml): this checks for compatibility
+- [`Portability`](https://github.com/Chaste/Chaste/actions/workflows/portability.yml): this checks for compatibility
 with various supported versions of Chaste dependencies.
-- [Documentation](https://github.com/Chaste/Chaste/actions/workflows/doxygen.yml): this checks how much of the code
+- [`Doxygen`](https://github.com/Chaste/Chaste/actions/workflows/doxygen.yml): this checks how much of the code
 is documented.
 
 ## Unit testing
 
-We use the [cxxtest](https://github.com/CxxTest/cxxtest) testing framework.
+We use the [CxxTest](https://github.com/CxxTest/cxxtest) testing framework.
 
 For each class, write a suite of tests called <code>Test<i>ClassName.hpp</i></code> 
 where <code><i>ClassName</i></code> is the name of the class. Further tests 
@@ -111,3 +111,7 @@ Include the following file in each test suite file that uses PETSc, in order to 
 ## Acceptance tests
 
 We use [TextTest](http://www.texttest.org) for these, in order to test the standalone executables.
+
+{{< callout context="tip" title="See Also" icon="rocket" >}}
+[CMake Build Guide](../../cmake-build-guide#build-step): How to build and run tests.
+{{< /callout >}}
