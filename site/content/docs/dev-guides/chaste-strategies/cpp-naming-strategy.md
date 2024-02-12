@@ -9,7 +9,7 @@ layout: "single"
 
 ## Introduction
 
-Coding standards are crucial to enable humans to understand the code -- Both 
+Coding standards are crucial to enable humans understand the code -- Both 
 code they wrote, and code written by other developers. This page documents 
 naming conventions we adhere to in Chaste. If you are writing Chaste code, 
 please follow them!
