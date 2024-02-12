@@ -15,7 +15,7 @@ of Chaste, and help to make all developers' lives happier. They are similar to
 
 Much information on coding style can be found in the
 [Chaste Strategies](../chaste-strategies), in particular
-[C++ Naming Strategy](../chaste-strategies/cpp-naming-strategy) and
+[Coding Standards Strategy](../chaste-strategies/coding-standards-strategy) and
 [Code Structure Strategy](../chaste-strategies/code-structure-strategy).
 
 Two important features of Chaste code is that it should be **(i) well
