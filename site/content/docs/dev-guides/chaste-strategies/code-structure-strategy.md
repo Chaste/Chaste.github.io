@@ -15,7 +15,7 @@ code standards we adhere to in Chaste. If you are writing Chaste code,
 please follow them!
 
 {{< callout context="tip" title="See Also" icon="rocket" >}}
-* [C++ Naming Strategy](../cpp-naming-strategy)
+* [Coding Standards Strategy](../coding-standards-strategy)
 * [Distributed and Replicated Vectors](../distributed-and-replicated-vectors)
 * [How Not to Write FORTRAN in Any Language](http://queue.acm.org/detail.cfm?id=1039535)
 {{< /callout >}}
