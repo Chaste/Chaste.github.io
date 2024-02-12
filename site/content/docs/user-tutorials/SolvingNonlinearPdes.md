@@ -5,20 +5,20 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestSolvingNonlinearPdesTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestSolvingNonlinearPdesTutorial.hpp) at revision [0a2ab4e09adf](https://github.com/Chaste/Chaste/commit/0a2ab4e09adf884a22cb443bfb10d94d8efb5ed3). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestSolvingNonlinearPdesTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestSolvingNonlinearPdesTutorial.hpp) at revision [71ac325b969f](https://github.com/Chaste/Chaste/commit/71ac325b969f80f838eff76fb2ffb112d42f8bee). Note that the code is given in full at the bottom of the page.
 ## An example showing how to solve a nonlinear elliptic PDE. Also includes function-based boundary conditions.
 
 In this tutorial we show how Chaste can be used to solve nonlinear elliptic PDEs.
-We will solve the PDE div.(u grad u) + 1 = 0, on a square domain, with boundary
-conditions u=0 on y=0; and Neumann boundary conditions: (u grad u).n = 0 on x=0 and x=1;
-and (u grad u).n = y on y=1.
+We will solve the PDE $\nabla .(u \nabla u) + 1 = 0$, on a square domain, with boundary
+conditions $u=0$ on $y=0$, and Neumann boundary conditions: $(u \nabla u).\mathbf{n} = 0$ on $x=0$ and $x=1$;
+and $(u \nabla u).\mathbf{n} = y$ on $y=1$.
 
-For nonlinear PDEs, the finite element equations are of the form F(U)=0, where
-U=(U,,1,, , ... , U,,N,,) is a vector of the unknowns at each node, and F is some
+For nonlinear PDEs, the finite element equations are of the form $\mathbf{F}(\mathbf{U})=0$, where
+$\mathbf{U}=(U_1 , \dots , U_N)$ is a vector of the unknowns at each node, and $\mathbf{F}$ is some
 non-linear vector valued function. To solve this, a nonlinear solver is required.
 Chaste can solve this with Newton's method, or (default) use PETSc's nonlinear solvers.
 Solvers of such nonlinear problems usually require the Jacobian of the problem, i.e. the
-matrix A = dF/dU, or at least an approximation of the Jacobian.
+matrix $A = \partial F/ \partial U$, or at least an approximation of the Jacobian.
 
 The following header files need to be included, as in the linear PDEs tutorial.
 
@@ -57,7 +57,7 @@ As in the linear PDEs tutorial, we have to define the PDE class we want to
 solve (assuming one has not already been created). Nonlinear elliptic PDEs
 should inherit from `AbstractNonlinearEllipticPde`, which has five pure
 methods which have to be implemented in this concrete class. Here, we define
-the PDE div.(u grad u) + 1 = 0.
+the PDE $\nabla .(u \nabla u) + 1 = 0$.
 
 ```cpp
 class MyNonlinearPde : public AbstractNonlinearEllipticPde<2>
@@ -65,7 +65,7 @@ class MyNonlinearPde : public AbstractNonlinearEllipticPde<2>
 public:
 ```
 
-The first is the part of the source term that is independent of u.
+The first is the part of the source term that is independent of $u$.
 
 ```cpp
     double ComputeLinearSourceTerm(const ChastePoint<2>& rX)
@@ -74,7 +74,7 @@ The first is the part of the source term that is independent of u.
     }
 ```
 
-The second is the part of the source term that is dependent on u.
+The second is the part of the source term that is dependent on $u$.
 
 ```cpp
     double ComputeNonlinearSourceTerm(const ChastePoint<2>& rX, double u)
@@ -84,7 +84,7 @@ The second is the part of the source term that is dependent on u.
 ```
 
 The third is the diffusion tensor, which unlike in the linear case can be
-dependent on u. The diffusion tensor should be symmetric and positive definite.
+dependent on $u$. The diffusion tensor should be symmetric and positive definite.
 
 ```cpp
     c_matrix<double,2,2> ComputeDiffusionTerm(const ChastePoint<2>& rX, double u)
@@ -93,7 +93,7 @@ dependent on u. The diffusion tensor should be symmetric and positive definite.
     }
 ```
 
-We also need to provide the derivatives with respect to u of the last two methods,
+We also need to provide the derivatives with respect to $u$ of the last two methods,
 so that the Jacobian matrix can be assembled. The derivative of the nonlinear source
 term is
 
@@ -116,7 +116,7 @@ And the derivative of the diffusion tensor is just the identity matrix.
 
 We also need to define a (global) function that will become the Neumman boundary
 conditions, via the `FunctionalBoundaryCondition` class (see below). This
-function is f(x,y) = y.
+function is $f(x,y) = y$.
 
 ```cpp
 double MyNeummanFunction(const ChastePoint<2>& rX)
@@ -155,7 +155,7 @@ Next, instantiate the PDE to be solved.
 ```
 
 Then we have to define the boundary conditions. First, the Dirichlet boundary
-condition, u=0 on x=0, using the boundary node iterator.
+condition, $u=0$ on $x=0$, using the boundary node iterator.
 
 ```cpp
         BoundaryConditionsContainer<2,2,1> bcc;
@@ -190,7 +190,7 @@ Loop over surface elements.
         {
 ```
 
-Get the y value of any node (here, the zero-th).
+Get the $y$ value of any node (here, the zero-th).
 
 ```cpp
             double y = (*elt_iter)->GetNodeLocation(0,1);
@@ -203,7 +203,7 @@ If y=1...
             {
 ```
 
-... then associate the functional boundary condition, (Dgradu).n = y,
+... then associate the functional boundary condition, $(D \nabla u).n = y$,
 with the surface element...
 
 ```cpp
@@ -223,8 +223,8 @@ element.
 ```
 
 Note that in the above loop, the zero Neumman boundary condition was applied
-to all surface elements for which y!=1, which included the Dirichlet surface
-y=0. This is OK, as Dirichlet boundary conditions are applied to the finite
+to all surface elements for which $y \neq 1$, which included the Dirichlet surface
+$y=0$. This is OK, as Dirichlet boundary conditions are applied to the finite
 element matrix after Neumman boundary conditions, where the appropriate rows
 in the matrix are overwritten.
 
