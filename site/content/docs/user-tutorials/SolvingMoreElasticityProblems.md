@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestSolvingMoreElasticityProblemsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/continuum_mechanics/test/TestSolvingMoreElasticityProblemsTutorial.hpp) at revision [4d762407bc1f](https://github.com/Chaste/Chaste/commit/4d762407bc1f327ded5b48cd8174d30f465f87fc). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestSolvingMoreElasticityProblemsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/continuum_mechanics/test/TestSolvingMoreElasticityProblemsTutorial.hpp) at revision [dca8546db5bb](https://github.com/Chaste/Chaste/commit/dca8546db5bbb0f4e181a0ec2093dc27ad74d579). Note that the code is given in full at the bottom of the page.
 ### Introduction
 
 In this second solid mechanics tutorial, we illustrate some other possibilities: using tractions
@@ -402,7 +402,8 @@ Set the fixed nodes and gravity
 The elasticity solvers have two nonlinear solvers implemented, one hand-coded and one which uses PETSc's SNES
 solver. The latter is not the default but can be more robust (and will probably be the default in later
 versions). This is how it can be used. (This option can also be called if the compiled binary is run from
-the command line (see ChasteGuides/RunningBinariesFromCommandLine) using the option "-mech_use_snes").
+the command line (see [Running Binaries From Command Line](/docs/user-guides/running-binaries-from-command-line/))
+using the option "-mech_use_snes").
 
 ```cpp
         problem_defn.SetSolveUsingSnes();

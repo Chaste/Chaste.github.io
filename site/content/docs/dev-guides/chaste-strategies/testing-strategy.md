@@ -11,90 +11,107 @@ We use [Test Driven Development](http://c2.com/cgi/wiki?TestDrivenDevelopment).
 
 ## Automated testing
 
-Chaste runs a large number of automated builds to verify the correctness of our latest development version.
-These automated tests include:
+Chaste runs a large number of automated tests to verify the correctness of 
+code before merging. These include:
 
+- `Continuous`: A suite of tests covering all functionality.
+- `Nightly`: A small number of long tests which verify that the output of certain 
+simulations and more computationally expensive functionality remains unchanged.
+- `Weekly`: Several long simulations.
+- `Parallel`: Tests run in parallel.
+- Other tests: coverage testing, profiling, memory testing, portability, and documentation.
 
-- A suite of tests, covering all functionality, are run every time new commits are pushed to the repository
-- Every night a smaller number of longer tests are run that verify the output of certain simulations and more computationally expensive functionality remains unchanged
-- Profiling tests are also run nightly to verify that Chaste performance is not degraded over time
-- Several long simulations are run weekly
+The automated testing uses [GitHub actions](https://github.com/features/actions), 
+and the output of these tests can be viewed on the 
+[GitHub actions interface](https://github.com/Chaste/Chaste/actions).
 
+## Tests with specific output
 
-The automated testing uses [Buildbot](https://buildbot.net/), and the output of these tests can be browsed on the [Waterfall](https://chaste.cs.ox.ac.uk/buildbot/waterfall).
-
-### Tests with specific output
-
-#### Profiling
-The following builders log profiling information, including compilation time and the time taken to run each test:
-
-- [GCC nightly](https://chaste.cs.ox.ac.uk/buildbot/builders/Nightly%20GCC_Nightly)
-- [Google profile](https://chaste.cs.ox.ac.uk/buildbot/builders/Nightly%20Google%20Profile)
-- [Gprof profile](https://chaste.cs.ox.ac.uk/buildbot/builders/Nightly%20Gprof%20Profile)
-- [Intel weekly](https://chaste.cs.ox.ac.uk/buildbot/builders/Weekly%20Intel%20Weekly)
-- [Intel weekly np4](https://chaste.cs.ox.ac.uk/buildbot/builders/Weekly%20Intel%20np4)
-
-
-For each builder listed here, clicking through to any specific build allows you to click through to a profile index page.  The link is available under build step 9 (upload uploading profile), and takes you to a page such as [this](https://chaste.cs.ox.ac.uk/buildbot/Nightly%20Gprof%20Profile/profile580/).
-
-
-#### Memory testing
-
-#### Coverage
-
-#### Documentation
-
-#### Static analysis
+- [`Profiling GProf`](https://github.com/Chaste/Chaste/actions/workflows/profiling-gprof.yml): this verifies that Chaste
+performance is not degraded over time. It logs profiling information, including compilation time and the time taken 
+to run each test. 
+- [`Memory testing`](https://github.com/Chaste/Chaste/actions/workflows/memory-testing.yml): this checks 
+for memory leaks in the code.
+- [`Coverage`](https://github.com/Chaste/Chaste/actions/workflows/coverage.yml): this checks for portions of the code 
+that are not covered by tests. We aim for 100% test coverage.
+- [`Portability`](https://github.com/Chaste/Chaste/actions/workflows/portability.yml): this checks for compatibility
+with various supported versions of Chaste dependencies.
+- [`Doxygen`](https://github.com/Chaste/Chaste/actions/workflows/doxygen.yml): this checks how much of the code
+is documented.
 
 ## Unit testing
 
-We use the [cxxtest](http://cxxtest.sourceforge.net/) testing framework.
+We use the [CxxTest](https://github.com/CxxTest/cxxtest) testing framework.
 
-For each class, write a suite of tests called Test*ClassName*.hpp where *ClassName* is the name of the class. Further tests can be called Test*ClassNameSomethingElse*, or just Test*SomethingElse* if lots of classes are being tested.
+For each class, write a suite of tests called <code>Test<i>ClassName.hpp</i></code> 
+where <code><i>ClassName</i></code> is the name of the class. Further tests 
+can be called <code>Test<i>ClassNameSomethingElse</i></code>, or 
+just <code>Test<i>SomethingElse</i></code> if lots of classes are being tested.
 
-In order for a test to be run during a build, it must be included in a *Type*TestPack.txt file. *Type* can be `Continuous` for continuous tests, `Nightly` for longer tests run each weekday night, or `Weekly` for tests run each weekend.  There is also currently a `Parallel` type for tests run in parallel on every commit (each night, all the continuous tests are also run in parallel).
+In order for a test to be run during a build, it must be included in a 
+<code><i>Type</i>TestPack.txt</code> file. <code><i>Type</i></code> can be 
+`Continuous` for continuous tests, `Nightly` for longer tests, or `Weekly` for 
+very long tests. There is also a `Parallel` type for tests run in parallel.
 
-There is a [website showing the results of automatic builds](https://chaste.cs.ox.ac.uk/buildbot/waterfall).  The results of manually run builds are stored on your local computer.  The build system will display the path of a summary HTML page at the end of the build, for easy viewing of the results.
+The results of manually run builds are stored on your local computer.
+The results of automatic builds can be viewed on the 
+[GitHub actions interface](https://github.com/Chaste/Chaste/actions).
 
-There is a [script](/trunk/python/CheckForOrphanedTests.py) run as part of the build process that checks for any test hpp files which are not listed in a *Type*TestPack.txt file. It will appear in test summaries as a test called 'OrphanedTests', and is deemed to have failed if any such tests are found. The output lists any orphaned tests found, and also all types of test packs found.
+There is a [script](https://github.com/Chaste/Chaste/blob/develop/python/infra/CheckForOrphanedTests.py) 
+run as part of the build process that checks for any test hpp files which 
+are not listed in a <code><i>Type</i>TestPack.txt</code> file. It will 
+appear in test summaries as a test called 'OrphanedTests', and is deemed 
+to have failed if any such tests are found. The output lists any orphaned 
+tests found, and also all types of test packs found.
 
-If two test suites have the same name, this would confuse the system. There is another [script](/trunk/python/CheckForDuplicateFileNames.py) run as part of the build process that checks for duplicate file names, and flags them up as a failed 'DuplicateFileNames' test.
+If two test suites have the same name, this would confuse the system. 
+There is another [script](https://github.com/Chaste/Chaste/blob/develop/python/infra/CheckForDuplicateFileNames.py) 
+run as part of the build process that checks for duplicate file names, 
+and flags them up as a failed 'DuplicateFileNames' test.
 
 ### Test file locations
 
-In the following, filenames are given relative to the trunk. The trunk will be the working directory when tests are called. Therefore path names as below should be used when opening files in tests. *component* refers to the component in which the class (or most significant class tested if more than one) resides.
+In the following, filenames are given relative to the trunk. 
+The trunk will be the working directory when tests are called. 
+Therefore path names as below should be used when opening files in tests. 
+*component* refers to the component in which the class (or most significant 
+class tested if more than one) resides.
 
-|Type|Location|
-|---|---|
-|Test suite file |*component*/test/|
+|Type            |Location              |
+|----------------|--------------------- |
+|Test suite file |*component*/test/     |
 |Input files     |*component*/test/data/|
-
 
 ### Output files generated by tests
 
-When opening output files, an instance of class:OutputFileHandler must be used.
-This takes a relative directory name, and places output files in a suitable location, with the relative name as a subdirectory.
-Code should not assume anything about where this suitable location is, as it will change depending on the system, user, etc.
-Thus when reading back written data, use the class:OutputFileHandler to find out where the files are.
+When opening output files, an instance of [`OutputFileHandler`](https://github.com/Chaste/Chaste/blob/develop/global/src/OutputFileHandler.hpp) must be used.
+This takes a relative directory name, and places output files in a suitable 
+location, with the relative name as a subdirectory.
+Code should not assume anything about where this suitable location is, 
+as it will change depending on the system, user, etc.
+Thus when reading back written data, use the `OutputFileHandler` to find 
+out where the files are.
 
-Tests should choose output file names so as to minimise the chance of a conflict with another test.
-The best practice is to place all output in a subdirectory named after the test suite and individual test method, e.g. `TestPetscTools_TestRoundRobin`.
+Tests should choose output file names so as to minimise the chance of a 
+conflict with another test.
+The best practice is to place all output in a subdirectory named after the 
+test suite and individual test method, e.g. `TestPetscTools_TestRoundRobin`.
 
 ### Miscellaneous notes
 
-See also StochasticTests.
-
-A test suite (.hpp file) should not rely on any files written by another test suite. In other words there should be no requisite ordering on the test suites.
+A test suite (`.hpp` file) should not rely on any files written by another test suite. 
+In other words there should be no requisite ordering on the test suites.
 
 Include the following file in each test suite file that uses PETSc, in order to set up PETSc correctly:
 
 ```
-
 #include "PetscSetupAndFinalize.hpp"
-
 ```
-
 
 ## Acceptance tests
 
-We use [TextTest](http://texttest.carmen.se/) for these, in order to test the standalone executables.
+We use [TextTest](http://www.texttest.org) for these, in order to test the standalone executables.
+
+{{< callout context="tip" title="See Also" icon="rocket" >}}
+[CMake Build Guide](../../cmake-build-guide#build-step): How to build and run tests.
+{{< /callout >}}

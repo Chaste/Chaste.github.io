@@ -53,9 +53,9 @@ Do not edit it manually, as your changes will be overwritten!
   - [line 951 of TestBidomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainProblem.hpp#L951)
 - Use the `SingleTraceOutputModifier` to output based on a global index (index AFTER any permutation has been applied)
   - [line 1046 of TestBidomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainProblem.hpp#L1046)
-- Calculating and outputting ionic currents ('derived quantities') in a single cell simulation using [OdeSolution](https://chaste.github.io/doxygen-latest/classOdeSolution.html) - see also [this page](https://chaste.cs.ox.ac.uk/trac/wiki/ChasteGuides/CodeGenerationFromCellML#Derivedquantities).
+- Calculating and outputting ionic currents ('derived quantities') in a single cell simulation using [OdeSolution](/doxygen-latest/classOdeSolution.html) - see also [chaste_codegen documentation](/docs/user-guides/code-generation-from-cell-ml/#derived-quantities).
   - [line 395 of TestCvodeCells.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/ionicmodels/TestCvodeCells.hpp#L395)
-- Calculating and outputting ionic currents ('derived quantities') in a tissue simulation using [HeartConfig](https://chaste.github.io/doxygen-latest/classHeartConfig.html) - see also [this page](https://chaste.cs.ox.ac.uk/trac/wiki/ChasteGuides/CodeGenerationFromCellML#Derivedquantities).
+- Calculating and outputting ionic currents ('derived quantities') in a tissue simulation using [HeartConfig](/doxygen-latest/classHeartConfig.html) - see also [chaste_codegen documentation](/docs/user-guides/code-generation-from-cell-ml/#derived-quantities).
   - [line 236 of TestMonodomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/monodomain/TestMonodomainProblem.hpp#L236)
 - On large-scale parallel simulations it is advantageous to cache HDF5 output and only write to disk at end of simulation (or at checkpoint).  This is achieved with `SetUseHdf5DataWriterCache()`
   - [line 1648 of TestMonodomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/monodomain/TestMonodomainProblem.hpp#L1648)
@@ -107,7 +107,7 @@ Do not edit it manually, as your changes will be overwritten!
 ### Solver
 - Using specialised Backward Euler implementation to solve the cell models (allows for much larger timesteps)
   - [line 64 of TestBidomainWithBathTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestBidomainWithBathTutorial.hpp#L64)
-- Use [ChasteGuides/StateVariableInterpolation state-variable interpolation] to improve accuracy
+- Use [state-variable interpolation](/docs/user-guides/state-variable-interpolation/) to improve accuracy
   - [line 118 of TestBidomainWithSvi.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainWithSvi.hpp#L118)
 - Run using (simple, user-defined) time-adaptivity
   - [line 51 of TestMonodomainWithTimeAdaptivity.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/monodomain/TestMonodomainWithTimeAdaptivity.hpp#L51)
@@ -150,11 +150,11 @@ Do not edit it manually, as your changes will be overwritten!
 - Read and use parameters from the command line
   - [line 46 of TestCommandLineArguments.hpp](https://github.com/Chaste/Chaste/blob/develop/global/test/TestCommandLineArguments.hpp#L46)
 - Use mock (pretend) command line arguments
-  - [line 263 of TestCommandLineArguments.hpp](https://github.com/Chaste/Chaste/blob/develop/global/test/TestCommandLineArguments.hpp#L263)
+  - [line 260 of TestCommandLineArguments.hpp](https://github.com/Chaste/Chaste/blob/develop/global/test/TestCommandLineArguments.hpp#L260)
 
 ### Archiving
 - Use a binary rather than ascii boost archive format, for speed and smaller file sizes.
-  - [line 391 of TestArchiving.hpp](https://github.com/Chaste/Chaste/blob/develop/global/test/TestArchiving.hpp#L391)
+  - [line 392 of TestArchiving.hpp](https://github.com/Chaste/Chaste/blob/develop/global/test/TestArchiving.hpp#L392)
 
 ## Lung
 

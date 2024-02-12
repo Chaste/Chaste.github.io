@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestCreatingAndUsingANewSrnModelTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewSrnModelTutorial.hpp) at revision [dbf6b196a091](https://github.com/Chaste/Chaste/commit/dbf6b196a091781fc0b4bf6effddf352080111e1). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCreatingAndUsingANewSrnModelTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewSrnModelTutorial.hpp) at revision [4fe05a0e1d9c](https://github.com/Chaste/Chaste/commit/4fe05a0e1d9c1c8a9bf287a759806efd561f77cc). Note that the code is given in full at the bottom of the page.
 ## An example showing how to create a new subcellular reaction network (SRN) model and use it in a cell-based simulation.
 
 ### Introduction
@@ -283,7 +283,7 @@ EXPORT_CELL_CYCLE_MODEL_ODE_SOLVER(MySrnModel)
 Since we're defining the new SRN model and ODEs within the test file, we need to include the
 following stanza as well, to make the code work with newer versions of the Boost libraries.
 Normally the above export declaration would occur in the SRN model's .hpp file, and
-the following lines would appear in the .cpp file.  See ChasteGuides/BoostSerialization for
+the following lines would appear in the .cpp file.  See [Boost Serialization Guide](/docs/user-guides/boost-serialization/) for
 more information.
 
 ```cpp
@@ -586,7 +586,7 @@ Finally to run the simulation, we call `Solve()`.
 };
 ```
 
-To visualize the results, use Paraview. See the [Visualizing With Paraview](/docs/user-tutorials/visualizingwithparaview) tutorial for more information.
+To visualize the results, use Paraview. See the [Visualizing With Paraview](/docs/user-tutorials/visualizingwithparaview/) tutorial for more information.
 
 Load the file `/tmp/$USER/testoutput/TestOffLatticeSimulationWithMySrnModel/results_from_time_0/results.pvd`,
 and color by `x`.

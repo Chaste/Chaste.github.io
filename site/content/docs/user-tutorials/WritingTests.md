@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestWritingTestsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/global/test/TestWritingTestsTutorial.hpp) at revision [b83418055112](https://github.com/Chaste/Chaste/commit/b834180551121b13b1f7c722549dafb9b5e9bb1c). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestWritingTestsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/global/test/TestWritingTestsTutorial.hpp) at revision [a2c88fcf7c1b](https://github.com/Chaste/Chaste/commit/a2c88fcf7c1bffc543d87ac149e90bd20885c026). Note that the code is given in full at the bottom of the page.
 ## Writing tests
 We do not use `int main()` methods in Chaste. Instead, we write *tests*, which are run using CxxTest.
 Tests are used both as:
@@ -48,7 +48,7 @@ To test whether two integers are equal, we can use the macro `TS_ASSERT_EQUALS`.
 
 To test whether two numbers are equal to within a certain (absolute) tolerance we can use `TS_ASSERT_DELTA`.
 This should almost always be used when comparing two `double`s.  (See also
-[CompareDoubles](https://chaste.github.io/doxygen-latest/classCompareDoubles.html)
+[CompareDoubles](/doxygen-latest/classCompareDoubles.html)
 for more advanced comparisons.)
 
 ```cpp
