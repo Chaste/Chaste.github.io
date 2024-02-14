@@ -7,41 +7,67 @@ toc: true
 layout: "single"
 ---
 
-Before reading this have a look at [Getting Started](../) to decide whether you are a *user* of releases or a *developer* contributing back to Chaste core code.
+{{< callout context="note" title="Note" icon="info-circle" >}}
 
-*Users* can download the latest stable release of the source code from our [GitHub releases page](https://github.com/Chaste/Chaste/releases), or check out a [tested development branch](https://github.com/Chaste/Chaste/branches) to get the latest features.
+Before reading this have a look at [Getting Started](../) to decide whether you
+are a _user_ of releases or a _developer_ contributing back to Chaste core code.
+
+{{< /callout >}}
+
+_Users_ can download the latest stable release of the source code from our
+[GitHub releases page](https://github.com/Chaste/Chaste/releases), or check out
+the `develop` branch to get the latest features.
 
 ## Installation
 
-* [Install guides](../installguides) -- How to install Chaste and its dependencies.
-* [CMake first run](cmake-first-run) -- How to configure, build, and run tests to check the installation.
+- [Install Guides](../installguides): How to install Chaste and its
+  dependencies.
+- [CMake First Run](cmake-first-run): How to configure, build, and run tests to
+  check the installation. For all available options, including compiling optimised code, see the full [CMake Build Guide](../dev-guides/cmake-build-guide).
 
+## Running Chaste simulations
 
-## Running Chaste Simulations
+- [Tutorials](../user-tutorials): Detailed lessons on using Chaste's capabilities.
+- [How-to Index](../how-tos): Links to code snippets illustrating how various
+  things can be done in Chaste.
+- [Visualisation Guides](visualisation-guides): Information on how to visualise
+  simulation results.
+- [User Projects](user-projects): Creating/using a project which can utilize the
+  core Chaste code and build/testing framework.
+- [API Documentation](../doxygen): Code documentation for the latest revision
+  and previous release versions of Chaste.
+- [Boost Serialization](boost-serialization): Notes on using the the
+  Serialization library from Boost to checkpoint and save/resume simulations.
+- [Cell-based Code Structure](cell-based-chaste-code-structure): An
+  overview of cell-based Chaste.
+- [Code Generation from CellML](code-generation-from-cell-ml): Notes on
+  generating Chaste code for cardiac cell models from CellML files, using
+  chaste_codegen.
+- [Finding Chaste Dependencies](finding-chaste-dependencies): Notes on manually
+  setting hints for Chaste dependency locations if they are not found
+  automatically.
+- [Finite Element Assemblers and Solvers](finite-element-assemblers-and-solvers)
+- [Finite Element Implementations](finite-element-implementations)
+- [Install chaste_codegen](install-codegen)
+- [Modules Setup Guide](modules-setup-guide)
+- [Running Binaries Directly](running-binaries-from-command-line)
+- [Solving Cardiac Problems](solving-cardiac-problems)
+- [State Variable Interpolation](state-variable-interpolation)
 
-* [Release notes](../release-notes/release-notes) and [latest news](../release-notes/changes-since-last-release) on changes since the last release
-* [Tutorials](../user-tutorials)
-* [Visualisation guides](visualisation-guides)
-* [How-to index](../how-tos) -- links to test code illustrating how various things can be done
-* [CMake first run guide](cmake-first-run). For all available options, including compiling optimised code, see the full [Cmake build guide](cmake-build-guide).
-* [Public API documentation for the latest revision](../doxygen) and [API documentation for release versions](https://github.com/Chaste/Chaste/releases)
+## Release notes
 
-
-## Writing your own code that uses Chaste
-
-* [User Projects](user-projects) -- for creating (or cloning an existing) personal user project which can use the core code and build/testing framework.
-
+- [Release notes](../release-notes/release-notes).
+- [Changes since last release](../release-notes/changes-since-last-release).
 
 ## Miscellaneous information
-
-* File format information is given in the file `docs/FileFormats.html`, supplied with the release (the latest version of this file may also be viewed [here](https://raw.githubusercontent.com/Chaste/Chaste/develop/docs/FileFormats.html)).
-* [Units of parameters used in Chaste](chaste-units)
-* [Default parameter values](https://github.com/Chaste/Chaste/blob/develop/heart/src/problem/HeartConfigDefaults.hpp) -- read off from this file, ignore the `Simulation` block, which only applies to the old cardiac executable.
-* [Cardiac mechanics solvers](cardiac-mechanics-solvers) -- a bit of information on how the cardiac mechanics solvers are connected to the main mechanics solvers.
-
-
------
-
-## Automatically generated alphabetical listing of guide pages
-
-[SubWiki(ChasteGuides/)](SubWiki(ChasteGuides/))
+- File Formats: This information is given in the version of
+  [`docs/FileFormats.html`](https://raw.githubusercontent.com/Chaste/Chaste/develop/docs/FileFormats.html)
+  supplied with the release.
+- [Chaste Units](chaste-units): Units of parameters used in Chaste.
+- Default Cardiac parameter values: These are read off from
+  [`heart/src/problem/HeartConfigDefaults.hpp`](https://github.com/Chaste/Chaste/blob/develop/heart/src/problem/HeartConfigDefaults.hpp)
+  (ignore the `Simulation` block, which only applies to the old cardiac
+  executable).
+- [Cardiac Mechanics Solvers](cardiac-mechanics-solvers): A bit of information
+  on how the cardiac mechanics solvers are connected to the main mechanics
+  solvers.
