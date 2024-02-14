@@ -25,10 +25,9 @@ systems may be required.
 
 The manual instructions below detail an installation using preferred versions of
 our dependencies, for a non-root user.
-<!-- 
+
 These instructions have been tried successfully on:
 * Fedora 39 (Nov 2023)
--->
 
 ### Some pre-requisites
 
@@ -132,7 +131,8 @@ sudo apt-get update
 {{< /tabs >}}
 
 ### CMake
-CMake is the recommended build system for Chaste, and is needed to build several of the dependencies listed below.
+CMake is the recommended build system for Chaste, and is needed to build several
+of the dependencies listed below.
 
 {{< tabs "install-cmake" >}}
 {{< tab "Manual" >}}
@@ -209,19 +209,18 @@ These steps can take some time (potentially an hour or more).
 
 ```sh
 cd $CHASTE_LIBS
-wget https://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.15.5.tar.gz
-tar -zxf petsc-lite-3.15.5.tar.gz
-rm -f petsc-lite-3.15.5.tar.gz
-cd petsc-3.15.5
+wget https://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.18.6.tar.gz
+tar -zxf petsc-lite-3.18.6.tar.gz
+rm -f petsc-lite-3.18.6.tar.gz
+cd petsc-3.18.6
 export PETSC_DIR=`pwd`
 ```
 
-Define package versions
+Define package versions for MPICH and HDF5
 
 ```sh
-mpich=https://www.mpich.org/static/downloads/3.4.3/mpich-3.4.3.tar.gz
-hdf5=https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-1.10.7/src/hdf5-1.10.7.tar.bz2
-sundials=https://github.com/LLNL/sundials/releases/download/v5.8.0/sundials-5.8.0.tar.gz
+mpich=https://www.mpich.org/static/downloads/4.1.2/mpich-4.1.2.tar.gz
+hdf5=https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-1.10.11/src/hdf5-1.10.11.tar.bz2
 ```
 
 If you want to build PETSc with hypre, optionally remove `--with-fc=0` and add
@@ -230,15 +229,43 @@ you want to build PETSc with hypre, leave the following as is.
 
 ```sh
 export PETSC_ARCH=linux-gnu
-./configure --with-make-np=4 --with-cc=gcc --with-cxx=g++ --with-fc=0 --with-x=false --with-ssl=false --download-f2cblaslapack=1 --download-mpich=$mpich --download-hdf5=$hdf5 --download-sundials=$sundials --download-parmetis=1 --download-metis=1 --with-shared-libraries
-make all test
+./configure \
+  --with-make-np=4 \
+  --with-cc=gcc \
+  --with-cxx=g++ \
+  --with-fc=0 \
+  --with-x=false \
+  --with-ssl=false \
+  --download-f2cblaslapack=1 \
+  --download-mpich=$mpich \
+  --download-hdf5=$hdf5 \
+  --download-parmetis=1 \
+  --download-metis=1 \
+  --with-shared-libraries
+make all
+make test # optional
 ```
 
+Optional -- install optimised PETSc build too.
+
 ```sh
-# Optional - optimised petsc build too.
 export PETSC_ARCH=linux-gnu-opt
-./configure --with-make-np=4 --with-cc=gcc --with-cxx=g++ --with-fc=0 --with-x=false --with-ssl=false --download-f2cblaslapack=1 --download-mpich=$mpich --download-hdf5=$hdf5 --download-sundials=$sundials --download-parmetis=1 --download-metis=1 --with-shared-libraries --with-debugging=0
-make all test
+./configure \
+  --with-make-np=4 \
+  --with-cc=gcc \
+  --with-cxx=g++ \
+  --with-fc=0 \
+  --with-x=false \
+  --with-ssl=false \
+  --download-f2cblaslapack=1 \
+  --download-mpich=$mpich \
+  --download-hdf5=$hdf5 \
+  --download-parmetis=1 \
+  --download-metis=1 \
+  --with-shared-libraries \
+  --with-debugging=0
+make all
+make test # optional
 ```
 
 ```sh
@@ -321,12 +348,26 @@ sudo apt-get install libmetis-dev libparmetis-dev
 {{< tabs "install-parmetis" >}}
 {{< tab "Manual" >}}
 
-See the manual instructions for [PETSc](#petsc).
+```sh
+wget https://github.com/LLNL/sundials/releases/download/v5.8.0/sundials-5.8.0.tar.gz
+tar -zxf sundials-5.8.0.tar.gz
+mkdir build-sundials-5.8.0 && cd build-sundials-5.8.0
+cmake \
+  -DCMAKE_INSTALL_PREFIX=$CHASTE_LIBS \
+  -DBUILD_SHARED_LIBS=ON \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DEXAMPLES_ENABLE=OFF ../sundials-5.8.0
+make -j4 && make install
+cd ..
+rm -rf build-sundials-5.8.0 sundials-5.8.0 sundials-5.8.0.tar.gz
+```
 
 {{< /tab >}}
 {{< tab "Fedora" >}}
 
-See the manual instructions for [PETSc](#petsc).
+```sh
+sudo dnf install sundials-devel
+```
 
 {{< /tab >}}
 {{< tab "Ubuntu" >}}
@@ -380,9 +421,9 @@ tar -zxf xerces-c-3.2.3.tar.gz
 cd xerces-c-3.2.3/
 export XERCESCROOT=`pwd`
 ./configure --prefix=$CHASTE_LIBS
-make all
+make -j4 all
 make install
-cd $CHASTE_LIBS
+cd ..
 rm -rf xerces-c-3.2.3 xerces-c-3.2.3.tar.gz
 ```
 
@@ -411,22 +452,21 @@ sudo apt-get install libxerces-c-dev
 ```sh
 wget https://www.vtk.org/files/release/9.1/VTK-9.1.0.tar.gz
 tar -zxf VTK-9.1.0.tar.gz
-rm -f VTK-9.1.0.tar.gz
 mkdir build_VTK-9.1.0 && cd build_VTK-9.1.0
 cmake -DCMAKE_INSTALL_PREFIX=$CHASTE_LIBS ../VTK-9.1.0 && make -j4 && make install
 cd ..
-rm -rf build_VTK-9.1.0 VTK-9.1.0
+rm -rf build_VTK-9.1.0 VTK-9.1.0 VTK-9.1.0.tar.gz
 ```
 
-Troubleshooting:
+**Troubleshooting**
 
-* Install OpenGL: e.g. `sudo dnf install mesa-libGL-devel` on Fedora (or
+* Install OpenGL e.g. `sudo dnf install mesa-libGL-devel` on Fedora (or
   similar) to get OpenGL headers installed before this point, if you get a
   configure error stating that these headers have not been found
-* Install RPM Config: `sudo dnf install redhat-rpm-config` (or similar) if you
+* Install RPM Config e.g. `sudo dnf install redhat-rpm-config` (or similar) if you
   get
   `gcc: error: /usr/lib/rpm/redhat/redhat-hardened-cc1: No such file or directory`
-* Install X11: e.g. `sudo dnf install libxt-devel` (or similar) if you get an
+* Install X11 e.g. `sudo dnf install libxt-devel` (or similar) if you get an
   error about X11
 
 {{< /tab >}}
@@ -508,10 +548,10 @@ gedit ~/.bashrc
 At the end of the file add the lines (leaving out packages you installed via a package manager):
 
 ```sh
-export PETSC_DIR=$CHASTE_LIBS/petsc-3.15.5
+export PETSC_DIR=$CHASTE_LIBS/petsc-3.18.6
 export PETSC_ARCH=linux-gnu
 
-export SUNDIALS_ROOT=$PETSC_DIR/$PETSC_ARCH
+export SUNDIALS_ROOT=$CHASTE_LIBS
 
 export HDF5_ROOT=$PETSC_DIR/$PETSC_ARCH
 
