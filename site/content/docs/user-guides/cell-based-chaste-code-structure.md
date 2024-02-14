@@ -7,7 +7,7 @@ toc: true
 layout: "single"
 ---
 
-This page is intended for new cell-based Chaste users/developers. For information, see the technical [Chaste papers](/publications).
+This page is intended for new cell-based Chaste users/developers. For more information, see the technical [Chaste papers](/publications).
 
 
 ## Language and external libraries

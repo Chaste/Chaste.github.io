@@ -25,6 +25,11 @@ the `develop` branch to get the latest features.
 - [CMake First Run](cmake-first-run): How to configure, build, and run tests to
   check the installation. For all available options, including compiling optimised code, see the full [CMake Build Guide](../dev-guides/cmake-build-guide).
 
+## Release notes
+
+- [Release notes](../release-notes/release-notes)
+- [Changes since last release](../release-notes/changes-since-last-release)
+
 ## Running Chaste simulations
 
 - [Tutorials](../user-tutorials): Detailed lessons on using Chaste's capabilities.
@@ -34,30 +39,30 @@ the `develop` branch to get the latest features.
   simulation results.
 - [User Projects](user-projects): Creating/using a project which can utilize the
   core Chaste code and build/testing framework.
-- [API Documentation](../doxygen): Code documentation for the latest revision
-  and previous release versions of Chaste.
 - [Boost Serialization](boost-serialization): Notes on using the the
   Serialization library from Boost to checkpoint and save/resume simulations.
-- [Cell-based Code Structure](cell-based-chaste-code-structure): An
-  overview of cell-based Chaste.
 - [Code Generation from CellML](code-generation-from-cell-ml): Notes on
   generating Chaste code for cardiac cell models from CellML files, using
   chaste_codegen.
+- [Installing chaste_codegen](install-codegen)
+- [Modules Setup Guide](modules-setup-guide)
+
+## Advanced
+- [API Documentation](../doxygen): Code documentation for the latest revision
+  and previous release versions of Chaste.
+- [Cardiac Mechanics Solvers](cardiac-mechanics-solvers): A bit of information
+  on how the cardiac mechanics solvers are connected to the main mechanics
+  solvers.
+- [Cell-based Code Structure](cell-based-chaste-code-structure): An
+  overview of cell-based Chaste.
+- [Running Binaries Directly](running-binaries-from-command-line)
+- [Solving Cardiac Problems](solving-cardiac-problems)
+- [State Variable Interpolation](state-variable-interpolation)
 - [Finding Chaste Dependencies](finding-chaste-dependencies): Notes on manually
   setting hints for Chaste dependency locations if they are not found
   automatically.
 - [Finite Element Assemblers and Solvers](finite-element-assemblers-and-solvers)
 - [Finite Element Implementations](finite-element-implementations)
-- [Install chaste_codegen](install-codegen)
-- [Modules Setup Guide](modules-setup-guide)
-- [Running Binaries Directly](running-binaries-from-command-line)
-- [Solving Cardiac Problems](solving-cardiac-problems)
-- [State Variable Interpolation](state-variable-interpolation)
-
-## Release notes
-
-- [Release notes](../release-notes/release-notes).
-- [Changes since last release](../release-notes/changes-since-last-release).
 
 ## Miscellaneous information
 - File Formats: This information is given in the version of
@@ -68,6 +73,3 @@ the `develop` branch to get the latest features.
   [`heart/src/problem/HeartConfigDefaults.hpp`](https://github.com/Chaste/Chaste/blob/develop/heart/src/problem/HeartConfigDefaults.hpp)
   (ignore the `Simulation` block, which only applies to the old cardiac
   executable).
-- [Cardiac Mechanics Solvers](cardiac-mechanics-solvers): A bit of information
-  on how the cardiac mechanics solvers are connected to the main mechanics
-  solvers.
