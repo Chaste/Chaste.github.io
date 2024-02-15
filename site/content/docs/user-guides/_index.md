@@ -23,7 +23,9 @@ the `develop` branch to get the latest features.
 - [Install Guides](../installguides): How to install Chaste and its
   dependencies.
 - [CMake First Run](cmake-first-run): How to configure, build, and run tests to
-  check the installation. For all available options, including compiling optimised code, see the full [CMake Build Guide](../dev-guides/cmake-build-guide).
+  check the installation. For all available options, including compiling
+  optimised code, see the full
+  [CMake Build Guide](../dev-guides/cmake-build-guide).
 
 ## Release notes
 

@@ -25,85 +25,62 @@ archive objects should include the `*archive.hpp` headers. This allows the
 serialization code in our classes to be (largely) independent of the type of
 archive being written to/read from.
 
-All header files of the form
+All header files of the form `<boost/archive/*archive.hpp>` are **required** to
+precede the header file `<boost/serialization/export.hpp>`.
 
-```c++
-<boost/archive/*archive.hpp>
-```
-
-are **required** to precede the header file
-
-```c++
-<boost/serialization/export.hpp>
-```
-
-It is good practice therefore for tests of archiving to include:
+It is good practice therefore for tests of archiving to include first
 
 ```c++
 #include "CheckpointArchiveTypes.hpp"
-
 ```
 
-first, then include Chaste classes. See [below](#Derivedclasses) for details on
+and then include Chaste classes. See [Derived Classes](#derived-classes) below for details on
 how to use the export header.
 
 The main header file that classes with serialization methods will need is
 
 ```c++
 #include "ChasteSerialization.hpp"
-
 ```
 
-Other headers are also needed for dealing with
-[abstract and derived classes; see below](#Classhierarchies).
+Other headers are also needed for dealing with abstract and derived classes; see
+[Class Hierarchies](#class-hierarchies) below.
 
 For serializing vectors, add
 
-```
+```c++
 #include <boost/serialization/vector.hpp>
 ```
 
-. Similar headers exist for other STL collections.
+Similar headers exist for other STL collections.
 
 There are cases where Chaste code needs to create archives, for example to
 provide `Save` and `Load` functionality for tissue simulations, or heart
 simulation checkpointing. The easiest way to handle this is to create a separate
 helper class (in its own source files) which does this. For examples see
-source:trunk/cell_based/src/simulation/CellBasedSimulationArchiver.hpp and
-source:trunk/heart/src/problem/CardiacSimulationArchiver.hpp. This source file
-then needs to be included before any other Chaste headers (that might include
-serialization headers).
+[`cell_based/src/simulation/CellBasedSimulationArchiver.hpp`](https://github.com/Chaste/Chaste/blob/develop/cell_based/src/simulation/CellBasedSimulationArchiver.hpp)
+and
+[`heart/src/problem/CardiacSimulationArchiver.hpp`](https://github.com/Chaste/Chaste/blob/develop/heart/src/problem/CardiacSimulationArchiver.hpp).
+This source file then needs to be included before any other Chaste headers (that
+might include serialization headers).
 
-Trying to have save and load functionality in different places will almost
+Trying to have `Save` and `Load` functionality in different places will almost
 certainly lead to problems such as:
 
 ```
-
 heart/build/debug/src/problem/AbstractCardiacProblem.o:
     multiple definition of `boost::archive::detail::guid_initializer<SimpleStimulus>::instance'
 heart/build/debug/bidomain/TestBidomainArchiveKSPRunner.o:
     first defined here
-
 ```
 
 The cause of this is multiple definitions of the unique IDs needed to properly
 serialize derived classes through a pointer (see below). If multiple .cpp files
-include both an archive header (
-
-```
-<boost/archive/*archive.hpp>
-```
-
-) and
-
-```
-<boost/serialization/export.hpp>
-```
-
-, either directly or indirectly, then each corresponding object file (or
-library) will define the same unique ID, hence the error. It is OK to have
-archive headers in multiple files, provided that the export header follows in at
-most one case of files being linked together.
+include both an archive header (`<boost/archive/*archive.hpp>`) and
+`<boost/serialization/export.hpp>`, either directly or indirectly, then each
+corresponding object file (or library) will define the same unique ID, hence the
+error. It is OK to have archive headers in multiple files, provided that the
+export header follows in at most one case of files being linked together.
 
 ## Class hierarchies
 
@@ -115,28 +92,31 @@ hierarchy.
 While many compilers can automatically detect abstract classes, some do not, and
 so need them to be indicated explicitly. Since the interface for doing this
 changed in Boost 1.36, we have written a wrapper interface in
-source:trunk/global/src/checkpointing/ClassIsAbstract.hpp. When writing an
-abstract base class (i.e. one with pure virtual methods), include this header
-(`#include "ClassIsAbstract.hpp"`) and use the macro
+[`global/src/checkpointing/ClassIsAbstract.hpp`](https://github.com/Chaste/Chaste/blob/develop/global/src/checkpointing/ClassIsAbstract.hpp).
+When writing an abstract base class (i.e. one with pure virtual methods),
+include this header (`#include "ClassIsAbstract.hpp"`) and use the macro
 
 ```c++
 CLASS_IS_ABSTRACT(class_name)
-
 ```
 
 after the class definition, to indicate to the serialization library that it
 should not try to instantiate the class, thus avoiding compiler errors on some
 systems.
 
-Note that this macro should **_only_** be used for classes with **_pure
-virtual_** methods. If they only have virtual methods with implementations, then
-the class can actually be instantiated, and the macro should not be used.
-Including the macro unnecessarily can lead to segfaults!
+{{< callout context="caution" title="Caution" icon="alert-triangle" >}}
+
+This macro should **_only_** be used for classes with **_pure virtual_**
+methods. If they only have virtual methods with implementations, then the class
+can actually be instantiated, and the macro should not be used. Including the
+macro unnecessarily can lead to segfaults!
+
+{{< /callout >}}
 
 If the abstract class is templated, the above macro will not work. There are
 convenience macros for common scenarios, or you may have to expand the
 underlying definition manually. See
-source:trunk/global/src/checkpointing/ClassIsAbstract.hpp for details.
+[`global/src/checkpointing/ClassIsAbstract.hpp`](https://github.com/Chaste/Chaste/blob/develop/global/src/checkpointing/ClassIsAbstract.hpp) for details.
 
 ### Derived classes
 
@@ -144,24 +124,20 @@ Derived classes must make sure to serialize their base parts, by including `<boo
 
 ```c++
 archive & boost::serialization::base_object<base_class_name>(*this);
-
 ```
 
-as the first instruction in their
-
-```
-serialize
-```
-
-method. See [Boost docs](http://www.boost.org/libs/serialization/doc/serialization.html#base).
+as the first instruction in their `serialize` method. See the
+[Boost documentation](http://www.boost.org/libs/serialization/doc/serialization.html#base).
 
 If serializing a derived class through a base class pointer or reference, the
 library will need some help to know which class to instantiate when loading from
 the archive. This is done by defining a globally unique identifier for the class
 using the `BOOST_CLASS_EXPORT` macro from `<boost/serialization/export.hpp>`.
 Due to changes in this macro between Boost versions, we provide wrapper macros
-in source:trunk/global/src/checkpointing/SerializationExportWrapper.hpp and
-source:trunk/global/src/checkpointing/SerializationExportWrapperForCpp.hpp.
+in
+[`global/src/checkpointing/SerializationExportWrapper.hpp`](https://github.com/Chaste/Chaste/blob/develop/global/src/checkpointing/SerializationExportWrapper.hpp)
+and
+[`global/src/checkpointing/SerializationExportWrapperForCpp.hpp`](https://github.com/Chaste/Chaste/blob/develop/global/src/checkpointing/SerializationExportWrapperForCpp.hpp).
 
 Chaste header files that declare derived classes should include something like
 the following _after_ the class block in the .hpp file:
@@ -169,37 +145,40 @@ the following _after_ the class block in the .hpp file:
 ```c++
 #include "SerializationExportWrapper.hpp"
 CHASTE_CLASS_EXPORT(class_name)
-
 ```
 
 The corresponding .cpp file must include something like the following after any
-other includes (I suggest putting it at the end of the file for consistency):
+other includes (you can put it at the end of the file for consistency):
 
 ```c++
 #include "SerializationExportWrapperForCpp.hpp"
 CHASTE_CLASS_EXPORT(class_name)
-
 ```
 
 Note that the name given to `CHASTE_CLASS_EXPORT` **must** match that used in
 the .hpp file.
 
-**Note that this macro is not needed for _abstract_ base classes**, only the
-derived classes, since no instances of the base itself will be serialized. See
-[here](http://www.boost.org/libs/serialization/doc/special.html#export) and
-[here](http://www.boost.org/libs/serialization/doc/serialization.html#derivedpointers)
-for further information.
+{{< callout context="note" title="Note" icon="info-circle" >}}
+
+This macro is **not** needed for **abstract** base classes, only in
+derived classes, since no instances of the base itself will be serialized.
+
+For further information, see the Boost documentation:
+- [Exporting Class Serialization](http://www.boost.org/libs/serialization/doc/special.html#export)
+- [Pointers to Objects of Derived Classes](http://www.boost.org/libs/serialization/doc/serialization.html#derivedpointers)
+
+{{< /callout >}}
+
+
+
 
 With templated classes, this simple invocation doesn't work. A fully general
 export macro approach
 [seems impossible](http://lists.boost.org/boost-users/2005/05/11731.php). The
-header source:trunk/global/src/checkpointing/SerializationExportWrapper.hpp
+header [`global/src/checkpointing/SerializationExportWrapper.hpp`](https://github.com/Chaste/Chaste/blob/develop/global/src/checkpointing/SerializationExportWrapperForCpp.hpp)
 provides macros for where a derived class is templated over dimension (either a
 single dimension, or both element and space dimension, or including
-PROBLEM_DIM). See r2266, r6952,
-source:trunk/models/src/crypt/killers/RandomCellKiller.hpp@2266#L74 and
-source:trunk/mesh/src/common/TetrahedralMesh.hpp@6952#L467 for examples of its
-use.
+`PROBLEM_DIM`). See [`mesh/src/common/TetrahedralMesh.hpp`](https://github.com/Chaste/Chaste/blob/develop/mesh/src/common/TetrahedralMesh.hpp) for an example of its use.
 
 ## Avoiding the need for special constructors
 
@@ -207,30 +186,27 @@ It is undesirable to have to write a special constructor for classes just for
 the use of the archiving code. There are two ways around this.
 
 One is to write separate functions `save_construct_data` and
-`load_construct_data` for the class. These save/load the parameters needed for
-an existing constructor. See also
-[the official documentation](http://www.boost.org/libs/serialization/doc/serialization.html#constructors),
-and source:trunk/cell_based/src/cell/Cell.hpp@26262#L413 for an example.
+`load_construct_data` for the class. These save or load the parameters needed
+for an existing constructor. See
+[`cell_based/src/cell/Cell.hpp`](https://github.com/Chaste/Chaste/blob/develop/cell_based/src/cell/Cell.hpp)
+for an example. See also
+[Non-Default Constructors](http://www.boost.org/libs/serialization/doc/serialization.html#constructors),
+in the official Boost documentation.
 
 Note that the example in the documentation seems to suggest that you can
-directly access private member data from a
-
-```
-save_construct_data
-```
-
-function. This is incorrect. You'll either need public accessor methods for the
-data you require, or a public helper method to save the data to the archive.
+directly access private member data from a `save_construct_data` function. This
+is incorrect. You'll either need public accessor methods for the data you
+require, or a public helper method to save the data to the archive.
 
 The other method is to create a _private default constructor_ which does
-nothing, as is done in source:trunk/heart/src/problem/Electrodes.hpp. All the
+nothing, as is done in [`heart/src/problem/Electrodes.hpp`](https://github.com/Chaste/Chaste/blob/develop/heart/src/problem/Electrodes.hpp). All the
 work can then be done by the `serialize` method.
 
 ## Singleton classes
 
 In order for singleton classes to remain singletons, they must be serialized
 properly. The
-[SerializableSingleton](/trunk/global/src/checkpointing/SerializableSingleton.hpp)
+[`SerializableSingleton`](https://github.com/Chaste/Chaste/blob/develop/global/src/checkpointing/SerializableSingleton.hpp)
 class makes doing so easier, without requiring any special handling for the
 first serialization of a singleton. Any singleton class which needs to be
 serialized should inherit from this base, which provides both part of the
@@ -268,7 +244,7 @@ after your class definition to specify the current version number - increase it
 by 1 each time there is a change in how the class is archived (it defaults to 0
 if the macro is not given).
 
-See source:trunk/heart/src/odes/AbstractCardiacCell.hpp and
+See [`heart/src/odes/AbstractCardiacCell.hpp`](https://github.com/Chaste/Chaste/blob/develop/heart/src/odes/AbstractCardiacCell.hpp) and
 [Boost's tutorial](http://www.boost.org/doc/libs/1_37_0/libs/serialization/doc/tutorial.html#versioning)
 for examples.
 
