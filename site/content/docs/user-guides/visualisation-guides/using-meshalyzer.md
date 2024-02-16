@@ -31,20 +31,20 @@ First thing to do is to fire up the meshalyzer executable you downloaded. Simply
 open a terminal and type the path to the meshalyzer executable. You will be
 prompted with a window like this one
 
-{{< img src="../meshalyzer_first.png" alt="Meshalyzer file picker window" h="400px" >}}
+{{< img src="../meshalyzer_first.png" alt="meshalyzer file picker window" h="400px" >}}
 
 where you will be asked to choose a mesh file. Navigate your way to your
 simulation results directory (_output_ sub-directory) until you find the _.pts_
 file that describes the geometry of your simulation. Select it and click OK.
 This will pop up two windows that look like this at first
 
-{{< img src="../meshalyzer_second.png" alt="Meshalyzer main window" h="600px" >}}
+{{< img src="../meshalyzer_second.png" alt="meshalyzer main window" h="600px" >}}
 
 the one on the right is the Control Panel. The one on the left is where the
 visualization will occur. At the moment that is blank. To view the geometry,
 simply click on the _Vertices_ Button as shown here
 
-{{< img src="../meshalyzer_third.png" alt="Meshalyzer main window" h="600px" >}}
+{{< img src="../meshalyzer_third.png" alt="meshalyzer main window" h="600px" >}}
 
 in this example, the geometry is just a cube. The mouse buttons for meshalyzer
 visualization window are as follows:
@@ -57,14 +57,14 @@ If you want to add connection between nodes, click on File --> Add Surface and
 find your `FILENAME_mesh.tri` file. After doing this, you can click on the
 "Surface" button in the Control Panel and see something like
 
-{{< img src="../meshalyzer_fourth.png" alt="Meshalyzer main window with surface" h="600px" >}}
+{{< img src="../meshalyzer_fourth.png" alt="meshalyzer main window with surface" h="600px" >}}
 
 So far, we only loaded up the geometry of the simulation. We now want to plot
 our results on the given geometry.
 
 To do so, click on File --> Read Data and choose one of your `FILENAME_VARIABLENAME.dat` files
 
-{{< img src="../meshalyzer_fifth.png" alt="Meshalyzer window with surface" h="700px" >}}
+{{< img src="../meshalyzer_fifth.png" alt="meshalyzer window with surface" h="700px" >}}
 
 In this example, the Chaste simulation had two output variables (`V` and
 `Phi_e`). Once you choose an output variable, the data will be plotted on the mesh. You can tune
@@ -76,7 +76,7 @@ the variable `V` plotted with a spectrum from -83.853 (min) to 0 (max) at time 1
 of the simulation. It is visualized on triangles and connections. The surface
 is hidden.
 
-{{< img src="../meshalyzer_sixth.png" alt="Meshalyzer window with variable" h="600px" >}}
+{{< img src="../meshalyzer_sixth.png" alt="meshalyzer window with variable" h="600px" >}}
 
 To **export** an image, click on Output and select the desired format (png, eps, pdf available).
 

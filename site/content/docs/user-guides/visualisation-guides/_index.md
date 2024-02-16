@@ -30,7 +30,7 @@ stages*
   some of the tutorials.
 - [CMGUI Docs](https://www.cmiss.org/cmgui): Documentation and examples
   for CMGUI.
-- [Paraview Docs](https://docs.paraview.org/): Documentation and
+- [Paraview Docs](https://www.paraview.org/resources/): Documentation and
   examples for Paraview.
 
 {{< /callout >}}
