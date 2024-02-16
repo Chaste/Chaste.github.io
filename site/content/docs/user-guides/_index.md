@@ -15,7 +15,7 @@ are a _user_ of releases or a _developer_ contributing back to Chaste core code.
 {{< /callout >}}
 
 _Users_ can download the latest stable release of the source code from our
-[GitHub releases page](https://github.com/Chaste/Chaste/releases), or check out
+[GitHub releases page](https://github.com/Chaste/Chaste/releases), or checkout
 the `develop` branch to get the latest features.
 
 ## Installation

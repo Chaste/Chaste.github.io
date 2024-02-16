@@ -34,8 +34,8 @@ It is good practice therefore for tests of archiving to include first
 #include "CheckpointArchiveTypes.hpp"
 ```
 
-and then include Chaste classes. See [Derived Classes](#derived-classes) below for details on
-how to use the export header.
+and then include Chaste classes. See [Derived Classes](#derived-classes) below
+for details on how to use the export header.
 
 The main header file that classes with serialization methods will need is
 
@@ -116,11 +116,13 @@ macro unnecessarily can lead to segfaults!
 If the abstract class is templated, the above macro will not work. There are
 convenience macros for common scenarios, or you may have to expand the
 underlying definition manually. See
-[`global/src/checkpointing/ClassIsAbstract.hpp`](https://github.com/Chaste/Chaste/blob/develop/global/src/checkpointing/ClassIsAbstract.hpp) for details.
+[`global/src/checkpointing/ClassIsAbstract.hpp`](https://github.com/Chaste/Chaste/blob/develop/global/src/checkpointing/ClassIsAbstract.hpp)
+for details.
 
 ### Derived classes
 
-Derived classes must make sure to serialize their base parts, by including `<boost/serialization/base_object.hpp>` and using
+Derived classes must make sure to serialize their base parts, by including
+`<boost/serialization/base_object.hpp>` and using
 
 ```c++
 archive & boost::serialization::base_object<base_class_name>(*this);
@@ -169,9 +171,6 @@ For further information, see the Boost documentation:
 
 {{< /callout >}}
 
-
-
-
 With templated classes, this simple invocation doesn't work. A fully general
 export macro approach
 [seems impossible](http://lists.boost.org/boost-users/2005/05/11731.php). The
@@ -210,13 +209,13 @@ properly. The
 class makes doing so easier, without requiring any special handling for the
 first serialization of a singleton. Any singleton class which needs to be
 serialized should inherit from this base, which provides both part of the
-"singleton-ness" (by inheriting from boost::noncopyable), and also a method
+"singleton-ness" (by inheriting from `boost::noncopyable`), and also a method
 `GetSerializationWrapper()`. Users of the singleton which wish to serialize it
-should not do so directly. Instead, they should call `GetSerializationWrapper`
+should not do so directly. Instead, they should call `GetSerializationWrapper()`
 and serialize the returned pointer. Doing so will ensure that only a single
 global instance of the singleton is maintained when loading from an archive. For
 more information see the
-[class doxygen](//docs/classSerializableSingleton.html).
+[documentation for SerializableSingleton](../../../doxygen-latest/classSerializableSingleton.html).
 
 It is also advisable for singleton classes to `assert(mpInstance==NULL)` in
 their constructor, in order to trap cases where serialization has not been
@@ -237,20 +236,20 @@ For each class in which the serialization changes, include the header
 
 ```c++
 BOOST_CLASS_VERSION(ClassName, VersionNumber)
-
 ```
 
-after your class definition to specify the current version number - increase it
+after your class definition to specify the current version number -- increase it
 by 1 each time there is a change in how the class is archived (it defaults to 0
 if the macro is not given).
 
-See [`heart/src/odes/AbstractCardiacCell.hpp`](https://github.com/Chaste/Chaste/blob/develop/heart/src/odes/AbstractCardiacCell.hpp) and
-[Boost's tutorial](http://www.boost.org/doc/libs/1_37_0/libs/serialization/doc/tutorial.html#versioning)
+See [`heart/src/odes/AbstractCardiacCell.hpp`](https://github.com/Chaste/Chaste/blob/develop/heart/src/odes/AbstractCardiacCell.hpp) and the
+[Boost Serialization tutorial](http://www.boost.org/doc/libs/1_37_0/libs/serialization/doc/tutorial.html#versioning)
 for examples.
 
-For templated classes, the macro will not work, and you have to expand
-[its definition](http://www.boost.org/doc/libs/1_37_0/libs/serialization/doc/traits.html#version)
-yourself. For example,
+For templated classes, the macro will not work, and you have to expand its
+definition yourself (See the Boost documentation on
+[Class Serialization Traits](http://www.boost.org/doc/libs/1_37_0/libs/serialization/doc/traits.html#version)).
+For example,
 
 ```c++
 namespace boost {
@@ -268,15 +267,12 @@ struct version<AbstractCardiacPde<ELEMENT_DIM, SPACE_DIM> >
 };
 } // namespace serialization
 } // namespace boost
-
 ```
 
 ## Testing the archiving
 
-Things to note:
-
 - Always archive via a pointer (well, almost always).
-- Always archive pretending it is the most abstract class possible (this tests that boost is registering classes properly - otherwise your EXPORT commands aren't tested).
+- Always archive pretending it is the most abstract class possible (this tests that boost is registering classes properly - otherwise your `EXPORT` commands aren't tested).
 - Write a test for each concrete class that can be archived, checking their unique methods and variables are archived properly.
 
 A good way to test the archiving is along the following lines:
@@ -330,18 +326,17 @@ void TestArchivingOfConcreteClass() throw(Exception)
         delete p_abstract_class_2;
     }
 }
-
 ```
 
-Note that all archive files in the repository should be generated using boost
-1-40 to ensure compatibility with all of the possible boost versions supported
-by Chaste. You can generate these by logging on to e.g. `chaste@lofty` and doing
-a build with e.g.
+Note that all archive files in the repository should be generated using the
+oldest Boost version supported by Chaste to ensure compatibility with all of the
+possible
+[Boost versions supported by Chaste](../../installguides/dependency-versions).
+You can generate these from the Chaste build directory by doing:
 
-```
-
-scons build=GccOpt_hostconfig,boost=1-40,use-cvode=0 cell_based/test/crypt/TestGenerateSteadyStateCrypt.hpp
-
+```sh
+cmake --build . --target TestGenerateSteadyStateCrypt
+ctest -R TestGenerateSteadyStateCrypt$
 ```
 
 ## Parallel archiving
@@ -355,20 +350,22 @@ to be re-distributed). However, the Boost Serialization library expects to be
 writing to just one archive.
 
 Two classes are provided to solve this problem:
-[ProcessSpecificArchive](/trunk/global/src/checkpointing/ProcessSpecificArchive.hpp)
-and [ArchiveOpener](/trunk/global/src/checkpointing/ArchiveOpener.hpp). The
-latter is for opening archives for reading or writing. All that all a user needs
-to do is create an instance of this class, call `GetCommonArchive`, and read
-from/write to the returned archive. When done, just destroy the instance (e.g.
-by closing the scope).
+[ProcessSpecificArchive](https://github.com/Chaste/Chaste/blob/develop/global/src/checkpointing/ProcessSpecificArchive.hpp)
+and
+[ArchiveOpener](https://github.com/Chaste/Chaste/blob/develop/global/src/checkpointing/ArchiveOpener.hpp).
+The latter is for opening archives for reading or writing. All that all a user
+needs to do is create an instance of this class, call `GetCommonArchive`, and
+read from/write to the returned archive. When done, just destroy the instance
+(e.g. by closing the scope).
 
 The
-[ProcessSpecificArchive](/trunk/global/src/checkpointing/ProcessSpecificArchive.hpp)
+[ProcessSpecificArchive](https://github.com/Chaste/Chaste/blob/develop/global/src/checkpointing/ProcessSpecificArchive.hpp)
 class is for use by classes that need to save distributed data, and provides
 access to a secondary archive in which to store it. When opening an archive in a
 (potentially) parallel setting, using either the
-[ArchiveOpener](/trunk/global/src/checkpointing/ArchiveOpener.hpp) or
-[CardiacSimulationArchiver](/trunk/heart/src/problem/CardiacSimulationArchiver.hpp),
+[ArchiveOpener](https://github.com/Chaste/Chaste/blob/develop/global/src/checkpointing/ArchiveOpener.hpp)
+or
+[CardiacSimulationArchiver](https://github.com/Chaste/Chaste/blob/develop/heart/src/problem/CardiacSimulationArchiver.hpp),
 the `Set` method will be called to specify the secondary archive. Classes which
 need to save distributed data can then use the `Get` method to access and write
 to/read from this archive.
@@ -376,7 +373,7 @@ to/read from this archive.
 Some classes (e.g. the meshes, `LinearSystem`, and `HeartConfig`) don't write
 their data directly to the archive file, but instead write to separate files in
 the same folder. They use the
-[ArchiveLocationInfo](/trunk/global/src/checkpointing/ArchiveLocationInfo.hpp)
+[ArchiveLocationInfo](https://github.com/Chaste/Chaste/blob/develop/global/src/checkpointing/ArchiveLocationInfo.hpp)
 class to find out where to write to.
 
 ### Cardiac simulations
@@ -384,8 +381,8 @@ class to find out where to write to.
 The `CardiacSimulationArchiver` class provides a high-level interface to
 checkpointing of cardiac simulations, and orchestrates the logic for
 re-distributing data when loading on a different number of processes. The logic
-is currently quite difficult to follow, and so I am attempting to document the
-main points here.
+is currently quite difficult to follow, and so this is an attempt to document the
+main points.
 
 In order to support SVI, and potentially other applications which require
 loading halo information, all process-specific archives are read by all
@@ -412,12 +409,12 @@ archives.
 
 `AbstractTetrahedralMesh::load` makes use of the original factory, if present,
 to partition the loaded mesh. (`AbstractMesh::serialize` checkpoints the mesh's
-`DistributedVectorFactory` to the process-specific archive. This may be NULL in
+`DistributedVectorFactory` to the process-specific archive. This may be `NULL` in
 some cases (when we're not a `DistributedTetrahedralMesh`?).) It unsets the
 member variable temporarily, saving it to `p_factory`, and sets `p_our_factory`
-to the original factory or NULL. If there is an original factory and the number
+to the original factory or `NULL`. If there is an original factory and the number
 of processes matches, then `SetDistributedVectorFactory` is called to force use
-of the same partition as before; otherwise `p_our_factory` is set to NULL to
+of the same partition as before; otherwise `p_our_factory` is set to `NULL` to
 allow repartitioning. We then `ConstructFromMeshReader`. Finally,
 `mpDistributedVectorFactory` needs to be changed to point to `p_factory` so all
 objects use the same factory, and `p_factory` updated if it exists and we
@@ -436,38 +433,32 @@ correctly. But if you are implementing archiving for a personal / science
 project it can be worth using them. The `src` implementation is unchanged, the
 tests that write/read the archives just need to use:
 
-```
-
+```c++
 boost::archive::binary_iarchive
 boost::archive::binary_oarchive
-
 ```
 
 instead of
 
-```
-
+```c++
 boost::archive::text_iarchive
 boost::archive::text_oarchive
-
 ```
 
 in all of the above example code. This can speed things up considerably, and
-also reduce archive file sizes (see #2520). It's easy to simply load an ascii
-archive and re-save in binary, or vice-versa, if you need to.
+also reduce archive file sizes. It's easy to simply load an ASCII archive and
+re-save in binary, or vice-versa, if you need to.
 
 ### Compressing the archive
 
 Note that archive compression needs `libboost_iostreams` adding to the library
-paths on compilation. You can find the line in your hostconfig that looks like
+paths on compilation. You can find the line in `CMakeLists.txt` that looks like
 
+```cmake
+find_package(Boost COMPONENTS filesystem system serialization program_options REQUIRED)
 ```
 
-boost_libs = ['boost_serialization', 'boost_filesystem', 'boost_system']
-
-```
-
-and add `'boost_iostreams'` to the list.
+and add `iostreams` to the list.
 
 The standard way of using archives now becomes a bit more complicated with an
 intermediate stream buffer that takes care of translating between boost
@@ -537,5 +528,4 @@ void TestArchivingOfConcreteClass() throw(Exception)
         delete p_abstract_class_2;
     }
 }
-
 ```
