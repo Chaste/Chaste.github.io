@@ -752,6 +752,12 @@ source ~/.bashrc
 {{< /tab >}}
 {{< tab "Modules" >}}
 
+Clean up residual build artifacts and source tarballs
+
+```sh
+rm -rf $CHASTE_LIBS/src
+```
+
 To view installed modules, run
 
 ```sh
