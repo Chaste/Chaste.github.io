@@ -44,7 +44,7 @@ to creating the environment, but you can name it anything you like.
 
 ## Installing chaste_codegen without an internet connection
 
-On systems which are isolated from the internet, chaste_codegen cannot be
+On systems that are isolated from the internet, chaste_codegen cannot be
 installed directly from [PyPI](https://pypi.org/project/chaste-codegen/). The
 following steps would enable a manual installation and allow building
 Chaste.
@@ -109,7 +109,7 @@ activated:
 - Uncompress the archive if needed.
 - Change into the directory containing `setup.py`
 - If there are any installation instructions contained in the documentation,
-  follow them. Otherwise, try `python3 setup.py install`
+  follow them. Otherwise, use `python3 setup.py install`
 
 {{< callout context="tip" title="See Also" icon="rocket" >}}
 

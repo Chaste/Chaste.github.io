@@ -116,6 +116,83 @@ If either of these is not true, then download the https links in your browser
 and copy them onto the machine you wish to install on.
 
 {{< /tab >}}
+{{< tab "Modules" >}}
+
+This uses scripts from the
+[dependency-modules](https://github.com/Chaste/dependency-modules) repository to
+install Chaste dependencies as environment modules, which makes it possible to
+install multiple versions of the dependencies side-by-side and enables switching
+between them. If you do not already have an environment modules system
+installed, you can install one e.g.
+
+```sh
+sudo apt-get install environment-modules # Ubuntu
+sudo dnf install environment-modules # Fedora
+```
+
+Log out and back in again to activate the environment modules in the shell;
+alternatively, run
+
+```sh
+source  /etc/profile.d/modules.sh
+```
+
+To check that environment modules have been activated, run 
+
+```sh
+module avail
+```
+
+If all has gone well, you should see output similar to the following:
+
+```
+----------------------- /usr/share/modules/modulefiles -----------------------
+dot  module-git  module-info  modules  null  use.own  
+
+Key:
+modulepath
+```
+
+Define the directory where you want to install the libraries that
+Chaste depends on, and create a `modulefiles` directory in it e.g.
+
+```sh
+export CHASTE_LIBS=$HOME/apps/chaste-libs
+mkdir -p $CHASTE_LIBS/modulefiles
+```
+
+Register the `modulefiles` directory with the environment modules system.
+
+```sh
+module use $CHASTE_LIBS/modulefiles
+```
+
+It is recommended that you add the above line to your `.bashrc` (or similar) so
+the `modulefiles` directory is registered every time you log in e.g.
+
+```sh
+echo "module use $CHASTE_LIBS/modulefiles" >> ~/.bashrc
+```
+
+The following instructions assume that:
+
+* `git` is installed.
+* `wget` is installed.
+* You are connected to the internet.
+
+If any of these is not true, then download the links in your browser
+and copy them onto the machine you wish to install on.
+
+
+Clone the [dependency-modules](https://github.com/Chaste/dependency-modules)
+repository.
+
+```sh
+git clone https://github.com/Chaste/dependency-modules.git
+cd dependency-modules/scripts
+```
+
+{{< /tab >}}
 {{< tab "Fedora" >}}
 
 See the manual setup instructions.
@@ -144,6 +221,15 @@ cd cmake-3.22.6
 ./bootstrap --prefix=$CHASTE_LIBS --parallel=4 && make -j4 && make install
 cd ..
 rm -rf cmake-3.22.6.tar.gz cmake-3.22.6
+```
+
+{{< /tab >}}
+{{< tab "Modules" >}}
+
+From the `dependency-modules/scripts` directory, run
+
+```sh
+./install_cmake.sh  --version=3.22.6  --modules-dir=$CHASTE_LIBS --parallel=4
 ```
 
 {{< /tab >}}
@@ -176,6 +262,15 @@ cd boost_1_74_0
 ./b2 install
 cd ..
 rm -rf boost_1_74_0.tar.gz boost_1_74_0
+```
+
+{{< /tab >}}
+{{< tab "Modules" >}}
+
+From the `dependency-modules/scripts` directory, run
+
+```sh
+./install_boost.sh --version=1.74.0 --modules-dir=$CHASTE_LIBS --parallel=4
 ```
 
 {{< /tab >}}
@@ -274,6 +369,31 @@ unset PETSC_DIR
 ```
 
 {{< /tab >}}
+{{< tab "Modules" >}}
+
+From the `dependency-modules/scripts` directory, run
+
+```sh
+./install_petsc_hdf5.sh \
+    --petsc-version=3.18.6 \
+    --hdf5-version=1.10.11 \
+    --petsc-arch=linux-gnu \
+    --modules-dir=$CHASTE_LIBS \
+    --parallel=4
+```
+
+Optional -- install optimised PETSc build too.
+
+```sh
+./install_petsc_hdf5.sh \
+    --petsc-version=3.18.6 \
+    --hdf5-version=1.10.11 \
+    --petsc-arch=linux-gnu-opt \
+    --modules-dir=$CHASTE_LIBS \
+    --parallel=4
+```
+
+{{< /tab >}}
 {{< tab "Fedora" >}}
 
 See the manual instructions for [PETSc](#petsc).
@@ -307,6 +427,11 @@ sudo apt-get install libpetsc-real3.15 libpetsc-real3.15-dev libpetsc-real3.15-d
 See the manual instructions for [PETSc](#petsc).
 
 {{< /tab >}}
+{{< tab "Modules" >}}
+
+See the module install instructions for [PETSc](#petsc).
+
+{{< /tab >}}
 {{< tab "Fedora" >}}
 
 See the manual instructions for [PETSc](#petsc).
@@ -327,6 +452,11 @@ sudo apt-get install hdf5-tools libhdf5-openmpi-dev
 {{< tab "Manual" >}}
 
 See the manual instructions for [PETSc](#petsc).
+
+{{< /tab >}}
+{{< tab "Modules" >}}
+
+See the module install instructions for [PETSc](#petsc).
 
 {{< /tab >}}
 {{< tab "Fedora" >}}
@@ -363,6 +493,21 @@ rm -rf build-sundials-5.8.0 sundials-5.8.0 sundials-5.8.0.tar.gz
 ```
 
 {{< /tab >}}
+{{< tab "Modules" >}}
+
+Load the CMake module
+
+```sh
+module load cmake/3.22.6
+```
+
+From the `dependency-modules/scripts` directory, run
+
+```sh
+./install_sundials.sh --version=5.8.0 --modules-dir=$CHASTE_LIBS --parallel=4
+```
+
+{{< /tab >}}
 {{< tab "Fedora" >}}
 
 ```sh
@@ -393,7 +538,15 @@ rm -f xsd-4.0.0-x86_64-linux-gnu.tar.bz2
 ```
 
 {{< /tab >}}
+{{< tab "Modules" >}}
 
+From the `dependency-modules/scripts` directory, run
+
+```sh
+./install_xsd.sh --version=4.0.0 --modules-dir=$CHASTE_LIBS
+```
+
+{{< /tab >}}
 {{< tab "Fedora" >}}
 
 ```sh
@@ -425,6 +578,15 @@ make -j4 all
 make install
 cd ..
 rm -rf xerces-c-3.2.3 xerces-c-3.2.3.tar.gz
+```
+
+{{< /tab >}}
+{{< tab "Modules" >}}
+
+From the `dependency-modules/scripts` directory, run
+
+```sh
+./install_xercesc.sh  --version=3.2.3  --modules-dir=$CHASTE_LIBS --parallel=4
 ```
 
 {{< /tab >}}
@@ -468,6 +630,21 @@ rm -rf build_VTK-9.1.0 VTK-9.1.0 VTK-9.1.0.tar.gz
   `gcc: error: /usr/lib/rpm/redhat/redhat-hardened-cc1: No such file or directory`
 * Install X11 e.g. `sudo dnf install libxt-devel` (or similar) if you get an
   error about X11
+
+{{< /tab >}}
+{{< tab "Modules" >}}
+
+Load the CMake module
+
+```sh
+module load cmake/3.22.6
+```
+
+From the `dependency-modules/scripts` directory, run
+
+```sh
+./install_vtk.sh --version=9.1.0 --modules-dir=$CHASTE_LIBS --parallel=4
+```
 
 {{< /tab >}}
 {{< tab "Fedora" >}}
@@ -520,6 +697,11 @@ python3 -m <name_of_new_venv_folder>/bin/python -m pip install chaste_codegen
 For more details see [Installing chaste_codegen](../../user-guides/install-codegen).
 
 {{< /tab >}}
+{{< tab "Modules" >}}
+
+See the manual instructions for chaste_codegen.
+
+{{< /tab >}}
 {{< tab "Fedora" >}}
 
 See the manual instructions for chaste_codegen.
@@ -565,6 +747,43 @@ Save, quit and then re-load `.bashrc` (or log out and back in again):
 
 ```sh
 source ~/.bashrc
+```
+
+{{< /tab >}}
+{{< tab "Modules" >}}
+
+To view installed modules, run
+
+```sh
+module avail
+```
+
+The output should be similar to:
+
+```
+--------------------- /home/runner/chaste-libs/modulefiles ---------------------
+cmake/3.22.6      boost/1.74.0    petsc_hdf5/3.18.6_1.10.11/linux-gnu
+sundials/5.8.0    vtk/9.1.0       xercesc/3.2.3
+xsd/4.0.0  
+
+------------------------ /usr/share/modules/modulefiles ------------------------
+dot  module-git  module-info  modules  null  use.own  
+
+Key:
+modulepath 
+```
+
+The installed modules need to be loaded into the environment before configuring
+Chaste. To do this, run
+
+```sh
+module load cmake/3.22.6
+module load boost/1.74.0
+module load petsc_hdf5/3.18.6_1.10.11/linux-gnu
+module load sundials/5.8.0
+module load vtk/9.1.0
+module load xercesc/3.2.3
+module load xsd/4.0.0
 ```
 
 {{< /tab >}}
