@@ -43,7 +43,7 @@ the `develop` branch to get the latest features.
   core Chaste code and build/testing framework.
 - [Boost Serialization](boost-serialization): Notes on using the the
   Serialization library from Boost to checkpoint and save/resume simulations.
-- [Code Generation from CellML](code-generation-from-cell-ml): Notes on
+- [Code Generation from CellML](code-generation-from-cellml): Notes on
   generating Chaste code for cardiac cell models from CellML files, using
   chaste_codegen.
 - [Installing chaste_codegen](install-codegen)

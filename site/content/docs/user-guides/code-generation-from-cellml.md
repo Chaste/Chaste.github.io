@@ -9,8 +9,8 @@ layout: "single"
 
 {{< callout context="note" title="Note" icon="info-circle" >}}
 
-This is the guide for chaste_codegen, the **Python3** code generator. For the
-Python2 code generator (PyCml) used up to release 2019.1, see the
+This is the guide for chaste_codegen, the **Python 3** code generator. For the
+Python 2 code generator (PyCml) used up to release 2019.1, see the
 [release 2019.1](https://github.com/Chaste/Chaste/releases/tag/release_2019.1)
 version of this guide.
 
@@ -21,11 +21,11 @@ version of this guide.
 
 This page contains some notes on generating Chaste code for cardiac cell models
 from CellML files, using
-[chaste_codegen](https://github.com/ModellingWebLab/chaste-codegen), the Python3
-Chaste CellML toolkit. chaste_codegen is developed in Python3 and distributed
+[chaste_codegen](https://github.com/ModellingWebLab/chaste-codegen), the Python 3
+Chaste CellML toolkit. chaste_codegen is developed in Python 3 and distributed
 via the
 [Python Package Index (PyPI)](https://pypi.org/project/chaste-codegen/). The
-Chaste build process automatically creates a Python3 virtual environment and
+Chaste build process automatically creates a Python 3 virtual environment and
 installs chaste_codegen in this for generating code from CellML files.
 
 The process is mostly automatic, although some of the options require some human
