@@ -26,7 +26,6 @@ the `develop` branch to get the latest features.
   check the installation. For all available options, including compiling
   optimised code, see the full
   [CMake Build Guide](../dev-guides/cmake-build-guide).
-- [Modules Setup Guide](modules-setup-guide)
 
 ## Running Chaste simulations
 
@@ -49,8 +48,7 @@ the `develop` branch to get the latest features.
 ## Advanced
 
 ### General
-- [Running Binaries Directly](running-binaries-from-command-line)
-- [State Variable Interpolation](state-variable-interpolation)
+- [Running Binaries From Command Line](running-binaries-from-command-line)
 - [Finding Chaste Dependencies](finding-chaste-dependencies): Notes on manually
   setting hints for Chaste dependency locations if they are not found
   automatically.
@@ -66,6 +64,7 @@ the `develop` branch to get the latest features.
   chaste_codegen.
 - [Installing chaste_codegen](install-codegen): Guidance on manually installing chaste_codegen.
 - [Solving Cardiac Problems](solving-cardiac-problems)
+- [State Variable Interpolation](state-variable-interpolation)
 
 ### Cell-based
 - [Cell-based Code Structure](cell-based-chaste-code-structure): An
