@@ -19,13 +19,6 @@ layout: "single"
 
 {{< /callout >}}
 
-{{< callout context="tip" title="See Also" icon="rocket" >}}
-
-- [Solving Linear PDEs](../../user-tutorials/solvinglinearpdes/)
-- [Numerical Methods and Object-oriented Design](../nmood_slides.pdf) {{< inline-svg "file-type-pdf" >}}
-
-{{< /callout >}}
-
 ## Quick Summary
 
 The old design involved classes that were both assemblers (of finite element
@@ -76,6 +69,13 @@ the static/dynamic solver (as appropriate). See below for more details.
 **Cardiac assemblers and solvers**
 
 See [section](#cardiac-assemblers-and-solvers) section in full description (more or less self-contained).
+
+{{< callout context="tip" title="See Also" icon="rocket" >}}
+
+- [Solving Linear PDEs](../../user-tutorials/solvinglinearpdes/)
+- [Numerical Methods and Object-oriented Design](../nmood_slides.pdf) {{< inline-svg "file-type-pdf" >}}
+
+{{< /callout >}}
 
 ## Full Description
 
