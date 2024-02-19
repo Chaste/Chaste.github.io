@@ -21,25 +21,6 @@ This is a troubleshooting page with information for manually setting hints for
 dependency locations if they are not found automatically, or if you wish to
 use specific dependency versions when you have multiple versions installed.
 
-## Windows
-
-For Windows you need to specify a generator (using `-G`) and the location of the
-third party libraries (using `-DCHASTE_DEPS_ROOT_DIR=`) e.g.
-
-```powershell
-cmake ^
-  -DCHASTE_DEPS_ROOT_DIR=D:\chaste_windows\build\install\third_party_libs ^
-  -DChaste_USE_PETSC_HDF5=OFF ^
-  -DHAVE_PARMETIS=ON ^
-  -GVisual Studio 10 Win64 \path\to\source
-```
-
-You need `-DChaste_USE_PETSC_HDF5=OFF` because this example uses
-"PETSc for Windows" for PETSc, which doesn't include HDF5 libraries.
-
-You need `-DHAVE_PARMETIS=ON` to skip the step which checks that Parmetis is
-working -- it works for the main Chaste build, so not to worry (for now).
-
 ## Specifying a Compiler
 
 You can specify a C++ and C compiler by setting the `CXX` and `CC` environment
@@ -101,11 +82,6 @@ cmake -DVTK_DIR=/path/to/vtk /path/to/source
 
 You can specify a Boost directory by using the `BOOST_ROOT` CMake variable (note:
 NOT an environment variable).
-
-## Notes for CHASTE_DEPS_ROOT_DIR
-
-(Windows only) Note that using this CMake option overwrites any specified
-library locations
 
 ## Shell configuration
 
