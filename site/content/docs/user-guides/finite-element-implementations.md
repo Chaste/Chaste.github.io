@@ -7,7 +7,8 @@ toc: true
 layout: "single"
 ---
 
-The finite element implementations in the various chaste solvers are described in the attached pdf.
+The finite element implementations in the various Chaste solvers are described
+in the attached pdf.
 
 Contents:
 
@@ -55,3 +56,4 @@ Contents:
 
 ```
 
+{{< inline-svg "file-type-pdf" >}} [Finite Element Implementations](../fem_implementation.pdf)
