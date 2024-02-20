@@ -20,9 +20,8 @@ simulations (including intestinal crypt simulations), and more.
   [Ubuntu Linux](https://www.ubuntu.com/) (recommended), and is regularly tested
   on all Long Term Support (LTS) versions of Ubuntu, but should also work on
   other Linux/Unix systems.
-- **MacOS**: Chaste is not currently tested on Mac OS X.
-- **Windows**: While there is partial/experimental support for Windows, it is
-  not currently recommended to use Chaste on Windows.
+- **MacOS**: Chaste is not currently tested on Mac OS.
+- **Windows**: It is currently not recommended to use Chaste on Windows.
 
 The recommended route for unsupported systems is to install Chaste via
 [Docker](installguides/docker) or virtual machine running Ubuntu Linux.
