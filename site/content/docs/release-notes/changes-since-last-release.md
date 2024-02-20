@@ -11,7 +11,7 @@ toc: true
 **Users:** If you are working with the develop branch and your local code or project has been broken
 by a recent interface change then please see here for fix suggestions.
 
-**Developers:** Please mention any changes to the code which will break users' code here - to be put in the release notes for the next release.  Also mention any significant improvements or new features.  The real definitive release notes will be written in [release notes](/release-notes/release-notes)  at the time of release.  To make that process easier, please structure this page in the same manner.
+**Developers:** Please mention any changes to the code which will break users' code here - to be put in the release notes for the next release.  Also mention any significant improvements or new features.  The real definitive release notes will be written in [release notes](../release-notes)  at the time of release.  To make that process easier, please structure this page in the same manner.
 
 
 ## Changes since last release appear below
@@ -45,7 +45,7 @@ by a recent interface change then please see here for fix suggestions.
 * [#3071](https://github.com/Chaste/trac_archive/blob/master/issues/3071.md) You can now output both the Voronoi tesselation (add `VoronoiDataWriter`) and mesh (`SetWriteVtkAsPoints(true)`) in mesh based simulations, the output files are now `voronoi_results_xxx.vtu` and `mesh_results_xxx.vtu`.
 
 #### July 2021
-* [#3069](https://github.com/Chaste/trac_archive/blob/master/issues/3069.md) You can now output the location (and other information Including the cell killer that removed it) of cell removals by immediate killing or apoptosis. To do this use the new `CellRemovalLocationsWriter`, this will give you the file `removals.dat`. To make sure the information is output you will need to update your cell killer (if not in the core code) to use the helper methods `KillCell()` and `StartApoptosisOnCell()` See [TestCreatingAndUsingANewCellKillerTutorial](docs/user-tutorials/creatingandusinganewcellkiller/) for examples.
+* [#3069](https://github.com/Chaste/trac_archive/blob/master/issues/3069.md) You can now output the location (and other information Including the cell killer that removed it) of cell removals by immediate killing or apoptosis. To do this use the new `CellRemovalLocationsWriter`, this will give you the file `removals.dat`. To make sure the information is output you will need to update your cell killer (if not in the core code) to use the helper methods `KillCell()` and `StartApoptosisOnCell()` See [TestCreatingAndUsingANewCellKillerTutorial](../../user-tutorials/creatingandusinganewcellkiller/) for examples.
 * [#3069](https://github.com/Chaste/trac_archive/blob/master/issues/3069.md) and [#2578](https://github.com/Chaste/trac_archive/blob/master/issues/2578.md) you can now output the division locations by using the `CellDivisionLocationWriter` (Formatting has been preserved see [#3070](https://github.com/Chaste/trac_archive/blob/master/issues/3070.md))
 
 

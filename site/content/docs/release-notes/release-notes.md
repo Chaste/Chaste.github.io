@@ -224,7 +224,7 @@ From now on we intend to follow the Ubuntu 6 monthly release schedule, tagging o
 
 #### General
 
-* Support for Ubuntu [to](up) 15.10 added. We aim to ensure compatibility for any Ubuntu that has not reached 'end of life'.
+* Support for Ubuntu up to 15.10 added. We aim to ensure compatibility for any Ubuntu that has not reached 'end of life'.
 * Support for Boost up to 1.60 added.
 * See InstallGuides/DependencyVersions for all supported versions of dependencies.
 * The CMake builder has been extended to support compilation on Windows, Linux and Mac OS X with a range of compilers.  This is part of a planned migration to a unified build system on all platforms.
@@ -844,7 +844,7 @@ EXCEPTION("Number of nodes " << num_nodes << " does not match expected value of 
 
 * Full default test pack should now pass on more configurations.
 * Smarter chunking in HDF5 should reduce the time spent on I/O significantly for simulations with many output time steps.
-* Mesh load is scalable in parallel only with our binary mesh format.  A conversion utility is provided.  Please refer to the [MeshConvert](../../user-tutorials/CardiacExecutable/MeshConvert) tutorial.
+* Mesh load is scalable in parallel only with our binary mesh format.  A conversion utility is provided.  Please refer to the MeshConvert tutorial.
 * Performance of checkpointing with large meshes has been improved. We now archive permuted meshes without writing from memory to disc; instead the original files are copied.
 * Further improvements to tutorials (including the addition of solid mechanics tutorials), and user documentation.  Executable tutorials (as well as tutorial tests) are now routinely tested.
 
@@ -970,7 +970,7 @@ sed -i -f archive_convert.sed archive_file1 archive_file2 ...
 
 * [heart] #1495: APD calculation has changed so that it detects the resting potential, and therefore upstroke, more accurately. APDs will change slightly when run with the new version of the code.
 * [cell_based] #1294 As of r8949 the variables in `TissueConfig.hpp` relating to cell centre models have had the prefix `Meineke` added this may affect some user projects
-* [mesh](cell_based,) #1075: As of r8771, the `mesh` classes `Face`, `VoronoiCell`, `VoronoiTessellation` and `InventorVoronoiWriter` have been deleted. This is because they are no longer used in the code. Now, when a `MeshBasedTissue` is required to construct the Voronoi tessellation that is dual to its mesh, this is stored as a `VertexMesh`. The main difference is how the `MeshBasedTissue` then accesses information about the Voronoi tessellation. Users should replace `MeshBasedTissue` calls to `rGetVoronoiTessellation().GetFaceArea()` with `GetAreaOfVoronoiElement()`, calls to `rGetVoronoiTessellation().GetFacePerimeter()` with `GetPerimeterOfVoronoiElement()`, and calls to `rGetVoronoiTessellation().GetEdgeLength()` with `GetVoronoiEdgeLength()`.
+* [mesh][cell_based,] #1075: As of r8771, the `mesh` classes `Face`, `VoronoiCell`, `VoronoiTessellation` and `InventorVoronoiWriter` have been deleted. This is because they are no longer used in the code. Now, when a `MeshBasedTissue` is required to construct the Voronoi tessellation that is dual to its mesh, this is stored as a `VertexMesh`. The main difference is how the `MeshBasedTissue` then accesses information about the Voronoi tessellation. Users should replace `MeshBasedTissue` calls to `rGetVoronoiTessellation().GetFaceArea()` with `GetAreaOfVoronoiElement()`, calls to `rGetVoronoiTessellation().GetFacePerimeter()` with `GetPerimeterOfVoronoiElement()`, and calls to `rGetVoronoiTessellation().GetEdgeLength()` with `GetVoronoiEdgeLength()`.
 * [cell_based] #1075: `TissueConfig` members `mOutputCellAreas` and `mOutputTissueAreas` renamed to `mOutputCellVolumes` and `mOutputTissueVolumes` respectively; similarly for their get/set methods. `MeshBasedTissue` methods `SetOutputTissueAreas()`, `WriteTissueAreaResultsToFile()`, `WriteCellAreaResultsToFile()` similarly renamed. `VertexMesh` method `SolveVoronoiElementIndexMapping()` renamed to `GetVoronoiElementIndexCorrespondingToDelaunayNodeIndex()`. See r8794 and r8806.
 * [cell_based] #1075/#1372: As of r8946, when a `MeshBasedTissue` creates a Voronoi tessellation, this is constructed out of all nodes in the mesh, including ghost nodes.
 * [cell_based] #1276: Merged `VertexMesh` method `GetPerimeterOfVoronoiElement()` into `GetSurfaceAreaOfVoronoiElement()` and `GetAreaOfVoronoiElement()` into `GetVolumeOfVoronoiElement()` in r8968.
@@ -996,7 +996,7 @@ sed -i -f archive_convert.sed archive_file1 archive_file2 ...
 See `/docs/ReleaseNotes.html` for the definitive list.
 
 * In the AssemblerTraits struct, the typenames 'CVT_CLS', 'CMT_CLS' and 'INTERPOLATE_CLS' have been renamed to 'CVT_CLASS', 'CMT_CLASS' and 'INTERPOLATE_CLASS' (r7041). These stand for 'ComputeVectorTerm class', 'ComputeMatrixTerm class' and 'Interpolate class' in case you are wondering, and the AssemblerTraits struct is used to state which classes these methods are implemented in.
-* [executable](heart) The Chaste parameters file now uses an XML namespace to indicate which version of Chaste it is for.  This means that there are now multiple schemas in `heart/src/io`, one for release 1.1 and one for release 1.2.  To update your parameters XML files, simply add a namespace declaration by adding the following attributes to the root `ChasteParameters` element:
+* [executable][heart] The Chaste parameters file now uses an XML namespace to indicate which version of Chaste it is for.  This means that there are now multiple schemas in `heart/src/io`, one for release 1.1 and one for release 1.2.  To update your parameters XML files, simply add a namespace declaration by adding the following attributes to the root `ChasteParameters` element:
      
 ```
 

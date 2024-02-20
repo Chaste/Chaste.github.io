@@ -54,7 +54,7 @@ The 'Used by' column indicates where these libraries are used:
 
 <tr>
   <td>CVODE (part of SUNDIALS)</td>
-  <td><a href="https://computation.llnl.gov/casc/sundials/download/license.html">https://computation.llnl.gov/casc/sundials/download/license.html</a></td>
+  <td><a href="https://computing.llnl.gov/projects/sundials/license">https://computing.llnl.gov/projects/sundials/license</a></td>
   <td> (BSD) <a href="licences/CVODE.txt">CVODE.txt</a></td>
   <td> Optional </td>
 </tr>
@@ -83,7 +83,7 @@ The 'Used by' column indicates where these libraries are used:
 
 <tr>
   <td> MPICH </td>
-  <td> <a href="http://www.mcs.anl.gov/research/projects/mpi/mpich1/mpich-license.txt">http://www.mcs.anl.gov/research/projects/mpi/mpich1/mpich-license.txt</a>,
+  <td> <a href="https://github.com/pmodels/mpich/blob/main/COPYRIGHT">https://github.com/pmodels/mpich/blob/main/COPYRIGHT</a>,
        <a href="http://www.mcs.anl.gov/research/projects/mpi/mpich1/romio-license.txt">http://www.mcs.anl.gov/research/projects/mpi/mpich1/romio-license.txt</a> </td>
   <td><a href="licences/mpich-license.txt">mpich-license.txt</a>
       <a href="licences/romio-license.txt">romio-license.txt</a></td>
@@ -99,7 +99,7 @@ The 'Used by' column indicates where these libraries are used:
 
 <tr>
   <td>Pyparsing</td>
-  <td><a href="http://pyparsing.wikispaces.com/">Pyparsing home page</a></td>
+  <td><a href="https://pypi.org/project/pyparsing/">Pyparsing home page</a></td>
   <td> (MIT) <a href="licences/pyparsing.txt">pyparsing.txt</a></td>
   <td> Source, Cardiac, Distributed </td>
 </tr>
