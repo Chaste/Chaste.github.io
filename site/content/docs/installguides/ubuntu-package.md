@@ -11,7 +11,7 @@ toc: true
 
 For Ubuntu users, there is a package available to greatly ease the installation of Chaste.
 It requires an Ubuntu version of Focal (20.04) or newer.
-Chaste can also be run on other versions of Linix, macOS and Windows using [Docker](https://chaste.github.io/docs/installguides/docker/).
+Chaste can also be run on other versions of Linix, macOS and Windows using [Docker](../docker/).
 
 The package has been tested with all versions of Ubuntu from **Intrepid (8.10)** to **Jammy (22.04)** inclusive, and will be adapted to new versions as soon as possible after they are released.
 

@@ -763,7 +763,7 @@ EXCEPTION("Number of nodes " << num_nodes << " does not match expected value of 
 * Changes to CellML support:
     * The cell model converter class is now more robust to certain errors, and gives more helpful error messages.  Temporary files are now saved when an error occurs during the conversion of a cell model from CellML.
     * Various performance improvements have been made to the cell model code generation in PyCml.
-    * PyCml now includes support for generating cell models that can be solved using the Rush-Larsen method.  These are not available 'by default' but must be generated manually or loaded dynamically.  See source:trunk/heart/test/ionicmodels/TestRushLarsen.hpp for some examples.
+    * PyCml now includes support for generating cell models that can be solved using the Rush-Larsen method.  These are not available 'by default' but must be generated manually or loaded dynamically.  See `/heart/test/ionicmodels/TestRushLarsen.hpp` for some examples.
 * A binary format has now been defined for fibre files, to enable random access into the file.
 
 
@@ -893,7 +893,7 @@ EXCEPTION("Number of nodes " << num_nodes << " does not match expected value of 
 #### Cardiac
 
 * New options in the XML parameters file:
-    * A user may now specify a list of node indices where time traces of output variables are requested.  See source:trunk/heart/test/data/ChasteParametersFullFormat.xml for an example of usage and the documentation of `PostProcessingWriter::WriteVariablesOverTimeAtNodes` for further information. The output files (one file per output variable) will have the nodal time traces arranged in columns (gnuplot-friendly), one column per requested node. The node numbers that the user requests are referred to the original (unpermuted) node numbering (hence it may differ from what the user sees - for example - when visualizing the output of a previous parallel simulation). No matter what permutation is used in the simulation, the output of the requested nodes will be the same.
+    * A user may now specify a list of node indices where time traces of output variables are requested.  See `/heart/test/data/ChasteParametersFullFormat.xml` for an example of usage and the documentation of `PostProcessingWriter::WriteVariablesOverTimeAtNodes` for further information. The output files (one file per output variable) will have the nodal time traces arranged in columns (gnuplot-friendly), one column per requested node. The node numbers that the user requests are referred to the original (unpermuted) node numbering (hence it may differ from what the user sees - for example - when visualizing the output of a previous parallel simulation). No matter what permutation is used in the simulation, the output of the requested nodes will be the same.
     * A new post-processing step to calculate pseudo-ECGs has been added to the Chaste parameters file: the `PseudoEcgElectrodePosition` element, which specifies where the virtual probe electrode should be placed. This element may occur multiple times to calculate ECGs from different probe locations. Note that probe electrodes must be located outside the heart tissue!
     * A `MeshPartitioning` element has been added in the `Numerical` parameters section, allowing you to specify how a mesh gets partitioned in parallel (dumb/metis/parmetis/petsc). This maps to the `HeartConfig` methods `Set/GetMeshPartitioning`.
     * Stimuli section can use ellipsoid regions.
@@ -993,7 +993,7 @@ sed -i -f archive_convert.sed archive_file1 archive_file2 ...
 -----
 
 ## Release 2.0 (changes since Release 1.1)
-See source:trunk/docs/ReleaseNotes.html for the definitive list.
+See `/docs/ReleaseNotes.html` for the definitive list.
 
 * In the AssemblerTraits struct, the typenames 'CVT_CLS', 'CMT_CLS' and 'INTERPOLATE_CLS' have been renamed to 'CVT_CLASS', 'CMT_CLASS' and 'INTERPOLATE_CLASS' (r7041). These stand for 'ComputeVectorTerm class', 'ComputeMatrixTerm class' and 'Interpolate class' in case you are wondering, and the AssemblerTraits struct is used to state which classes these methods are implemented in.
 * [executable](heart) The Chaste parameters file now uses an XML namespace to indicate which version of Chaste it is for.  This means that there are now multiple schemas in `heart/src/io`, one for release 1.1 and one for release 1.2.  To update your parameters XML files, simply add a namespace declaration by adding the following attributes to the root `ChasteParameters` element:
@@ -1028,7 +1028,7 @@ See source:trunk/docs/ReleaseNotes.html for the definitive list.
 -----
 
 ## Release 1.1 (changes since Release 1.0)
-See source:trunk/docs/ReleaseNotes.html for the definitive list.
+See `/docs/ReleaseNotes.html` for the definitive list.
 
 * Improved doxygen documentation.
 * Improved code portability.
