@@ -1,13 +1,13 @@
 ---
-title: "C++ Naming Strategy"
-description: "C++ Naming Strategy"
+title: "Coding Standards Strategy"
+description: "Coding Standards Strategy"
 draft: false
 images: []
 toc: true
 layout: "single"
 ---
 
-## Introduction
+## C++ Naming Conventions
 
 Coding standards are crucial to enable humans understand the code -- Both 
 code they wrote, and code written by other developers. This page documents 
@@ -20,7 +20,7 @@ please follow them!
 * [How Not to Write FORTRAN in Any Language](http://queue.acm.org/detail.cfm?id=1039535)
 {{< /callout >}}
 
-## Choosing names
+### Choosing names
 
 Names are the key to program readability. If the name is appropriate everything 
 fits together naturally, relationships are clear, meaning is derivable, and 
@@ -71,7 +71,7 @@ Lion escaped_lion;
 escaped_lion.Devour(my_pet_dog);
 ```
 
-## Class Names
+### Class Names
 
 Name the class after what it is. If you can't think of what it is that is 
 a clue you have not thought through the design well enough.
@@ -85,7 +85,7 @@ class OdeSolver
 class ParameterFile
 ```
 
-## Method and Function Names
+### Method and Function Names
 
 Usually every method and function performs an action, so the name should 
 make clear what it does: `CheckForErrors()` instead of `ErrorCheck()`, 
@@ -130,7 +130,7 @@ with a verb.
   }
   ```
 
-## No All Upper Case Abbreviations
+### No All Upper Case Abbreviations
 
 When confronted with a situation where you could use an all upper case 
 abbreviation instead use an initial upper case letter followed by all 
@@ -149,7 +149,7 @@ class FluidOz;       // NOT FluidOZ
 class NetworkAbcKey; // NOT NetworkABCKey
 ```
 
-## Pointer Variables
+### Pointer Variables
 
 Pointers should be prepended by a `p` in most cases. Place the * close to 
 the pointer type rather than the variable name.  Only one pointer type 
@@ -169,7 +169,7 @@ Car* p_your_car, p_my_car;
 // We declare only one pointer type at a time.
 ```
 
-## Class Attribute Names
+### Class Attribute Names
 
 * Private attribute names should be prepended with the underscore character `m`.
 * After the `m` use the same rules as for class names.
@@ -187,7 +187,7 @@ private:
 }
 ```
 
-## Reference Variables and Functions Returning References
+### Reference Variables and Functions Returning References
 
 References should be prepended with `r`. This applies to input arguments 
 as well as method names, and establishes the difference between a method 
@@ -210,7 +210,7 @@ private:
 }
 ```
 
-## Method Argument Names
+### Method Argument Names
 
 The first character should be lower case. All word beginnings after the 
 first letter should be upper case as with class names.
@@ -223,7 +223,7 @@ public:
 }
 ```
 
-## Variable Names on the Stack
+### Variable Names on the Stack
 
 When variables are created in a C++ program (when the variables are in scope) 
 the memory required to hold the variable is allocated from the program stack, 
@@ -247,7 +247,7 @@ int ProcessMonitor::HandleError(int errorNumber)
 }
 ```
 
-## Global Constants
+### Global Constants
 
 Global constants should be all caps with `_` separators.
 
@@ -255,7 +255,7 @@ Global constants should be all caps with `_` separators.
 const double TWO_PI = 6.28318531;
 ```
 
-## Static Variables
+### Static Variables
 
 Static variables should be prepended with `s`.
 
@@ -264,4 +264,118 @@ private:
   static StatusInfo msStatus;
 ```
 
-<!--(The attached PDF document is the original of the above.)-->
+## Code Layout
+
+You want to provide as much information as possible to the next person who reads
+the code -- even if that person is you. Consistency, in the form of conventions,
+gives lots of extra information and makes the code more maintainable.
+
+### Consistent Brace Style
+
+Braces should start and end on a new line, with 4 space indentation for the code
+block. This is easiest to read, makes matching braces easier to locate, and
+avoids problems with no-brace `if` statements.
+
+A potentially buggy example:
+
+```c++
+if (valueToTest == comparison)
+    DoTheGoodStuff();
+```
+C++ allows `if` statements without braces as above. This can lead to hard to
+spot bugs when adding another statement:
+
+```c++
+if (valueToTest == comparison)
+    DoTheGoodStuff();
+    someValue = 1.5;  //this will always be executed
+```
+
+If you always use braces, there is one less bug to find:
+
+```c++
+if (valueToTest == comparison)
+{
+    DoTheGoodStuff();
+}
+else 
+{
+    DoSomethingElse();
+}
+```
+
+### Comments
+
+Comments describe the intent of the programmer, document tricky sections of the
+program, and provide a way of adding metadata e.g. physical units.
+
+The aim should be to describe, rather than duplicate what is happening in the code.
+
+A comment that isn't very useful:
+
+```c++
+double voltage = 0.0; // Initalize voltage to zero
+```
+
+A more helpful comment:
+
+```c++
+double voltage = 0.0; // Transmembrane potential (mV)
+```
+
+Comments can also be used to lay out a skeleton for code you are about to write.
+This helps to solidify the algorithm in your mind and reduces the amount of
+commentary you need to add afterwards.
+
+```c++
+// Initialise stiffness matrix
+
+  // Add boundary conditions
+
+// Assemble linear system
+
+  // Set initial conditions in Solution vector
+
+// Solve linear system 
+```
+
+Comments are documentation. Doxygen generates documentation (HTML / PDF / XML)
+from specially formatted comments in the code. This helps to keep the
+documentation in sync with the code without having to write the same thing
+twice.
+
+```c++
+/** Computes the volume of a standard cone.
+ *
+ *  @param baseRadius The radius of the cone base (cm)
+ *  @param height The height of the cone (cm)
+ *
+ *  @return The volume of the cone (cm^3)
+ */
+double ComputeConeVolume(double baseRadius, double height)
+{
+    ....
+}
+```
+
+See the [Code Structure Strategy](../code-structure-strategy) for more on
+Doxygen documentation.
+
+## Usage of Language
+
+C++ lets you be very very clever...
+
+**Don't** be very very clever.
+
+Don't do things like this:
+
+```c++
+struct X {
+   static bool f( int* p )
+   {
+      return p && 0[p] and not p[1]>>p[2];
+   };
+};
+```
+
+Be as clear as you can, even if it takes more lines of code.

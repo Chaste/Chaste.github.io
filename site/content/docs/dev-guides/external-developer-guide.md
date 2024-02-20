@@ -60,7 +60,7 @@ the [Best Practice Guide](../best-practice-guide).
 
 To understand why Chaste variables, methods and classes are named like they are
 please see our
-[C++ Naming Strategy](../chaste-strategies/cpp-naming-strategy).
+[Coding Standards Strategy](../chaste-strategies/coding-standards-strategy).
 
 We also lay out and document our code in a particular way -- see our
 [Code Structure Strategy](../chaste-strategies/code-structure-strategy).
