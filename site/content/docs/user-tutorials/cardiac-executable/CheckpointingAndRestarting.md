@@ -7,11 +7,8 @@ images: []
 
 Checkpointing involves writing every aspect of a simulation to disk, midway through the simulation, so that it can later be restarted (possibly with new parameter values). In order to write a checkpoint you have to put the following line in the simulation block in the xml parameters file
 
-```
-
-#!xml
+```xml
 <CheckpointSimulation timestep="1.0" unit="ms" max_checkpoints_on_disk="10"/>
-
 ```
 
 The attached files can be run as an example.
@@ -19,7 +16,6 @@ The attached files can be run as an example.
 A checkpointed simulation produces the following output directory structure:
 
 ```
-
 CHASTE_TEST_OUTPUT
     <OutputDirectory>
     <OutputDirectory>_checkpoints
@@ -29,10 +25,9 @@ CHASTE_TEST_OUTPUT
             ResumeParameters.xml     (a parameters file for easy resuming from this checkpoint)
         2.0ms
             ...
-
 ```
 
-(For example, if the output directory is `ChasteResults`, the checkpoints will then be found in the directory `$CHASTE_TEST_OUTPUT/ChasteResults_checkpoints`.
+For example, if the output directory is `ChasteResults`, the checkpoints will then be found in the directory `$CHASTE_TEST_OUTPUT/ChasteResults_checkpoints`.
 
 ## Restarting
 
@@ -40,13 +35,10 @@ First run the attached simulation. The following steps guide you through the pro
 
 First, copy the checkpoint directory to a new directory (not technically required but advisable) and change directory into it.
 
-```
-
-#!sh
+```bash
 cd testoutput/ChasteResults_checkpoints/
 cp -r 5ms 5ms_extended
 cd 5ms_extended
-
 ```
 
 
@@ -54,11 +46,8 @@ The `ResumeParameters.xml` file is the new parameters file to be given to the ex
 
 If you wish to append results to the original .h5 file, you need to either move the `ChasteResults` folder into your test output folder, or do
 
-```
-
-#!sh
+```bash
 export CHASTE_TEST_OUTPUT=.
-
 ```
 
 so that the original results file saved with the checkpoint can be located.
@@ -81,10 +70,6 @@ Finally, run the simulation again with `ResumeParameters.xml` as the input xml f
 
 We endeavour to ensure that new versions of Chaste will always be able to load checkpoint files created by the previous release.  Sometimes, however, some manual conversion of the checkpoint will be required.  This is the case in order to upgrade from release 2.0 to 2.1.  A script `archive_convert.sed` is provided in both the source and executable releases of Chaste to assist with this process.  It must be run as follows:
 
-```
-
-#!sh
+```bash
 sed -i -f archive_convert.sed path_to_checkpoint_data_folder/*.arch*
-
 ```
-

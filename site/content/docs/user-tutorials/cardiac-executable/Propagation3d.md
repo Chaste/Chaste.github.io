@@ -5,47 +5,35 @@ layout: "single"
 images: []
 ---
 
-### Getting the data
+{{< callout context="note" title="Getting the data" icon="folder" >}}
+Download and save the attached file: [Propagation3d.tgz](Propagation3d.tgz).
+Either use an Archive Manager to extract the contents to disk or save it and then unpack it with
 
-Download and save the attached file [Propagation3d.tgz](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//Propagation3d.tgz).
-Either use an Archive Manager to extract the content to disk or save it and then unpack it with
-
+```bash
+tar xvfz Propagation3d.tgz
 ```
-
-#!sh
-tar xvfz  Propagation3d.tgz
-
-```
+{{< /callout >}}
 
 
 ### Running the simulation
 
-Change directory to 
-```
-Propagation3d
-```
+Change directory to `Propagation3d`:
 
-
-```
-
-#!sh
+```bash
 cd Propagation3d
-
 ```
 
 
 In this folder you will find the following files:
 
-* `ChasteParameters.xml` -- this file describes the simulation, and can be used to override the [default parameter values](//docs/HeartConfigDefaults_8hpp.html) (in releases of the executable up to and including version 2.0, the default parameters were read in from another xml file, `ChasteDefaults.xml`).
+* `ChasteParameters.xml` -- this file describes the simulation, and can be used to override the [default parameter values](https://chaste.github.io/doxygen-latest/HeartConfigDefaults_8hpp.html) (in releases of the executable up to and including version 2.0, the default parameters were read in from another xml file, `ChasteDefaults.xml`).
 * `ChasteParameters_2_1.xsd` -- XML schema for input validation (in general never has to be altered or touched).
 
 
 Run the simulation by doing
 
 ```
-
 <path_to_chaste>/Chaste.sh ChasteParameters.xml
-
 ```
 
 **Note:** in releases up to and including version 2.0, the executable would be called directly (ie: `<path_to_chaste>/Chaste ChasteParameters.xml`), in release 2.1 the executable should be called via the shell script `Chaste.sh`; as above.
@@ -56,11 +44,8 @@ A folder called `testoutput` will appear once the simulation has finished.
 
 Move into the newly created output folder
 
-```
-
-#!sh
+```bash
 cd testoutput/ChasteResults
-
 ```
 
 
@@ -78,19 +63,14 @@ There are more details on visualising your results at ChasteGuides/Visualisation
 ### Visualising with Meshalyzer
 For Meshalyzer visualisation, now move into the Meshalyzer-compatible output folder
 
-```
-
-#!sh
+```bash
 cd output
-
 ```
 
 Launch Meshalyzer with
 
 ```
-
 <path_to_meshalyzer>/meshalyzer 3dResults_mesh
-
 ```
 
 and visualise the results by loading the `3dResults_V.dat` file.
@@ -98,19 +78,14 @@ and visualise the results by loading the `3dResults_V.dat` file.
 ### Visualising with Cmgui
 For Cmgui visualisation, now move into the Cmgui-compatible output folder
 
-```
-
-#!sh
+```bash
 cd cmgui_output
-
 ```
 
 Launch the cmgui visualiser with
 
 ```
-
 <path_to_cmgui>/cmgui script.com
-
 ```
 
 The script will ensure that all the time-step files are loaded into Cmgui.
@@ -118,11 +93,8 @@ The script will ensure that all the time-step files are loaded into Cmgui.
 ### Visualising the VTK data with Paraview
 For Paraview visualisation, now move into the VTK output folder
 
-```
-
-#!sh
+```bash
 cd vtk_output
-
 ```
 
 
@@ -130,19 +102,13 @@ For easy animation of cardiac simulations, we have written a Python script to ad
 time annotation features to the standard VTK output.  Run this with
 
 ```
-
 <path_to_Chaste>/python/utils/AddVtuTimeAnnotations.py 3dResults.vtu 3dResultsAnnotated.vtu
-
 ```
-
 
 Launch Paraview with
 
-```
-
-#!sh
+```bash
 paraview --data=3dResultsAnnotated.vtu
-
 ```
 
 

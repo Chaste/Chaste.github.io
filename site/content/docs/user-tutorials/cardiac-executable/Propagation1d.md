@@ -5,48 +5,35 @@ layout: "single"
 images: []
 ---
 
-
-### Getting the data
-
-Download and save the attached file [Propagation1d.tgz](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//Propagation1d.tgz).
+{{< callout context="note" title="Getting the data" icon="folder" >}}
+Download and save the attached file: [Propagation1d.tgz](Propagation1d.tgz).
 Either use an Archive Manager to extract the contents to disk or save it and then unpack it with
 
-```
-
-#!sh
+```bash
 tar xvfz Propagation1d.tgz
-
 ```
+{{< /callout >}}
 
 
 ### Running the simulation
 
-Change directory to 
-```
-Propagation1d
-```
+Change directory to the `Propagation1d` directory:
 
-
-```
-
-#!sh
+```bash
 cd Propagation1d
-
 ```
 
 
 In this folder you will find the following files:
 
-* `ChasteParameters.xml` -- this file describes the simulation, and can be used to override the [default parameter values](//docs/HeartConfigDefaults_8hpp.html) (in releases of the executable up to and including version 2.0, the default parameters were read in from another xml file, `ChasteDefaults.xml`).
+* `ChasteParameters.xml` -- this file describes the simulation, and can be used to override the [default parameter values](https://chaste.github.io/doxygen-latest/HeartConfigDefaults_8hpp.html) (in releases of the executable up to and including version 2.0, the default parameters were read in from another xml file, `ChasteDefaults.xml`).
 * `ChasteParameters_2_1.xsd` -- XML schema for input validation (in general never has to be altered or touched).
 
 
 Run the simulation by doing
 
 ```
-
 <path_to_chaste>/Chaste.sh ChasteParameters.xml
-
 ```
 
 **Note:** in releases up to and including version 2.0, the executable would be called directly (ie: `<path_to_chaste>/Chaste ChasteParameters.xml`), in release 2.1 and later the executable should be called via the shell script `Chaste.sh`; as above.
@@ -62,10 +49,7 @@ testoutput
 Move into the newly created output folder
 
 ```
-
-#!sh
 cd testoutput/ChasteResults
-
 ```
 
 
@@ -79,23 +63,18 @@ In this folder you will find the following files and folders:
 Move now into the Meshalyzer-compatible output folder
 
 ```
-
-#!sh
 cd output
-
 ```
 
 Launch Meshalyzer with
 
 ```
-
 <path_to_meshalyzer>/meshalyzer 1dResults_mesh
-
 ```
 
 and visualise the results by loading the `1dResults_V.dat` file.
 
-There are more details on visualising your results at ChasteGuides/VisualisationGuides.
+There are more details on visualising your results at [ChasteGuides/VisualisationGuides](/docs/user-guides/visualisation-guides/).
 
 ### Understanding the XML parameters file
 
@@ -124,37 +103,27 @@ ChasteParameters.xml
 ```
  and find the following section:
 
-```
-
-#!xml
+```xml
 <Mesh unit="cm">
 	<Fibre x="4.0" inter_node_space="0.01"/>
 </Mesh>
-
 ```
 
 
 We can change the geometry to be a tissue sheet:
 
-```
-
-#!xml
+```xml
 <Mesh unit="cm">
 	<Sheet x="2.0" y="2.0" inter_node_space="0.04"/>
 </Mesh>
-
 ```
 
 
 In addition, the following parameters need to be modified:
 
-```
-
-#!xml
+```xml
 <SpaceDimension>2</SpaceDimension>
 <SimulationDuration unit="ms">30.0</SimulationDuration>
-
 ```
-
 
 Rerun the simulation and follow the previous section to visualise the results.

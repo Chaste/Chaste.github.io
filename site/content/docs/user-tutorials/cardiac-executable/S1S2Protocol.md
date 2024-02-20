@@ -5,47 +5,34 @@ layout: "single"
 images: []
 ---
 
-### Getting the data
+{{< callout context="note" title="Getting the data" icon="folder" >}}
+Download and save the attached file: [S1S2Protocol.tgz](S1S2Protocol.tgz).
+Either use an Archive Manager to extract the contents to disk or save it and then unpack it with
 
-Download and save the attached file [S1S2Protocol.tgz](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//S1S2Protocol.tgz).
-Either use an Archive Manager to extract the content to disk or save it and then unpack it with
-
+```bash
+tar xvfz S1S2Protocol.tgz
 ```
-
-#!sh
-tar xvfz  S1S2Protocol.tgz
-
-```
+{{< /callout >}}
 
 
 ### Running the simulation
 
-Change directory to 
-```
-S1S2Protocol
-```
+Change directory to `S1S2Protocol`:
 
-
-```
-
-#!sh
+```bash
 cd S1S2Protocol
-
 ```
-
 
 In this folder you will find the following files:
 
-* `ChasteParameters.xml` -- this file describes the simulation, and can be used to override the [default parameter values](//docs/HeartConfigDefaults_8hpp.html) (in releases of the executable up to and including version 2.0, the default parameters were read in from another xml file, `ChasteDefaults.xml`).
+* `ChasteParameters.xml` -- this file describes the simulation, and can be used to override the [default parameter values](https://chaste.github.io/doxygen-latest/HeartConfigDefaults_8hpp.html) (in releases of the executable up to and including version 2.0, the default parameters were read in from another xml file, `ChasteDefaults.xml`).
 * `ChasteParameters_2_1.xsd` -- XML schema for input validation (in general never has to be altered or touched).
 
 
 Run the simulation by doing
 
 ```
-
 <path_to_chaste>/Chaste.sh ChasteParameters.xml
-
 ```
 
 **Note:** in releases up to and including version 2.0, the executable would be called directly (ie: `<path_to_chaste>/Chaste ChasteParameters.xml`), in release 2.1 the executable should be called via the shell script `Chaste.sh`; as above.
@@ -56,11 +43,8 @@ A folder called `testoutput` will appear once the simulation has finished.
 
 Move into the newly created output folder
 
-```
-
-#!sh
+```bash
 cd testoutput/ChasteResults
-
 ```
 
 
@@ -73,19 +57,14 @@ In this folder you will find the following files and folders:
 
 Move now into the Meshalyzer-compatible output folder
 
-```
-
-#!sh
+```bash
 cd output
-
 ```
 
 Launch Meshalyzer with
 
 ```
-
 <path_to_meshalyzer>/meshalyzer S1S2Results_mesh
-
 ```
 
 and visualise the results by loading the `S1S2Results_V.dat` file
@@ -109,6 +88,4 @@ Open `ChasteParameters.xml` (it is sensible to do this in a web-browser or XML e
 * physiological parameters: conductivities, capacitance, surface-area-to-volume ratio
     * in monodomain problems, the defined intracellular conductivity is used **not** a harmonic mean. The extracellular conductivity is therefore ignored, as are the components in normal directions since this is a 2D simulation.
 * Numerical parameters including ODE, PDE and printing timesteps
-    * Note: 'KSP' stands for Krylov subspace and just refers to solvers of linear systems (a [PETSc](http://www.mcs.anl.gov/petsc/) acronym)
-
-
+    * Note: 'KSP' stands for Krylov subspace and just refers to solvers of linear systems (a [PETSc](https://petsc.org/) acronym)
