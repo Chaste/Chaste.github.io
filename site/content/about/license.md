@@ -121,7 +121,7 @@ The 'Used by' column indicates where these libraries are used:
 <tr>
   <td> TetGen </td>
   <td><a href="http://tetgen.berlios.de/">http://tetgen.berlios.de/</a></td>
-  <td><a href="licences/TetGen.txt">TetGen.txt</a></td>
+  <td><a href="https://github.com/Chaste/Chaste/blob/develop/mesh/src/3rdparty/tetgen1.4.2/LICENSE">TetGen</a></td>
   <td> Source, Distributed </td>
 </tr>
 
