@@ -10,3 +10,4 @@ package-lock.json
 broken-links.csv
 broken-links.md
 linkcheckerrc
+site/.DS_Store

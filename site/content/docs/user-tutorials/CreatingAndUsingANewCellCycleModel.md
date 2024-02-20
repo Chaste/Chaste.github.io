@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestCreatingAndUsingANewCellCycleModelTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellCycleModelTutorial.hpp) at revision [e9d760bdf232](https://github.com/Chaste/Chaste/commit/e9d760bdf232107ee9c8c52c9fda40505fb7b666). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCreatingAndUsingANewCellCycleModelTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellCycleModelTutorial.hpp) at revision [614d6f177ea6](https://github.com/Chaste/Chaste/commit/614d6f177ea6ffd15672741d162935167d671bb9). Note that the code is given in full at the bottom of the page.
 ## An example showing how to create a new cell-cycle model and use it in a cell-based simulation
 
 ### Introduction
@@ -38,11 +38,11 @@ The next header includes the `NEVER_REACHED` macro, used in one of the methods b
 ```
 
 The next header defines a base class for simple generation-based cell-cycle models.
-A cell-cycle model is defined as ''simple'' if the duration of each phase of the cell
+A cell-cycle model is defined as *simple* if the duration of each phase of the cell
 cycle is determined when the cell-cycle model is created, rather than
 evaluated on the fly (e.g. by solving a system of ordinary differential
 equations for the concentrations of key cell cycle proteins), and may
-depend on the cell type. A simple cell-cycle model is defined as ''generation-based'' if it keeps track of the
+depend on the cell type. A simple cell-cycle model is defined as *generation-based* if it keeps track of the
 generation of the corresponding cell, and sets the cell type according
 to this. Our new cell-cycle model will inherit from this abstract class.
 
@@ -219,7 +219,7 @@ CHASTE_CLASS_EXPORT(MyCellCycleModel)
 Since we're defining the new cell-cycle model within the test file, we need to include the
 following stanza as well, to make the code work with newer versions of the Boost libraries.
 Normally the above export declaration would occur in the cell-cycle model's .hpp file, and
-the following lines would appear in the .cpp file.  See ChasteGuides/BoostSerialization for
+the following lines would appear in the .cpp file.  See [Boost Serialization Guide](/docs/user-guides/boost-serialization/) for
 more information.
 
 ```cpp

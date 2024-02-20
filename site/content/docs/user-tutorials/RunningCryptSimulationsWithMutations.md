@@ -5,17 +5,17 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningCryptSimulationsWithMutationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/tutorial/TestRunningCryptSimulationsWithMutationsTutorial.hpp) at revision [2f612b67237e](https://github.com/Chaste/Chaste/commit/2f612b67237e745272b908248d2348f4f8ffee2a). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningCryptSimulationsWithMutationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/tutorial/TestRunningCryptSimulationsWithMutationsTutorial.hpp) at revision [a2c88fcf7c1b](https://github.com/Chaste/Chaste/commit/a2c88fcf7c1bffc543d87ac149e90bd20885c026). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to run crypt simulations with various mutations
 
 ### Introduction
 
-This tutorial assumes you have already read the tutorial [Running Mesh Based Simulations](/docs/user-tutorials/runningmeshbasedsimulations).
+This tutorial assumes you have already read the tutorial [Running Mesh Based Simulations](/docs/user-tutorials/runningmeshbasedsimulations/).
 
 In this tutorial we show how Chaste can be used to simulate a cylindrical model of an
 intestinal crypt with mutations using both mesh and vertex-based simulations.
 Full details of the computational model can be found in the paper by
-Osborne et al. (2010) [10.1098/rsta.2010.0173](https://doi.org/10.1098/rsta.2010.0173).
+Osborne *et al.* (2010) [10.1098/rsta.2010.0173](https://doi.org/10.1098/rsta.2010.0173).
 
 As in previous cell-based Chaste tutorials, we begin by including the necessary header files.
 
@@ -142,7 +142,7 @@ We need to do this using the `CellPropertyRegistry`, otherwise
 the numbers of each type of mutation aren't correctly tracked. For
 a list of possible mutations, see subclasses of `AbstractCellMutationState`.
 These can be found in the
-[inheritance diagram for AbstractCellMutationState](https://chaste.github.io/doxygen-latest/classAbstractCellMutationState.html).
+[inheritance diagram for AbstractCellMutationState](/doxygen-latest/classAbstractCellMutationState.html).
 Each mutation has a different effect on the cell cycle models; see the class
 documentation for details.
 
@@ -193,7 +193,7 @@ Create a simulator as before (except setting a different output directory).
 ```
 
 As before, we create a force law and cell killer and pass these objects to the simulator, then call
-Solve().
+`Solve()`.
 
 ```cpp
         MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);

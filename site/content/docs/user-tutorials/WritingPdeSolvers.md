@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestWritingPdeSolversTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestWritingPdeSolversTutorial.hpp) at revision [0a2ab4e09adf](https://github.com/Chaste/Chaste/commit/0a2ab4e09adf884a22cb443bfb10d94d8efb5ed3). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestWritingPdeSolversTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestWritingPdeSolversTutorial.hpp) at revision [71ac325b969f](https://github.com/Chaste/Chaste/commit/71ac325b969f80f838eff76fb2ffb112d42f8bee). Note that the code is given in full at the bottom of the page.
 ### Introduction
 
 Chaste can be used to set up solvers for more general (coupled) PDEs. To do this the
@@ -49,14 +49,17 @@ where the solver IS AN assembler. We illustrate how to do this in the first tuto
 ### Writing solvers
 
 Let us write a solver for the coupled 2-unknown problem
-```
-Laplacian(u) + v = f(x,y)
-Laplacian(v) + u = g(x,y)
-```
 
-where `Laplacian(u)` of course represents u_xx + u_yy and where f and g are chosen so that,
-with zero-dirichlet boundary conditions, the solution is given by u = sin(pi*x)sin(pi*x),
-v = sin(2*pi*x)sin(2*pi*x).
+$$
+\begin{align*}
+\nabla^2 u + v &= f(x,y),\\\\\\
+\nabla^2 u + u &= g(x,y),
+\end{align*}
+$$
+
+where $f$ and $g$ are chosen so that,
+with zero-dirichlet boundary conditions, the solution is given by $u = \sin(\pi x)\sin(\pi x)$,
+$v = \sin(2\pi x)\sin(2\pi x)$.
 
 (As a brief aside, note that the solver we write will in fact work with general Dirichlet-Neumann
 boundary conditions, though the test will only provide all-Dirichlet boundary conditions. We
@@ -70,15 +73,20 @@ of size 2N by 2N, and in block form is:
 ```
 
 where `K` is the stiffness matrix, `M` the mass matrix, `U` the vector of nodal values
-of u, `V` the vector of nodal values of v, `b1` the vector with entries `integral(f\phi_i dV)` (i=1,..,N)
-and `b2` has entries `integral(g\phi_i dV)` (here `phi_i` are the linear basis functions).
+of u, `V` the vector of nodal values of v, `b1` the vector with entries $\int f\phi_i dV$ ($i=1,\dots,N$)
+and `b2` has entries $\int g\phi_i dV$ (here $\phi_i$ are the linear basis functions).
 
-This is the linear system which we now write a solver to set up. **Note**, however, that
-the main Chaste solvers assume a STRIPED data format, ie that the unknown vector
-is `[U_1 V_1 U_2 V_2 .. U_n V_n]`, not `[ U_1 U_2 .. U_n V_1 V_2 .. V_n]`. ''We write down
-equations in block form as it makes things clearer, but have to remember that the code
-deals with STRIPED data structures.'' Striping is used in the code for parallelisation reasons.
+This is the linear system which we now write a solver to set up.
+{{< callout context="note" title="Note" icon="info-circle" >}}
+The main Chaste solvers assume a **STRIPED** data format, i.e. that the unknown vector
+is:
 
+`[U_1 V_1 U_2 V_2 .. U_n V_n]`, not `[U_1 U_2 .. U_n V_1 V_2 .. V_n]`.
+
+ *We write down equations in block form as it makes things clearer, but have to remember that the code
+ deals with STRIPED data structures.* Striping is used in the code for parallelisation reasons.
+ {{< /callout >}}
+ 
 These are some basic includes as in the solving-PDEs tutorials
 
 ```cpp
@@ -151,8 +159,8 @@ The abstract assembler parent classes know how to assemble matrices and vectors,
 class needs to provide the integrand of the elemental contribution to A and b. This first
 method returns the elemental contribution of the matrix A, given the provided bases
 (`rPhi`, `rGradPhi`). The '3's here represent the number of bases per element (ie the number
-of nodes as linear bases are being used). The returned matrix is 6 by 6 (problem_dim *
-num_bases_per_element = 2*3 = 6).
+of nodes as linear bases are being used). The returned matrix is 6 by 6 (`problem_dim *
+num_bases_per_element = 2*3 = 6`).
 
 ```cpp
     c_matrix<double,2*3,2*3> ComputeMatrixTerm(c_vector<double,3>& rPhi /* the three bases for the current element, evaluated at the current quad pt*/,
@@ -245,21 +253,25 @@ previous tutorials - have a look at the first test below.
 ### A solver of 3 parabolic equations
 
 Let us also write a solver for the following problem, which is composed of 3 parabolic PDEs
-```
-u_t = Laplacian(u) + v
-v_t = Laplacian(v) + u + 2w
-w_t = Laplacian(w) + g(t,x,y)
-```
 
-where g(t,x,y) = t if x>0.5 and 0 otherwise. This time we assume general
+$$
+\begin{align*}
+u_t &= \nabla^2 u + v,\\\\\\
+v_t &= \nabla^2 v + u + 2w,\\\\\\
+w_t &= \nabla^2 w + g(t,x,y),
+\end{align*}
+$$
+
+where $g(t,x,y) = t$ if $x>0.5$ and $0$ otherwise. This time we assume general
 Dirichlet-Neumann boundary conditions will be specified.
 
 The `AbstractAssemblerSolverHybrid` deals with the Dirichlet and Neumann boundary parts of the implementation,
 so, we, the writer of the solver, don't have to worry about this. The user has to realise though that they are
 specifying NATURAL Neumann BCs, which are whatever appears naturally in the weak form of the problem. In this case, natural
-Neumann BCs are specification of: `du/dn = s1, dv/dn = s2, dw/dn = s3`, which coincide with usual Neumann BCs. However,
-suppose the last equation was `w_t = Laplacian(w) + Div(D grad(u))`, then the natural BCs would be:
-`du/dn = s1, dv/dn = s2, dw/dn + (Dgradu).n = s3`.
+Neumann BCs are specification of: $\partial u/\partial n = s_1, \partial v/\partial n = s_2, \partial w/ \partial n = s_3$,
+which coincide with usual Neumann BCs. However, suppose the last equation was $w_t = \nabla^2 w + \nabla . (D \nabla u)$,
+then the natural BCs would be:
+$\partial u/\partial n = s_1, \partial v/\partial n = s_2, \partial w/\partial n + (D\nabla u).n = s_3$.
 
 We need to choose a time-discretisation. Let us choose an implicit discretisation, ie
 ```
@@ -473,7 +485,7 @@ Now run a test solving the parabolic-parabolic-parabolic PDE system.
 ```
 
 Set up the boundary conditions. v and w are zero on the entire boundary,
-and du/dn=1 on the LHS and 0 otherwise.
+and $\partial u/\partial n=1$ on the LHS and 0 otherwise.
 
 ```cpp
         BoundaryConditionsContainer<2,2,3> bcc;
@@ -521,7 +533,7 @@ convert this to another output format, we call the relevant method. Here, we con
 the output to plain txt files. We also say how often to write the data, telling the
 solver to output results to file every tenth timestep. The solver will create
 one file for each variable and for each time, so for example, the file
-results_Variable_0_10 is the results for u, over all nodes, at the 11th printed time.
+`results_Variable_0_10` is the results for $u$, over all nodes, at the 11th printed time.
 Have a look in the output directory after running the test. (Note: the HDF5 data can also be
 converted to VTK or cmgui formats).
 
@@ -551,12 +563,14 @@ Note that we need to destroy the initial condition vector as well as the solutio
 ```cpp
         PetscTools::Destroy(initial_condition);
         PetscTools::Destroy(result);
+    }
+};
 ```
 
  **Visualisation:** To visualise in matlab/octave, you can load the node file,
  and then the data files. However, the node file needs to be edited to remove any
- comment lines (lines starting with '#') and the header line (which says how
- many nodes there are). (The little matlab script 'anim/matlab/read_chaste_node_file.m'
+ comment lines (lines starting with `#`) and the header line (which says how
+ many nodes there are). (The little matlab script [`anim/matlab/read_chaste_node_file.m`](https://github.com/Chaste/Chaste/blob/develop/anim/matlab/read_chaste_node_file.m)
  can be used to do this, though it is not claimed to be very robust). As an
  example matlab visualisation script, the following, if run from the output
  directory, plots w:
@@ -569,11 +583,6 @@ w = load(file);
 plot3(pos(:,1),pos(:,2),w,'*');
 pause;
 end;
-```
-
-```cpp
-    }
-};
 ```
 
 ## Full code

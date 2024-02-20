@@ -5,13 +5,13 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningMeshBasedSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningMeshBasedSimulationsTutorial.hpp) at revision [dbf6b196a091](https://github.com/Chaste/Chaste/commit/dbf6b196a091781fc0b4bf6effddf352080111e1). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningMeshBasedSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningMeshBasedSimulationsTutorial.hpp) at revision [a2c88fcf7c1b](https://github.com/Chaste/Chaste/commit/a2c88fcf7c1bffc543d87ac149e90bd20885c026). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to create, run and visualize mesh-based simulations
 
 ### Introduction
 
 In this tutorial we show how Chaste can be used to create, run and visualize mesh-based simulations.
-Full details of the mathematical model can be found in van Leeuwen ''et al.'' (2009) [doi:10.1111/j.1365-2184.2009.00627.x].
+Full details of the mathematical model can be found in van Leeuwen *et al.* (2009) [doi:10.1111/j.1365-2184.2009.00627.x].
 
 ### The test
 
@@ -135,11 +135,11 @@ of cell cycle model required (here `UniformCellCycleModel`)
 and the dimension.
 For a list of possible cell cycle models see subclasses of `AbstractCellCycleModel`.
 These can be found in the inheritance diagram, here,
-[AbstractCellCycleModel](https://chaste.github.io/doxygen-latest/classAbstractCellCycleModel.html).
+[AbstractCellCycleModel](/doxygen-latest/classAbstractCellCycleModel.html).
 Note that some of these models will require information on the surrounding medium such as Oxygen concentration to work,
 see specific class documentation for details. Some of these will be covered in later tutorials
-([Running Contact Inhibition Simulations](user-tutorials/runningcontactinhibitionsimulations),
-[Running Delta Notch Simulations](/docs/user-tutorials/runningdeltanotchsimulations), and [Running Tumour Spheroid Simulations](/docs/user-tutorials/runningtumourspheroidsimulations).
+([Running Contact Inhibition Simulations](/docs/user-tutorials/runningcontactinhibitionsimulations/),
+[Running Delta Notch Simulations](/docs/user-tutorials/runningdeltanotchsimulations/), and [Running Tumour Spheroid Simulations](/docs/user-tutorials/runningtumourspheroidsimulations).
 We create an empty vector of cells and pass this into the
 method along with the mesh. The second argument represents the size of that the vector
 `cells` should become - one cell for each node, the third argument specifies
@@ -162,7 +162,7 @@ cell population called a `MeshBasedCellPopulation`.
 ```
 
 To view the results of this and the next test in Paraview it is necessary to explicitly
-generate the required .vtu files. This is detailed in the [Visualizing With Paraview](/docs/user-tutorials/visualizingwithparaview) tutorial.
+generate the required .vtu files. This is detailed in the [Visualizing With Paraview](/docs/user-tutorials/visualizingwithparaview/) tutorial.
 Note that the results in Paraview may appear different to those in the java based visualizer. This is related
 to the different methods used to generate voronoi tesselations in each and is resolved through the use of
 'ghost nodes', as shown in the next test.
@@ -195,7 +195,7 @@ of each cell in a cell population. For this test, we use one force law, based on
 spring based model, and pass it to the `OffLatticeSimulation`.
 For a list of possible forces see subclasses of `AbstractForce`.
 These can be found in the inheritance diagram, here,
-[AbstractForce](https://chaste.github.io/doxygen-latest/classAbstractForce.html).
+[AbstractForce](/doxygen-latest/classAbstractForce.html).
 Note that some of these forces are not compatible with mesh-based simulations,
 see the specific class documentation for details.  If you try to use an incompatible class
 then you will receive a warning.

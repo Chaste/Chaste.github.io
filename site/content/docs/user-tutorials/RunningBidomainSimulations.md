@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningBidomainSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestRunningBidomainSimulationsTutorial.hpp) at revision [4d762407bc1f](https://github.com/Chaste/Chaste/commit/4d762407bc1f327ded5b48cd8174d30f465f87fc). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningBidomainSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestRunningBidomainSimulationsTutorial.hpp) at revision [1dfba06b4d82](https://github.com/Chaste/Chaste/commit/1dfba06b4d8265be2322817e6dfe1536071d9a0a). Note that the code is given in full at the bottom of the page.
 ## An example showing how to run bidomain simulations
 
 ### Introduction
@@ -179,7 +179,7 @@ so that mesh 2D_0_to_1mm_800_elements is a mesh over [0,0.1]x[0,0.1].
         HeartConfig::Instance()->SetOutputFilenamePrefix("results");
 ```
 
-There is an alternate method of loading a mesh that can be seen in [Monodomain 3d Example](docs/user-tutorials/monodomain3dexample),
+There is an alternate method of loading a mesh that can be seen in [Monodomain 3d Example](/docs/user-tutorials/monodomain3dexample/),
 using `DistributedTetrahedralMesh`.
 
 It is possible to over-ride the default visualisation output (which is done during simulation
