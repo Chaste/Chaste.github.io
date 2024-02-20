@@ -212,6 +212,7 @@ models. More examples are available as [tutorials](../../user-tutorials/).
 
 {{< callout context="tip" title="See Also" icon="rocket" >}}
 
+- [Structure of Cell-based Simulations](../structure-of-cell-based-simulations)
 - [User Tutorials](../../user-tutorials/)
 - [Chaste Papers](/publications)
 

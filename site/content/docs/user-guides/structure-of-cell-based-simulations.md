@@ -18,7 +18,7 @@ see the technical [Chaste papers](/publications).
 In order to set up a simulation object, we first need to do the following:
 
 - Set up a vector of `Cell`s (for example, by using a helper class such as
-  `CellsGenerator`) and an associated mesh (for example, by using a helper clas
+  `CellsGenerator`) and an associated mesh (for example, by using a helper class
   such as `HoneycombMeshGenerator`). Note that in the case of node-based
   simulations, we still supply a mesh, albeit a special type called
   `NodesOnlyMesh`.
@@ -86,3 +86,11 @@ steps.
 File format information is given in the file `docs/FileFormats.html`, supplied
 with the release. (The latest version of this file may also be viewed
 [here](https://raw.githubusercontent.com/Chaste/Chaste/develop/docs/FileFormats.html)).
+
+{{< callout context="tip" title="See Also" icon="rocket" >}}
+
+- [Cell-based Chaste Code Structure](../cell-based-chaste-code-structure)
+- [User Tutorials](../../user-tutorials/)
+- [Chaste Papers](/publications)
+
+{{< /callout >}}
