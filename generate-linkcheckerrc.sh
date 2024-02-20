@@ -21,4 +21,6 @@ echo "timeout=5" >> linkcheckerrc
 echo "" >> linkcheckerrc
 
 echo "[filtering]" >> linkcheckerrc
+echo "ignore=" >> linkcheckerrc
+echo "  ^.*doxygen-releases.*" >> linkcheckerrc
 echo "checkextern=1" >> linkcheckerrc
