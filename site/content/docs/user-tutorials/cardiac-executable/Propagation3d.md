@@ -1,4 +1,9 @@
-# 3D on a realistic cardiac geometry
+---
+title: "3D on a realistic cardiac geometry"
+draft: false
+layout: "single"
+images: []
+---
 
 ### Getting the data
 

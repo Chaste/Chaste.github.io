@@ -1,4 +1,9 @@
-# Running a simulation of a spiral wave in 2d mesh
+---
+title: "Running a simulation of a spiral wave in 2d mesh"
+draft: false
+layout: "single"
+images: []
+---
 
 ### Getting the data
 

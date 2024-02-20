@@ -1,4 +1,10 @@
-# Running a simple example: propagation in a tissue fibre
+---
+title: "Running a simple example: propagation in a tissue fibre"
+draft: false
+layout: "single"
+images: []
+---
+
 
 ### Getting the data
 

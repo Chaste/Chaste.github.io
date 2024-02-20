@@ -1,4 +1,9 @@
-# Simulations with heterogeneities
+---
+title: "Simulations with heterogeneities"
+draft: false
+layout: "single"
+images: []
+---
 
 The two main features of the executable demonstrated in this example are:
 

@@ -1,4 +1,9 @@
-# Making the `MeshConvert` utility and using it to help produce scalable mesh loading
+---
+title: "Making the 'MeshConvert' utility and using it to help produce scalable mesh loading"
+draft: false
+layout: "single"
+images: []
+---
 
 ### What it's for
 

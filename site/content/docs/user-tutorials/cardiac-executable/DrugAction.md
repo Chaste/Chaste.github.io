@@ -1,4 +1,9 @@
-# Running a simulation with multiple-channel drug action
+---
+title: "Running a simulation with multiple-channel drug action"
+draft: false
+layout: "single"
+images: []
+---
 
 ### Getting the data
 
@@ -200,5 +205,5 @@ You should then change the drug concentration to zero:
 
 then re-run the simulation and compare results. You should observe the following:
 
-![drug_action_traces.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//drug_action_traces.png)
+<!-- ![drug_action_traces.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//drug_action_traces.png) -->
 

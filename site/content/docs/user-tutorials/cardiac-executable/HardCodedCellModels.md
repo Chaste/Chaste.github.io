@@ -1,4 +1,9 @@
-# Hardcoded cell model options
+---
+title: "Hardcoded cell model options"
+draft: false
+layout: "single"
+images: []
+---
 
 The hardcoded cell models are listed in the schema (.xsd) file, which should be present in any folder containing an xml parameters file.
 

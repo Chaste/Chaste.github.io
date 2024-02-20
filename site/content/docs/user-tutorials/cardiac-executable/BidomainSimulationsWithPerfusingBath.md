@@ -1,4 +1,9 @@
-# Running a bidomain simulation of cardiac tissue contained in a perfusing bath
+---
+title: "Running a bidomain simulation of cardiac tissue contained in a perfusing bath"
+draft: false
+layout: "single"
+images: []
+---
 
 *This tutorial is based on a nightly acceptance test apps/texttest/chaste/bidomain_with_bath*
 
