@@ -5,6 +5,11 @@ layout: "single"
 images: []
 ---
 
+{{< callout context="note" title="File related to this tutorial" icon="folder" >}} 
+[HeterogeneousExample.tgz](HeterogeneousExample.tgz)
+{{< /callout >}}
+
+
 The two main features of the executable demonstrated in this example are:
 
 * Ability to place different cell models in different locations of the mesh.
@@ -24,10 +29,7 @@ Run using the full xml file from the attachment, although first simulate for onl
 Further experiments can be run with different conductivities in the myocardial tissue (higher conductivities likely to uncouple the tissue and prevent propagation) and/or different Purkinje geometries of cell models.
 
 
-```
-
-#!xml
-
+```xml
     <Simulation>
         <!-- Problem definition -->
         <SpaceDimension>3</SpaceDimension>
@@ -87,8 +89,6 @@ Further experiments can be run with different conductivities in the myocardial t
           <!-- etc ... -->
         </ConductivityHeterogeneities>
     </Simulation>
-
-
 ```
 
 

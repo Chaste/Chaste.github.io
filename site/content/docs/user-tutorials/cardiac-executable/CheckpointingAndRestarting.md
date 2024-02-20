@@ -5,6 +5,12 @@ layout: "single"
 images: []
 ---
 
+{{< callout context="note" title="File related to this tutorial" icon="folder" >}} 
+[CheckpointingAndRestarting.tgz](CheckpointingAndRestarting.tgz)
+{{< /callout >}}
+
+## Checkpointing
+
 Checkpointing involves writing every aspect of a simulation to disk, midway through the simulation, so that it can later be restarted (possibly with new parameter values). In order to write a checkpoint you have to put the following line in the simulation block in the xml parameters file
 
 ```xml

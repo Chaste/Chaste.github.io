@@ -454,6 +454,7 @@
       "chaste_codegen",
       "chaste_codegen-command-line-arguments",
       "chaste_codegen-conversion-specific-parameters",
+      "checkpointing",
       "checkpointing-and-restarting-cardiac-simulations",
       "checkpointing-savingloading",
       "choosing-names",

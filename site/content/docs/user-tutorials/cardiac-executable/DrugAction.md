@@ -5,17 +5,14 @@ layout: "single"
 images: []
 ---
 
-### Getting the data
+{{< callout context="note" title="Getting the data" icon="folder" >}}
+Download and save the attached file: [DrugAction.tgz](DrugAction.tgz).
+Either use an Archive Manager to extract the contents to disk or save it and then unpack it with
 
-Download and save the attached file [DrugAction.tgz](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//DrugAction.tgz).
-Either use an Archive Manager to extract the content to disk or save it and then unpack it with
-
+```bash
+tar xvfz DrugAction.tgz
 ```
-
-#!sh
-tar xvfz  DrugAction.tgz
-
-```
+{{< /callout >}}
 
 
 ### Tagging conductances in a CellML file
@@ -24,43 +21,36 @@ Before performing drug action simulations with the executable, your CellML file 
 
 i.e. add a cmeta tag to the relevant variable:
 
-```
-
-#!xml
+```xml
 <variable units="milliS_per_cm2" name="g_Kmax" public_interface="out" initial_value="0.282" cmeta:id="IKr_conductance"/>
-
 ```
 
 
-and then add the following RDF metadata description. This tells Chaste to convert the model leaving the parameter modifiable, and also tells Chaste what name to use - the name in the `<bqbiol:is>` tag is the one to use in the XML parameter file later. It MUST end in 
+and then add the following RDF metadata description. This tells Chaste to convert the model leaving the parameter modifiable, and also tells Chaste what name to use - the name in the `<bqbiol:is>` tag is the one to use in the XML parameter file later. It MUST end in
 ```
 _conductance
 ```
- (to ensure that only conductances are modified!).
 
-```
+(to ensure that only conductances are modified!).
 
-#!xml
+```xml
 <rdf:Description rdf:about="#IKr_conductance">
   <modifiable-parameter xmlns="https://chaste.comlab.ox.ac.uk/cellml/ns/pycml#">yes</modifiable-parameter>
   <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_rapid_delayed_rectifier_potassium_current_conductance"/>
 </rdf:Description>
-
 ```
 
 
 ### Understanding the XML parameters file
 
-This tutorial is based upon [1D Propagation tutorial](https://github.com/Chaste/trac_archive/wiki/User-Tutorials-_-Cardiac-Executable-_-Propagation1d).
+This tutorial is based upon [1D Propagation tutorial](../propagation1d).
 
 Open `ChasteParameters.xml` (it is sensible to do this in a web-browser or XML editor in order to get syntax highlighting). The file has been altered to add the following sections:
 
 * physiological parameters:
     * The following xml has been added, this specifies a drug concentration and IC50 values for (in this case) two ion-channels. You can use any units, but they need to be self-consistent (concentration in same units as IC50 values), if not specified the dose-response curve hill coefficient defaults to 1.
 
-```
-
-#!xml
+```xml
 <!-- Parameters for drug action model -->
 <ApplyDrug concentration="3">
     <!-- Current names should match those in the Oxford metadata -->
@@ -70,8 +60,6 @@ Open `ChasteParameters.xml` (it is sensible to do this in a web-browser or XML e
     <!-- Hill coefficient defaults to 1.0 -->
     <IC50 current="membrane_rapid_delayed_rectifier_potassium_current">5</IC50>
 </ApplyDrug>
-
-
 ```
 
 
@@ -83,48 +71,34 @@ _conductance
 * post-processing:
 * The following XML has been added:
 
-```
-
-#!xml
+```xml
 <!-- Postprocessing parameters -->
 <PostProcessing>
     <!-- Extract nodal time trace at node 200 -->
     <TimeTraceAtNode node_number="200"/>
 </PostProcessing>
-
-
 ```
 
 As we wish to record an action potential for comparing control and drug action.
 
 ### Running the simulation
 
-Change directory to 
-```
-[DrugAction](https://github.com/Chaste/trac_archive/wiki/Drug-Action)
-```
+Change directory to `DrugAction`:
 
-
-```
-
-#!sh
+```bash
 cd DrugAction
-
 ```
-
 
 In this folder you will find the following files:
 
-* `ChasteParameters.xml` -- this file describes the simulation, and can be used to override the [default parameter values](//docs/HeartConfigDefaults_8hpp.html) (in releases of the executable up to and including version 2.0, the default parameters were read in from another xml file, `ChasteDefaults.xml`).
+* `ChasteParameters.xml` -- this file describes the simulation, and can be used to override the [default parameter values](https://chaste.github.io/doxygen-latest/HeartConfigDefaults_8hpp.html) (in releases of the executable up to and including version 2.0, the default parameters were read in from another xml file, `ChasteDefaults.xml`).
 * `ChasteParameters_2_3.xsd` -- XML schema for input validation (in general never has to be altered or touched).
 
 
 Run the simulation by doing
 
 ```
-
 <path_to_chaste>/Chaste.sh ChasteParameters.xml
-
 ```
 
 
@@ -138,11 +112,8 @@ testoutput
 
 Move into the newly created output folder
 
-```
-
-#!sh
+```bash
 cd testoutput/ChasteResults
-
 ```
 
 
@@ -159,19 +130,14 @@ In this folder you will find the following files and folders:
 
 Move now into the Meshalyzer-compatible output folder
 
-```
-
-#!sh
+```bash
 cd output
-
 ```
 
 Launch Meshalyzer with
 
 ```
-
 <path_to_meshalyzer>/meshalyzer DrugActionResults_mesh
-
 ```
 
 and visualise the results by loading the `DrugActionResults_V.dat` file.
@@ -179,18 +145,14 @@ and visualise the results by loading the `DrugActionResults_V.dat` file.
 Or use gnuplot to look at the voltage trace
 
 ```
-
 gnuplot
 > plot "NodalTraces_V.dat"
-
 ```
 
 
 You should then change the drug concentration to zero:
 
-```
-
-#!xml
+```xml
 <!-- Parameters for drug action model -->
 <ApplyDrug concentration="0">
     <!-- Current names should match those in the Oxford metadata -->
@@ -200,10 +162,9 @@ You should then change the drug concentration to zero:
     <!-- Hill coefficient defaults to 1.0 -->
     <IC50 current="membrane_rapid_delayed_rectifier_potassium_current">5</IC50>
 </ApplyDrug>
-
 ```
 
 then re-run the simulation and compare results. You should observe the following:
 
-<!-- ![drug_action_traces.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//drug_action_traces.png) -->
+{{< img src="drug_action_traces.png" alt="drug action traces" >}}
 

@@ -9,9 +9,7 @@ The hardcoded cell models are listed in the schema (.xsd) file, which should be 
 
 In `ChasteParameters_2_0.xsd`, onwards the hardcoded cell models are
 
-```
-
-#!xml
+```xml
 <xs:enumeration value="DifrancescoNoble"/>
 <xs:enumeration value="FaberRudy2000"/>
 <xs:enumeration value="FaberRudy2000Optimised"/>
@@ -22,15 +20,12 @@ In `ChasteParameters_2_0.xsd`, onwards the hardcoded cell models are
 <xs:enumeration value="MahajanShiferaw"/>
 <xs:enumeration value="Maleckar"/>
 <xs:enumeration value="tenTusscher2006"/>
-
 ```
 
 
 In `ChasteParameters_3_1.xsd`, onwards the hardcoded cell models are
 
-```
-
-#!xml
+```xml
 <xs:enumeration value="DifrancescoNoble"/>
 <xs:enumeration value="FaberRudy2000"/>
 <xs:enumeration value="FaberRudy2000Optimised"/>
@@ -44,6 +39,4 @@ In `ChasteParameters_3_1.xsd`, onwards the hardcoded cell models are
 <xs:enumeration value="Maleckar"/>
 <xs:enumeration value="tenTusscher2006"/>
 <xs:enumeration value="tenTusscher2006BackwardEuler"/>
-
 ```
-

@@ -5,29 +5,27 @@ layout: "single"
 images: []
 ---
 
+{{< callout context="note" title="File related to this tutorial" icon="folder" >}} 
+[UsingFibreDefinitions.tgz](UsingFibreDefinitions.tgz)
+{{< /callout >}}
+
 ## Fibres
 
 Fibres directions must currently be read from a file. Hence simulations with fibres can *only* be done for meshes that are read in, not auto-generated.
 Altering the XML parameters file to tell the executable to read fibres is trivial: instead of doing
 
-```
-
-#!xml
+```xml
 <Mesh unit="cm">
     <LoadMesh name="sheet_800_elements"/>
 </Mesh>
-
 ```
 
 do
 
-```
-
-#!xml
+```xml
 <Mesh unit="cm">
     <LoadMesh name="sheet_800_elements" conductivity_media="Orthotropic"/>
 </Mesh>
-
 ```
 
 The options for the last parameters are "NoFibreOrientation", "Axisymmetric" or "Orthotropic". If "Axisymmetric", the file `sheet_800_elements.axi` will also be read,
@@ -41,14 +39,11 @@ In the example attached to this page, fibres have been defined for each element 
 Various postprocessing options are available. The following for example computes the conduction velocity between node 200 and all the other nodes in the mesh, writing
 the results to the file `<output_directory>/output/ConductionVelocityFromNode200.dat`.
 
-```
-
-#!xml
+```xml
 <PostProcessing>
     <ConductionVelocityMap origin_node="200"/>
 </PostProcessing>
-
 ```
 
-As well as conduction velocity, it is also possible to obtain APD at a prescribed repolarisation percent, activation times and upstroke velocities. See the "full format"
-example parameters file for usage.
+As well as conduction velocity, it is also possible to obtain APD at a prescribed repolarisation percent, activation times and upstroke velocities.
+See the "full format" example parameters file for usage.

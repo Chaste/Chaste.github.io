@@ -5,7 +5,11 @@ layout: "single"
 images: []
 ---
 
-### What it's for
+{{< callout context="note" title="File related to this tutorial" icon="folder" >}} 
+[MeshConvert.tgz](MeshConvert.tgz)
+{{< /callout >}}
+
+## What it's for
 
 When you run Chaste on large clusters or supercomputers the part of the simulation that might
 scale least well is the initial mesh load.
@@ -30,16 +34,13 @@ our special binary version of the Triangle/Tetgen format.
 * If a Chaste format fibre file (.axi or .ortho) is associated with the mesh then this will also be converted to our binary format.
 
 
-### Making the executable(s)
+## Making the executable(s)
 
 It is assumed that as you are running on a parallel cluster or supercomputer you have access to the Chaste
 source code.  You can produce all executables (including the standalone Chaste program) using:
 
-```
-
-#!sh
+```bash
 scons chaste_libs=1 compile_only=1 exe=1 build=GccOpt apps
-
 ```
 
 Binaries 
@@ -50,7 +51,6 @@ Chaste, MeshConvert...
 ```
 apps/src
 ```
-.
 
 You may get a speed improvement from using a "no debug" build-type like 
 ```
@@ -59,26 +59,20 @@ build=GccOpt_ndebug
 , but
 this is at the expense of doing less error checking.
 
-### Running the converter
+## Running the converter
 
-You may want to download and save the attached file [MeshConvert.tgz](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//MeshConvert.tgz) and
-unpack the files for testing purposes. Either use an Archive Manager to extract the content to disk or save it and then unpack it with
+You may want to download and save the attached file and unpack the files for testing purposes.
+Either use an Archive Manager to extract the content to disk or save it and then unpack it with
 
-```
-
-#!sh
+```bash
 tar xvfz  MeshConvert.tgz
-
 ```
 
 
 These files are just test ASCII mesh data.  Run the converter like so:
 
-```
-
-#!sh
+```bash
 ./apps/src/MeshConvert MeshConvert/simple_cube
-
 ```
 
 
@@ -97,13 +91,11 @@ convert a single
 You will see the usual Chaste Copyright notice and information about the compilation details followed by:
 
 ```
-
 ...
 Note: for VTK reading, give the full file path (including '.vtu' extension)
 Opening simple_cube mesh file(s).
 Writing  simple_cube_bin.node etc. mesh file in [PATH_TO_OUTPUT]
 Done.
-
 ```
 
 
@@ -111,8 +103,8 @@ You can control the location of the folder for the output using
 ```
 $CHASTE_TEST_OUTPUT
 ```
-:  The space
-labelled 
+
+The space labelled 
 ```
 [PATH_TO_OUTPUT]
 ```
@@ -121,31 +113,21 @@ labelled
 ```
 $CHASTE_TEST_OUTPUT
 ```
-, if it is set, but will be 
+
+if it is set, but will be 
 ```
 ./testoutput
 ```
  otherwise.
 
 ```
-
 ls ./testoutput
 simple_cube_bin.axi  simple_cube_bin.ele  simple_cube_bin.face  simple_cube_bin.ncl  simple_cube_bin.node
-
 ```
 
-
-### Running in parallel
+## Running in parallel
 
 If you run the program in parallel then the original mesh is loaded (in a non-scalable way) and then
 partitioned before writing back out.  This means that the original node ordering may be permuted.
-The advantage to pre-processing by running this converter in parallel (on 
-```
-n
-```
- processes) is that
-mesh partitioning may be faster when the Chaste code is run live (also on 
-```
-n
-```
- processes).
+The advantage to pre-processing by running this converter in parallel (on `n` processes) is that
+mesh partitioning may be faster when the Chaste code is run live (also on `n` processes).
