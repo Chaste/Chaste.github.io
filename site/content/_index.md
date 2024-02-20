@@ -1,6 +1,6 @@
 ---
 title : "Chaste"
-description: "Blah"
+description: "Chaste"
 lead: "**C**ancer, **H**eart **a**nd **S**oft **T**issue **E**nvironment"
 date: 2020-10-06T08:47:36+00:00
 lastmod: 2020-10-06T08:47:36+00:00
