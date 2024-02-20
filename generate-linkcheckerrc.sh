@@ -9,7 +9,7 @@ echo "" >> linkcheckerrc
 echo "[csv]" >> linkcheckerrc
 echo "filename=broken-links.csv" >> linkcheckerrc
 echo "separator=|" >> linkcheckerrc
-echo "parts=urlname,parentname,name" >> linkcheckerrc
+echo "parts=parentname,urlname,name,result" >> linkcheckerrc
 echo "" >> linkcheckerrc
 
 echo "[checking]" >> linkcheckerrc
