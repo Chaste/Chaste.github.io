@@ -1,11 +1,22 @@
 ---
-title : "Install guides"
+title: "Install guides"
 description: "Chaste installation guides"
 lead: "Chaste installation guides"
-date: 2020-10-06T08:47:36+00:00
-lastmod: 2020-10-06T08:47:36+00:00
 draft: false
 images: []
+layout: "single"
 ---
 
-Install guides are under migration and this page is coming soon.
+The guides most likely of interest to general users who want something like a
+"one click install" are:
+
+- [Ubuntu Package](ubuntu-package): Installing Chaste on Ubuntu using our debian
+  packages.
+- [Docker](docker): Installing and using Chaste via a docker container.
+
+For a full manual install of all dependencies on a different Linux system see
+
+- [Dependency Versions](dependency-versions): Which versions of third-party
+  libraries we support.
+- [Developer Install Guide](../dev-guides/developer-install-guide): Instructions for a manual
+  install that will get Chaste building.

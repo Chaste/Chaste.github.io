@@ -100,10 +100,10 @@ the code. They therefore need special care when being written!
 - Tutorials are tests with a name of the form "`TestWhateverTutorial.hpp`"
 - As well as being compiled and run automatically as for normal tests, these are
   processed by a script and uploaded to the website under
-  [User Tutorials](../../../docs/user-tutorials/), with a page name derived from
+  [User Tutorials](../../user-tutorials/), with a page name derived from
   the file name.
 - Since new users will typically work their way through several tutorials in
   sequence, they should be written with this in mind. When adding a new
-  tutorial, edit the [User Tutorials](../../../docs/user-tutorials/) page to
+  tutorial, edit the [User Tutorials](../../user-tutorials/) page to
   link to it at an appropriate location. Also, don't copy'n'paste content from
   other tutorials that users are likely to have already read.

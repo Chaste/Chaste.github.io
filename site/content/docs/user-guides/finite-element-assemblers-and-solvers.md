@@ -336,7 +336,7 @@ The solver is:
 
 Bidomain is a bit more complicated, due to the possibility of a bath and extra
 bidomain specific functions. See the
-[FE implementations document](https://github.com/Chaste/trac_archive/wiki/Chaste-Guides-_-Finite-Element-Implementations)
+[FE implementations document](../finite-element-implementations)
 for the discretisations. The basic ideas here are the same as with monodomain
 though.
 

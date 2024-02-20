@@ -57,8 +57,8 @@ the `develop` branch to get the latest features.
 - [Cardiac Mechanics Solvers](cardiac-mechanics-solvers): A bit of information
   on how the cardiac mechanics solvers are connected to the main mechanics
   solvers.
-- [Cell-based Code Structure](cell-based-chaste-code-structure): An
-  overview of cell-based Chaste.
+- [Cell-based Chaste Code Structure](cell-based-chaste-code-structure): An
+  overview of the structure of the cell-based Chaste codebase.
 - [Code Generation from CellML](code-generation-from-cellml): Notes on
   generating Chaste code for cardiac cell models from CellML files, using
   chaste_codegen.
@@ -80,3 +80,6 @@ the `develop` branch to get the latest features.
 - [State Variable Interpolation](state-variable-interpolation): How and when to
   use state-variable interpolation to compute the ionic current in tissue
   simulations.
+- [Structure of Cell-based Simulations](structure-of-cell-based-simulations): An
+  overview of the steps involved in setting up and running a cell-based
+  simulation.

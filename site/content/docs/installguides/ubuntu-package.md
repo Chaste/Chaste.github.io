@@ -11,7 +11,7 @@ toc: true
 
 For Ubuntu users, there is a package available to greatly ease the installation of Chaste.
 It requires an Ubuntu version of Focal (20.04) or newer.
-Chaste can also be run on other versions of Linix, macOS and Windows using [Docker](https://chaste.github.io/docs/installguides/docker/).
+Chaste can also be run on other versions of Linix, macOS and Windows using [Docker](../docker/).
 
 The package has been tested with all versions of Ubuntu from **Intrepid (8.10)** to **Jammy (22.04)** inclusive, and will be adapted to new versions as soon as possible after they are released.
 
@@ -82,7 +82,7 @@ You should now decide whether you want to be a Code User or a Code Developer.
 * Code Users - are people who want to work with a stable released version of the Chaste code (a new release is made roughly every six months).
 * Code Developers - (both internal and external to the core team) are people who want to work with the latest development version of the Chaste code, between the main stable releases.
 
-See [GettingStarted](https://github.com/Chaste/trac_archive/wiki/Getting-Started) for more detail if you still aren't sure.
+See [Getting Started](../..) for more detail if you still aren't sure.
 
 
 ### 2a. For Code USERS (working with a release, rather than developers)
@@ -93,7 +93,7 @@ You can obtain the latest stable release of the Chaste source code from our GitH
 git clone --recursive -b release https://chaste.cs.ox.ac.uk/git/chaste.git Chaste
 ```
 
-Finally, follow the [CMake First Run](https://github.com/Chaste/trac_archive/wiki/Chaste-Guides-_-Cmake-First-Run) guide to get up and running with Chaste.
+Finally, follow the [CMake First Run Guide](../../user-guides/cmake-first-run) to get up and running with Chaste.
 
 
 #### Installing previous releases
