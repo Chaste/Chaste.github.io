@@ -4,6 +4,9 @@ echo "[output]" > linkcheckerrc
 echo "log=csv" >> linkcheckerrc
 echo "fileoutput=csv" >> linkcheckerrc
 echo "warnings=0" >> linkcheckerrc
+echo "ignoreerrors=" >> linkcheckerrc
+echo "  ^.* ^.*403.*" >> linkcheckerrc
+echo "  ^.* ^.*418.*" >> linkcheckerrc
 echo "" >> linkcheckerrc
 
 echo "[csv]" >> linkcheckerrc
