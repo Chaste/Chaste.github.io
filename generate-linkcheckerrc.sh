@@ -23,4 +23,5 @@ echo "" >> linkcheckerrc
 echo "[filtering]" >> linkcheckerrc
 echo "ignore=" >> linkcheckerrc
 echo "  ^.*doxygen-releases.*" >> linkcheckerrc
+echo "  ^.*trac-archive.*" >> linkcheckerrc
 echo "checkextern=1" >> linkcheckerrc
