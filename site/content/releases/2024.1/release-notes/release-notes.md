@@ -6,6 +6,8 @@ date: 2020-10-06T08:47:36+00:00
 draft: false
 images: []
 toc: true
+version: "2024.1"
+version: "2024.1"
 ---
 
 ## Release 2024.1 (changes since Release 2021.1)
