@@ -179,7 +179,7 @@ so that mesh 2D_0_to_1mm_800_elements is a mesh over [0,0.1]x[0,0.1].
         HeartConfig::Instance()->SetOutputFilenamePrefix("results");
 ```
 
-There is an alternate method of loading a mesh that can be seen in [Monodomain 3d Example](/docs/user-tutorials/monodomain3dexample/),
+There is an alternate method of loading a mesh that can be seen in [Monodomain 3d Example](../monodomain3dexample/),
 using `DistributedTetrahedralMesh`.
 
 It is possible to over-ride the default visualisation output (which is done during simulation

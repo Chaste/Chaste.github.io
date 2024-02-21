@@ -122,7 +122,7 @@ in this case, but not sufficient for converged numerical behaviour.
 
 Here we create an instance of our cell factory, which will tell the `MonodomainProblem`
 class which action potential models to use at which nodes. The rest of the problem is set up
-identically to the tutorial [Monodomain 3D Example](/docs/user-tutorials/monodomain3dexample/).
+identically to the tutorial [Monodomain 3D Example](../monodomain3dexample/).
 
 ```cpp
         RabbitHeartCellFactory cell_factory;

@@ -243,7 +243,7 @@ in which cells are represented as 'overlapping spheres'.
 
 We set up the simulation in much the same way as above, except now using a `NodesOnlyMesh` and
 `NodeBasedCellPopulation`. Further details on how to set up a node-based simulation can be found in
-[Running Node Based Simulations](/docs/user-tutorials/runningnodebasedsimulations/).
+[Running Node Based Simulations](../runningnodebasedsimulations/).
 
 ```cpp
         HoneycombMeshGenerator generator(10, 10, 0);

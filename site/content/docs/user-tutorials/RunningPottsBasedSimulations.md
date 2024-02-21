@@ -164,7 +164,7 @@ We must now create one or more update rules, which determine the Hamiltonian
 in the Potts simulation. For this test, we use two update rules based upon
 a volume constraint (`VolumeConstraintPottsUpdateRule`) and adhesion between cells (`AdhesionPottsUpdateRule`) and pass them to the `OnLatticeSimulation`.
 For a list of possible update rules see subclasses of `AbstractPottsUpdateRule`.
-These can be found in the inheritance diagram, here, [AbstractPottsUpdateRule](/doxygen-latest/classAbstractPottsUpdateRule.html).
+These can be found in the inheritance diagram, here, [AbstractPottsUpdateRule](../../doxygen-latest/classAbstractPottsUpdateRule.html).
 
 Similarly to specifying forces for off lattice simulations we use the `MAKE_PTR` macro
 to make a boost shared pointer to our required update rule before specifying parameters and passing to the simulation as follows
@@ -221,7 +221,7 @@ java executable.
 
 We could also visualize the results using Paraview.
 
-See the [Visualizing With Paraview](/docs/user-tutorials/visualizingwithparaview/) tutorial for more information.
+See the [Visualizing With Paraview](../visualizingwithparaview/) tutorial for more information.
 
 Load the file `/tmp/$USER/testoutput/PottsBasedMonolayer/results_from_time_0/results.pvd`, and click apply.
 
@@ -478,7 +478,7 @@ The next two lines are for test purposes only and are not part of this tutorial.
 ```
 
 To visualize the results, we need to use Paraview. Note that we don't output the cell boundaries (outlines) in 3D.
-See the [Visualizing With Paraview](/docs/user-tutorials/visualizingwithparaview/) tutorial for more information.
+See the [Visualizing With Paraview](../visualizingwithparaview/) tutorial for more information.
 
 Load the file `/tmp/$USER/testoutput/PottsCellSorting3D/results_from_time_0/results.pvd`, and click apply.
 

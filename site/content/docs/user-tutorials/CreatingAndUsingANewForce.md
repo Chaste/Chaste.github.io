@@ -140,7 +140,7 @@ We also add a get method for `mStrength`, to allow for testing.
     }
 ```
 
-Just as we encountered in [Creating And Using A New Cell Killer](/docs/user-tutorials/creatingandusinganewcellkiller/), here we must override
+Just as we encountered in [Creating And Using A New Cell Killer](../creatingandusinganewcellkiller/), here we must override
 a method that outputs any member variables to a specified results file `rParamsFile`.
 In our case, we output the member variable `mStrength`, then call the method on the base class.
 
