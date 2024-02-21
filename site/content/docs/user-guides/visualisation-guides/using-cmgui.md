@@ -21,7 +21,7 @@ The best place to start is the
 particular, it is advisable to start with the first one:
 [viewing a cube](https://www.cmiss.org/cmgui/wiki/IntroductionToCMGUI). At any
 point in time, it is often useful to consult the
-[full list of CMGUI commands](http://cmiss.bioeng.auckland.ac.nz/development/help/CMGUI/gfx/index.html).
+[full list of CMGUI commands](https://www.cmiss.org/cmgui/wiki/GettingStartedWithCmgui).
 
 ## Basic usage: graphical interface
 
