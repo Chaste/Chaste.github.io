@@ -10,7 +10,7 @@ layout: "single"
 ---
 
 
-There are currently no releases since the infrastructure update.
+### [2024.1](2024.1)
 
 ## Old releases
 
