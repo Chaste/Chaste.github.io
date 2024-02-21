@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningVertexBasedCryptSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/tutorial/TestRunningVertexBasedCryptSimulationsTutorial.hpp) at revision [5e3c4fd74dea](https://github.com/Chaste/Chaste/commit/5e3c4fd74dea39d9126ed0c14b183e2cd7ff7e2a). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningVertexBasedCryptSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/tutorial/TestRunningVertexBasedCryptSimulationsTutorial.hpp) at revision [66cf8dbe76c3](https://github.com/Chaste/Chaste/commit/66cf8dbe76c3d7130712beffdbe05527fd51e0f1). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to create, run and visualize vertex-based simulations on periodic meshes with different cell-cycle models
 
 ### Introduction
@@ -234,7 +234,7 @@ Define the crypt length; this will be used for sloughing and calculating the Wnt
         double crypt_length = 6.0;
 ```
 
-Set up a `WntConcentration` object, as in the tutorial [Running Mesh Based Simulations](runningmeshbasedsimulations/).
+Set up a `WntConcentration` object, as in the tutorial [Running Mesh Based Simulations](../runningmeshbasedsimulations/).
 
 ```cpp
         WntConcentration<2>::Instance()->SetType(LINEAR);
