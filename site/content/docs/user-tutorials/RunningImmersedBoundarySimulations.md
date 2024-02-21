@@ -1,18 +1,18 @@
 ---
 title : "Running Immersed Boundary Simulations"
-summary: "Simulation - a basic immersed boundary simulation"
+summary: "Example showing how to create and run an immersed boundary simulation in Chaste"
 draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningImmersedBoundarySimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningImmersedBoundarySimulationsTutorial.hpp) at revision [58474563c2a6](https://github.com/Chaste/Chaste/commit/58474563c2a663b3cf0998c77c09e26eb778639b). Note that the code is given in full at the bottom of the page.
-= Example showing how to create and run an immersed boundary simulation in Chaste =
+This tutorial is automatically generated from [TestRunningImmersedBoundarySimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningImmersedBoundarySimulationsTutorial.hpp) at revision [b8c074bc91a1](https://github.com/Chaste/Chaste/commit/b8c074bc91a12d5d16ab786a010b674ea3ad0adc). Note that the code is given in full at the bottom of the page.
+## Example showing how to create and run an immersed boundary simulation in Chaste
 
 We create a simple palisade of cells with a basement membrane, and see how to:
  * set the initial conditions;
  * change the cell-level properties.
  
-== The test ==
+### The test
 
 We begin by including the necessary header files.
 
@@ -51,7 +51,7 @@ Required for setting up the numerical method
 #include <boost/make_shared.hpp>
 ```
 
-// This test is never run in parallel
+This test is never run in parallel
 
 ```cpp
 #include "FakePetscSetup.hpp"
