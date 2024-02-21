@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestEquivalentMonoAndBidomainTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestEquivalentMonoAndBidomainTutorial.hpp) at revision [1dfba06b4d82](https://github.com/Chaste/Chaste/commit/1dfba06b4d8265be2322817e6dfe1536071d9a0a). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestEquivalentMonoAndBidomainTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestEquivalentMonoAndBidomainTutorial.hpp) at revision [3c544f98da9c](https://github.com/Chaste/Chaste/commit/3c544f98da9c243234f00db27b7aadaaa98eeef6). Note that the code is given in full at the bottom of the page.
 ## How to run a Bidomain simulation and its equivalent Monodomain reduction
 
 ### Introduction

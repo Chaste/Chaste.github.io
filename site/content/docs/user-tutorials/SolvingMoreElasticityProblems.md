@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestSolvingMoreElasticityProblemsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/continuum_mechanics/test/TestSolvingMoreElasticityProblemsTutorial.hpp) at revision [dca8546db5bb](https://github.com/Chaste/Chaste/commit/dca8546db5bbb0f4e181a0ec2093dc27ad74d579). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestSolvingMoreElasticityProblemsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/continuum_mechanics/test/TestSolvingMoreElasticityProblemsTutorial.hpp) at revision [3c544f98da9c](https://github.com/Chaste/Chaste/commit/3c544f98da9c243234f00db27b7aadaaa98eeef6). Note that the code is given in full at the bottom of the page.
 ### Introduction
 
 In this second solid mechanics tutorial, we illustrate some other possibilities: using tractions
