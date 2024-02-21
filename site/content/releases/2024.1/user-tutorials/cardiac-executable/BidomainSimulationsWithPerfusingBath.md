@@ -4,7 +4,6 @@ draft: false
 layout: "single"
 images: []
 version: "2024.1"
-version: "2024.1"
 ---
 
 {{< callout context="note" title="File related to this tutorial" icon="folder" >}} 

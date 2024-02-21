@@ -5,9 +5,8 @@ draft: false
 images: []
 toc: true
 version: "2024.1"
-version: "2024.1"
 ---
-This tutorial is automatically generated from [TestCreatingAndUsingANewCellKillerTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellKillerTutorial.hpp) at revision [1dfba06b4d82](https://github.com/Chaste/Chaste/commit/1dfba06b4d8265be2322817e6dfe1536071d9a0a). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCreatingAndUsingANewCellKillerTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellKillerTutorial.hpp) at revision [66cf8dbe76c3](https://github.com/Chaste/Chaste/commit/66cf8dbe76c3d7130712beffdbe05527fd51e0f1). Note that the code is given in full at the bottom of the page.
 ## An example showing how to create a new cell killer and use it in a cell-based simulation
 
 ### Introduction
@@ -138,7 +137,7 @@ class.
 };
 ```
 
-As mentioned in [Creating And Using A New Cell Cycle Model](/docs/user-tutorials/creatingandusinganewcellcyclemodel/), we need to include the next block
+As mentioned in [Creating And Using A New Cell Cycle Model](../creatingandusinganewcellcyclemodel/), we need to include the next block
 of code to be able to archive the cell killer object in a cell-based
 simulation, and to obtain a unique identifier for our new cell killer for writing
 results to file.

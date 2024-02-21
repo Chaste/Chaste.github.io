@@ -4,7 +4,6 @@ draft: false
 layout: "single"
 images: []
 version: "2024.1"
-version: "2024.1"
 ---
 
 The hardcoded cell models are listed in the schema (.xsd) file, which should be present in any folder containing an xml parameters file.

@@ -8,7 +8,6 @@ draft: false
 images: []
 toc: true
 version: "2024.1"
-version: "2024.1"
 ---
 
 ## Installing and Using Chaste via a Docker Container

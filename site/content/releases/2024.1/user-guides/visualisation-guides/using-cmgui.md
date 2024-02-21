@@ -6,7 +6,6 @@ images: []
 toc: true
 layout: "single"
 version: "2024.1"
-version: "2024.1"
 ---
 
 CMGUI is a powerful visualization tool that has several key features that make it unique:

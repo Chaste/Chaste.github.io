@@ -5,7 +5,6 @@ draft: false
 images: []
 toc: true
 version: "2024.1"
-version: "2024.1"
 ---
 This tutorial is automatically generated from [TestCreatingAndUsingANewCellMutationStateTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellMutationStateTutorial.hpp) at revision [4fe05a0e1d9c](https://github.com/Chaste/Chaste/commit/4fe05a0e1d9c1c8a9bf287a759806efd561f77cc). Note that the code is given in full at the bottom of the page.
 ## An example showing how to create a new cell mutation state and use it in a cell-based simulation

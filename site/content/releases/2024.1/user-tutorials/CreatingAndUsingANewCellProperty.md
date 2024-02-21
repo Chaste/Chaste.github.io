@@ -5,16 +5,15 @@ draft: false
 images: []
 toc: true
 version: "2024.1"
-version: "2024.1"
 ---
-This tutorial is automatically generated from [TestCreatingAndUsingANewCellPropertyTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellPropertyTutorial.hpp) at revision [614d6f177ea6](https://github.com/Chaste/Chaste/commit/614d6f177ea6ffd15672741d162935167d671bb9). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCreatingAndUsingANewCellPropertyTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellPropertyTutorial.hpp) at revision [66cf8dbe76c3](https://github.com/Chaste/Chaste/commit/66cf8dbe76c3d7130712beffdbe05527fd51e0f1). Note that the code is given in full at the bottom of the page.
 ## An example showing how to create a new cell property and use it in a cell-based simulation
 
 ### Introduction
 
-This tutorial assumes you have already read [Creating And Using A New Force](/docs/user-tutorials/creatingandusinganewforce/).
+This tutorial assumes you have already read [Creating And Using A New Force](../creatingandusinganewforce/).
 
-In the [Creating And Using A New Cell Mutation State](/docs/user-tutorials/creatingandusinganewcellmutationstate/)
+In the [Creating And Using A New Cell Mutation State](../creatingandusinganewcellmutationstate/)
 tutorial we showed how to create a new cell mutation state class,
 and how this can be used in a cell-based simulation. As well as
 mutation states, cells may be given much more general properties, using the cell
@@ -219,7 +218,7 @@ we associate cells with nodes in the force calculation. However, this could easi
     }
 ```
 
-Just as we encountered in [Creating And Using A New Cell Killer](/docs/user-tutorials/creatingandusinganewcellkiller/), here we must override
+Just as we encountered in [Creating And Using A New Cell Killer](../creatingandusinganewcellkiller/), here we must override
 a method that outputs any member variables to a specified results file `rParamsFile`.
 In our case, we output the member variable `mStrength`, then call the method on the base class.
 

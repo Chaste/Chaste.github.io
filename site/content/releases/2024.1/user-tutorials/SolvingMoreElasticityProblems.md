@@ -5,7 +5,6 @@ draft: false
 images: []
 toc: true
 version: "2024.1"
-version: "2024.1"
 ---
 This tutorial is automatically generated from [TestSolvingMoreElasticityProblemsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/continuum_mechanics/test/TestSolvingMoreElasticityProblemsTutorial.hpp) at revision [dca8546db5bb](https://github.com/Chaste/Chaste/commit/dca8546db5bbb0f4e181a0ec2093dc27ad74d579). Note that the code is given in full at the bottom of the page.
 ### Introduction

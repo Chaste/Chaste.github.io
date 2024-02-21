@@ -6,7 +6,6 @@ images: []
 toc: true
 layout: "single"
 version: "2024.1"
-version: "2024.1"
 ---
 
 We use [Test Driven Development](http://c2.com/cgi/wiki?TestDrivenDevelopment).

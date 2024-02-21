@@ -6,7 +6,6 @@ images: []
 toc: true
 layout: "single"
 version: "2024.1"
-version: "2024.1"
 ---
 
 Multiple calls to `AbstractCellSimulation::Solve` produce a collection of files

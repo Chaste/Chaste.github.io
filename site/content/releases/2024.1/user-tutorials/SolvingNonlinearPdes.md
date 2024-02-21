@@ -5,7 +5,6 @@ draft: false
 images: []
 toc: true
 version: "2024.1"
-version: "2024.1"
 ---
 This tutorial is automatically generated from [TestSolvingNonlinearPdesTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestSolvingNonlinearPdesTutorial.hpp) at revision [71ac325b969f](https://github.com/Chaste/Chaste/commit/71ac325b969f80f838eff76fb2ffb112d42f8bee). Note that the code is given in full at the bottom of the page.
 ## An example showing how to solve a nonlinear elliptic PDE. Also includes function-based boundary conditions.
