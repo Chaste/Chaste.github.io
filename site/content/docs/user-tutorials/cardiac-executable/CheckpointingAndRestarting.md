@@ -6,7 +6,7 @@ images: []
 ---
 
 {{< callout context="note" title="File related to this tutorial" icon="folder" >}} 
-[CheckpointingAndRestarting.tgz](CheckpointingAndRestarting.tgz)
+[CheckpointingAndRestarting.tgz](/docs/CheckpointingAndRestarting.tgz)
 {{< /callout >}}
 
 ## Checkpointing

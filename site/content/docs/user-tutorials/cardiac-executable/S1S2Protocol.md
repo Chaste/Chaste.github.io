@@ -6,7 +6,7 @@ images: []
 ---
 
 {{< callout context="note" title="Getting the data" icon="folder" >}}
-Download and save the attached file: [S1S2Protocol.tgz](S1S2Protocol.tgz).
+Download and save the attached file: [S1S2Protocol.tgz](/docs/S1S2Protocol.tgz).
 Either use an Archive Manager to extract the contents to disk or save it and then unpack it with
 
 ```bash

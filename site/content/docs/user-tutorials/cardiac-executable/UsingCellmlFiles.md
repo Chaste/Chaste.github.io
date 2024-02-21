@@ -6,7 +6,7 @@ images: []
 ---
 
 {{< callout context="note" title="File related to this tutorial" icon="folder" >}} 
-[UsingCellmlFiles.tgz](UsingCellmlFiles.tgz)
+[UsingCellmlFiles.tgz](/docs/UsingCellmlFiles.tgz)
 {{< /callout >}}
 
 The executable can be used with a general CellML file to specify the cell model, rather than just choosing from the list of hardcoded cell model options (although some names in the CellML file have to match the names Chaste is expecting). However, in order to run Chaste with CellML files, a full developer installation is (currently) required, as chaste_codegen is used to convert the CellML into code which is then compiled and dynamically loaded, all when running the executable.

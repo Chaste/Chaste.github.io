@@ -6,7 +6,7 @@ images: []
 ---
 
 {{< callout context="note" title="Getting the data" icon="folder" >}}
-Download and save the attached file: [Propagation1d.tgz](Propagation1d.tgz).
+Download and save the attached file: [Propagation1d.tgz](/docs/Propagation1d.tgz).
 Either use an Archive Manager to extract the contents to disk or save it and then unpack it with
 
 ```bash

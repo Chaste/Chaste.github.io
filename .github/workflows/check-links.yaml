@@ -1,0 +1,56 @@
+# Simple workflow for deploying static content to GitHub Pages
+name: Check links
+
+on:
+  # Runs on pushes targeting the default branch
+  pull_request:
+    branches: ["**"]
+      
+  push:
+    branches: ["main"]
+      
+  workflow_dispatch:
+
+# Allow one concurrent deployment
+concurrency:
+  group: link-check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Single deploy job since we're just deploying
+  build-and-check-links:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build site
+        run: |
+          npm install
+          npm run build
+        working-directory: site
+
+      - name: Setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install linkchecker
+        run: pip install linkchecker
+          
+      - name: Generate link checking config
+        run: bash generate-linkcheckerrc.sh
+
+      - name: Check links
+        run: linkchecker -f linkcheckerrc site/public
+          
+      - name: Generate summary
+        if: always()
+        run: |
+          bash generate-summary.sh
+          cat broken-links.md > $GITHUB_STEP_SUMMARY
+      
+

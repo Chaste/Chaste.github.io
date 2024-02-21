@@ -89,7 +89,7 @@ the kind of simulation you wish to run.
 ## Getting Help
 
 For general discussion about Chaste, and questions regarding usage, we provide
-the [Chaste users' mailing list](../community/mailing-list).
+the [Chaste users' mailing list](/community/mailing-list).
 
 Bug reports and feature requests may be submitted by opening an
 [issue](https://github.com/Chaste/Chaste/issues) on GitHub.

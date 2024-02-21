@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestAnotherCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherCardiacElectroMechanicsTutorial.hpp) at revision [9ccbb9cb6db8](https://github.com/Chaste/Chaste/commit/9ccbb9cb6db82df6a0b826c92e756309c24e1c93). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestAnotherCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherCardiacElectroMechanicsTutorial.hpp) at revision [3c544f98da9c](https://github.com/Chaste/Chaste/commit/3c544f98da9c243234f00db27b7aadaaa98eeef6). Note that the code is given in full at the bottom of the page.
 ## Cardiac Electro-mechanical Problems (cont.)
 
 It is worth running this test suite with `build=GccOpt_ndebug`
@@ -85,7 +85,7 @@ It is found in the file [NobleVargheseKohlNoble1998WithSac.hpp](https://github.c
 `CML_noble_varghese_kohl_noble_1998_basic_with_sac`.
 
 To add a SAC current to (or otherwise alter) your favourite cell model, you have to
-auto-generate the non-SAC C++ code at the command line, following the guide [Code Generation From CellML](/docs/chaste-guides/code-generation-from-cell-ml/#chaste_codegen-command-line-arguments).
+auto-generate the non-SAC C++ code at the command line, following the guide [Code Generation From CellML](../../user-guides/code-generation-from-cell-ml/#chaste_codegen-command-line-arguments).
 
 Copy and rename the resultant `.hpp` and `.cpp` files (which can be found in the same folder as the
 input cellml). For example, rename everything to `LuoRudy1991WithSac`. Then alter the class
@@ -327,7 +327,7 @@ Increase this end time to see more contraction
 The elasticity solvers have two nonlinear solvers implemented, one hand-coded and one which uses PETSc's SNES
 solver. The latter is not the default but can be more robust (and will probably be the default in later
 versions). This is how it can be used. (This option can also be called if the compiled binary is run from
-the command line (see [Building the Cardiac Executable](/docs/chaste-guides/building-executable-apps)) and run it using the option "-mech_use_snes").
+the command line (see [Building the Cardiac Executable](../../user-guides/building-executable-apps)) and run it using the option "-mech_use_snes").
 
 ```cpp
         problem_defn.SetSolveUsingSnes();

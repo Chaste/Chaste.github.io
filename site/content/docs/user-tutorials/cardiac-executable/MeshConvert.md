@@ -6,7 +6,7 @@ images: []
 ---
 
 {{< callout context="note" title="File related to this tutorial" icon="folder" >}} 
-[MeshConvert.tgz](MeshConvert.tgz)
+[MeshConvert.tgz](/docs/MeshConvert.tgz)
 {{< /callout >}}
 
 ## What it's for

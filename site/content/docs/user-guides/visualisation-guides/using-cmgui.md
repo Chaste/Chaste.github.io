@@ -21,7 +21,7 @@ The best place to start is the
 particular, it is advisable to start with the first one:
 [viewing a cube](https://www.cmiss.org/cmgui/wiki/IntroductionToCMGUI). At any
 point in time, it is often useful to consult the
-[full list of CMGUI commands](http://cmiss.bioeng.auckland.ac.nz/development/help/CMGUI/gfx/index.html).
+[full list of CMGUI commands](https://www.cmiss.org/cmgui/wiki/GettingStartedWithCmgui).
 
 ## Basic usage: graphical interface
 
@@ -40,7 +40,7 @@ where `PATH_TO_CMGUI_EXECUTABLE` refers to the directory where you put your
 CMGUI executable. This will pop up the graphics and command windows as shown
 here
 
-{{< img src="../cmgui_first.png" alt="cmgui window" h="600px" >}}
+{{< img src="/docs/cmgui_first.png" alt="cmgui window" h="600px" >}}
 
 Within the graphic window
 
@@ -54,13 +54,13 @@ to have a look at the script and see the PERL-style syntax of CMGUI.
 If you want to change the spectrum, select Graphic --> Spectrum Editor. Here you
 can adjust the spectrum minimum and maximum as shown here
 
-{{< img src="../cmgui_second.png" alt="cmgui spectrum editor" h="600px" >}}
+{{< img src="/docs/cmgui_second.png" alt="cmgui spectrum editor" h="600px" >}}
 
 Another very useful window is _Scene Editor_ which you can bring up by choosing
 Graphic --> Scene Editor. Here you can manipulate what you see and how. In the
 example below, the nodes are visualized as little spheres
 
-{{< img src="../cmgui_third.png" alt="cmgui scene editor" h="600px" >}}
+{{< img src="/docs/cmgui_third.png" alt="cmgui scene editor" h="600px" >}}
 
 ## Advanced usage: scripts
 
@@ -235,4 +235,4 @@ quit
 
 Results of the script above, i.e, the file `myo_plus_fibro.eps` looks like
 
-{{< img src="../cmgui_result.png" alt="cmgui result" h="400px" >}}
+{{< img src="/docs/cmgui_result.png" alt="cmgui result" h="400px" >}}

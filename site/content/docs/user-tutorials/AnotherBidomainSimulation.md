@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestAnotherBidomainSimulationTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherBidomainSimulationTutorial.hpp) at revision [9ccbb9cb6db8](https://github.com/Chaste/Chaste/commit/9ccbb9cb6db82df6a0b826c92e756309c24e1c93). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestAnotherBidomainSimulationTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherBidomainSimulationTutorial.hpp) at revision [3c544f98da9c](https://github.com/Chaste/Chaste/commit/3c544f98da9c243234f00db27b7aadaaa98eeef6). Note that the code is given in full at the bottom of the page.
 ## Another example showing how to run a bidomain simulation
 
 In this tutorial we run another bidomain simulation,
@@ -151,7 +151,7 @@ Now we create a problem class, initialise and solve
 The results can now be visualised - the effect of the fibres changing direction at x=0.05
 on the wave should be very clear.
 
-Please see [Visualisation Guides](/docs/chaste-guides/visualisation-guides/) for details of using Meshalyzer/Cmgui/Paraview.
+Please see [Visualisation Guides](../../user-guides/visualisation-guides/) for details of using Meshalyzer/Cmgui/Paraview.
 
 We described in the previous tutorial how to access the latest voltage vector using
 `ReplicatableVector`, here we illustrate how to access the voltage values using the
