@@ -78,7 +78,9 @@ ctest -V -R TestSolvingOdesTutorial
 
 ### Executable users
 
-* UserTutorials/CardiacExecutable - a submenu with links to various tutorials for users of the cardiac executable binary where settings are specified via an XML file (not the source code).
+The cardiac executable is a compiled `CardiacSimulation` object that uses an XML file to specify the settings that C++ users would do via `HeartConfig`. It is therefore a bit easier to use but less flexible than using Chaste classes via C++.
+
+* [UserTutorials/CardiacExecutable](cardiac-executable) - a submenu with links to various tutorials for users of the cardiac executable binary where settings are specified via an XML file (not the source code).
 
 ### Single Cardiac Cell Simulations
 * [UserTutorials/SingleCellSimulation](/docs/user-tutorials/singlecellsimulation/) - how to run ODE simulations for action potential models, handy methods for getting to steady pacing response.

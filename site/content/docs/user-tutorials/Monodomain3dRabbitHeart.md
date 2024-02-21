@@ -1,5 +1,5 @@
 ---
-title : "Monodomain Rabbit Heart"
+title : "Monodomain 3d Rabbit Heart"
 summary: "3D monodomain rabbit heart example"
 draft: false
 images: []

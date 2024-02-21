@@ -7,10 +7,10 @@ toc: true
 layout: "single"
 ---
 
-* [C++ Naming Strategy](cpp-naming-strategy): General rules and guidelines for
-  code naming conventions in the Chaste project.
 * [Code Structure Strategy](code-structure-strategy): General rules and
   guidelines for how to structure code in the Chaste project.
+* [Coding Standards Strategy](coding-standards-strategy): General rules and
+  guidelines for code naming conventions in the Chaste project.
 * [Distributed and Replicated Vectors](distributed-and-replicated-vectors):
   Guidelines for naming distributed and replicated vectors in the Chaste
   project.

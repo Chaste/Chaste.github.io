@@ -1,5 +1,5 @@
 ---
-title : "Monodomain Example With Cvode"
+title : "Monodomain 3d Example With Cvode"
 summary: "3D monodomain example using CVODE for ODE solution"
 draft: false
 images: []

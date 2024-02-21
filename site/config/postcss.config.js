@@ -48,6 +48,8 @@ module.exports = {
           './assets/scss/**/*.scss',
           './node_modules/@hyas/doks-core/assets/scss/**/*.scss',
           './node_modules/@hyas/doks-core/assets/scss/**/*.css',
+          './node_modules/bootstrap/scss/**/*.scss',
+          './node_modules/bootstrap/scss/**/*.css',
           './node_modules/katex/dist/katex.css',
         ]),
       ],

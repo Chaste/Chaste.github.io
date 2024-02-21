@@ -240,7 +240,7 @@ From now on we intend to follow the Ubuntu 6 monthly release schedule, tagging o
 
 * We have improved functionality for outputting results of cellular automaton (CA) and cellular Potts model simulations, as well as cell-based simulations on periodic domains, to VTK.
 * We have extended functionality for CA simulations, including a new location "switching" rule and division rule class hierarchies.
-* Each cell now contains a "subcellular reaction network model" as well as a cell-cycle model.  This mainly affects users of the `DeltaNotchCellCycleModel` class, which is now implemented using the `DeltaNotchSrnModel`, allowing the model to be coupled with any of the cell cycle models (see [UserTutorials/CreatingAndUsingANewSrnModel](https://github.com/Chaste/trac_archive/wiki/User-Tutorials-_-Creating-And-Using-A-New-Srn-Model) for details).
+* Each cell now contains a "subcellular reaction network model" as well as a cell-cycle model.  This mainly affects users of the `DeltaNotchCellCycleModel` class, which is now implemented using the `DeltaNotchSrnModel`, allowing the model to be coupled with any of the cell cycle models (see [UserTutorials/CreatingAndUsingANewSrnModel](../../user-tutorials/creatingandusinganewsrnmodel) for details).
 * Much of the vertex model code has been refactored to improve efficiency. In addition, two new classes, `MutableVertexMeshWithRosettes` and `CellRosetteRankWriter`, have been added to implement the necessary functionality for simulating multicellular 'rosettes' (where more than three cells meet at a point).
 
 
@@ -274,7 +274,7 @@ New functionality and code changes, which may require changes to user code.
 
 #### Cell-based
 
-* A new tutorial ([UserTutorials/CreatingAndUsingANewCellBasedSimulationModifier](https://github.com/Chaste/trac_archive/wiki/User-Tutorials-_-Creating-And-Using-A-New-Cell-Based-Simulation-Modifier)) shows how to create and use cell-based simulation modifiers.
+* A new tutorial ([UserTutorials/CreatingAndUsingANewCellBasedSimulationModifier](../../user-tutorials/creatingandusinganewcellbasedsimulationmodifier)) shows how to create and use cell-based simulation modifiers.
 * The new class `VoronoiVertexMeshGenerator` uses Lloyd's Relaxation steps to generate random initial conditions for vertex model simulations.
 * The `PlaneBasedBoundaryCondition` class can be used in a simulation where `ELEMENT_DIM != SPACE_DIM`.
 * Two new force classes, `DiffusionForce` and `DifferentialAdhesionGeneralisedLinearSpringForce`, have been added.
@@ -292,7 +292,7 @@ New functionality and code changes, which may require changes to user code.
     * bundle a pre-built cardiac *standalone executable* (the executable is dependent on third-party libraries which are to be deprecated).
 * Work is progressing on switching the build infrastructure to use CMake and code repository to use Git.
     * The CMake build is available to test in this release; see ChasteGuides/CmakeBuildGuide for more details. (SCons will be deprecated at a later date.)
-    * The switch of the code repository from Subversion to Git will happen after this release.  For information on migrating please see [GitMigration](https://github.com/Chaste/trac_archive/wiki/Chaste-Guides-_-Git-Migration).
+    * The switch of the code repository from Subversion to Git will happen after this release.  For information on migrating please see [GitMigration](https://chaste.cs.ox.ac.uk/chaste/tutorials/release_3.4/ChasteGuides/GitMigration.html).
 
 
 
@@ -545,7 +545,7 @@ Release 3.1 is a minor release, which brings support for newer versions of libra
 
 * A `CellMLLoader` class is available which makes the dynamic loading of CellML files into (almost) a one line call.
 * The Cmgui script that helps the user to load the simulation data has been adapted to Cmgui version 2.8 or later. It is still compatible with previous Cmgui versions 2.7 and 2.6. The name of the script is now LoadSolutions.com in both the undeformed and deformed cases.
-* A CellML project has been created containing many annotated CellML files for use with Chaste. See the Chaste wiki ([ChasteGuides/CodeGenerationFromCellML](https://github.com/Chaste/trac_archive/wiki/Chaste-Guides-_-Code-Generation-From-Cell-ML)) for details of how to access it.
+* A CellML project has been created containing many annotated CellML files for use with Chaste. See the Chaste wiki ([CodeGenerationFromCellML](../../user-guides/code-generation-from-cellml)) for details of how to access it.
 
 
 #### Cell-based
@@ -693,24 +693,8 @@ New functionality and code changes, which may still require changes to user code
     * The `CellBasedSimulation` class has been split up into a hierarchy, with `OffLatticeSimulation` and `OnLatticeSimulation` inheriting from  `AbstractCellBasedSimulation`.
     * All cell populations now inherit from either `AbstractOffLatticeCellPopulation` or `AbstractOnLatticeCellPopulation` the former are used by `OffLatticeSimulation` and the later are used by `OnLatticeSimulation`.
 * Cellular Potts models have been implemented in Chaste
-    * The 
-```
-[PottsBasedCellPopulation](https://chaste.cs.ox.ac.uk/public-docs/classPottsBasedCellPopulation.html)
-```
- has been created with associated 
-```
-[PottsMesh](https://chaste.cs.ox.ac.uk/public-docs/classPottsMesh.html)
-```
- and 
-```
-[PottsElement](https://chaste.cs.ox.ac.uk/public-docs/classPottsElement.html)
-```
- classes to store spatial information.
-    * The 
-```
-[AbstractPottsBasedUpdateRule](https://github.com/Chaste/trac_archive/wiki/Abstract-Potts-Based-Update-Rule)
-```
- hierarchy is used to define the dynamics of the simulation.
+    * The `PottsBasedCellPopulation` has been created with associated `PottsMesh` and `PottsElement` classes to store spatial information.
+    * The `AbstractPottsBasedUpdateRule` hierarchy is used to define the dynamics of the simulation.
     * Simulations make use of the existing cell-cycle model and cell-killer hierarchies.
     * Added functionality for visualizing Potts-based cell simulations either using the visualizer `Visualize2dVertexCells.java` or using Paraview with VTK output.
 * We have moved much of the cell-based code to use `boost::shared_ptr`s rather than plain pointers. This makes memory handling much more straightforward.
@@ -779,7 +763,7 @@ EXCEPTION("Number of nodes " << num_nodes << " does not match expected value of 
 * Changes to CellML support:
     * The cell model converter class is now more robust to certain errors, and gives more helpful error messages.  Temporary files are now saved when an error occurs during the conversion of a cell model from CellML.
     * Various performance improvements have been made to the cell model code generation in PyCml.
-    * PyCml now includes support for generating cell models that can be solved using the Rush-Larsen method.  These are not available 'by default' but must be generated manually or loaded dynamically.  See source:trunk/heart/test/ionicmodels/TestRushLarsen.hpp for some examples.
+    * PyCml now includes support for generating cell models that can be solved using the Rush-Larsen method.  These are not available 'by default' but must be generated manually or loaded dynamically.  See `/heart/test/ionicmodels/TestRushLarsen.hpp` for some examples.
 * A binary format has now been defined for fibre files, to enable random access into the file.
 
 
@@ -860,7 +844,7 @@ EXCEPTION("Number of nodes " << num_nodes << " does not match expected value of 
 
 * Full default test pack should now pass on more configurations.
 * Smarter chunking in HDF5 should reduce the time spent on I/O significantly for simulations with many output time steps.
-* Mesh load is scalable in parallel only with our binary mesh format.  A conversion utility is provided.  Please refer to the [MeshConvert](https://github.com/Chaste/trac_archive/wiki/User-Tutorials-_-Cardiac-Executable-_-Mesh-Convert) tutorial.
+* Mesh load is scalable in parallel only with our binary mesh format.  A conversion utility is provided.  Please refer to the [MeshConvert](../../user-tutorials/CardiacExecutable/MeshConvert) tutorial.
 * Performance of checkpointing with large meshes has been improved. We now archive permuted meshes without writing from memory to disc; instead the original files are copied.
 * Further improvements to tutorials (including the addition of solid mechanics tutorials), and user documentation.  Executable tutorials (as well as tutorial tests) are now routinely tested.
 
@@ -909,7 +893,7 @@ EXCEPTION("Number of nodes " << num_nodes << " does not match expected value of 
 #### Cardiac
 
 * New options in the XML parameters file:
-    * A user may now specify a list of node indices where time traces of output variables are requested.  See source:trunk/heart/test/data/ChasteParametersFullFormat.xml for an example of usage and the documentation of `PostProcessingWriter::WriteVariablesOverTimeAtNodes` for further information. The output files (one file per output variable) will have the nodal time traces arranged in columns (gnuplot-friendly), one column per requested node. The node numbers that the user requests are referred to the original (unpermuted) node numbering (hence it may differ from what the user sees - for example - when visualizing the output of a previous parallel simulation). No matter what permutation is used in the simulation, the output of the requested nodes will be the same.
+    * A user may now specify a list of node indices where time traces of output variables are requested.  See `/heart/test/data/ChasteParametersFullFormat.xml` for an example of usage and the documentation of `PostProcessingWriter::WriteVariablesOverTimeAtNodes` for further information. The output files (one file per output variable) will have the nodal time traces arranged in columns (gnuplot-friendly), one column per requested node. The node numbers that the user requests are referred to the original (unpermuted) node numbering (hence it may differ from what the user sees - for example - when visualizing the output of a previous parallel simulation). No matter what permutation is used in the simulation, the output of the requested nodes will be the same.
     * A new post-processing step to calculate pseudo-ECGs has been added to the Chaste parameters file: the `PseudoEcgElectrodePosition` element, which specifies where the virtual probe electrode should be placed. This element may occur multiple times to calculate ECGs from different probe locations. Note that probe electrodes must be located outside the heart tissue!
     * A `MeshPartitioning` element has been added in the `Numerical` parameters section, allowing you to specify how a mesh gets partitioned in parallel (dumb/metis/parmetis/petsc). This maps to the `HeartConfig` methods `Set/GetMeshPartitioning`.
     * Stimuli section can use ellipsoid regions.
@@ -1009,7 +993,7 @@ sed -i -f archive_convert.sed archive_file1 archive_file2 ...
 -----
 
 ## Release 2.0 (changes since Release 1.1)
-See source:trunk/docs/ReleaseNotes.html for the definitive list.
+See `/docs/ReleaseNotes.html` for the definitive list.
 
 * In the AssemblerTraits struct, the typenames 'CVT_CLS', 'CMT_CLS' and 'INTERPOLATE_CLS' have been renamed to 'CVT_CLASS', 'CMT_CLASS' and 'INTERPOLATE_CLASS' (r7041). These stand for 'ComputeVectorTerm class', 'ComputeMatrixTerm class' and 'Interpolate class' in case you are wondering, and the AssemblerTraits struct is used to state which classes these methods are implemented in.
 * [executable](heart) The Chaste parameters file now uses an XML namespace to indicate which version of Chaste it is for.  This means that there are now multiple schemas in `heart/src/io`, one for release 1.1 and one for release 1.2.  To update your parameters XML files, simply add a namespace declaration by adding the following attributes to the root `ChasteParameters` element:
@@ -1029,7 +1013,7 @@ See source:trunk/docs/ReleaseNotes.html for the definitive list.
 * [cancer] #1175 (r7544, r7562): changed `cancer` folder to `cell_based` and `notforrelease_cancer` to `notforrelease_cell_based`. Think anyone using the `cancer` code in their user project will need to do a search and replace `cancer -> cell_based` in their SConscript file. If you still have `cancer` or `notforrelease_cancer` folders in your chaste directory after updating you may need to remove them manually.
 * [cell_based] In r7885 changed the name of `TissueConfig::Get/SetTopOfLinearWntGradient()` to `Get/SetWntConcentrationParameter()`, so that an exponential Wnt concentration could be added.
 * [ode] In r8000 changed `OdeSolution::WriteToFile()` so that it no longer takes the `AbstractOdeSystem` as an argument.
-* [heart] #1164: the cardiac executable is gaining the ability to automatically load cell models encoded as CellML files at run-time, rather than needing them to be incorporated within Chaste when it is compiled.  In order to take advantage of this, you need (at present) to have built the executable from source yourself, as it uses your Chaste source tree to convert the CellML file into runnable code.  A side effect of this is that the continuous test pack now requires the prerequisites for PyCml to be installed in order for the tests of this new functionality to pass.  See [InstallPyCml](https://github.com/Chaste/trac_archive/wiki/Install-Py-Cml) for installation instructions.
+* [heart] #1164: the cardiac executable is gaining the ability to automatically load cell models encoded as CellML files at run-time, rather than needing them to be incorporated within Chaste when it is compiled.  In order to take advantage of this, you need (at present) to have built the executable from source yourself, as it uses your Chaste source tree to convert the CellML file into runnable code.  A side effect of this is that the continuous test pack now requires the prerequisites for PyCml to be installed in order for the tests of this new functionality to pass.  See [InstallPyCml](https://chaste.cs.ox.ac.uk/trac/wiki/InstallPyCml) for installation instructions.
 * [cancer] If you were implementing serialization for classes, note that the interface has changed. The file `TemplatedExport.hpp` has been replaced with two files: `SerializationExportWrapper.hpp` and `SerializationExportWrapperForCpp.hpp`. You should include the first in .hpp files, after the class definition. The second should be included in .cpp files, after any other includes (I suggest putting it at the end of the file for consistency). In both cases, a suitable `CHASTE_CLASS_EXPORT` line should be used, the same in both .hpp and .cpp. (There are also the usual variant macros for common cases of templated classes.) See ChasteGuides/BoostSerialization for more info.
 * [cell_based] #1145: The `CryptCellMutationState` enumeration has been replaced by a hierarchy of classes inheriting from `AbstractCellMutationState`. `TissueCell`s now have a shared pointer to a mutation state. To ensure proper counting of cells with each mutation, make sure that you give a cell a mutation state from its tissue's registry (`AbstractTissue::GetMutationRegistry`). Also, when passing a vector of cells to a tissue constructor, the passed-in vector is now cleared, to emphasize that these cells become owned by the tissue. Also removed `AbstractTissue::mCellMutationStateCount` and, as a result, changed `rGetCellMutationStateCount()` to `GetCellMutationStateCount()`.
 * [cell_based] #1112: The `CellsGenerator` class hierarchy has been refactored to reduce code duplication. There is now a base class `CellsGenerator`, which is templated over cell cycle model classes and dimension, and comprises `GenerateBasic()` and `GenerateGivenLocationIndices()` methods; and a subclass `CryptCellsGenerator`, which has an additional method `Generate()` that sets up cells for a crypt simulation.
@@ -1044,7 +1028,7 @@ See source:trunk/docs/ReleaseNotes.html for the definitive list.
 -----
 
 ## Release 1.1 (changes since Release 1.0)
-See source:trunk/docs/ReleaseNotes.html for the definitive list.
+See `/docs/ReleaseNotes.html` for the definitive list.
 
 * Improved doxygen documentation.
 * Improved code portability.
