@@ -17,7 +17,7 @@ toc: true
 * **Docker images** for easy install on multiple architectures - see [Docker Readme](https://github.com/Chaste/chaste-docker).
 
 ### Dependency changes
-* Chaste can now only be built with `cmake` and not our old build system `scons`. Please see [Cmake First Run Guide](../../docs/user-guides/cmake-first-run/) for how to swap over.
+* Chaste can now only be built with `cmake` and not our old build system `scons`. Please see [Cmake First Run Guide](../../user-guides/cmake-first-run/) for how to swap over.
 * Please see [Dependency Versions]../../docs/installguides/dependency-versions/) for a list of dependencies that are now supported, and planned to be dropped in the next release.
 
 ### Core
