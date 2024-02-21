@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningMeshBasedSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningMeshBasedSimulationsTutorial.hpp) at revision [a2c88fcf7c1b](https://github.com/Chaste/Chaste/commit/a2c88fcf7c1bffc543d87ac149e90bd20885c026). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningMeshBasedSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningMeshBasedSimulationsTutorial.hpp) at revision [5e3c4fd74dea](https://github.com/Chaste/Chaste/commit/5e3c4fd74dea39d9126ed0c14b183e2cd7ff7e2a). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to create, run and visualize mesh-based simulations
 
 ### Introduction
@@ -138,8 +138,8 @@ These can be found in the inheritance diagram, here,
 [AbstractCellCycleModel](/doxygen-latest/classAbstractCellCycleModel.html).
 Note that some of these models will require information on the surrounding medium such as Oxygen concentration to work,
 see specific class documentation for details. Some of these will be covered in later tutorials
-([Running Contact Inhibition Simulations](/docs/user-tutorials/runningcontactinhibitionsimulations/),
-[Running Delta Notch Simulations](/docs/user-tutorials/runningdeltanotchsimulations/), and [Running Tumour Spheroid Simulations](/docs/user-tutorials/runningtumourspheroidsimulations).
+([Running Contact Inhibition Simulations](runningcontactinhibitionsimulations/),
+[Running Delta Notch Simulations](runningdeltanotchsimulations/), and [Running Tumour Spheroid Simulations](runningtumourspheroidsimulations).
 We create an empty vector of cells and pass this into the
 method along with the mesh. The second argument represents the size of that the vector
 `cells` should become - one cell for each node, the third argument specifies
@@ -162,7 +162,7 @@ cell population called a `MeshBasedCellPopulation`.
 ```
 
 To view the results of this and the next test in Paraview it is necessary to explicitly
-generate the required .vtu files. This is detailed in the [Visualizing With Paraview](/docs/user-tutorials/visualizingwithparaview/) tutorial.
+generate the required .vtu files. This is detailed in the [Visualizing With Paraview](visualizingwithparaview/) tutorial.
 Note that the results in Paraview may appear different to those in the java based visualizer. This is related
 to the different methods used to generate voronoi tesselations in each and is resolved through the use of
 'ghost nodes', as shown in the next test.

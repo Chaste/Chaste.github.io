@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningDeltaNotchSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningDeltaNotchSimulationsTutorial.hpp) at revision [1dfba06b4d82](https://github.com/Chaste/Chaste/commit/1dfba06b4d8265be2322817e6dfe1536071d9a0a). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningDeltaNotchSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningDeltaNotchSimulationsTutorial.hpp) at revision [5e3c4fd74dea](https://github.com/Chaste/Chaste/commit/5e3c4fd74dea39d9126ed0c14b183e2cd7ff7e2a). Note that the code is given in full at the bottom of the page.
 ## An example showing how to run Delta/Notch simulations
 
 ### Introduction
@@ -175,7 +175,7 @@ This modifier assigns target areas to each cell.
     }
 ```
 
-To visualize the results, use Paraview. See the [Visualizing With Paraview](/docs/user-tutorials/visualizingwithparaview/) tutorial for more information.
+To visualize the results, use Paraview. See the [Visualizing With Paraview](visualizingwithparaview/) tutorial for more information.
 
 Load the file `/tmp/$USER/testoutput/TestVertexBasedMonolayerWithDeltaNotch/results_from_time_0/results.pvd`.
 
@@ -268,7 +268,7 @@ As we are using a node-based cell population, we use an appropriate force law.
 };
 ```
 
-To visualize the results, use Paraview. See the [Visualizing With Paraview](/docs/user-tutorials/visualizingwithparaview/) tutorial for more information.
+To visualize the results, use Paraview. See the [Visualizing With Paraview](visualizingwithparaview/) tutorial for more information.
 
 Load the file `/tmp/$USER/testoutput/TestNodeBasedMonolayerWithDeltaNotch/results_from_time_0/results.pvd`,
 and add a spherical glyph.

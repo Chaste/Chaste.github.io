@@ -5,14 +5,14 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestCreatingAndUsingNewCellBasedWritersTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingNewCellBasedWritersTutorial.hpp) at revision [1dfba06b4d82](https://github.com/Chaste/Chaste/commit/1dfba06b4d8265be2322817e6dfe1536071d9a0a). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCreatingAndUsingNewCellBasedWritersTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingNewCellBasedWritersTutorial.hpp) at revision [5e3c4fd74dea](https://github.com/Chaste/Chaste/commit/5e3c4fd74dea39d9126ed0c14b183e2cd7ff7e2a). Note that the code is given in full at the bottom of the page.
 ## An example showing how to create a new cell writer and use it in a cell-based simulation
 
 ### Introduction
 
-This tutorial assumes you have already read the tutorial [Creating And Using A New Cell Property](/docs/user-tutorials/creatingandusinganewcellproperty/).
+This tutorial assumes you have already read the tutorial [Creating And Using A New Cell Property](creatingandusinganewcellproperty/).
 
-In [Creating And Using A New Cell Property](/docs/user-tutorials/creatingandusinganewcellproperty/) we showed how to create a new cell
+In [Creating And Using A New Cell Property](creatingandusinganewcellproperty/) we showed how to create a new cell
 property class, `MotileCellProperty`, and how this can be used in a cell-based simulation.
 In this tutorial, we show how to create a new cell writer class, which can be used to output
 different data from a cell-based simulation. Our example will be a writer class for outputting
@@ -21,7 +21,7 @@ information about those cells in a simulation that have the `MotileCellProperty`
 ### 1. Including header files
 
 As in previous cell-based Chaste tutorials, we begin by including the necessary header file and
-archiving headers. For simplicity, we duplicate the code presented in [Creating And Using A New Cell Property](/docs/user-tutorials/creatingandusinganewcellproperty/)
+archiving headers. For simplicity, we duplicate the code presented in [Creating And Using A New Cell Property](creatingandusinganewcellproperty/)
 that defines the `MotileCellProperty` class. As before, note that usually this code would be
 separated out into a declaration in a .hpp file and a definition in a .cpp file.
 We also include some header files defining classes to be used in the cell-based
@@ -188,7 +188,7 @@ public:
     {
 ```
 
-We begin by creating a `NodeBasedCellPopulation`, just as in [Creating And Using A New Cell Property](/docs/user-tutorials/creatingandusinganewcellproperty/).
+We begin by creating a `NodeBasedCellPopulation`, just as in [Creating And Using A New Cell Property](creatingandusinganewcellproperty/).
 We add the `MotileCellProperty` to a random selection of cells.
 We also add the `CellLabel` to these cells so that we can easily visualize the different cell types.
 
@@ -261,7 +261,7 @@ Next we create a force law and pass it to the `OffLatticeSimulation`, and call `
 };
 ```
 
-As in [Creating And Using A New Cell Property](/docs/user-tutorials/creatingandusinganewcellproperty/), when you visualize the results with
+As in [Creating And Using A New Cell Property](creatingandusinganewcellproperty/), when you visualize the results with
 
 `java Visualize2dCentreCells /tmp/$USER/testoutput/TestOffLatticeSimulationWithMotileCellPropertyAndWriters/results_from_time_0`
 
