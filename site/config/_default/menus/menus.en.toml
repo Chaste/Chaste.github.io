@@ -119,6 +119,13 @@
   url = "/docs/doxygen/"
   parent = "docs"
 
+[[main]]
+  name = "Releases"
+  weight = 470
+  identifier = "releases"
+  url = "/releases/"
+  parent = "docs"
+
 #==================#
 
 [[main]]

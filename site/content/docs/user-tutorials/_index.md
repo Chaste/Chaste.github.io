@@ -11,7 +11,7 @@ images: []
 {{< callout context="note" title="Note" icon="info-circle" >}} 
 If you are viewing this on the Chaste wiki, **the tutorials here are automatically updated to work with the latest development version of Chaste**.
 They are not guaranteed to work with any release version, in fact they are unlikely to!
-If you are working with a release version of the code then this page is archived upon releases; the tutorials corresponding to each release version of Chaste can be found at [https://chaste.cs.ox.ac.uk/chaste/tutorials/](https://chaste.cs.ox.ac.uk/chaste/tutorials/).
+If you are working with a release version of the code then this page is archived upon releases; the tutorials corresponding to each release version of Chaste can be found on the [releases page](/releases/).
 {{< /callout >}}
 
 ## The basics
@@ -45,7 +45,7 @@ ctest -V -R TestSolvingOdesTutorial
 
 ## Before you do anything else
 
-* Start with [**UserTutorials/WritingTests**](/docs/user-tutorials/writingtests/) 
+* Start with [**UserTutorials/WritingTests**](writingtests) 
 * Then choose from the headings below [Core](#core-functionality), [Cardiac](#cardiac), [Cell-based](#cell-based), or [Lung](#lung).
 
 ----
@@ -54,23 +54,23 @@ ctest -V -R TestSolvingOdesTutorial
 
 ### Solving ODEs
 
-* [UserTutorials/SolvingOdes](/docs/user-tutorials/solvingodes/)
+* [UserTutorials/SolvingOdes](solvingodes)
 
 ### Solving PDEs
 
-* [UserTutorials/SolvingLinearPdes](/docs/user-tutorials/solvinglinearpdes/)
-* [UserTutorials/SolvingNonlinearPdes](/docs/user-tutorials/solvingnonlinearpdes/)
-* [UserTutorials/SolvingLinearParabolicPdeSystemsWithCoupledOdeSystems](/docs/user-tutorials/solvinglinearparabolicpdesystemswithcoupledodesystems/)
+* [UserTutorials/SolvingLinearPdes](solvinglinearpdes/)
+* [UserTutorials/SolvingNonlinearPdes](solvingnonlinearpdes/)
+* [UserTutorials/SolvingLinearParabolicPdeSystemsWithCoupledOdeSystems](solvinglinearparabolicpdesystemswithcoupledodesystems/)
 
 ### Writing new PDE solvers (advanced)
 
-* [UserTutorials/WritingPdeSolvers](/docs/user-tutorials/writingpdesolvers/)
-* [UserTutorials/WritingPdeSolversTwo](/docs/user-tutorials/writingpdesolverstwo/)
+* [UserTutorials/WritingPdeSolvers](writingpdesolvers/)
+* [UserTutorials/WritingPdeSolversTwo](writingpdesolverstwo/)
 
 ### Solid Mechanics
 
-* [UserTutorials/SolvingElasticityProblems](/docs/user-tutorials/solvingelasticityproblems/) - computing the deformation of a nonlinearly elastic body
-* [UserTutorials/SolvingMoreElasticityProblems](/docs/user-tutorials/solvingmoreelasticityproblems/)
+* [UserTutorials/SolvingElasticityProblems](solvingelasticityproblems/) - computing the deformation of a nonlinearly elastic body
+* [UserTutorials/SolvingMoreElasticityProblems](solvingmoreelasticityproblems/)
 
 ----
 
@@ -78,28 +78,30 @@ ctest -V -R TestSolvingOdesTutorial
 
 ### Executable users
 
-* UserTutorials/CardiacExecutable - a submenu with links to various tutorials for users of the cardiac executable binary where settings are specified via an XML file (not the source code).
+The cardiac executable is a compiled `CardiacSimulation` object that uses an XML file to specify the settings that C++ users would do via `HeartConfig`. It is therefore a bit easier to use but less flexible than using Chaste classes via C++.
+
+* [UserTutorials/CardiacExecutable](cardiac-executable) - a submenu with links to various tutorials for users of the cardiac executable binary where settings are specified via an XML file (not the source code).
 
 ### Single Cardiac Cell Simulations
-* [UserTutorials/SingleCellSimulation](/docs/user-tutorials/singlecellsimulation/) - how to run ODE simulations for action potential models, handy methods for getting to steady pacing response.
+* [UserTutorials/SingleCellSimulation](singlecellsimulation/) - how to run ODE simulations for action potential models, handy methods for getting to steady pacing response.
 
 ### Mono/Biodomain Simulations
-* [UserTutorials/RunningBidomainSimulations](/docs/user-tutorials/runningbidomainsimulations/) - **basic bidomain simulation**; note monodomain is virtually the same
-* [UserTutorials/AnotherBidomainSimulation](/docs/user-tutorials/anotherbidomainsimulation/)  - shows how to use **varying fibre directions** and **different output formats** in particular
-* [UserTutorials/Monodomain3dExample](/docs/user-tutorials/monodomain3dexample/)  - illustrates the (trivial) changes required to go from 2d to **3d**, or bidomain to **monodomain**
-* [UserTutorials/Monodomain3dExampleWithCvode](/docs/user-tutorials/monodomain3dexamplewithcvode/) - illustrates how to adapt the previous tutorial to create cells with **CVODE solvers**, which can provide increased speed and accuracy.
-* [UserTutorials/Monodomain3dRabbitHeart](/docs/user-tutorials/monodomain3drabbitheart/) - illustrates loading meshes from file, and specifying fibre and cross-fibre conductivities, on a realistic (but low res) rabbit whole ventricles mesh.
-* [UserTutorials/BidomainWithBath](/docs/user-tutorials/bidomainwithbath/) - illustrates the use of **Backward Euler** ODE solvers (very stable), and solving a bidomain problem in tissue surrounded by (extra-cellular domain) bath.
-* [UserTutorials/BidomainWithBathAndFibres](/docs/user-tutorials/bidomainwithbathandfibres/)
-* [UserTutorials/BidomainWithConductivityModifier](/docs/user-tutorials/bidomainwithconductivitymodifier/) - shows how to use **conductivity modifiers** in a bidomain simulation.
+* [UserTutorials/RunningBidomainSimulations](runningbidomainsimulations/) - **basic bidomain simulation**; note monodomain is virtually the same
+* [UserTutorials/AnotherBidomainSimulation](anotherbidomainsimulation/)  - shows how to use **varying fibre directions** and **different output formats** in particular
+* [UserTutorials/Monodomain3dExample](monodomain3dexample/)  - illustrates the (trivial) changes required to go from 2d to **3d**, or bidomain to **monodomain**
+* [UserTutorials/Monodomain3dExampleWithCvode](monodomain3dexamplewithcvode/) - illustrates how to adapt the previous tutorial to create cells with **CVODE solvers**, which can provide increased speed and accuracy.
+* [UserTutorials/Monodomain3dRabbitHeart](monodomain3drabbitheart/) - illustrates loading meshes from file, and specifying fibre and cross-fibre conductivities, on a realistic (but low res) rabbit whole ventricles mesh.
+* [UserTutorials/BidomainWithBath](bidomainwithbath/) - illustrates the use of **Backward Euler** ODE solvers (very stable), and solving a bidomain problem in tissue surrounded by (extra-cellular domain) bath.
+* [UserTutorials/BidomainWithBathAndFibres](bidomainwithbathandfibres/)
+* [UserTutorials/BidomainWithConductivityModifier](bidomainwithconductivitymodifier/) - shows how to use **conductivity modifiers** in a bidomain simulation.
 
 ### Checkpointing (saving/loading)
 
-* [UserTutorials/CardiacCheckpointingAndRestarting](/docs/user-tutorials/cardiaccheckpointingandrestarting/)
+* [UserTutorials/CardiacCheckpointingAndRestarting](cardiaccheckpointingandrestarting/)
 
 ### Electro-mechanics
-* [UserTutorials/CardiacElectroMechanics](/docs/user-tutorials/cardiacelectromechanics/)
-* [UserTutorials/AnotherCardiacElectroMechanics](/docs/user-tutorials/anothercardiacelectromechanics/)
+* [UserTutorials/CardiacElectroMechanics](cardiacelectromechanics/)
+* [UserTutorials/AnotherCardiacElectroMechanics](anothercardiacelectromechanics/)
 
 <!--
 See also [cardiac Chaste practical](https://github.com/Chaste/trac_archive/wiki/Cardiac-Chaste-Practical) for details of a practical we have used to teach cardiac Chaste.
@@ -111,42 +113,43 @@ See also [cardiac Chaste practical](https://github.com/Chaste/trac_archive/wiki/
 
 Where to start with cell-based simulations:
 
-* [UserTutorials/CellBasedDemo](/docs/user-tutorials/cellbaseddemo/) - a quick introduction to the basics of cell-based simulations in Chaste.
-* [UserTutorials/VisualizingWithParaview](/docs/user-tutorials/visualizingwithparaview/)
+* [UserTutorials/CellBasedDemo](cellbaseddemo/) - a quick introduction to the basics of cell-based simulations in Chaste.
+* [UserTutorials/VisualizingWithParaview](visualizingwithparaview/)
 
 ### Running basic simulation types:
 
-* [UserTutorials/RunningMeshBasedSimulations](/docs/user-tutorials/runningmeshbasedsimulations/) - the first type of cell-based simulation included in Chaste, start here!
-* [UserTutorials/RunningNodeBasedSimulations](/docs/user-tutorials/runningnodebasedsimulations/) - includes details of how to simplify cell-based tests
-* [UserTutorials/RunningVertexBasedSimulations](/docs/user-tutorials/runningvertexbasedsimulations/) - includes adding boundary conditions and removing cells from simulations
-* [UserTutorials/RunningPottsBasedSimulations](/docs/user-tutorials/runningpottsbasedsimulations/) - lattice-based simulations
+* [UserTutorials/RunningMeshBasedSimulations](runningmeshbasedsimulations/) - the first type of cell-based simulation included in Chaste, start here!
+* [UserTutorials/RunningNodeBasedSimulations](runningnodebasedsimulations/) - includes details of how to simplify cell-based tests
+* [UserTutorials/RunningVertexBasedSimulations](runningvertexbasedsimulations/) - includes adding boundary conditions and removing cells from simulations
+* [UserTutorials/RunningPottsBasedSimulations](runningpottsbasedsimulations/) - lattice-based simulations
+* [UserTutorials/RunningImmersedBoundarySimulations](runningimmersedboundarysimulations/) - immersed boundary simulations
 
 ### Running crypt-specific simulations:
 
-* [UserTutorials/RunningMeshBasedCryptSimulations](/docs/user-tutorials/runningmeshbasedcryptsimulations/)
-* [UserTutorials/RunningVertexBasedCryptSimulations](/docs/user-tutorials/runningvertexbasedcryptsimulations/)
-* [UserTutorials/RunningCryptSimulationsWithMutations](/docs/user-tutorials/runningcryptsimulationswithmutations/)
+* [UserTutorials/RunningMeshBasedCryptSimulations](runningmeshbasedcryptsimulations/)
+* [UserTutorials/RunningVertexBasedCryptSimulations](runningvertexbasedcryptsimulations/)
+* [UserTutorials/RunningCryptSimulationsWithMutations](runningcryptsimulationswithmutations/)
 
 
 ### More advanced examples:
 
-* [UserTutorials/RunningContactInhibitionSimulations](/docs/user-tutorials/runningcontactinhibitionsimulations/)
-* [UserTutorials/RunningDeltaNotchSimulations](/docs/user-tutorials/runningdeltanotchsimulations/)
-* [UserTutorials/RunningDifferentialAdhesionSimulations](/docs/user-tutorials/runningdifferentialadhesionsimulations/)
-* [UserTutorials/RunningTumourSpheroidSimulations](/docs/user-tutorials/runningtumourspheroidsimulations/)
+* [UserTutorials/RunningContactInhibitionSimulations](runningcontactinhibitionsimulations/)
+* [UserTutorials/RunningDeltaNotchSimulations](runningdeltanotchsimulations/)
+* [UserTutorials/RunningDifferentialAdhesionSimulations](runningdifferentialadhesionsimulations/)
+* [UserTutorials/RunningTumourSpheroidSimulations](runningtumourspheroidsimulations/)
 
 ### Adding new functionality:
 
 To do new things in Chaste that haven't been coded before you'll often have to add your own new C++ classes. Here are a set of examples to use as a basis for that.
 
-* [UserTutorials/CreatingAndUsingANewCellCycleModel](/docs/user-tutorials/creatingandusinganewcellcyclemodel/)
-* [UserTutorials/CreatingAndUsingANewCellKiller](/docs/user-tutorials/creatingandusinganewcellkiller/)
-* [UserTutorials/CreatingAndUsingANewCellPopulationBoundaryCondition](/docs/user-tutorials/creatingandusinganewcellpopulationboundarycondition/)
-* [UserTutorials/CreatingAndUsingANewForce](/docs/user-tutorials/creatingandusinganewforce/)
-* [UserTutorials/CreatingAndUsingANewCellMutationState](/docs/user-tutorials/creatingandusinganewcellmutationstate/)
-* [UserTutorials/CreatingAndUsingANewCellProperty](/docs/user-tutorials/creatingandusinganewcellproperty/)
-* [UserTutorials/CreatingAndUsingNewCellBasedWriters](/docs/user-tutorials/creatingandusingnewcellbasedwriters/)
-* [UserTutorials/CreatingAndUsingANewCellBasedSimulationModifier](/docs/user-tutorials/creatingandusinganewcellbasedsimulationmodifier/)
+* [UserTutorials/CreatingAndUsingANewCellCycleModel](creatingandusinganewcellcyclemodel/)
+* [UserTutorials/CreatingAndUsingANewCellKiller](creatingandusinganewcellkiller/)
+* [UserTutorials/CreatingAndUsingANewCellPopulationBoundaryCondition](creatingandusinganewcellpopulationboundarycondition/)
+* [UserTutorials/CreatingAndUsingANewForce](creatingandusinganewforce/)
+* [UserTutorials/CreatingAndUsingANewCellMutationState](creatingandusinganewcellmutationstate/)
+* [UserTutorials/CreatingAndUsingANewCellProperty](creatingandusinganewcellproperty/)
+* [UserTutorials/CreatingAndUsingNewCellBasedWriters](creatingandusingnewcellbasedwriters/)
+* [UserTutorials/CreatingAndUsingANewCellBasedSimulationModifier](creatingandusinganewcellbasedsimulationmodifier/)
 
 <!-- See also [cell-based Chaste practical](https://github.com/Chaste/trac_archive/wiki/Cell-Based-Chaste-Practical) for details of a practical we have used to teach cell-based Chaste.
 -->
@@ -155,13 +158,11 @@ To do new things in Chaste that haven't been coded before you'll often have to a
 ## Lung
 Generation and manipulation of airway geometries
 
-* [UserTutorials/AirwayGeneration](/docs/user-tutorials/airwaygeneration/)
+* [UserTutorials/AirwayGeneration](airwaygeneration/)
 
 
 Simulating ventilation and impedance
 
-* [UserTutorials/StaticVentilation](/docs/user-tutorials/staticventilation/)
-* [UserTutorials/DynamicVentilation](/docs/user-tutorials/dynamicventilation/)
-* [UserTutorials/SimpleImpedanceProblem](/docs/user-tutorials/simpleimpedanceproblem)
-
-
+* [UserTutorials/StaticVentilation](staticventilation/)
+* [UserTutorials/DynamicVentilation](dynamicventilation/)
+* [UserTutorials/SimpleImpedanceProblem](simpleimpedanceproblem)

@@ -20,7 +20,7 @@ See image below for the local numbering of 1D, 2D, and 3D simplices
 - Numbering for the tetrahedrons has to be done using the right hand rule[^1],
   important for the Jacobian matrices (to have positive determinant).
 
-{{< img src="../mesh_scheme_numbering.jpg" alt="Mesh Scheme Numbering" h="800px" >}}
+{{< img src="/docs/mesh_scheme_numbering.jpg" alt="Mesh Scheme Numbering" h="800px" >}}
 
 ## Quadratic elements
 
