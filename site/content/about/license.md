@@ -84,7 +84,7 @@ The 'Used by' column indicates where these libraries are used:
 <tr>
   <td> MPICH </td>
   <td> <a href="https://github.com/pmodels/mpich/blob/main/COPYRIGHT">https://github.com/pmodels/mpich/blob/main/COPYRIGHT</a>,
-       <a href="http://www.mcs.anl.gov/research/projects/mpi/mpich1/romio-license.txt">http://www.mcs.anl.gov/research/projects/mpi/mpich1/romio-license.txt</a> </td>
+       <a href="https://www.anl.gov/mcs/romio-highperformance-portable-mpiio-implementation">https://www.anl.gov/mcs/romio-highperformance-portable-mpiio-implementation</a> </td>
   <td><a href="https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/mpich-license.txt">mpich-license.txt</a>
       <a href="https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/romio-license.txt">romio-license.txt</a></td>
   <td> Source (although note that other MPI implementations may be used instead, e.g. OpenMPI) </td>
@@ -92,7 +92,7 @@ The 'Used by' column indicates where these libraries are used:
 
 <tr>
   <td> PETSc </td>
-  <td><a href="http://www.mcs.anl.gov/petsc/petsc-as/documentation/copyright.html">http://www.mcs.anl.gov/petsc/petsc-as/documentation/copyright.html</a></td>
+  <td><a href="https://petsc.org/release/install/license/">https://petsc.org/release/install/license/</a></td>
   <td><a href="https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/PETSc.html">PETSc.html</a> </td>
   <td> Source </td>
 </tr>

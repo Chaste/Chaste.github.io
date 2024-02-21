@@ -9,6 +9,7 @@ echo "  ^.* ^.*403.*" >> linkcheckerrc
 echo "  ^.* ^.*418.*" >> linkcheckerrc
 echo "  ^.* ^.*406.*" >> linkcheckerrc
 echo "  ^.* ^.*503.*" >> linkcheckerrc
+echo "  ^.* ^.*500.*" >> linkcheckerrc
 echo "" >> linkcheckerrc
 
 echo "[csv]" >> linkcheckerrc
