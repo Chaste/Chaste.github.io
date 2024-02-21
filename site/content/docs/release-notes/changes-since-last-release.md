@@ -31,6 +31,7 @@ by a recent interface change then please see here for fix suggestions.
 
 ### Core
 * [#153](https://github.com/Chaste/Chaste/pull/153) Mesh generators now return meshes wrapped in a `boost::shared_ptr`. Existing tests that retrieve a mesh from a mesh generator should be rewritten to accept this return type. For example, a test that expected a raw mesh pointer such as `AbstractMesh<2,2>* p_mesh = generator.GetMesh()` should now be changed to `boost::shared_ptr<AbstractMesh<2,2> > p_mesh = generator.GetMesh()`. Use `p_mesh.get()` to get the raw pointer from the smart pointer if needed e.g. in assertions. See `TestRunningMeshBasedCryptSimulationsTutorial` for more examples.
+* [#106](https://github.com/Chaste/Chaste/issues/106) [#138](https://github.com/Chaste/Chaste/pull/138)  A change to meshes makes edges first class objects within the mesh.  This is so that quantities can be assigned to edges and, specifically, so that systems of ODEs can be solved on cell-cell boundaries in the cell-based code. 
 
 ### Heart
 * CellML files that are [tagged with suitable metadata](/docs/user-guides/code-generation-from-cell-ml/#model-annotation-with-rdf) will automatically generate C++ ODE systems that have checks for things like gating variables/probabilities going outside `[0,1]` or concentrations going negative, and will throw an error when running in debug mode if that happens ([with a suitable tolerance if using CVODE](https://sundials.readthedocs.io/en/latest/cvode/Usage/index.html#advice-on-controlling-unphysical-negative-values)). This uses the [Oxmeta ontology](https://github.com/ModellingWebLab/ontologies) so that you no longer have to manually specify these checks, and anything that the ontology identifies as a gating variable or concentration will get the methods automatically.
@@ -40,6 +41,7 @@ by a recent interface change then please see here for fix suggestions.
 
 #### July 2023
 * [#3089](https://github.com/Chaste/trac_archive/blob/master/issues/3077.md) [#142](https://github.com/Chaste/Chaste/issues/142) You can now have voids in bounded voronoi tesselations of cylindrical meshes.
+* [#106](https://github.com/Chaste/Chaste/issues/106) [#138](https://github.com/Chaste/Chaste/pull/138)  A change to meshes makes edges first class objects within the mesh.  This is so that quantities can be assigned to edges and, specifically, so that systems of ODEs can be solved on cell-cell boundaries in the cell-based code. 
 
 #### April 2022
 * [#3077](https://github.com/Chaste/trac_archive/blob/master/issues/3077.md) You can now add new and remove ghost nodes from mesh based tissue simulations.
