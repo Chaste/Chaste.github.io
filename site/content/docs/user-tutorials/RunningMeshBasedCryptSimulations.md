@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningMeshBasedCryptSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/tutorial/TestRunningMeshBasedCryptSimulationsTutorial.hpp) at revision [dca8546db5bb](https://github.com/Chaste/Chaste/commit/dca8546db5bbb0f4e181a0ec2093dc27ad74d579). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningMeshBasedCryptSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/tutorial/TestRunningMeshBasedCryptSimulationsTutorial.hpp) at revision [66cf8dbe76c3](https://github.com/Chaste/Chaste/commit/66cf8dbe76c3d7130712beffdbe05527fd51e0f1). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to run crypt simulations on periodic meshes with different cell-cycle models
 
 ### Introduction
@@ -52,7 +52,7 @@ at the left- and right-hand sides of the mesh (hence the "cylindrical").
 #include "CylindricalHoneycombMeshGenerator.hpp"
 ```
 
-The next two header files were encountered in the tutorial [Running Mesh Based Simulations](/docs/user-tutorials/runningmeshbasedsimulations/).
+The next two header files were encountered in the tutorial [Running Mesh Based Simulations](../runningmeshbasedsimulations/).
 The first header defines a `CellPopulation` class that uses a triangular mesh, and allows
 for the inclusion of 'ghost nodes': these are nodes in the mesh that do not correspond
 to cells, but help ensure that a sensible Delaunay triangulation is generated
@@ -210,7 +210,7 @@ To run the simulation, we call `Solve()`.
     }
 ```
 
-Finally, to visualize the results, see [Visualizing with Paraview](/docs/user-tutorials/visualizingwithparaview/)
+Finally, to visualize the results, see [Visualizing with Paraview](../visualizingwithparaview/)
 
 ### Test 2: a Wnt-dependent crypt simulation
 
