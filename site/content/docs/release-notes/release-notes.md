@@ -17,8 +17,8 @@ toc: true
 * **Docker images** for easy install on multiple architectures - see [Docker Readme](https://github.com/Chaste/chaste-docker).
 
 ### Dependency changes
-* Chaste can now only be built with `cmake` and not our old build system `scons`. Please see [Cmake First Run Guide](/docs/user-guides/cmake-first-run/) for how to swap over.
-* Please see [Dependency Versions](/docs/installguides/dependency-versions/) for a list of dependencies that are now supported, and planned to be dropped in the next release.
+* Chaste can now only be built with `cmake` and not our old build system `scons`. Please see [Cmake First Run Guide](../../docs/user-guides/cmake-first-run/) for how to swap over.
+* Please see [Dependency Versions]../../docs/installguides/dependency-versions/) for a list of dependencies that are now supported, and planned to be dropped in the next release.
 
 ### Core
 * [#153](https://github.com/Chaste/Chaste/pull/153) Mesh generators now return meshes wrapped in a `boost::shared_ptr`. Existing tests that retrieve a mesh from a mesh generator should be rewritten to accept this return type. For example, a test that expected a raw mesh pointer such as `AbstractMesh<2,2>* p_mesh = generator.GetMesh()` should now be changed to `boost::shared_ptr<AbstractMesh<2,2> > p_mesh = generator.GetMesh()`. Use `p_mesh.get()` to get the raw pointer from the smart pointer if needed e.g. in assertions. See `TestRunningMeshBasedCryptSimulationsTutorial` for more examples.
@@ -26,7 +26,7 @@ toc: true
 * Many minor C++ modernisation changes have taken place, including [#80](https://github.com/Chaste/Chaste/pull/80) [#108](https://github.com/Chaste/Chaste/pull/108)
 
 ### Heart
-* CellML files that are [tagged with suitable metadata](/docs/user-guides/code-generation-from-cell-ml/#model-annotation-with-rdf) will automatically generate C++ ODE systems that have checks for things like gating variables/probabilities going outside `[0,1]` or concentrations going negative, and will throw an error when running in debug mode if that happens ([with a suitable tolerance if using CVODE](https://sundials.readthedocs.io/en/latest/cvode/Usage/index.html#advice-on-controlling-unphysical-negative-values)). This uses the [Oxmeta ontology](https://github.com/ModellingWebLab/ontologies) so that you no longer have to manually specify these checks, and anything that the ontology identifies as a gating variable or concentration will get the methods automatically.  See [#46](https://github.com/Chaste/Chaste/issues/46)
+* CellML files that are [tagged with suitable metadata]../../docs/user-guides/code-generation-from-cell-ml/#model-annotation-with-rdf) will automatically generate C++ ODE systems that have checks for things like gating variables/probabilities going outside `[0,1]` or concentrations going negative, and will throw an error when running in debug mode if that happens ([with a suitable tolerance if using CVODE](https://sundials.readthedocs.io/en/latest/cvode/Usage/index.html#advice-on-controlling-unphysical-negative-values)). This uses the [Oxmeta ontology](https://github.com/ModellingWebLab/ontologies) so that you no longer have to manually specify these checks, and anything that the ontology identifies as a gating variable or concentration will get the methods automatically.  See [#46](https://github.com/Chaste/Chaste/issues/46)
 * Cmake can fetch cellml files from the repo [Chaste/cellml](https://github.com/Chaste/cellml) at compile time, although a handful of CellML files are still in the main source code for testing. If you want to run with lots of different CellML files, please [see how ApPredict's CmakeLists.txt requests just certain CelLML files](https://github.com/Chaste/ApPredict/blob/2e5f95660609c5e2f8ed21be3b71455a6b1744b2/CMakeLists.txt), the advantage of this is you don't need to clone the whole repo in a submodule and compile all the CellML files any more, but can just get the ones you need.
 
 ### Cell Based
