@@ -54,7 +54,7 @@ def insert_frontmatter() -> None:
         with open(file, 'r') as f:
             content = f.read()
         with open(file, 'w') as f:
-            f.write(content.replace('\n---', f'\n{get_frontmatter_entry()}\n---'))
+            f.write(content.replace('\n---', f'\n{get_frontmatter_entry()}\n---', 1))
 
 
 def is_valid_version_number() -> bool:
@@ -72,6 +72,7 @@ def is_valid_version_number() -> bool:
 def copy_files():
     assert DOCS_DIR.is_dir()
     copy_directory(DOCS_DIR, NEW_RELEASE_DIR)
+    
 
 
 def copy_directory(source, destination):
