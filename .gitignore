@@ -8,3 +8,5 @@ hugo.exe
 .idea
 package-lock.json
 site/.DS_Store
+
+venv

@@ -6,7 +6,7 @@ images: []
 ---
 
 {{< callout context="note" title="File related to this tutorial" icon="folder" >}} 
-[BidomainSimulationsWithPerfusingBath.tgz](BidomainSimulationsWithPerfusingBath.tgz)
+[BidomainSimulationsWithPerfusingBath.tgz](/docs/BidomainSimulationsWithPerfusingBath.tgz)
 {{< /callout >}}
 
 *This tutorial is based on a nightly acceptance test [apps/texttest/chaste/bidomain_with_bath](https://github.com/Chaste/Chaste/tree/develop/apps/texttest/chaste/bidomain_with_bath)*

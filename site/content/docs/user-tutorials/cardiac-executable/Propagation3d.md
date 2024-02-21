@@ -6,7 +6,7 @@ images: []
 ---
 
 {{< callout context="note" title="Getting the data" icon="folder" >}}
-Download and save the attached file: [Propagation3d.tgz](Propagation3d.tgz).
+Download and save the attached file: [Propagation3d.tgz](/docs/Propagation3d.tgz).
 Either use an Archive Manager to extract the contents to disk or save it and then unpack it with
 
 ```bash

@@ -6,7 +6,7 @@ images: []
 ---
 
 {{< callout context="note" title="Getting the data" icon="folder" >}}
-Download and save the attached file: [DrugAction.tgz](DrugAction.tgz).
+Download and save the attached file: [DrugAction.tgz](/docs/DrugAction.tgz).
 Either use an Archive Manager to extract the contents to disk or save it and then unpack it with
 
 ```bash
