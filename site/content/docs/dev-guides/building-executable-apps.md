@@ -40,7 +40,8 @@ Configuring Chaste app
 
 ```
 
-and if your app is in a project, you should see something similar to:
+The `Chaste` app is the "cardiac executable", see [Cardiac Executable Tutorials](../../user-tutorials/cardiac-executable/) for how to use it.
+If you have made a new app within a [user project](../../user-guides/user-projects/), you should see something similar to:
 
 ```
 ...
