@@ -19,8 +19,7 @@ A web-based portal interface to this program is now available: https://chaste.cs
 
 ## The Science
 
-For an overview of what ApPredict is doing, why, and how well it is performing, please see the user guide which is hosted [on Figshare](http://dx.doi.org/10.6084/m9.figshare.1039436) and the [ApPredict paper](http://dx.doi.org/10.1016/j.vascn.2015.05.002) (also linked to from [ActionPotential/about](/action-potential/about)).
-
+For an overview of what ApPredict is doing, why, and how well it is performing, please see the user guide which is hosted [on Figshare](http://dx.doi.org/10.6084/m9.figshare.1039436) and the [ApPredict paper](http://dx.doi.org/10.1016/j.vascn.2015.05.002).
 ## Using ApPredict
 
 ### Installation
