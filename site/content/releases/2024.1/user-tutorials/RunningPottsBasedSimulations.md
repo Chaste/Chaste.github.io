@@ -5,9 +5,8 @@ draft: false
 images: []
 toc: true
 version: "2024.1"
-version: "2024.1"
 ---
-This tutorial is automatically generated from [TestRunningPottsBasedSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningPottsBasedSimulationsTutorial.hpp) at revision [a2c88fcf7c1b](https://github.com/Chaste/Chaste/commit/a2c88fcf7c1bffc543d87ac149e90bd20885c026). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningPottsBasedSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningPottsBasedSimulationsTutorial.hpp) at revision [66cf8dbe76c3](https://github.com/Chaste/Chaste/commit/66cf8dbe76c3d7130712beffdbe05527fd51e0f1). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to create, run and visualize Potts-based simulations
 
 ### Introduction
@@ -223,7 +222,7 @@ java executable.
 
 We could also visualize the results using Paraview.
 
-See the [Visualizing With Paraview](/docs/user-tutorials/visualizingwithparaview/) tutorial for more information.
+See the [Visualizing With Paraview](../visualizingwithparaview/) tutorial for more information.
 
 Load the file `/tmp/$USER/testoutput/PottsBasedMonolayer/results_from_time_0/results.pvd`, and click apply.
 
@@ -480,7 +479,7 @@ The next two lines are for test purposes only and are not part of this tutorial.
 ```
 
 To visualize the results, we need to use Paraview. Note that we don't output the cell boundaries (outlines) in 3D.
-See the [Visualizing With Paraview](/docs/user-tutorials/visualizingwithparaview/) tutorial for more information.
+See the [Visualizing With Paraview](../visualizingwithparaview/) tutorial for more information.
 
 Load the file `/tmp/$USER/testoutput/PottsCellSorting3D/results_from_time_0/results.pvd`, and click apply.
 

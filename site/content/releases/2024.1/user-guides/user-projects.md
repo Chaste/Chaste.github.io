@@ -6,7 +6,6 @@ images: []
 toc: true
 layout: "single"
 version: "2024.1"
-version: "2024.1"
 ---
 
 There are a few ways to use Chaste's source code:

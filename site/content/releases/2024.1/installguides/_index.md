@@ -6,7 +6,6 @@ draft: false
 images: []
 layout: "single"
 version: "2024.1"
-version: "2024.1"
 ---
 
 The guides most likely of interest to general users who want something like a

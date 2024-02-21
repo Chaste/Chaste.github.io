@@ -5,7 +5,6 @@ draft: false
 images: []
 toc: true
 version: "2024.1"
-version: "2024.1"
 ---
 This tutorial is automatically generated from [TestSolvingOdesTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/ode/test/TestSolvingOdesTutorial.hpp) at revision [8011c551be09](https://github.com/Chaste/Chaste/commit/8011c551be097258a784dc2d17a1bd9435cc4cf9). Note that the code is given in full at the bottom of the page.
 ## In this tutorial we show how Chaste can be used to solve an ODE system

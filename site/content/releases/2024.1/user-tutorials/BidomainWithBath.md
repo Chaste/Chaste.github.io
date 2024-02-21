@@ -5,7 +5,6 @@ draft: false
 images: []
 toc: true
 version: "2024.1"
-version: "2024.1"
 ---
 This tutorial is automatically generated from [TestBidomainWithBathTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestBidomainWithBathTutorial.hpp) at revision [9ccbb9cb6db8](https://github.com/Chaste/Chaste/commit/9ccbb9cb6db82df6a0b826c92e756309c24e1c93). Note that the code is given in full at the bottom of the page.
 ## An example showing how to run a bidomain simulation for tissue contained in a perfusing bath

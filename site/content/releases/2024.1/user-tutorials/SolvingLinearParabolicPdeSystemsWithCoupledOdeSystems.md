@@ -5,7 +5,6 @@ draft: false
 images: []
 toc: true
 version: "2024.1"
-version: "2024.1"
 ---
 This tutorial is automatically generated from [TestSolvingLinearParabolicPdeSystemsWithCoupledOdeSystemsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestSolvingLinearParabolicPdeSystemsWithCoupledOdeSystemsTutorial.hpp) at revision [8422a2c1f0b1](https://github.com/Chaste/Chaste/commit/8422a2c1f0b1fba98f0449f6202f9c3b154b3cc9). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to solve a system of coupled linear parabolic PDEs and ODEs

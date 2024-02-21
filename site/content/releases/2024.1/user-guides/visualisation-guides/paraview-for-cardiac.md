@@ -6,7 +6,6 @@ images: []
 toc: true
 layout: "single"
 version: "2024.1"
-version: "2024.1"
 ---
 
 Paraview is a popular VTK-based visualisation tool. Chaste can convert its

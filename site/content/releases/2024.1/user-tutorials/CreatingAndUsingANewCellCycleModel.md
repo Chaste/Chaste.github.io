@@ -5,7 +5,6 @@ draft: false
 images: []
 toc: true
 version: "2024.1"
-version: "2024.1"
 ---
 This tutorial is automatically generated from [TestCreatingAndUsingANewCellCycleModelTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellCycleModelTutorial.hpp) at revision [614d6f177ea6](https://github.com/Chaste/Chaste/commit/614d6f177ea6ffd15672741d162935167d671bb9). Note that the code is given in full at the bottom of the page.
 ## An example showing how to create a new cell-cycle model and use it in a cell-based simulation

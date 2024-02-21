@@ -6,7 +6,6 @@ images: []
 toc: true
 layout: "single"
 version: "2024.1"
-version: "2024.1"
 ---
 
 In order to checkpoint and save/resume simulations, we use the

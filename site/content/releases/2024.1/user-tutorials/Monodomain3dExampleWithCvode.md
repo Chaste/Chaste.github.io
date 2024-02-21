@@ -5,7 +5,6 @@ draft: false
 images: []
 toc: true
 version: "2024.1"
-version: "2024.1"
 ---
 This tutorial is automatically generated from [TestMonodomain3dExampleWithCvodeTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestMonodomain3dExampleWithCvodeTutorial.hpp) at revision [1dfba06b4d82](https://github.com/Chaste/Chaste/commit/1dfba06b4d8265be2322817e6dfe1536071d9a0a). Note that the code is given in full at the bottom of the page.
 ## 3D monodomain example using CVODE for ODE solution

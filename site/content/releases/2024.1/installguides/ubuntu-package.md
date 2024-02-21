@@ -8,7 +8,6 @@ draft: false
 images: []
 toc: true
 version: "2024.1"
-version: "2024.1"
 ---
 
 For Ubuntu users, there is a package available to greatly ease the installation of Chaste.

@@ -5,7 +5,6 @@ draft: false
 images: []
 toc: true
 version: "2024.1"
-version: "2024.1"
 ---
 This tutorial is automatically generated from [TestSingleCellSimulationTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestSingleCellSimulationTutorial.hpp) at revision [f26bc44135fa](https://github.com/Chaste/Chaste/commit/f26bc44135fab1f1a7867c46375ad56ab5dac017). Note that the code is given in full at the bottom of the page.
 ## An example showing how to run a single cell simulation

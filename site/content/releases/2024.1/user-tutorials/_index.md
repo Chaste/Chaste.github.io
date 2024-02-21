@@ -7,7 +7,6 @@ draft: false
 layout: "single"
 images: []
 version: "2024.1"
-version: "2024.1"
 ---
 
 {{< callout context="note" title="Note" icon="info-circle" >}} 
@@ -124,6 +123,7 @@ Where to start with cell-based simulations:
 * [UserTutorials/RunningNodeBasedSimulations](runningnodebasedsimulations/) - includes details of how to simplify cell-based tests
 * [UserTutorials/RunningVertexBasedSimulations](runningvertexbasedsimulations/) - includes adding boundary conditions and removing cells from simulations
 * [UserTutorials/RunningPottsBasedSimulations](runningpottsbasedsimulations/) - lattice-based simulations
+* [UserTutorials/RunningImmersedBoundarySimulations](runningimmersedboundarysimulations/) - immersed boundary simulations
 
 ### Running crypt-specific simulations:
 

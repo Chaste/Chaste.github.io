@@ -5,9 +5,8 @@ draft: false
 images: []
 toc: true
 version: "2024.1"
-version: "2024.1"
 ---
-This tutorial is automatically generated from [TestVisualizingWithParaviewTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestVisualizingWithParaviewTutorial.hpp) at revision [1dfba06b4d82](https://github.com/Chaste/Chaste/commit/1dfba06b4d8265be2322817e6dfe1536071d9a0a). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestVisualizingWithParaviewTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestVisualizingWithParaviewTutorial.hpp) at revision [66cf8dbe76c3](https://github.com/Chaste/Chaste/commit/66cf8dbe76c3d7130712beffdbe05527fd51e0f1). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to visualize simulations in Paraview
 
 ### Introduction
@@ -245,7 +244,7 @@ in which cells are represented as 'overlapping spheres'.
 
 We set up the simulation in much the same way as above, except now using a `NodesOnlyMesh` and
 `NodeBasedCellPopulation`. Further details on how to set up a node-based simulation can be found in
-[Running Node Based Simulations](/docs/user-tutorials/runningnodebasedsimulations/).
+[Running Node Based Simulations](../runningnodebasedsimulations/).
 
 ```cpp
         HoneycombMeshGenerator generator(10, 10, 0);

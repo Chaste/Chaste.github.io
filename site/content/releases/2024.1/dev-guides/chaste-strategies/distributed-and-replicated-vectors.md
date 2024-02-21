@@ -6,7 +6,6 @@ images: []
 toc: true
 layout: "single"
 version: "2024.1"
-version: "2024.1"
 ---
 
 ## Naming conventions for parallel data structures

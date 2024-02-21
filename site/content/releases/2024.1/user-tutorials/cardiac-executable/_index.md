@@ -4,7 +4,6 @@ draft: false
 layout: "single"
 images: []
 version: "2024.1"
-version: "2024.1"
 ---
 
 This page provides examples of how to use the Chaste cardiac executable.

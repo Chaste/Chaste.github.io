@@ -6,7 +6,6 @@ images: []
 toc: true
 layout: single
 version: "2024.1"
-version: "2024.1"
 ---
 
 Chaste has a number of dependencies. If you are using the [Ubuntu package](../ubuntu-package)

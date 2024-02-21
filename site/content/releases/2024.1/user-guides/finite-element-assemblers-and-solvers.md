@@ -6,7 +6,6 @@ images: []
 toc: true
 layout: "single"
 version: "2024.1"
-version: "2024.1"
 ---
 
 {{< callout context="note" title="Important Notes" icon="info-circle" >}}
