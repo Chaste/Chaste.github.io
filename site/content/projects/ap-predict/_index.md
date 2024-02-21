@@ -9,8 +9,6 @@ toc: true
 layout: "single"
 ---
 
-# Test
-
 [ApPredict](/ap-predict) is a free open source program for prediction of action potential changes under drug-block of ion channels. The ion channel block is modelled as *conductance block*, and it can be used with a number of action potential models (specified using CellML), different pacing rates, and blockade of the following ion channels can be included: IKr (hERG), IKs (KCNQ1), ICaL (CaV1.2), INa (NaV1.5), Ito (Kv4.3), IK1 (KCNN4).
 
 If you have any questions/comments, please get in touch with `gary.mirams@nottingham.ac.uk`.
@@ -25,7 +23,7 @@ For an overview of what [ApPredict](/ap-predict) is doing, why, and how well it 
 
 ### Installation
 
-**N.B.** you don't need to do any of the below to use the [web portal version of ApPredict](https://chaste.cs.ox.ac.uk/ActionPotential/).
+**N.B.** you don't need to do any of the below to use the free [web portal version of ApPredict](https://chaste.cs.ox.ac.uk/ActionPotential/).
 
 #### Pre-requisites
 
