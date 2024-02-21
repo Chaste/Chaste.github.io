@@ -98,7 +98,7 @@ In this folder you will find the following files:
 Run the simulation by doing
 
 ```
-<path_to_chaste>/Chaste.sh ChasteParameters.xml
+<path_to_chaste>/Chaste ChasteParameters.xml
 ```
 
 

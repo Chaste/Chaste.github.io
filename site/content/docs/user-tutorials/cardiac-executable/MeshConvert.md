@@ -36,28 +36,7 @@ our special binary version of the Triangle/Tetgen format.
 
 ## Making the executable(s)
 
-It is assumed that as you are running on a parallel cluster or supercomputer you have access to the Chaste
-source code.  You can produce all executables (including the standalone Chaste program) using:
-
-```bash
-scons chaste_libs=1 compile_only=1 exe=1 build=GccOpt apps
-```
-
-Binaries 
-```
-Chaste, MeshConvert...
-```
- are made in 
-```
-apps/src
-```
-
-You may get a speed improvement from using a "no debug" build-type like 
-```
-build=GccOpt_ndebug
-```
-, but
-this is at the expense of doing less error checking.
+See [Building Executable Apps](../../../dev-guides/building-executable-apps).
 
 ## Running the converter
 
