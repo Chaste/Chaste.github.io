@@ -7,35 +7,19 @@ images: []
 
 This page provides examples of how to use the Chaste cardiac executable.
 
-## Commands
+## Building the cardiac executable
 
-### Downloaded executable
+Please see [Building Executable Apps](../../dev-guides/building-executable-apps/) for instructions on how to compile the cardiac executable, called simply `Chaste`.
 
-If you have downloaded the executable you can run it with
+## Running the executable
 
-```bash
-./Chaste.sh <PATH TO CONFIG FILE>/ChasteParameters.xml
-```
-
-(the script will set up the necessary library paths etc. and then call the Chaste executable).
-The downloadable executable is specially built with an old mpi version to run in parallel on most machines, so you can do
-
-```bash
-./Chaste.sh -np N <PATH TO CONFIG FILE>/ChasteParameters.xml
-```
-
-where N is the number of processes to run with.
-
-### Compiled executable
-
-If you have built the executable yourself from source (this is required only for [dynamic loading of CellML files](#further-examples-using-dynamic-loading-of-cellml-files)), then your paths will (probably) be set up already, and you can simply run
+If you have built the executable yourself from source on the same machine, then your paths will (probably) be set up already, and you can simply run
 
 ```bash
 ./apps/src/Chaste <PATH TO CONFIG FILE>/ChasteParameters.xml
 ```
 
-
-Then to run this in parallel you should use mpirun (or perhaps mpiexec) associated with the mpi you used to compile Chaste:
+Then to run this in parallel you should use mpirun (or perhaps mpiexec) associated with the mpi/PETSc you used to compile Chaste:
 
 ```bash
 mpirun -np N ./apps/src/Chaste <PATH TO CONFIG FILE>/ChasteParameters.xml
@@ -45,13 +29,13 @@ where N is the number of processes to run with.
 
 ## Visualization
 
-In all of these examples, you can change to use the visualizer that you want by setting one of these options (meshalyzer, vtk, cmgui) in the `<Simulation>` block:
+In all of these examples, you can change to use the visualizer that you want by setting one of these options ([meshalyzer](https://opencarp.org/documentation/examples/visualization/meshalyzer), [vtk](https://vtk.org/) or [cmgui](https://www.cmiss.org/cmgui)) in the `<Simulation>` block:
 
 ```xml
 <OutputVisualizer meshalyzer="yes" vtk="yes" cmgui="yes" precision="8"/>
 ```
 
-[vtk](https://www.vtk.org/) (visualized using `paraview`) seems to be the most well supported and likely to still work if you are reading this in a few years, if not the simplest to use!
+vtk (visualized using [`paraview`](https://www.paraview.org/)) seems to be the most well supported and likely to still work if you are reading this in a few years, if not the simplest to use!
 
 ## Basic simulations
 
@@ -71,8 +55,7 @@ In all of these examples, you can change to use the visualizer that you want by 
 
 ## Further examples using dynamic loading of CellML files
 
-These require a full developer install and the executable to be built from the source, since the CellML files need to be converted into code and compiled, see [CodeGenerationFromCellML](/docs/user-guides/code-generation-from-cellml) for more details.
-
+See [CodeGenerationFromCellML](/docs/user-guides/code-generation-from-cellml) for more details and options for annotations within CellML files.
 
 * [UserTutorials/CardiacExecutable/UsingCellmlFiles](usingcellmlfiles) -- this shows how to use cell models defined directly from a cellml file (not one of the hardcoded options), and how to output cell model variables
 * [UserTutorials/CardiacExecutable/DrugAction](drugaction) Running a simulation with multiple-channel drug action
