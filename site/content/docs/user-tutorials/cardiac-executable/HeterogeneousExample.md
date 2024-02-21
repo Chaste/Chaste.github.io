@@ -6,7 +6,7 @@ images: []
 ---
 
 {{< callout context="note" title="File related to this tutorial" icon="folder" >}} 
-[HeterogeneousExample.tgz](HeterogeneousExample.tgz)
+[HeterogeneousExample.tgz](/docs/HeterogeneousExample.tgz)
 {{< /callout >}}
 
 

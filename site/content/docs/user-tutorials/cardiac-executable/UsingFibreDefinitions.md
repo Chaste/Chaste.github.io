@@ -6,7 +6,7 @@ images: []
 ---
 
 {{< callout context="note" title="File related to this tutorial" icon="folder" >}} 
-[UsingFibreDefinitions.tgz](UsingFibreDefinitions.tgz)
+[UsingFibreDefinitions.tgz](/docs/UsingFibreDefinitions.tgz)
 {{< /callout >}}
 
 ## Fibres
