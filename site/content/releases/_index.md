@@ -10,8 +10,6 @@ layout: "single"
 ---
 
 
-## Releases
-
 There are currently no releases since the infrastructure update.
 
 ## Old releases
