@@ -33,10 +33,8 @@ In this folder you will find the following files:
 Run the simulation by doing
 
 ```
-<path_to_chaste>/Chaste.sh ChasteParameters.xml
+<path_to_chaste>/Chaste ChasteParameters.xml
 ```
-
-**Note:** in releases up to and including version 2.0, the executable would be called directly (ie: `<path_to_chaste>/Chaste ChasteParameters.xml`), in release 2.1 the executable should be called via the shell script `Chaste.sh`; as above.
 
 A folder called `testoutput` will appear once the simulation has finished.
 
