@@ -39,6 +39,9 @@ by a recent interface change then please see here for fix suggestions.
 
 ### Cell Based
 
+#### June 2023
+* [#130](https://github.com/Chaste/Chaste/issues/130) The `Cell` class can now be subclassed and the `Divide` machinery overloaded.
+
 #### July 2023
 * [#3089](https://github.com/Chaste/trac_archive/blob/master/issues/3077.md) [#142](https://github.com/Chaste/Chaste/issues/142) You can now have voids in bounded voronoi tesselations of cylindrical meshes.
 * [#106](https://github.com/Chaste/Chaste/issues/106) [#138](https://github.com/Chaste/Chaste/pull/138)  A change to meshes makes edges first class objects within the mesh.  This is so that quantities can be assigned to edges and, specifically, so that systems of ODEs can be solved on cell-cell boundaries in the cell-based code. 
