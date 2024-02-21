@@ -5,14 +5,18 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestWritingTestsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/global/test/TestWritingTestsTutorial.hpp) at revision [0a2ab4e09adf](https://github.com/Chaste/Chaste/commit/0a2ab4e09adf884a22cb443bfb10d94d8efb5ed3). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestWritingTestsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/global/test/TestWritingTestsTutorial.hpp) at revision [a2c88fcf7c1b](https://github.com/Chaste/Chaste/commit/a2c88fcf7c1bffc543d87ac149e90bd20885c026). Note that the code is given in full at the bottom of the page.
 ## Writing tests
-We do not use `int main()` methods in Chaste. Instead, we write ''tests'', which are run using !CxxTest.
+We do not use `int main()` methods in Chaste. Instead, we write *tests*, which are run using CxxTest.
 Tests are used both as:
-(i) part of the testing environment - every class in the source code has an equivalent test file which tests each aspect of its functionality, making use of the `TS_ASSERT`s as described below; and
-(ii) for experimental work, which involve writing a 'test' as below but generally without `TS_ASSERT`s.
 
-This tutorial shows how to write a test using !CxxTest. Note that the full code is given at the bottom of the page.
+ * (i) part of the testing environment - every class in the source code has an equivalent test file
+ which tests each aspect of its functionality, making use of the `TS_ASSERT`s as described below; and
+ * (ii) for experimental/simulation work, which involve writing a 'test' as below but generally without `TS_ASSERT`s,
+ just to hijack the testing framework as a convenient way to run things without linking to Chaste as an external library
+ (which is also possible but a little bit more fuss to set up)
+ 
+This tutorial shows how to write a test using CxxTest. Note that the full code is given at the bottom of the page.
 
 First, the following header file needs to be included.
 
@@ -44,7 +48,7 @@ To test whether two integers are equal, we can use the macro `TS_ASSERT_EQUALS`.
 
 To test whether two numbers are equal to within a certain (absolute) tolerance we can use `TS_ASSERT_DELTA`.
 This should almost always be used when comparing two `double`s.  (See also
-[CompareDoubles](https://chaste.github.io/doxygen-latest/classCompareDoubles.html)
+[CompareDoubles](/doxygen-latest/classCompareDoubles.html)
 for more advanced comparisons.)
 
 ```cpp

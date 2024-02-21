@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestCreatingAndUsingANewCellKillerTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellKillerTutorial.hpp) at revision [0a2ab4e09adf](https://github.com/Chaste/Chaste/commit/0a2ab4e09adf884a22cb443bfb10d94d8efb5ed3). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCreatingAndUsingANewCellKillerTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellKillerTutorial.hpp) at revision [1dfba06b4d82](https://github.com/Chaste/Chaste/commit/1dfba06b4d8265be2322817e6dfe1536071d9a0a). Note that the code is given in full at the bottom of the page.
 ## An example showing how to create a new cell killer and use it in a cell-based simulation
 
 ### Introduction
@@ -96,7 +96,7 @@ public:
 
 The second public method overrides `CheckAndLabelCellsForApoptosisOrDeath()`.
 This method iterates over all cells in the population, and calls `KillCell()` on
-any cell whose centre is located outside the ellipse (''x''/20)^2^ + (''y''/10)^2^ < 1.
+any cell whose centre is located outside the ellipse $(\frac{x}{20})^2 + (\frac{y}{10})^2 < 1$.
 
 ```cpp
     void CheckAndLabelCellsForApoptosisOrDeath()
@@ -136,7 +136,7 @@ class.
 };
 ```
 
-As mentioned in [wiki:UserTutorials/CreatingAndUsingANewCellCycleModel], we need to include the next block
+As mentioned in [Creating And Using A New Cell Cycle Model](/docs/user-tutorials/creatingandusinganewcellcyclemodel/), we need to include the next block
 of code to be able to archive the cell killer object in a cell-based
 simulation, and to obtain a unique identifier for our new cell killer for writing
 results to file.
@@ -248,7 +248,7 @@ overridden method `CheckAndLabelCellsForApoptosisOrDeath`...
 ```
 
 ... and check that any cell whose centre is located outside the ellipse
-(''x''/20)^2^ + (''y''/10)^2^ < 1 has indeed been labelled as dead.
+$(\frac{x}{20})^2 + (\frac{y}{10})^2 < 1$ has indeed been labelled as dead.
 
 ```cpp
         for (AbstractCellPopulation<2>::Iterator cell_iter = cell_population.Begin();
@@ -343,7 +343,7 @@ We proceed as before, creating a mesh-based cell population.
 
 We now use the cell population to construct a cell killer object. This object
 must be added to the cell-based simulation as a boost::shared_ptr, so we make
-use of the macro MAKR_PTR_ARGS (defined in the header `SmartPointers.hpp`).
+use of the macro `MAKE_PTR_ARG` (defined in the header `SmartPointers.hpp`).
 
 ```cpp
         MAKE_PTR_ARGS(MyCellKiller, p_killer, (&cell_population));
@@ -377,6 +377,7 @@ To run the simulation, we call `Solve()`.
 ```cpp
         simulator.Solve();
     }
+};
 ```
 
 When you visualize the results with
@@ -384,10 +385,6 @@ When you visualize the results with
 `java Visualize2dCentreCells /tmp/$USER/testoutput/TestOffLatticeSimulationWithMyCellKiller/results_from_time_0`
 
 you should see that once cells move out of the ellipse they are removed from the simulation.
-
-```cpp
-};
-```
 
 ## Full code
 

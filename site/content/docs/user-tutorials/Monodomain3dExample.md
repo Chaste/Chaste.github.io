@@ -1,5 +1,5 @@
 ---
-title : "Monodomain Example"
+title : "Monodomain 3d Example"
 summary: "3D monodomain example"
 draft: false
 images: []

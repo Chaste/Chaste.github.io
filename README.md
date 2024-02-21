@@ -13,13 +13,13 @@ Once your changes are merged into `main` the site will be automatically built an
 
 This site uses the [doks theme](https://getdoks.org/) which requires you to have installed [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
 
-From the `site` directory, run the following command, which only needs to be run once:
-
+Navigate to the `site` directory, run the following command, which only needs to be run once:
 ```
+cd Chaste.github.io/site
 npm install
 ```
 
-To preview changes, run:
+To preview changes, stay in this folder and run:
 
 ```
 npm run dev

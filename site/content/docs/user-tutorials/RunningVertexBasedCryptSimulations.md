@@ -5,14 +5,14 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningVertexBasedCryptSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/tutorial/TestRunningVertexBasedCryptSimulationsTutorial.hpp) at revision [0a2ab4e09adf](https://github.com/Chaste/Chaste/commit/0a2ab4e09adf884a22cb443bfb10d94d8efb5ed3). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningVertexBasedCryptSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/tutorial/TestRunningVertexBasedCryptSimulationsTutorial.hpp) at revision [ae20c0b36aef](https://github.com/Chaste/Chaste/commit/ae20c0b36aeff6b2f69915dd75d8bd02e4ad4b7e). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to create, run and visualize vertex-based simulations on periodic meshes with different cell-cycle models
 
 ### Introduction
 
 In this tutorial we show how Chaste can be used to create, run and visualize vertex-based simulations.
-This mechanical model was originally proposed by T. Nagai and H. Honda ("A dynamic cell model for
-the formation of epithelial tissues", Philosophical Magazine Part B 81:699-719).
+This mechanical model was originally proposed by T. Nagai and H. Honda, 2000, "A dynamic cell model for
+the formation of epithelial tissues", Philosophical Magazine Part B 81:699-719, doi:[10.1103/PhysRevLett.69.2013](https://doi.org/10.1103/PhysRevLett.69.2013).
 
 ### The test
 
@@ -234,7 +234,7 @@ Define the crypt length; this will be used for sloughing and calculating the Wnt
         double crypt_length = 6.0;
 ```
 
-Set up a `WntConcentration` object, as in UserTutorials/RunningMeshBasedCryptSimulations.
+Set up a `WntConcentration` object, as in the tutorial [Running Mesh Based Simulations](/docs/user-tutorials/runningmeshbasedsimulations/).
 
 ```cpp
         WntConcentration<2>::Instance()->SetType(LINEAR);
@@ -311,7 +311,6 @@ cells and pink differentiated cells. Cells above 6.0 will be sloughed off immedi
 class TestRunningVertexBasedCryptSimulationsTutorial : public AbstractCellBasedTestSuite
 {
 public:
-
     void TestVertexBasedCrypt()
     {
          CylindricalHoneycombVertexMeshGenerator generator(6, 9);

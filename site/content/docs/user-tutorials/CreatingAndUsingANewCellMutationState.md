@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestCreatingAndUsingANewCellMutationStateTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellMutationStateTutorial.hpp) at revision [0a2ab4e09adf](https://github.com/Chaste/Chaste/commit/0a2ab4e09adf884a22cb443bfb10d94d8efb5ed3). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCreatingAndUsingANewCellMutationStateTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellMutationStateTutorial.hpp) at revision [4fe05a0e1d9c](https://github.com/Chaste/Chaste/commit/4fe05a0e1d9c1c8a9bf287a759806efd561f77cc). Note that the code is given in full at the bottom of the page.
 ## An example showing how to create a new cell mutation state and use it in a cell-based simulation
 
 ### Introduction
@@ -53,7 +53,7 @@ Chaste tutorials.
 As an example, let us consider a cell mutation state representing the p53
 172R-H gain-of-function mutant, which is equivalent to the common 175R-H
 human breast cancer mutant; for further details on this mutant, see for
-example Murphy et al, FASEB J. 14:2291-2302 (2000).
+example [Murphy et al, FASEB J. 14:2291-2302 (2000)](https://doi.org/10.1096/fj.00-0128com).
 
 Wild-type p53 has been referred to as the "guardian of the genome",
 responding to DNA damage or checkpoint failure by either arresting cell
@@ -61,7 +61,7 @@ cycle progression to facilitate DNA repair or initiating an apoptotic
 pathway to remove damaged cells. Approximately 40% of human breast cancers
 contain alterations in p53.
 
-As we can see, apart from a serialize() method and a constructor, this class
+As we can see, apart from a `serialize()` method and a constructor, this class
 does not contain any member variables or methods. This is because generally
 a cell's mutation state is used, much like a flag, by other classes when
 determining a cell's behaviour (whether a cell should undergo
@@ -172,7 +172,7 @@ We can also test whether our cell mutation state is of a given type, as follows.
 
 We can also test that archiving is implemented correctly for our cell
 mutation state, as follows (further details on how to implement and
-test archiving can be found at ChasteGuides/BoostSerialization).
+test archiving can be found at [Boost Serialization Guide](/docs/user-guides/boost-serialization/)).
 
 ```cpp
         OutputFileHandler handler("archive", false);
@@ -287,6 +287,7 @@ To run the simulation, we call `Solve()`.
 ```cpp
         simulator.Solve();
     }
+};
 ```
 
 When you visualize the results with
@@ -296,10 +297,6 @@ When you visualize the results with
 you should see two cells in black which are the cells with the new mutation. If we want these cells to behave differently we
 would need to write an new `CellCycleModel`, `CellKiller`, `Force`, or `CellPopulationBoundaryCondition`
 which checks for the new mutation.
-
-```cpp
-};
-```
 
 ## Full code
 

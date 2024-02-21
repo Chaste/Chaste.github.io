@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestSolvingOdesTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/ode/test/TestSolvingOdesTutorial.hpp) at revision [0a2ab4e09adf](https://github.com/Chaste/Chaste/commit/0a2ab4e09adf884a22cb443bfb10d94d8efb5ed3). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestSolvingOdesTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/ode/test/TestSolvingOdesTutorial.hpp) at revision [8011c551be09](https://github.com/Chaste/Chaste/commit/8011c551be097258a784dc2d17a1bd9435cc4cf9). Note that the code is given in full at the bottom of the page.
 ## In this tutorial we show how Chaste can be used to solve an ODE system
 
 The following header files need to be included.
@@ -53,7 +53,7 @@ to prevent race conditions when writing files.
 
 ### Defining the ODE classes
 
-Let us solve the ODE dy/dt = y^2^+t^2^, with y(0) = 1. To do so, we have to define
+Let us solve the ODE $\frac{dy}{dt} = y^2 +t^2$, with $y(0) = 1$. To do so, we have to define
 our own ODE class, inheriting from `AbstractOdeSystem`, which implements the
 `EvaluateYDerivatives()` method.
 
@@ -86,7 +86,7 @@ derivative(s) should be filled in by the method...
     {
 ```
 
-...so we set `rDY[0]` to be y^2^ + t^2^.
+...so we set `rDY[0]` to be $y^2 + t^2$.
 
 ```cpp
         rDY[0] = rY[0]*rY[0] + time*time;
@@ -94,7 +94,7 @@ derivative(s) should be filled in by the method...
 };
 ```
 
-The following ''template specialisation'' defines the information for this
+The following *template specialisation* defines the information for this
 ODE system.  Note that we use the ODE system class that we have just defined
 as a template parameter
 
@@ -129,7 +129,7 @@ public:
 
 All we have to do is implement the following function. This is defined in
 the base class (`AbstractOdeSystem`), where it always returns false, and here we override it
-to return true if y>=2.5
+to return true if $y \geq 2.5$
 
 ```cpp
     bool CalculateStoppingEvent(double time, const std::vector<double>& rY)
@@ -176,7 +176,7 @@ void OdeSystemInformation<MyOdeUsingStateVariables>::Initialise()
 ```
 
 This class is another simple ODE class, just as an example of how a 2d ODE is solved. Here
-we solve the ODE dy,,1,,/dt = y,,2,,, dy,,2,,/dt = (y,,1,,)^2^ (which represents the second-order ODE d^2^y/dt^2^ = y^2^).
+we solve the ODE $\frac{dy_1}{dt} = y_2, \frac{dy_2}{dt} = (y_1)^2$ (which represents the second-order ODE $\frac{d^2y}{dt^2} = y^2$).
 
 ```cpp
 class My2dOde : public AbstractOdeSystem
@@ -251,8 +251,8 @@ be a `std::vector`.
 Then, just call `Solve`, passing in a pointer to the ODE, the
 initial condition, the start time, end time, the solving timestep,
 and sampling timestep (how often we want the solution stored in the returned `OdeSolution` object).
-Here we solve from 0 to 1, with a timestep of 0.01 but a ''sampling
-timestep'' of 0.1. The return value is an object of type `OdeSolution`
+Here we solve from 0 to 1, with a timestep of 0.01 but a *sampling
+timestep* of 0.1. The return value is an object of type `OdeSolution`
 (which is basically just a list of times and solutions).
 
 ```cpp
@@ -295,8 +295,8 @@ stopping event defined, using the same solver as before.
         MyOdeWithStoppingEvent my_ode_stopping;
 ```
 
- **Note:** ''when a `std::vector` is passed in as an initial condition
- to a `Solve` call, it gets updated as the solve takes place''. Therefore, if
+ **Note:** *when a `std::vector` is passed in as an initial condition
+ to a `Solve` call, it gets updated as the solve takes place*. Therefore, if
 we want to use the same initial condition again, we have to reset it back to 1.0.
 
 ```cpp
@@ -322,7 +322,7 @@ Finally, let's print the time of the stopping event (to the nearest dt or so).
 
 In this second test, we show how to do an alternative version of ODE solving, which
 does not involve passing in initial conditions and returning an `OdeSolution`.
-The `AbstractOdeSystem` class has a member variable called the ''state variable vector'', which can
+The `AbstractOdeSystem` class has a member variable called the *state variable vector*, which can
 be used to hold the solution, and will be updated if a particular version of `Solve`
 is called. This can be useful for embedding ODE models in a bigger system, since
 the ODE models will then always contain their current solution state.

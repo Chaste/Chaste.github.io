@@ -1,4 +1,41 @@
 [[main]]
+  name = "Getting started"
+  weight = 10
+  identifier = "getting-started"
+  url = "/docs/"
+
+#==================#
+
+[[main]]
+  name = "About"
+  weight = 20
+  identifier = "about"
+  url = "/about/"
+
+[[main]]
+  name = "Publications"
+  weight = 200
+  identifier = "publications"
+  url = "/publications/"
+  parent = "about"
+
+[[main]]
+  name = "License"
+  weight = 210
+  identifier = "license"
+  url = "/about/license"
+  parent = "about"
+
+[[main]]
+  name = "The team"
+  weight = 220
+  identifier = "team"
+  url = "/team/"
+  parent = "about"
+
+#==================#
+
+[[main]]
   name = "Components"
   weight = 30
   identifier = "components"
@@ -6,64 +43,83 @@
 
 [[main]]
   name = "Cardiac"
-  weight = 31
+  weight = 300
   identifier = "cardiac"
-  url = "/components/cardiac/"
+  url = "/components/cardiac"
   parent = "components"
 
 [[main]]
   name = "Cell-based"
-  weight = 32
+  weight = 310
   identifier = "cell-based"
-  url = "/components/cell-based/"
+  url = "/components/cell-based"
   parent = "components"
 
 [[main]]
   name = "Lung"
-  weight = 33
+  weight = 320
   identifier = "lung"
-  url = "/components/lung/"
+  url = "/components/lung"
   parent = "components"
 
-[[main]]
-  name = "Getting started"
-  weight = 40
-  identifier = "getting-started"
-  url = "/docs/"
+#==================#
 
 [[main]]
-  name = "Docs"
-  weight = 41
+  name = "Documentation"
+  weight = 40
   identifier = "docs"
   url = "/docs/"
 
 [[main]]
-  name = "Doxygen"
-  weight = 10
-  identifier = "Doxygen"
-  url = "/docs/doxygen/"
-  parent = "docs"
-
-[[main]]
-  name = "Release notes"
-  weight = 15
-  identifier = "ReleaseNotes"
-  url = "/docs/release-notes/"
-  parent = "docs"
-
-[[main]]
   name = "Install guides"
-  weight = 20
-  identifier = "InstallGuides"
-  url = "/docs/installguides"
+  weight = 400
+  identifier = "install-guides"
+  url = "/docs/installguides/"
+  parent = "docs"
+
+[[main]]
+  name = "Tutorials"
+  weight = 410
+  identifier = "user-tutorials"
+  url = "/docs/user-tutorials/"
   parent = "docs"
 
 [[main]]
   name = "How-tos"
-  weight = 25
+  weight = 420
   identifier = "HowTos"
   url = "/docs/how-tos"
   parent = "docs"
+
+[[main]]
+  name = "User guides"
+  weight = 430
+  identifier = "user-guides"
+  url = "/docs/user-guides"
+  parent = "docs"
+
+[[main]]
+  name = "Dev guides"
+  weight = 440
+  identifier = "dev-guides"
+  url = "/docs/dev-guides"
+  parent = "docs"
+
+[[main]]
+  name = "Release notes"
+  weight = 450
+  identifier = "release-notes"
+  url = "/docs/release-notes/"
+  parent = "docs"
+
+[[main]]
+  name = "Code documentation"
+  weight = 460
+  identifier = "doxygen"
+  url = "/docs/doxygen/"
+  parent = "docs"
+
+#==================#
 
 [[main]]
   name = "PyChaste"
@@ -72,56 +128,85 @@
   url = "/pychaste/"
 
 [[main]]
+  name = "Getting started"
+  weight = 500
+  identifier = "pychaste-getting-started"
+  url = "/pychaste/"
+  parent = "pychaste"
+
+[[main]]
   name = "Install guides"
-  weight = 10
-  identifier = "PyChasteInstallGuides"
+  weight = 510
+  identifier = "pychaste-install-guides"
   url = "/pychaste/installation/"
   parent = "pychaste"
 
 [[main]]
-  name = "User tutorials"
-  weight = 20
-  identifier = "PyChasteUserTutorials"
+  name = "Tutorials"
+  weight = 520
+  identifier = "pychaste-tutorials"
   url = "/pychaste/tutorials/"
   parent = "pychaste"
 
+#==================#
+
 [[main]]
-  name = "Releases"
-  weight = 45
-  identifier = "Releases"
-  url = "/releases/"
+  name = "Projects"
+  weight = 60
+  identifier = "projects"
+  url = "/projects/"
+
+[[main]]
+  name = "AP Predict"
+  weight = 600
+  identifier = "ap-predict"
+  url = "/projects/ap-predict"
+  parent = "projects"
+
+[[main]]
+  name = "Cell-based comparison"
+  weight = 610
+  identifier = "cell-based-comparison"
+  url = "/projects/cell-based-comparison"
+  parent = "projects"
+
+#==================#
+
+[[main]]
+  name = "Community"
+  weight = 70
+  identifier = "community"
+  url = "/community/"
 
 [[main]]
   name = "Workshops"
-  weight = 70
+  weight = 700
   identifier = "workshops"
   url = "/workshops/"
+  parent = "community"
 
 [[main]]
-  name = "Workshops"
-  weight = 1
-  identifier = "AllWorkshops"
-  url = "/workshops/"
-  parent = "workshops"
+  name = "Q & A"
+  weight = 710
+  identifier = "qna"
+  url = "https://github.com/Chaste/Chaste/discussions"
+  parent = "community"
 
 [[main]]
-  name = "11-14 Sep 2023"
-  weight = 99
-  identifier = "2023-09-11"
-  url = "/workshops/2023-09-11"
-  parent = "workshops"
+  name = "Issues"
+  weight = 720
+  identifier = "issues"
+  url = "https://github.com/Chaste/Chaste/issues"
+  parent = "community"
 
 [[main]]
-  name = "The team"
-  weight = 80
-  identifier = "team"
-  url = "/team/"
+  name = "Mailing List"
+  weight = 730
+  identifier = "mailing-list"
+  url = "/community/mailing-list"
+  parent = "community"
 
-[[main]]
-  name = "Publications"
-  weight = 90
-  identifier = "publications"
-  url = "/publications/"
+#==================#
 
 [[social]]
   name = "GitHub"

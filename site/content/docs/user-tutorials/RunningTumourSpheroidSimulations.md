@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningTumourSpheroidSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningTumourSpheroidSimulationsTutorial.hpp) at revision [0a2ab4e09adf](https://github.com/Chaste/Chaste/commit/0a2ab4e09adf884a22cb443bfb10d94d8efb5ed3). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningTumourSpheroidSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningTumourSpheroidSimulationsTutorial.hpp) at revision [ae20c0b36aef](https://github.com/Chaste/Chaste/commit/ae20c0b36aeff6b2f69915dd75d8bd02e4ad4b7e). Note that the code is given in full at the bottom of the page.
 ## An example showing how to run tumour spheroid simulations
 
 ### Introduction
@@ -43,7 +43,7 @@ a cell's rate of progress through G1 phase changes over time in a simple manner,
 to the local oxygen concentration. We also include the `WildTypeCellMutationState`
 header file, which defines a wild type cell mutation state that we will use to construct
 cells. A cell mutation state is always required when constructing a cell, however
-in earlier simulation tutorial we used a helper classes ((`CellsGenerator` and `CryptCellsGenerator`) that
+in earlier simulation tutorials we used helper classes (`CellsGenerator` and `CryptCellsGenerator`) that
 allowed us to avoid having to construct cells directly.
 
 ```cpp
@@ -147,9 +147,9 @@ We also alter the default cell-cycle times.
             p_model->SetTransitCellG1Duration(8.0);
 ```
 
-We now define a random birth time, chosen from [-T,0], where
-T = t,,1,, + t,,2,,, where t,,1,, is a parameter representing the G,,1,, duration
-of a 'stem' cell, and t,,2,, is the basic S+G,,2,,+M phases duration...
+We now define a random birth time, chosen from $[-T,0]$, where
+$T = t_1 + t_2$, where $t_1$ is a parameter representing the $G_1$ duration
+of a 'stem' cell, and $t_2$ is the basic $S+G_2+M$ phases duration...
 
 ```cpp
             double birth_time = - RandomNumberGenerator::Instance()->ranf() *
@@ -178,11 +178,11 @@ Next we instantiate an instance of the PDE class which we defined above.
 This will be passed into the `OffLatticeSimulationWithPdes` object. The
 `CellwiseSourceEllipticPde` is a `PDE` class which inherits from
 `AbstractLinearEllipticPde` and represents
-the PDE ''u_xx'' + ''u_yy'' = ''k''(''x'',''y'') ''u'', where ''u''(''x'',''y'') denotes
+the PDE $u_{xx}$ + u_{yy} = k(x,y)u$, where $u(x,y)$ denotes
 the oxygen concentration at
-position (''x'',''y'') and the function ''k''(''x'',''y'') specifies the rate of consumption by live cells
-there. Here ''k''(''x'',''y'') takes the value -0.03 (the coefficient below) if
-the cell located at (''x'',''y'') is a live cell, and zero if the cell has died due
+position $(x,y)$ and the function $k(x,y)$ specifies the rate of consumption by live cells
+there. Here $k(x,y)$ takes the value $-0.03$ (the coefficient below) if
+the cell located at $(x,y)$ is a live cell, and zero if the cell has died due
 to oxygen deprivation.
 
 ```cpp
@@ -212,7 +212,7 @@ on some part of the boundary and a fixed-value boundary condition on the rest), 
 the boundary condition itself can be made spatially varying or time-dependent.
 
 The PDE is tagged to show that the quantity to be solved for (the quantity of interest in
-the cells' data is "oxygen".
+the cells' data is `"oxygen"`).
 
 The `CellData` class, is used to stores the value of the current nutrient concentration for each cell.
 
@@ -259,16 +259,13 @@ We call `Solve()` on the simulator to run the simulation.
 ```cpp
         simulator.Solve();
     }
+};
 ```
 
 To visualize the results, open a new terminal, `cd` to the Chaste directory,
 then `cd` to `anim`. Then do: `java Visualize2dCentreCells /tmp/$USER/testoutput/SpheroidTutorial/results_from_time_0`.
 
-Or use Paraview, see [wiki:UserTutorials/VisualizingWithParaview] for details.
-
-```cpp
-};
-```
+Or use Paraview, see the [Visualizing With Paraview](/docs/user-tutorials/visualizingwithparaview/) tutorial for details.
 
 ## Full code
 

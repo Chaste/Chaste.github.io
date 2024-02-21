@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestCellBasedDemoTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCellBasedDemoTutorial.hpp) at revision [0a2ab4e09adf](https://github.com/Chaste/Chaste/commit/0a2ab4e09adf884a22cb443bfb10d94d8efb5ed3). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCellBasedDemoTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCellBasedDemoTutorial.hpp) at revision [1dfba06b4d82](https://github.com/Chaste/Chaste/commit/1dfba06b4d8265be2322817e6dfe1536071d9a0a). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to create, run and cell-based simulations in Chaste
 
 ### Introduction
@@ -64,7 +64,7 @@ once in each simulation and will be covered in detail in later tutorials.
 Since we are using `AbstractCellBasedTestSuite` the singleton `SimulationTime` is initialised to zero at the beginning of the test and destroyed at the end
 of the test; `RandomNumberGenerator` is re-seeded with zero at the beginning and destroyed at the end of the test;
 and `CellPropertyRegistry` (which stores `CellProperties`, you learn about these in a later tutorial
-[wiki:UserTutorials/CreatingAndUsingANewCellProperty]) is cleared at the beginning of the test.
+[CreatingAndUsingANewCellProperty](/docs/user-tutorials/creatingandusinganewcellproperty/)) is cleared at the beginning of the test.
 This makes for cleaner code.
 
 ```cpp
@@ -126,7 +126,7 @@ timestep), and end time.
 ```
 
 To specify how cells move around, we create a "shared pointer" to a
-`Force` object and pass it to the `OffLatticeSimulation`. This is done using the MAKE_PTR macro as follows.
+`Force` object and pass it to the `OffLatticeSimulation`. This is done using the `MAKE_PTR` macro as follows.
 
 ```cpp
         MAKE_PTR(NagaiHondaForce<2>, p_force);
@@ -170,7 +170,7 @@ on the box marked "Output" and play through the whole simulation to generate a s
 images, one for each time step. Next, still in the `anim` folder, do: `./make_a_movie`.
 This reads in the `.png` files and creates a video file called `simulation.mpeg`.
 
-Results can also be visualized using Paraview. See the UserTutorials/VisualizingWithParaview tutorial for more information.
+Results can also be visualized using Paraview. See the [Visualizing With Paraview](/docs/user-tutorials/visualizingwithparaview/) tutorial for more information.
 
 ### Test 2 - basic node-based simulation
 
@@ -293,7 +293,7 @@ This time we create a `MeshBasedCellPopulation` as we are using a `MutableMesh`.
 ```
 
 To view the results of this and the subsequent mesh based tutorials in Paraview it is necessary to explicitly
-generate the required .vtu files. This is detailed in the [wiki:UserTutorials/VisualizingWithParaview] tutorial.
+generate the required .vtu files. This is detailed in the [VisualizingWithParaview](/docs/user-tutorials/visualizingwithparaview/) tutorial.
 Note that the results in Paraview may appear different to those in the java based visualizer. This is related
 to the different methods used to generate voronoi tesselations in each and is resolved through the use of
 'ghost nodes', as shown in the next test.
@@ -613,16 +613,13 @@ The next two lines are for test purposes only and are not part of this tutorial.
         TS_ASSERT_EQUALS(cell_population.GetNumRealCells(), 16u);
         TS_ASSERT_DELTA(SimulationTime::Instance()->GetTime(), 20.0, 1e-10);
     }
+};
 ```
 
 To visualize the results, open a new terminal, `cd` to the Chaste directory,
 then `cd` to `anim`. Then do: `java Visualize2dVertexCells /tmp/$USER/testoutput/CellBasedDemo7/results_from_time_0`.
 We may have to do: `javac Visualize2dVertexCells.java` beforehand to create the
 java executable.
-
-```cpp
-};
-```
 
 ## Full code
 

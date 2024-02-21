@@ -18,13 +18,13 @@ Please note: For general questions about Chaste, for example on installation or 
 
 Chaste development is currently funded through the BBSRC Bioinformatics & Biological Resources Grant [BB/V018647/1](https://gtr.ukri.org/projects?ref=BB%2FV018647%2F1). The project members are:
 
- * [Kwabena Amponsah](https://www.nottingham.ac.uk/geography/people/kwabena.gyan-amponsah) (RSE, University of Nottingham)
+ * [Kwabena Amponsah](https://github.com/kwabenantim) (RSE, University of Nottingham)
  * [Lutz Brusch](https://tu-dresden.de/zih/die-einrichtung/struktur/lutz-brusch) (collaborator, Technische Universität Dresden)
  * [Fergus Cooper](https://www.cs.ox.ac.uk/people/fergus.cooper/) (RSE, University of Oxford)
  * [Ben Evans](https://profiles.sussex.ac.uk/p555479-benjamin-evans) (Lecturer, University of Sussex)
- * [Alexander Fletcher](https://maths.dept.shef.ac.uk/maths/staff_info_715.html) (PI, University of Sheffield)
+ * [Alexander Fletcher](https://www.sheffield.ac.uk/maths/people/academic/alexander-fletcher) (PI, University of Sheffield)
  * [David Gavaghan](https://www.cs.ox.ac.uk/people/david.gavaghan/) (PI, University of Oxford)
- * [Maurice Hendrix](https://www.nottingham.ac.uk/mathematics/people/maurice.hendrix) (RSE, University of Nottingham)
+ * [Maurice Hendrix](https://github.com/MauriceHendrix) (RSE, University of Nottingham)
  * [Jochen Kursawe](https://risweb.st-andrews.ac.uk/portal/en/persons/jochen-kursawe(c18cd22b-def7-4bf0-9494-f780aa9a3663).html) (collaborator, University of St Andrews)
  * [Matthew Leach](https://www.sheffield.ac.uk/dcs/people/research-staff/matthew-leach-0) (RSE, University of Sheffield)
  * [Gary Mirams](https://www.maths.nottingham.ac.uk/plp/pmzgm/) (PI, University of Nottingham)

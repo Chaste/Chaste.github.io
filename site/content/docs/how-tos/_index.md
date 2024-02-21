@@ -32,7 +32,7 @@ Do not edit it manually, as your changes will be overwritten!
 - Run electro-mechanics with mechano-electric feedback
   - [line 100 of TestAnotherCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherCardiacElectroMechanicsTutorial.hpp#L100)
 - Run electro-mechanics with inflation pressures
-  - [line 273 of TestAnotherCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherCardiacElectroMechanicsTutorial.hpp#L273)
+  - [line 270 of TestAnotherCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherCardiacElectroMechanicsTutorial.hpp#L270)
 - Run electro-mechanical simulations using bidomain instead of monodomain
   - [line 215 of TestCardiacElectroMechanicsProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/mechanics/TestCardiacElectroMechanicsProblem.hpp#L215)
 - Run basic electro-mechanics simulations; specify different models, boundary conditions, fibres
@@ -42,7 +42,7 @@ Do not edit it manually, as your changes will be overwritten!
 
 ### Output
 - Specify output formats (for different visualisers)
-  - [line 133 of TestAnotherBidomainSimulationTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherBidomainSimulationTutorial.hpp#L133)
+  - [line 136 of TestAnotherBidomainSimulationTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherBidomainSimulationTutorial.hpp#L136)
 - Collect and print timings to benchmark different parts of the cardiac code.
   - [line 124 of TestBidomain3D.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomain3D.hpp#L124)
 - Only output data for particular nodes
@@ -53,9 +53,9 @@ Do not edit it manually, as your changes will be overwritten!
   - [line 951 of TestBidomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainProblem.hpp#L951)
 - Use the `SingleTraceOutputModifier` to output based on a global index (index AFTER any permutation has been applied)
   - [line 1046 of TestBidomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainProblem.hpp#L1046)
-- Calculating and outputting ionic currents ('derived quantities') in a single cell simulation using [OdeSolution](https://chaste.github.io/doxygen-latest/classOdeSolution.html) - see also [this page](https://chaste.cs.ox.ac.uk/trac/wiki/ChasteGuides/CodeGenerationFromCellML#Derivedquantities).
+- Calculating and outputting ionic currents ('derived quantities') in a single cell simulation using [OdeSolution](/doxygen-latest/classOdeSolution.html) - see also [chaste_codegen documentation](/docs/user-guides/code-generation-from-cell-ml/#derived-quantities).
   - [line 395 of TestCvodeCells.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/ionicmodels/TestCvodeCells.hpp#L395)
-- Calculating and outputting ionic currents ('derived quantities') in a tissue simulation using [HeartConfig](https://chaste.github.io/doxygen-latest/classHeartConfig.html) - see also [this page](https://chaste.cs.ox.ac.uk/trac/wiki/ChasteGuides/CodeGenerationFromCellML#Derivedquantities).
+- Calculating and outputting ionic currents ('derived quantities') in a tissue simulation using [HeartConfig](/doxygen-latest/classHeartConfig.html) - see also [chaste_codegen documentation](/docs/user-guides/code-generation-from-cell-ml/#derived-quantities).
   - [line 236 of TestMonodomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/monodomain/TestMonodomainProblem.hpp#L236)
 - On large-scale parallel simulations it is advantageous to cache HDF5 output and only write to disk at end of simulation (or at checkpoint).  This is achieved with `SetUseHdf5DataWriterCache()`
   - [line 1648 of TestMonodomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/monodomain/TestMonodomainProblem.hpp#L1648)
@@ -76,7 +76,7 @@ Do not edit it manually, as your changes will be overwritten!
 - Use a native CVODE cell in a tissue simulation
   - [line 168 of Test1dMonodomainShannonCvodeBenchmarks.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/performance/Test1dMonodomainShannonCvodeBenchmarks.hpp#L168)
 - Specify fibre directions
-  - [line 87 of TestAnotherBidomainSimulationTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherBidomainSimulationTutorial.hpp#L87)
+  - [line 90 of TestAnotherBidomainSimulationTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherBidomainSimulationTutorial.hpp#L90)
 - Fix phi_e at particular nodes (note: this is not required)
   - [line 264 of TestBidomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainProblem.hpp#L264)
 - Set discrete **ellipsoid** areas to have heterogeneous (intra- and/or extra-cellular) conductivity tensors.
@@ -88,7 +88,7 @@ Do not edit it manually, as your changes will be overwritten!
 - Save ('checkpoint') and reload simulations
   - [line 49 of TestCardiacCheckpointingAndRestartingTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestCardiacCheckpointingAndRestartingTutorial.hpp#L49)
 - Do a monodomain simulation with equivalent conductivities to a bidomain simulation.
-  - [line 232 of TestEquivalentMonoAndBidomainTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestEquivalentMonoAndBidomainTutorial.hpp#L232)
+  - [line 172 of TestEquivalentMonoAndBidomainTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestEquivalentMonoAndBidomainTutorial.hpp#L172)
 - Set discrete **cuboid** areas to have heterogeneous (intra- and/or extra-cellular) conductivity tensors.
   - [line 82 of TestHeterogeneousConductivities.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/TestHeterogeneousConductivities.hpp#L82)
 - Generate a slab (cuboid) mesh rather than read a mesh in, and pass it to solver
@@ -107,7 +107,7 @@ Do not edit it manually, as your changes will be overwritten!
 ### Solver
 - Using specialised Backward Euler implementation to solve the cell models (allows for much larger timesteps)
   - [line 64 of TestBidomainWithBathTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestBidomainWithBathTutorial.hpp#L64)
-- Use [ChasteGuides/StateVariableInterpolation state-variable interpolation] to improve accuracy
+- Use [state-variable interpolation](/docs/user-guides/state-variable-interpolation/) to improve accuracy
   - [line 118 of TestBidomainWithSvi.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainWithSvi.hpp#L118)
 - Run using (simple, user-defined) time-adaptivity
   - [line 51 of TestMonodomainWithTimeAdaptivity.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/monodomain/TestMonodomainWithTimeAdaptivity.hpp#L51)
@@ -150,11 +150,11 @@ Do not edit it manually, as your changes will be overwritten!
 - Read and use parameters from the command line
   - [line 46 of TestCommandLineArguments.hpp](https://github.com/Chaste/Chaste/blob/develop/global/test/TestCommandLineArguments.hpp#L46)
 - Use mock (pretend) command line arguments
-  - [line 263 of TestCommandLineArguments.hpp](https://github.com/Chaste/Chaste/blob/develop/global/test/TestCommandLineArguments.hpp#L263)
+  - [line 260 of TestCommandLineArguments.hpp](https://github.com/Chaste/Chaste/blob/develop/global/test/TestCommandLineArguments.hpp#L260)
 
 ### Archiving
 - Use a binary rather than ascii boost archive format, for speed and smaller file sizes.
-  - [line 391 of TestArchiving.hpp](https://github.com/Chaste/Chaste/blob/develop/global/test/TestArchiving.hpp#L391)
+  - [line 392 of TestArchiving.hpp](https://github.com/Chaste/Chaste/blob/develop/global/test/TestArchiving.hpp#L392)
 
 ## Lung
 
@@ -190,7 +190,7 @@ Do not edit it manually, as your changes will be overwritten!
 - Define and solve linear elliptic or parabolic PDEs
   - [line 47 of TestSolvingLinearPdesTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestSolvingLinearPdesTutorial.hpp#L47)
 - Output results to file for time-dependent PDE solvers
-  - [line 341 of TestSolvingLinearPdesTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestSolvingLinearPdesTutorial.hpp#L341)
+  - [line 342 of TestSolvingLinearPdesTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestSolvingLinearPdesTutorial.hpp#L342)
 - Define and solve nonlinear elliptic PDEs
   - [line 52 of TestSolvingNonlinearPdesTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestSolvingNonlinearPdesTutorial.hpp#L52)
 - Write new PDE solvers (especially for linear coupled elliptic/parabolic systems)

@@ -15,7 +15,7 @@ images = ["chaste_1024.png"]
 
   ## Button
   navBarButton = false # false (default) or true
-  navBarButtonUrl = "/getting-started/"
+  navBarButtonUrl = "/docs"
   navBarButtonText = "Get started"
 
   # FlexSearch

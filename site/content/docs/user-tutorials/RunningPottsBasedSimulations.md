@@ -5,14 +5,14 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningPottsBasedSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningPottsBasedSimulationsTutorial.hpp) at revision [0a2ab4e09adf](https://github.com/Chaste/Chaste/commit/0a2ab4e09adf884a22cb443bfb10d94d8efb5ed3). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningPottsBasedSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningPottsBasedSimulationsTutorial.hpp) at revision [a2c88fcf7c1b](https://github.com/Chaste/Chaste/commit/a2c88fcf7c1bffc543d87ac149e90bd20885c026). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to create, run and visualize Potts-based simulations
 
 ### Introduction
 
 In this tutorial we show how Chaste can be used to create, run and visualize Potts-based simulations.
-Full details of the mathematical model can be found in Graner, F. and Glazier, J. A. (1992). Simulation
-of biological cell sorting using a two-dimensional extended Potts model. Phys. Rev. Lett., 69(13):2015–2016.
+Full details of the mathematical model can be found in Graner, F. and Glazier, J. A. (1992). "Simulation
+of biological cell sorting using a two-dimensional extended Potts model". Phys. Rev. Lett., 69(13):2015–2016, doi:[10.1103/PhysRevLett.69.2013](https://doi.org/10.1103/PhysRevLett.69.2013).
 
 ### The test
 
@@ -128,7 +128,7 @@ cell population called a `PottsBasedCellPopulation`.
         PottsBasedCellPopulation<2> cell_population(*p_mesh, cells);
 ```
 
-We can set the "Temperature" to be used in the Potts Simulation using the optional command below.
+We can set the "Temperature" to be used in the Potts simulation using the optional command below.
 The default value is 0.1.
 
 ```cpp
@@ -164,7 +164,7 @@ We must now create one or more update rules, which determine the Hamiltonian
 in the Potts simulation. For this test, we use two update rules based upon
 a volume constraint (`VolumeConstraintPottsUpdateRule`) and adhesion between cells (`AdhesionPottsUpdateRule`) and pass them to the `OnLatticeSimulation`.
 For a list of possible update rules see subclasses of `AbstractPottsUpdateRule`.
-These can be found in the inheritance diagram, here, [AbstractPottsUpdateRule](https://chaste.github.io/doxygen-latest/classAbstractPottsUpdateRule.html).
+These can be found in the inheritance diagram, here, [AbstractPottsUpdateRule](/doxygen-latest/classAbstractPottsUpdateRule.html).
 
 Similarly to specifying forces for off lattice simulations we use the `MAKE_PTR` macro
 to make a boost shared pointer to our required update rule before specifying parameters and passing to the simulation as follows
@@ -219,9 +219,9 @@ then `cd` to `anim`. Then do: `java Visualize2dVertexCells /tmp/$USER/testoutput
 We may have to do: `javac Visualize2dVertexCells.java` beforehand to create the
 java executable.
 
-We could also visualize the results using paraview.
+We could also visualize the results using Paraview.
 
-See UserTutorials/VisualizingWithParaview for more information.
+See the [Visualizing With Paraview](/docs/user-tutorials/visualizingwithparaview/) tutorial for more information.
 
 Load the file `/tmp/$USER/testoutput/PottsBasedMonolayer/results_from_time_0/results.pvd`, and click apply.
 
@@ -356,7 +356,7 @@ then `cd` to `anim`. Then do: `java Visualize2dVertexCells /tmp/$USER/testoutput
 We may have to do: `javac Visualize2dVertexCells.java` beforehand to create the
 java executable.
 
-You could also visualize in paraview as above.
+You could also visualize in Paraview as above.
 
 ### Test 3 - 3D Cell Sorting
 
@@ -474,10 +474,11 @@ The next two lines are for test purposes only and are not part of this tutorial.
         TS_ASSERT_EQUALS(cell_population.GetNumRealCells(), 64u);
         TS_ASSERT_DELTA(SimulationTime::Instance()->GetTime(), 20.0, 1e-10);
     }
+};
 ```
 
 To visualize the results, we need to use Paraview. Note that we don't output the cell boundaries (outlines) in 3D.
-See UserTutorials/VisualizingWithParaview for more information.
+See the [Visualizing With Paraview](/docs/user-tutorials/visualizingwithparaview/) tutorial for more information.
 
 Load the file `/tmp/$USER/testoutput/PottsCellSorting3D/results_from_time_0/results.pvd`, and click apply.
 
@@ -493,10 +494,6 @@ Add a "Threshold" filter, filter by cell type and make the lower threshold 0 or 
 Click play to see the evolution of the simulation.
 
 You should see that the cells sort into ones of the same type.
-
-```cpp
-};
-```
 
 ## Full code
 
