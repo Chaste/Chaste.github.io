@@ -151,7 +151,7 @@ as bath elements (by default, the others are cardiac elements).
 ```
 
 Since we have modified the mesh by setting element attributes, we need to inform Chaste of this fact.
-If we do not, problems will arise when [checkpointing](../cardiaccheckpointingandrestarting/),
+If we do not, problems will arise when [checkpointing](/docs/user-tutorials/cardiaccheckpointingandrestarting/),
 since the code that saves the simulation state will assume that it can just reuse the original mesh files,
 and thus won't save the new element attributes.
 

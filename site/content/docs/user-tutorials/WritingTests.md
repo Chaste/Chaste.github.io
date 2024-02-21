@@ -48,7 +48,7 @@ To test whether two integers are equal, we can use the macro `TS_ASSERT_EQUALS`.
 
 To test whether two numbers are equal to within a certain (absolute) tolerance we can use `TS_ASSERT_DELTA`.
 This should almost always be used when comparing two `double`s.  (See also
-[CompareDoubles](../../doxygen-latest/classCompareDoubles)
+[CompareDoubles](/doxygen-latest/classCompareDoubles.html)
 for more advanced comparisons.)
 
 ```cpp

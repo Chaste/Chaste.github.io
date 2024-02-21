@@ -10,7 +10,7 @@ This tutorial is automatically generated from [TestRunningCryptSimulationsWithMu
 
 ### Introduction
 
-This tutorial assumes you have already read the tutorial [Running Mesh Based Simulations](../runningmeshbasedsimulations/).
+This tutorial assumes you have already read the tutorial [Running Mesh Based Simulations](/docs/user-tutorials/runningmeshbasedsimulations/).
 
 In this tutorial we show how Chaste can be used to simulate a cylindrical model of an
 intestinal crypt with mutations using both mesh and vertex-based simulations.
@@ -142,7 +142,7 @@ We need to do this using the `CellPropertyRegistry`, otherwise
 the numbers of each type of mutation aren't correctly tracked. For
 a list of possible mutations, see subclasses of `AbstractCellMutationState`.
 These can be found in the
-[inheritance diagram for AbstractCellMutationState](../../doxygen-latest/classAbstractCellMutationState.html).
+[inheritance diagram for AbstractCellMutationState](/doxygen-latest/classAbstractCellMutationState.html).
 Each mutation has a different effect on the cell cycle models; see the class
 documentation for details.
 

@@ -8,9 +8,9 @@ toc: true
 This tutorial is automatically generated from [TestMonodomain3dExampleWithCvodeTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestMonodomain3dExampleWithCvodeTutorial.hpp) at revision [1dfba06b4d82](https://github.com/Chaste/Chaste/commit/1dfba06b4d8265be2322817e6dfe1536071d9a0a). Note that the code is given in full at the bottom of the page.
 ## 3D monodomain example using CVODE for ODE solution
 
-This tutorial is based on [Monodomain 3D Example](../monodomain3dexample/) except this time we will
+This tutorial is based on [Monodomain 3D Example](/docs/user-tutorials/monodomain3dexample/) except this time we will
 use CVODE solvers. To highlight the changes needed to run with CVODE we omit the usual
-explanations of the rest of the code - see [Monodomain 3D Example](../monodomain3dexample/) for these.
+explanations of the rest of the code - see [Monodomain 3D Example](/docs/user-tutorials/monodomain3dexample/) for these.
 
 First include the headers
 

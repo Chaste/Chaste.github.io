@@ -234,7 +234,7 @@ Define the crypt length; this will be used for sloughing and calculating the Wnt
         double crypt_length = 6.0;
 ```
 
-Set up a `WntConcentration` object, as in the tutorial [Running Mesh Based Simulations](../runningmeshbasedsimulations/).
+Set up a `WntConcentration` object, as in the tutorial [Running Mesh Based Simulations](/docs/user-tutorials/runningmeshbasedsimulations/).
 
 ```cpp
         WntConcentration<2>::Instance()->SetType(LINEAR);

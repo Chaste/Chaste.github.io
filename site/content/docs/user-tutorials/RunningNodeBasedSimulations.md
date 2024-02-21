@@ -16,7 +16,7 @@ discrete mechanical tissue models", Physical Biology. Vol. 6. No. 3. 2009. doi:[
 
 ### The test
 
-As in previous cell-based Chaste tutorials ([Running Mesh Based Simulations](../runningmeshbasedsimulations/)), we begin by including the necessary header files.
+As in previous cell-based Chaste tutorials ([Running Mesh Based Simulations](/docs/user-tutorials/runningmeshbasedsimulations/)), we begin by including the necessary header files.
 
 ```cpp
 #include <cxxtest/TestSuite.h>
@@ -32,7 +32,7 @@ The following header is usually included in all cell-based test suites. It enabl
 
 The remaining header files define classes that will be used in the cell population
 simulation test. We encountered some of these header files in
-[Running Mesh Based Simulations](../runningmeshbasedsimulations/).
+[Running Mesh Based Simulations](/docs/user-tutorials/runningmeshbasedsimulations/).
 
 ```cpp
 #include "CellsGenerator.hpp"
@@ -96,7 +96,7 @@ cells) wide, and 2 nodes high.
 
 Once we have a `MutableMesh` we can generate a `NodesOnlyMesh` from it using the
 following commands. Note you can also generate the `NodesOnlyMesh` from a collection of
-nodes, see  [NodesOnlyMesh](../../doxygen-latest/classNodesOnlyMesh.html) for details.
+nodes, see  [NodesOnlyMesh](/doxygen-latest/classNodesOnlyMesh.html) for details.
 
 ```cpp
         NodesOnlyMesh<2> mesh;
@@ -280,7 +280,7 @@ To avoid memory leaks, we conclude by deleting any pointers that we created in t
 
 Note that you **cannot view the results of a 3D simulation using the Java visualiser** but
 to visualize the results, use Paraview.
-See the [Visualizing With Paraview](../visualizingwithparaview/) tutorial for more information.
+See the [Visualizing With Paraview](/docs/user-tutorials/visualizingwithparaview/) tutorial for more information.
 
 Load the file `/tmp/$USER/testoutput/NodeBasedSpheroid/results_from_time_0/results.pvd`,
 and add spherical glyphs to represent cells.
@@ -341,7 +341,7 @@ the `OffLatticeSimulation`. Here we use a `SphereGeometryBoundaryCondition`
 which restricts cells to lie on a sphere (in 3D) or circle (in 2D).
 
 For a list of possible boundary conditions see subclasses of `AbstractCellPopulationBoundaryCondition`.
-These can be found in the inheritance diagram, [here for AbstractCellPopulationBoundaryCondition](../../doxygen-latest/classAbstractCellPopulationBoundaryCondition.html).
+These can be found in the inheritance diagram, [here for AbstractCellPopulationBoundaryCondition](/doxygen-latest/classAbstractCellPopulationBoundaryCondition.html).
 Note that some of these boundary conditions are not compatible with node-based simulations see the specific class documentation for details,
 if you try to use an incompatible class then you will receive a warning.
 
@@ -385,7 +385,7 @@ To avoid memory leaks, we conclude by deleting any pointers that we created in t
 };
 ```
 
-To visualize the results, use Paraview. See the [Visualizing With Paraview](../visualizingwithparaview/) tutorial for more information.
+To visualize the results, use Paraview. See the [Visualizing With Paraview](/docs/user-tutorials/visualizingwithparaview/) tutorial for more information.
 
 Load the file `/tmp/$USER/testoutput/NodeBasedOnSphere/results_from_time_0/results.pvd`,
 and add spherical glyphs to represent cells.

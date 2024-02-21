@@ -33,7 +33,7 @@ First, the checkpointing test.
     {
 ```
 
-We set up exactly the same simulation as in the [Another Bidomain Simulation](../anotherbidomainsimulation/) tutorial.
+We set up exactly the same simulation as in the [Another Bidomain Simulation](/docs/user-tutorials/anotherbidomainsimulation/) tutorial.
 
 ```cpp
         HeartConfig::Instance()->Reset();
@@ -116,7 +116,7 @@ responsible for deleting the memory.
  partitioned for a parallel simulation.
  * To make this process slightly more efficient, Chaste will copy the original mesh files if the mesh was loaded
  from disk and hasn't been modified (e.g. by permuting).  Because of this, if you modify the mesh in memory,
- e.g. by setting element attributes as in the [bidomain-with-bath](../bidomainwithbath/) tutorial, then
+ e.g. by setting element attributes as in the [bidomain-with-bath](/docs/user-tutorials/bidomainwithbath/) tutorial, then
  you need to inform Chaste by calling `mesh.SetMeshHasChangedSinceLoading()`, so your modifications aren't lost.
  * Meshes written in checkpoints use a binary form of the Triangle/Tetgen mesh format. This makes checkpoints
  significantly smaller but will cause portability problems if checkpoints are moved between little-endian systems

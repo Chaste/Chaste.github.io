@@ -52,7 +52,7 @@ at the left- and right-hand sides of the mesh (hence the "cylindrical").
 #include "CylindricalHoneycombMeshGenerator.hpp"
 ```
 
-The next two header files were encountered in the tutorial [Running Mesh Based Simulations](../runningmeshbasedsimulations/).
+The next two header files were encountered in the tutorial [Running Mesh Based Simulations](/docs/user-tutorials/runningmeshbasedsimulations/).
 The first header defines a `CellPopulation` class that uses a triangular mesh, and allows
 for the inclusion of 'ghost nodes': these are nodes in the mesh that do not correspond
 to cells, but help ensure that a sensible Delaunay triangulation is generated
@@ -210,7 +210,7 @@ To run the simulation, we call `Solve()`.
     }
 ```
 
-Finally, to visualize the results, see [Visualizing with Paraview](../visualizingwithparaview/)
+Finally, to visualize the results, see [Visualizing with Paraview](/docs/user-tutorials/visualizingwithparaview/)
 
 ### Test 2: a Wnt-dependent crypt simulation
 

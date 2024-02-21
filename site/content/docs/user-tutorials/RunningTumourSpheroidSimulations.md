@@ -265,7 +265,7 @@ We call `Solve()` on the simulator to run the simulation.
 To visualize the results, open a new terminal, `cd` to the Chaste directory,
 then `cd` to `anim`. Then do: `java Visualize2dCentreCells /tmp/$USER/testoutput/SpheroidTutorial/results_from_time_0`.
 
-Or use Paraview, see the [Visualizing With Paraview](../visualizingwithparaview/) tutorial for details.
+Or use Paraview, see the [Visualizing With Paraview](/docs/user-tutorials/visualizingwithparaview/) tutorial for details.
 
 ## Full code
 
