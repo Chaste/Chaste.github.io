@@ -78,7 +78,7 @@ ctest -V -R TestSolvingOdesTutorial
 
 ### Executable users
 
-* UserTutorials/CardiacExecutable - a submenu with links to various tutorials for users of the cardiac executable binary where settings are specified via an XML file (not the source code).
+* [UserTutorials/CardiacExecutable](cardiac-executable) - a submenu with links to various tutorials for users of the cardiac executable binary where settings are specified via an XML file (not the source code).
 
 ### Single Cardiac Cell Simulations
 * [UserTutorials/SingleCellSimulation](/docs/user-tutorials/singlecellsimulation/) - how to run ODE simulations for action potential models, handy methods for getting to steady pacing response.
