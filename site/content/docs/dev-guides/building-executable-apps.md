@@ -28,6 +28,13 @@ To build an app, first configure Chaste as normal:
 cmake /path/to/Chaste
 ```
 
+{{< callout context="note" title="Note" icon="info-circle" >}}
+
+You may wish to switch on an optimised build - longer to compile, faster to run - when compiling executables for repeated/production use, see [cmake build guide](../cmake-build-guide/) and the options for `CMAKE_BUILD_TYPE` for how to switch on these compiler flags.
+
+{{< /callout >}}
+
+
 If you are building an app in `Chaste/apps/src`, you should see something
 similar to the following as part of the output:
 
