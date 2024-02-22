@@ -60,12 +60,14 @@ echo $CHASTE_TEST_OUTPUT
 ```
 in a terminal and it will return either a directory path or nothing -- in which case look in `/tmp/${USER}/testoutput`.
 
+---
+
 ## Before you do anything else
 
 * Start with [**UserTutorials/WritingTests**](writingtests) 
 * Then choose from the headings below [Core](#core-functionality), [Cardiac](#cardiac), [Cell-based](#cell-based), or [Lung](#lung).
 
-----
+---
 
 ## Core functionality
 
@@ -89,7 +91,7 @@ in a terminal and it will return either a directory path or nothing -- in which 
 * [UserTutorials/SolvingElasticityProblems](solvingelasticityproblems/) - computing the deformation of a nonlinearly elastic body
 * [UserTutorials/SolvingMoreElasticityProblems](solvingmoreelasticityproblems/)
 
-----
+---
 
 ## Cardiac
 
@@ -124,7 +126,7 @@ The cardiac executable is a compiled `CardiacSimulation` object that uses an XML
 See also [cardiac Chaste practical](https://github.com/Chaste/trac_archive/wiki/Cardiac-Chaste-Practical) for details of a practical we have used to teach cardiac Chaste.
 -->
 
-----
+---
 
 ## Cell-based
 
@@ -170,7 +172,7 @@ To do new things in Chaste that haven't been coded before you'll often have to a
 
 <!-- See also [cell-based Chaste practical](https://github.com/Chaste/trac_archive/wiki/Cell-Based-Chaste-Practical) for details of a practical we have used to teach cell-based Chaste.
 -->
-----
+---
 
 ## Lung
 Generation and manipulation of airway geometries
