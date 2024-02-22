@@ -23,25 +23,42 @@ If you don't know anything about these we recommend a first course in C++, there
 There is also a [Scientific Computing in C++ book](http://www.springer.com/computer/swe/book/978-1-4471-2735-2) by some of our team available too.
 
 To run any of these tutorials, it is assumed you have first configured Chaste using `CMake`:
-```
+```bash
 cmake /path/to/chaste/src
 ```
 
 Then, run
-```
+```bash
 make <NAME_OF_TUTORIAL_FILE>
 ```
 (without the .hpp on the end) to compile the tutorial source code, and
-```
+```bash
 ctest -V -R <NAME_OF_TUTORIAL_FILE>
 ```
 to run it. The `-V` is a flag to give *verbose* output, i.e. show the full output from the test on screen. The `-R` allows you to run all tests matching a 'regular expression', if you don't know what that means don't worry, if you just write the full tutorial class name it tells ctest to run that one in particular.
 
 For instance:
-```
+```bash
 make TestSolvingOdesTutorial
 ctest -V -R TestSolvingOdesTutorial
 ```
+
+### Where's my file output?
+
+By default, Chaste will attempt to write any file output from tests and tutorials to the temporary file directory at `/tmp/${USER}/testoutput` where `$USER` resolves to your username.
+
+It is recommended to redirect the output to a more permanent folder of your choosing. To do this you set an environment variable called `CHASTE_TEST_OUTPUT` in the terminal. We also recommend that you set this automatically and globally whenever you log in by adding a line like
+```bash
+export CHASTE_TEST_OUTPUT=/path/where/I/want/Chaste/to/write/files
+```
+to the bottom of your terminal login script (this should be in the file `~/.bashrc` if you are using a bash terminal, e.g. on Ubuntu or the Chaste Docker based on ubuntu. It could be `~/.zshrc` on a Mac). 
+The Chaste docker has `CHASTE_TEST_OUTPUT` set by default to a sensible output location. 
+
+The tutorials below will refer to `$CHASTE_TEST_OUTPUT` whether or not it is set. So if you aren't sure where test output is, just type 
+```bash
+echo $CHASTE_TEST_OUTPUT
+```
+in a terminal and it will return either a directory path or nothing -- in which case look in `/tmp/${USER}/testoutput`.
 
 ## Before you do anything else
 
