@@ -1,8 +1,7 @@
 ---
-title : "PyChaste Documentation"
-description: "PyChaste Documentation"
+title : "PyChaste"
+description: "PyChaste"
 draft: false
 images: []
+layout: "frontpage"
 ---
-
-PyChaste is a Python wrapper for the open source Chaste library for computational biology.
