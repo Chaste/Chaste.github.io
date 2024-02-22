@@ -142,9 +142,9 @@
   parent = "pychaste"
 
 [[main]]
-  name = "Install guides"
+  name = "Installation"
   weight = 510
-  identifier = "pychaste-install-guides"
+  identifier = "pychaste-installation"
   url = "/pychaste/installation/"
   parent = "pychaste"
 
