@@ -134,7 +134,7 @@ The 'Used by' column indicates where these libraries are used:
 
 <tr>
   <td> VTK </td>
-  <td> <a href="http://www.vtk.org/VTK/project/license.html">http://www.vtk.org/VTK/project/license.html</a></td>
+  <td> <a href="https://vtk.org/about/#license">https://vtk.org/about/#license</a></td>
   <td> (BSD) <a href="https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/VTK.txt">VTK.txt</a> </td>
   <td> Optional </td>
 </tr>
