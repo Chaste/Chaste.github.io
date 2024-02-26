@@ -28,6 +28,30 @@ sudo nano /etc/apt/sources.list.d/chaste.list
 
 and, depending on your version of Ubuntu, add **one** of the following lines to the `chaste.list` text file:
 
+{{< details "Ubuntu 24.04 LTS (coming soon)" >}}
+```
+deb [signed-by=/usr/share/keyrings/chaste.asc] https://chaste.github.io/ubuntu noble/
+```
+{{< /details >}}
+
+{{< details "Ubuntu 23.10" >}}
+```
+deb [signed-by=/usr/share/keyrings/chaste.asc] https://chaste.github.io/ubuntu mantic/
+```
+{{< /details >}}
+
+{{< details "Ubuntu 23.04" >}}
+```
+deb [signed-by=/usr/share/keyrings/chaste.asc] https://chaste.github.io/ubuntu lunar/
+```
+{{< /details >}}
+
+{{< details "Ubuntu 22.10" >}}
+```
+deb [signed-by=/usr/share/keyrings/chaste.asc] https://chaste.github.io/ubuntu kinetic/
+```
+{{< /details >}}
+
 {{< details "Ubuntu 22.04 LTS" open >}}
 ```
 deb [signed-by=/usr/share/keyrings/chaste.asc] https://chaste.github.io/ubuntu jammy/
