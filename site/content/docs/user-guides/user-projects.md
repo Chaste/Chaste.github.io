@@ -23,7 +23,7 @@ User Projects under the
 User Projects work exactly like new Chaste modules
 (`global`,`heart`,`cell-based`, etc.) and can depend on any of the Chaste
 modules (or indeed other User Projects). We tend to supply User Projects to
-accompany and reproduce [research articles](../../../publications) e.g.
+accompany and reproduce [research articles](/publications/) e.g.
 [CellBasedComparison2017](https://github.com/Chaste/CellBasedComparison2017).
 
 ## Prerequisites
