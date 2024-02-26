@@ -684,7 +684,7 @@ New functionality and code changes, which may still require changes to user code
 
 #### General
 
-* An error is given if using Boost 1.41 due to a [bug](http://sourceforge.net/apps/trac/easystroke/ticket/21) in its serialization library.  Versions 1.44-1.46.1 also have a [bug](https://svn.boost.org/trac/boost/ticket/4842) triggered when some tests exit, but the tests do run successfully.
+* An error is given if using Boost 1.41 due to a [bug](http://sourceforge.net/apps/trac/easystroke/ticket/21) in its serialization library.  Versions 1.44-1.46.1 also had a bug triggered when some tests exit, but the tests do run successfully.
 * All the solid mechanics related functionality has been moved out of the `pde` component to a new component `continuum_mechanics`. These components should be considered as quite separate to each other.
 * The interfaces to the solid mechanics solvers have changed considerably. They now take in a 'problem definition' object and are much more powerful. The tutorials describe the new interfaces in detail.
     * The incompressible solver is now called `IncompressibleNonlinearElasticitySolver`.
