@@ -174,11 +174,11 @@ Here is a list of preprints and peer-reviewed publications that have used Chaste
  1. Fletcher et al. 2012. Mathematical modelling of monoclonal conversion in the colonic crypt. *J Theor Biol* 300:118-133. doi:[10.1016/j.jtbi.2012.01.021](https://doi.org/10.1016/j.jtbi.2012.01.021)
  1. Slaymaker et al. 2012. On an infrastructure to support sharing and aggregating pre− and post−publication systems biology research data. *Syst Synth Biol* 6:35-49. doi:[10.1007/s11693-012-9095-x](http://dx.doi.org/10.1007/s11693-012-9095-x)
  1. Bordas et al. 2012. A bidomain model of the cardiac specialized conduction system of the heart. SIAM J Appl Math. 2012. doi:[10.1137/11082796X](https://doi.org/10.1137/11082796X)
- 1. Sanchez et al. 2012. The Na+/K+ pump is an important modulator of refractoriness and rotor dynamics in human atrial tissue. *Am J Physiol Heart Circ Physiol* 302:H1146-H1159. doi:[10.​1152/​ajpheart.​00668.​2011](http://dx.doi.org/10.​1152/​ajpheart.​00668.​2011)
- 1. Wallman et al. 2012. A comparative study of graph−based‚ eikonal‚ and monodomain simulations for the estimation of cardiac activation times. *IEEE Trans Biomed Eng* 59:1739. doi:[10.1109/tbme.2012.2193398](https://doi.org/10.1109/tbme.2012.2193398)
- 1. Mirams et al. 2012. Application of cardiac electrophysiology simulations to pro−arrhythmic safety testing. *Br J Pharmacol* 167:932−945. doi:[10.1111/j.1476-5381.2012.02020.x](http://dx.doi.org/10.1111/j.1476-5381.2012.02020.x)
- 1. Pathmanathan et al. 2012. Computational modelling of cardiac electro−physiology: explanation of the variability of results from different numerical solvers. *Int J Numer Method Biomed Eng* 28:890−903. doi:[10.1002/cnm.2467](http://dx.doi.org/10.1002/cnm.2467)
- 1. Southern et al. 2012. Parallel anisotropic mesh adaptivity with dynamic load balancing for cardiac electrophysiology. *J Comput Sci* 3:8-16. doi:[10.1016/j.jocs.2011.11.002](http://dx.doi.org/10.1016/j.jocs.2011.11.002)
+ 2. Sanchez et al. 2012. The Na+/K+ pump is an important modulator of refractoriness and rotor dynamics in human atrial tissue. *Am J Physiol Heart Circ Physiol* 302:H1146-H1159. doi:[10.1152/ajpheart.00668.2011](https://doi.org/10.1152/ajpheart.00668.2011)
+ 3. Wallman et al. 2012. A comparative study of graph−based‚ eikonal‚ and monodomain simulations for the estimation of cardiac activation times. *IEEE Trans Biomed Eng* 59:1739. doi:[10.1109/tbme.2012.2193398](https://doi.org/10.1109/tbme.2012.2193398)
+ 4. Mirams et al. 2012. Application of cardiac electrophysiology simulations to pro−arrhythmic safety testing. *Br J Pharmacol* 167:932−945. doi:[10.1111/j.1476-5381.2012.02020.x](http://dx.doi.org/10.1111/j.1476-5381.2012.02020.x)
+ 5. Pathmanathan et al. 2012. Computational modelling of cardiac electro−physiology: explanation of the variability of results from different numerical solvers. *Int J Numer Method Biomed Eng* 28:890−903. doi:[10.1002/cnm.2467](http://dx.doi.org/10.1002/cnm.2467)
+ 6. Southern et al. 2012. Parallel anisotropic mesh adaptivity with dynamic load balancing for cardiac electrophysiology. *J Comput Sci* 3:8-16. doi:[10.1016/j.jocs.2011.11.002](http://dx.doi.org/10.1016/j.jocs.2011.11.002)
 
 ### 2011
 
