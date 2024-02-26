@@ -166,5 +166,5 @@ You should then change the drug concentration to zero:
 
 then re-run the simulation and compare results. You should observe the following:
 
-{{< img src="drug_action_traces.png" alt="drug action traces" >}}
+{{< img src="/docs/drug_action_traces.png" alt="drug action traces" >}}
 
