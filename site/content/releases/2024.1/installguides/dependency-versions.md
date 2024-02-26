@@ -14,10 +14,7 @@ are doing a manual Linux installation, then this page shows you the supported
 and preferred versions of each dependency.
 
 {{< callout context="note" title="Note" icon="info-circle" >}}
-This page reflects the status of the current trunk code. If you are looking for
-information about supported dependency versions for a
-[previous release](https://github.com/Chaste/Chaste/releases) of Chaste, see
-instead the copy of this page bundled with that release.
+This page reflects the status of the 2024.1 release, not the current development version.
 {{< /callout >}}
 
 The [Developer Install Guide](../../dev-guides/developer-install-guide) should generally be
