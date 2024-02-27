@@ -33,10 +33,10 @@ contribute new code or changes back to the core Chaste code you can either:
 
 1. Download a fixed release of Chaste, found on the
    [releases page](https://github.com/Chaste/Chaste/releases).
-2. Clone the latest `release` branch (to stay up to date with 6-monthly
+2. Checkout the latest release tag (to stay up to date with 6-monthly
    releases) using [git](https://git-scm.com/).
-3. Stay right up to date with latest developments using our other git
-   [tested development branches](https://github.com/Chaste/Chaste/branches).
+3. Stay right up to date with latest developments using our git `develop`
+   branch.
 
 and follow subsequent **User's** guides. The first option is most stable, and
 recommended for new users so the code doesn't change underneath you. The second

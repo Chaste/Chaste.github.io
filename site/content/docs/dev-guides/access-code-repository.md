@@ -31,22 +31,14 @@ branch of the remote repository. There are other options:
 | **Branch** | **What it's for** |
 |---|---|
 | `develop` | Bleeding-edge development code, new feature (issue) branches should branch off here to minimise conflicts |
-| `release` | Latest released code - updated roughly every 6 months |
-| Release Tags | Released code for a certain Chaste version (e.g. v2021.1), also accessible from [GitHub](https://github.com/Chaste/Chaste/releases) with nice instructions! |
+| Release Tags | Released code for a certain Chaste version (e.g. `2024.1`), also accessible from [GitHub](https://github.com/Chaste/Chaste/releases) with nice instructions! |
 
 Which branch you use is up to you, if you are using Chaste for the basis of a paper we'd suggest either using:
 
 - `develop` -- you might have to wait a few months for an official release, but will get most of the latest features; or
-- `release` -- for the latest full release of Chaste. Past releases are all tagged in the git repository, or you can download them from [GitHub](https://github.com/Chaste/Chaste/releases).
+- The latest release tag -- for the latest full release of Chaste. Past releases are all tagged in the git repository, or you can download them from [GitHub](https://github.com/Chaste/Chaste/releases).
 
-To get the latest release via the source code do the above `git clone` command then:
-
-```sh
-cd Chaste
-git checkout release
-```
-
-To get a past release via the source code do the above `git clone` command then:
+To get a release via the source code do the above `git clone` command then:
 
 ```sh
 cd Chaste
@@ -56,5 +48,5 @@ git tag
 This will list all available release tags. It should be evident which is which and you can get a copy with e.g.
 
 ```sh
-git checkout tags/release_2021.1
+git checkout 2024.1
 ```

@@ -90,15 +90,19 @@ See [Getting Started](../..) for more detail if you still aren't sure.
 You can obtain the latest stable release of the Chaste source code from our GitHub repository:
 
 ```
-git clone --recursive -b release https://chaste.cs.ox.ac.uk/git/chaste.git Chaste
+git clone https://github.com/Chaste/chaste.git Chaste
+cd Chaste
+git checkout <release-tag>
 ```
+
+where `<release-tag>` is for the latest Chaste release e.g. `2024.1`.
 
 Finally, follow the [CMake First Run Guide](../../user-guides/cmake-first-run) to get up and running with Chaste.
 
 
 #### Installing previous releases
 
-If you want a specific version of Chaste, and do not want to stay up-to-date with new versions on the `release` branch from our Git repository, you can download the source code from our [GitHub releases page](https://github.com/Chaste/Chaste/releases), back to Release 3.0.
+If you want a specific version of Chaste, you can download the source code from our [GitHub releases page](https://github.com/Chaste/Chaste/releases), back to Release 3.0.
 
 ### 2b. For Code DEVELOPERS (or users working with the latest trunk code and projects)
 
