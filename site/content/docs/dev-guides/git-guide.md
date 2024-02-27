@@ -10,35 +10,10 @@ layout: "single"
 This page is a brief guide on using Git, designed primarily for developers
 that are already used to Subversion.
 
-<!-- For instructions on installation and global config of git see InstallGuides/InstallGit.
-
-Since some parts of the Chaste code-base are not released (e.g. those relating
-specifically to papers in preparation), some of the developer resources, such as
-results from the automated tests and full documentation for the latest revision,
-are not made publicly available. We have now created some additional resources
-to improve this situation.
--->
-
 {{< callout context="tip" title="See Also" icon="rocket" >}}
 [Pro Git](https://git-scm.com/book/en/): Everything
 you need to know about Git.
 {{< /callout >}}
-
-<!--
-## Quick Start
-
-Assuming all you want to do is get the Chaste source code, make a few commits
-and push these back to the main repo, you can do something like this
-
-```sh
-git clone -b develop https://github.com/Chaste/Chaste.git Chaste
-cd Chaste
-edit cell_based/src/cell/Cell.cpp
-# ... compile and run tests ...
-git commit -a -m "#1234 Fix problems with `Cell.cpp`"
-git push
-```
--->
 
 ## Cloning a repository
 
@@ -69,26 +44,28 @@ per the [Pull Request Strategy](../chaste-strategies/pull-request-strategy).
 
 ### Code user
 
-This command will setup your local branch to point to the `release`
-branch of the remote repository, which is what we would recommend if you are
-using Chaste for the basis of a paper and want your paper to use the latest
+These commands will setup your local branch to point to a specific release
+tag from the remote repository, which is what we would recommend if you are
+using Chaste for the basis of a paper and want your paper to use a specific
 release of Chaste at the time of publication. 
 
 ```sh
-git clone -b release https://github.com/Chaste/Chaste.git Chaste
+git clone https://github.com/Chaste/Chaste.git Chaste
+cd Chaste
+git checkout <release-tag>
 ```
+
+where `<release-tag>` is for a specific Chaste release e.g. `2024.1`.
 
 There are other options you can use. You may want to use the `develop`
 branch, which should pass all tests but will have some newer features -- you will
 have to update your code more frequently to keep it in sync with the latest
 Chaste code.
 
-
 | Branch | What it's for |
 |---|---|
 | `develop` | Bleeding-edge development code, new feature (issue) branches should branch off here to minimise conflicts. |
-| `release` | The last full release of the code. |
-| Release Tags | Released code for past Chaste versions (e.g. v3.4), also accessible from [GitHub](https://github.com/Chaste/Chaste/releases) with nice instructions and zip/tar files. | |
+| Release Tags | Released code for past Chaste versions (e.g. `2024.1`), also accessible from [GitHub](https://github.com/Chaste/Chaste/releases) with nice instructions and zip/tar files. | |
 
 Unlike Subversion, Git does not use directories to manage branches. Git branches
 are lightweight and considerably faster to use and merge with each other. Each

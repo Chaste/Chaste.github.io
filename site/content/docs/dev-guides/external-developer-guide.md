@@ -34,8 +34,7 @@ their code to be:
 | Branch | What it's for |
 |---|---|
 | `develop` | Bleeding-edge development code, new feature (issue) branches should branch off here to minimise conflicts |
-| `release` | The last full release of the code. |
-| Release Tags | Released code for past Chaste versions (e.g. v3.4), also accessible from [GitHub](https://github.com/Chaste/Chaste/releases) with nice instructions and zip/tar files | |
+| Release Tags | Released code for past Chaste versions (e.g. `2024.1`), also accessible from [GitHub](https://github.com/Chaste/Chaste/releases) with nice instructions and zip/tar files | |
 
 You can get these revisions by cloning the repository and then doing
 
