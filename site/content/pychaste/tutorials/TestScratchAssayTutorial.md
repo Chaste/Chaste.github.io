@@ -8,12 +8,11 @@ toc: true
 layout: "single"
 ---
 
-This tutorial is automatically generated from the file ../test/python/cell_based/tutorials/TestScratchAssayTutorial.py .
+This tutorial is automatically generated from [TestScratchAssayTutorial](https://github.com/Chaste/PyChaste/blob/develop/test/python/cell_based/tutorials/TestScratchAssayTutorial.py) at revision [278ccb96](https://github.com/Chaste/PyChaste/commit/278ccb9651dfd1a1af77b08596131c65f6c48da3).
 Note that the code is given in full at the bottom of the page.
 
 
-
-# Introduction
+## Introduction
 This tutorial is an example of modelling a scratch assay using a simple cellular automaton
 representation of cells. It will cover the following techniques:
 
@@ -24,6 +23,8 @@ representation of cells. It will cover the following techniques:
  * Simulating cell migration on the mesh
  * Real-time visualization of the cell population and plotting of population statistics
  
+## The Test
+
 ```python
 import unittest # Python testing framework
 import matplotlib.pyplot as plt # Plotting
@@ -37,7 +38,7 @@ import chaste.visualization # Visualization tools
 class TestScratchAssayTutorial(chaste.cell_based.AbstractCellBasedTestSuite):
 
 ```
-## Test 1 - Scratch Assay
+### Test 1 - Scratch Assay
 In this test we will create a scratch along the middle of a domain and quantify the migration
 of cells into the region. Cells will migrate by random walk on the their regular mesh  (lattice).
 
@@ -227,11 +228,10 @@ if __name__ == '__main__':
 ```
 
 
-# Code 
-The full code is given below
+## Full code 
 
 
-## File name `TestScratchAssayTutorial.py` 
+**File name:** `TestScratchAssayTutorial.py` 
 
 ```python
 import unittest # Python testing framework
