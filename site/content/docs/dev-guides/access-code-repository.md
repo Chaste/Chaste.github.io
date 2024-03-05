@@ -22,7 +22,7 @@ by using a command-line client. To create a new directory called Chaste with a
 copy of the Chaste repository do:
 
 ```sh
-git clone -b develop https://github.com/Chaste/Chaste.git Chaste
+git clone -b develop https://github.com/Chaste/Chaste.git
 ```
 
 Note that this command will setup your local branch to point to the `develop`
@@ -49,4 +49,10 @@ This will list all available release tags. It should be evident which is which a
 
 ```sh
 git checkout 2024.1
+```
+
+Alternatively, you can clone a release tag directly with a single command:
+
+```sh
+git clone -b 2024.1 https://github.com/Chaste/Chaste.git
 ```
