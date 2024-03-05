@@ -50,9 +50,7 @@ using Chaste for the basis of a paper and want your paper to use a specific
 release of Chaste at the time of publication. 
 
 ```sh
-git clone https://github.com/Chaste/Chaste.git Chaste
-cd Chaste
-git checkout <release-tag>
+git clone -b <release-tag> https://github.com/Chaste/chaste.git Chaste
 ```
 
 where `<release-tag>` is for a specific Chaste release e.g. `2024.1`.

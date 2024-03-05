@@ -50,3 +50,9 @@ This will list all available release tags. It should be evident which is which a
 ```sh
 git checkout 2024.1
 ```
+
+Alternatively, you can clone a release tag directly with a single command:
+
+```sh
+git clone -b 2024.1 https://github.com/Chaste/Chaste.git Chaste
+```
