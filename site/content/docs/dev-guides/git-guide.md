@@ -36,7 +36,7 @@ start using this branch straight away, you can use the `-b` flag to specify a
 branch to clone:
 
 ```sh
-git clone -b develop https://github.com/Chaste/Chaste.git Chaste
+git clone -b develop https://github.com/Chaste/Chaste.git
 ```
 
 Note that all development work should proceed from a new branch off `develop` as
@@ -50,7 +50,7 @@ using Chaste for the basis of a paper and want your paper to use a specific
 release of Chaste at the time of publication. 
 
 ```sh
-git clone -b <release-tag> https://github.com/Chaste/chaste.git Chaste
+git clone -b <release-tag> https://github.com/Chaste/Chaste.git
 ```
 
 where `<release-tag>` is for a specific Chaste release e.g. `2024.1`.

@@ -90,7 +90,7 @@ See [Getting Started](../..) for more detail if you still aren't sure.
 You can obtain the latest stable release of the Chaste source code from our GitHub repository:
 
 ```sh
-git clone -b <release-tag> https://github.com/Chaste/chaste.git Chaste
+git clone -b <release-tag> https://github.com/Chaste/Chaste.git
 ```
 
 where `<release-tag>` is for the latest Chaste release e.g. `2024.1`.

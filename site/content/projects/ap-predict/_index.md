@@ -42,7 +42,7 @@ Download both:
 To get both the release of Chaste and ApPredict do:
 
 ```
-git clone https://github.com/Chaste/chaste.git Chaste
+git clone https://github.com/Chaste/Chaste.git
 cd Chaste
 git checkout tags/release_3.4
 cd projects
@@ -56,7 +56,7 @@ git checkout tags/release_3.4
 Alternatively the development version can be downloaded using subversion, using the following instructions.
 
 ```
-git clone -b develop https://github.com/Chaste/chaste.git Chaste
+git clone -b develop https://github.com/Chaste/Chaste.git
 ```
 
 (as per ChasteGuides/AccessCodeRepository)
