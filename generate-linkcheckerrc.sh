@@ -26,8 +26,7 @@ echo "" >> linkcheckerrc
 echo "[filtering]" >> linkcheckerrc
 echo "ignore=" >> linkcheckerrc
 echo "  ^.*doxygen-releases.*" >> linkcheckerrc
-echo "  ^.*trac_archive.*" >> linkcheckerrc
-echo "  ^.*doxygen-latest/.*" >> linkcheckerrc
-echo "  ^https://github.com/Chaste/developer_wiki/wiki$" >> linkcheckerrc
-echo "  ^https://github.com/Chaste/trac_archive/wiki$" >> linkcheckerrc
+echo "  ^.*doxygen-latest.*" >> linkcheckerrc
+echo "  ^.*github.com/Chaste/developer_wiki/wiki$" >> linkcheckerrc
+echo "  ^.*github.com/Chaste/trac_archive/wiki$" >> linkcheckerrc
 echo "checkextern=1" >> linkcheckerrc
