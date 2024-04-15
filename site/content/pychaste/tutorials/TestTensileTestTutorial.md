@@ -8,7 +8,7 @@ toc: true
 layout: "single"
 ---
 
-This tutorial is automatically generated from [TestTensileTestTutorial](https://github.com/Chaste/PyChaste/blob/develop/test/python/cell_based/tutorials/TestTensileTestTutorial.py) at revision [dae151b6](https://github.com/Chaste/PyChaste/commit/dae151b60dd09f779cd03b80814e43f6008ca537).
+This tutorial is automatically generated from [TestTensileTestTutorial](https://github.com/Chaste/PyChaste/blob/develop/test/python/cell_based/tutorials/TestTensileTestTutorial.py) at revision [0be20da9](https://github.com/Chaste/PyChaste/commit/0be20da9020c32c9d7e860645b3de882da314322).
 Note that the code is given in full at the bottom of the page.
 
 
