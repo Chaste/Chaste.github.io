@@ -62,11 +62,11 @@ With docker installed, you can pull the image and launch a PyChaste container
 with the following command:
 
 ```sh
-docker run -it --rm -p 8888:8888 chaste/pychaste
+docker run -it --init --rm -p 8888:8888 chaste/pychaste
 ```
 
 You can open a Jupyter notebook from the container by launching a web
-browser and going to the address `http://localhost::8888`.
+browser and going to the address `http://localhost:8888`.
 
 ## Build from Source
 
