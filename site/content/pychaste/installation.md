@@ -21,7 +21,7 @@ quite slow with `conda` itself.
 We recommend that you install in a new environment. To do this, run:
 
 ```sh
-mamba create -n <env-name> -c pychaste -c conda-forge -c bioconda chaste
+mamba create -n <env-name> -c pychaste -c conda-forge chaste
 ```
 
 where `<env-name>` is the name of the new environment. To activate the environment, run:
@@ -34,7 +34,7 @@ Alternatively, you can install in an existing conda environment. With the
 environment activated, run:
 
 ```sh
-mamba install -c pychaste -c conda-forge -c bioconda chaste
+mamba install -c pychaste -c conda-forge chaste
 ```
 
 {{< callout context="note" title="Note" icon="info-circle" >}}
