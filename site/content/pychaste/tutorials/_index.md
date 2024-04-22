@@ -47,3 +47,6 @@ page for more detailed information.
 -
   [Running Potts Based Simulations](testpottsbasedcellsimulationspythontutorial)
   -- Lattice-based simulations.
+-
+  [Running Immersed Boundary Simulations](testimmersedboundarytutorial)
+  -- Running simulations using the immersed boundary method.
