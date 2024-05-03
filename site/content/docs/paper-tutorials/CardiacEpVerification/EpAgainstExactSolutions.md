@@ -1,0 +1,1510 @@
+This tutorial is automatically generated from the file projects/CardiacEpVerification/test/TestEpAgainstExactSolutionsLiteratePaper.hpp at revision r20536.
+Note that the code is given in full at the bottom of the page.
+
+
+
+# Testing the cardiac solvers against exact solutions
+
+This is the main code for solving the monodomain, bidomain and bidomain-with-bath model problems.
+
+The following are all standard includes:
+
+```
+
+#!cpp
+#include <cxxtest/TestSuite.h>
+#include "AbstractCardiacCellFactory.hpp"
+#include "DistributedTetrahedralMesh.hpp"
+#include "EulerIvpOdeSolver.hpp"
+#include "ZeroStimulus.hpp"
+#include "PetscSetupAndFinalize.hpp"
+
+```
+
+Next, the includes for classes that are defined in this project.
+`ModelProblemCellModel` defines the cell model for the model problems:
+
+```
+
+#!cpp
+#include "ModelProblemCellModel.hpp"
+
+```
+
+This file contains several classes which represent the exact solutions of the model problems:
+
+```
+
+#!cpp
+#include "ModelProblemExactSolutionClasses.hpp"
+
+```
+
+A class for calculating the L2 error (squared) at given time using a computed solution and exact solution:
+
+```
+
+#!cpp
+#include "L2ErrorSquaredCalculator.hpp"
+
+```
+
+A class for calculating the second part of the H1 error (squared) at given time using a computed solution and exact solution:
+
+```
+
+#!cpp
+#include "H1SemiNormErrorSquaredCalculator.hpp"
+
+```
+
+This next file defines three classes which inherit from `MonodomainProblem`, `BidomainProblem` and `BidomainWithBathProblem`
+but also do error calculations (using the above).
+
+
+```
+
+#!cpp
+#include "CardiacProblemWithErrorCalculatorClasses.hpp"
+
+
+```
+
+We have to define cell factories to create the cell models as always. This cell factory
+creates the custom `ModelProblemCellModel` for each node, gives each a zero stimulus,
+passes in some parameters, and sets up the initial conditions used in the monodomain
+and bidomain model problems.
+
+
+```
+
+#!cpp
+template<unsigned DIM>
+class NonBathModelProblemCellFactory : public AbstractCardiacCellFactory<DIM>
+{
+private:
+    double mBeta; // as defined in paper
+    unsigned mM1; // coefficient of pi*x in:   F(x) = cos(m1*pi*x)   or   F(x,y) = cos(m1*pi*x)cos(m2*pi*y)   or   F(x,y,z) = cos(m1*pi*x)*cos(m2*pi*y)*cos(m3*pi*z)
+    unsigned mM2; // coefficient of pi*y in:   F(x) = cos(m1*pi*x)   or   F(x,y) = cos(m1*pi*x)cos(m2*pi*y)   or   F(x,y,z) = cos(m1*pi*x)*cos(m2*pi*y)*cos(m3*pi*z)
+    unsigned mM3; // coefficient of pi*z in:   F(x) = cos(m1*pi*x)   or   F(x,y) = cos(m1*pi*x)cos(m2*pi*y)   or   F(x,y,z) = cos(m1*pi*x)*cos(m2*pi*y)*cos(m3*pi*z)
+
+public:
+    NonBathModelProblemCellFactory(double beta, unsigned m1, unsigned m2=0, unsigned m3 = 0)
+        : AbstractCardiacCellFactory<DIM>(boost::shared_ptr<AbstractIvpOdeSolver>(new EulerIvpOdeSolver)),
+          mBeta(beta),
+          mM1(m1),
+          mM2(m2),
+          mM3(m3)
+    {
+    }
+
+    virtual ~NonBathModelProblemCellFactory()
+    {
+    }
+
+    AbstractCardiacCell* CreateCardiacCellForTissueNode(unsigned node)
+    {
+        ModelProblemCellModel* p_cell = new ModelProblemCellModel(this->mpSolver, this->mpZeroStimulus, mBeta);
+        ChastePoint<DIM> point = this->GetMesh()->GetNode(node)->GetPoint();
+
+        double F = TimeScaledFunctionF(point, 0.0, mM1, mM2, mM3); // just (1+t)^(1/2) * F(x,y,z), defined in ModelProblemExactSolutionClasses
+        double G = FunctionG(point);                               // defined in ModelProblemExactSolutionClasses
+
+        p_cell->rGetStateVariables()[0] = F;
+        p_cell->rGetStateVariables()[1] = G + F;
+        p_cell->rGetStateVariables()[2] = sqrt(1.0/G);
+
+        return p_cell;
+    }
+};
+
+
+```
+
+This second cell factory is the same as the above except it passes in the initial conditions
+defined in the bidomain-with-bath model problem.
+
+
+```
+
+#!cpp
+template<unsigned DIM>
+class BathModelProblemCellFactory : public AbstractCardiacCellFactory<DIM>
+{
+private:
+    double mBeta; // beta as defined in the paper
+    unsigned mM1; // coefficient of pi*x in:   F(x,y,z) = cos(m1*pi*x)
+    double mAlpha;// alpha as defined in the paper
+    double mExtracellularConductivity; // the variable s_e in the paper
+
+public:
+    BathModelProblemCellFactory(double beta, unsigned m1, double alpha, double extracellularConductivity)
+        : AbstractCardiacCellFactory<DIM>(boost::shared_ptr<AbstractIvpOdeSolver>(new EulerIvpOdeSolver)),
+          mBeta(beta),
+          mM1(m1),
+          mAlpha(alpha),
+          mExtracellularConductivity(extracellularConductivity)
+    {
+    }
+
+    virtual ~BathModelProblemCellFactory()
+    {
+    }
+
+    AbstractCardiacCell* CreateCardiacCellForTissueNode(unsigned node)
+    {
+        ModelProblemCellModel* p_cell = new ModelProblemCellModel(this->mpSolver, this->mpZeroStimulus, mBeta);
+        ChastePoint<DIM> point = this->GetMesh()->GetNode(node)->GetPoint();
+
+        double F = TimeScaledFunctionF(point, 0.0, mM1, 0.0, 0.0); // just (1+t)^(1/2) * F(x,y,z), defined in ModelProblemExactSolutionClasses
+        double G = FunctionG(point);                               // defined in ModelProblemExactSolutionClasses
+        double x = point[0];
+
+        p_cell->rGetStateVariables()[0] = F - mAlpha*x/mExtracellularConductivity;
+        p_cell->rGetStateVariables()[1] = G + F;
+        p_cell->rGetStateVariables()[2] = sqrt(1.0/G);
+        p_cell->rGetStateVariables()[3] = -mAlpha*x/mExtracellularConductivity;
+
+        return p_cell;
+    }
+};
+
+
+```
+
+The code for running the model problems are defined in 'tests', as with all code in Chaste (see main documentation).
+
+
+```
+
+#!cpp
+class TestEpAgainstExactSolutionsLiteratePaper : public CxxTest::TestSuite
+{
+private:
+
+```
+
+[following function can be mostly ignored as an alternative is used](The):
+
+A function for computing errors, taking in the output directory of a cardiac problem and a class
+saying how to calculate the exact solution. Note: since the output directory must be written for
+this function to be used, and with small dt this will lead to a huge datafile (if printing timestep
+is dt), we no longer use this method for calculating errors. However the code has been kept as it is
+convenient. The errors are now calculated by computing the contributions to the error at the end of
+each timestep, as the simulation is progressing. See `MonodomainProblemWithErrorCalculator`
+and related classes.
+
+
+```
+
+#!cpp
+    template<unsigned DIM,unsigned PROBLEM_DIM>
+    void ComputeErrors(std::string outputDirectory, AbstractScalarFunction<DIM>* pExactSolution,
+                       DistributedTetrahedralMesh<DIM,DIM>& rMesh, double printingTimestep,
+                       std::string variable     /* Should be "V" or "Phi_e" */,
+                       double& rReturnedLinfL2Error,
+                       double& rReturnedL2H1Error,
+                       bool testingMode = false /* if this is true, than the returned 'errors' are actually just the norms of the exact solution */)
+    {
+        if(variable != "V" && variable !="Phi_e")
+        {
+            EXCEPTION("Bad input");
+        }
+
+        // get the data of the data file
+        Hdf5DataReader reader(outputDirectory,"results");
+        unsigned num_timesteps = reader.GetUnlimitedDimensionValues().size();
+
+        DistributedVectorFactory factory(rMesh.GetNumNodes());
+        Vec solution = factory.CreateVec();
+
+        rReturnedLinfL2Error = 0.0;
+        rReturnedL2H1Error = 0.0;
+
+        // The phi_e written to file for initial condition is just zeros, so needs to be ignored
+        // (Really, the solver should solve the second bidomain equation given initial V to determine what
+        // initial phi_e is, but the bidomain solver doesn't do this, and phi_e is just initialised to zero)
+        unsigned first = (variable == "V" ? 0 : 1);
+
+        for(unsigned timestep=first; timestep<num_timesteps; timestep++)
+        {
+            reader.GetVariableOverNodes(solution, variable, timestep);
+            if(testingMode)
+            {
+                PetscVecTools::Zero(solution);
+            }
+
+            double time = printingTimestep*timestep;
+
+            L2ErrorSquaredCalculator<DIM> l2_calc(pExactSolution,time,(variable=="V"));
+            double l2_error_sqd = l2_calc.Calculate(rMesh,solution);
+            double l2_error = sqrt(l2_error_sqd);
+
+            H1SemiNormErrorSquaredCalculator<DIM> h1_calc(pExactSolution,time,(variable=="V"));
+            double h1_seminorm_error_sqd = h1_calc.Calculate(rMesh,solution);
+            double h1_error = sqrt(l2_error_sqd + h1_seminorm_error_sqd);
+
+            rReturnedLinfL2Error = std::max(rReturnedLinfL2Error, l2_error);
+
+            double factor = (timestep==0 || timestep+1==num_timesteps ? 0.5 : 1.0);
+            rReturnedL2H1Error += h1_error*factor*printingTimestep;
+        }
+    }
+
+
+```
+
+## Monodomain model problem
+
+This function is the code for running the monodomain model problem, which we will walk through.
+
+
+```
+
+#!cpp
+    template<unsigned DIM>
+    void RunMonodomainProblem(double parametersScaleFactor /*how much to scale h and dt*/, bool doTest=false /*see later*/)
+    {
+
+```
+
+Define h and dt based on the `parametersScaleFactor`. Note dt is proportional to h^2^ as required.
+
+```
+
+#!cpp
+        double init_h = 0.1;
+        double h      = init_h*parametersScaleFactor; // note: everything dimensionless
+        double dt_ode = 0.1*parametersScaleFactor*parametersScaleFactor;
+        double dt_pde = 0.1*parametersScaleFactor*parametersScaleFactor;
+        double dt_printing = dt_pde;
+
+
+```
+
+Define conductivities in each direction as specified in the paper.
+
+```
+
+#!cpp
+        double s1 = 1.1/(M_PI*M_PI);
+        double s2 = 1.2/(M_PI*M_PI);
+        double s3 = 0.3/(M_PI*M_PI);
+
+
+```
+
+Define the integers m,,1,,, m,,2,,, m,,3,, that go into the function F, where F(x,y,z) = cos(m1*pi*x)*cos(m2*pi*y)*cos(m3*pi*z).
+
+```
+
+#!cpp
+        unsigned m1 = 1;
+        unsigned m2 = 2;
+        unsigned m3 = 3;
+
+
+```
+
+Set up the mesh to be the unit line/square/cube. Also compute the constant c.
+
+```
+
+#!cpp
+        DistributedTetrahedralMesh<DIM,DIM> mesh;
+        double c;
+
+        if(DIM==1)
+        {
+            c = -s1*m1*m1*M_PI*M_PI;
+            mesh.ConstructRegularSlabMesh(h, 1.0);
+        }
+        else if(DIM==2)
+        {
+            c = - (s1*m1*m1*M_PI*M_PI + s2*m2*m2*M_PI*M_PI);
+            mesh.ConstructRegularSlabMesh(h, 1.0, 1.0);
+        }
+        else
+        {
+            c = - (s1*m1*m1*M_PI*M_PI + s2*m2*m2*M_PI*M_PI + s3*m3*m3*M_PI*M_PI);
+            mesh.ConstructRegularSlabMesh(h, 1.0, 1.0, 1.0);
+        }
+
+
+```
+
+End time is T = 1.
+
+```
+
+#!cpp
+        double end_time = 1.0;
+        HeartConfig::Instance()->SetSimulationDuration(end_time);
+
+
+```
+
+Define an output directory, but see comments below.
+
+```
+
+#!cpp
+        std::stringstream output_dir;
+        output_dir << "MonodomainExactSolution_" << DIM << "D_" << parametersScaleFactor;
+        HeartConfig::Instance()->SetOutputDirectory(output_dir.str());
+        HeartConfig::Instance()->SetOutputFilenamePrefix("results");
+
+
+```
+
+Set the timesteps, define the conductivity tensor, the capacitance and the surface-to-volume ratio.
+
+```
+
+#!cpp
+        HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(dt_ode, dt_pde, dt_printing);
+        HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(s1,s2,s3));
+        HeartConfig::Instance()->SetCapacitance(2.0);
+        HeartConfig::Instance()->SetSurfaceAreaToVolumeRatio(3.0);
+
+
+```
+
+The following cell factory creates cell models for the model problem cell model defined in the paper, and
+with the required initial values of (V,u,,1,,,u,,2,,,u,,3,,).
+
+
+```
+
+#!cpp
+        NonBathModelProblemCellFactory<DIM> cell_factory(c, m1, m2, m3);
+
+
+```
+
+This class can be used to get the exact solution for the voltage: (1+t)^1/2^F(x).
+
+```
+
+#!cpp
+        VoltageExactSolution<DIM> voltage_soln(m1,m2,m3);
+
+
+```
+
+Define the monodomain problem class. `MonodomainProblemWithErrorCalculator` (defined in this project) is just
+`MonodomainProblem` but also does error computing at the end of each timestep.
+
+
+```
+
+#!cpp
+        MonodomainProblemWithErrorCalculator<DIM> monodomain_problem( &cell_factory, &voltage_soln );
+
+
+```
+
+Set the mesh, **don't** write output unless in testing mode (since printing_dt = pde_dt, a lot of output would be
+written to file (printing dt is small so that error computations can be carried out each dt), initialise
+and solve.
+
+
+```
+
+#!cpp
+        monodomain_problem.SetMesh(&mesh);
+        monodomain_problem.PrintOutput(doTest);
+
+        //monodomain_problem.SetWriteInfo();
+        monodomain_problem.Initialise();
+        monodomain_problem.Solve();
+
+
+```
+
+Print the errors to screen (the commas and semi-colon are for easy copy & paste into Matlab).
+
+```
+
+#!cpp
+        std::cout << std::setprecision(10);
+        std::cout << h << ", " << monodomain_problem.mVoltageLinfL2Error << ", " << monodomain_problem.mVoltageL2H1Error << ";\n";
+
+
+```
+
+There is also some test code. To check that the code (in particular the error calculators) is doing what it should be, if DIM=1 and the coarsest mesh
+is being used, we have the following tests.
+
+
+```
+
+#!cpp
+        if(doTest)
+        {
+            if(DIM!=1 || parametersScaleFactor!=1.0)
+            {
+                EXCEPTION("Test mode is only for 1d with factor=1");
+            }
+
+
+```
+
+Check nothing has changed:
+
+```
+
+#!cpp
+            TS_ASSERT_DELTA(monodomain_problem.mVoltageLinfL2Error, 0.0472926, 1e-5);
+            TS_ASSERT_DELTA(monodomain_problem.mVoltageL2H1Error, 0.255933, 1e-5);
+
+
+```
+
+Check the two ways of computing the error give the same results:
+
+```
+
+#!cpp
+            double l_inf_l2;
+            double l2_h1;
+            ComputeErrors<DIM,1>(output_dir.str(), &voltage_soln, mesh, dt_printing, "V", l_inf_l2, l2_h1);
+            TS_ASSERT_DELTA(l_inf_l2, monodomain_problem.mVoltageLinfL2Error, 1e-6);
+            TS_ASSERT_DELTA(l2_h1, monodomain_problem.mVoltageL2H1Error, 1e-6);
+
+
+```
+
+Finally, check the second way of computing the error: when `ComputeErrors()` is called with `true` as the last parameter it
+ignores the numerical solution, ie just calculates the norm of the exact solution, which we can also
+calculate analytically.
+
+
+```
+
+#!cpp
+            double linf_l2_norm_V;
+            double l2_h1_norm_V;
+            ComputeErrors<DIM,1>(output_dir.str(), &voltage_soln, mesh,  dt_printing, "V", linf_l2_norm_V, l2_h1_norm_V, true);
+            TS_ASSERT_DELTA(linf_l2_norm_V, 1.0, 1e-4); // ||V(t)||_2 = sqrt ((1+t)/2) so max = 1
+            TS_ASSERT_DELTA(l2_h1_norm_V, 2.855, 1e-1); // sqrt (3(1+pi^2)/2)
+        }
+    }
+
+
+```
+
+## Bidomain model problem
+
+Next, the main function for solving the bidomain model problem. This is basically the same as the monodomain code, except has
+an extracellular conductivity, and gets the errors for both voltage and extracellular potential.
+
+```
+
+#!cpp
+    template<unsigned DIM>
+    void RunBidomainProblem(double parametersScaleFactor, bool doTest=false)
+    {
+
+```
+
+Code same as monodomain version:
+
+```
+
+#!cpp
+        double init_h = 0.1;
+        double h      = init_h*parametersScaleFactor; // note: everything dimensionless
+        double dt_ode = 0.1*parametersScaleFactor*parametersScaleFactor;
+        double dt_pde = 0.1*parametersScaleFactor*parametersScaleFactor;
+        double dt_printing = dt_pde;
+
+        double s1 = 1.1/(M_PI*M_PI);
+        double s2 = 1.2/(M_PI*M_PI);
+        double s3 = 0.3/(M_PI*M_PI);
+
+
+```
+
+Define the integers m,,1,,, m,,2,,, m,,3,, that go into the function F, where F(x,y,z) = cos(m1*pi*x)*cos(m2*pi*y)*cos(m3*pi*z).
+
+```
+
+#!cpp
+        unsigned m1 = 1.0;
+        unsigned m2 = 2.0;
+        unsigned m3 = 3.0;
+
+        DistributedTetrahedralMesh<DIM,DIM> mesh;
+        double c;
+
+        if(DIM==1)
+        {
+            c = -s1*m1*m1*M_PI*M_PI;
+            mesh.ConstructRegularSlabMesh(h, 1.0);
+        }
+        else if(DIM==2)
+        {
+            c = - (s1*m1*m1*M_PI*M_PI + s2*m2*m2*M_PI*M_PI);
+            mesh.ConstructRegularSlabMesh(h, 1.0, 1.0);
+        }
+        else
+        {
+            c = - (s1*m1*m1*M_PI*M_PI + s2*m2*m2*M_PI*M_PI + s3*m3*m3*M_PI*M_PI);
+            mesh.ConstructRegularSlabMesh(h, 1.0, 1.0, 1.0);
+        }
+
+
+```
+
+Define the constant k:
+
+```
+
+#!cpp
+        double k = 1.0/sqrt(2);
+        double sigma_e_factor = (1.0-k)/k;
+
+
+```
+
+Code similar to monodomain version:
+
+```
+
+#!cpp
+        double end_time = 1.0;
+        HeartConfig::Instance()->SetSimulationDuration(end_time);
+
+        std::stringstream output_dir;
+        output_dir << "BidomainExactSolution_" << DIM << "D_" << parametersScaleFactor;
+        HeartConfig::Instance()->SetOutputDirectory(output_dir.str());
+        HeartConfig::Instance()->SetOutputFilenamePrefix("results");
+
+        HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(dt_ode, dt_pde, dt_printing);
+
+        HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(s1,s2,s3));
+        HeartConfig::Instance()->SetExtracellularConductivities(Create_c_vector(s1*sigma_e_factor,s2*sigma_e_factor,s3*sigma_e_factor));
+        HeartConfig::Instance()->SetCapacitance(2.0);
+        HeartConfig::Instance()->SetSurfaceAreaToVolumeRatio(3.0);
+
+        NonBathModelProblemCellFactory<DIM> cell_factory(c*(1-k), m1, m2, m3);
+
+
+```
+
+Classes for returning V=(1+t)^1/2^F(x) and phi_e = -k(1+t)^1/2^F(x) and their derivatives:
+
+```
+
+#!cpp
+        VoltageExactSolution<DIM> voltage_soln(m1,m2,m3);
+        ExtracellularPotentialExactSolution<DIM> phi_e_soln(k,m1,m2,m3);
+
+
+```
+
+Solve and print errors.
+
+```
+
+#!cpp
+        BidomainProblemWithErrorCalculator<DIM> bidomain_problem( &cell_factory, &voltage_soln, &phi_e_soln );
+        bidomain_problem.PrintOutput(doTest);
+
+        bidomain_problem.SetMesh(&mesh);
+        //bidomain_problem.SetWriteInfo();
+        bidomain_problem.Initialise();
+        bidomain_problem.Solve();
+
+        std::cout << std::setprecision(10);
+        std::cout << h << ", " << bidomain_problem.mVoltageLinfL2Error << ", " << bidomain_problem.mVoltageL2H1Error << ", " << bidomain_problem.mExtracellularPotentialLinfL2Error << ", " << bidomain_problem.mExtracellularPotentialL2H1Error << ";\n";
+
+
+```
+
+Test code similar to monodomain version:
+
+```
+
+#!cpp
+        if(doTest)
+        {
+            if(DIM!=1 || parametersScaleFactor!=1.0)
+            {
+                EXCEPTION("Test mode is only for 1d with factor=1");
+            }
+
+            TS_ASSERT_DELTA(bidomain_problem.mVoltageLinfL2Error, 0.0426506, 1e-5);
+            TS_ASSERT_DELTA(bidomain_problem.mVoltageL2H1Error, 0.253785, 1e-5);
+            TS_ASSERT_DELTA(bidomain_problem.mExtracellularPotentialLinfL2Error, 0.0298811, 1e-5);
+            TS_ASSERT_DELTA(bidomain_problem.mExtracellularPotentialL2H1Error, 0.172321, 1e-5);
+
+            double l_inf_l2_V;
+            double l2_h1_V;
+            double l_inf_l2_phi_e;
+            double l2_h1_phi_e;
+            ComputeErrors<DIM,2>(output_dir.str(), &voltage_soln, mesh, dt_printing, "V", l_inf_l2_V, l2_h1_V);
+            ComputeErrors<DIM,2>(output_dir.str(), &phi_e_soln,   mesh, dt_printing, "Phi_e", l_inf_l2_phi_e, l2_h1_phi_e);
+            TS_ASSERT_DELTA(l_inf_l2_V, bidomain_problem.mVoltageLinfL2Error, 1e-6);
+            TS_ASSERT_DELTA(l2_h1_V, bidomain_problem.mVoltageL2H1Error, 1e-6);
+            TS_ASSERT_DELTA(l_inf_l2_phi_e, bidomain_problem.mExtracellularPotentialLinfL2Error, 1e-6);
+            TS_ASSERT_DELTA(l2_h1_phi_e, bidomain_problem.mExtracellularPotentialL2H1Error, 1e-6);
+
+            double linf_l2_norm_V;
+            double l2_h1_norm_V;
+            double linf_l2_norm_phi_e;
+            double l2_h1_norm_phi_e;
+            ComputeErrors<DIM,1>(output_dir.str(), &voltage_soln, mesh,  dt_printing, "V", linf_l2_norm_V, l2_h1_norm_V, true);
+            TS_ASSERT_DELTA(linf_l2_norm_V, 1.0, 1e-4); // ||V(t)||_2 = sqrt ((1+t)/2) so max = 1
+            TS_ASSERT_DELTA(l2_h1_norm_V, 2.855, 1e-1); // sqrt (3(1+pi^2)/2)
+
+            ComputeErrors<DIM,1>(output_dir.str(), &phi_e_soln, mesh,  dt_printing, "Phi_e", linf_l2_norm_phi_e, l2_h1_norm_phi_e, true);
+            TS_ASSERT_DELTA(linf_l2_norm_phi_e, 1.0/sqrt(2), 1e-4); // phi_e = -k*V
+            TS_ASSERT_DELTA(l2_h1_norm_phi_e, 2.855/sqrt(2), 1e-1); //
+        }
+    }
+
+
+```
+
+## Bidomain-with-bath model problem
+
+Finally, the bidomain-with-bath-model problem:
+
+```
+
+#!cpp
+    template<unsigned DIM>
+    void RunBidomainWithBathProblem(double parametersScaleFactor, bool doTest=false)
+    {
+
+```
+
+All this is as before:
+
+```
+
+#!cpp
+        double init_h = 0.1;
+        double h      = init_h*parametersScaleFactor; // dimensionless
+        double dt_ode = 0.1*parametersScaleFactor*parametersScaleFactor;
+        double dt_pde = 0.1*parametersScaleFactor*parametersScaleFactor;
+        double dt_printing = dt_pde;
+
+        double s1 = 1.1/(M_PI*M_PI);
+        double s2 = 1.2/(M_PI*M_PI);
+        double s3 = 0.3/(M_PI*M_PI);
+
+
+```
+
+Define the integer m,,1,, that goes into the function F(x,y,z) = cos(m1*pi*x). Note no m2 and m3 as for bath
+problem these must be zero.
+
+```
+
+#!cpp
+        unsigned m1 = 1;
+
+        DistributedTetrahedralMesh<DIM,DIM> mesh;
+        double c = -s1*m1*m1*M_PI*M_PI;
+
+
+```
+
+Set up the domain: x in `[-1,2]`; y,z in `[0,1]`. Note the translation at the end.
+
+```
+
+#!cpp
+        c_vector<double,DIM> disp = zero_vector<double>(DIM);
+        disp(0) = -1.0;
+        if(DIM==1)
+        {
+            mesh.ConstructRegularSlabMesh(h, 3.0);
+        }
+        else if(DIM==2)
+        {
+            mesh.ConstructRegularSlabMesh(h, 3.0, 1.0);
+        }
+        else
+        {
+            mesh.ConstructRegularSlabMesh(h, 3.0, 1.0, 1.0);
+        }
+        mesh.Translate(disp);
+
+
+```
+
+Set appropriate elements as bath:
+
+```
+
+#!cpp
+        for(unsigned i=0; i<mesh.GetNumElements(); i++)
+        {
+            double x = mesh.GetElement(i)->CalculateCentroid()[0];
+            if( (x<0) || (x>1) )
+            {
+                mesh.GetElement(i)->SetAttribute(HeartRegionCode::GetValidBathId());
+            }
+        }
+
+
+```
+
+As before:
+
+```
+
+#!cpp
+        double k = 1.0/sqrt(2);
+        double sigma_e_factor = (1.0-k)/k;
+
+
+```
+
+Set up the bath conductivity and the electrodes, I,,E,,=-alpha on x=-1, and I,,E,,=alpha on x=2:
+
+```
+
+#!cpp
+        double alpha = 0.01;
+        double extracellular_conductivity = s1*sigma_e_factor;
+        double bath_conductivity = extracellular_conductivity/2.0;
+        // the following says provide a stimulus of -alpha on the x=min surface (the second parameter '0' indicates x).
+        // The code then computes that the stimulus on the opposite surface should be alpha for conservation of current. The false says no ground electrode
+        HeartConfig::Instance()->SetElectrodeParameters(false, 0, -alpha, -1.0/*switch on time*/, 1000/*switch off time*/);
+        HeartConfig::Instance()->SetBathConductivity(bath_conductivity);
+
+
+```
+
+As before:
+
+```
+
+#!cpp
+        double end_time = 1.0;
+        HeartConfig::Instance()->SetSimulationDuration(end_time);
+
+        std::stringstream output_dir;
+        output_dir << "BidomainWithBathExactSolution_" << DIM << "D_" << parametersScaleFactor;
+        HeartConfig::Instance()->SetOutputDirectory(output_dir.str());
+        HeartConfig::Instance()->SetOutputFilenamePrefix("results");
+        HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(dt_ode, dt_pde, dt_printing);
+
+        HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(s1,s2,s3));
+        HeartConfig::Instance()->SetExtracellularConductivities(Create_c_vector(s1*sigma_e_factor,s2*sigma_e_factor,s3*sigma_e_factor));
+        HeartConfig::Instance()->SetCapacitance(2.0);
+        HeartConfig::Instance()->SetSurfaceAreaToVolumeRatio(3.0);
+
+
+```
+
+Use the bath version of the cell factory (different initial conditions):
+
+```
+
+#!cpp
+        BathModelProblemCellFactory<DIM> cell_factory(c*(1-k), m1, alpha, extracellular_conductivity);
+
+
+```
+
+Solve and output errors:
+
+```
+
+#!cpp
+        VoltageExactSolutionBath<DIM> voltage_soln(m1,alpha,extracellular_conductivity);
+        ExtracellularPotentialExactSolutionBath<DIM> phi_e_soln(m1,k,alpha,extracellular_conductivity,bath_conductivity);
+
+        BidomainWithBathProblemWithErrorCalculator<DIM> bidomain_problem( &cell_factory, &voltage_soln, &phi_e_soln);
+        bidomain_problem.PrintOutput(doTest);
+
+        bidomain_problem.SetMesh(&mesh);
+        //bidomain_problem.SetWriteInfo();
+        bidomain_problem.Initialise();
+        bidomain_problem.Solve();
+
+        std::cout << std::setprecision(10);
+        std::cout << h << ", " << bidomain_problem.mVoltageLinfL2Error << ", " << bidomain_problem.mVoltageL2H1Error  << ", " << bidomain_problem.mExtracellularPotentialLinfL2Error << ", " << bidomain_problem.mExtracellularPotentialL2H1Error << ";\n";
+
+
+```
+
+Similar to before:
+
+```
+
+#!cpp
+        if(doTest)
+        {
+            if(DIM!=1 || parametersScaleFactor!=1.0)
+            {
+               EXCEPTION("Test mode is only for 1d with factor=1");
+            }
+            TS_ASSERT_DELTA(bidomain_problem.mVoltageLinfL2Error, 0.0426506, 1e-4);
+            TS_ASSERT_DELTA(bidomain_problem.mVoltageL2H1Error, 0.253785, 1e-4);
+            TS_ASSERT_DELTA(bidomain_problem.mExtracellularPotentialLinfL2Error, 0.0562449, 1e-3);
+            TS_ASSERT_DELTA(bidomain_problem.mExtracellularPotentialL2H1Error, 0.174176, 1e-3);
+
+            double l_inf_l2_V;
+            double l2_h1_V;
+            double l_inf_l2_phi_e;
+            double l2_h1_phi_e;
+            ComputeErrors<DIM,2>(output_dir.str(), &voltage_soln, mesh, dt_printing, "V", l_inf_l2_V, l2_h1_V);
+            ComputeErrors<DIM,2>(output_dir.str(), &phi_e_soln,   mesh, dt_printing, "Phi_e", l_inf_l2_phi_e, l2_h1_phi_e);
+            TS_ASSERT_DELTA(l_inf_l2_V, bidomain_problem.mVoltageLinfL2Error, 1e-6);
+            TS_ASSERT_DELTA(l2_h1_V, bidomain_problem.mVoltageL2H1Error, 1e-6);
+            TS_ASSERT_DELTA(l_inf_l2_phi_e, bidomain_problem.mExtracellularPotentialLinfL2Error, 1e-6);
+            TS_ASSERT_DELTA(l2_h1_phi_e, bidomain_problem.mExtracellularPotentialL2H1Error, 1e-6);
+        }
+    }
+
+
+```
+
+## Main test
+
+Finally, we have the public 'tests', which actually run the simulations. Note that only the first two tests will be run,
+as the code is written below, as only those whose name begins with 'Test' are run. To run the others, change
+`doneTest..` to `Test..`.
+
+As integrals over the domain have to be
+computed each timestep, virtually all the time is spent in the error calculations, certainly for the larger N (ie smaller h). Also,
+dt is proportional to h^2^, so for 3D, the work increases by at least a factor of 32 (2^3^ 2^2^) as N doubles. The N=3 simulations for
+monodomain and bidomain take a long time on a desktop. Monodomain will run in parallel, bidomain may sometimes not (see comment in
+`CardiacProblemWithErrorCalculatorClasses`).
+
+
+```
+
+#!cpp
+public:
+    void TestRunTests() throw (Exception)
+    {
+        RunMonodomainProblem<1>(1.0,true);
+        RunBidomainProblem<1>(1.0,true);
+        RunBidomainWithBathProblem<1>(1.0,true);
+    }
+
+    void TestMonodomain1d() throw (Exception)
+    {
+        for(unsigned N=0; N<5; N++)
+        {
+            double factor = 1.0/pow(2,N);
+            RunMonodomainProblem<1>(factor);
+        }
+    }
+
+    void doneTestMonodomain2d() throw (Exception)
+    {
+        for(unsigned N=0; N<5; N++)
+        {
+            double factor = 1.0/pow(2,N);
+            RunMonodomainProblem<2>(factor);
+        }
+    }
+
+    void doneTestMonodomain3d() throw (Exception)
+    {
+        HeartConfig::Instance()->SetUseAbsoluteTolerance(1e-9);
+        for(unsigned N=0; N<4; N++) // note: N=3 takes very long
+        {
+            double factor = 1.0/pow(2,N);
+            RunMonodomainProblem<3>(factor);
+        }
+    }
+
+    void doneTestBidomain1d() throw (Exception)
+    {
+        HeartConfig::Instance()->SetUseAbsoluteTolerance(1e-9);
+        for(unsigned N=0; N<5; N++)
+        {
+            double factor = 1.0/pow(2,N);
+            RunBidomainProblem<1>(factor);
+        }
+    }
+
+    void doneTestBidomain2d() throw (Exception)
+    {
+        HeartConfig::Instance()->SetUseAbsoluteTolerance(1e-9);
+        for(unsigned N=0; N<5; N++)
+        {
+            double factor = 1.0/pow(2,N);
+            RunBidomainProblem<2>(factor);
+        }
+    }
+
+    void doneTestBidomain3d() throw (Exception)
+    {
+        HeartConfig::Instance()->SetUseAbsoluteTolerance(1e-11);
+        for(unsigned N=0; N<4; N++) // note: N=3 takes very long
+        {
+            double factor = 1.0/pow(2,N);
+            RunBidomainProblem<3>(factor);
+        }
+    }
+
+    void doneTestBidomainWithBath2d() throw (Exception)
+    {
+        HeartConfig::Instance()->SetUseAbsoluteTolerance(1e-9);
+        for(unsigned N=0; N<5; N++)
+        {
+            double factor = 1.0/pow(2,N);
+            RunBidomainWithBathProblem<2>(factor);
+        }
+    }
+};
+
+
+```
+
+
+
+# Code
+The full code is given below
+
+
+## File name `TestEpAgainstExactSolutionsLiteratePaper.hpp`
+
+
+```
+
+#!cpp
+#include <cxxtest/TestSuite.h>
+#include "AbstractCardiacCellFactory.hpp"
+#include "DistributedTetrahedralMesh.hpp"
+#include "EulerIvpOdeSolver.hpp"
+#include "ZeroStimulus.hpp"
+#include "PetscSetupAndFinalize.hpp"
+#include "ModelProblemCellModel.hpp"
+#include "ModelProblemExactSolutionClasses.hpp"
+#include "L2ErrorSquaredCalculator.hpp"
+#include "H1SemiNormErrorSquaredCalculator.hpp"
+#include "CardiacProblemWithErrorCalculatorClasses.hpp"
+
+template<unsigned DIM>
+class NonBathModelProblemCellFactory : public AbstractCardiacCellFactory<DIM>
+{
+private:
+    double mBeta; // as defined in paper
+    unsigned mM1; // coefficient of pi*x in:   F(x) = cos(m1*pi*x)   or   F(x,y) = cos(m1*pi*x)cos(m2*pi*y)   or   F(x,y,z) = cos(m1*pi*x)*cos(m2*pi*y)*cos(m3*pi*z)
+    unsigned mM2; // coefficient of pi*y in:   F(x) = cos(m1*pi*x)   or   F(x,y) = cos(m1*pi*x)cos(m2*pi*y)   or   F(x,y,z) = cos(m1*pi*x)*cos(m2*pi*y)*cos(m3*pi*z)
+    unsigned mM3; // coefficient of pi*z in:   F(x) = cos(m1*pi*x)   or   F(x,y) = cos(m1*pi*x)cos(m2*pi*y)   or   F(x,y,z) = cos(m1*pi*x)*cos(m2*pi*y)*cos(m3*pi*z)
+
+public:
+    NonBathModelProblemCellFactory(double beta, unsigned m1, unsigned m2=0, unsigned m3 = 0)
+        : AbstractCardiacCellFactory<DIM>(boost::shared_ptr<AbstractIvpOdeSolver>(new EulerIvpOdeSolver)),
+          mBeta(beta),
+          mM1(m1),
+          mM2(m2),
+          mM3(m3)
+    {
+    }
+
+    virtual ~NonBathModelProblemCellFactory()
+    {
+    }
+
+    AbstractCardiacCell* CreateCardiacCellForTissueNode(unsigned node)
+    {
+        ModelProblemCellModel* p_cell = new ModelProblemCellModel(this->mpSolver, this->mpZeroStimulus, mBeta);
+        ChastePoint<DIM> point = this->GetMesh()->GetNode(node)->GetPoint();
+
+        double F = TimeScaledFunctionF(point, 0.0, mM1, mM2, mM3); // just (1+t)^(1/2) * F(x,y,z), defined in ModelProblemExactSolutionClasses
+        double G = FunctionG(point);                               // defined in ModelProblemExactSolutionClasses
+
+        p_cell->rGetStateVariables()[0] = F;
+        p_cell->rGetStateVariables()[1] = G + F;
+        p_cell->rGetStateVariables()[2] = sqrt(1.0/G);
+
+        return p_cell;
+    }
+};
+
+template<unsigned DIM>
+class BathModelProblemCellFactory : public AbstractCardiacCellFactory<DIM>
+{
+private:
+    double mBeta; // beta as defined in the paper
+    unsigned mM1; // coefficient of pi*x in:   F(x,y,z) = cos(m1*pi*x)
+    double mAlpha;// alpha as defined in the paper
+    double mExtracellularConductivity; // the variable s_e in the paper
+
+public:
+    BathModelProblemCellFactory(double beta, unsigned m1, double alpha, double extracellularConductivity)
+        : AbstractCardiacCellFactory<DIM>(boost::shared_ptr<AbstractIvpOdeSolver>(new EulerIvpOdeSolver)),
+          mBeta(beta),
+          mM1(m1),
+          mAlpha(alpha),
+          mExtracellularConductivity(extracellularConductivity)
+    {
+    }
+
+    virtual ~BathModelProblemCellFactory()
+    {
+    }
+
+    AbstractCardiacCell* CreateCardiacCellForTissueNode(unsigned node)
+    {
+        ModelProblemCellModel* p_cell = new ModelProblemCellModel(this->mpSolver, this->mpZeroStimulus, mBeta);
+        ChastePoint<DIM> point = this->GetMesh()->GetNode(node)->GetPoint();
+
+        double F = TimeScaledFunctionF(point, 0.0, mM1, 0.0, 0.0); // just (1+t)^(1/2) * F(x,y,z), defined in ModelProblemExactSolutionClasses
+        double G = FunctionG(point);                               // defined in ModelProblemExactSolutionClasses
+        double x = point[0];
+
+        p_cell->rGetStateVariables()[0] = F - mAlpha*x/mExtracellularConductivity;
+        p_cell->rGetStateVariables()[1] = G + F;
+        p_cell->rGetStateVariables()[2] = sqrt(1.0/G);
+        p_cell->rGetStateVariables()[3] = -mAlpha*x/mExtracellularConductivity;
+
+        return p_cell;
+    }
+};
+
+class TestEpAgainstExactSolutionsLiteratePaper : public CxxTest::TestSuite
+{
+private:
+    template<unsigned DIM,unsigned PROBLEM_DIM>
+    void ComputeErrors(std::string outputDirectory, AbstractScalarFunction<DIM>* pExactSolution,
+                       DistributedTetrahedralMesh<DIM,DIM>& rMesh, double printingTimestep,
+                       std::string variable     /* Should be "V" or "Phi_e" */,
+                       double& rReturnedLinfL2Error,
+                       double& rReturnedL2H1Error,
+                       bool testingMode = false /* if this is true, than the returned 'errors' are actually just the norms of the exact solution */)
+    {
+        if(variable != "V" && variable !="Phi_e")
+        {
+            EXCEPTION("Bad input");
+        }
+
+        // get the data of the data file
+        Hdf5DataReader reader(outputDirectory,"results");
+        unsigned num_timesteps = reader.GetUnlimitedDimensionValues().size();
+
+        DistributedVectorFactory factory(rMesh.GetNumNodes());
+        Vec solution = factory.CreateVec();
+
+        rReturnedLinfL2Error = 0.0;
+        rReturnedL2H1Error = 0.0;
+
+        // The phi_e written to file for initial condition is just zeros, so needs to be ignored
+        // (Really, the solver should solve the second bidomain equation given initial V to determine what
+        // initial phi_e is, but the bidomain solver doesn't do this, and phi_e is just initialised to zero)
+        unsigned first = (variable == "V" ? 0 : 1);
+
+        for(unsigned timestep=first; timestep<num_timesteps; timestep++)
+        {
+            reader.GetVariableOverNodes(solution, variable, timestep);
+            if(testingMode)
+            {
+                PetscVecTools::Zero(solution);
+            }
+
+            double time = printingTimestep*timestep;
+
+            L2ErrorSquaredCalculator<DIM> l2_calc(pExactSolution,time,(variable=="V"));
+            double l2_error_sqd = l2_calc.Calculate(rMesh,solution);
+            double l2_error = sqrt(l2_error_sqd);
+
+            H1SemiNormErrorSquaredCalculator<DIM> h1_calc(pExactSolution,time,(variable=="V"));
+            double h1_seminorm_error_sqd = h1_calc.Calculate(rMesh,solution);
+            double h1_error = sqrt(l2_error_sqd + h1_seminorm_error_sqd);
+
+            rReturnedLinfL2Error = std::max(rReturnedLinfL2Error, l2_error);
+
+            double factor = (timestep==0 || timestep+1==num_timesteps ? 0.5 : 1.0);
+            rReturnedL2H1Error += h1_error*factor*printingTimestep;
+        }
+    }
+
+    template<unsigned DIM>
+    void RunMonodomainProblem(double parametersScaleFactor /*how much to scale h and dt*/, bool doTest=false /*see later*/)
+    {
+        double init_h = 0.1;
+        double h      = init_h*parametersScaleFactor; // note: everything dimensionless
+        double dt_ode = 0.1*parametersScaleFactor*parametersScaleFactor;
+        double dt_pde = 0.1*parametersScaleFactor*parametersScaleFactor;
+        double dt_printing = dt_pde;
+
+        double s1 = 1.1/(M_PI*M_PI);
+        double s2 = 1.2/(M_PI*M_PI);
+        double s3 = 0.3/(M_PI*M_PI);
+
+        unsigned m1 = 1;
+        unsigned m2 = 2;
+        unsigned m3 = 3;
+
+        DistributedTetrahedralMesh<DIM,DIM> mesh;
+        double c;
+
+        if(DIM==1)
+        {
+            c = -s1*m1*m1*M_PI*M_PI;
+            mesh.ConstructRegularSlabMesh(h, 1.0);
+        }
+        else if(DIM==2)
+        {
+            c = - (s1*m1*m1*M_PI*M_PI + s2*m2*m2*M_PI*M_PI);
+            mesh.ConstructRegularSlabMesh(h, 1.0, 1.0);
+        }
+        else
+        {
+            c = - (s1*m1*m1*M_PI*M_PI + s2*m2*m2*M_PI*M_PI + s3*m3*m3*M_PI*M_PI);
+            mesh.ConstructRegularSlabMesh(h, 1.0, 1.0, 1.0);
+        }
+
+        double end_time = 1.0;
+        HeartConfig::Instance()->SetSimulationDuration(end_time);
+
+        std::stringstream output_dir;
+        output_dir << "MonodomainExactSolution_" << DIM << "D_" << parametersScaleFactor;
+        HeartConfig::Instance()->SetOutputDirectory(output_dir.str());
+        HeartConfig::Instance()->SetOutputFilenamePrefix("results");
+
+        HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(dt_ode, dt_pde, dt_printing);
+        HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(s1,s2,s3));
+        HeartConfig::Instance()->SetCapacitance(2.0);
+        HeartConfig::Instance()->SetSurfaceAreaToVolumeRatio(3.0);
+
+        NonBathModelProblemCellFactory<DIM> cell_factory(c, m1, m2, m3);
+
+        VoltageExactSolution<DIM> voltage_soln(m1,m2,m3);
+
+        MonodomainProblemWithErrorCalculator<DIM> monodomain_problem( &cell_factory, &voltage_soln );
+
+        monodomain_problem.SetMesh(&mesh);
+        monodomain_problem.PrintOutput(doTest);
+
+        //monodomain_problem.SetWriteInfo();
+        monodomain_problem.Initialise();
+        monodomain_problem.Solve();
+
+        std::cout << std::setprecision(10);
+        std::cout << h << ", " << monodomain_problem.mVoltageLinfL2Error << ", " << monodomain_problem.mVoltageL2H1Error << ";\n";
+
+        if(doTest)
+        {
+            if(DIM!=1 || parametersScaleFactor!=1.0)
+            {
+                EXCEPTION("Test mode is only for 1d with factor=1");
+            }
+
+            TS_ASSERT_DELTA(monodomain_problem.mVoltageLinfL2Error, 0.0472926, 1e-5);
+            TS_ASSERT_DELTA(monodomain_problem.mVoltageL2H1Error, 0.255933, 1e-5);
+
+            double l_inf_l2;
+            double l2_h1;
+            ComputeErrors<DIM,1>(output_dir.str(), &voltage_soln, mesh, dt_printing, "V", l_inf_l2, l2_h1);
+            TS_ASSERT_DELTA(l_inf_l2, monodomain_problem.mVoltageLinfL2Error, 1e-6);
+            TS_ASSERT_DELTA(l2_h1, monodomain_problem.mVoltageL2H1Error, 1e-6);
+
+            double linf_l2_norm_V;
+            double l2_h1_norm_V;
+            ComputeErrors<DIM,1>(output_dir.str(), &voltage_soln, mesh,  dt_printing, "V", linf_l2_norm_V, l2_h1_norm_V, true);
+            TS_ASSERT_DELTA(linf_l2_norm_V, 1.0, 1e-4); // ||V(t)||_2 = sqrt ((1+t)/2) so max = 1
+            TS_ASSERT_DELTA(l2_h1_norm_V, 2.855, 1e-1); // sqrt (3(1+pi^2)/2)
+        }
+    }
+
+    template<unsigned DIM>
+    void RunBidomainProblem(double parametersScaleFactor, bool doTest=false)
+    {
+        double init_h = 0.1;
+        double h      = init_h*parametersScaleFactor; // note: everything dimensionless
+        double dt_ode = 0.1*parametersScaleFactor*parametersScaleFactor;
+        double dt_pde = 0.1*parametersScaleFactor*parametersScaleFactor;
+        double dt_printing = dt_pde;
+
+        double s1 = 1.1/(M_PI*M_PI);
+        double s2 = 1.2/(M_PI*M_PI);
+        double s3 = 0.3/(M_PI*M_PI);
+
+        unsigned m1 = 1.0;
+        unsigned m2 = 2.0;
+        unsigned m3 = 3.0;
+
+        DistributedTetrahedralMesh<DIM,DIM> mesh;
+        double c;
+
+        if(DIM==1)
+        {
+            c = -s1*m1*m1*M_PI*M_PI;
+            mesh.ConstructRegularSlabMesh(h, 1.0);
+        }
+        else if(DIM==2)
+        {
+            c = - (s1*m1*m1*M_PI*M_PI + s2*m2*m2*M_PI*M_PI);
+            mesh.ConstructRegularSlabMesh(h, 1.0, 1.0);
+        }
+        else
+        {
+            c = - (s1*m1*m1*M_PI*M_PI + s2*m2*m2*M_PI*M_PI + s3*m3*m3*M_PI*M_PI);
+            mesh.ConstructRegularSlabMesh(h, 1.0, 1.0, 1.0);
+        }
+
+        double k = 1.0/sqrt(2);
+        double sigma_e_factor = (1.0-k)/k;
+
+        double end_time = 1.0;
+        HeartConfig::Instance()->SetSimulationDuration(end_time);
+
+        std::stringstream output_dir;
+        output_dir << "BidomainExactSolution_" << DIM << "D_" << parametersScaleFactor;
+        HeartConfig::Instance()->SetOutputDirectory(output_dir.str());
+        HeartConfig::Instance()->SetOutputFilenamePrefix("results");
+
+        HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(dt_ode, dt_pde, dt_printing);
+
+        HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(s1,s2,s3));
+        HeartConfig::Instance()->SetExtracellularConductivities(Create_c_vector(s1*sigma_e_factor,s2*sigma_e_factor,s3*sigma_e_factor));
+        HeartConfig::Instance()->SetCapacitance(2.0);
+        HeartConfig::Instance()->SetSurfaceAreaToVolumeRatio(3.0);
+
+        NonBathModelProblemCellFactory<DIM> cell_factory(c*(1-k), m1, m2, m3);
+
+        VoltageExactSolution<DIM> voltage_soln(m1,m2,m3);
+        ExtracellularPotentialExactSolution<DIM> phi_e_soln(k,m1,m2,m3);
+
+        BidomainProblemWithErrorCalculator<DIM> bidomain_problem( &cell_factory, &voltage_soln, &phi_e_soln );
+        bidomain_problem.PrintOutput(doTest);
+
+        bidomain_problem.SetMesh(&mesh);
+        //bidomain_problem.SetWriteInfo();
+        bidomain_problem.Initialise();
+        bidomain_problem.Solve();
+
+        std::cout << std::setprecision(10);
+        std::cout << h << ", " << bidomain_problem.mVoltageLinfL2Error << ", " << bidomain_problem.mVoltageL2H1Error << ", " << bidomain_problem.mExtracellularPotentialLinfL2Error << ", " << bidomain_problem.mExtracellularPotentialL2H1Error << ";\n";
+
+        if(doTest)
+        {
+            if(DIM!=1 || parametersScaleFactor!=1.0)
+            {
+                EXCEPTION("Test mode is only for 1d with factor=1");
+            }
+
+            TS_ASSERT_DELTA(bidomain_problem.mVoltageLinfL2Error, 0.0426506, 1e-5);
+            TS_ASSERT_DELTA(bidomain_problem.mVoltageL2H1Error, 0.253785, 1e-5);
+            TS_ASSERT_DELTA(bidomain_problem.mExtracellularPotentialLinfL2Error, 0.0298811, 1e-5);
+            TS_ASSERT_DELTA(bidomain_problem.mExtracellularPotentialL2H1Error, 0.172321, 1e-5);
+
+            double l_inf_l2_V;
+            double l2_h1_V;
+            double l_inf_l2_phi_e;
+            double l2_h1_phi_e;
+            ComputeErrors<DIM,2>(output_dir.str(), &voltage_soln, mesh, dt_printing, "V", l_inf_l2_V, l2_h1_V);
+            ComputeErrors<DIM,2>(output_dir.str(), &phi_e_soln,   mesh, dt_printing, "Phi_e", l_inf_l2_phi_e, l2_h1_phi_e);
+            TS_ASSERT_DELTA(l_inf_l2_V, bidomain_problem.mVoltageLinfL2Error, 1e-6);
+            TS_ASSERT_DELTA(l2_h1_V, bidomain_problem.mVoltageL2H1Error, 1e-6);
+            TS_ASSERT_DELTA(l_inf_l2_phi_e, bidomain_problem.mExtracellularPotentialLinfL2Error, 1e-6);
+            TS_ASSERT_DELTA(l2_h1_phi_e, bidomain_problem.mExtracellularPotentialL2H1Error, 1e-6);
+
+            double linf_l2_norm_V;
+            double l2_h1_norm_V;
+            double linf_l2_norm_phi_e;
+            double l2_h1_norm_phi_e;
+            ComputeErrors<DIM,1>(output_dir.str(), &voltage_soln, mesh,  dt_printing, "V", linf_l2_norm_V, l2_h1_norm_V, true);
+            TS_ASSERT_DELTA(linf_l2_norm_V, 1.0, 1e-4); // ||V(t)||_2 = sqrt ((1+t)/2) so max = 1
+            TS_ASSERT_DELTA(l2_h1_norm_V, 2.855, 1e-1); // sqrt (3(1+pi^2)/2)
+
+            ComputeErrors<DIM,1>(output_dir.str(), &phi_e_soln, mesh,  dt_printing, "Phi_e", linf_l2_norm_phi_e, l2_h1_norm_phi_e, true);
+            TS_ASSERT_DELTA(linf_l2_norm_phi_e, 1.0/sqrt(2), 1e-4); // phi_e = -k*V
+            TS_ASSERT_DELTA(l2_h1_norm_phi_e, 2.855/sqrt(2), 1e-1); //
+        }
+    }
+
+    template<unsigned DIM>
+    void RunBidomainWithBathProblem(double parametersScaleFactor, bool doTest=false)
+    {
+        double init_h = 0.1;
+        double h      = init_h*parametersScaleFactor; // dimensionless
+        double dt_ode = 0.1*parametersScaleFactor*parametersScaleFactor;
+        double dt_pde = 0.1*parametersScaleFactor*parametersScaleFactor;
+        double dt_printing = dt_pde;
+
+        double s1 = 1.1/(M_PI*M_PI);
+        double s2 = 1.2/(M_PI*M_PI);
+        double s3 = 0.3/(M_PI*M_PI);
+
+        unsigned m1 = 1;
+
+        DistributedTetrahedralMesh<DIM,DIM> mesh;
+        double c = -s1*m1*m1*M_PI*M_PI;
+
+        c_vector<double,DIM> disp = zero_vector<double>(DIM);
+        disp(0) = -1.0;
+        if(DIM==1)
+        {
+            mesh.ConstructRegularSlabMesh(h, 3.0);
+        }
+        else if(DIM==2)
+        {
+            mesh.ConstructRegularSlabMesh(h, 3.0, 1.0);
+        }
+        else
+        {
+            mesh.ConstructRegularSlabMesh(h, 3.0, 1.0, 1.0);
+        }
+        mesh.Translate(disp);
+
+        for(unsigned i=0; i<mesh.GetNumElements(); i++)
+        {
+            double x = mesh.GetElement(i)->CalculateCentroid()[0];
+            if( (x<0) || (x>1) )
+            {
+                mesh.GetElement(i)->SetAttribute(HeartRegionCode::GetValidBathId());
+            }
+        }
+
+        double k = 1.0/sqrt(2);
+        double sigma_e_factor = (1.0-k)/k;
+
+        double alpha = 0.01;
+        double extracellular_conductivity = s1*sigma_e_factor;
+        double bath_conductivity = extracellular_conductivity/2.0;
+        // the following says provide a stimulus of -alpha on the x=min surface (the second parameter '0' indicates x).
+        // The code then computes that the stimulus on the opposite surface should be alpha for conservation of current. The false says no ground electrode
+        HeartConfig::Instance()->SetElectrodeParameters(false, 0, -alpha, -1.0/*switch on time*/, 1000/*switch off time*/);
+        HeartConfig::Instance()->SetBathConductivity(bath_conductivity);
+
+        double end_time = 1.0;
+        HeartConfig::Instance()->SetSimulationDuration(end_time);
+
+        std::stringstream output_dir;
+        output_dir << "BidomainWithBathExactSolution_" << DIM << "D_" << parametersScaleFactor;
+        HeartConfig::Instance()->SetOutputDirectory(output_dir.str());
+        HeartConfig::Instance()->SetOutputFilenamePrefix("results");
+        HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(dt_ode, dt_pde, dt_printing);
+
+        HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(s1,s2,s3));
+        HeartConfig::Instance()->SetExtracellularConductivities(Create_c_vector(s1*sigma_e_factor,s2*sigma_e_factor,s3*sigma_e_factor));
+        HeartConfig::Instance()->SetCapacitance(2.0);
+        HeartConfig::Instance()->SetSurfaceAreaToVolumeRatio(3.0);
+
+        BathModelProblemCellFactory<DIM> cell_factory(c*(1-k), m1, alpha, extracellular_conductivity);
+
+        VoltageExactSolutionBath<DIM> voltage_soln(m1,alpha,extracellular_conductivity);
+        ExtracellularPotentialExactSolutionBath<DIM> phi_e_soln(m1,k,alpha,extracellular_conductivity,bath_conductivity);
+
+        BidomainWithBathProblemWithErrorCalculator<DIM> bidomain_problem( &cell_factory, &voltage_soln, &phi_e_soln);
+        bidomain_problem.PrintOutput(doTest);
+
+        bidomain_problem.SetMesh(&mesh);
+        //bidomain_problem.SetWriteInfo();
+        bidomain_problem.Initialise();
+        bidomain_problem.Solve();
+
+        std::cout << std::setprecision(10);
+        std::cout << h << ", " << bidomain_problem.mVoltageLinfL2Error << ", " << bidomain_problem.mVoltageL2H1Error  << ", " << bidomain_problem.mExtracellularPotentialLinfL2Error << ", " << bidomain_problem.mExtracellularPotentialL2H1Error << ";\n";
+
+        if(doTest)
+        {
+            if(DIM!=1 || parametersScaleFactor!=1.0)
+            {
+               EXCEPTION("Test mode is only for 1d with factor=1");
+            }
+            TS_ASSERT_DELTA(bidomain_problem.mVoltageLinfL2Error, 0.0426506, 1e-4);
+            TS_ASSERT_DELTA(bidomain_problem.mVoltageL2H1Error, 0.253785, 1e-4);
+            TS_ASSERT_DELTA(bidomain_problem.mExtracellularPotentialLinfL2Error, 0.0562449, 1e-3);
+            TS_ASSERT_DELTA(bidomain_problem.mExtracellularPotentialL2H1Error, 0.174176, 1e-3);
+
+            double l_inf_l2_V;
+            double l2_h1_V;
+            double l_inf_l2_phi_e;
+            double l2_h1_phi_e;
+            ComputeErrors<DIM,2>(output_dir.str(), &voltage_soln, mesh, dt_printing, "V", l_inf_l2_V, l2_h1_V);
+            ComputeErrors<DIM,2>(output_dir.str(), &phi_e_soln,   mesh, dt_printing, "Phi_e", l_inf_l2_phi_e, l2_h1_phi_e);
+            TS_ASSERT_DELTA(l_inf_l2_V, bidomain_problem.mVoltageLinfL2Error, 1e-6);
+            TS_ASSERT_DELTA(l2_h1_V, bidomain_problem.mVoltageL2H1Error, 1e-6);
+            TS_ASSERT_DELTA(l_inf_l2_phi_e, bidomain_problem.mExtracellularPotentialLinfL2Error, 1e-6);
+            TS_ASSERT_DELTA(l2_h1_phi_e, bidomain_problem.mExtracellularPotentialL2H1Error, 1e-6);
+        }
+    }
+
+public:
+    void TestRunTests() throw (Exception)
+    {
+        RunMonodomainProblem<1>(1.0,true);
+        RunBidomainProblem<1>(1.0,true);
+        RunBidomainWithBathProblem<1>(1.0,true);
+    }
+
+    void TestMonodomain1d() throw (Exception)
+    {
+        for(unsigned N=0; N<5; N++)
+        {
+            double factor = 1.0/pow(2,N);
+            RunMonodomainProblem<1>(factor);
+        }
+    }
+
+    void doneTestMonodomain2d() throw (Exception)
+    {
+        for(unsigned N=0; N<5; N++)
+        {
+            double factor = 1.0/pow(2,N);
+            RunMonodomainProblem<2>(factor);
+        }
+    }
+
+    void doneTestMonodomain3d() throw (Exception)
+    {
+        HeartConfig::Instance()->SetUseAbsoluteTolerance(1e-9);
+        for(unsigned N=0; N<4; N++) // note: N=3 takes very long
+        {
+            double factor = 1.0/pow(2,N);
+            RunMonodomainProblem<3>(factor);
+        }
+    }
+
+    void doneTestBidomain1d() throw (Exception)
+    {
+        HeartConfig::Instance()->SetUseAbsoluteTolerance(1e-9);
+        for(unsigned N=0; N<5; N++)
+        {
+            double factor = 1.0/pow(2,N);
+            RunBidomainProblem<1>(factor);
+        }
+    }
+
+    void doneTestBidomain2d() throw (Exception)
+    {
+        HeartConfig::Instance()->SetUseAbsoluteTolerance(1e-9);
+        for(unsigned N=0; N<5; N++)
+        {
+            double factor = 1.0/pow(2,N);
+            RunBidomainProblem<2>(factor);
+        }
+    }
+
+    void doneTestBidomain3d() throw (Exception)
+    {
+        HeartConfig::Instance()->SetUseAbsoluteTolerance(1e-11);
+        for(unsigned N=0; N<4; N++) // note: N=3 takes very long
+        {
+            double factor = 1.0/pow(2,N);
+            RunBidomainProblem<3>(factor);
+        }
+    }
+
+    void doneTestBidomainWithBath2d() throw (Exception)
+    {
+        HeartConfig::Instance()->SetUseAbsoluteTolerance(1e-9);
+        for(unsigned N=0; N<5; N++)
+        {
+            double factor = 1.0/pow(2,N);
+            RunBidomainWithBathProblem<2>(factor);
+        }
+    }
+};
+
+
+```
+
+
