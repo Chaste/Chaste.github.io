@@ -39,11 +39,18 @@ The supported build system is now CMake. Preferred versions are those that are
 default on Ubuntu LTS releases, but we expect every version of CMake above the
 minimum required to work fine.
 
-| CMake      |
-| ---------- | --------------- | ------- | ------- | ------- | ------- |
-| 🟥 <3.16.3 | 🟩 3.16.3+ [^a] | 🟨 3.17 | 🟨 3.18 | 🟨 3.19 | 🟨 3.20 |
-| 🟨 3.21    | 🟢 3.22 [^b]    | 🟨 3.23 | 🟨 3.24 | 🟨 3.25 | 🟨 3.26 |
-| 🟨 3.27    | 🟨 3.28         |
+<table>
+  <tr>
+    <th>CMake</th>
+  </tr>
+  <tr>
+    <!-- CMake -->
+    <td>
+      🟥 &lt;3.16.3 🟩 3.16.3+ <sup>1</sup> 🟨 3.17 🟨 3.18 🟨 3.19 🟨 3.20 🟨 3.21 
+      🟢 3.22 <sup>2</sup> 🟨 3.23 🟨 3.24 🟨 3.25 🟨 3.26 🟨 3.27 🟢 3.28 <sup>3</sup> 🟨 3.29
+    </td>
+ </tr>
+</table>
 
 {{< callout context="note" title="Note" icon="info-circle" >}}
 Scons was the legacy build system and is no longer supported.
@@ -56,20 +63,73 @@ LTS releases, and specific versions of the Intel compiler that we regularly test
 Chaste with. We expect all other C++17-capable versions of GCC, Clang and Intel
 to compile Chaste with no problems.
 
-|  GCC         |
-| ------------ | ----------- | ------------ | ----------------- | ----------------- | ------------ |
-| 🟥 <7.0      | 🟨 7.x [^a] |  🟨 8.x [^a] |  🟩 9.x [^b] [^a] | 🟢 10.x [^b] [^a] | 🟨 11.x [^b] |
-| 🟢 12.x [^b] | 🟦 13.x     |
-
-|  Clang       |
-| ------------ | ----------------- | ------------ | ------------ | ----------- | ------------ |
-| 🟥 <6.0      | 🟨 6.x [^a]       | 🟨 7.x [^a]  | 🟨 8.x [^a]  | 🟨 9.x [^a] | 🟨 10.x [^a] |
-| 🟨 11.x [^b] | 🟢 12.x [^b] [^a] | 🟨 13.x [^b] | 🟢 14.x [^b] | 🟦 15.x     | 🟦 16.x      |
-| 🟦 17.x      |
-
-| Intel oneAPI |
-| ------------ | ---------- | ---------- | --------- |
-| 🟨 2021.x    |  🟨 2022.x |  🟨 2023.x | 🟢 2024.x |
+<table>
+  <tr>
+    <th>GCC</th>
+    <th>Clang</th>
+    <th>Intel oneAPI</th>
+  </tr>
+  <tr>
+    <!-- GCC -->
+    <td>
+      🟦 13.x 
+      <br>
+      🟢 12.x <sup>2</sup> 
+      <br>
+      🟨 11.x <sup>2</sup> 
+      <br>
+      🟢 10.x <sup>1</sup> <sup>2</sup> 
+      <br>
+      🟩 9.x <sup>1</sup> <sup>2</sup> 
+      <br>
+      🟨 8.x <sup>1</sup> 
+      <br>
+      🟨 7.x <sup>1</sup> 
+      <br>
+      🟥 &lt;7.0 
+    </td>
+    <!-- Clang -->
+    <td>	
+      🟦 18.x <sup>3</sup> 
+      <br>
+      🟦 17.x <sup>3</sup> 
+      <br>
+      🟦 16.x <sup>3</sup> 
+      <br>
+      🟦 15.x <sup>3</sup> 
+      <br>
+      🟢 14.x <sup>2</sup> <sup>3</sup> 
+      <br>
+      🟨 13.x <sup>2</sup> 
+      <br>
+      🟢 12.x <sup>1</sup> <sup>2</sup> 
+      <br>
+      🟨 11.x <sup>2</sup> 
+      <br>
+      🟨 10.x <sup>1</sup> 
+      <br>
+      🟨 9.x <sup>1</sup> 
+      <br>
+      🟨 8.x <sup>1</sup> 
+      <br>
+      🟨 7.x <sup>1</sup> 
+      <br>
+      🟨 6.x <sup>1</sup> 
+      <br>
+      🟥 &lt;6.0 
+    </td>
+    <!-- Intel oneAPI -->
+    <td>
+      🟢 2024.x
+      <br>
+      🟨 2023.x
+      <br>
+      🟨 2022.x
+      <br>
+      🟨 2021.x
+    </td>
+ </tr>
+</table>
 
 ## Libraries
 
@@ -80,60 +140,231 @@ specific versions that we regularly test Chaste with.
 In some instances the version number is linked to the GitHub issue in which support was/is being introduced.
 {{< /callout >}}
 
-| Boost          |
-| -------------- | ------------ | ------------ | -------------- | -------------- | -------------- |
-| 🟥 <1.67       | 🟢 1.67 [^a] | 🟨 1.68      | 🟩 1.69        | 🟨 1.70        | 🟩 1.71 [^a]   |
-| 🟨 1.72        | 🟩 1.73      | 🟢 1.74 [^b] | 🟨 [1.75][i28] | 🟨 [1.76][i28] | 🟨 [1.77][i28] |
-| 🟨 [1.78][i28] | 🟦 1.79      | 🟦 1.80      |  🟦 1.81       | 🟦 1.82        | 🟦 1.83 [^c]   |
-| 🟦 1.84        | 🟦 1.85      |
-
-| HDF5       |
-| ---------- | --------------- | ---------- | ----------------- | ----------------- | ----------------- |
-| 🟥 <1.10.4 | 🟢 1.10.4 [^a]  | 🟩 1.10.5  | 🟩 1.10.6         | 🟢 1.10.7 [^b]    | 🟩 1.10.8         |
-| 🟦 1.10.9  | 🟦 1.10.10 [^c] | 🟦 1.10.11 | 🟨 [1.12.0][i163] | 🟨 [1.12.1][i163] | 🟩 [1.12.2][i163] |
-| 🟦 1.12.3  | 🟦 1.14.0       | 🟦 1.14.1  | 🟦 1.14.2         | 🟦 1.14.3         | 🟦 1.14.4         |
-
-| ParMETIS |
-| -------- | ---------------------- |
-| 🟥 <4.0  |  🟢 4.0 [^c] [^b] [^a] |
-
-| PETSc    |
-| -------- | ------------ | ------------ | ------- | ------------------- | ------- |
-| 🟥 <3.12 | 🟢 3.12 [^a] | 🟩 3.13      | 🟩 3.14 | 🟢 [3.15][i37] [^b] | 🟦 3.16 |
-| 🟦 3.17  | 🟦 3.18      | 🟦 3.19 [^c] | 🟦 3.20 | 🟦 3.21             |
-
-| SUNDIALS    |
-| ----------- | ------------ | ------- | ------- | -------------- | ------- |
-| 🟥 <3.1     |  🟢 3.1 [^a] |  🟩 3.2 |  🟨 4.0 |  🟩 4.1        |  🟨 5.0 |
-| 🟨 5.1      |  🟨 5.2      |  🟨 5.3 |  🟨 5.4 |  🟨 5.5        |  🟨 5.6 |
-| 🟨 5.7      |  🟢 5.8 [^b] |  🟩 6.0 |  🟦 6.1 |  🟦 6.2        |  🟦 6.3 |
-| 🟦 6.4 [^c] |  🟦 6.5      |  🟦 6.6 |  🟦 6.7 | 🟦 [7.0][i266] |
-
-| VTK     |
-| ------- | -------------- | ------------------------ | ----------------- | ------- | ------- |
-| 🟥 <6.3 |  🟩 6.3 [^a]   |  🟨 7.0                  |  🟢 7.1 [^b] [^a] |  🟨 8.0 |  🟨 8.1 |
-| 🟩 8.2  |  🟩 [9.0][i36] |  🟢 [9.1][i36] [^c] [^b] |  🟩 [9.2][i36]    |  🟦 9.3 |
-
-| Xerces-C   |
-| ---------- | --------- | -------------- | -------------- | -------------- | --------- |
-|  🟥 <3.2.1 |  🟩 3.2.1 |  🟢 3.2.2 [^a] |  🟢 3.2.3 [^b] |  🟢 3.2.4 [^c] |  🟦 3.2.5 |
-
-|  XSD     |
-| -------- | ---------------------- | ------ |
-|  🟥 <4.0 |  🟢 4.0 [^c] [^b] [^a] | 🟦 4.2 |
+<table>
+  <tr>
+    <th>Boost</th>
+    <th>HDF5</th>
+    <th>ParMETIS</th>
+    <th>PETSc</th>
+    <th>SUNDIALS</th>
+    <th>VTK</th>
+    <th>Xerces-C</th>
+    <th>XSD</th>
+  </tr>
+  <tr>
+     <!-- Boost -->
+    <td>
+      🟦 1.85
+      <br>
+      🟦 1.84
+      <br>
+      🟦 1.83 <sup>3</sup>
+      <br>
+      🟦 1.82
+      <br>
+      🟦 1.81
+      <br>
+      🟦 1.80
+      <br>
+      🟦 1.79
+      <br>
+      🟨 <a href="https://github.com/Chaste/Chaste/issues/28">1.78</a>
+      <br>
+      🟨 <a href="https://github.com/Chaste/Chaste/issues/28">1.77</a>
+      <br>
+      🟨 <a href="https://github.com/Chaste/Chaste/issues/28">1.76</a>
+      <br>
+      🟨 <a href="https://github.com/Chaste/Chaste/issues/28">1.75</a>
+      <br>
+      🟢 1.74 <sup>2</sup>
+      <br>
+      🟩 1.73
+      <br>
+      🟨 1.72
+      <br>
+      🟩 1.71 <sup>1</sup>
+      <br>
+      🟨 1.70
+      <br>
+      🟩 1.69
+      <br>
+      🟨 1.68
+      <br>
+      🟢 1.67 <sup>1</sup>
+      <br>
+      🟥 &lt;1.67
+    </td>
+    <!-- HDF5 -->
+    <td>
+      🟦 1.14.4 
+      <br>
+      🟦 1.14.3 
+      <br>
+      🟦 1.14.2 
+      <br>
+      🟦 1.14.1 
+      <br>
+      🟦 1.14.0 
+      <br>
+      🟦 1.12.3 
+      <br>
+      🟩 <a href="https://github.com/Chaste/Chaste/issues/163">1.12.2</a> 
+      <br>
+      🟨 <a href="https://github.com/Chaste/Chaste/issues/163">1.12.1</a> 
+      <br>
+      🟨 <a href="https://github.com/Chaste/Chaste/issues/163">1.12.0</a> 
+      <br>
+      🟦 1.10.11 
+      <br>
+      🟦 1.10.10 <sup>3</sup>
+      <br>
+      🟦 1.10.9 
+      <br>
+      🟩 1.10.8 
+      <br>
+      🟢 1.10.7 <sup>2</sup>
+      <br>
+      🟩 1.10.6 
+      <br>
+      🟩 1.10.5 
+      <br>
+      🟢 1.10.4 <sup>1</sup>
+      <br>
+      🟥 &lt;1.10.4
+      <br>
+    </td>
+    <!-- ParMETIS -->
+    <td>
+      🟢 4.0 <sup>1</sup> <sup>2</sup> <sup>3</sup>
+      <br>
+      🟥 &lt;4.0
+    </td>
+    <!-- PETSc -->
+    <td>
+      🟦 3.21 
+      <br>
+      🟦 3.20 
+      <br>
+      🟦 3.19 <sup>3</sup> 
+      <br>
+      🟦 3.18 
+      <br>
+      🟦 3.17 
+      <br>
+      🟦 3.16 
+      <br>
+      🟢 <a href="https://github.com/Chaste/Chaste/issues/137">3.15</a> <sup>2</sup> 
+      <br>
+      🟩 3.14 
+      <br>
+      🟩 3.13 
+      <br>
+      🟢 3.12 <sup>1</sup> 
+      <br>
+      🟥 &lt;3.12 
+    </td>
+    <!-- SUNDIALS -->
+    <td>
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/266">7.0</a> 
+      <br>
+      🟦 6.7 
+      <br>
+      🟦 6.6 
+      <br>
+      🟦 6.5 
+      <br>
+      🟦 6.4 <sup>3</sup> 
+      <br>
+      🟦 6.3 
+      <br>
+      🟦 6.2 
+      <br>
+      🟦 6.1 
+      <br>
+      🟩 6.0 
+      <br>
+      🟢 5.8 <sup>2</sup> 
+      <br>
+      🟨 5.7 
+      <br>
+      🟨 5.6 
+      <br>
+      🟨 5.5 
+      <br>
+      🟨 5.4 
+      <br>
+      🟨 5.3 
+      <br>
+      🟨 5.2 
+      <br>
+      🟨 5.1 
+      <br>
+      🟨 5.0 
+      <br>
+      🟩 4.1 
+      <br>
+      🟨 4.0 
+      <br>
+      🟩 3.2 
+      <br>
+      🟢 3.1 <sup>1</sup> 
+      <br>
+      🟥 &lt;3.1 
+    </td>
+    <!-- VTK -->
+    <td>
+      🟦 9.3 
+      <br>
+      🟩 <a href="https://github.com/Chaste/Chaste/issues/36">9.2</a> 
+      <br>
+      🟢 <a href="https://github.com/Chaste/Chaste/issues/36">9.1</a>  <sup>2</sup> <sup>3</sup> 
+      <br>
+      🟩 <a href="https://github.com/Chaste/Chaste/issues/36">9.0</a>  
+      <br>
+      🟩 8.2 
+      <br>
+      🟨 8.1 
+      <br>
+      🟨 8.0 
+      <br>
+      🟢 7.1 <sup>1</sup> <sup>2</sup> 
+      <br>
+      🟨 7.0 
+      <br>
+      🟩 6.3 <sup>1</sup> 
+      <br>
+      🟥 &lt;6.3 
+    </td>
+    <!-- Xerces-C  -->
+    <td>
+      🟦 3.2.5 
+      <br>
+      🟢 3.2.4 <sup>3</sup> 
+      <br>
+      🟢 3.2.3 <sup>2</sup> 
+      <br>
+      🟢 3.2.2 <sup>1</sup> 
+      <br>
+      🟩 3.2.1 
+      <br>
+      🟥 &lt;3.2.1 
+    </td>
+    <!-- XSD  -->
+    <td>
+      🟢 4.0 <sup>1</sup> <sup>2</sup> <sup>3</sup> 
+      <br>
+      🟥 &lt;4.0 
+    </td>
+ </tr>
+</table>
 
 {{< callout context="caution" title="Caution" icon="alert-triangle" >}}
 Some versions of dependencies have quirks that may not be documented on this
 page, but you may find hints in the documentation for the dependency.
 {{< /callout >}}
 
-[^a]: Available on Ubuntu 20.04 LTS Focal Fossa.
-[^b]: Available on Ubuntu 22.04 LTS Jammy Jellyfish.
-[^c]: Available on Ubuntu 22.04 LTS Noble Numbat.
-
-[//]: # "Reference Links"
-[i28]: https://github.com/Chaste/Chaste/issues/28
-[i36]: https://github.com/Chaste/Chaste/issues/36
-[i37]: https://github.com/Chaste/Chaste/issues/37
-[i163]: https://github.com/Chaste/Chaste/issues/163
-[i266]: https://github.com/Chaste/Chaste/issues/266
+<small>
+<p>1. Available on Ubuntu 20.04 LTS Focal Fossa.</p>
+<p>2. Available on Ubuntu 22.04 LTS Jammy Jellyfish.</p>
+<p>3. Available on Ubuntu 22.04 LTS Noble Numbat.</p>
+</small>
