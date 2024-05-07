@@ -253,7 +253,7 @@ In some instances the version number is linked to the GitHub issue in which supp
       <br>
       🟦 3.16 
       <br>
-      🟢 <a href="https://github.com/Chaste/Chaste/issues/137">3.15</a> <sup>2</sup> 
+      🟢 <a href="https://github.com/Chaste/Chaste/issues/37">3.15</a> <sup>2</sup> 
       <br>
       🟩 3.14 
       <br>
@@ -366,5 +366,5 @@ page, but you may find hints in the documentation for the dependency.
 <small>
 <p>1. Available on Ubuntu 20.04 LTS Focal Fossa.</p>
 <p>2. Available on Ubuntu 22.04 LTS Jammy Jellyfish.</p>
-<p>3. Available on Ubuntu 22.04 LTS Noble Numbat.</p>
+<p>3. Available on Ubuntu 24.04 LTS Noble Numbat.</p>
 </small>
