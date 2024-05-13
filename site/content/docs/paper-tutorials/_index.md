@@ -8,6 +8,12 @@ layout: "single"
 images: []
 ---
 
+{{< callout context="note" title="May 2024: Paper tutorials are under migration" icon="alert-triangle" >}}
+These paper tutorials are in the process of being migrated to this new website.
+It is currently expected that some links are incorrect and some images may not display properly.
+We are working on fixing these.
+{{< /callout >}}
+
 {{< callout context="note" title="Note" icon="info-circle" >}}
 If you are viewing this on the Chaste website, **the tutorials here are static, and are only likely to work with the specific version of Chaste indicated. They are unlikley to work with the development version of Chaste**.
 {{< /callout >}}
@@ -20,9 +26,11 @@ Open-source releasing code that has been used to generate results in papers incr
 
 Each paper listed below links to wiki pages associated with that paper. Here, you will find a brief introduction to the paper (including instructions on how to obtain the code and supporting data files used for the paper), and links to 'walk-throughs' of the code used to generate the paper results. These walk-throughs are in the same style as the main Chaste tutorials. (They are also auto-generated from comments in the actual code.) For a quick example, choose *[G. Mirams et al. Chaste: an open source...](plos2013)*, and then click on one of the images.
 
-The results of each paper are then reproducible by simply downloading the code, and running with the relevant version of Chaste.  See [GettingStarted](https://github.com/Chaste/trac_archive/wiki/Getting-Started) for more documentation on using Chaste.
+The results of each paper are then reproducible by simply downloading the code, and running with the relevant version of Chaste.  See [Getting Started](/docs) for more documentation on using Chaste.
 
-Since we tend to use the Chaste build infrastructure to do our science, as well as develop Chaste itself, code like these tutorials that generates results for publication is itself a 'test' in the Chaste framework.  It is thus easy to check the results obtained when re-running against the published reference results, to ensure that the quantities of interest are unchanged (to within tolerances).  This is done, for instance, in the [functional curation](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Functional-Curation) and [ICCS2013](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Wisc2013) papers.
+Since we tend to use the Chaste build infrastructure to do our science, as well as develop Chaste itself, code like these tutorials that generates results for publication is itself a 'test' in the Chaste framework.
+It is thus easy to check the results obtained when re-running against the published reference results, to ensure that the quantities of interest are unchanged (to within tolerances).
+This is done, for instance, in the [functional curation](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Functional-Curation) and [ICCS2013](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Wisc2013) papers.
 
 *Note that this is a new feature: the framework for setting up these paper tutorials is still being finalised, and more papers will be added in time. In the future we envisage external users, who wish to release their own documented Chaste code, also being able to contribute to these pages.*
 
