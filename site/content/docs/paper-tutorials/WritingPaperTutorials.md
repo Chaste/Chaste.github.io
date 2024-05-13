@@ -1,4 +1,8 @@
-## Writing Paper Tutorials
+---
+title: "Writing Paper Tutorials"
+draft: false
+layout: "single"
+---
 
 The steps to create '[paper tutorial](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials)' wiki pages associated with a new or forthcoming publication are as follows.
 For an example see the [source for the project Plos2013](/tags/Plos2013_release_3.1), which gets rendered as shown at [PaperTutorials/Plos2013](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Plos2013).

@@ -1,11 +1,7 @@
 ---
 title: "Paper tutorials"
-description: "Chaste paper tutorials"
-date: 2020-08-27T19:23:18+02:00
-lastmod: 2020-08-27T19:23:18+02:00
 draft: false
 layout: "single"
-images: []
 ---
 
 {{< callout context="note" title="May 2024: Paper tutorials are under migration" icon="alert-triangle" >}}

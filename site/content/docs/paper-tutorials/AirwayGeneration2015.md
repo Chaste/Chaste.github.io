@@ -1,3 +1,9 @@
+---
+title: "Development and analysis of patient-based complete conducting airway models"
+draft: false
+layout: "single"
+---
+
 
 ```
 #!comment
@@ -5,9 +11,6 @@ This wiki page is auto-generated from the file
 projects/AirwayGeneration2015/Summary.wiki
 edit that file, don't edit this page on trac!
 ```
-
-
-## Development and analysis of patient-based complete conducting airway models
 
 Welcome to the Chaste wiki.
 

@@ -1,4 +1,8 @@
-## ABC Parameterization of the Hodgkin-Huxley Model
+---
+title: "ABC Parameterization of the Hodgkin-Huxley Model"
+draft: false
+layout: "single"
+---
 
 This tutorial describes how to download and execute the Approximate Bayesian Computation code
 for inference on the Hodgkin-Huxley model as described in "[Hodgkin-Huxley revisited: reparameterization and identifiability analysis of the classic action potential model with approximate Bayesian methods](http://dx.doi.org/10.1098/rsos.150499)",

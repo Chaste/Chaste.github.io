@@ -1,4 +1,8 @@
-## Inference-based assessment of identifiability in nonlinear biological models
+---
+title: "DInference-based assessment of identifiability in nonlinear biological models"
+draft: false
+layout: "single"
+---
 
 This tutorial describes how to download and execute the inferential analyses as
 described in "Inference-based assessment of identifiability in nonlinear biological models",

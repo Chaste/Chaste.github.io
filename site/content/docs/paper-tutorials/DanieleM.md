@@ -1,10 +1,14 @@
+---
+title: "Cell-based simulation: multiple crypts and a villus"
+draft: false
+layout: "single"
+---
+
 This tutorial was generated from the file projects/DanieleM/test/TestCryptsAndVillusLiteratePaper.hpp at revision r26738.
 Note that the code is given in full at the bottom of the page.
 
 
 {{< img src="/fig/paper-tutorials/combined.png" alt="Crypts and villus" h="200px" >}}
-
-## Cell-based simulation: multiple crypts and a villus
 
 On this wiki page we describe in detail the code that is used to run this example from the paper.
 

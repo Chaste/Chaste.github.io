@@ -1,4 +1,8 @@
-## [PyChaste](https://github.com/Chaste/trac_archive/wiki/Py-Chaste) Project
+---
+title: "PyChaste"
+draft: false
+layout: "single"
+---
 
 The [PyChaste](https://github.com/Chaste/trac_archive/wiki/Py-Chaste) project is a Python package which wraps a small amount of Chaste functionality. It provides common Chaste functionality to other projects with Python bindings, such as the [Angiogenesis Project](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Angiogenesis).
 

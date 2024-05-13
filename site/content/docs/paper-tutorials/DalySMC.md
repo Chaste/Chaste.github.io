@@ -1,4 +1,8 @@
-## Two Sequential Monte Carlo Samplers for Exact and Approximate Bayesian Inference on Cardiac Models
+---
+title: "Two Sequential Monte Carlo Samplers for Exact and Approximate Bayesian Inference on Cardiac Models"
+draft: false
+layout: "single"
+---
 
 This tutorial describes how to download and execute the Sequential Monte Carlo code
 for inference on the linear, polynomial, and O'Hara-Rudy models as described in "Two Sequential Monte Carlo Samplers for Exact and Approximate Bayesian Inference on Cardiac Models",

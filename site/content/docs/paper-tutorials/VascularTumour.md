@@ -1,4 +1,8 @@
-## Chaste: an open source C++ library for computational physiology and biology
+---
+title: "On-Lattice Agent-based Simulation of Populations of Cells within the Open-Source Chaste Framework"
+draft: false
+layout: "single"
+---
 
 Welcome to the Chaste wiki.
 
