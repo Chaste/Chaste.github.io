@@ -12,19 +12,16 @@ as described in Section 3.1.
 ## Use
 
 Both tests in this file are designed to be run twice:
-
 ```
 
 # in serial
 scons build=GccOptNative projects/Harvey2015/test/TestUnitValidationLiteratePaper.hpp
 # In parallel
 scons build=GccOptNative_2 projects/Harvey2015/test/TestUnitValidationLiteratePaper.hpp
-
 ```
 
 
 After this the positional output may be checked to machine output precision:
-
 ```
 
 cd /tmp/$USER/testoutput
@@ -32,7 +29,6 @@ cd /tmp/$USER/testoutput
 diff ValidateTwoCells_1_Procs/results_from_time_0/results.viznodes ValidateTwoCells_2_Procs/results_from_time_0/results.viznodes
 # second test
 diff ValidateTwoCellsOneProc_1_Procs/results_from_time_0/results.viznodes ValidateTwoCellsOneProc_2_Procs/results_from_time_0/results.viznodes
-
 ```
 
 The `results.viznode` file show one line per timestep with the x,y,z coordinates of each cell listed in order.
@@ -41,12 +37,10 @@ Note that the output is *not* given to machine precision (only C++ `stdio` preci
 the  `NodeLocationWriter` (see wiki:PaperTutorials/Harvey2015/ValidateSimulation).
 
 VTK files will contain full machine precision position information, together with process ownership.
-
 ```
 
 paraview --data=/tmp/$USER/testoutput/ValidateTwoCells_2_Procs/results_from_time_0/results.pvd
 # View the cells by adding the Glyph filter and rotating the z-axis
-
 ```
 
 ## Code overview
@@ -54,9 +48,7 @@ paraview --data=/tmp/$USER/testoutput/ValidateTwoCells_2_Procs/results_from_time
 The first thing to do is to include the necessary header files.
 
 
-```
-
-#!cpp
+```cpp
 // For any extra output
 #include <iostream>
 
@@ -75,21 +67,15 @@ The first thing to do is to include the necessary header files.
 
 // Required to run the simulation in parallel
 #include "PetscSetupAndFinalize.hpp"
-
-
 ```
 
 ## The test suite
 
 
-```
-
-#!cpp
+```cpp
 class TestUnitValidation : public AbstractCellBasedTestSuite
 {
 public:
-
-
 ```
 
 ## First unit test
@@ -109,39 +95,29 @@ All other processes are assigned no cells.
 The forces between cells are such that the cells are in repulsion
 
 
-```
-
-#!cpp
+```cpp
     void TestTwoCellOnTwoProcesses() throw (Exception)
     {
-
 ```
 
 
 Here we make define the node positions.  When run in parallel this is done on every process.
 
 
-```
-
-#!cpp
+```cpp
         std::vector<Node<3>* > nodes;
         nodes.push_back(new Node<3>(0, false, 0.0, 0.0, 0.0));
         nodes.push_back(new Node<3>(0, false, 0.0, 0.0, 0.4));
         nodes.push_back(new Node<3>(0, false, 0.0, 0.0, 0.6));
-
-
 ```
 
 The nodes are used to construct the `NodesOnlyMesh` object with a "maximum interaction distance" of 0.5.
 This parameter informs strip size for the parallelisation.  The bounding geometric region
 
 
-```
-
-#!cpp
+```cpp
         NodesOnlyMesh<3> mesh;
         mesh.ConstructNodesWithoutMesh(nodes, 0.5);
-
 ```
 
 
@@ -153,42 +129,30 @@ The following is to confirm that when run parallel in the distributed mesh
 
 
 
-```
-
-#!cpp
+```cpp
         std::cout << "Node/cell ownership on process "<<PetscTools::GetMyRank();
         for (unsigned i=0; i<3; i++)
         {
             std::cout<<"\t"<<mesh.rGetInitiallyOwnedNodes()[i];
         }
         std::cout<<"\n";
-
-
 ```
 
 Cells are constructed for each of the 3 nodes
 
-```
-
-#!cpp
+```cpp
         std::vector<CellPtr> cells;
         CellsGenerator<FixedDurationGenerationBasedCellCycleModel, 3> cells_generator;
         cells_generator.GenerateBasicRandom(cells, mesh.GetNumNodes());
-
-
 ```
 
 A population is constructed.  The absolute movement threshold is there to alter us
 if a cell moves further than expected (since such a cell might move over multiple strips).
 
 
-```
-
-#!cpp
+```cpp
         NodeBasedCellPopulation<3> population(mesh, cells);
         population.SetAbsoluteMovementThreshold(0.5);
-
-
 ```
 
 Name the output folder based on how many processes we are running.
@@ -196,51 +160,35 @@ This folder is to be found relative to `CHASTE_TEST_OUTPUT` which by default is
 `/tmp/$USER/testoutput`
 
 
-```
-
-#!cpp
+```cpp
         std::ostringstream num_procs;
         num_procs << PetscTools::GetNumProcs();
         std::string output_directory = "ValidateTwoCells_" + num_procs.str() + "_Procs";
-
-
 ```
 
 A simulation is set up to run for one hour (of simulated time) in 120 discrete steps.
 
-```
-
-#!cpp
+```cpp
         OffLatticeSimulation<3> simulator(population);
         simulator.SetOutputDirectory(output_directory);
         simulator.SetEndTime(1.0);
         simulator.SetDt(1.0/120.0);
-
-
 ```
 
 Create a force law and pass it to the `OffLatticeSimulation`.  The cells have been positioned
 such that the force will repel them from each other.
 
-```
-
-#!cpp
+```cpp
         MAKE_PTR(GeneralisedLinearSpringForce<3>, p_force);
         p_force->SetCutOffLength(0.5);
         simulator.AddForce(p_force);
-
-
 ```
 
 Run the simulation
 
-```
-
-#!cpp
+```cpp
         simulator.Solve();
     }
-
-
 ```
 
 ## Second unit test
@@ -261,9 +209,7 @@ The forces between cells are such that the cells are in repulsion.  Cells will m
 simulation.
 
 
-```
-
-#!cpp
+```cpp
     void TestTwoCellOnOneProcesses() throw (Exception)
     {
         std::vector<Node<3>* > nodes;
@@ -309,8 +255,6 @@ simulation.
         simulator.Solve();
     }
 };
-
-
 ```
 
 
@@ -322,9 +266,7 @@ The full code is given below
 ## File name `TestUnitValidationLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 // For any extra output
 #include <iostream>
 
@@ -432,8 +374,6 @@ public:
         simulator.Solve();
     }
 };
-
-
 ```
 
 

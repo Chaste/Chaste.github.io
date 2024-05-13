@@ -17,24 +17,19 @@ Start by introducing the necessary header files. The first contain functionality
 smart pointer tools and output management,
 
 
-```
-
-#!cpp
+```cpp
 #include <vector>
 #include "SmartPointers.hpp"
 #include "OutputFileHandler.hpp"
 #include "AbstractCellBasedWithTimingsTestSuite.hpp"
 #include "RandomNumberGenerator.hpp"
-
 ```
 
 
 dimensional analysis,
 
 
-```
-
-#!cpp
+```cpp
 #include "DimensionalChastePoint.hpp"
 #include "UnitCollection.hpp"
 #include "Owen11Parameters.hpp"
@@ -42,28 +37,22 @@ dimensional analysis,
 #include "GenericParameters.hpp"
 #include "ParameterCollection.hpp"
 #include "BaseUnits.hpp"
-
 ```
 
 
 vessel networks,
 
 
-```
-
-#!cpp
+```cpp
 #include "VesselNode.hpp"
 #include "VesselNetwork.hpp"
-
 ```
 
 
 cells,
 
 
-```
-
-#!cpp
+```cpp
 #include "CancerCellMutationState.hpp"
 #include "StalkCellMutationState.hpp"
 #include "QuiescentCancerCellMutationState.hpp"
@@ -72,16 +61,13 @@ cells,
 #include "Owen2011TrackingModifier.hpp"
 #include "CaBasedCellPopulation.hpp"
 #include "ApoptoticCellKiller.hpp"
-
 ```
 
 
 flow,
 
 
-```
-
-#!cpp
+```cpp
 #include "VesselImpedanceCalculator.hpp"
 #include "FlowSolver.hpp"
 #include "ConstantHaematocritSolver.hpp"
@@ -91,16 +77,13 @@ flow,
 #include "MetabolicStimulusCalculator.hpp"
 #include "ShrinkingStimulusCalculator.hpp"
 #include "ViscosityCalculator.hpp"
-
 ```
 
 
 grids and PDEs,
 
 
-```
-
-#!cpp
+```cpp
 #include "RegularGrid.hpp"
 #include "FiniteDifferenceSolver.hpp"
 #include "CellBasedDiscreteSource.hpp"
@@ -108,43 +91,34 @@ grids and PDEs,
 #include "CellStateDependentDiscreteSource.hpp"
 #include "DiscreteContinuumBoundaryCondition.hpp"
 #include "LinearSteadyStateDiffusionReactionPde.hpp"
-
 ```
 
 
 angiogenesis and regression,
 
 
-```
-
-#!cpp
+```cpp
 #include "Owen2011SproutingRule.hpp"
 #include "Owen2011MigrationRule.hpp"
 #include "AngiogenesisSolver.hpp"
 #include "WallShearStressBasedRegressionSolver.hpp"
-
 ```
 
 
 and classes for managing the simulation.
 
 
-```
-
-#!cpp
+```cpp
 #include "MicrovesselSolver.hpp"
 #include "MicrovesselSimulationModifier.hpp"
 #include "OnLatticeSimulation.hpp"
-
 ```
 
 
 This should appear last.
 
 
-```
-
-#!cpp
+```cpp
 #include "PetscSetupAndFinalize.hpp"
 class TestLatticeBasedAngiogenesisLiteratePaper : public AbstractCellBasedWithTimingsTestSuite
 {
@@ -153,19 +127,15 @@ public:
 
     void Test2dLatticeBased() throw (Exception)
     {
-
 ```
 
 
 Set up output file management and seed the random number generator.
 
 
-```
-
-#!cpp
+```cpp
         MAKE_PTR_ARGS(OutputFileHandler, p_handler, ("TestLatticeBasedAngiogenesisLiteratePaper"));
         RandomNumberGenerator::Instance()->Reseed(12345);
-
 ```
 
 
@@ -175,14 +145,11 @@ allow non-dimensionalisation when sending quantities to external solvers and re-
 results. For our purposes microns for length and hours for time are suitable base units.
 
 
-```
-
-#!cpp
+```cpp
         units::quantity<unit::length> reference_length(1.0 * unit::microns);
         units::quantity<unit::time> reference_time(1.0* unit::hours);
         BaseUnits::Instance()->SetReferenceLengthScale(reference_length);
         BaseUnits::Instance()->SetReferenceTimeScale(reference_time);
-
 ```
 
 
@@ -193,9 +160,7 @@ Alternatively each parameter supports the `<<` operator for streaming. When we g
 A record of all parameters used in a simulation can be dumped to file on completion, as will be shown below.
 
 
-```
-
-#!cpp
+```cpp
         boost::shared_ptr<RegularGrid<2> > p_grid = RegularGrid<2>::Create();
         units::quantity<unit::length> grid_spacing = Owen11Parameters::mpLatticeSpacing->GetValue("User");
         p_grid->SetSpacing(grid_spacing);
@@ -203,7 +168,6 @@ A record of all parameters used in a simulation can be dumped to file on complet
         extents[0] = 51; // num x
         extents[1] = 51; // num_y
         p_grid->SetExtents(extents);
-
 ```
 
 
@@ -213,11 +177,8 @@ using standard Paraview operations, not detailed here.
 ![source:/chaste/projects/Microvessel/test/tutorials/images/Lattice_Tutorial_Initial_Grid.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//source%3A%2Fchaste%2Fprojects%2FMicrovessel%2Ftest%2Ftutorials%2Fimages%2FLattice_Tutorial_Initial_Grid.png)
 
 
-```
-
-#!cpp
+```cpp
         p_grid->Write(p_handler);
-
 ```
 
 
@@ -225,9 +186,7 @@ Next, set up the vessel network, this will initially consist of two, large count
 and outlet pressures and flags.
 
 
-```
-
-#!cpp
+```cpp
         boost::shared_ptr<VesselNode<2> > p_node11 = VesselNode<2>::Create(0.0, 400.0, 0.0, reference_length);
         boost::shared_ptr<VesselNode<2> > p_node12 = VesselNode<2>::Create(2000.0, 400.0, 0.0, reference_length);
         p_node11->GetFlowProperties()->SetIsInputNode(true);
@@ -245,7 +204,6 @@ and outlet pressures and flags.
         boost::shared_ptr<VesselNetwork<2> > p_network = VesselNetwork<2>::Create();
         p_network->AddVessel(p_vessel1);
         p_network->AddVessel(p_vessel2);
-
 ```
 
 
@@ -254,11 +212,8 @@ Again, we can write the network to file for quick visualization with Paraview.
 ![source:/chaste/projects/Microvessel/test/tutorials/images/Lattice_Angiogenesis_Tutorial_Grid_Vessels.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//source%3A%2Fchaste%2Fprojects%2FMicrovessel%2Ftest%2Ftutorials%2Fimages%2FLattice_Angiogenesis_Tutorial_Grid_Vessels.png)
 
 
-```
-
-#!cpp
+```cpp
         p_network->Write(p_handler->GetOutputDirectoryFullPath() + "initial_network.vtp");
-
 ```
 
 
@@ -267,16 +222,13 @@ filled with normal cells and a tumour spheroid in the middle. We can use a gener
 the population using conventional Cell Based Chaste methods.
 
 
-```
-
-#!cpp
+```cpp
         boost::shared_ptr<Owen11CellPopulationGenerator<2> > p_cell_population_genenerator = Owen11CellPopulationGenerator<2>::Create();
         p_cell_population_genenerator->SetRegularGrid(p_grid);
         p_cell_population_genenerator->SetVesselNetwork(p_network);
         units::quantity<unit::length> tumour_radius(300.0 * unit::microns);
         p_cell_population_genenerator->SetTumourRadius(tumour_radius);
         boost::shared_ptr<CaBasedCellPopulation<2> > p_cell_population = p_cell_population_genenerator->Update();
-
 ```
 
 
@@ -290,24 +242,19 @@ oxygen is shown below:
 ![source:/chaste/projects/Microvessel/test/tutorials/images/LatticeTutorialSampleOxygen.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//source%3A%2Fchaste%2Fprojects%2FMicrovessel%2Ftest%2Ftutorials%2Fimages%2FLatticeTutorialSampleOxygen.png)
 
 
-```
-
-#!cpp
+```cpp
         boost::shared_ptr<LinearSteadyStateDiffusionReactionPde<2> > p_oxygen_pde = LinearSteadyStateDiffusionReactionPde<2>::Create();
         p_oxygen_pde->SetIsotropicDiffusionConstant(Owen11Parameters::mpOxygenDiffusivity->GetValue("User"));
         boost::shared_ptr<CellBasedDiscreteSource<2> > p_cell_oxygen_sink = CellBasedDiscreteSource<2>::Create();
         p_cell_oxygen_sink->SetLinearInUConsumptionRatePerCell(Owen11Parameters::mpCellOxygenConsumptionRate->GetValue("User"));
         p_oxygen_pde->AddDiscreteSource(p_cell_oxygen_sink);
-
 ```
 
 
 Vessels release oxygen depending on their haematocrit levels
 
 
-```
-
-#!cpp
+```cpp
         boost::shared_ptr<VesselBasedDiscreteSource<2> > p_vessel_oxygen_source = VesselBasedDiscreteSource<2>::Create();
         units::quantity<unit::solubility> oxygen_solubility_at_stp = Secomb04Parameters::mpOxygenVolumetricSolubility->GetValue("User") *
                 GenericParameters::mpGasConcentrationAtStp->GetValue("User");
@@ -317,21 +264,17 @@ Vessels release oxygen depending on their haematocrit levels
         p_vessel_oxygen_source->SetVesselPermeability(Owen11Parameters::mpVesselOxygenPermeability->GetValue("User"));
         p_vessel_oxygen_source->SetReferenceHaematocrit(Owen11Parameters::mpInflowHaematocrit->GetValue("User"));
         p_oxygen_pde->AddDiscreteSource(p_vessel_oxygen_source);
-
 ```
 
 
 Set up a finite difference solver and pass it the pde and grid.
 
 
-```
-
-#!cpp
+```cpp
         boost::shared_ptr<FiniteDifferenceSolver<2> > p_oxygen_solver = FiniteDifferenceSolver<2>::Create();
         p_oxygen_solver->SetPde(p_oxygen_pde);
         p_oxygen_solver->SetLabel("oxygen");
         p_oxygen_solver->SetGrid(p_grid);
-
 ```
 
 
@@ -341,13 +284,10 @@ type of discrete source. A sample PDE solution for VEGF is shown below.
 ![source:/chaste/projects/Microvessel/test/tutorials/images/LatticeTutorialSampleVegf.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//source%3A%2Fchaste%2Fprojects%2FMicrovessel%2Ftest%2Ftutorials%2Fimages%2FLatticeTutorialSampleVegf.png)
 
 
-```
-
-#!cpp
+```cpp
         boost::shared_ptr<LinearSteadyStateDiffusionReactionPde<2> > p_vegf_pde = LinearSteadyStateDiffusionReactionPde<2>::Create();
         p_vegf_pde->SetIsotropicDiffusionConstant(Owen11Parameters::mpVegfDiffusivity->GetValue("User"));
         p_vegf_pde->SetContinuumLinearInUTerm(-Owen11Parameters::mpVegfDecayRate->GetValue("User"));
-
 ```
 
 
@@ -355,9 +295,7 @@ Set up a map for different release rates depending on cell type. Also include a 
 there is no release.
 
 
-```
-
-#!cpp
+```cpp
         boost::shared_ptr<CellStateDependentDiscreteSource<2> > p_normal_and_quiescent_cell_source = CellStateDependentDiscreteSource<2>::Create();
         std::map<unsigned, units::quantity<unit::concentration_flow_rate> > normal_and_quiescent_cell_rates;
         std::map<unsigned, units::quantity<unit::concentration> > normal_and_quiescent_cell_rate_thresholds;
@@ -371,35 +309,28 @@ there is no release.
         p_normal_and_quiescent_cell_source->SetLabelName("VEGF");
         p_normal_and_quiescent_cell_source->SetStateRateThresholdMap(normal_and_quiescent_cell_rate_thresholds);
         p_vegf_pde->AddDiscreteSource(p_normal_and_quiescent_cell_source);
-
 ```
 
 
 Add a vessel related VEGF sink
 
 
-```
-
-#!cpp
+```cpp
         boost::shared_ptr<VesselBasedDiscreteSource<2> > p_vessel_vegf_sink = VesselBasedDiscreteSource<2>::Create();
         p_vessel_vegf_sink->SetReferenceConcentration(0.0*unit::mole_per_metre_cubed);
         p_vessel_vegf_sink->SetVesselPermeability(Owen11Parameters::mpVesselVegfPermeability->GetValue("User"));
         p_vegf_pde->AddDiscreteSource(p_vessel_vegf_sink);
-
 ```
 
 
 Set up a finite difference solver as before.
 
 
-```
-
-#!cpp
+```cpp
         boost::shared_ptr<FiniteDifferenceSolver<2> > p_vegf_solver = FiniteDifferenceSolver<2>::Create();
         p_vegf_solver->SetPde(p_vegf_pde);
         p_vegf_solver->SetLabel("VEGF_Extracellular");
         p_vegf_solver->SetGrid(p_grid);
-
 ```
 
 
@@ -410,23 +341,18 @@ flow related stimuli. A sample plot of the stimulus distrbution during a simulat
 ![source:/chaste/projects/Microvessel/test/tutorials/images/LatticeTutorialSampleGrowth.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//source%3A%2Fchaste%2Fprojects%2FMicrovessel%2Ftest%2Ftutorials%2Fimages%2FLatticeTutorialSampleGrowth.png)
 
 
-```
-
-#!cpp
+```cpp
         units::quantity<unit::length> large_vessel_radius(25.0 * unit::microns);
         p_network->SetSegmentRadii(large_vessel_radius);
         units::quantity<unit::dynamic_viscosity> viscosity = Owen11Parameters::mpPlasmaViscosity->GetValue("User");
         p_network->SetSegmentViscosity(viscosity);
-
 ```
 
 
 Set up the pre- and post flow calculators.
 
 
-```
-
-#!cpp
+```cpp
         boost::shared_ptr<VesselImpedanceCalculator<2> > p_impedance_calculator = VesselImpedanceCalculator<2>::Create();
         boost::shared_ptr<ConstantHaematocritSolver<2> > p_haematocrit_calculator = ConstantHaematocritSolver<2>::Create();
         p_haematocrit_calculator->SetHaematocrit(Owen11Parameters::mpInflowHaematocrit->GetValue("User"));
@@ -435,16 +361,13 @@ Set up the pre- and post flow calculators.
         boost::shared_ptr<MetabolicStimulusCalculator<2> > p_metabolic_stim_calculator = MetabolicStimulusCalculator<2>::Create();
         boost::shared_ptr<ShrinkingStimulusCalculator<2> > p_shrinking_stimulus_calculator = ShrinkingStimulusCalculator<2>::Create();
         boost::shared_ptr<ViscosityCalculator<2> > p_viscosity_calculator = ViscosityCalculator<2>::Create();
-
 ```
 
 
 Set up and configure the structural adaptation solver.
 
 
-```
-
-#!cpp
+```cpp
         boost::shared_ptr<StructuralAdaptationSolver<2> > p_structural_adaptation_solver = StructuralAdaptationSolver<2>::Create();
         p_structural_adaptation_solver->SetTolerance(0.0001);
         p_structural_adaptation_solver->SetMaxIterations(100);
@@ -456,28 +379,22 @@ Set up and configure the structural adaptation solver.
         p_structural_adaptation_solver->AddPostFlowSolveCalculator(p_mech_stimulus_calculator);
 //        p_structural_adaptation_solver->AddPostFlowSolveCalculator(p_shrinking_stimulus_calculator);
         p_structural_adaptation_solver->AddPostFlowSolveCalculator(p_viscosity_calculator);
-
 ```
 
 
 Set up a regression solver.
 
 
-```
-
-#!cpp
+```cpp
         boost::shared_ptr<WallShearStressBasedRegressionSolver<2> > p_regression_solver =
                 WallShearStressBasedRegressionSolver<2>::Create();
-
 ```
 
 
 Set up an angiogenesis solver and add sprouting and migration rules.
 
 
-```
-
-#!cpp
+```cpp
         boost::shared_ptr<AngiogenesisSolver<2> > p_angiogenesis_solver = AngiogenesisSolver<2>::Create();
         boost::shared_ptr<Owen2011SproutingRule<2> > p_sprouting_rule = Owen2011SproutingRule<2>::Create();
         boost::shared_ptr<Owen2011MigrationRule<2> > p_migration_rule = Owen2011MigrationRule<2>::Create();
@@ -487,16 +404,13 @@ Set up an angiogenesis solver and add sprouting and migration rules.
         p_migration_rule->SetDiscreteContinuumSolver(p_vegf_solver);
         p_angiogenesis_solver->SetVesselGrid(p_grid);
         p_angiogenesis_solver->SetVesselNetwork(p_network);
-
 ```
 
 
 The microvessel solver will manage all aspects of the vessel solve.
 
 
-```
-
-#!cpp
+```cpp
         boost::shared_ptr<MicrovesselSolver<2> > p_microvessel_solver = MicrovesselSolver<2>::Create();
         p_microvessel_solver->SetVesselNetwork(p_network);
         p_microvessel_solver->SetOutputFrequency(5);
@@ -505,7 +419,6 @@ The microvessel solver will manage all aspects of the vessel solve.
         p_microvessel_solver->SetStructuralAdaptationSolver(p_structural_adaptation_solver);
         p_microvessel_solver->SetRegressionSolver(p_regression_solver);
         p_microvessel_solver->SetAngiogenesisSolver(p_angiogenesis_solver);
-
 ```
 
 
@@ -513,65 +426,50 @@ The microvessel solution modifier will link the vessel and cell solvers. We need
 which extracellular fields to update based on PDE solutions.
 
 
-```
-
-#!cpp
+```cpp
         boost::shared_ptr<MicrovesselSimulationModifier<2> > p_microvessel_modifier = MicrovesselSimulationModifier<2>::Create();
         p_microvessel_modifier->SetMicrovesselSolver(p_microvessel_solver);
         std::vector<std::string> update_labels;
         update_labels.push_back("oxygen");
         update_labels.push_back("VEGF_Extracellular");
         p_microvessel_modifier->SetCellDataUpdateLabels(update_labels);
-
 ```
 
 
 The full simulation is run as a typical Cell Based Chaste simulation
 
 
-```
-
-#!cpp
+```cpp
         OnLatticeSimulation<2> simulator(*p_cell_population);
         simulator.AddSimulationModifier(p_microvessel_modifier);
-
 ```
 
 
 Add a killer to remove apoptotic cells
 
 
-```
-
-#!cpp
+```cpp
         boost::shared_ptr<ApoptoticCellKiller<2> > p_apoptotic_cell_killer(new ApoptoticCellKiller<2>(p_cell_population.get()));
         simulator.AddCellKiller(p_apoptotic_cell_killer);
-
 ```
 
 
 Add another modifier for updating cell cycle quantities.
 
 
-```
-
-#!cpp
+```cpp
         boost::shared_ptr<Owen2011TrackingModifier<2> > p_owen11_tracking_modifier(new Owen2011TrackingModifier<2>);
         simulator.AddSimulationModifier(p_owen11_tracking_modifier);
-
 ```
 
 
 Set up the remainder of the simulation
 
 
-```
-
-#!cpp
+```cpp
         simulator.SetOutputDirectory("TestLatticeBasedAngiogenesisLiteratePaper");
         simulator.SetSamplingTimestepMultiple(5);
         simulator.SetDt(0.5);
-
 ```
 
 
@@ -579,36 +477,26 @@ This end time corresponds to roughly 10 minutes run-time on a desktop PC. Increa
 preferred. The end time used in Owen et al. 2011 is 4800 hours.
 
 
-```
-
-#!cpp
+```cpp
         simulator.SetEndTime(20.0);
-
 ```
 
 
 Do the solve. A sample solution is shown at the top of this test.
 
 
-```
-
-#!cpp
+```cpp
         simulator.Solve();
-
 ```
 
 
 Dump the parameters to file for inspection.
 
 
-```
-
-#!cpp
+```cpp
         ParameterCollection::Instance()->DumpToFile(p_handler->GetOutputDirectoryFullPath()+"parameter_collection.xml");
     }
 };
-
-
 ```
 
 
@@ -620,9 +508,7 @@ The full code is given below
 ## File name `TestLatticeBasedAngiogenesisLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 #include <vector>
 #include "SmartPointers.hpp"
 #include "OutputFileHandler.hpp"
@@ -818,8 +704,6 @@ public:
         ParameterCollection::Instance()->DumpToFile(p_handler->GetOutputDirectoryFullPath()+"parameter_collection.xml");
     }
 };
-
-
 ```
 
 

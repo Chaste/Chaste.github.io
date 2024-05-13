@@ -4,7 +4,6 @@
 This wiki page is auto-generated from the file
 projects/Harvey2015/Summary.wiki
 edit that file, don't edit this page on trac!
-
 ```
 
 
@@ -58,38 +57,30 @@ There are three folders - `build`, `src` and `test`.
 Once you have all the Chaste dependencies installed (as per https://chaste.cs.ox.ac.uk/cgi-bin/trac.cgi/wiki/DeveloperInstallGuide
 using Ubuntu is by far the easiest way to do this). You should get a copy of Chaste 3.2 (from http://www.cs.ox.ac.uk/chaste/download)
 and copy the folder containing this README file into
-
 ```
 
 <Chaste3.2 path>/projects/Harvey2015
-
 ```
 
 You can then run things with, for example,
-
 ```
 
 cd <Chaste3.2 path>
 scons build=GccOptNative test_suite=projects/Harvey2015/test/TestUnitValidationLiteratePaper.hpp
-
 ```
 
 to run the simulations in parallel on (e.g.) 2 processes the command is
-
 ```
 
 scons build=GccOptNative_2 test_suite=projects/Harvey2015/test/TestUnitValidationLiteratePaper.hpp
-
 ```
 
 
 To obtain optimal results on a given architecture, you should use no more than the number of physical
 processors contained in the machine. On most Linux platforms this can be found using a command such as:
-
 ```
 
 grep ^processor /proc/cpuinfo | wc -l
-
 ```
 
 

@@ -7,9 +7,7 @@ Note that the code is given in full at the bottom of the page.
 This tutorial is designed to introduce...
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include <vector>
 #include "Owen2011SproutingRule.hpp"
@@ -257,8 +255,6 @@ public:
 //        p_vascular_tumour_solver->Run();
 //    }
 };
-
-
 ```
 
 
@@ -270,9 +266,7 @@ The full code is given below
 ## File name `TestLatticeBasedAngiogenesisLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include <vector>
 #include "Owen2011SproutingRule.hpp"
@@ -520,8 +514,6 @@ public:
 //        p_vascular_tumour_solver->Run();
 //    }
 };
-
-
 ```
 
 

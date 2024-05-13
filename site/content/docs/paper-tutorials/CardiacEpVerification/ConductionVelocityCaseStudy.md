@@ -11,25 +11,19 @@ extension of a standard monodomain simulation.
 The following are all standard includes:
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "MonodomainProblem.hpp"
 #include "DistributedTetrahedralMesh.hpp"
 #include "AbstractCardiacCellFactory.hpp"
 #include "LuoRudy1991.hpp"
 #include "PetscSetupAndFinalize.hpp"
-
-
 ```
 
 Define a simple cell factory which creates Luo-Rudy cells, and stimulates the given region.
 
 
-```
-
-#!cpp
+```cpp
 class SimpleCellFactory : public AbstractCardiacCellFactory<1>
 {
 private:
@@ -57,17 +51,13 @@ public:
         }
     }
 };
-
-
 ```
 
 This class inherits from `MonodomainProblem` but does some extra work at the end of every (printing) timestep.
 (Note: the printing timestep will be set to be the same as the pde timestep).
 
 
-```
-
-#!cpp
+```cpp
 class MonodomainProblemWithCvComputer1d : public MonodomainProblem<1>
 {
 private:
@@ -90,8 +80,6 @@ public:
     {
         delete mpVoltageLastTimestep;
     }
-
-
 ```
 
 At the end of every timestep, determine if the voltage for the nodes at x=0.25 and x=0.75 have just become positive. If so,
@@ -99,9 +87,7 @@ use the current value of the voltage and the last value of the voltage, and line
 voltage became positive.
 
 
-```
-
-#!cpp
+```cpp
     void OnEndOfTimestep(double time)
     {
         unsigned quarter_index = (this->mpMesh->GetNumNodes()-1)/4;
@@ -146,15 +132,11 @@ voltage became positive.
 
         mLastTime = time;
     }
-
-
 ```
 
 Get the conduction velocity from the activation times.
 
-```
-
-#!cpp
+```cpp
     double GetConductionVelocity()
     {
         unsigned quarter_index = (this->mpMesh->GetNumNodes()-1)/4;
@@ -173,36 +155,26 @@ Get the conduction velocity from the activation times.
 class TestConductionVelocityCaseStudyLiteratePaper : public CxxTest::TestSuite
 {
 private:
-
 ```
 
 The main simulation function:
 
-```
-
-#!cpp
+```cpp
     void Run(double parametersScaleFactor/*how much to scale h and dt*/, bool doTest=false /*see later*/)
     {
-
 ```
 
 Define some initial parameters:
 
-```
-
-#!cpp
+```cpp
         double width = 1.0;      //cm
         double stim_width = 0.1; //cm
         double end_time = 10.0;  //ms
-
-
 ```
 
 Define h and dt. Note h is proportional to dt.
 
-```
-
-#!cpp
+```cpp
         double init_h = 0.05; // cm, ie 500 um
         double h  = init_h*parametersScaleFactor;
         double dt = 0.01*parametersScaleFactor;
@@ -210,15 +182,11 @@ Define h and dt. Note h is proportional to dt.
         double dt_ode = dt;
         double dt_pde = dt;
         double printing_dt = dt;
-
-
 ```
 
 Run a standard monodomain simulation, except use our class `MonodomainProblemWithCvComputer1d`:
 
-```
-
-#!cpp
+```cpp
         DistributedTetrahedralMesh<1,1> mesh;
         mesh.ConstructRegularSlabMesh(h, width);
 
@@ -244,29 +212,21 @@ Run a standard monodomain simulation, except use our class `MonodomainProblemWit
         //monodomain_problem.SetWriteInfo();
         monodomain_problem.Initialise();
         monodomain_problem.Solve();
-
-
 ```
 
 Print results:
 
-```
-
-#!cpp
+```cpp
         std::cout << std::setprecision(9);
         double cv = monodomain_problem.GetConductionVelocity();
         std::cout << h << ", " << dt << ", " << cv << "\n";
-
-
 ```
 
 If in 'testing mode', which only applies if the coarsest mesh is being used, we do a quick
 test that nothing has changed:
 
 
-```
-
-#!cpp
+```cpp
         if(doTest)
         {
             if(parametersScaleFactor!=1.0)
@@ -276,16 +236,12 @@ test that nothing has changed:
             TS_ASSERT_DELTA(cv, 0.0736377, 1e-4);
         }
     }
-
-
 ```
 
 The code which runs the above. The Richardson extrapolation of the results in done outside of Chaste. See the folder named 'other' in
 this project of a text file of the results.
 
-```
-
-#!cpp
+```cpp
 public:
     void TestRunTest() throw (Exception)
     {
@@ -304,7 +260,6 @@ public:
         }
     }
 };
-
 ```
 
 To obtain the results for the monodomain model problem QOI (Table 2), run `TestMonodomain1d()` in `TestEpAgainstExactSolutionsLiteratePaper`,
@@ -320,9 +275,7 @@ The full code is given below
 ## File name `TestConductionVelocityCaseStudyLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "MonodomainProblem.hpp"
 #include "DistributedTetrahedralMesh.hpp"
@@ -516,7 +469,6 @@ public:
         }
     }
 };
-
 ```
 
 

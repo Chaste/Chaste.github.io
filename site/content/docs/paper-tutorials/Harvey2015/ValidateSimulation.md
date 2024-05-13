@@ -11,8 +11,6 @@ of the output results of the simulation.
 
 **Note:  before compiling this code you need to alter the precision of the output.**
 You can do so by adding single line `setprecision(..)` to `NodeLocationWriter` in the main code base
-
-
 ```
 
 Index: cell_based/src/population/writers/population_writers/NodeLocationWriter.cpp
@@ -27,32 +25,26 @@ void NodeLocationWriter<ELEMENT_DIM, SPACE_DIM>::VisitAnyPopulation(AbstractCell
 for (typename AbstractMesh<SPACE_DIM, SPACE_DIM>::NodeIterator node_iter = pCellPopulation->rGetMesh().GetNodeIteratorBegin();
 node_iter != pCellPopulation->rGetMesh().GetNodeIteratorEnd();
 ++node_iter)
-
 ```
 
 ## Use
 
 This test suite is designed to be run twice.  Each run will take roughly a minute (depending on your machine configuration).
-
-
 ```
 
 # in serial
 scons build=GccOptNative projects/Harvey2015/test/TestValidateSimulationLiteratePaper.hpp
 # In parallel
 scons build=GccOptNative_2 projects/Harvey2015/test/TestValidateSimulationLiteratePaper.hpp
-
 ```
 
 
 After this the positional output may be checked to machine output precision:
-
 ```
 
 # May need to see this to $CHASTE_TEST_OUTPUT
 export OUTPUT=/tmp/$USER/testoutput
 ./projects/Harvey2015/test/CompareParallelResults.py 2 $OUTPUT/ValidateSimulation3Rand1/results_from_time_0/results.viznodes $OUTPUT/ValidateSimulation3Rand2/results_from_time_0/results.viznodes
-
 ```
 
 ## Code overview
@@ -62,9 +54,7 @@ The first thing to do is to include the necessary header files.
 ### Include header files
 
 
-```
-
-#!cpp
+```cpp
 // The testing framework
 #include <cxxtest/TestSuite.h>
 #include "AbstractCellBasedTestSuite.hpp"
@@ -96,8 +86,6 @@ public:
         mesh.SetMaximumInteractionDistance(1.6);
 
         std::vector<CellPtr> cells;
-
-
 ```
 
 Here we call a parallel helper method which reads the cell locations
@@ -106,9 +94,7 @@ from a file on disk.
 The proliferative type ensures that the cells are not growing.
 
 
-```
-
-#!cpp
+```cpp
         ParallelCellsGenerator<FixedDurationGenerationBasedCellCycleModel, 2> generator;
 
         generator.GenerateParallelCells("projects/Harvey2015/test/data/2DCellsCircle.dat",
@@ -121,8 +107,6 @@ The proliferative type ensures that the cells are not growing.
 
         // Set up cell-based simulation
         OffLatticeSimulation<2> simulator(node_based_cell_population);
-
-
 ```
 
 Output from this simulation is to be found relative to `CHASTE_TEST_OUTPUT` which by default is
@@ -130,9 +114,7 @@ Output from this simulation is to be found relative to `CHASTE_TEST_OUTPUT` whic
 The folder is suffixed by the number of processes involved in this calculation.
 
 
-```
-
-#!cpp
+```cpp
         std::ostringstream procs;
         procs << PetscTools::GetNumProcs();
         std::string output_directory = "ValidateSimulation3Rand" + procs.str();
@@ -148,22 +130,16 @@ The folder is suffixed by the number of processes involved in this calculation.
         simulator.SetSamplingTimestepMultiple(240);
         simulator.SetEndTime(100.0);
         simulator.Solve();
-
-
 ```
 
 Report on the time taken to run the simulation
 
 
-```
-
-#!cpp
+```cpp
         CellBasedEventHandler::Headings();
         CellBasedEventHandler::Report();
     }
 };
-
-
 ```
 
 
@@ -175,9 +151,7 @@ The full code is given below
 ## File name `TestValidateSimulationLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 // The testing framework
 #include <cxxtest/TestSuite.h>
 #include "AbstractCellBasedTestSuite.hpp"
@@ -243,8 +217,6 @@ public:
         CellBasedEventHandler::Report();
     }
 };
-
-
 ```
 
 

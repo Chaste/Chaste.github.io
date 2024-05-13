@@ -16,9 +16,7 @@ The easiest way to visualize these simulations is with Paraview.
 The first thing to do is to include the necessary header files.
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 
 // Must be included before other cell_based headers
@@ -69,16 +67,12 @@ The first thing to do is to include the necessary header files.
 #include "AdhesionCaSwitchingUpdateRule.hpp"
 
 #include "PetscSetupAndFinalize.hpp"
-
-
 ```
 
 This is where you can set parameters toi be used in all the simulations.
 
 
-```
-
-#!cpp
+```cpp
 static const double M_TIME_FOR_SIMULATION = 100; //100
 static const double M_NUM_CELLS_ACROSS = 10; // 10
 static const double M_UPTAKE_RATE = 0.01; // S in paper
@@ -88,16 +82,12 @@ static const double M_DUDT_COEFFICIENT = 1.0; // Not used in paper so 1
 class TestMorphogenMonolayerLiteratePaper : public AbstractCellBasedWithTimingsTestSuite
 {
 private:
-
-
 ```
 
 This is a helper method to generate cells and is used in all simulations.
 
 
-```
-
-#!cpp
+```cpp
     void GenerateCells(unsigned num_cells, std::vector<CellPtr>& rCells)
     {
         MAKE_PTR(WildTypeCellMutationState, p_state);
@@ -132,8 +122,6 @@ This is a helper method to generate cells and is used in all simulations.
      }
 
 public:
-
-
 ```
 
 ## CA
@@ -142,9 +130,7 @@ Simulate reaction diffusion on a growing a population of cells in the
 Cellular Automaton model.
 
 
-```
-
-#!cpp
+```cpp
     void TestCaBasedMorphogenMonolayer() throw (Exception)
     {
         // Create a simple 2D PottsMesh
@@ -216,8 +202,6 @@ Cellular Automaton model.
 
         simulator.Solve();
     }
-
-
 ```
 
 ## CP
@@ -226,9 +210,7 @@ Simulate reaction diffusion on a growing a population of cells in the
 Cellular Potts model.
 
 
-```
-
-#!cpp
+```cpp
     void TestPottsBasedMorphogenMonolayer() throw (Exception)
     {
         unsigned cell_width = 4;
@@ -309,8 +291,6 @@ Cellular Potts model.
 
         simulator.Solve();
     }
-
-
 ```
 
 ## OS
@@ -319,9 +299,7 @@ Simulate reaction diffusion on a growing a population of cells in the
 Overlapping Spheres model.
 
 
-```
-
-#!cpp
+```cpp
     void TestNodeBasedMorphogenMonolayer() throw (Exception)
     {
         HoneycombMeshGenerator generator(2.0*M_NUM_CELLS_ACROSS, 3.0*M_NUM_CELLS_ACROSS,0);
@@ -388,8 +366,6 @@ Overlapping Spheres model.
 
         delete p_mesh; // to stop memory leaks
     }
-
-
 ```
 
 ## VT
@@ -398,9 +374,7 @@ Simulate reaction diffusion on a growing a population of cells in the
 Voronoi Tesselation model.
 
 
-```
-
-#!cpp
+```cpp
     void TestMeshBasedMorphogenMonolayer() throw (Exception)
     {
         HoneycombMeshGenerator generator(2.0*M_NUM_CELLS_ACROSS,3.0*M_NUM_CELLS_ACROSS);
@@ -464,8 +438,6 @@ Voronoi Tesselation model.
 
         simulator.Solve();
     }
-
-
 ```
 
 ## VM
@@ -474,9 +446,7 @@ Simulate reaction diffusion on a growing a population of cells in the
 Cell Vertex model.
 
 
-```
-
-#!cpp
+```cpp
     void TestVertexBasedMorphogenMonolayer() throw (Exception)
     {
         // Create Mesh
@@ -548,8 +518,6 @@ Cell Vertex model.
         simulator.Solve();
     }
 };
-
-
 ```
 
 
@@ -561,9 +529,7 @@ The full code is given below
 ## File name `TestMorphogenMonolayerLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 
 // Must be included before other cell_based headers
@@ -1015,8 +981,6 @@ public:
         simulator.Solve();
     }
 };
-
-
 ```
 
 

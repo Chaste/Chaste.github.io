@@ -29,21 +29,17 @@ very different). This led to us finding a bug in the CellML encoding which we ha
 and now the Decker 2009 model gives a sensible S1-S2 curve, unlike that shown in our paper!)
 
 You can run these simulations using the following command from within the Chaste source tree:
-
 ```
 
 scons cl=1 b=GccOptNative ts=projects/FunctionalCuration/test/TestFunctionalCurationPaper.hpp
-
 ```
 
 
 If you have multiple cores available, these may be used to speed up simulation.  For instance, to use
 8 cores, run
-
 ```
 
 scons cl=1 b=GccOptNative_8 ts=projects/FunctionalCuration/test/TestFunctionalCurationPaper.hpp
-
 ```
 
 
@@ -63,9 +59,7 @@ expected, for model/protocol combinations where we cannot run the protocol to co
 The test starts by including required headers.
 
 
-```
-
-#!cpp
+```cpp
 #include <boost/pointer_cast.hpp> // NB: Not available on Boost 1.33.1
 #include <boost/shared_ptr.hpp>
 #include <boost/foreach.hpp>
@@ -86,8 +80,6 @@ The test starts by including required headers.
 #include "UsefulFunctionsForProtocolTesting.hpp"
 
 typedef N_Vector VECTOR;
-
-
 ```
 
 This class contains the main functionality for the test.
@@ -95,9 +87,7 @@ It begins with private utility methods; the main method which runs the protocols
 is at the end.
 
 
-```
-
-#!cpp
+```cpp
 class TestFunctionalCurationPaper : public CxxTest::TestSuite
 {
 private:
@@ -196,17 +186,13 @@ private:
 
         runner.RunProtocol();
     }
-
-
 ```
 
 This method creates the S1-S2 restitution curves for the reference experimental data using Gnuplot.
 Originally the protocol versions also used this method, but plot generation is now built in to the main code.
 
 
-```
-
-#!cpp
+```cpp
     void GenerateGnuplotsS1S2Curve(const std::string& rDirectory,
                                    const std::string& rFilenamePrefix)
     {
@@ -238,17 +224,13 @@ Originally the protocol versions also used this method, but plot generation is n
         // Run Gnuplot on the script written above to generate image files.
         EXPECT0(system, "gnuplot " + output_dir + filename);
     }
-
-
 ```
 
 This method creates the Gnuplots of the ICaL IV curves for the reference experimental data.
 Originally the protocol versions also used this method, but plot generation is now built in to the main code.
 
 
-```
-
-#!cpp
+```cpp
     void GenerateGnuplotsIVCurves(const std::string& rDirectory,
                                   const std::string& rFilenamePrefix)
     {
@@ -294,15 +276,12 @@ Originally the protocol versions also used this method, but plot generation is n
     }
 
 public:
-
 ```
 
 The main test method which runs both protocols on all available CellML files.
 
 
-```
-
-#!cpp
+```cpp
     void TestProtocolsForManyCellModels() throw(Exception, std::bad_alloc)
     {
         std::vector<std::string> cellml_files = GetAListOfCellMLFiles();
@@ -313,8 +292,6 @@ The main test method which runs both protocols on all available CellML files.
 
         std::vector<std::string> ical_outputs {"min_LCC", "final_membrane_voltage"};
         std::vector<std::string> s1s2_outputs {"APD90", "DI"};
-
-
 ```
 
 We use Chaste's process isolation facility to process models in parallel, if running on multiple processes.
@@ -322,9 +299,7 @@ The main output folder needs to be created with a collective call (so we don't h
 trying to make the same folder) but thereafter each protocol run can be done completely independently.
 
 
-```
-
-#!cpp
+```cpp
         {
             OutputFileHandler("FunctionalCuration", false);
             PetscTools::IsolateProcesses(true);
@@ -343,16 +318,12 @@ trying to make the same folder) but thereafter each protocol run can be done com
                                             "priebe_beuckelmann_1998_s1s2_curve",
                                             "ten_tusscher_model_2004_epi_s1s2_curve",
                                             "ten_tusscher_model_2006_epi_s1s2_curve"};
-
-
 ```
 
 This utility class handles comparing virtual experiment results against stored reference data.
 
 
-```
-
-#!cpp
+```cpp
         HistoricalResultTester result_tester;
 
         for (unsigned i=0; i<cellml_files.size(); ++i)
@@ -395,17 +366,13 @@ This utility class handles comparing virtual experiment results against stored r
             }
             result_tester.CompareToHistoricalResults(*mpHandler, cellml_files[i], "ICaL", ical_outputs, 0.005, 1e-5); // 0.5% rel tol
         }
-
-
 ```
 
 Next, the master process makes comparison plots of some experimental data we got
 by digitising paper graphs.
 
 
-```
-
-#!cpp
+```cpp
         PetscTools::IsolateProcesses(false);
 
         std::vector<std::string> exp_data;
@@ -456,8 +423,6 @@ by digitising paper graphs.
                 }
             }
         }
-
-
 ```
 
 Finally, we compute and print a summary of which model/protocol combinations failed across
@@ -466,14 +431,10 @@ the whole run, since it can be tricky to determine this by hand when running on 
 We also display results for which no historical data has been saved yet.
 
 
-```
-
-#!cpp
+```cpp
         result_tester.ReportResults();
     }
 };
-
-
 ```
 
 
@@ -485,9 +446,7 @@ The full code is given below
 ## File name `TestFunctionalCurationLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 #include <boost/pointer_cast.hpp> // NB: Not available on Boost 1.33.1
 #include <boost/shared_ptr.hpp>
 #include <boost/foreach.hpp>
@@ -812,8 +771,6 @@ public:
         result_tester.ReportResults();
     }
 };
-
-
 ```
 
 

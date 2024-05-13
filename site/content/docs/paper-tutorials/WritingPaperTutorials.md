@@ -31,12 +31,9 @@ For the definitive guide, see the [CreateTutorial.py script](/trunk/python/utils
  1. In C-style block comments (i.e. wiki text), initial and trailing whitespace is removed. Bulleted lists will work, but nested bulleted lists won't.
  1. Lines inside a block comment which start with a '`*`', i.e.
 
-```
-
-#!cpp
+```cpp
      /* my comment is
       * two lines long */
-
 ```
 
    are ok, the initial '`*`' is removed.

@@ -17,9 +17,7 @@ that was used to perform the simulations in this paper.
 First we include some header files:
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 
 #include "GmshMeshReader.hpp"
@@ -33,8 +31,6 @@ First we include some header files:
 #include "RandomNumberGenerator.hpp"
 
 #include "PetscSetupAndFinalize.hpp"
-
-
 ```
 
 ### Set up a diffusion equation with a source term
@@ -46,9 +42,7 @@ D_Ca = 300 (nm)^2^/us
 integral of Q per ion channel's worth of elements over which is to be applied = 2.5133e4 uM / us
 
 
-```
-
-#!cpp
+```cpp
 template <unsigned SPACE_DIM>
 class DiffusionEquationWithSourceTerm : public AbstractLinearParabolicPde<SPACE_DIM>
 {
@@ -121,8 +115,6 @@ public:
         }
         return 0.0;
     }
-
-
 ```
 
 The Diffusion constant for calcium is 300 um^2^ / s
@@ -130,9 +122,7 @@ This is equivalent to
 300 (nm)^2^ / us
 
 
-```
-
-#!cpp
+```cpp
     c_matrix<double, SPACE_DIM, SPACE_DIM> ComputeDiffusionTerm(const ChastePoint<SPACE_DIM>& rPoint,
                                                                 Element<SPACE_DIM,SPACE_DIM>* pElement=NULL)
     {
@@ -145,20 +135,15 @@ This is equivalent to
         return 1.0;
     }
 };
-
-
 ```
 
 ### Test class and method to look at Calcium diffusion
 
 
-```
-
-#!cpp
+```cpp
 class TestCaDiffusion : public CxxTest::TestSuite
 {
 public:
-
 ```
 
 
@@ -171,15 +156,11 @@ distance : nanometers nm
 time : microseconds us
 
 
-```
-
-#!cpp
+```cpp
     void TestSolvingDiffusionEquationForCalcium() throw(Exception)
     {
 
         TetrahedralMesh<3,3> mesh;
-
-
 ```
 
 Either a 3D Disc shaped thing, centred at (0,0,0), radius 10, and height 1.5.
@@ -189,9 +170,7 @@ Note a coarse version of the mesh is provided to test simulations, but the ones 
 the paper were run on the refined version included here:
 
 
-```
-
-#!cpp
+```cpp
         bool disc = true;
         if (disc)
         {
@@ -200,13 +179,12 @@ the paper were run on the refined version included here:
             //GmshMeshReader<3,3> gmsh_reader("projects/CaDiffusion/test/meshes/CaDiffusionCoarse.msh"); // for quick estimate
             mesh.ConstructFromMeshReader(gmsh_reader);
         }
-
 ```
 
 
 Or a square slab of membrane we construct on the fly
 
-Create a 20 by 20 by 1.5 mesh in 3D, this time using the 
+Create a 20 by 20 by 1.5 mesh in 3D, this time using the
 ```
 [ConstructRegularSlabMesh](https://github.com/Chaste/trac_archive/wiki/Construct-Regular-Slab-Mesh)
 ```
@@ -215,24 +193,18 @@ method on the mesh. The first parameter is the cartesian space-step
 and the other three parameters are the width, height and depth of the mesh.
 
 
-```
-
-#!cpp
+```cpp
         else
         {
             mesh.ConstructRegularSlabMesh(0.25, 20.0, 20.0, 1.5);
             mesh.Translate(-10.0,-10.0,0.0); // Centre it in x-y plane at origin
         }
         mesh.Scale(10,10,10); // To get into units of nm, radius 100nm, height 15nm.
-
-
 ```
 
 Create some ion channel locations
 
-```
-
-#!cpp
+```cpp
         double z_location = 15.0; //nm - on the top / outer membrane.
         std::vector<c_vector<double, 3u> > channel_locations;
 
@@ -278,25 +250,17 @@ Create some ion channel locations
             location[2] = z_location;
             channel_locations.push_back(location);
         }
-
-
 ```
 
 Create the PDE object (defined above)
 
-```
-
-#!cpp
+```cpp
         DiffusionEquationWithSourceTerm<3u> pde(&mesh, channel_locations);
-
-
 ```
 
 Create a new boundary conditions container and specify u=0.0 on the boundary.
 
-```
-
-#!cpp
+```cpp
         BoundaryConditionsContainer<3u,3u,1u> bcc; // Templated over element dim, space dim, problem dim.
 
         ConstBoundaryCondition<3u>* p_bc_for_Ca = new ConstBoundaryCondition<3u>(0.0);
@@ -327,42 +291,34 @@ Create a new boundary conditions container and specify u=0.0 on the boundary.
         }
 
         SimpleLinearParabolicSolver<3,3> solver(&mesh, &pde, &bcc);
-
-
 ```
 
 For parabolic problems, initial conditions are also needed. The solver will expect
 a PETSc vector, where the i-th entry is the initial solution at node i, to be passed
-in. To create this PETSc 
+in. To create this PETSc
 ```
 Vec
 ```
-, we will use a helper function in the 
+, we will use a helper function in the
 ```
 [PetscTools](https://chaste.cs.ox.ac.uk/public-docs/classPetscTools.html)
 ```
 
-class to create a 
+class to create a
 ```
 Vec
 ```
  of size num_nodes, with each entry set to 0.0. Then we
 set the initial condition on the solver.
 
-```
-
-#!cpp
+```cpp
         Vec initial_condition = PetscTools::CreateAndSetVec(mesh.GetNumNodes(), 0.0);
         solver.SetInitialCondition(initial_condition);
-
-
 ```
 
 Next define the start time, end time, and timestep, and set them.
 
-```
-
-#!cpp
+```cpp
         double t_start = 0; // micro seconds
         double t_end = 1; // micro seconds
         double dt = 0.001; // micro seconds
@@ -376,21 +332,15 @@ Next define the start time, end time, and timestep, and set them.
         // Write a copy of the mesh to examine in a different format.
         TrianglesMeshWriter<3,3> writer("CaDiffusion/mesh", "disc", false);
         writer.WriteFilesUsingMesh(mesh);
-
-
 ```
 
 All PETSc vectors should be destroyed when they are no longer needed.
 
-```
-
-#!cpp
+```cpp
         PetscTools::Destroy(initial_condition);
         PetscTools::Destroy(result);
     }
 };
-
-
 ```
 
 
@@ -402,9 +352,7 @@ The full code is given below
 ## File name `TestCaDiffusionLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 
 #include "GmshMeshReader.hpp"
@@ -628,8 +576,6 @@ public:
         PetscTools::Destroy(result);
     }
 };
-
-
 ```
 
 

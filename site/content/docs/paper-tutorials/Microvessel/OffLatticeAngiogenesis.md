@@ -16,81 +16,64 @@ Start by introducing the necessary header files. The first contain functionality
 smart pointer tools and output management,
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "SmartPointers.hpp"
 #include "OutputFileHandler.hpp"
 #include "FileFinder.hpp"
 #include "RandomNumberGenerator.hpp"
-
 ```
 
 
 dimensional analysis,
 
 
-```
-
-#!cpp
+```cpp
 #include "DimensionalChastePoint.hpp"
 #include "UnitCollection.hpp"
 #include "Owen11Parameters.hpp"
 #include "GenericParameters.hpp"
 #include "ParameterCollection.hpp"
 #include "BaseUnits.hpp"
-
 ```
 
 
 geometry tools,
 
 
-```
-
-#!cpp
+```cpp
 #include "MappableGridGenerator.hpp"
 #include "Part.hpp"
-
 ```
 
 
 vessel networks,
 
 
-```
-
-#!cpp
+```cpp
 #include "VesselNode.hpp"
 #include "VesselNetwork.hpp"
 #include "VesselNetworkGenerator.hpp"
-
 ```
 
 
 flow,
 
 
-```
-
-#!cpp
+```cpp
 #include "VesselImpedanceCalculator.hpp"
 #include "FlowSolver.hpp"
 #include "ConstantHaematocritSolver.hpp"
 #include "StructuralAdaptationSolver.hpp"
 #include "WallShearStressCalculator.hpp"
 #include "MechanicalStimulusCalculator.hpp"
-
 ```
 
 
 grids and PDEs,
 
 
-```
-
-#!cpp
+```cpp
 #include "DiscreteContinuumMesh.hpp"
 #include "DiscreteContinuumMeshGenerator.hpp"
 #include "VtkMeshWriter.hpp"
@@ -100,40 +83,31 @@ grids and PDEs,
 #include "DiscreteContinuumBoundaryCondition.hpp"
 #include "LinearSteadyStateDiffusionReactionPde.hpp"
 #include "AbstractCellBasedWithTimingsTestSuite.hpp"
-
 ```
 
 
 angiogenesis and regression,
 
 
-```
-
-#!cpp
+```cpp
 #include "OffLatticeSproutingRule.hpp"
 #include "OffLatticeMigrationRule.hpp"
 #include "AngiogenesisSolver.hpp"
-
 ```
 
 
 and classes for managing the simulation.
 
 
-```
-
-#!cpp
+```cpp
 #include "MicrovesselSolver.hpp"
-
 ```
 
 
 This should appear last.
 
 
-```
-
-#!cpp
+```cpp
 #include "PetscSetupAndFinalize.hpp"
 class TestOffLatticeAngiogenesisLiteratePaper : public AbstractCellBasedWithTimingsTestSuite
 {
@@ -141,19 +115,15 @@ public:
 
     void Test3dLatticeFree() throw(Exception)
     {
-
 ```
 
 
 Set up output file management.
 
 
-```
-
-#!cpp
+```cpp
         MAKE_PTR_ARGS(OutputFileHandler, p_handler, ("TestOffLatticeAngiogenesisLiteratePaper"));
         RandomNumberGenerator::Instance()->Reseed(12345);
-
 ```
 
 
@@ -163,14 +133,11 @@ allow non-dimensionalisation when sending quantities to external solvers and re-
 results. For our purposes microns for length and hours for time are suitable base units.
 
 
-```
-
-#!cpp
+```cpp
         units::quantity<unit::length> reference_length(1.0 * unit::microns);
         units::quantity<unit::time> reference_time(1.0* unit::hours);
         BaseUnits::Instance()->SetReferenceLengthScale(reference_length);
         BaseUnits::Instance()->SetReferenceTimeScale(reference_time);
-
 ```
 
 
@@ -178,9 +145,7 @@ Set up the domain representing the cornea. This is a thin hemispherical shell. W
 reduce computational expense.
 
 
-```
-
-#!cpp
+```cpp
         MappableGridGenerator hemisphere_generator;
         units::quantity<unit::length> radius(1400.0 * unit::microns);
         units::quantity<unit::length> thickness(100.0 * unit::microns);
@@ -194,16 +159,13 @@ reduce computational expense.
                                                                                          num_divisions_y,
                                                                                          azimuth_angle,
                                                                                          polar_angle);
-
 ```
 
 
 Set up a vessel network, with divisions roughly every 'cell length'. Initially it is straight. We will map it onto the hemisphere.
 
 
-```
-
-#!cpp
+```cpp
         VesselNetworkGenerator<3> network_generator;
         units::quantity<unit::length> vessel_length = M_PI * radius;
         units::quantity<unit::length> cell_length(40.0 * unit::microns);
@@ -227,7 +189,6 @@ Set up a vessel network, with divisions roughly every 'cell length'. Initially i
                                                   reference_length);
             nodes[idx]->SetLocation(new_position);
         }
-
 ```
 
 The initial domain and vessel network now look as follows:
@@ -238,62 +199,50 @@ In the experimental assay a pellet containing VEGF is implanted near the top of 
 as a fixed concentration of VEGF in a cuboidal region. First set up the vegf sub domain.
 
 
-```
-
-#!cpp
+```cpp
         boost::shared_ptr<Part<3> > p_vegf_domain = Part<3> ::Create();
         units::quantity<unit::length> pellet_side_length(300.0*unit::microns);
         p_vegf_domain->AddCuboid(pellet_side_length, pellet_side_length, 5.0*pellet_side_length, DimensionalChastePoint<3>(-150.0,
                                                                                                                            900.0,
                                                                                                                            0.0));
         p_vegf_domain->Write(p_handler->GetOutputDirectoryFullPath()+"initial_vegf_domain.vtp");
-
 ```
 
 
 Now make a finite element mesh on the cornea.
 
 
-```
-
-#!cpp
+```cpp
         DiscreteContinuumMeshGenerator<3> mesh_generator;
         mesh_generator.SetDomain(p_domain);
         mesh_generator.SetMaxElementArea(100000.0);
         mesh_generator.Update();
         boost::shared_ptr<DiscreteContinuumMesh<3> > p_mesh = mesh_generator.GetMesh();
-
 ```
 
 
 Set up the vegf pde
 
 
-```
-
-#!cpp
+```cpp
         boost::shared_ptr<LinearSteadyStateDiffusionReactionPde<3> > p_vegf_pde = LinearSteadyStateDiffusionReactionPde<3>::Create();
         p_vegf_pde->SetIsotropicDiffusionConstant(Owen11Parameters::mpVegfDiffusivity->GetValue("User"));
         p_vegf_pde->SetContinuumLinearInUTerm(-Owen11Parameters::mpVegfDecayRate->GetValue("User"));
         p_vegf_pde->SetMesh(p_mesh);
         p_vegf_pde->SetUseRegularGrid(false);
         p_vegf_pde->SetReferenceConcentration(1.e-9*unit::mole_per_metre_cubed);
-
 ```
 
 
 Add a boundary condition to fix the VEGF concentration in the vegf subdomain.
 
 
-```
-
-#!cpp
+```cpp
         boost::shared_ptr<DiscreteContinuumBoundaryCondition<3> > p_vegf_boundary = DiscreteContinuumBoundaryCondition<3>::Create();
         p_vegf_boundary->SetType(BoundaryConditionType::IN_PART);
         p_vegf_boundary->SetSource(BoundaryConditionSource::PRESCRIBED);
         p_vegf_boundary->SetValue(3.e-9*unit::mole_per_metre_cubed);
         p_vegf_boundary->SetDomain(p_vegf_domain);
-
 ```
 
 
@@ -301,16 +250,13 @@ Set up the PDE solvers for the vegf problem. Note the scaling of the concentrati
 precision problems.
 
 
-```
-
-#!cpp
+```cpp
         boost::shared_ptr<FiniteElementSolver<3> > p_vegf_solver = FiniteElementSolver<3>::Create();
         p_vegf_solver->SetPde(p_vegf_pde);
         p_vegf_solver->SetLabel("vegf");
         p_vegf_solver->SetMesh(p_mesh);
         p_vegf_solver->AddBoundaryCondition(p_vegf_boundary);
         p_vegf_solver->SetReferenceConcentration(1.e-9*unit::mole_per_metre_cubed);
-
 ```
 
 
@@ -319,9 +265,7 @@ An example of the VEGF solution is shown here:
 ![source:/chaste/projects/Microvessel/test/tutorials/images/OffLatticeTutorialVegf.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//source%3A%2Fchaste%2Fprojects%2FMicrovessel%2Ftest%2Ftutorials%2Fimages%2FOffLatticeTutorialVegf.png)
 
 
-```
-
-#!cpp
+```cpp
         //        /*
         //         * Use the structural adaptation solver to iterate until the flow reaches steady state
         //         */
@@ -351,16 +295,13 @@ An example of the VEGF solution is shown here:
         //        structural_adaptation_solver.AddPostFlowSolveCalculator(p_mech_stimulus_calculator);
         //        structural_adaptation_solver.SetTimeIncrement(0.01 * unit::seconds);
         //        structural_adaptation_solver.Solve();
-
 ```
 
 
 Set up an angiogenesis solver and add sprouting and migration rules.
 
 
-```
-
-#!cpp
+```cpp
         boost::shared_ptr<AngiogenesisSolver<3> > p_angiogenesis_solver = AngiogenesisSolver<3>::Create();
         boost::shared_ptr<OffLatticeSproutingRule<3> > p_sprouting_rule = OffLatticeSproutingRule<3>::Create();
         p_sprouting_rule->SetSproutingProbability(0.000001* unit::per_second);
@@ -376,7 +317,6 @@ Set up an angiogenesis solver and add sprouting and migration rules.
         p_migration_rule->SetDiscreteContinuumSolver(p_vegf_solver);
         p_angiogenesis_solver->SetVesselNetwork(p_network);
         p_angiogenesis_solver->SetBoundingDomain(p_domain);
-
 ```
 
 
@@ -384,9 +324,7 @@ Set up the `MicrovesselSolver` which coordinates all solves. Note that for seque
 coupled PDE solves, the solution propagates in the order that the PDE solvers are added to the `MicrovesselSolver`.
 
 
-```
-
-#!cpp
+```cpp
         boost::shared_ptr<MicrovesselSolver<3> > p_microvessel_solver = MicrovesselSolver<3>::Create();
         p_microvessel_solver->SetVesselNetwork(p_network);
         p_microvessel_solver->AddDiscreteContinuumSolver(p_vegf_solver);
@@ -394,22 +332,17 @@ coupled PDE solves, the solution propagates in the order that the PDE solvers ar
         p_microvessel_solver->SetOutputFrequency(1);
         p_microvessel_solver->SetAngiogenesisSolver(p_angiogenesis_solver);
         p_microvessel_solver->SetUpdatePdeEachSolve(false);
-
 ```
 
 
 Set the simulation time and run the solver. The result is shown at the top of the tutorial.
 
 
-```
-
-#!cpp
+```cpp
         SimulationTime::Instance()->SetEndTimeAndNumberOfTimeSteps(100.0, 200);
         p_microvessel_solver->Run();
     }
 };
-
-
 ```
 
 
@@ -421,9 +354,7 @@ The full code is given below
 ## File name `TestOffLatticeAngiogenesisLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "SmartPointers.hpp"
 #include "OutputFileHandler.hpp"
@@ -591,8 +522,6 @@ public:
         p_microvessel_solver->Run();
     }
 };
-
-
 ```
 
 

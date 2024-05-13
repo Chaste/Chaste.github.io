@@ -27,9 +27,7 @@ same mesh, which is in the same folder as this file: `LoadElectroMechanicsSimula
 We first include some header files which define the classes we will use.
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "PlaneStimulusCellFactory.hpp"
 #include "LuoRudy1991.hpp"
@@ -43,7 +41,6 @@ We first include some header files which define the classes we will use.
 class TestElectroMechanicsLiteratePaper : public CxxTest::TestSuite
 {
 public:
-
 ```
 
 
@@ -51,22 +48,15 @@ The following code is the `test` itself, we use the `scons` / `cxx-test` framewo
 provides a handy way to do all the necessary linking and library building.
 
 
-```
-
-#!cpp
+```cpp
     void TestTwistingCube() throw(Exception)
     {
-
 ```
 
 Set the length of the simulation, long enough for some contraction to occur
 
-```
-
-#!cpp
+```cpp
         HeartConfig::Instance()->SetSimulationDuration(36.0); //ms
-
-
 ```
 
 This class sets up cells with the correct stimuli to
@@ -75,39 +65,27 @@ stimulate just those cells on the x=0 surface at t=0.
 We define the strength of stimulus that we need.
 
 
-```
-
-#!cpp
+```cpp
         PlaneStimulusCellFactory<CellLuoRudy1991FromCellML, 3u> cell_factory(-1000*1000);
-
-
 ```
 
 For electro-mechanics we need to set up two meshes of 1mm by 1mm by 1mm
 We have a fine electrics mesh and a coarser mechanics one.
 
 
-```
-
-#!cpp
+```cpp
         TetrahedralMesh<3u,3u> electrics_mesh;
         electrics_mesh.ConstructRegularSlabMesh(0.01, 0.1, 0.1, 0.1);
         QuadraticMesh<3> mechanics_mesh(0.02, 0.1, 0.1, 0.1);
-
-
 ```
 
 We are going to fix some nodes on Z (dimension '2' indexed from 0)
 so we first need to identify these
 
 
-```
-
-#!cpp
+```cpp
         std::vector<unsigned> fixed_nodes
           = NonlinearElasticityTools<3u>::GetNodesByComponentValue(mechanics_mesh, 2, 0.0);
-
-
 ```
 
 We now define the electro-mechanics problem.
@@ -118,9 +96,7 @@ Mechanics happens over a longer timescale than electrophysiology,
 so we can use larger space and time steps for this aspect.
 
 
-```
-
-#!cpp
+```cpp
         ElectroMechanicsProblemDefinition<3u> problem_defn(mechanics_mesh);
         problem_defn.SetContractionModel(KERCHOFFS2003,1.0);
         problem_defn.SetUseDefaultCardiacMaterialLaw(COMPRESSIBLE);
@@ -129,8 +105,6 @@ so we can use larger space and time steps for this aspect.
 
         std::string output_directory = "Plos2013_ElectroMechanics";
         std::string fibre_file_name = "5by5by5_fibres.ortho";
-
-
 ```
 
 This is how to generate a fibre file for this mesh
@@ -141,9 +115,7 @@ Usually the fibres for a scientific problem would be determined by e.g. DTMRI
 and stored with the mesh files.
 
 
-```
-
-#!cpp
+```cpp
         {
             OutputFileHandler handler(output_directory + "Fibres");
             out_stream p_file = handler.OpenOutputFile(fibre_file_name);
@@ -164,8 +136,6 @@ and stored with the mesh files.
                 fibre_directions.push_back(fibre_direction);
             }
             p_file->close();
-
-
 ```
 
 We only compile the following if VTK is installed and set up.
@@ -173,9 +143,7 @@ This is optional - it is only used here for visualizing the fibre directions as 
 The simulation will run without it.
 
 
-```
-
-#!cpp
+```cpp
 #ifdef CHASTE_VTK
             VtkMeshWriter<3u,3u> mesh_writer(output_directory+ "Fibres", "mesh", false);
 
@@ -183,27 +151,19 @@ The simulation will run without it.
             mesh_writer.WriteFilesUsingMesh(mechanics_mesh);
 #endif // CHASTE_VTK
         }
-
-
 ```
 
 Load up the file we just wrote to use as fibre directions for this mechanics problem.
 
 
-```
-
-#!cpp
+```cpp
         FileFinder fibre_file_finder(output_directory + "Fibres/" + fibre_file_name, RelativeTo::ChasteTestOutput);
         problem_defn.SetVariableFibreSheetDirectionsFile(fibre_file_finder, false);
-
-
 ```
 
 Set up and solve the full cardiac electro-mechanics problem.
 
-```
-
-#!cpp
+```cpp
         CardiacElectroMechanicsProblem<3u> problem(COMPRESSIBLE,
                                                    MONODOMAIN,
                                                    &electrics_mesh,
@@ -211,31 +171,21 @@ Set up and solve the full cardiac electro-mechanics problem.
                                                    &cell_factory,
                                                    &problem_defn,
                                                    output_directory);
-
-
 ```
 
 Run the simulation
 
-```
-
-#!cpp
+```cpp
         problem.Solve();
-
-
 ```
 
 Report where time was spent to std::cout.
 
-```
-
-#!cpp
+```cpp
         MechanicsEventHandler::Headings();
         MechanicsEventHandler::Report();
     }
 };
-
-
 ```
 
 
@@ -247,9 +197,7 @@ The full code is given below
 ## File name `TestElectroMechanicsLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "PlaneStimulusCellFactory.hpp"
 #include "LuoRudy1991.hpp"
@@ -331,8 +279,6 @@ public:
         MechanicsEventHandler::Report();
     }
 };
-
-
 ```
 
 

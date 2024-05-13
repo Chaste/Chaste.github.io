@@ -4,9 +4,7 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-```
-
-#!cpp
+```cpp
 // Includes for the testing framework
 #include <cxxtest/TestSuite.h>
 #include "AbstractCellBasedTestSuite.hpp"
@@ -25,8 +23,6 @@ Note that the code is given in full at the bottom of the page.
 
 // Parallel working
 #include "PetscSetupAndFinalize.hpp"
-
-
 ```
 
 # Measure compute-time performance for a large population to plot parallel speed-up (Figure 5)
@@ -36,11 +32,9 @@ dynamics for 100 time-steps, printing out the total compute time at the end.
 It must be run multiple times in order to gauge the parallel efficiency/speed-up.
 
 The geometry for the construction of the population is contained in
-
 ```
 
 projects/Harvey2015/test/data/2d_1024_cells.dat
-
 ```
 
 
@@ -55,11 +49,9 @@ When run sequentially on a 2.7GHz machine with more than 8Gb of RAM this simulat
 The program does not produce output to screen during the simulation.
 
 A useful for loop (in `bash`) would be
-
 ```
 
 for i in {1..32}; do echo $i "processes ===";scons build=GccOptNative_$i projects/Harvey2015/test/TestProfileSimulationLiteratePaper.hpp | grep ##Prof; done
-
 ```
 
 This runs the test on increasingly larger number of processes and only outputs the lines which state
@@ -83,15 +75,12 @@ Note that SEM refers to the subcellular element model from the publication
 This model was used as a scientific motivation during the work in this bolt-on project.
 
 
-```
-
-#!cpp
+```cpp
 class TestProfileSimulation : public AbstractCellBasedTestSuite
 {
 private:
 
     double mLastStartTime;
-
 ```
 
 
@@ -99,9 +88,7 @@ These methods are run before (setUp) and after (tearDown) the
 test suite has completed to output the total time for the simulation.
 
 
-```
-
-#!cpp
+```cpp
     void setUp()
     {
         mLastStartTime = std::clock();
@@ -114,7 +101,6 @@ test suite has completed to output the total time for the simulation.
         double elapsed_time = (time - mLastStartTime)/(CLOCKS_PER_SEC);
 
         double max_time;
-
 ```
 
 
@@ -122,9 +108,7 @@ This functions pools all timing results onto a single process to
 compute the maximum time taken by any single process.
 
 
-```
-
-#!cpp
+```cpp
         MPI_Allreduce(&elapsed_time, &max_time, 1, MPI_DOUBLE, MPI_MAX, PETSC_COMM_WORLD);
         if (PetscTools::AmMaster())
         {
@@ -137,7 +121,6 @@ public:
 
     void TestProfile2dSimulation() throw (Exception)
     {
-
 ```
 
 
@@ -146,9 +129,7 @@ whose geometry is defined in test/data/2d_1024_cells.dat.
 This simplifies the construction of a large population of cells.
 
 
-```
-
-#!cpp
+```cpp
         SemParameterScaler<2>::Instance()->SetNumElementsPerCell(1024);
         unsigned total_num_cells = 1000;
 
@@ -163,35 +144,26 @@ This simplifies the construction of a large population of cells.
         generator.SetNumCells(total_num_cells);
         for (unsigned i = 0; i < total_num_cells; ++i)
         {
-
 ```
 
 
 Set a location for each batch of 1024 cells.
 
 
-```
-
-#!cpp
+```cpp
             c_vector<double, 2> location = zero_vector<double>(2);
             location[0] = (double)(i % 10);
             location[1] = (double)((unsigned)(i / 10));
             generator.SetCellLocation(i, location);
         }
-
-
 ```
 
 We use the `GenerateSemCells` method to create `total_num_cells` repeating patterns
 of 1000 cells using the geometry defined in test/data/2d_1024_cells.dat.
 
 
-```
-
-#!cpp
+```cpp
         generator.GenerateSemCells("projects/Harvey2015/test/data/2d_1024_cells.dat", cells, mesh);
-
-
 ```
 
 This code block writes out the initial distribution of cell numbers
@@ -201,19 +173,14 @@ concurrent writes to a single file.
 
 This distribution file may be found relative to `CHASTE_TEST_OUTPUT` which by default is
 `/tmp/$USER/testoutput`
-
-
 ```
 
 cat /tmp/$USER/testoutput/DivisionResults/division_results.txt
-
 ```
 
 
 
-```
-
-#!cpp
+```cpp
         PetscTools::BeginRoundRobin();
         OutputFileHandler output_file_handler("DivisionResults", false);
         out_stream stream = output_file_handler.OpenOutputFile("division_results.txt", std::ios::app);
@@ -230,22 +197,16 @@ cat /tmp/$USER/testoutput/DivisionResults/division_results.txt
         }
         stream->close();
         PetscTools::EndRoundRobin();
-
-
 ```
 
 We create a cell population object from the mesh and the set of cells
 generated above.
 
 
-```
-
-#!cpp
+```cpp
         NodeBasedCellPopulation<2> node_based_cell_population(mesh, cells);
         node_based_cell_population.SetDampingConstantNormal((1 / 3600.0) * 1e-8);
         node_based_cell_population.SetOutputResultsForChasteVisualizer(false);
-
-
 ```
 
 Create a simulation object from the cell population.
@@ -253,28 +214,20 @@ We set a flag to denote that no cell division takes place which
 enables marginally greater efficiency.
 
 
-```
-
-#!cpp
+```cpp
         OffLatticeSimulation<2> simulator(node_based_cell_population);
         simulator.SetNoBirth(true);
-
-
 ```
 
 Output from the simulation may be found relative to `CHASTE_TEST_OUTPUT` which by default is
 `/tmp/$USER/testoutput`
 
 
-```
-
-#!cpp
+```cpp
         std::ostringstream procs;
         procs << PetscTools::GetNumProcs();
         std::string output_directory = "ProfileScEMSimulation" + procs.str();
         simulator.SetOutputDirectory(output_directory);
-
-
 ```
 
 Create a cell-cell interaction force law, and pass it to the
@@ -282,17 +235,13 @@ simulator object. The force is set to have the same magnitude
 between all cells in the population.
 
 
-```
-
-#!cpp
+```cpp
         MAKE_PTR(SemForce<2>, p_sem_force);
         for (unsigned i = 0; i < total_num_cells; ++i)
         {
             p_sem_force->SetRelativeSpringStiffness(i, 1.0);
         }
         simulator.AddForce(p_sem_force);
-
-
 ```
 
 Set the simulation to run for 100 time-steps. This
@@ -300,43 +249,31 @@ allows comparison of the running speed of this simulation
 as the number of processes is increased.
 
 
-```
-
-#!cpp
+```cpp
         double time_step = 1e-4 / 3600.0;
         simulator.SetDt(time_step);
         double end_time = 100.0 * time_step;
-
-
 ```
 
 Solve the simulation and report the total execution time.
 
 
-```
-
-#!cpp
+```cpp
         simulator.SetSamplingTimestepMultiple(100);
         simulator.SetEndTime(end_time);
         simulator.Solve();
         SemParameterScaler<2>::Instance()->Destroy();
-
-
 ```
 
 These lines give a little extra information about which main functions used the time in the
 simulation.
 
 
-```
-
-#!cpp
+```cpp
         CellBasedEventHandler::Headings();
         CellBasedEventHandler::Report();
     }
 };
-
-
 ```
 
 
@@ -348,9 +285,7 @@ The full code is given below
 ## File name `TestProfileSimulationLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 // Includes for the testing framework
 #include <cxxtest/TestSuite.h>
 #include "AbstractCellBasedTestSuite.hpp"
@@ -470,8 +405,6 @@ public:
         CellBasedEventHandler::Report();
     }
 };
-
-
 ```
 
 

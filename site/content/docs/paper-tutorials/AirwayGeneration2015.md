@@ -4,7 +4,6 @@
 This wiki page is auto-generated from the file
 projects/AirwayGeneration2015/Summary.wiki
 edit that file, don't edit this page on trac!
-
 ```
 
 
@@ -48,13 +47,10 @@ The segmentation data (AirwayGeneration2015Segmentations.tgz) associated with th
 
 Tests in this project are not designed to be run directly through scons. Instead
 you should first build the tests
-
-
 ```
 
 cd <chaste_directory>
 scons co=1 b=GccOptNative_ndebug projects/AirwayGeneration2015
-
 ```
 
 
@@ -62,13 +58,10 @@ Then use provided scripts in the 'bin' directory to run the code using the
 segmentation data as input. airways_paper_setup.sh should be sourced prior to
 running them. For example, to generate the complete conducting airway tree models,
 run
-
-
 ```
 
 source projects/AirwayGeneration2015/bin/airways_paper_setup.sh
 projects/AirwayGeneration2015/bin/generate_airways.sh
-
 ```
 
 

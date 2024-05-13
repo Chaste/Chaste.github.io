@@ -20,9 +20,7 @@ At the end of this test this information is copied into the file `test/data/erro
 The first thing to do is to include the necessary header files.
 
 
-```
-
-#!cpp
+```cpp
 // The testing framework we use
 #include <cxxtest/TestSuite.h>
 
@@ -45,8 +43,6 @@ The first thing to do is to include the necessary header files.
 
 // This header is needed to allow us to run in parallel
 #include "PetscSetupAndFinalize.hpp"
-
-
 ```
 
 Next, we have the class that contains the code to run.
@@ -54,48 +50,35 @@ As with most papers using Chaste, this is written as a test suite within our tes
 The `TestGenerateTraces` method does the work.
 
 
-```
-
-#!cpp
+```cpp
 class TestGeneratingReferenceData : public CxxTest::TestSuite
 {
 public:
     void TestGenerateTraces() throw (Exception)
     {
-
 ```
 
 Set up some references to various files and folders.
 
-```
-
-#!cpp
+```cpp
         FileFinder this_file(__FILE__);
         // Where to copy reference traces within this project
         FileFinder repo_data("data/reference_traces", this_file);
         // Base folder for simulations to write output to
         OutputFileHandler test_base_handler("Frontiers/ReferenceTraces/", false);
-
-
 ```
 
 `CellModelUtilities` is a class of utility functions specifically for this project.
 This one gets a list of all the CellML models included.
 
 
-```
-
-#!cpp
+```cpp
         std::vector<FileFinder> models = CellModelUtilities::GetListOfModels();
-
-
 ```
 
 Iterate over the available models, handling each one on a separate process if running in parallel.
 
-```
-
-#!cpp
+```cpp
         PetscTools::IsolateProcesses();
 
         for (unsigned i=0; i<models.size(); ++i)
@@ -104,15 +87,11 @@ Iterate over the available models, handling each one on a separate process if ru
             {
                 continue; // Let another process handle this model
             }
-
-
 ```
 
 Generate the cell model from CellML.
 
-```
-
-#!cpp
+```cpp
             FileFinder& r_model = models[i];
             std::string model_name = r_model.GetLeafNameNoExtension();
             OutputFileHandler handler(test_base_handler.FindFile(model_name));
@@ -124,27 +103,19 @@ Generate the cell model from CellML.
             {
                 p_cvode_cell->ForceUseOfNumericalJacobian(false);
             }
-
-
 ```
 
 Set up solver parameters.
 
-```
-
-#!cpp
+```cpp
             p_cvode_cell->SetTolerances(1e-7 /* relative */, 1e-9 /* absolute */);
-
-
 ```
 
 Create a reference solution with high tolerances, and fine output (sampling every 0.1ms).
 Note that the sampling interval is also the maximum time step CVODE is allowed to use.
 
 
-```
-
-#!cpp
+```cpp
             double period = CellModelUtilities::GetDefaultPeriod(p_cell);
             OdeSolution solution;
             try
@@ -156,43 +127,31 @@ Note that the sampling interval is also the maximum time step CVODE is allowed t
                 WARNING(model_name << " model failed to solve. It gave the error:\n" << e.GetMessage());
                 continue;
             }
-
-
 ```
 
 Write solution to file, and copy to repository folder.
 
-```
-
-#!cpp
+```cpp
             solution.WriteToFile(handler.GetRelativePath(), model_name, "ms", 1, false, 16, false);
             FileFinder results_dat = handler.FindFile(model_name + ".dat");
             results_dat.CopyTo(repo_data);
             FileFinder results_info = handler.FindFile(model_name + ".info");
             results_info.CopyTo(repo_data);
-
-
 ```
 
 Check that the solution looks like an action potential.
 
-```
-
-#!cpp
+```cpp
             try
             {
                 std::vector<double> voltages = solution.GetVariableAtIndex(p_cell->GetVoltageIndex());
                 CellProperties props(voltages, solution.rGetTimes());
                 std::vector<std::pair<std::string, double> > properties;
-
-
 ```
 
 Calculate some summary statistics of the AP that was produced.
 
-```
-
-#!cpp
+```cpp
                 properties.push_back(std::pair<std::string, double>("Num_ODEs", (double)p_cvode_cell->GetNumberOfStateVariables()));
                 properties.push_back(std::pair<std::string, double>("APD90", props.GetLastActionPotentialDuration(90.0)));
                 properties.push_back(std::pair<std::string, double>("APD50", props.GetLastActionPotentialDuration(50.0)));
@@ -200,15 +159,11 @@ Calculate some summary statistics of the AP that was produced.
                 properties.push_back(std::pair<std::string, double>("V_max", props.GetLastPeakPotential()));
                 properties.push_back(std::pair<std::string, double>("V_min", props.GetLastRestingPotential()));
                 properties.push_back(std::pair<std::string, double>("dVdt_max", props.GetLastMaxUpstrokeVelocity()));
-
-
 ```
 
 Save these to a dedicated file for this model, and copy to reference data folder in the repository.
 
-```
-
-#!cpp
+```cpp
                 out_stream p_summary_file = handler.OpenOutputFile(model_name + ".summary");
                 for (unsigned i=0; i<properties.size(); i++)
                 {
@@ -227,8 +182,6 @@ Save these to a dedicated file for this model, and copy to reference data folder
         }
     }
 };
-
-
 ```
 
 
@@ -240,9 +193,7 @@ The full code is given below
 ## File name `TestGeneratingReferenceDataLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 // The testing framework we use
 #include <cxxtest/TestSuite.h>
 
@@ -352,8 +303,6 @@ public:
         }
     }
 };
-
-
 ```
 
 

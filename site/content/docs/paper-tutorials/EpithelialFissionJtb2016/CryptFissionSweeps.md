@@ -17,24 +17,18 @@ fission in the intestinal stem cell niche".
 We begin by including the necessary header files. The first ones are common to all cell_based Chaste simulations
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h> //Needed for all test files
 #include "CellBasedSimulationArchiver.hpp" //Needed if we would like to save/load simulations
 #include "AbstractCellBasedTestSuite.hpp" //Needed for cell-based tests: times simulations, generates random numbers and has cell properties
 #include "CheckpointArchiveTypes.hpp" //Needed if we use GetIdentifier() method (which we do)
 #include "SmartPointers.hpp" //Enables macros to save typing
-
-
 ```
 
 The next set of classes are needed specifically for the simulation, which can be found in the core code.
 
 
-```
-
-#!cpp
+```cpp
 #include "HoneycombMeshGenerator.hpp" //Generates mesh
 #include "OffLatticeSimulation.hpp" //Simulates the evolution of the population
 #include "MeshBasedCellPopulationWithGhostNodes.hpp"
@@ -42,16 +36,12 @@ The next set of classes are needed specifically for the simulation, which can be
 #include "TransitCellProliferativeType.hpp" //Proliferative cell type
 #include "WildtypeCellMutationState.hpp" //Standard wildtype state for all cells
 #include "FakePetscSetup.hpp" //Forbids tests running in parallel
-
-
 ```
 
 This set of classes are not part of the core code and were made for this model.
 
 
-```
-
-#!cpp
+```cpp
 #include "StochasticTargetProportionBasedCellCycleModel.hpp" //Asymmetric-division-based cell cycle model
 #include "HardCellMutationState.hpp" //Mutation class that defines hard cells
 
@@ -62,31 +52,24 @@ This set of classes are not part of the core code and were made for this model.
 #include "EpithelialLayerDataTrackingModifier.hpp" //Modifier for all the necessary data
 
 #include "FixedRegionPlaneBoundaryCondition.hpp" //Boundary condition that fixes cells past a given plane
-
-
 ```
 
 Define the Chaste simulation as a test class. This is how all simulations
 in Chaste are defined.
 
 
-```
-
-#!cpp
+```cpp
 class TestCryptFissionSweepsLiteratePaper : public AbstractCellBasedTestSuite
 {
 public:
 	void TestEpithelialLayerSweeps() throw(Exception)
 	{
-
 ```
 
 We first set all the simulation parameters.
 
 
-```
-
-#!cpp
+```cpp
 		//Simulation time parameters
 		double dt = 0.005; //Set dt
 		double end_time = 100.0; //Set end time
@@ -103,15 +86,11 @@ We first set all the simulation parameters.
 		//Set the BM force parameters
 		double bm_force = 10.0; //Set the basement membrane stiffness
 		double target_curvature = 0.2; //Set the target curvature, i.e. how circular the layer wants to be
-
-
 ```
 
 Set the domain of the model.
 
-```
-
-#!cpp
+```cpp
 		unsigned cells_across = 24; //Desired width + a few more layers, to avoid the box collapsing
 		unsigned cells_up = 27; //Since height of each cell is 0.5*sqrt(3), we need to specify the no. of cells such that #cells*0.5*sqrt(3) = desired height
 		unsigned ghosts = 4; //Define a sufficient layer of ghost nodes to avoid infinite tessellations and hence excessively large forces
@@ -122,15 +101,11 @@ Set the domain of the model.
 
 		c_vector<double, 2> translate_down = zero_vector<double>(2);
 		translate_down(1) = -1.5;
-
-
 ```
 
 Define the initially circular lumen by centre and radius
 
-```
-
-#!cpp
+```cpp
 		c_vector<double,2> circle_centre;
 		circle_centre(0) = 10.5;
 		circle_centre(1) = 10.0;
@@ -140,31 +115,23 @@ Define the initially circular lumen by centre and radius
 
 		double layer_radius = circle_radius + 2.0; //Radius of the layer of cells. This isn't the actual radius, just has to be large enough for later
 		assert((layer_radius <= cells_across)&&(layer_radius <= cells_up)); //Again, just in case.
-
-
 ```
 
 Generate the initial mesh of cells.
 
-```
-
-#!cpp
+```cpp
 		HoneycombMeshGenerator generator(cells_across, cells_up, ghosts);
 		MutableMesh<2,2>* p_mesh = generator.GetMesh();
 
 		//Translate mesh appropriately
 		p_mesh->Translate(translate_left);
 		p_mesh->Translate(translate_down);
-
-
 ```
 
 Define the lumen as an inner region of ghost nodes.
 
 
-```
-
-#!cpp
+```cpp
 		std::vector<unsigned> initial_real_indices = generator.GetCellLocationIndices(); //Obtain the locations of real nodes
 
 		std::vector<unsigned> real_indices; //Vector used to define the locations of non-ghost nodes
@@ -188,26 +155,18 @@ Define the lumen as an inner region of ghost nodes.
 		boost::shared_ptr<AbstractCellProperty> p_soft_type = CellPropertyRegistry::Instance()->Get<TransitCellProliferativeType>();
 		boost::shared_ptr<AbstractCellProperty> p_hard_state = CellPropertyRegistry::Instance()->Get<HardCellMutationState>();
 		boost::shared_ptr<AbstractCellProperty> p_wildtype_state = CellPropertyRegistry::Instance()->Get<WildTypeCellMutationState>();
-
-
 ```
 
 Reseed the random number generator via a command line argument
 
-```
-
-#!cpp
+```cpp
 		unsigned index = CommandLineArguments::Instance()->GetUnsignedCorrespondingToOption("-myintval");
 		RandomNumberGenerator::Instance()->Reseed(100*index);
-
-
 ```
 
 Perform a parameter sweep over the stiffness ratio ond target proportions
 
-```
-
-#!cpp
+```cpp
 		for (double hstiff = 0.0; hstiff < 9.0; hstiff ++) //Sweep over 3 <= \mu_H/\mu_S <= 5 in increments of 0.25
 		{
 			for (double tpropn = 0.0; tpropn < 15.0; tpropn ++) //Sweep over 0.25 <= p <= 0.95 in increments of 0.05
@@ -218,17 +177,13 @@ Perform a parameter sweep over the stiffness ratio ond target proportions
 
 				//Create vector of cells
 				std::vector<CellPtr> cells;
-
-
 ```
 
 Create asymmetric-division-based cell cycle for each cell. However, we initially set all cells
 to be non-epithelial cells before defining our layer of epithelial cells.
 
 
-```
-
-#!cpp
+```cpp
 				for (unsigned i = 0; i<real_indices.size(); i++)
 				{
 					//Set cell cycle
@@ -258,8 +213,6 @@ to be non-epithelial cells before defining our layer of epithelial cells.
 					CellPtr cell_iter = cell_population.GetCellUsingLocationIndex(cell_index);
 					double x = cell_population.GetLocationOfCellCentre(cell_iter)[0];
 					double y = cell_population.GetLocationOfCellCentre(cell_iter)[1];
-
-
 ```
 
 We 'un-differentiate' any cells adjacent to the lumen into epithelial cells.
@@ -268,9 +221,7 @@ our search, but it also means we won't accidentally consider any cells on the ou
 turn them into epithelial cells.
 
 
-```
-
-#!cpp
+```cpp
 					if (pow(x-circle_centre[0],2) + pow(y-circle_centre[1],2) <= pow(layer_radius,2))
 					{
 						Node<2>* p_node = cell_population.GetNodeCorrespondingToCell(cell_iter);
@@ -306,17 +257,13 @@ turn them into epithelial cells.
 						}
 					}
 				}
-
-
 ```
 
 Iterate again and check that proliferative cells are also attached to non-epithelial
 cells. If they are not, remove them from the simulation.
 
 
-```
-
-#!cpp
+```cpp
 				for (unsigned i = 0; i < real_indices.size(); i++)
 				{
 					unsigned cell_index = real_indices[i];
@@ -369,16 +316,12 @@ cells. If they are not, remove them from the simulation.
 						}
 					}
 				}
-
-
 ```
 
 Randomly assign cells in the layer to be hard cells.
 
 
-```
-
-#!cpp
+```cpp
 				std::vector<unsigned> cells_in_layer; //Initialise vector
 
 				//Obtain the proliferative cells
@@ -394,17 +337,13 @@ Randomly assign cells in the layer to be hard cells.
 						cells_in_layer.push_back(node_index); //Add the angle and node index
 					}
 				}
-
-
 ```
 
 For each cell in the layer, we draw a random number and assign cells to be soft cells with
 a probability equal to the target proportion, as defined above.
 
 
-```
-
-#!cpp
+```cpp
 				for (unsigned i = 0; i < cells_in_layer.size(); i++)
 				{
 					unsigned node_index = cells_in_layer[i];
@@ -419,25 +358,17 @@ a probability equal to the target proportion, as defined above.
 						cell->SetMutationState(p_hard_state);
 					}
 				}
-
-
 ```
 
 Define the simulation class.
 
-```
-
-#!cpp
+```cpp
 				OffLatticeSimulation<2> simulator(cell_population);
-
-
 ```
 
 Set the drag constant of hard cells relative to soft cells
 
-```
-
-#!cpp
+```cpp
 				double normal_damping_constant = cell_population.GetDampingConstantNormal();
 				cell_population.SetDampingConstantMutant(hard_cell_drag_multiplier*normal_damping_constant);
 
@@ -458,28 +389,20 @@ Set the drag constant of hard cells relative to soft cells
 				simulator.SetDt(dt);
 				simulator.SetSamplingTimestepMultiple(sampling_timestep); //Sample the simulation at every hour
 				simulator.SetEndTime(end_time); //Hopefully this is long enough for a steady state
-
-
 ```
 
 We add a modifier class to track relevant cell population numbers and shape measurements.
 
-```
-
-#!cpp
+```cpp
 				MAKE_PTR(EpithelialLayerDataTrackingModifier<2>, p_data_tracking_modifier);
 				simulator.AddSimulationModifier(p_data_tracking_modifier);
-
-
 ```
 
 Add linear spring force which has different spring stiffness constants, depending
 on the pair of cells it is connecting.
 
 
-```
-
-#!cpp
+```cpp
 				MAKE_PTR(EpithelialLayerLinearSpringForce<2>, p_spring_force);
 				p_spring_force->SetCutOffLength(1.5);
 				//Set the spring stiffnesses
@@ -488,40 +411,28 @@ on the pair of cells it is connecting.
 				p_spring_force->SetNonepithelialNonepithelialSpringStiffness(nonepithelial_nonepithelial_stiffness);
 				p_spring_force->SetHardCellStiffnessRatio(stiffness_ratio);
 				simulator.AddForce(p_spring_force);
-
-
 ```
 
 Add the basement membrane force.
 
-```
-
-#!cpp
+```cpp
 				MAKE_PTR(EpithelialLayerBasementMembraneForce, p_bm_force);
 				p_bm_force->SetBasementMembraneParameter(bm_force); //Equivalent to beta in SJD's papers
 				p_bm_force->SetTargetCurvature(target_curvature); //This is equivalent to 1/R in SJD's papers
 				simulator.AddForce(p_bm_force);
-
-
 ```
 
 Add an anoikis-based cell killer.
 
-```
-
-#!cpp
+```cpp
 				MAKE_PTR_ARGS(EpithelialLayerAnoikisCellKiller, p_anoikis_killer, (&cell_population));
 				simulator.AddCellKiller(p_anoikis_killer);
-
-
 ```
 
 We fix all cells outside of the 20 x 20 box.
 
 
-```
-
-#!cpp
+```cpp
 				c_vector<double,2> point = zero_vector<double>(2);
 				c_vector<double,2> normal = zero_vector<double>(2);
 
@@ -549,18 +460,12 @@ We fix all cells outside of the 20 x 20 box.
 				normal(1) = 1.0;
 				MAKE_PTR_ARGS(FixedRegionPlaneBoundaryCondition<2>, p_bc4, (&cell_population, point, normal));
 				simulator.AddCellPopulationBoundaryCondition(p_bc4);
-
-
 ```
 
 Run the simulation.
 
-```
-
-#!cpp
+```cpp
 				simulator.Solve();
-
-
 ```
 
 We now collect statistics on the positions and areas of the cells in the epithelial layer that are
@@ -569,9 +474,7 @@ used for subsequent analysis.
 We first need the epithelial cells ordered around the layer.
 
 
-```
-
-#!cpp
+```cpp
 				std::vector<unsigned> indices_of_cells_in_layer; //Initialise vector
 
 				c_vector<double,2> centre_of_mass; //Initialise centre of mass
@@ -603,8 +506,6 @@ We first need the epithelial cells ordered around the layer.
 
 				//Initialise vector of angles and the cell indices
 				std::vector<std::pair<double, unsigned> > angles_and_cell_indices;
-
-
 ```
 
 Get the angle of each epithelial cell with respect to the centre of mass.
@@ -612,9 +513,7 @@ That way we can sort the list in counter-clockwise order before we create
 the file.
 
 
-```
-
-#!cpp
+```cpp
 				for (unsigned k = 0; k < indices_of_cells_in_layer.size(); k++)
 				{
 					unsigned cell_index = indices_of_cells_in_layer[k]; //Get the node index
@@ -650,30 +549,22 @@ the file.
 
 				//Sort the vector of cell indices by their angle
 				std::sort(angles_and_cell_indices.begin(), angles_and_cell_indices.end());
-
-
 ```
 
 Create file to store the location of the cells in the layer and their cell type.
 
-```
-
-#!cpp
+```cpp
 				OutputFileHandler results_handler(output_directory + "/", false); //Create output file handler
 
 				std::string cells_in_layer_filename = "cellpositionsandareasinlayer.dat";
 				out_stream cells_in_layer_file = results_handler.OpenOutputFile(cells_in_layer_filename);
-
-
 ```
 
 Add each cell location and area to the file, along with a 1 if the cell is
 a hard cell and 0 otherwise.
 
 
-```
-
-#!cpp
+```cpp
 				for (unsigned k=0; k<angles_and_cell_indices.size(); k++)
 				{
 					std::pair<double, unsigned> angle_and_cell_index = angles_and_cell_indices[k]; //Get pair
@@ -706,8 +597,6 @@ a hard cell and 0 otherwise.
 	}
 
 };
-
-
 ```
 
 
@@ -719,9 +608,7 @@ The full code is given below
 ## File name `TestCryptFissionSweepsLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h> //Needed for all test files
 #include "CellBasedSimulationArchiver.hpp" //Needed if we would like to save/load simulations
 #include "AbstractCellBasedTestSuite.hpp" //Needed for cell-based tests: times simulations, generates random numbers and has cell properties
@@ -1163,8 +1050,6 @@ public:
 	}
 
 };
-
-
 ```
 
 

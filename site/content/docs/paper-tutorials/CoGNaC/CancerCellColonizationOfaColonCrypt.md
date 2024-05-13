@@ -21,110 +21,70 @@ in Figure 4.
 We begin by including the necessary header files.
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "AbstractCellBasedTestSuite.hpp"
 
 #include <vector>
 #include <set>
 #include "float.h"
-
-
 ```
 
 The next header defines the NRBN model.
 
-```
-
-#!cpp
+```cpp
 #include "ThresholdErgodicSetDifferentiationTree.hpp"
-
-
 ```
 
 The next two headers are used to define a `DifferentiationTree` object.
 
-```
-
-#!cpp
+```cpp
 #include "DifferentiationTree.hpp"
 #include "DifferentiationTreeNode.hpp"
-
-
 ```
 
 The next header file defines a cell-cycle model which is based
 on a `DifferentiationTree` object.
 
-```
-
-#!cpp
+```cpp
 #include "DifferentiationTreeBasedWithAsymmetricDivisionCellCycleModel.hpp"
-
-
 ```
 
 The next header file is used in order to visualise the simulation using Paraview.
 
-```
-
-#!cpp
+```cpp
 #include "VoronoiDataWriter.hpp"
-
-
 ```
 
 The next header file defines a property named 'Differentiation Colour' used
 for visualise distinct cellular types having different colours using Paraview.
 
-```
-
-#!cpp
+```cpp
 #include "CellDifferentiationTypeWriter.hpp"
-
-
 ```
 
 The next header file defines a helper class for generating cells.
 
-```
-
-#!cpp
+```cpp
 #include "CellsGenerator.hpp"
-
-
 ```
 
 The next header file defines a proliferative type of the cells.
 
-```
-
-#!cpp
+```cpp
 #include "StemCellProliferativeType.hpp"
-
-
 ```
 
 The next header file defines a helper class for generating a suitable mesh.
 
-```
-
-#!cpp
+```cpp
 #include "HoneycombMeshGenerator.hpp"
-
-
 ```
 
 The next header file defines a fixed duration cell-cycle model class.
 
-```
-
-#!cpp
+```cpp
 #include "FixedDurationGenerationBasedCellCycleModel.hpp"
-
-
 ```
 
 The next header file defines a `CellPopulation` class that uses a triangular mesh,
@@ -134,48 +94,32 @@ is generated at each timestep. This is because the triangulation algorithm requi
 convex hull.
 
 
-```
-
-#!cpp
+```cpp
 #include "MeshBasedCellPopulationWithGhostNodes.hpp"
-
-
 ```
 
 The next header file defines the class that simulates the evolution of an off-lattice `CellPopulation`
 
-```
-
-#!cpp
+```cpp
 #include "OffLatticeSimulation.hpp"
-
-
 ```
 
 The next header file defines a cell killer class, which implements sloughing of cells into
 the lumen once they reach the top of the crypt.
 
 
-```
-
-#!cpp
+```cpp
 #include "SloughingCellKiller.hpp"
-
-
 ```
 
 The next header file defines a force law, based on a linear spring, for describing
 the mechanical interactions between neighbouring cells in the crypt.
 
 
-```
-
-#!cpp
+```cpp
 #include "GeneralisedLinearSpringForce.hpp"
 //This test is always run sequentially (never in parallel)
 #include "FakePetscSetup.hpp"
-
-
 ```
 
 ## Creating the boundary condition
@@ -187,9 +131,7 @@ We define a boundary condition for a two-dimensional cell-based simulation, in w
 the domain given in Cartesian coordinates by 0 <= x <= 20 and y >= 0.
 
 
-```
-
-#!cpp
+```cpp
 class BoundaryConditionWidthAndBottom : public AbstractCellPopulationBoundaryCondition<2>
 {
 private:
@@ -294,8 +236,6 @@ namespace boost
         }
     }
 }
-
-
 ```
 
 ## Testing the cell population boundary condition
@@ -303,14 +243,10 @@ namespace boost
 First of all, we define the test class.
 
 
-```
-
-#!cpp
+```cpp
 class TestCancerCellColonizationOfaColonCryptLiteratePaper : public AbstractCellBasedTestSuite
 {
 public:
-
-
 ```
 
 We test that our new cell population boundary
@@ -319,9 +255,7 @@ very similar to the test implemented in
 [this tutorial](https://github.com/Chaste/trac_archive/wiki/User-Tutorials-_-Creating-And-Using-A-New-Cell-Population-Boundary-Condition).
 
 
-```
-
-#!cpp
+```cpp
 	void TestBoundaryCondition() throw(Exception)
 	{
 		HoneycombMeshGenerator generator(25, 4);
@@ -351,8 +285,6 @@ very similar to the test implemented in
 		population_satisfies_bc = bc.VerifyBoundaryCondition();
 		TS_ASSERT_EQUALS(population_satisfies_bc, true);
 	}
-
-
 ```
 
 ## Testing the properties of the network
@@ -363,41 +295,28 @@ the TES theory. Here we test the topological properties of the differentiation
 tree and the differentiation probabilities computed.
 
 
-```
-
-#!cpp
+```cpp
     void TestFigure4NetworkProperties()
     {
-
 ```
 
 We start instantiating a `ThresholdErgodicSetDifferentiationTree`
 object from an ATN defined in the file `networks_samples/fig4_atn.dat`.
 
 
-```
-
-#!cpp
+```cpp
     	ThresholdErgodicSetDifferentiationTree TES_tree("projects/CoGNaC/networks_samples/fig4_atn.dat");
-
-
 ```
 
 We get the differentiation tree of the network.
 
-```
-
-#!cpp
+```cpp
         DifferentiationTree* diff_tree = TES_tree.getDifferentiationTree();
-
-
 ```
 
 Test the topological properties of the tree.
 
-```
-
-#!cpp
+```cpp
         TS_ASSERT_EQUALS(diff_tree->getRoot()->getNumberOfChildren(), 3u);
 		TS_ASSERT_EQUALS(diff_tree->getLeaves().size(), 3u);
 		TS_ASSERT_EQUALS(diff_tree->size(), 4u);
@@ -406,52 +325,36 @@ Test the topological properties of the tree.
 		TS_ASSERT_EQUALS(level_nodes.size(), 2u);
 		TS_ASSERT_EQUALS(level_nodes.at(0).size(), 1u);
 		TS_ASSERT_EQUALS(level_nodes.at(1).size(), 3u);
-
-
 ```
 
 We want also test the differentiation probabilities associated
 to the root node.
 We define an array of expected probabilities.
 
-```
-
-#!cpp
+```cpp
 		double* test_prob = new double[3];
 		test_prob[0] = 0.946185;
 		test_prob[1] = 0.0518302;
 		test_prob[2] = 0.00198491;
-
-
 ```
 
 We also get the differentiation probabilities from the root node
 and we test the size of the vector.
 
-```
-
-#!cpp
+```cpp
 		std::vector<double> diff_prob_root = diff_tree->getRoot()->getDifferentiationProbability();
 		TS_ASSERT_EQUALS(3u, diff_prob_root.size());
-
-
 ```
 
 Convert the vector into an array.
 
-```
-
-#!cpp
+```cpp
 		double* array_diff_probs = &diff_prob_root[0];
-
-
 ```
 
 Sort the array of probabilities in decreasing order.
 
-```
-
-#!cpp
+```cpp
 		for (unsigned i=0;i<2;i++)
 		{
 			for(unsigned j=i+1;j<3;j++)
@@ -464,33 +367,23 @@ Sort the array of probabilities in decreasing order.
 				}
 			}
 		}
-
-
 ```
 
 Finally, we test that each probability has the correct
 value.
 
-```
-
-#!cpp
+```cpp
 		for (unsigned i = 0; i<3; ++i)
 		{
 			TS_ASSERT_DELTA(test_prob[i], array_diff_probs[i], 1e-6);
 		}
-
-
 ```
 
 Release the memory.
 
-```
-
-#!cpp
+```cpp
         delete diff_tree;
     }
-
-
 ```
 
 ## Simulating a cancer cell colonization (Figure 5)
@@ -504,12 +397,9 @@ on a 2-D rectangular space with left-hand, right-hand and bottom
 closed boundaries.
 
 
-```
-
-#!cpp
+```cpp
     void TestSimulationCancerCellColonization()
 	{
-
 ```
 
 We start reseeding the `RandomNumberGenerator`. In
@@ -523,58 +413,38 @@ where time() returns the number of seconds since January 1970.
 where getpid() returns the system's process ID for the current program.
 
 
-```
-
-#!cpp
+```cpp
     	RandomNumberGenerator::Instance()->Reseed(0);
-
-
 ```
 
 We instantiate a `ThresholdErgodicSetDifferentiationTree`
 object from an ATN defined in the file `networks_samples/fig4_atn.dat`.
 
 
-```
-
-#!cpp
+```cpp
     	ThresholdErgodicSetDifferentiationTree TES_tree("projects/CoGNaC/networks_samples/fig4_atn.dat");
-
-
 ```
 
 We get the differentiation tree of the network.
 
-```
-
-#!cpp
+```cpp
     	DifferentiationTree* diff_tree = TES_tree.getDifferentiationTree();
-
-
 ```
 
 Save the differentiation tree in a .gml file, in order
 to visualise it using graph visualisation tool (e.g. Cytoscape).
 Figure 4 - Differentiation Tree.
 
-```
-
-#!cpp
+```cpp
     	diff_tree->printDifferentiationTreeToGmlFile("networks_generated","differentiation_tree.gml");
-
-
 ```
 
 Call a method (defined below) which associates a distinct colour to
 each node in the tree (cell type).
 
 
-```
-
-#!cpp
+```cpp
     	markLessProbableWithRedColour(diff_tree);
-
-
 ```
 
 We normalise the cell cycle length of each cell type using
@@ -582,20 +452,16 @@ the average cell cycle length. In our paper it is indicated
 with \Lambda (a NRBN time step corresponds to 0.25 hours).
 
 
-```
-
-#!cpp
+```cpp
 		diff_tree->normaliseLength(8.0);
-
-
 ```
 
-Next, we generate a mutable mesh. To create a 
+Next, we generate a mutable mesh. To create a
 ```
 [MutableMesh](https://chaste.cs.ox.ac.uk/public-docs/classMutableMesh.html)
 ```
 , we can use
-the 
+the
 ```
 [HoneycombMeshGenerator](https://chaste.cs.ox.ac.uk/public-docs/classHoneycombMeshGenerator.html)
 ```
@@ -605,17 +471,13 @@ define the size of the mesh - we have chosen a mesh that is 20 nodes (i.e.
 cells) wide, and 20 nodes high. The third argument defines the number of ghost nodes.
 
 
-```
-
-#!cpp
+```cpp
 		HoneycombMeshGenerator generator(20, 20, 4);
 		MutableMesh<2,2>* p_mesh = generator.GetMesh();
-
-
 ```
 
 We only want to create cells to attach to real nodes, so we
-use the method 
+use the method
 ```
 [GetCellLocationIndices](https://github.com/Chaste/trac_archive/wiki/Get-Cell-Location-Indices)
 ```
@@ -624,44 +486,36 @@ of the real nodes in the mesh. This will be passed in to the
 cell population later on.
 
 
-```
-
-#!cpp
+```cpp
 		std::vector<unsigned> location_indices = generator.GetCellLocationIndices();
-
-
 ```
 
-Having created a mesh, we now create a 
+Having created a mesh, we now create a
 ```
 std::vector
 ```
- of 
+ of
 ```
 [CellPtr](https://github.com/Chaste/trac_archive/wiki/Cell-Ptr)
 ```
 s.
 To do this, we use the `CellsGenerator` helper class again. This time the second
 argument is different and is the number of real nodes in the mesh.
-All cells have 
+All cells have
 ```
 [StemCellProliferativeType](https://chaste.cs.ox.ac.uk/public-docs/classStemCellProliferativeType.html)
 ```
 .
 
 
-```
-
-#!cpp
+```cpp
 		std::vector<CellPtr> cells;
 		MAKE_PTR(StemCellProliferativeType, p_stem_type);
 		CellsGenerator<DifferentiationTreeBasedWithAsymmetricDivisionCellCycleModel, 2> cells_generator;
 		cells_generator.GenerateBasicRandom(cells, location_indices.size(), p_stem_type);
-
-
 ```
 
-Now we need to associate each cell with a 
+Now we need to associate each cell with a
 ```
 [DifferentiationTreeBasedWithAsymmetricDivisionCellCycleModel](https://github.com/Chaste/trac_archive/wiki/Differentiation-Tree-Based-With-Asymmetric-Division-Cell-Cycle-Model)
 ```
@@ -670,9 +524,7 @@ and initialise it (each instance is different). So, for each cell we
 initialise its cell cycle model and randomly set its birthtime.
 
 
-```
-
-#!cpp
+```cpp
 		for (unsigned i=0; i<cells.size(); i++)
 		{
 			DifferentiationTreeBasedWithAsymmetricDivisionCellCycleModel* p_cell_cycle_model =
@@ -682,22 +534,20 @@ initialise its cell cycle model and randomly set its birthtime.
 			p_cell->SetBirthTime(-diff_tree->getRoot()->getCellCycleLength()*RandomNumberGenerator::Instance()->ranf());
 			p_cell->InitialiseCellCycleModel();
 		}
-
-
 ```
 
-Now we have a mesh and a set of cells to go with it, we can create a 
+Now we have a mesh and a set of cells to go with it, we can create a
 ```
 [CellPopulation](https://github.com/Chaste/trac_archive/wiki/Cell-Population)
 ```
 .
 In general, this class associates a collection of cells with a set of elements or a mesh.
-For this test, because we have a 
+For this test, because we have a
 ```
 [MutableMesh](https://chaste.cs.ox.ac.uk/public-docs/classMutableMesh.html)
 ```
 , and ghost nodes we use a particular type of
-cell population called a 
+cell population called a
 ```
 [MeshBasedCellPopulationWithGhostNodes](https://chaste.cs.ox.ac.uk/public-docs/classMeshBasedCellPopulationWithGhostNodes.html)
 ```
@@ -706,44 +556,32 @@ argument of the constructor takes a vector of the indices of the real nodes and 
 same length as the vector of cell pointers.
 
 
-```
-
-#!cpp
+```cpp
 		MeshBasedCellPopulationWithGhostNodes<2> cell_population(*p_mesh, cells, location_indices);
-
-
 ```
 
 Add writers used for visualise the simulation using Paraview.
 
-```
-
-#!cpp
+```cpp
 		cell_population.AddCellWriter<CellDifferentiationTypeWriter>();
 		cell_population.SetWriteVtkAsPoints(false);
 		cell_population.AddPopulationWriter<VoronoiDataWriter>();
-
-
 ```
 
-We then pass in the cell population into an 
+We then pass in the cell population into an
 ```
 [OffLatticeSimulation](https://chaste.cs.ox.ac.uk/public-docs/classOffLatticeSimulation.html)
 ```
 ,
 and set the output directory and end time.
 
-```
-
-#!cpp
+```cpp
         OffLatticeSimulation<2> simulator(cell_population);
 		simulator.SetOutputDirectory("SimulationCancerCellColonization");
 		simulator.SetEndTime(16.0);
-
-
 ```
 
-We create a force law, and pass it to the 
+We create a force law, and pass it to the
 ```
 [OffLatticeSimulation](https://chaste.cs.ox.ac.uk/public-docs/classOffLatticeSimulation.html)
 ```
@@ -751,30 +589,22 @@ We create a force law, and pass it to the
 force law ensures that ghost nodes don't exert forces on real nodes but real nodes
 exert forces on ghost nodes.
 
-```
-
-#!cpp
+```cpp
 		MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);
 		p_linear_force->SetMeinekeSpringStiffness(30.0);
 		p_linear_force->SetMeinekeSpringGrowthDuration(0.0);
 		simulator.AddForce(p_linear_force);
-
-
 ```
 
 Impose the boundary condition to the cell population object.
 
-```
-
-#!cpp
+```cpp
         MAKE_PTR_ARGS(BoundaryConditionWidthAndBottom, p_bc, (&cell_population));
         simulator.AddCellPopulationBoundaryCondition(p_bc);
-
-
 ```
 
 We also add a cell killer to the simulator. This object dictates under
-what conditions cells die. For this test, we use a 
+what conditions cells die. For this test, we use a
 ```
 [SloughingCellKiller](https://chaste.cs.ox.ac.uk/public-docs/classSloughingCellKiller.html)
 ```
@@ -782,17 +612,13 @@ what conditions cells die. For this test, we use a
 which kills cells above a certain height (passed as an argument to the constructor).
 
 
-```
-
-#!cpp
+```cpp
         double tissue_height = 17.00;
         MAKE_PTR_ARGS(SloughingCellKiller<2>, p_killer, (&cell_population, tissue_height));
         simulator.AddCellKiller(p_killer);
-
-
 ```
 
-To run the simulation, we call 
+To run the simulation, we call
 ```
 Solve()
 ```
@@ -804,32 +630,22 @@ by CoGNaC). In this case you can visualise the simulation until
 the timestep which where the problem arise.
 
 
-```
-
-#!cpp
+```cpp
 		simulator.Solve();
-
-
 ```
 
 Release the memory.
 
-```
-
-#!cpp
+```cpp
 		delete diff_tree;
 
 	}
-
-
 ```
 
 This method associate a colour to each cell type in a differentiation tree,
 marking the less probable to have the highest value (from the range [0,4]).
 
-```
-
-#!cpp
+```cpp
     void markLessProbableWithRedColour(DifferentiationTree* diff_tree)
     {
     	diff_tree->setColour(0, 0.0);
@@ -867,47 +683,45 @@ marking the less probable to have the highest value (from the range [0,4]).
 			}
     	}
     }
-
-
 ```
 
 To visualize the results, we must first open Paraview. We open the folder containing our test output using the 'file' menu at
-the top. The output will be located in 
+the top. The output will be located in
 ```
 /tmp/$USER/testoutput/SimulationCancerCellColonization/results_from_time_0
 ```
 .
 There will be a .vtu file generated for every timestep, which must all be opened at once to view the simulation. To do this,
-simply select 
+simply select
 ```
 results.pvd
 ```
-. We should now see 
+. We should now see
 ```
 results.pvd
 ```
-  in the pipeline browser. We click 
+  in the pipeline browser. We click
 ```
 Apply
 ```
  in the properties tab
-of the object inspector, and we should now see a visualization in the right hand window.  (An alternative to opening the 
+of the object inspector, and we should now see a visualization in the right hand window.  (An alternative to opening the
 ```
 results.pvd
 ```
 
-file is to open all the time steps en masse where we open 
+file is to open all the time steps en masse where we open
 ```
 results_..vtu
 ```
- and see 
+ and see
 ```
 results_*
 ```
  appear in the pipeline browser.)
 
 At this stage, it will be necessary to refine how we wish to view this particular visualisation. The viewing styles can be edited using
-the display tab of the object inspector. In particular, under 
+the display tab of the object inspector. In particular, under
 ```
 Style
 ```
@@ -922,10 +736,10 @@ reset the lower threshold to be less than 0, and the upper threshold to be betwe
 selected in the 'Scalars' drop down menu. Once we have edited this, we click apply (we may need to click it twice), and the visualisation on the
 right window will have changed to eliminate ghost nodes.
 
-In order to view cells with different colours, we must click} in the drop down tab under 
+In order to view cells with different colours, we must click} in the drop down tab under
 ```
 Coloring}} and select 'Differentiation Colour'.
-Once we have selected this, we click the 'Set Range' button in the 
+Once we have selected this, we click the 'Set Range' button in the
 ```
 Mapping Data
 ```
@@ -935,11 +749,8 @@ To view the simulation, simply use the animation buttons located on the top tool
 the appropriate options from the file menu.
 
 
-```
-
-#!cpp
+```cpp
 };
-
 ```
 
 
@@ -951,9 +762,7 @@ The full code is given below
 ## File name `TestCancerCellColonizationOfaColonCryptLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "AbstractCellBasedTestSuite.hpp"
 
@@ -1276,7 +1085,6 @@ public:
     }
 
 };
-
 ```
 
 

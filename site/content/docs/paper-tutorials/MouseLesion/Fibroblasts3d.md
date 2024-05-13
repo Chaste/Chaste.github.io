@@ -10,32 +10,22 @@ This is the code that was used to perform the simulation in Mahoney *et al.* (20
 ## Code Walkthrough
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
-
-
 ```
 
 These two includes are in this project, and not a standard part of Chaste v3.3
 
 
-```
-
-#!cpp
+```cpp
 #include "ScarCellFactory.hpp"
 #include "ScarConductivityModifier.hpp"
-
-
 ```
 
 The rest of these includes are standard Chaste files...
 
 
-```
-
-#!cpp
+```cpp
 #include "CellProperties.hpp" // For analysing APs
 #include "DistributedTetrahedralMesh.hpp"
 #include "MonodomainProblem.hpp"
@@ -208,72 +198,52 @@ public:
         {
             sub_directory << "_LesionPacing";
         }
-
-
 ```
 
 SET UP MESH
 
 
-```
-
-#!cpp
+```cpp
         TrianglesMeshReader<3, 3> mesh_reader("projects/MouseLesion/test/data/meshes/scar_thickness_" + scar_thickness_string + mesh_resolution);
         DistributedTetrahedralMesh<3, 3> mesh;
         mesh.ConstructFromMeshReader(mesh_reader);
 
         std::cout << "Number of nodes in mesh = " << mesh.GetNumAllNodes() << std::endl;
-
-
 ```
 
 SET STANDARD OPTIONS
 
 
-```
-
-#!cpp
+```cpp
         HeartConfig::Instance()->SetSimulationDuration(end_time); //ms
         HeartConfig::Instance()->SetOutputDirectory(output_folder + sub_directory.str());
         HeartConfig::Instance()->SetOutputFilenamePrefix("results");
         HeartConfig::Instance()->SetVisualizeWithVtk(true);
-
-
 ```
 
 NUMERICAL METHOD PARAMETERS
 
 
-```
-
-#!cpp
+```cpp
         HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(0.1, 0.1, 0.1);
-
-
 ```
 
 SET UP HETEROGENEOUS CONDUCTIVITY
 
 
-```
-
-#!cpp
+```cpp
         const double intra_conductivity = 1.75; // Chaste Defaults
         const double extra_conductivity = 7.0; // Chaste Defaults
 
         // To start with we use these defaults everywhere, later the 'ScarConductivityModifier alters them.
         HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(intra_conductivity, intra_conductivity, intra_conductivity));
         HeartConfig::Instance()->SetExtracellularConductivities(Create_c_vector(extra_conductivity, extra_conductivity, extra_conductivity));
-
-
 ```
 
 COMPLETE THE SET UP OF PROBLEM
 
 
-```
-
-#!cpp
+```cpp
         // Make a scar cell factory
         ScarCellFactory<3> cell_factory(mRegionWidth,
                                         mScarRadius,
@@ -398,8 +368,6 @@ COMPLETE THE SET UP OF PROBLEM
 #endif // CHASTE_CVODE
     }
 };
-
-
 ```
 
 
@@ -411,9 +379,7 @@ The full code is given below
 ## File name `TestFibroblasts3dLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 
 #include "ScarCellFactory.hpp"
@@ -736,8 +702,6 @@ public:
 #endif // CHASTE_CVODE
     }
 };
-
-
 ```
 
 

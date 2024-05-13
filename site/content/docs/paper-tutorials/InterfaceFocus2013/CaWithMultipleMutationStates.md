@@ -4,9 +4,7 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 
 // Must be included before other cell_based headers
@@ -361,8 +359,6 @@ public:
 
    }
 };
-
-
 ```
 
 
@@ -374,9 +370,7 @@ The full code is given below
 ## File name `TestCaWithMultipleMutationStatesLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 
 // Must be included before other cell_based headers
@@ -731,8 +725,6 @@ public:
 
    }
 };
-
-
 ```
 
 

@@ -4,9 +4,7 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 
 // Must be included before any other cell_based headers
@@ -145,44 +143,33 @@ public:
 			for (unsigned cell_index= 0;  cell_index<cells.size(); cell_index++)
 			{
 				  cells[cell_index]->GetCellData()->SetItem("Radius", cell_radius);
-
 ```
 
 
 Specify CCM
 
 
-```
-
-#!cpp
+```cpp
 				  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetCellProliferationModel(healthy_cell_proliferation_model);
 				  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetIsContactInhibitionCellCycleDuration((bool)contact_inhibition);
 				  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetIsWntDependentCellCycleDuration((bool)healthy_wnt_dependend_ccd);
-
-
 ```
 
 Set some default CCD parameters So total CCM is U[10,14] and (U[22,26] at base if variable)
 
 
-```
-
-#!cpp
+```cpp
 				  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetMDuration(4.0);
 				  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetSDuration(4.0);
 				  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetG2Duration(2.0);
 				  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetTransitCellG1Duration(2.0);  // so total CCM is U[10,14] at threshold
 				  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetStemCellG1Duration(14.0);  // so total CCM is U[10,14] at base
-
-
 ```
 
 Threshold and Generation specific parameters
 
 
-```
-
-#!cpp
+```cpp
 				  if (healthy_cell_proliferation_model ==1 ) // i.e Pedigree dependent
 				  {
 					  assert(0);
@@ -202,29 +189,21 @@ Threshold and Generation specific parameters
 					  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetMutantWntThreshold(mutant_wnt_thresh);
 					  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetMaxTransitGenerations(UINT_MAX);
 				  }
-
-
 ```
 
 Contact Inhibition specific parameters (Mutant, same CI)
 
 
-```
-
-#!cpp
+```cpp
 				  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetEquilibriumVolume(M_PI*4.0/3.0*cell_radius*cell_radius*cell_radius);
 				  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetQuiescentVolumeFraction(healthy_CI);
 				  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetMutantQuiescentVolumeFraction(mutant_CI);
-
-
 ```
 
 mutant cells
 
 
-```
-
-#!cpp
+```cpp
 				  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetMutantHealthyRatio(percent_mutant);
 				  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetHealthyCellProliferationModel(healthy_cell_proliferation_model);
 				  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetMutantCellProliferationModel(mutant_cell_proliferation_model);
@@ -247,16 +226,13 @@ mutant cells
 			// Make some cells mutant
 			for(unsigned cell_index= 0;  cell_index<num_cells; cell_index++)
 			{
-
 ```
 
 Generate a uniform random number to choose between Healthy and mutant cell in appropriate ratio
 Contact Inhibition specific parameters
 
 
-```
-
-#!cpp
+```cpp
 				if(!cells[cell_index]->GetCellProliferativeType()->IsType<PanethCellProliferativeType>())
 				{
 					double u = RandomNumberGenerator::Instance()->ranf();
@@ -346,8 +322,6 @@ Contact Inhibition specific parameters
 
 //	}
 };
-
-
 ```
 
 
@@ -359,9 +333,7 @@ The full code is given below
 ## File name `TestRecoveredCryptLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 
 // Must be included before any other cell_based headers
@@ -645,8 +617,6 @@ public:
 
 //	}
 };
-
-
 ```
 
 

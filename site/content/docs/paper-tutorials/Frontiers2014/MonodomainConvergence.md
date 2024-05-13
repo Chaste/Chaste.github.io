@@ -18,9 +18,7 @@ and calculates some summary properties of the action potential, again writing th
 The first thing to do is to include the necessary header files.
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 
 #include <vector>
@@ -53,22 +51,16 @@ public:
     {
         // We don't want to find this confusing matters!!
         EXIT_IF_PARALLEL;
-
-
 ```
 
 This command line argument says whether to reset the CVODE solver fully at each PDE time step.
 
-```
-
-#!cpp
+```cpp
         bool reset_cvode = false;
         if (CommandLineArguments::Instance()->OptionExists("--reset"))
         {
             reset_cvode = true;
         }
-
-
 ```
 
 This test was run with the following values for PDE time step inserted here:
@@ -80,9 +72,7 @@ This test was run with the following values for PDE time step inserted here:
 
 
 
-```
-
-#!cpp
+```cpp
         double pde_timestep;
         if (CommandLineArguments::Instance()->OptionExists("--timestep"))
         {
@@ -92,8 +82,6 @@ This test was run with the following values for PDE time step inserted here:
         {
             EXCEPTION("Please enter an argument '--timestep', probably from [0.001, 0.01, 0.1, 1].");
         }
-
-
 ```
 
 This test was run with the following values for mesh spacing inserted here:
@@ -103,9 +91,7 @@ This test was run with the following values for mesh spacing inserted here:
 
 
 
-```
-
-#!cpp
+```cpp
         double h;
         if (CommandLineArguments::Instance()->OptionExists("--spacestep"))
         {
@@ -115,15 +101,11 @@ This test was run with the following values for mesh spacing inserted here:
         {
             EXCEPTION("Please enter an argument '--spacestep', probably from [0.001, 0.01].");
         }
-
-
 ```
 
 Next we loop over the following list of models that we want to do tissue simulations with.
 
-```
-
-#!cpp
+```cpp
         std::vector<std::string> models_to_use = boost::assign::list_of("luo_rudy_1991")
                                                                        ("beeler_reuter_model_1977")
                                                                        ("nygren_atrial_model_1998")
@@ -139,14 +121,11 @@ Next we loop over the following list of models that we want to do tissue simulat
         // Loop over models
         BOOST_FOREACH(std::string model, models_to_use)
         {
-
 ```
 
 Find the CellML file for this model, and set up a cell factory that uses this model for the whole mesh.
 
-```
-
-#!cpp
+```cpp
             FileFinder model_to_use(model + ".cellml", model_folder);
 
             std::stringstream output_folder_stream;
@@ -163,8 +142,6 @@ Find the CellML file for this model, and set up a cell factory that uses this mo
                                                  Solvers::CVODE_ANALYTIC_J,
                                                  false, // Whether to use lookup tables.
                                                  true); // true for making reference solution
-
-
 ```
 
 We will auto-generate a mesh this time, and pass it in, rather than provide a mesh file name.
@@ -176,14 +153,10 @@ test we want to access specific node indices. One method of doing this is to ask
 original node ordering for the output.
 
 
-```
-
-#!cpp
+```cpp
             DistributedTetrahedralMesh<1,1> mesh;
             mesh.ConstructRegularSlabMesh(h, 1 /*length*/);
             HeartConfig::Instance()->SetOutputUsingOriginalNodeOrdering(true);
-
-
 ```
 
 We need to change the printing time steps if going to be less than 0.1 ms output, but note
@@ -191,9 +164,7 @@ that the AP calculations will necessarily be affected by this. We could do them 
 at 1ms output, then they would be more consistent, but far less accurate!
 
 
-```
-
-#!cpp
+```cpp
             if (pde_timestep < 0.1)
             {
                 HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(pde_timestep, pde_timestep, 0.1);
@@ -202,8 +173,6 @@ at 1ms output, then they would be more consistent, but far less accurate!
             {
                 HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(pde_timestep, pde_timestep, pde_timestep);
             }
-
-
 ```
 
 Set the simulation duration, etc.
@@ -213,36 +182,24 @@ harmonic mean of intra and extracellular conductivities). So if you want to
 alter the monodomain conductivity call `HeartConfig::Instance()->SetIntracellularConductivities()`.
 
 
-```
-
-#!cpp
+```cpp
             HeartConfig::Instance()->SetSimulationDuration(500); //ms
             HeartConfig::Instance()->SetOutputDirectory(output_folder + "/results");
             HeartConfig::Instance()->SetOutputFilenamePrefix("results");
             HeartConfig::Instance()->SetVisualizeWithVtk(true);
-
-
 ```
 
 Now we declare the problem class.
 
-```
-
-#!cpp
+```cpp
             MonodomainProblem<1> monodomain_problem( &cell_factory );
-
-
 ```
 
 If a mesh-file-name hasn't been set using `HeartConfig`, we have to pass in
 a mesh using the `SetMesh` method (which must be called before `Initialise`).
 
-```
-
-#!cpp
+```cpp
             monodomain_problem.SetMesh(&mesh);
-
-
 ```
 
 `SetWriteInfo` is a useful method that means that the min/max voltage is
@@ -250,32 +207,23 @@ printed as the simulation runs (useful for verifying that cells are stimulated
 and the wave is propagating, for example). Note that `scons` does buffer output
 before printing to screen, so don't worry if you don't see any output for a while!
 
-```
-
-#!cpp
+```cpp
             monodomain_problem.SetWriteInfo();
-
-
 ```
 
 Finally, call `Initialise` to finish the problem setup.
 
-```
-
-#!cpp
+```cpp
             monodomain_problem.Initialise();
 
             if (reset_cvode)
             {
-
 ```
 
 The cells should now be set up.
 We have to hack in to call a method on each one.
 
-```
-
-#!cpp
+```cpp
                 // TODO: use FinaliseCellCreation instead!
                 DistributedVectorFactory* p_factory = mesh.GetDistributedVectorFactory();
                 Vec monodomain_vec = p_factory->CreateVec();
@@ -299,31 +247,23 @@ We have to hack in to call a method on each one.
                 WARNING("Model '" << model << "' simulation failed with: " << e.GetMessage());
                 continue;
             }
-
-
 ```
 
 Having simulated the system, we now read some of the results data (which gets written to disk) back in,
 and evaluate AP properties at the last node, as per the single cell simulations.
 
 
-```
-
-#!cpp
+```cpp
             Hdf5DataReader data_reader = monodomain_problem.GetDataReader();
             std::vector<double> times = data_reader.GetUnlimitedDimensionValues();
             std::vector<double> last_node = data_reader.GetVariableOverTime("V", mesh.GetNumNodes()-1u);
-
-
 ```
 
 First we write the raw AP data to file, in the same folder as the full results.  To do so we need to get a
 handler for that folder, but pass `false` as the second argument to avoid removing the existing results!
 
 
-```
-
-#!cpp
+```cpp
             OutputFileHandler handler(output_folder, false);
             std::stringstream file_suffix;
             file_suffix << "_tissue_pde_" << pde_timestep << "_h_" << h;
@@ -337,28 +277,20 @@ handler for that folder, but pass `false` as the second argument to avoid removi
                 *p_file << times[i] << "\t" << last_node[i] << "\n";
             }
             p_file->close();
-
-
 ```
 
 Now we copy this file into the repository, finding the data folder relative to this test file.
 
-```
-
-#!cpp
+```cpp
             FileFinder this_file(__FILE__);
             FileFinder repo_data("data/reference_traces", this_file);
             FileFinder ref_data = handler.FindFile(model + file_suffix.str() + ".dat");
             ref_data.CopyTo(repo_data);
-
-
 ```
 
 Next, check that the solution looks like an action potential, and save summary statistics to file.
 
-```
-
-#!cpp
+```cpp
             try
             {
                 CellProperties props(last_node, times);
@@ -390,8 +322,6 @@ Next, check that the solution looks like an action potential, and save summary s
         }
     }
 };
-
-
 ```
 
 
@@ -403,9 +333,7 @@ The full code is given below
 ## File name `TestMonodomainConvergenceLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 
 #include <vector>
@@ -603,8 +531,6 @@ public:
         }
     }
 };
-
-
 ```
 
 

@@ -13,37 +13,26 @@ This is the code that was used to perform the simulation in Capel *et al.*, Hear
 
 This include is needed to utilise the cxx test framework, which we use to execute programs
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
-
-
 ```
 
 Header files from core Chaste that we will use
 
-```
-
-#!cpp
+```cpp
 #include "OutputFileHandler.hpp"
 #include "Warnings.hpp"
 #include "ZeroStimulus.hpp"
 #include "CellProperties.hpp"
 #include "dokos_model_1996Cvode.hpp"
-
-
 ```
 
 All of the bulk of the simulation is performed inside this testing class
 
-```
-
-#!cpp
+```cpp
 class TestSanWithFunnyCurrentBlock : public CxxTest::TestSuite
 {
 private:
-
 ```
 
 
@@ -53,9 +42,7 @@ We define a helper method to:
 1. Calculate the cycle length and APD50 and return these to the main program below.
 
 
-```
-
-#!cpp
+```cpp
     c_vector<double,2> RunToSteadyStateGetCycleLengthAndApd(const std::string& rExperimentName,
                                                             boost::shared_ptr<AbstractCvodeCell> pModel,
                                                             unsigned blockLevel,
@@ -127,15 +114,11 @@ We define a helper method to:
         results[1] = cycle_length;
         return results;
     }
-
-
 ```
 
 Define the main function that will be run using the testing framework
 
-```
-
-#!cpp
+```cpp
 public:
     void TestSanAction() throw (Exception)
     {
@@ -266,8 +249,6 @@ public:
     }
 
 };
-
-
 ```
 
 
@@ -279,9 +260,7 @@ The full code is given below
 ## File name `TestSanWithFunnyCurrentBlockLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 
 #include "OutputFileHandler.hpp"
@@ -495,8 +474,6 @@ public:
     }
 
 };
-
-
 ```
 
 

@@ -16,9 +16,7 @@ The easiest way to visualize these simulations is with Paraview.
 The first thing to do is to include the necessary header files.
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 
 // Must be included before any other cell_based headers
@@ -68,16 +66,12 @@ The first thing to do is to include the necessary header files.
 #include "AbstractCellBasedWithTimingsTestSuite.hpp"
 #include "PetscSetupAndFinalize.hpp"
 #include "Warnings.hpp"
-
-
 ```
 
 This is where you can set parameters toi be used in all the simulations.
 
 
-```
-
-#!cpp
+```cpp
 static const double M_END_STEADY_STATE = 100; //100
 static const double M_END_TIME = 1100; //1100
 static const double M_CRYPT_DIAMETER = 16;
@@ -87,16 +81,12 @@ static const double M_CONTACT_INHIBITION_LEVEL = 0.8;
 class TestCylindricalCryptLiteratePaper : public AbstractCellBasedWithTimingsTestSuite
 {
 private:
-
-
 ```
 
 This is a helper method to generate cells and is used in all simulations.
 
 
-```
-
-#!cpp
+```cpp
     void GenerateCells(unsigned num_cells, std::vector<CellPtr>& rCells, double equilibriumVolume, double quiescentVolumeFraction)
     {
         double typical_cell_cycle_duration = 12.0;
@@ -125,8 +115,6 @@ This is a helper method to generate cells and is used in all simulations.
     }
 
 public:
-
-
 ```
 
 ## CA
@@ -135,9 +123,7 @@ Simulate cell proliferation in the colorectal crypt using the
 Cellular Automaton model.
 
 
-```
-
-#!cpp
+```cpp
     void TestCaBasedCrypt() throw (Exception)
     {
         // Create a simple 2D PottsMesh (periodic in x)
@@ -201,8 +187,6 @@ Cellular Automaton model.
         // Clear singletons
         WntConcentration<2>::Instance()->Destroy();
     }
-
-
 ```
 
 ## CP
@@ -211,9 +195,7 @@ Simulate cell proliferation in the colorectal crypt using the
 Cellular Potts model.
 
 
-```
-
-#!cpp
+```cpp
     void TestPottsBasedCrypt() throw (Exception)
     {
         unsigned cell_width = 4;
@@ -288,8 +270,6 @@ Cellular Potts model.
         // Clear singletons
         WntConcentration<2>::Instance()->Destroy();
     }
-
-
 ```
 
 ## OS
@@ -298,9 +278,7 @@ Simulate cell proliferation in the colorectal crypt using the
 Overlapping Spheres model.
 
 
-```
-
-#!cpp
+```cpp
     void TestNodeBasedCrypt() throw (Exception)
     {
         // Create a simple mesh
@@ -378,8 +356,6 @@ Overlapping Spheres model.
         // Clear singletons
         WntConcentration<2>::Instance()->Destroy();
     }
-
-
 ```
 
 ## VT
@@ -388,9 +364,7 @@ Simulate cell proliferation in the colorectal crypt using the
 Voronoi Tesselation model.
 
 
-```
-
-#!cpp
+```cpp
     void TestMeshBasedCrypt() throw (Exception)
     {
         // Create mesh
@@ -458,8 +432,6 @@ Voronoi Tesselation model.
         // Clear singletons
         WntConcentration<2>::Instance()->Destroy();
     }
-
-
 ```
 
 ## VM
@@ -468,9 +440,7 @@ Simulate cell proliferation in the colorectal crypt using the
 Cell Vertex model.
 
 
-```
-
-#!cpp
+```cpp
     void TestVertexBasedCrypt() throw (Exception)
     {
         // Create mesh
@@ -539,8 +509,6 @@ Cell Vertex model.
         Warnings::Instance()->QuietDestroy();
     }
 };
-
-
 ```
 
 
@@ -552,9 +520,7 @@ The full code is given below
 ## File name `TestCylindricalCryptLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 
 // Must be included before any other cell_based headers
@@ -997,8 +963,6 @@ public:
         Warnings::Instance()->QuietDestroy();
     }
 };
-
-
 ```
 
 

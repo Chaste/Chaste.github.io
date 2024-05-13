@@ -20,9 +20,7 @@ This tutorial covers:
 Start by introducing the necessary header files, explained in previous tutorials.
 
 
-```
-
-#!cpp
+```cpp
 #include <vector>
 #include <cxxtest/TestSuite.h>
 #include "Owen11Parameters.hpp"
@@ -36,18 +34,14 @@ Start by introducing the necessary header files, explained in previous tutorials
 #include "VesselNetworkGenerator.hpp"
 #include "UnitCollection.hpp"
 #include "BaseUnits.hpp"
-
 ```
 
 
 A container for flow information (boundary conditions, pressure values) for nodes.
 
 
-```
-
-#!cpp
+```cpp
 #include "NodeFlowProperties.hpp"
-
 ```
 
 
@@ -55,22 +49,17 @@ A collection of useful literature parameter values and a way to dump values to
 file after use.
 
 
-```
-
-#!cpp
+```cpp
 #include "Owen11Parameters.hpp"
 #include "GenericParameters.hpp"
 #include "ParameterCollection.hpp"
-
 ```
 
 
 The flow and haematocrit solvers, along with neccessary calculators.
 
 
-```
-
-#!cpp
+```cpp
 #include "VesselImpedanceCalculator.hpp"
 #include "FlowSolver.hpp"
 #include "AlarconHaematocritSolver.hpp"
@@ -78,7 +67,6 @@ The flow and haematocrit solvers, along with neccessary calculators.
 #include "StructuralAdaptationSolver.hpp"
 #include "WallShearStressCalculator.hpp"
 #include "MechanicalStimulusCalculator.hpp"
-
 ```
 
 
@@ -86,27 +74,21 @@ The vessel regression solver and a generic solver to collect all the
 flow solvers.
 
 
-```
-
-#!cpp
+```cpp
 #include "WallShearStressBasedRegressionSolver.hpp"
 #include "MicrovesselSolver.hpp"
-
 ```
 
 
 Keep this last.
 
 
-```
-
-#!cpp
+```cpp
 #include "PetscSetupAndFinalize.hpp"
 
 class TestBloodFlowLiteratePaper : public AbstractCellBasedWithTimingsTestSuite
 {
 public:
-
 ```
 
 
@@ -117,52 +99,40 @@ In the first test we will simulate blood flow in a simple bifurcating vessel net
 more complex networks, structural adaptation and vessel regression.
 
 
-```
-
-#!cpp
+```cpp
     void TestSimpleFlowProblem() throw (Exception)
     {
-
 ```
 
 
 We will work in microns
 
 
-```
-
-#!cpp
+```cpp
         units::quantity<unit::length> reference_length(1.0 * unit::microns);
         BaseUnits::Instance()->SetReferenceLengthScale(reference_length);
-
 ```
 
 
 First make the network using a generator. Start with a simple unit.
 
 
-```
-
-#!cpp
+```cpp
         units::quantity<unit::length> vessel_length(100.0*unit::microns);
         DimensionalChastePoint<2> start_point(0.0, 0.0);
         VesselNetworkGenerator<2> network_generator;
         boost::shared_ptr<VesselNetwork<2> > p_network = network_generator.GenerateBifurcationUnit(vessel_length, start_point);
-
 ```
 
 
 Next, pattern it to make a larger network
 
 
-```
-
-#!cpp
+```cpp
         std::vector<unsigned> num_units_per_direction;
         num_units_per_direction.push_back(2);
         num_units_per_direction.push_back(0);
         network_generator.PatternUnitByTranslation(p_network, num_units_per_direction);
-
 ```
 
 
@@ -173,13 +143,10 @@ the network is simple, we can figure out which node is which just from their ind
 we need to use spatial locators and `NearestNode` type methods.
 
 
-```
-
-#!cpp
+```cpp
         units::quantity<unit::pressure> inlet_pressure(50.0 * unit::mmHg);
         p_network->GetNode(0)->GetFlowProperties()->SetIsInputNode(true);
         p_network->GetNode(0)->GetFlowProperties()->SetPressure(inlet_pressure);
-
 ```
 
 
@@ -188,26 +155,20 @@ literature. Instead of manually entering parameter values like above we can use 
 some extra metadata storage. We will take some parameter values from a paper by Owen et al. (2011).
 
 
-```
-
-#!cpp
+```cpp
         p_network->GetNode(p_network->GetNumberOfNodes()-1)->GetFlowProperties()->SetIsOutputNode(true);
         p_network->GetNode(p_network->GetNumberOfNodes()-1)->GetFlowProperties()->SetPressure(Owen11Parameters::mpOutletPressure->GetValue());
-
 ```
 
 
 Now set the segment radii and viscosity values.
 
 
-```
-
-#!cpp
+```cpp
         units::quantity<unit::length> vessel_radius(GenericParameters::mpCapillaryRadius->GetValue());
         p_network->SetSegmentRadii(vessel_radius);
         units::quantity<unit::dynamic_viscosity> viscosity = Owen11Parameters::mpPlasmaViscosity->GetValue();
         p_network->SetSegmentViscosity(viscosity);
-
 ```
 
 
@@ -215,25 +176,19 @@ We use a calculator to work out the impedance of each vessel based on assumption
 updates the value of the impedance in the vessel.
 
 
-```
-
-#!cpp
+```cpp
         VesselImpedanceCalculator<2> impedance_calculator = VesselImpedanceCalculator<2>();
         impedance_calculator.SetVesselNetwork(p_network);
         impedance_calculator.Calculate();
-
 ```
 
 
 Check that the impedance is as expected in one of the vessels
 
 
-```
-
-#!cpp
+```cpp
         units::quantity<unit::flow_impedance> expected_impedance = 8.0 * viscosity* vessel_length/(M_PI*units::pow<4>(vessel_radius));
         TS_ASSERT_DELTA(p_network->GetVessel(0)->GetSegment(0)->GetFlowProperties()->GetImpedance().value(), expected_impedance.value(), 1.e-6);
-
 ```
 
 
@@ -241,37 +196,28 @@ Now we can solve for the flow rates in each vessel based on the inlet and outlet
 updates the value of pressures and flow rates in each vessel and node in the network.
 
 
-```
-
-#!cpp
+```cpp
         FlowSolver<2> flow_solver = FlowSolver<2>();
         flow_solver.SetVesselNetwork(p_network);
         flow_solver.Solve();
-
 ```
 
 
 Check the pressure, it is expected to drop linearly so should be the average of the input and output half way along the network.
 
 
-```
-
-#!cpp
+```cpp
         units::quantity<unit::pressure> expected_pressure = (inlet_pressure + Owen11Parameters::mpOutletPressure->GetValue())/2.0;
         TS_ASSERT_DELTA(p_network->GetNode(7)->GetFlowProperties()->GetPressure().value(), expected_pressure.value(), 1.e-6);
-
 ```
 
 
 Next we write out the network, including updated flow data, to file.
 
 
-```
-
-#!cpp
+```cpp
         MAKE_PTR_ARGS(OutputFileHandler, p_handler, ("TestBloodFlowLiteratePaper/TestSimpleFlowProblem"));
         p_network->Write(p_handler->GetOutputDirectoryFullPath() + "bifurcating_network_results.vtp");
-
 ```
 
 
@@ -280,14 +226,11 @@ Now we can visualize the results in Paraview. See [here](https://github.com/Chas
 Finally, dump our parameter collection to an xml file and, importantly, clear it for the next test.
 
 
-```
-
-#!cpp
+```cpp
         ParameterCollection::Instance()->DumpToFile(p_handler->GetOutputDirectoryFullPath() + "parameter_collection.xml");
         ParameterCollection::Instance()->Destroy();
         BaseUnits::Instance()->Destroy();
     }
-
 ```
 
 
@@ -297,13 +240,10 @@ Finally, dump our parameter collection to an xml file and, importantly, clear it
 In this test we will simulate haematocrit transport in a 3d vessel network.
 
 
-```
-
-#!cpp
+```cpp
     void TestFlowProblemWithHaematocrit() throw (Exception)
     {
         MAKE_PTR_ARGS(OutputFileHandler, p_handler, ("TestBloodFlowLiteratePaper/TestFlowProblemWithHaematocrit", false));
-
 ```
 
 
@@ -311,9 +251,7 @@ This time we solve a flow problem and then use the solution to calculate the hae
 assuming it has no effect on the flow. Set up the network as before
 
 
-```
-
-#!cpp
+```cpp
         units::quantity<unit::length> cell_width(25.0 * unit::microns);
         BaseUnits::Instance()->SetReferenceLengthScale(cell_width);
         units::quantity<unit::length> target_width = 100.0 * cell_width;
@@ -323,16 +261,13 @@ assuming it has no effect on the flow. Set up the network as before
         boost::shared_ptr<VesselNetwork<3> > p_network = network_generator.GenerateHexagonalNetwork(target_width,
                                                                                                     target_height,
                                                                                                     vessel_length);
-
 ```
 
 
 We will use a locator to mark the bottom left and top right nodes as respective inlets and outlets
 
 
-```
-
-#!cpp
+```cpp
         DimensionalChastePoint<3> inlet_locator(0.0, 0.0, 0.0, cell_width);
         DimensionalChastePoint<3> outlet_locator(target_width/cell_width, target_height/cell_width, 0.0, cell_width);
         boost::shared_ptr<VesselNode<3> > p_inlet_node = p_network->GetNearestNode(inlet_locator);
@@ -341,88 +276,68 @@ We will use a locator to mark the bottom left and top right nodes as respective 
         p_inlet_node->GetFlowProperties()->SetPressure(Owen11Parameters::mpInletPressure->GetValue());
         p_outlet_node->GetFlowProperties()->SetIsOutputNode(true);
         p_outlet_node->GetFlowProperties()->SetPressure(Owen11Parameters::mpOutletPressure->GetValue());
-
-
 ```
 
 Now set the segment radii and viscosity values.
 
 
-```
-
-#!cpp
+```cpp
         units::quantity<unit::length> vessel_radius(GenericParameters::mpCapillaryRadius->GetValue());
         p_network->SetSegmentRadii(vessel_radius);
         units::quantity<unit::dynamic_viscosity> viscosity = Owen11Parameters::mpPlasmaViscosity->GetValue();
         p_network->SetSegmentViscosity(viscosity);
-
 ```
 
 
 Next some simple extra functionality is demonstrated by mapping the network onto a hemisphere
 
 
-```
-
-#!cpp
+```cpp
         units::quantity<unit::length> sphere_radius = 400.0 * cell_width;
         units::quantity<unit::length> sphere_thickess = 1.0 * cell_width;
         double sphere_azimuth = M_PI;
         double sphere_polar = M_PI/2.0;
         network_generator.MapToSphere(p_network, sphere_radius, sphere_thickess, sphere_azimuth, sphere_polar);
-
 ```
 
 
 Get the impedance
 
 
-```
-
-#!cpp
+```cpp
         VesselImpedanceCalculator<3> impedance_calculator = VesselImpedanceCalculator<3>();
         impedance_calculator.SetVesselNetwork(p_network);
         impedance_calculator.Calculate();
-
 ```
 
 
 Solve the flow problem
 
 
-```
-
-#!cpp
+```cpp
         FlowSolver<3> flow_solver = FlowSolver<3>();
         flow_solver.SetVesselNetwork(p_network);
         flow_solver.Solve();
-
 ```
 
 
 Solve the haematocrit problem
 
 
-```
-
-#!cpp
+```cpp
         AlarconHaematocritSolver<3> haematocrit_solver = AlarconHaematocritSolver<3>();
         haematocrit_solver.SetVesselNetwork(p_network);
         haematocrit_solver.SetHaematocrit(0.45);
         haematocrit_solver.Calculate();
-
 ```
 
 
 Next we write out the network, including updated flow data, to file.
 
 
-```
-
-#!cpp
+```cpp
         BaseUnits::Instance()->SetReferenceLengthScale(1.e-6*unit::metres);
         p_network->Write(p_handler->GetOutputDirectoryFullPath() + "network_haematocrit.vtp");
-
 ```
 
 
@@ -430,13 +345,10 @@ Now we can visualize the results in Paraview. See [here](https://github.com/Chas
 `TestBloodFlowLiteratePaper\bifurcating_network.vtp` into Paraview. For a nicer rendering you can do `Filters->Alphabetical->Tube`.
 
 
-```
-
-#!cpp
+```cpp
         ParameterCollection::Instance()->DumpToFile(p_handler->GetOutputDirectoryFullPath() + "parameter_collection.xml");
         ParameterCollection::Instance()->Destroy();
     }
-
 ```
 
 
@@ -446,34 +358,26 @@ Now we can visualize the results in Paraview. See [here](https://github.com/Chas
 In this test the vessel network will adapt over time as a result of flow conditions.
 
 
-```
-
-#!cpp
+```cpp
     void TestFlowProblemStucturalAdaptation() throw (Exception)
     {
         MAKE_PTR_ARGS(OutputFileHandler, p_handler, ("TestBloodFlowLiteratePaper/TestFlowProblemStucturalAdaptation", false));
-
 ```
 
 
 We will work in microns
 
 
-```
-
-#!cpp
+```cpp
         units::quantity<unit::length> reference_length(1.0 * unit::microns);
         BaseUnits::Instance()->SetReferenceLengthScale(reference_length);
-
 ```
 
 
 Set up a hexagonal vessel network
 
 
-```
-
-#!cpp
+```cpp
         units::quantity<unit::length> target_width(8000*unit::microns);
         units::quantity<unit::length> target_height(2000*unit::microns);
         units::quantity<unit::length> vessel_length(300.0*unit::microns);
@@ -481,16 +385,13 @@ Set up a hexagonal vessel network
         boost::shared_ptr<VesselNetwork<3> > p_network = network_generator.GenerateHexagonalNetwork(target_width,
                                                                                                     target_height,
                                                                                                     vessel_length);
-
 ```
 
 
 We will use a locator to mark the bottom left and top right nodes as respective inlets and outlets as before.
 
 
-```
-
-#!cpp
+```cpp
         DimensionalChastePoint<3> inlet_locator(0.0, 0.0, 0.0, reference_length);
         DimensionalChastePoint<3> outlet_locator(target_width/reference_length, target_height/reference_length, 0.0, reference_length);
         boost::shared_ptr<VesselNode<3> > p_inlet_node = p_network->GetNearestNode(inlet_locator);
@@ -499,22 +400,18 @@ We will use a locator to mark the bottom left and top right nodes as respective 
         p_inlet_node->GetFlowProperties()->SetPressure(Owen11Parameters::mpInletPressure->GetValue());
         p_outlet_node->GetFlowProperties()->SetIsOutputNode(true);
         p_outlet_node->GetFlowProperties()->SetPressure(Owen11Parameters::mpOutletPressure->GetValue());
-
 ```
 
 
 Set the radius and viscosity and write the initial network to file.
 
 
-```
-
-#!cpp
+```cpp
         units::quantity<unit::length> vessel_radius(40.0*unit::microns);
         p_network->SetSegmentRadii(vessel_radius);
         units::quantity<unit::dynamic_viscosity> viscosity = Owen11Parameters::mpPlasmaViscosity->GetValue();
         p_network->SetSegmentViscosity(viscosity);
         p_network->Write(p_handler->GetOutputDirectoryFullPath()+"initial_network.vtp");
-
 ```
 
 
@@ -523,9 +420,7 @@ from several flow derived sources. We can specify how the network adapts as a fu
 of calculators for wall shear stress, haematocrit etc.
 
 
-```
-
-#!cpp
+```cpp
         BaseUnits::Instance()->SetReferenceTimeScale(60.0*unit::seconds);
         SimulationTime::Instance()->SetEndTimeAndNumberOfTimeSteps(30, 1);
         boost::shared_ptr<VesselImpedanceCalculator<3> > p_impedance_calculator = VesselImpedanceCalculator<3>::Create();
@@ -533,16 +428,13 @@ of calculators for wall shear stress, haematocrit etc.
         p_haematocrit_calculator->SetHaematocrit(0.45);
         boost::shared_ptr<WallShearStressCalculator<3> > p_wss_calculator = WallShearStressCalculator<3>::Create();
         boost::shared_ptr<MechanicalStimulusCalculator<3> > p_mech_stimulus_calculator = MechanicalStimulusCalculator<3>::Create();
-
 ```
 
 
 Set up the structural adaptation solver, which manages iterations over a flow solve and executes each calculator in the order it has been added.
 
 
-```
-
-#!cpp
+```cpp
         StructuralAdaptationSolver<3> structural_adaptation_solver;
         structural_adaptation_solver.SetVesselNetwork(p_network);
         structural_adaptation_solver.SetWriteOutput(true);
@@ -554,20 +446,16 @@ Set up the structural adaptation solver, which manages iterations over a flow so
         structural_adaptation_solver.AddPostFlowSolveCalculator(p_wss_calculator);
         structural_adaptation_solver.AddPostFlowSolveCalculator(p_mech_stimulus_calculator);
         structural_adaptation_solver.SetTimeIncrement(0.01 * unit::seconds);
-
 ```
 
 
 Do the solve and write the network to file.
 
 
-```
-
-#!cpp
+```cpp
         structural_adaptation_solver.Solve();
         p_network->Write(p_handler->GetOutputDirectoryFullPath()+"network_initial_sa.vtp");
     }
-
 ```
 
 
@@ -577,22 +465,17 @@ In this test the vessel network will adapt over time as a result of flow conditi
 to regression in low wall shear stress regions.
 
 
-```
-
-#!cpp
+```cpp
     void TestFlowProblemStucturalAdaptationWithRegression() throw (Exception)
     {
         MAKE_PTR_ARGS(OutputFileHandler, p_handler, ("TestBloodFlowLiteratePaper/TestFlowProblemStucturalAdaptationWithRegression", false));
-
 ```
 
 
 Set up the problem as before.
 
 
-```
-
-#!cpp
+```cpp
         units::quantity<unit::length> reference_length(1.0 * unit::microns);
         BaseUnits::Instance()->SetReferenceLengthScale(reference_length);
         units::quantity<unit::length> target_width(8000*unit::microns);
@@ -636,50 +519,40 @@ Set up the problem as before.
         p_structural_adaptation_solver->AddPostFlowSolveCalculator(p_wss_calculator);
         p_structural_adaptation_solver->AddPostFlowSolveCalculator(p_mech_stimulus_calculator);
         p_structural_adaptation_solver->SetTimeIncrement(0.01 * unit::seconds);
-
 ```
 
 
 Set up a regression solver
 
 
-```
-
-#!cpp
+```cpp
         boost::shared_ptr<WallShearStressBasedRegressionSolver<3> > p_regression_solver = WallShearStressBasedRegressionSolver<3>::Create();
         p_regression_solver->SetMaximumTimeWithLowWallShearStress(2.0*3600.0*unit::seconds);
         p_regression_solver->SetLowWallShearStressThreshold(1.e-06*unit::pascals);
         p_regression_solver->SetVesselNetwork(p_network);
-
 ```
 
 
 Set up a `VascalarTumourSolver` to manage all solves.
 
 
-```
-
-#!cpp
+```cpp
         MicrovesselSolver<3> vascular_tumour_solver;
         vascular_tumour_solver.SetRegressionSolver(p_regression_solver);
         vascular_tumour_solver.SetStructuralAdaptationSolver(p_structural_adaptation_solver);
         vascular_tumour_solver.SetVesselNetwork(p_network);
         vascular_tumour_solver.SetOutputFileHandler(p_handler);
         vascular_tumour_solver.SetOutputFrequency(1);
-
 ```
 
 
 Run the solver
 
 
-```
-
-#!cpp
+```cpp
         vascular_tumour_solver.Run();
     }
 };
-
 ```
 
 
@@ -691,9 +564,7 @@ The full code is given below
 ## File name `TestBloodFlowLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 #include <vector>
 #include <cxxtest/TestSuite.h>
 #include "Owen11Parameters.hpp"
@@ -912,7 +783,6 @@ public:
         vascular_tumour_solver.Run();
     }
 };
-
 ```
 
 

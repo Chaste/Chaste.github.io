@@ -10,32 +10,22 @@ This is the code that was used to perform the simulation in Mahoney *et al.* (20
 ## Code Walkthrough
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
-
-
 ```
 
 These two includes are in this project, and not a standard part of Chaste v3.3
 
 
-```
-
-#!cpp
+```cpp
 #include "ScarCellFactory.hpp"
 #include "ScarConductivityModifier.hpp"
-
-
 ```
 
 The rest of these includes are standard Chaste files...
 
 
-```
-
-#!cpp
+```cpp
 #include "GmshMeshReader.hpp"
 #include "MonodomainProblem.hpp"
 #include "DistributedTetrahedralMesh.hpp"
@@ -207,16 +197,12 @@ public:
         {
             sub_directory << "_LesionPacing";
         }
-
-
 ```
 
 SET UP MESH
 
 
-```
-
-#!cpp
+```cpp
         DistributedTetrahedralMesh<2,2> mesh;
 
         if (create_cut)
@@ -237,57 +223,41 @@ SET UP MESH
             double h=0.005;
             mesh.ConstructRegularSlabMesh(h, mRegionWidth, mRegionWidth);
         }
-
-
 ```
 
 SET STANDARD OPTIONS
 
 
-```
-
-#!cpp
+```cpp
         HeartConfig::Instance()->SetSimulationDuration(end_time); //ms
         HeartConfig::Instance()->SetOutputDirectory(output_folder + sub_directory.str());
         HeartConfig::Instance()->SetOutputFilenamePrefix("results");
         HeartConfig::Instance()->SetVisualizeWithVtk(true);
-
-
 ```
 
 NUMERICAL METHOD PARAMETERS
 
 
-```
-
-#!cpp
+```cpp
         HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(0.1, 0.1, 0.1);
-
-
 ```
 
 SET UP HETEROGENEOUS CONDUCTIVITY
 
 
-```
-
-#!cpp
+```cpp
         double intra_conductivity = 1.75; // Chaste Defaults
         double extra_conductivity = 7.0; // Chaste Defaults
 
         // Set up the defaults.
         HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(intra_conductivity, intra_conductivity));
         HeartConfig::Instance()->SetExtracellularConductivities(Create_c_vector(extra_conductivity, extra_conductivity));
-
-
 ```
 
 COMPLETE THE SET UP OF PROBLEM
 
 
-```
-
-#!cpp
+```cpp
         // Make a scar cell factory
         ScarCellFactory<2> cell_factory(mRegionWidth,
                                         mScarRadius,
@@ -417,8 +387,6 @@ COMPLETE THE SET UP OF PROBLEM
 #endif // CHASTE_CVODE
     }
 };
-
-
 ```
 
 
@@ -430,9 +398,7 @@ The full code is given below
 ## File name `TestFibroblastsLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 
 #include "ScarCellFactory.hpp"
@@ -774,8 +740,6 @@ public:
 #endif // CHASTE_CVODE
     }
 };
-
-
 ```
 
 

@@ -17,11 +17,9 @@ Note that Chaste is only fully supported on Linux/Unix systems, so users of Wind
 For manual installation of each dependency, on any version of Linux, see DeveloperInstallGuide.
 
 You will also need the source for the [EpithelialFission](https://github.com/Chaste/trac_archive/wiki/Epithelial-Fission) project.  This can be done by checking out the version from the repository by using the command
-
 ```
 
 svn checkout https://chaste.cs.ox.ac.uk/svn/chaste/projects/EpithelialFission
-
 ```
 
 in the projects folder of the Chaste directory. You will need to use the supplied username and password.
@@ -46,15 +44,13 @@ There are two folders - `src` and `test`.
 
  == Running tests ==
 You can then run tests and simulations with,
-
 ```
 
 cd <Chaste3.4 path>
 scons b=GccOpt cl=0 co=1 ts=projects/EpithelialFission/test/TestCryptFissionSweepsLiteratePaper.hpp
-
 ```
 
-Note that this will only compile the test. The following commands will run the simulation over the random number generator seed range 
+Note that this will only compile the test. The following commands will run the simulation over the random number generator seed range
 ```
 INIT_SEED
 ```
@@ -63,12 +59,10 @@ INIT_SEED
 FINAL_SEED
 ```
 :
-
 ```
 
 cd projects/EpithelialFission/test/
 sh run_script_for_epithelial_layer_sweeps.sh INIT_SEED FINAL_SEED
-
 ```
 
 ----

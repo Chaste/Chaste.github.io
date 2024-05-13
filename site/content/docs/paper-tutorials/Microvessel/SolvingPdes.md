@@ -22,64 +22,50 @@ Start by introducing the necessary header files. The first contain functionality
 smart pointer tools and output management.
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "AbstractCellBasedWithTimingsTestSuite.hpp"
 #include "SmartPointers.hpp"
 #include "OutputFileHandler.hpp"
 #include "FileFinder.hpp"
-
 ```
 
 
 Dimensional analysis.
 
 
-```
-
-#!cpp
+```cpp
 #include "DimensionalChastePoint.hpp"
 #include "UnitCollection.hpp"
 #include "Owen11Parameters.hpp"
 #include "GenericParameters.hpp"
 #include "ParameterCollection.hpp"
 #include "BaseUnits.hpp"
-
 ```
 
 
 Geometry tools.
 
 
-```
-
-#!cpp
+```cpp
 #include "MappableGridGenerator.hpp"
 #include "Part.hpp"
-
 ```
 
 
 Vessel networks.
 
 
-```
-
-#!cpp
+```cpp
 #include "VesselNetwork.hpp"
 #include "VesselNetworkGenerator.hpp"
-
 ```
 
 
 Grids and PDEs.
 
 
-```
-
-#!cpp
+```cpp
 #include "DiscreteContinuumMesh.hpp"
 #include "VtkMeshWriter.hpp"
 #include "FiniteElementSolver.hpp"
@@ -89,21 +75,17 @@ Grids and PDEs.
 #include "DiscreteContinuumBoundaryCondition.hpp"
 #include "LinearSteadyStateDiffusionReactionPde.hpp"
 #include "MichaelisMentenSteadyStateDiffusionReactionPde.hpp"
-
 ```
 
 
 This should appear last.
 
 
-```
-
-#!cpp
+```cpp
 #include "PetscSetupAndFinalize.hpp"
 class TestSolvingPdesLiteratePaper : public AbstractCellBasedWithTimingsTestSuite
 {
 public:
-
 ```
 
 
@@ -112,86 +94,66 @@ In the first example we will solve a steady-state linear reaction diffusion
 PDE with finite differences.
 
 
-```
-
-#!cpp
+```cpp
     void TestLinearReactionDiffusionPdeWithFiniteDifferences() throw(Exception)
     {
         MAKE_PTR_ARGS(OutputFileHandler, p_handler, ("TestSolvingPdesLiteratePaper/TestLinearReactionDiffusionPdeWithFiniteDifferences"));
-
 ```
 
 
 We will work in microns
 
 
-```
-
-#!cpp
+```cpp
         units::quantity<unit::length> reference_length(1.0 * unit::microns);
         BaseUnits::Instance()->SetReferenceLengthScale(reference_length);
-
 ```
 
 
 Set up a simulation domain, which will be a cuboid.
 
 
-```
-
-#!cpp
+```cpp
         units::quantity<unit::length> domain_width(100.0 * 1.e-6 * unit::microns);
         units::quantity<unit::length> domain_height(100.0 * 1.e-6 * unit::microns);
         units::quantity<unit::length> domain_depth(20.0 * 1.e-6 * unit::microns);
         boost::shared_ptr<Part<3> > p_domain = Part<3>::Create();
         p_domain->AddCuboid(domain_width, domain_height, domain_depth, DimensionalChastePoint<3>(0.0, 0.0, 0.0));
-
 ```
 
 
 Make a regular grid on the domain
 
 
-```
-
-#!cpp
+```cpp
         boost::shared_ptr<RegularGrid<3> > p_grid = RegularGrid<3>::Create();
         p_grid->GenerateFromPart(p_domain, 10.0*reference_length);
-
 ```
 
 
 Set up a PDE, we will model oxygen diffusion.
 
 
-```
-
-#!cpp
+```cpp
         boost::shared_ptr<LinearSteadyStateDiffusionReactionPde<3> > p_oxygen_pde = LinearSteadyStateDiffusionReactionPde<3>::Create();
         units::quantity<unit::diffusivity> oxygen_diffusivity(1.e-6*unit::metre_squared_per_second);
         p_oxygen_pde->SetIsotropicDiffusionConstant(oxygen_diffusivity);
-
 ```
 
 
 Add continuum sink term for cells
 
 
-```
-
-#!cpp
+```cpp
         units::quantity<unit::rate> oxygen_consumption_rate(1.e-6*unit::per_second);
         p_oxygen_pde->SetContinuumLinearInUTerm(-oxygen_consumption_rate);
-
 ```
 
 
 Add a Dirichlet boundary condition on the left face of the domain.
 
 
-```
-
-#!cpp
+```cpp
         p_domain->GetFacet(DimensionalChastePoint<3>(0.0,
                                                      domain_height/(2.0*reference_length),
                                                      domain_depth/(2.0*reference_length)))->SetLabel("boundary_1");
@@ -200,16 +162,13 @@ Add a Dirichlet boundary condition on the left face of the domain.
         p_left_face_boundary->SetDomain(p_domain);
         p_left_face_boundary->SetValue(10.0*unit::mole_per_metre_cubed);
         p_left_face_boundary->SetLabelName("boundary_1");
-
 ```
 
 
 Set up the PDE solvers for the oxygen problem
 
 
-```
-
-#!cpp
+```cpp
         boost::shared_ptr<FiniteDifferenceSolver<3> > p_oxygen_solver = FiniteDifferenceSolver<3>::Create();
         p_oxygen_solver->SetPde(p_oxygen_pde);
         p_oxygen_solver->SetGrid(p_grid);
@@ -222,8 +181,6 @@ Set up the PDE solvers for the oxygen problem
         p_oxygen_solver->Solve();
     }
 };
-
-
 ```
 
 
@@ -235,9 +192,7 @@ The full code is given below
 ## File name `TestSolvingPdesLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include "AbstractCellBasedWithTimingsTestSuite.hpp"
 #include "SmartPointers.hpp"
@@ -303,8 +258,6 @@ public:
         p_oxygen_solver->Solve();
     }
 };
-
-
 ```
 
 

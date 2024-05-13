@@ -11,9 +11,7 @@ The full code is given below
 ## File name `TestCylindricalCryptLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 
 // Must be included before any other cell_based headers
@@ -482,7 +480,6 @@ public:
         Warnings::Instance()->QuietDestroy();
     }
 };
-
 ```
 
 

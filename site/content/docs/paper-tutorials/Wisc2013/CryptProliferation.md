@@ -13,30 +13,24 @@ This Chaste test file runs the main protocols for the above
 For performance, it is recommended to build Chaste using the `GccOptNative` build type when using
 the Functional Curation extension project, on which this code is built.  You can run the code shown
 below using the commands:
-
 ```
 
 cd path_to_Chaste
 scons chaste_libs=1 build=GccOptNative projects/Wisc2013/test/TestCryptProliferationLiteratePaper.hpp
-
 ```
 
 A clean build of Chaste takes a considerable amount of time.  If you have multiple cores available
 then the process can be sped up greatly using the '-j' flag to scons, e.g.
-
 ```
 
 scons -j4 chaste_libs=1 build=GccOptNative projects/Wisc2013/test/TestCryptProliferationLiteratePaper.hpp
-
 ```
 
 to build on 4 cores.  You can additionally run the code itself in parallel, in order to run each value
 in the main parameter sweep simultaneously, using 5 cores with the `GccOptNative_5` build type, e.g.
-
 ```
 
 scons -j4 chaste_libs=1 build=GccOptNative_5 projects/Wisc2013/test/TestCryptProliferationLiteratePaper.hpp
-
 ```
 
 With these settings on our test machine, reproducing the paper results takes about 19 hours.
@@ -48,9 +42,7 @@ easy execution using the Chaste build framework.  We thus need to include the `T
 with various system libraries, Functional Curation headers, and functionality from core Chaste.
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 
 #include <vector>
@@ -72,20 +64,15 @@ with various system libraries, Functional Curation headers, and functionality fr
 #include "OutputFileHandler.hpp"
 #include "PetscTools.hpp"
 #include "NumericFileComparison.hpp"
-
-
 ```
 
 This final header, from core Chaste, is needed to enable running in parallel.
 
-```
-
-#!cpp
+```cpp
 #include "PetscSetupAndFinalize.hpp"
 
 class TestCryptProliferationLiteratePaper : public CxxTest::TestSuite
 {
-
 ```
 
 
@@ -107,56 +94,41 @@ If the rCheckResults vector is non-empty, then this list of results data files w
 checked against recorded values, in order to ensure that the simulation results have not changed.
 
 
-```
-
-#!cpp
+```cpp
     void RunProtocol(const std::string& rProtocolName, const std::string& rOutputFolderName,
                      const std::map<std::string, double>& rProtocolInputs,
                      bool modelsInParallel,
                      bool copyPlots=false,
                      const std::vector<std::string>& rCheckResults=std::vector<std::string>())
     {
-
 ```
 
 Create the folder to which outputs should be written.
 
-```
-
-#!cpp
+```cpp
         OutputFileHandler handler(rOutputFolderName);
-
 ```
 
 Locate the protocol definition on the file system.
 
-```
-
-#!cpp
+```cpp
         FileFinder this_test(__FILE__, RelativeTo::ChasteSourceRoot);
         ProtocolFileFinder proto_file("protocols/" + rProtocolName + ".txt", this_test);
 
         if (modelsInParallel)
         {
-
 ```
 
 Allow the different models to be run simultaneously, if multiple processes are available.
 
-```
-
-#!cpp
+```cpp
             PetscTools::IsolateProcesses(true);
         }
-
-
 ```
 
 Loop over available (cell cycle) models.
 
-```
-
-#!cpp
+```cpp
         std::vector<CryptProliferationModel::ModelType> model_types = boost::assign::list_of
                 (CryptProliferationModel::UNIFORM_WNT)
                 (CryptProliferationModel::VARIABLE_WNT)
@@ -168,54 +140,36 @@ Loop over available (cell cycle) models.
                 // Let another process run this model
                 continue;
             }
-
-
 ```
 
 Get a human readable name for the model to run in this loop iteration.
 
-```
-
-#!cpp
+```cpp
             CryptProliferationModel::ModelType model_type = model_types[i];
             std::string model_name = CryptProliferationModel::GetModelName(model_type);
-
-
 ```
 
 Output for each model gets written to a sub-folder of the main output folder, named after the model.
 
-```
-
-#!cpp
+```cpp
             std::string sub_folder_name = model_name;
             FileFinder::ReplaceSpacesWithUnderscores(sub_folder_name);
             OutputFileHandler sub_handler(handler.FindFile(sub_folder_name));
-
-
 ```
 
 Load the model to simulate.
 
-```
-
-#!cpp
+```cpp
             boost::shared_ptr<AbstractSystemWithOutputs> p_model(new CryptProliferationModel(model_type));
-
-
 ```
 
 Load the protocol to run on it.
 
-```
-
-#!cpp
+```cpp
             ProtocolParser parser;
             ProtocolPtr p_protocol = parser.ParseFile(proto_file);
             p_protocol->SetOutputFolder(sub_handler);
             p_protocol->SetModel(p_model);
-
-
 ```
 
 As an alternative to running different models on different processes, the Functional Curation system
@@ -225,26 +179,18 @@ Thus while generating the steady state plots can use at most 3 processes (corres
 cycle models) the parameter sweep can use up to 5 (the number of crypt heights to test).
 
 
-```
-
-#!cpp
+```cpp
             p_protocol->SetParalleliseLoops(!modelsInParallel);
-
-
 ```
 
 Override some of the protocol's inputs if requested.
 
-```
-
-#!cpp
+```cpp
             typedef std::pair<std::string, double> StringDoublePair;
             BOOST_FOREACH(StringDoublePair input, rProtocolInputs)
             {
                 p_protocol->SetInput(input.first, boost::make_shared<ValueExpression>(boost::make_shared<SimpleValue>(input.second)));
             }
-
-
 ```
 
 By default the Functional Curation system uses the plot titles specified in the protocol, and names
@@ -253,9 +199,7 @@ the same protocol, it is more useful to title plots based on the model name.  We
 index, and adjust the plot page size, so that the generated figures can be included directly in the paper.
 
 
-```
-
-#!cpp
+```cpp
             std::string letter(1, 'a' + model_type);
             std::string plot_title = letter + ") " + model_name;
             BOOST_FOREACH(PlotSpecificationPtr p_plot_spec, p_protocol->rGetPlotSpecifications())
@@ -263,29 +207,21 @@ index, and adjust the plot page size, so that the generated figures can be inclu
                 p_plot_spec->SetDisplayTitle(plot_title);
                 p_plot_spec->SetGnuplotTerminal("postscript eps enhanced size 4,3 font 16");
             }
-
-
 ```
 
 Finally, run the protocol on this model, using 'outputs' as the prefix for result file names.
 
-```
-
-#!cpp
+```cpp
             try
             {
                 p_protocol->RunAndWrite("outputs");
-
-
 ```
 
 Optionally copy generated plots, as described above.  We find all .eps files in the sub-folder,
 and copy them, with a different name, into the main output folder.
 
 
-```
-
-#!cpp
+```cpp
                 if (copyPlots && PetscTools::AmMaster())
                 {
                     FileFinder model_output_folder = sub_handler.FindFile("");
@@ -295,15 +231,11 @@ and copy them, with a different name, into the main output folder.
                         graph.CopyTo(dest);
                     }
                 }
-
-
 ```
 
 Check against recorded values for specific results files.
 
-```
-
-#!cpp
+```cpp
                 BOOST_FOREACH(const std::string& r_result_name, rCheckResults)
                 {
                     std::string csv_name = "outputs_" + r_result_name + ".csv";
@@ -316,16 +248,13 @@ Check against recorded values for specific results files.
             }
             catch (const Exception& r_error)
             {
-
 ```
 
 If an error occurs while running the protocol etc. we display the error message,
 but don't terminate execution (since the other models may run successfully).
 
 
-```
-
-#!cpp
+```cpp
                 std::cerr << r_error.GetMessage() << std::endl;
                 TS_FAIL("Error running " + model_name);
             }
@@ -339,7 +268,6 @@ but don't terminate execution (since the other models may run successfully).
     }
 
 public:
-
 ```
 
 
@@ -350,19 +278,15 @@ figure in the paper (Figure 1).
 
 To visualise the results, open a new terminal, `cd` to the Chaste directory,
 then `cd` to `anim`. Then do:
-
 ```
 
 java -cp . Visualize2dCentreCells /tmp/$USER/testoutput/CryptProliferationSteadyState/Stochastic_Generation-based/raw_results/results_from_time_0
-
 ```
 
 and
-
 ```
 
 java -cp . Visualize2dCentreCells /tmp/$USER/testoutput/CryptProliferationSteadyState/Uniform_Wnt/raw_results/results_from_time_0
-
 ```
 
 
@@ -370,9 +294,7 @@ You may have to do "`javac Visualize2dCentreCells.java`" beforehand to create th
 See ChasteGuides/RunningCellBasedVisualization for more detail on the visualisation tool.
 
 
-```
-
-#!cpp
+```cpp
     void TestGenerateSteadyStatePlots() throw (Exception)
     {
         std::map<std::string, double> protocol_inputs;
@@ -380,17 +302,13 @@ See ChasteGuides/RunningCellBasedVisualization for more detail on the visualisat
         protocol_inputs["steady_state_time"] = 0.0;
         RunProtocol("CryptProliferation", "CryptProliferationSteadyState", protocol_inputs, true, false);
     }
-
-
 ```
 
 This test runs the main parameter sweep protocol on each of our three variant models, producing
 plots (a)-(c) in Figure 2.
 
 
-```
-
-#!cpp
+```cpp
     void TestParameterSweep() throw (Exception)
     {
         std::map<std::string, double> protocol_inputs;
@@ -398,8 +316,6 @@ plots (a)-(c) in Figure 2.
         RunProtocol("CryptProliferationSweep", "CryptProliferationSweep", protocol_inputs, false, true, outputs_to_check);
     }
 };
-
-
 ```
 
 
@@ -411,9 +327,7 @@ The full code is given below
 ## File name `TestCryptProliferationLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 
 #include <vector>
@@ -551,16 +465,12 @@ public:
         RunProtocol("CryptProliferationSweep", "CryptProliferationSweep", protocol_inputs, false, true, outputs_to_check);
     }
 };
-
-
 ```
 
 
 
 
 ## File name `protocols/CryptProliferationSweep.txt`
-
-
 ```
 
 # A simple parameter sweep over the crypt proliferation protocol, varying crypt height
@@ -598,15 +508,12 @@ outputs {
 plots {
     plot 'Cell division locations' { norm_freqs against centres_percent key heights }
 }
-
 ```
 
 
 
 
 ## File name `protocols/CryptProliferation.txt`
-
-
 ```
 
 # Core protocol for the Crypt Proliferation project, containing a single cell-based simulation and post-processing thereof
@@ -673,7 +580,6 @@ outputs {
 plots {
     plot 'Cell division locations' { freqs against centres }
 }
-
 ```
 
 

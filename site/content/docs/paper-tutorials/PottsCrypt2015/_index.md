@@ -21,11 +21,9 @@ For manual installation of each dependency, on any version of Linux, see Develop
 **NB**: the paper was developed with release version 3.3 of Chaste. It does not work with release version 3.2 or under. It may need updating to work on newer revisions of the trunk code.
 
 You will also need the source for the PottsCrypt2015 project.  This can be done by checking out the version from the repository by using the command
-
 ```
 
 svn checkout https://chaste.cs.ox.ac.uk/svn/chaste/projects/PottsCrypt2015
-
 ```
 
 in the projects folder of the Chaste directory.
@@ -50,28 +48,22 @@ There are two folders - `src` and `test`.
 
 ## Running tests
 You can then run tests and simulations with,
-
 ```
 
 cd <Chaste3.3 path>
 scons b=GccOpt ts=projects/PottsCrypt2015/test/TestPottsCryptLiteratePaper.hpp
-
 ```
 
 and
-
 ```
 
 scons b=GccOpt ts=projects/PottsCrypt2015/test/TestPottsCryptSweepLiteratePaper.hpp
-
 ```
 
 and
-
 ```
 
 scons b=GccOpt ts=projects/PottsCrypt2015/test/TestPottsCryptMutantLiteratePaper.hpp
-
 ```
 
 ----

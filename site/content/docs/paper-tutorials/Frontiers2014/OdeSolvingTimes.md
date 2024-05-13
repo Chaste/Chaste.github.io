@@ -18,9 +18,7 @@ We then time solving all models under most solvers, using a simulation duration 
 The first thing to do is to include the necessary header files.
 
 
-```
-
-#!cpp
+```cpp
 // The testing framework we use
 #include <cxxtest/TestSuite.h>
 
@@ -44,42 +42,32 @@ The first thing to do is to include the necessary header files.
 
 // This header is needed to allow us to run in parallel
 #include "PetscSetupAndFinalize.hpp"
-
-
 ```
 
 How many repeat simulations to perform for timing robustness.
 We treat the quickest run as being the most reliable.
 
 
-```
-
-#!cpp
+```cpp
 static unsigned NUM_RUNS = 3u;
 
 class TestOdeSolvingTimes : public CxxTest::TestSuite
 {
-
 ```
 
 These are some type aliases to save typing.
 
-```
-
-#!cpp
+```cpp
     typedef boost::tuple<std::string, Solvers::Value, bool> KeyType; // Keys in the map types below
     typedef std::map<KeyType, double> TimestepMapType; // Type of the map giving suggested timesteps
     typedef std::map<KeyType, bool> TimestepOkMapType; // Type of the map indicating converged solutions
 
 public:
-
 ```
 
 This is a small visual check that we have the expected CellML models available.
 
-```
-
-#!cpp
+```cpp
     void TestListingModels() throw (Exception)
     {
         if (PetscTools::AmMaster())
@@ -93,88 +81,61 @@ This is a small visual check that we have the expected CellML models available.
             TS_ASSERT_LESS_THAN(20u, models.size());
         }
     }
-
-
 ```
 
 This is the main test that actually does the benchmarking.
 
-```
-
-#!cpp
+```cpp
     void TestSolvingTimes() throw (Exception)
     {
-
 ```
 
 First load the suggested time steps to use.
 
-```
-
-#!cpp
+```cpp
         LoadTimestepFile();
 
         const double required_mrms_error = 0.05; // 5%
-
-
 ```
 
 The model / solver combinations to find a suitable time step for.
 
-```
-
-#!cpp
+```cpp
         std::vector<FileFinder> models = CellModelUtilities::GetListOfModels();
         std::vector<Solvers::Value> solvers = boost::assign::list_of
                 (Solvers::CVODE_ANALYTIC_J)(Solvers::CVODE_NUMERICAL_J)
                 (Solvers::FORWARD_EULER)(Solvers::BACKWARD_EULER)
                 (Solvers::RUNGE_KUTTA_2)(Solvers::RUNGE_KUTTA_4)(Solvers::RUSH_LARSEN)
                 (Solvers::GENERALISED_RUSH_LARSEN_1)(Solvers::GENERALISED_RUSH_LARSEN_2);
-
-
 ```
 
 Create the output folder structure before isolating processes, to avoid race conditions.
 
-```
-
-#!cpp
+```cpp
         OutputFileHandler test_base_handler("Frontiers/SingleCellTimings/", false);
         BOOST_FOREACH(FileFinder& r_model, models)
         {
             OutputFileHandler model_handler(test_base_handler.FindFile(r_model.GetLeafNameNoExtension()), false);
         }
-
-
 ```
 
 Each process writes its timings to a separate file as we go along, in case of catastrophe.
 
-```
-
-#!cpp
+```cpp
         out_stream p_file = test_base_handler.OpenOutputFile(ChasteBuildType() + "_timings_", PetscTools::GetMyRank(), ".txt");
         *p_file << std::setiosflags(std::ios::scientific) << std::setprecision(8);
-
-
 ```
 
 Each process writes its catastrophes too.
 
-```
-
-#!cpp
+```cpp
         out_stream p_errors_file = test_base_handler.OpenOutputFile(ChasteBuildType() + "_errors_", PetscTools::GetMyRank(), ".txt");
         *p_errors_file << std::setiosflags(std::ios::scientific) << std::setprecision(8);
-
-
 ```
 
 Iterate over model/solver combinations, distributed over processes.
 
-```
-
-#!cpp
+```cpp
         PetscTools::IsolateProcesses();
         unsigned iteration = 0u;
         BOOST_FOREACH(FileFinder& r_model, models)
@@ -196,8 +157,6 @@ Iterate over model/solver combinations, distributed over processes.
                 BOOST_FOREACH(bool use_lookup_tables, lookup_table_options)
                 {
                     std::string using_tables = (use_lookup_tables ? " and lookup tables" : "");
-
-
 ```
 
 Get timestep to use if available; if no timestep was recorded then we assume we won't be able to
@@ -205,9 +164,7 @@ simulate this combination.
 Note that the `CreateCellModel` method below sets suitable tolerances for CVODE.
 
 
-```
-
-#!cpp
+```cpp
                     double suggested_timestep = 0.0; // Signifies 'not set'
                     double time_to_simulate = 0; // seconds, will be overridden below
                     KeyType key(model_name, solver, false);
@@ -225,25 +182,18 @@ Note that the `CreateCellModel` method below sets suitable tolerances for CVODE.
                                   << using_tables << ", skipping it." << std::endl;
                         continue;
                     }
-
-
 ```
 
 We catch any errors in the rest of the loop and write them to the catastrophes file.
 
-```
-
-#!cpp
+```cpp
                     try
                     {
-
 ```
 
 Generate the cell model from CellML.
 
-```
-
-#!cpp
+```cpp
                         std::stringstream folder_name;
                         folder_name << model_name << "/" << solver;
                         if (use_lookup_tables)
@@ -264,8 +214,6 @@ Generate the cell model from CellML.
                             p_cell->SetTimestep(suggested_timestep);
                         }
                         double period = CellModelUtilities::GetDefaultPeriod(p_cell);
-
-
 ```
 
 Run a single pace to check accuracy.
@@ -273,20 +221,14 @@ This will also set up lookup tables if they are requested,
 and thus prevent the one-off setup cost being timed.
 
 
-```
-
-#!cpp
+```cpp
                         OdeSolution solution = p_cell->Compute(0.0, period, 0.1);
                         solution.WriteToFile(handler.GetRelativePath(), model_name, "ms", 1, false, 16, false);
-
-
 ```
 
 Double check the accuracy is what we expect before a timing run.
 
-```
-
-#!cpp
+```cpp
                         std::vector<double> errors = CellModelUtilities::GetErrors(solution, model_name);
                         std::cout << "Model " << model_name << " solver '" << solver_name << "'" << using_tables << " MRMS error = " << errors[7] << std::endl;
                         if (errors[7] > required_mrms_error)
@@ -294,26 +236,18 @@ Double check the accuracy is what we expect before a timing run.
                             WARNING("Model " << model_name << " with solver '" << solver_name << "'" << using_tables
                                     << " did not reach error target. Wanted " << required_mrms_error << ", got " << errors[7] << ".");
                         }
-
-
 ```
 
 Time simulating multiple paces.
 
-```
-
-#!cpp
+```cpp
                         double elapsed_time = TimeSimulation(p_cell, time_to_simulate);
                         std::cout << "Model " << model_name << " solver '" << solver_name << "'" << using_tables << " took time " << elapsed_time << "s per simulated sec" << std::endl;
-
-
 ```
 
 Record the result.
 
-```
-
-#!cpp
+```cpp
                         *p_file << model_name << "\t" << solver << "\t" << use_lookup_tables << "\t" << elapsed_time;
                         for (unsigned i=0; i<errors.size(); i++)
                         {
@@ -348,38 +282,26 @@ Record the result.
                 }
             }
         }
-
-
 ```
 
 Close each process' results files.
 
-```
-
-#!cpp
+```cpp
         *p_file << "# Complete" << std::endl;
         p_file->close();
         p_errors_file->close();
-
-
 ```
 
 Turn off process isolation and wait for all files to be written.
 
-```
-
-#!cpp
+```cpp
         PetscTools::IsolateProcesses(false);
         PetscTools::Barrier("TestSolvingTimes");
-
-
 ```
 
 Master process writes the concatenated files.
 
-```
-
-#!cpp
+```cpp
         if (PetscTools::AmMaster())
         {
             // Do both the timings and errors files.
@@ -403,16 +325,13 @@ Master process writes the concatenated files.
     }
 
 private:
-
 ```
 
 
 Utility methods used by the tests above go here.
 
 
-```
-
-#!cpp
+```cpp
     /**
      * Find out how long it takes to simulate the given model.
      * The cell will be reset to initial conditions prior to simulation.
@@ -449,15 +368,11 @@ Utility methods used by the tests above go here.
                 minimum = elapsed_time;
             }
         }
-
-
 ```
 
 Convert the elapsed time into a time per simulated second.
 
-```
-
-#!cpp
+```cpp
         return 1000*minimum/millisecs_to_simulate;
     }
 
@@ -573,8 +488,6 @@ Convert the elapsed time into a time per simulated second.
     }
 
 };
-
-
 ```
 
 
@@ -586,9 +499,7 @@ The full code is given below
 ## File name `TestOdeSolvingTimesLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 // The testing framework we use
 #include <cxxtest/TestSuite.h>
 
@@ -955,8 +866,6 @@ private:
     }
 
 };
-
-
 ```
 
 

@@ -8,7 +8,6 @@
       "body",
       "button",
       "circle",
-      "class",
       "code",
       "commit",
       "dd",
@@ -52,7 +51,6 @@
       "pre",
       "script",
       "section",
-      "set",
       "small",
       "span",
       "strong",
@@ -70,8 +68,7 @@
       "time",
       "title",
       "tr",
-      "ul",
-      "vector"
+      "ul"
     ],
     "classes": [
       "DocSearch-Label",
@@ -642,6 +639,7 @@
       "file-name-testcabasedcellpopulationusingpdesliteratepaperhpp",
       "file-name-testcadiffusionliteratepaperhpp",
       "file-name-testcalculaterequiredtimestepsliteratepaperhpp",
+      "file-name-testcancercellcolonizationofacoloncryptliteratepaperhpp",
       "file-name-testcawithmultiplemutationstatesliteratepaperhpp",
       "file-name-testcellsortingliteratepaperhpp",
       "file-name-testconductionvelocitycasestudyliteratepaperhpp",

@@ -23,9 +23,7 @@ albeit within the numerical tolerances specified on the linear solver at each ti
 The first thing to do is to include the necessary header files.
 
 
-```
-
-#!cpp
+```cpp
 // The testing framework we use
 #include <cxxtest/TestSuite.h>
 
@@ -61,8 +59,6 @@ public:
     void TestMonodomainCalculateTimesteps() throw (Exception)
     {
         const double required_mrms_error = 0.05; // 5%
-
-
 ```
 
 This test runs with the following PDE time steps, selected by looking at the output of
@@ -74,20 +70,14 @@ This test runs with the following PDE time steps, selected by looking at the out
  We also use a space step of 0.01 cm, again chosen by considering the convergence results.
 
 
-```
-
-#!cpp
+```cpp
         std::vector<double> pde_timesteps = boost::assign::list_of(0.1)(0.01);
         double h = 0.01;
-
-
 ```
 
 A list of cell models that we want to do tissue simulations with, and then the solvers to test.
 
-```
-
-#!cpp
+```cpp
         std::vector<std::string> models_to_use = boost::assign::list_of("luo_rudy_1991")
                                                  ("beeler_reuter_model_1977")
                                                  ("nygren_atrial_model_1998")
@@ -101,15 +91,11 @@ A list of cell models that we want to do tissue simulations with, and then the s
                 (Solvers::FORWARD_EULER)(Solvers::BACKWARD_EULER)
                 (Solvers::RUNGE_KUTTA_2)(Solvers::RUNGE_KUTTA_4)
                 (Solvers::RUSH_LARSEN)(Solvers::GENERALISED_RUSH_LARSEN_1)(Solvers::GENERALISED_RUSH_LARSEN_2);
-
-
 ```
 
 Only the master process writes ODE time step information to file.
 
-```
-
-#!cpp
+```cpp
         OutputFileHandler overall_results_folder("Frontiers/MonodomainCalculateTimesteps/", false); // Don't wipe!
         out_stream p_file;
         if (PetscTools::AmMaster())
@@ -117,27 +103,19 @@ Only the master process writes ODE time step information to file.
             p_file = overall_results_folder.OpenOutputFile("required_steps_tissue.txt");
             *p_file << std::setiosflags(std::ios::scientific) << std::setprecision(8);
         }
-
-
 ```
 
 Repository data locations.
 
-```
-
-#!cpp
+```cpp
         FileFinder this_file(__FILE__);
         FileFinder repo_data("data", this_file);
         FileFinder model_folder("../cellml", this_file);
-
-
 ```
 
 In the main body of the test, we loop over all combinations of model & solver listed above.
 
-```
-
-#!cpp
+```cpp
         BOOST_FOREACH(std::string model, models_to_use)
         {
             // Find the CellML file for this model
@@ -160,8 +138,6 @@ In the main body of the test, we loop over all combinations of model & solver li
                                                      base_model_handler,
                                                      solver,
                                                      false); // Whether to use lookup tables.
-
-
 ```
 
 We will auto-generate a mesh this time, and pass it in, rather than provide a mesh file name.
@@ -173,16 +149,13 @@ test we want to access specific node indices. One method of doing this is to ask
 original node ordering for the output.
 
 
-```
-
-#!cpp
+```cpp
                 DistributedTetrahedralMesh<1,1> mesh;
                 mesh.ConstructRegularSlabMesh(h, 1 /*length*/);
                 HeartConfig::Instance()->SetOutputUsingOriginalNodeOrdering(true);
 
                 BOOST_FOREACH(double pde_timestep, pde_timesteps)
                 {
-
 ```
 
 
@@ -194,24 +167,18 @@ alter the monodomain conductivity call
 `HeartConfig::Instance()->SetIntracellularConductivities()`.
 
 
-```
-
-#!cpp
+```cpp
                     HeartConfig::Instance()->SetSimulationDuration(500); //ms
 
                     unsigned timestep_divisor = 1u;
                     unsigned refinement_idx = 1u;
                     bool within_tolerance = false;
                     double sampling_time = 0.1; //ms
-
-
 ```
 
 Keep solving with smaller ODE timesteps until we meet the desired accuracy
 
-```
-
-#!cpp
+```cpp
                     do
                     {
                         double ode_timestep = pde_timestep / timestep_divisor;
@@ -246,40 +213,29 @@ Keep solving with smaller ODE timesteps until we meet the desired accuracy
                         HeartConfig::Instance()->SetVisualizeWithVtk(true);
 
                         HeartEventHandler::Reset(); // Reset timing information ready for a new simulation
-
-
 ```
 
 Now we declare and initialise the problem class.
 If a mesh-file-name hasn't been set using `HeartConfig`, we have to pass in
 a mesh using the `SetMesh` method (which must be called before `Initialise`).
 
-```
-
-#!cpp
+```cpp
                         MonodomainProblem<1> monodomain_problem( &cell_factory );
                         monodomain_problem.SetMesh(&mesh);
                         monodomain_problem.Initialise();
-
-
 ```
 
 The cells should now be set up, we have to 'hack in' and alter their tolerances
 
-```
-
-#!cpp
+```cpp
                         if (cvode_solver)
                         {
-
 ```
 
 Note that we have special methods to iterate over nodes of a distributed mesh
 which will work in parallel settings too.
 
-```
-
-#!cpp
+```cpp
                             // TODO: Do this via the cell factory?  Would need to gain a method to set refinement_idx
                             DistributedVectorFactory* p_factory = mesh.GetDistributedVectorFactory();
                             Vec monodomain_vec = p_factory->CreateVec();
@@ -293,28 +249,20 @@ which will work in parallel settings too.
                                 CellModelUtilities::SetCvodeTolerances(p_cell, refinement_idx);
                             }
                         }
-
-
 ```
 
 Prepare the loop variables for the next iteration here, since a subsequent block contains a
 `continue` statement, which would skip the adjustment if it happened later.
 
 
-```
-
-#!cpp
+```cpp
                         timestep_divisor *= 2;
                         refinement_idx++;
-
-
 ```
 
 Run the simulation.
 
-```
-
-#!cpp
+```cpp
                         double elapsed_time;
                         try
                         {
@@ -327,29 +275,21 @@ Run the simulation.
                             std::cout << model << " failed to solve with ODE timestep/refinement of " << ode_timestep << ", got: " << e.GetMessage() << std::endl << std::flush;
                             continue;
                         }
-
 ```
 
 Print the time taken for each component of the simulation to screen.
 
-```
-
-#!cpp
+```cpp
                         HeartEventHandler::Headings();
                         HeartEventHandler::Report();
-
-
 ```
 
 Analysing the results is done only by the master process, since it is not easily distributed.
 
-```
-
-#!cpp
+```cpp
                         OutputFileHandler handler(output_folder + output_subfolder.str(), false);
                         if (PetscTools::AmMaster())
                         {
-
 ```
 
 
@@ -357,36 +297,26 @@ Read some of the results data back in, and evaluate AP properties at the last no
 as per the single cell stuff.
 
 
-```
-
-#!cpp
+```cpp
                             Hdf5DataReader data_reader = monodomain_problem.GetDataReader();
                             std::vector<double> times = data_reader.GetUnlimitedDimensionValues();
                             std::vector<double> last_node = data_reader.GetVariableOverTime("V", mesh.GetNumNodes()-1u);
-
-
 ```
 
 Put this trace into a file for easy plotting and comparison with the reference later on.
 
-```
-
-#!cpp
+```cpp
                             out_stream p_trace_file = handler.OpenOutputFile("last_node_trace.dat");
                             for (unsigned i=0; i<times.size(); i++)
                             {
                                 *p_trace_file << times[i] << "\t" << last_node[i] << std::endl;
                             }
                             p_trace_file->close();
-
-
 ```
 
 Analyse the error associated with this run compared to the reference trace in the repository.
 
-```
-
-#!cpp
+```cpp
                             try
                             {
                                 std::vector<double> errors = CellModelUtilities::GetTissueErrors(times, last_node, model, pde_timestep);
@@ -421,8 +351,6 @@ Analyse the error associated with this run compared to the reference trace in th
                             // Get whether we're done from the master process
                             within_tolerance = PetscTools::ReplicateBool(within_tolerance);
                         }
-
-
 ```
 
 We stop bothering if the simulation took longer than 15 minutes
@@ -430,9 +358,7 @@ We stop bothering if the simulation took longer than 15 minutes
 so we're in a regime where it is less accurate and takes much longer than
 CVODE, and we don't need to know any more to discount this!
 
-```
-
-#!cpp
+```cpp
                         const double max_mins_to_run = 15;
                         if (!within_tolerance && PetscTools::ReplicateBool(elapsed_time >= 60*max_mins_to_run))
                         {
@@ -445,14 +371,11 @@ CVODE, and we don't need to know any more to discount this!
                         }
                     }
                     while (!within_tolerance && timestep_divisor <= 2048);
-
 ```
 
 The above means we allow at most 12 refinements of the time step (2^12^ = 2048).
 
-```
-
-#!cpp
+```cpp
                 }
 
                 // Free memory for lookup tables if used
@@ -463,22 +386,16 @@ The above means we allow at most 12 refinements of the time step (2^12^ = 2048).
         if (PetscTools::AmMaster())
         {
             p_file->close();
-
-
 ```
 
 Copy time step & error info to repository for storage and use by the timing tests.
 
-```
-
-#!cpp
+```cpp
             FileFinder ref_data = overall_results_folder.FindFile("required_steps_tissue.txt");
             ref_data.CopyTo(repo_data);
         }
     }
 };
-
-
 ```
 
 
@@ -490,9 +407,7 @@ The full code is given below
 ## File name `TestMonodomainCalculateRequiredTimestepsLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 // The testing framework we use
 #include <cxxtest/TestSuite.h>
 
@@ -744,8 +659,6 @@ public:
         }
     }
 };
-
-
 ```
 
 

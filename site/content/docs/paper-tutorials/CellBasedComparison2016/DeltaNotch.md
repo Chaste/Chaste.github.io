@@ -16,9 +16,7 @@ The easiest way to visualize these simulations is with Paraview.
 The first thing to do is to include the necessary header files.
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 
 // Must be included before other cell_based headers
@@ -67,16 +65,12 @@ The first thing to do is to include the necessary header files.
 #include "CellVolumesWriter.hpp"
 
 #include "PetscSetupAndFinalize.hpp"
-
-
 ```
 
 This is where you can set parameters to be used in all the simulations.
 
 
-```
-
-#!cpp
+```cpp
 static const double M_TIME_FOR_SIMULATION = 1000; //100
 static const double M_TISSUE_RADIUS = 15; // 15
 static const double M_PROLIF_RADIUS = 5; // 5
@@ -85,16 +79,12 @@ static const double M_DIVISION_PROBABILITY = 0.1; // 0.1
 class TestDeltaNotchLiteratePaper: public AbstractCellBasedWithTimingsTestSuite
 {
 private:
-
-
 ```
 
 This is a helper method to generate cells and is used in all simulations.
 
 
-```
-
-#!cpp
+```cpp
     void GenerateCells(unsigned num_cells, std::vector<CellPtr>& rCells, double divisionProbability)
     {
         boost::shared_ptr<AbstractCellProperty> p_state(CellPropertyRegistry::Instance()->Get<WildTypeCellMutationState>());
@@ -125,8 +115,6 @@ This is a helper method to generate cells and is used in all simulations.
     }
 
 public:
-
-
 ```
 
 ## CA
@@ -135,9 +123,7 @@ Simulate juxtacrine signalling in a population of cells in the
 Cellular Automaton model.
 
 
-```
-
-#!cpp
+```cpp
    void TestCaBasedDeltaNotch() throw (Exception)
    {
         // Create a simple 2D PottsMesh
@@ -197,8 +183,6 @@ Cellular Automaton model.
 
         simulator.Solve();
     }
-
-
 ```
 
 ## CP
@@ -207,9 +191,7 @@ Simulate juxtacrine signalling in a population of cells in the
 Cellular Potts model.
 
 
-```
-
-#!cpp
+```cpp
     void TestPottsBasedDeltaNotch() throw (Exception)
     {
         // Create a simple 2D PottsMesh
@@ -275,8 +257,6 @@ Cellular Potts model.
         // Run simulation
         simulator.Solve();
     }
-
-
 ```
 
 ## OS
@@ -285,9 +265,7 @@ Simulate juxtacrine signalling in a population of cells in the
 Overlapping Spheres model.
 
 
-```
-
-#!cpp
+```cpp
     void TestNodeBasedDeltaNotch() throw (Exception)
     {
 
@@ -347,8 +325,6 @@ Overlapping Spheres model.
         // Run simulation
         simulator.Solve();
    }
-
-
 ```
 
 ## VT
@@ -357,9 +333,7 @@ Simulate juxtacrine signalling in a population of cells in the
 Voronoi Tesselation model.
 
 
-```
-
-#!cpp
+```cpp
     void TestMeshBasedDeltaNotch() throw (Exception)
     {
         // Create a simple mesh
@@ -416,8 +390,6 @@ Voronoi Tesselation model.
           // Run simulation
         simulator.Solve();
     }
-
-
 ```
 
 ## VM
@@ -426,9 +398,7 @@ Simulate juxtacrine signalling in a population of cells
 Cell Vertex model.
 
 
-```
-
-#!cpp
+```cpp
     void TestVertexBasedDeltaNotch() throw (Exception)
     {
         // Create a simple 2D MutableVertexMesh
@@ -487,8 +457,6 @@ Cell Vertex model.
         simulator.Solve();
    }
 };
-
-
 ```
 
 
@@ -500,9 +468,7 @@ The full code is given below
 ## File name `TestDeltaNotchLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 
 // Must be included before other cell_based headers
@@ -893,8 +859,6 @@ public:
         simulator.Solve();
    }
 };
-
-
 ```
 
 

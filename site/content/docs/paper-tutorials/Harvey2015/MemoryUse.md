@@ -10,11 +10,9 @@ in use. By running on larger numbers of processes, a proportionally
 smaller amount of memory is used by each process.
 
 The geometry for the construction of the population is contained in
-
 ```
 
 projects/Harvey2015/test/data/1024000_2d_cells.dat
-
 ```
 
 
@@ -24,11 +22,9 @@ This test suite should be run in parallel.  It should be run on several numbers 
 in the paper.)
 
 A useful for loop (in `bash`) would be
-
 ```
 
 for i in {1..32}; do echo $i "processes ===";scons build=GccOptNative_$i projects/Harvey2015/test/TestMemoryUseLiteratePaper.hpp | grep memory; done
-
 ```
 
 
@@ -37,9 +33,7 @@ the individual memory use.  Some post-processing will be needed in order to sele
 plot on the vertical axis.
 
 
-```
-
-#!cpp
+```cpp
 // The testing framework
 #include <cxxtest/TestSuite.h>
 #include "AbstractCellBasedTestSuite.hpp"
@@ -56,17 +50,13 @@ plot on the vertical axis.
 
 // Needed to run in parallel
 #include "PetscSetupAndFinalize.hpp"
-
-
 ```
 
 This function prints the memory usage at the time it is called.
 `rPrefix` contains the rank (identifier) of the process
 
 
-```
-
-#!cpp
+```cpp
 void PrintMemoryUsage(const std::string& rPrefix)
 {
     struct rusage rusage;
@@ -76,8 +66,6 @@ void PrintMemoryUsage(const std::string& rPrefix)
 
     std::cout << rPrefix << ": memory use = " << max_res <<  " MB.\n";
 }
-
-
 ```
 
 ## The test suite
@@ -87,40 +75,30 @@ in use. By running on larger numbers of processes, a proportionally
 smaller amount of memory is used by each process.
 
 
-```
-
-#!cpp
+```cpp
 class TestMemoryUse : public AbstractCellBasedTestSuite
 {
 public:
 
     void TestProfile2dSimulation() throw (Exception)
     {
-
 ```
 
 
 Record the rank of each process so that it can be output
 
 
-```
-
-#!cpp
+```cpp
         std::ostringstream rank;
         rank << PetscTools::GetMyRank();
-
-
 ```
 
 Make a `NodesOnlyMesh` in which to store the nodes which are to be read from file
 
 
-```
-
-#!cpp
+```cpp
         NodesOnlyMesh<2> mesh;
         mesh.SetCalculateNodeNeighbours(false);
-
 ```
 
 
@@ -129,12 +107,8 @@ The maximum interaction distance will define the size of the indexing boxes and 
 the size of the strips which are the unit of parallel distribution
 
 
-```
-
-#!cpp
+```cpp
         mesh.SetMaximumInteractionDistance(4);
-
-
 ```
 
 Here we call a parallel helper method which reads the cell locations
@@ -145,30 +119,22 @@ The proliferative type ensures that the cells are not growing, although this inf
 used.  No simulations are run.
 
 
-```
-
-#!cpp
+```cpp
         std::vector<CellPtr> cells;
         ParallelCellsGenerator<FixedDurationGenerationBasedCellCycleModel, 2> generator;
         generator.GenerateParallelCells("projects/Harvey2015/test/data/1024000_2d_cells.dat",
                                         cells,
                                         mesh,
                                         CellPropertyRegistry::Instance()->Get<DifferentiatedCellProliferativeType>());
-
-
 ```
 
 Print the approximate memory use
 
 
-```
-
-#!cpp
+```cpp
         PrintMemoryUsage(rank.str());
     }
 };
-
-
 ```
 
 
@@ -180,9 +146,7 @@ The full code is given below
 ## File name `TestMemoryUseLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 // The testing framework
 #include <cxxtest/TestSuite.h>
 #include "AbstractCellBasedTestSuite.hpp"
@@ -233,8 +197,6 @@ public:
         PrintMemoryUsage(rank.str());
     }
 };
-
-
 ```
 
 

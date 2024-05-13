@@ -4,7 +4,6 @@
 This wiki page is auto-generated from the file
 projects/Frontiers2014/Summary.wiki
 edit that file, don't edit this page on trac!
-
 ```
 
 
@@ -43,19 +42,16 @@ Again, you may if you wish run just the final step to benchmark the solvers on y
 ## Sample commands to install and run everything
 
 If you wish to install the latest versions Chaste and this project direct from our repository, you may do so from the command line as follows:
-
 ```
 
 #!sh
 svn checkout https://chaste.cs.ox.ac.uk/svn/chaste/trunk Chaste
 cd Chaste/projects
 svn checkout https://chaste.cs.ox.ac.uk/svn/chaste/projects/Frontiers2014
-
 ```
 
 
 To run all the steps listed above, exploiting multiple cores on your machine where appropriate, use:
-
 ```
 
 #!sh
@@ -73,7 +69,6 @@ scons chaste_libs=1 brief=1 build=GccOptNative -j8 projects/Frontiers2014/test/T
 scons chaste_libs=1 brief=1 build=GccOptNative -j8 projects/Frontiers2014/test/TestMonodomainConvergenceLiteratePaper.hpp run_time_flags="--timestep 0.001 --spacestep 0.001 --reset"
 # Other values for timestep & spacestep can be given, as desired.
 # The --reset flag says to reset CVODE fully at each PDE time step.
-
 ```
 
 

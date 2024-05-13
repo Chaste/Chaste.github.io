@@ -12,60 +12,44 @@ See main cardiac tutorials for more detailed descriptions of cardiac simulations
 
 First, we have some standard includes.
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include <boost/assign.hpp>
 #include "CardiacSimulationArchiver.hpp"
 #include "MonodomainProblem.hpp"
 #include "PetscSetupAndFinalize.hpp"
-
 ```
 
 The cell model we use is the Mahajan2008 cell model, which is included with Chaste.
 
-```
-
-#!cpp
+```cpp
 #include "Mahajan2008BackwardEuler.hpp"
-
 ```
 
 The following cell factory is defined in this project. It allows the user to specify
 stimuli for chosen spheres and cuboids.
 
 
-```
-
-#!cpp
+```cpp
 #include "RegionBasedCellFactory.hpp"
-
-
 ```
 
 A simple enumeration for which mesh to use:
 
-```
-
-#!cpp
+```cpp
 typedef enum GeometryOption_
 {
     COARSERES_ISOTROPIC = 0,
     MEDIUMRES_ISOTROPIC,
     FULLRES_ISOTROPIC
 } GeometryOption;
-
-
 ```
 
 This cell factory inherits from the `RegionBasedCellFactory` but adds a stimulated spherical
 region at the apex of this geometry.
 
 
-```
-
-#!cpp
+```cpp
 template<class CELL>
 class RegionBasedCellFactoryWithApexS1 : public RegionBasedCellFactory<CELL,3>
 {
@@ -82,26 +66,19 @@ public:
         this->AddStimulatedSphere(apex_region_centre, apex_region_radius, 0.0 /*stim time*/);
     }
 };
-
-
 ```
 
 The main test class:
 
-```
-
-#!cpp
+```cpp
 class TestReentryOnRabbitMeshLiteratePaper : public CxxTest::TestSuite
 {
 private:
-
 ```
 
 This method sets some numerical options:
 
-```
-
-#!cpp
+```cpp
     void SetHeartConfigForTest()
     {
         HeartConfig::Instance()->Reset();
@@ -111,44 +88,32 @@ This method sets some numerical options:
     }
 
 public:
-
 ```
 
 The main simulation method:
 
-```
-
-#!cpp
+```cpp
     void TestReentryS1andS2() throw(Exception)
     {
-
 ```
 
 The parts that the user can easily change are all listed here:
 
-```
-
-#!cpp
+```cpp
         GeometryOption geometry = COARSERES_ISOTROPIC;  // Other options found in enumeration above
         double s2_time = 170;                           // Time of S2 stimulus in ms. Set this to 'DBL_MAX' for there to be no S2.
         double end_time = 1000;                         // in ms
         double printing_time = 10.0;                    // in ms
         bool write_archive = false;                     // Whether to write an archive at the end of the simulation (so can simulation can be reloaded and run).
         std::string notes = "";                         // Anything here is added to output directory name (see below).
-
-
 ```
 
 Initial set up:
 
-```
-
-#!cpp
+```cpp
         SetHeartConfigForTest();
         HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(0.1 /*ode dt*/, 0.1/*pde dt*/, printing_time);
         HeartConfig::Instance()->SetSimulationDuration(end_time);
-
-
 ```
 
 The conductivity used is 0.9333, chosen arbitrarily so that reentry is sustained for several rotations. This number is
@@ -156,21 +121,15 @@ the monodomain conductivity corresponding the Clerc 1976 intra- and extra-cellul
 70%.
 
 
-```
-
-#!cpp
+```cpp
         double conductivity = 14.0/15.0;
         HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(conductivity,conductivity,conductivity));
-
-
 ```
 
 **The coarse mesh is in the repository, but there others are not - you will need to obtain the medium/fine meshes and provide their locations here**
 (see project intro page for details on where to get the meshes).
 
-```
-
-#!cpp
+```cpp
         switch(geometry)
         {
             case COARSERES_ISOTROPIC:
@@ -196,17 +155,13 @@ the monodomain conductivity corresponding the Clerc 1976 intra- and extra-cellul
                 break;
             }
         };
-
-
 ```
 
 Declare the cell factory. Pass in initial conditions for the cell models (allowing the user to do this is useful additional functionality
 implemented in `RegionBasedCellFactory`), and add the S2 stimulus.
 
 
-```
-
-#!cpp
+```cpp
         RegionBasedCellFactoryWithApexS1<CellMahajan2008FromCellMLBackwardEuler> cell_factory;
 
         // These initial conditions where obtained by pacing a Mahajan single cell model every 220ms, for which APD is about 160.
@@ -222,15 +177,11 @@ implemented in `RegionBasedCellFactory`), and add the S2 stimulus.
             double s2_stim_radius = 0.9;
             cell_factory.AddStimulatedSphere(s2_stim_centre, s2_stim_radius, s2_time);
         }
-
-
 ```
 
 The following code just sets up an output directory name based on the chosen options.
 
-```
-
-#!cpp
+```cpp
         std::stringstream ss;
         switch(geometry)
         {
@@ -265,29 +216,21 @@ The following code just sets up an output directory name based on the chosen opt
             ss << "_" << notes;
         }
         HeartConfig::Instance()->SetOutputDirectory(ss.str());
-
-
 ```
 
 Run the simulation:
 
-```
-
-#!cpp
+```cpp
         MonodomainProblem<3> cardiac_problem(&cell_factory);
 
         // cardiac_problem.SetWriteInfo();
         cardiac_problem.Initialise();
         cardiac_problem.Solve();
-
-
 ```
 
 Write the archive if required and print out timings.
 
-```
-
-#!cpp
+```cpp
         if(write_archive)
         {
             CardiacSimulationArchiver<MonodomainProblem<3> >::Save(cardiac_problem, "archived_" + ss.str());
@@ -297,8 +240,6 @@ Write the archive if required and print out timings.
         HeartEventHandler::Report();
     }
 };
-
-
 ```
 
 
@@ -310,9 +251,7 @@ The full code is given below
 ## File name `TestReentryOnRabbitMeshLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 #include <boost/assign.hpp>
 #include "CardiacSimulationArchiver.hpp"
@@ -465,8 +404,6 @@ public:
         HeartEventHandler::Report();
     }
 };
-
-
 ```
 
 

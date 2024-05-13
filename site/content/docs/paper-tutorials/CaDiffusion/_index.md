@@ -4,7 +4,6 @@
 This wiki page is auto-generated from the file
 projects/CaDiffusion/Summary.wiki
 edit that file, don't edit this page on trac!
-
 ```
 
 
@@ -46,7 +45,6 @@ Either
 Or
 
 * Install Chaste 3.4 and this project direct from our repository, you may do so from the command line as follows:
-
 ```
 
 #!sh
@@ -54,19 +52,15 @@ cd <path/to>
 svn export --username anonymous --password <your email address (not stored)> --no-auth-cache https://chaste.cs.ox.ac.uk/svn/chaste/tags/release_3.4 Chaste
 cd Chaste/projects
 svn export --username anonymous --password <your email address (not stored)> --no-auth-cache https://chaste.cs.ox.ac.uk/svn/chaste/tags/CaDiffusion_release_3.4 CaDiffusion
-
-
 ```
 
 
 For either method, to run the simulations, use:
-
 ```
 
 #!sh
 cd <path/to>/Chaste
 scons chaste_libs=1 brief=1 build=GccOptNative projects/CaDiffusion
-
 ```
 
 

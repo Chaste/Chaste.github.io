@@ -11,9 +11,7 @@ The full code is given below
 ## File name `TestMorphogenMonolayerLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 
 // Must be included before other cell_based headers
@@ -497,7 +495,6 @@ public:
         simulator.Solve();
     }
 };
-
 ```
 
 

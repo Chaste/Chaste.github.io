@@ -14,28 +14,22 @@ The test in this class is designed to be run using multiple processes to
 recreate figure 6.
 
 For example:
-
 ```
 
 scons build=GccOptNative_2 test_suite=projects/Harvey2015/tests/TestLoadBalanceSensitivityLiteratePaper.hpp
-
 ```
 
 or, to produce the 8-way simulation of Figure 6c and Figure 7,
-
 ```
 
 scons build=GccOptNative_8 projects/Harvey2015/tests/TestLoadBalanceSensitivityLiteratePaper.hpp
-
 ```
 
 
 ### Header files
 
 
-```
-
-#!cpp
+```cpp
 // Used for the test-suite set up
 #include <cxxtest/TestSuite.h>
 #include "AbstractCellBasedTestSuite.hpp"
@@ -64,8 +58,6 @@ scons build=GccOptNative_8 projects/Harvey2015/tests/TestLoadBalanceSensitivityL
 class TestLoadBalanceSensitivity : public AbstractCellBasedTestSuite
 {
 public:
-
-
 ```
 
 ## The first unit test
@@ -76,12 +68,9 @@ progressively more processes to experience the speed-up
 show in Figure 6(a).
 
 
-```
-
-#!cpp
+```cpp
     void TestParallelLoadBalance () throw (Exception)
     {
-
 ```
 
 
@@ -92,9 +81,7 @@ This test should be run in parallel,
 so we enforce this condition with an exception.
 
 
-```
-
-#!cpp
+```cpp
         if (PetscTools::GetNumProcs() == 1)
         {
           EXCEPTION ("This code should be run in parallel.");
@@ -108,7 +95,6 @@ so we enforce this condition with an exception.
                           << " processes" << std::endl;
             }
         }
-
 ```
 
 
@@ -116,9 +102,7 @@ The initial geometry is 25 cells in a 'honeycomb' configuration,
 such that the cells are close to a stable equilibrium.
 
 
-```
-
-#!cpp
+```cpp
         std::vector< Node<2>* > nodes;
         for (unsigned i = 0; i < 5; ++i)
         {
@@ -131,22 +115,16 @@ such that the cells are close to a stable equilibrium.
                 nodes.push_back(new Node<2>(index, location, false));
             }
         }
-
-
 ```
 
 Using the cell locations configured above, we create a mesh (a collection of nodes).
 that defines the geometry of the population.
 
 
-```
-
-#!cpp
+```cpp
         NodesOnlyMesh<2> mesh;
         mesh.ConstructNodesWithoutMesh(nodes, 1.5);
         mesh.SetCalculateNodeNeighbours(false);
-
-
 ```
 
 Having created the geometry, we then assign one cell to each node in the
@@ -162,16 +140,13 @@ of this test, it allows us to ensure that the cells keep dividing, and so the
 population will keep growing.
 
 
-```
-
-#!cpp
+```cpp
         std::vector<CellPtr> cells;
         boost::shared_ptr<AbstractCellMutationState> p_state(new WildTypeCellMutationState);
         boost::shared_ptr<AbstractCellProliferativeType> p_type(new TransitCellProliferativeType);
 
         for (unsigned i = 0; i < mesh.GetNumNodes(); ++i)
         {
-
 ```
 
 
@@ -179,45 +154,33 @@ The cells are given a cell cycle model that causes them to divide after
 a fixed duration has elapsed.
 
 
-```
-
-#!cpp
+```cpp
             FixedDurationGenerationBasedCellCycleModel* p_model = new FixedDurationGenerationBasedCellCycleModel();
             p_model->SetDimension(2);
             p_model->SetStemCellG1Duration(4.0);
             p_model->SetMaxTransitGenerations(20u);
 
             CellPtr p_cell(new Cell(p_state, p_model));
-
-
 ```
 
 Cells are configured to be born at some random time in the past,
 so that cell division is not synchronised between all cells.
 
 
-```
-
-#!cpp
+```cpp
             double birth_time = -1.0 * RandomNumberGenerator::Instance()->ranf()*18.0;
             p_cell->SetBirthTime(birth_time);
             p_cell->SetCellProliferativeType(p_type);
             cells.push_back(p_cell);
         }
-
-
 ```
 
 Set up a cell population from the geometry defined in the mesh and the set of cells created above.
 
-```
-
-#!cpp
+```cpp
         NodeBasedCellPopulation<2> cell_population(mesh, cells);
         cell_population.SetAbsoluteMovementThreshold(1.0);
         cell_population.SetOutputResultsForChasteVisualizer(false);
-
-
 ```
 
 Here we set a flag to make the population rebalance the distribution of
@@ -226,13 +189,9 @@ characteristics of this test without load-balancing, these two lines
 should be removed or commented out.
 
 
-```
-
-#!cpp
+```cpp
         cell_population.SetLoadBalanceMesh(true);
         cell_population.SetLoadBalanceFrequency(1000);
-
-
 ```
 
 Make a simulation object from the cell population, and set the end time to 99 hours,
@@ -240,15 +199,11 @@ this allows us to reset the timers and measure the speed-up in the final hour
 of simulation.
 
 
-```
-
-#!cpp
+```cpp
         OffLatticeSimulation<2> simulator(cell_population);
         simulator.SetEndTime(99.0);
         simulator.SetDt(1.0/1200.0);
         simulator.SetSamplingTimestepMultiple(1200);
-
-
 ```
 
 Set output directory
@@ -256,47 +211,33 @@ This folder is to be found relative to `CHASTE_TEST_OUTPUT` which by default is
 `/tmp/$USER/testoutput`
 
 
-```
-
-#!cpp
+```cpp
         std::ostringstream exp_num_str;
         exp_num_str << PetscTools::GetNumProcs();
         std::string output_directory = "LoadBalance_" + exp_num_str.str();
         simulator.SetOutputDirectory(output_directory);
-
-
 ```
 
 Create a force law and pass it to the `OffLatticeSimulation`.
 
 
-```
-
-#!cpp
+```cpp
         MAKE_PTR(GeneralisedLinearSpringForce<2>, p_force);
         p_force->SetCutOffLength(1.5);
         simulator.AddForce(p_force);
-
-
 ```
 
 We first solve the system up to 99 hours.
 
 
-```
-
-#!cpp
+```cpp
         simulator.Solve();
-
-
 ```
 
 And then reset the timers to measure the final hour.
 
 
-```
-
-#!cpp
+```cpp
         CellBasedEventHandler::Report();
         CellBasedEventHandler::Reset();
 
@@ -305,16 +246,12 @@ And then reset the timers to measure the final hour.
 
         CellBasedEventHandler::Report();
         SimulationTime::Destroy();
-
-
 ```
 
 Print the number of local cells to screen.
 
 
-```
-
-#!cpp
+```cpp
         if (PetscTools::AmMaster())
         {
             std::cout << "Number of cells on process "
@@ -323,8 +260,6 @@ Print the number of local cells to screen.
                   << std::endl;
         }
     }
-
-
 ```
 
 ## The second unit test
@@ -338,12 +273,9 @@ each of the processes.
 Some post-processing is required to produce the data for plot in Figure 6c.
 
 
-```
-
-#!cpp
+```cpp
     void TestParallelLoadBalanceSensitivity () throw(Exception)
     {
-
 ```
 
 
@@ -355,15 +287,11 @@ so we enforce this condition with an exception.
 Figure 6c was generated using 8 processes.
 
 
-```
-
-#!cpp
+```cpp
         if (PetscTools::IsSequential())
         {
           EXCEPTION ("This code should be run in parallel.");
         }
-
-
 ```
 
 We run the test for rebalancing frequencies from every 10 time-steps,
@@ -372,22 +300,17 @@ up to every 100,000 time-steps.
 We multiply by 5 or 2 on alternating iterations - see bottom of loop.
 
 
-```
-
-#!cpp
+```cpp
         bool even_loop = false;
         for (unsigned rebalancing_frequency = 10; rebalancing_frequency <= 100000; even_loop = !even_loop /*rebalancing_frequency*=10*/)
         {
-
 ```
 
 
 Print the rebalancing frequency for reference in final results.
 
 
-```
-
-#!cpp
+```cpp
             if (PetscTools::AmMaster())
             {
                 std::cout << "Rebalancing frequency: " << rebalancing_frequency << "\n";
@@ -396,17 +319,13 @@ Print the rebalancing frequency for reference in final results.
             SimulationTime::Destroy();
             SimulationTime::Instance()->SetStartTime(0.0);
             CellBasedEventHandler::Reset();
-
-
 ```
 
 The initial geometry 25 cells in a 'honeycomb' configuration,
 such that the cells are close to a stable equilibrium.
 
 
-```
-
-#!cpp
+```cpp
             std::vector< Node<2>* > nodes;
             for (unsigned i = 0; i < 5; ++i)
             {
@@ -419,22 +338,16 @@ such that the cells are close to a stable equilibrium.
                     nodes.push_back(new Node<2>(index, location, false));
                 }
             }
-
-
 ```
 
 Using the cell locations configured above, we create a mesh (a collection of nodes).
 that defines the geometry of the population.
 
 
-```
-
-#!cpp
+```cpp
             NodesOnlyMesh<2> mesh;
             mesh.ConstructNodesWithoutMesh(nodes, 1.5);
             mesh.SetCalculateNodeNeighbours(false);
-
-
 ```
 
 Having created the geometry, we then assign one cell to each node in the
@@ -442,16 +355,13 @@ mesh.
 See the previous test for a brief overview of the states assigned to cells.
 
 
-```
-
-#!cpp
+```cpp
             std::vector<CellPtr> cells;
             boost::shared_ptr<AbstractCellMutationState> p_state(new WildTypeCellMutationState);
             boost::shared_ptr<AbstractCellProliferativeType> p_type(new TransitCellProliferativeType);
 
             for (unsigned i = 0; i < mesh.GetNumNodes(); ++i)
             {
-
 ```
 
 
@@ -459,47 +369,35 @@ The cells are given a cell cycle model that causes them to divide after
 a fixed duration has elapsed.
 
 
-```
-
-#!cpp
+```cpp
                 FixedDurationGenerationBasedCellCycleModel* p_model = new FixedDurationGenerationBasedCellCycleModel();
                 p_model->SetDimension(2);
                 p_model->SetStemCellG1Duration(4.0);
                 p_model->SetMaxTransitGenerations(20u);
 
                 CellPtr p_cell(new Cell(p_state, p_model));
-
-
 ```
 
 Cells are configured to be born at some random time in the past,
 so that cell division is not synchronised between all cells.
 
 
-```
-
-#!cpp
+```cpp
                 double birth_time = -1.0 * RandomNumberGenerator::Instance()->ranf()*18.0;
                 p_cell->SetBirthTime(birth_time);
                 p_cell->SetCellProliferativeType(p_type);
                 cells.push_back(p_cell);
             }
-
-
 ```
 
 Set up a cell population from the geometry defined in the mesh, and the set of cells.
 
-```
-
-#!cpp
+```cpp
             NodeBasedCellPopulation<2> cell_population(mesh, cells);
             cell_population.SetAbsoluteMovementThreshold(1.0);
             cell_population.SetOutputResultsForChasteVisualizer(false);
             cell_population.SetLoadBalanceMesh(true);
             cell_population.SetLoadBalanceFrequency(rebalancing_frequency);
-
-
 ```
 
 Make a simulation object from the cell population, and set the end time to 99 hours,
@@ -507,15 +405,11 @@ this allows us to reset the timers and measure the speed-up in the final hour
 of simulation.
 
 
-```
-
-#!cpp
+```cpp
             OffLatticeSimulation<2> simulator(cell_population);
             simulator.SetEndTime(99.0);
             simulator.SetDt(1.0/1200.0);
             simulator.SetSamplingTimestepMultiple(1200);
-
-
 ```
 
 Set output directory
@@ -523,48 +417,34 @@ This folder is to be found relative to `CHASTE_TEST_OUTPUT` which by default is
 `/tmp/$USER/testoutput`
 
 
-```
-
-#!cpp
+```cpp
             std::ostringstream exp_num_str;
             exp_num_str << PetscTools::GetNumProcs() << "_" << rebalancing_frequency;
             std::string output_directory = "LoadBalSensitivity_" + exp_num_str.str();
 
             simulator.SetOutputDirectory(output_directory);
-
-
 ```
 
 Create a force law and pass it to the `OffLatticeSimulation`.
 
 
-```
-
-#!cpp
+```cpp
             MAKE_PTR(GeneralisedLinearSpringForce<2>, p_force);
             p_force->SetCutOffLength(1.5);
             simulator.AddForce(p_force);
-
-
 ```
 
 We first solve the system up to 99 hours.
 
 
-```
-
-#!cpp
+```cpp
             simulator.Solve();
-
-
 ```
 
 Report, and then reset the timers to measure the final hour.
 
 
-```
-
-#!cpp
+```cpp
             if (PetscTools::AmMaster())
             {
                 std::cout<<"Report for bulk of simulation (99 simulation hours)\n";
@@ -579,16 +459,12 @@ Report, and then reset the timers to measure the final hour.
                 std::cout<<"Report for final simulation hour\n";
             }
             CellBasedEventHandler::Report();
-
-
 ```
 
 We multiply by 5 or 2 on alternating iterations
 
 
-```
-
-#!cpp
+```cpp
             if (even_loop)
             {
                 rebalancing_frequency *= 2;
@@ -600,8 +476,6 @@ We multiply by 5 or 2 on alternating iterations
         }
     }
 };
-
-
 ```
 
 
@@ -613,9 +487,7 @@ The full code is given below
 ## File name `TestLoadBalanceSensitivityLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 // Used for the test-suite set up
 #include <cxxtest/TestSuite.h>
 #include "AbstractCellBasedTestSuite.hpp"
@@ -841,8 +713,6 @@ public:
         }
     }
 };
-
-
 ```
 
 

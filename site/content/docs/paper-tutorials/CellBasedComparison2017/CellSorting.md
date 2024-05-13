@@ -16,9 +16,7 @@ The easiest way to visualize these simulations is with Paraview.
 The first thing to do is to include the necessary header files.
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 
 // Must be included before other cell_based headers
@@ -65,16 +63,12 @@ The first thing to do is to include the necessary header files.
 #include "CellMutationStatesWriter.hpp"
 
 #include "PetscSetupAndFinalize.hpp"
-
-
 ```
 
 This is where you can set parameters to be used in all the simulations.
 
 
-```
-
-#!cpp
+```cpp
 static const double M_TIME_TO_STEADY_STATE = 10; //10
 static const double M_TIME_FOR_SIMULATION = 100; //100
 static const double M_NUM_CELLS_ACROSS = 20; //20 // this ^2 cells
@@ -83,16 +77,12 @@ static const double M_CELL_FLUCTUATION = 1.0;
 class TestCellSortingLiteratePaper : public AbstractCellBasedWithTimingsTestSuite
 {
 private:
-
-
 ```
 
 This is a helper method to randomly label cells add is used in all simulations.
 
 
-```
-
-#!cpp
+```cpp
     void RandomlyLabelCells(std::list<CellPtr>& rCells, boost::shared_ptr<AbstractCellProperty> pLabel, double labelledRatio)
     {
         for (std::list<CellPtr>::iterator cell_iter = rCells.begin();
@@ -107,8 +97,6 @@ This is a helper method to randomly label cells add is used in all simulations.
     }
 
 public:
-
-
 ```
 
 ## CA
@@ -117,9 +105,7 @@ Simulate a population of cells exhibiting cell sorting using the
 Cellular Automaton model.
 
 
-```
-
-#!cpp
+```cpp
     void TestCaBasedMonolayerCellSorting()
     {
         // Create a simple 2D PottsMesh
@@ -194,8 +180,6 @@ Cellular Automaton model.
         TS_ASSERT_EQUALS(simulator.GetNumBirths(), 0u);
         TS_ASSERT_EQUALS(simulator.GetNumDeaths(), 0u);
     }
-
-
 ```
 
 ## CP
@@ -204,9 +188,7 @@ Simulate a population of cells exhibiting cell sorting using the
 Cellular Potts model.
 
 
-```
-
-#!cpp
+```cpp
     void TestPottsMonolayerCellSorting()
     {
         // Create a simple 2D PottsMesh
@@ -280,8 +262,6 @@ Cellular Potts model.
         TS_ASSERT_EQUALS(simulator.GetNumBirths(), 0u);
         TS_ASSERT_EQUALS(simulator.GetNumDeaths(), 0u);
     }
-
-
 ```
 
 ## OS
@@ -290,9 +270,7 @@ Simulate a population of cells exhibiting cell sorting using the
 Overlapping Sphere model.
 
 
-```
-
-#!cpp
+```cpp
     void TestNodeBasedMonolayerCellSorting()
     {
         // Create a simple mesh
@@ -364,7 +342,6 @@ Overlapping Sphere model.
         TS_ASSERT_EQUALS(simulator.GetNumBirths(), 0u);
         TS_ASSERT_EQUALS(simulator.GetNumDeaths(), 0u);
     }
-
 ```
 
 
@@ -374,9 +351,7 @@ Simulate a population of cells exhibiting cell sorting using the
 Voronoi tesselation model.
 
 
-```
-
-#!cpp
+```cpp
     void TestMeshBasedWithGhostsMonolayerCellSorting()
     {
         // Create a simple mesh
@@ -442,8 +417,6 @@ Voronoi tesselation model.
         TS_ASSERT_EQUALS(simulator.GetNumBirths(), 0u);
         TS_ASSERT_EQUALS(simulator.GetNumDeaths(), 0u);
     }
-
-
 ```
 
 ## VM
@@ -452,9 +425,7 @@ Simulate a population of cells exhibiting cell sorting using the
 Cell Vertex model.
 
 
-```
-
-#!cpp
+```cpp
     void TestVertexMonolayerCellSorting()
     {
         // Create a simple 2D MutableVertexMesh
@@ -533,8 +504,6 @@ Cell Vertex model.
         TS_ASSERT_EQUALS(simulator.GetNumDeaths(), 0u);
     }
 };
-
-
 ```
 
 
@@ -546,9 +515,7 @@ The full code is given below
 ## File name `TestCellSortingLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 
 // Must be included before other cell_based headers
@@ -984,8 +951,6 @@ public:
         TS_ASSERT_EQUALS(simulator.GetNumDeaths(), 0u);
     }
 };
-
-
 ```
 
 

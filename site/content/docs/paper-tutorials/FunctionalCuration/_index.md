@@ -36,14 +36,12 @@ and location, or the project will not work.
 
 If you wish to work with the latest version of the Chaste and project code, you can obtain them
 from the Chaste repository using the following commands:
-
 ```
 
 #!sh
 git clone -b develop https://chaste.cs.ox.ac.uk/git/chaste.git Chaste
 cd Chaste/projects
 svn checkout --username anonymous https://chaste.cs.ox.ac.uk/svn/chaste/projects/FunctionalCuration
-
 ```
 
 Use your email address as the password for the 'anonymous' account.
@@ -62,28 +60,22 @@ are in `cellml`.  Some additional interesting locations are:
 See the [sub-page for our main paper](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Functional-Curation-_-Functional-Curation) for details of how to reproduce
 its results.  There are also many tests covering the lower-level functionality available for use by
 protocols.  Run all the default tests with:
-
 ```
 
 scons cl=1 b=GccOpt projects/FunctionalCuration
-
 ```
 
 If you have multiple cores available, you can build in parallel with (using 4 cores for example):
-
 ```
 
 scons -j4 cl=1 b=GccOpt projects/FunctionalCuration
-
 ```
 
 
 To build an executable that can run a single protocol on a single model, do:
-
 ```
 
 scons cl=1 exe=1 b=GccOpt projects/FunctionalCuration/apps
-
 ```
 
 

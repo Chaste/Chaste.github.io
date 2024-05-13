@@ -19,9 +19,7 @@ get a numerical solution of comparable accuracy, for fair timing comparisons.
 The first thing to do is to include the necessary header files.
 
 
-```
-
-#!cpp
+```cpp
 // The testing framework we use
 #include <cxxtest/TestSuite.h>
 
@@ -54,78 +52,56 @@ public:
     void TestCalculateTimesteps() throw (Exception)
     {
         const double required_mrms_error = 0.05; // 5%
-
-
 ```
 
 The model / solver combinations to find a suitable time step for.
 
-```
-
-#!cpp
+```cpp
         std::vector<FileFinder> models = CellModelUtilities::GetListOfModels();
         std::vector<Solvers::Value> solvers = boost::assign::list_of
                 (Solvers::CVODE_ANALYTIC_J)(Solvers::CVODE_NUMERICAL_J)
                 (Solvers::FORWARD_EULER)(Solvers::BACKWARD_EULER)
                 (Solvers::RUNGE_KUTTA_2)(Solvers::RUNGE_KUTTA_4)
                 (Solvers::RUSH_LARSEN)(Solvers::GENERALISED_RUSH_LARSEN_1)(Solvers::GENERALISED_RUSH_LARSEN_2);
-
-
 ```
 
 Create the output folder structure before isolating processes, to avoid race conditions.
 
-```
-
-#!cpp
+```cpp
         OutputFileHandler test_base_handler("Frontiers/CalculateTimesteps/", false);
         BOOST_FOREACH(FileFinder& r_model, models)
         {
             OutputFileHandler model_handler(test_base_handler.FindFile(r_model.GetLeafNameNoExtension()), false);
         }
-
-
 ```
 
 Each process writes its results to a separate file.
 
-```
-
-#!cpp
+```cpp
         out_stream p_file = test_base_handler.OpenOutputFile("required_steps_", PetscTools::GetMyRank(), ".txt");
         // Ensure time steps are written at high precision
         *p_file << std::setiosflags(std::ios::scientific) << std::setprecision(16);
-
-
 ```
 
 Iterate over model/solver combinations, distributed over processes.
 
-```
-
-#!cpp
+```cpp
         PetscTools::IsolateProcesses();
         unsigned iteration = 0u;
         BOOST_FOREACH(FileFinder& r_model, models)
         {
             std::string model_name = r_model.GetLeafNameNoExtension();
-
-
 ```
 
 We calculate separate timesteps for with and without lookup tables,
 since for some model/solver combinations including lookup tables can push things outside the stable regime.
 
 
-```
-
-#!cpp
+```cpp
             std::vector<bool> lookup_table_options = boost::assign::list_of(false)(true);
             BOOST_FOREACH(bool use_lookup_tables, lookup_table_options)
             {
                 std::string using_tables = (use_lookup_tables ? " and lookup tables" : "");
-
-
 ```
 
 Iterate over each available solver.
@@ -133,35 +109,25 @@ This is the inner loop since it iterates over 9 items, making it unlikely to be 
 of processes and hence hopefully giving a more even distribution of work.
 
 
-```
-
-#!cpp
+```cpp
                 BOOST_FOREACH(Solvers::Value solver, solvers)
                 {
                     bool cvode_solver = ((solver==Solvers::CVODE_ANALYTIC_J) || (solver==Solvers::CVODE_NUMERICAL_J));
-
-
 ```
 
 This simple if allows us to parallelise the sweep to speed up running it.
 
-```
-
-#!cpp
+```cpp
                     if (iteration++ % PetscTools::GetNumProcs() != PetscTools::GetMyRank())
                     {
                         continue; // Let another process do this combination
                     }
                     std::cout << "Calculating timestep for " << model_name << " with solver " << CellModelUtilities::GetSolverName(solver) << using_tables << std::endl;
-
-
 ```
 
 Generate the cell model from CellML.
 
-```
-
-#!cpp
+```cpp
                     std::stringstream folder_name;
                     folder_name << model_name << "/" << solver;
                     if (use_lookup_tables)
@@ -180,31 +146,23 @@ Generate the cell model from CellML.
                         // Move on to the next model/solver combination.
                         continue;
                     }
-
-
 ```
 
 Set up solver parameters.
 
-```
-
-#!cpp
+```cpp
                     double sampling_time = 0.1;
                     unsigned timestep_divisor = 1u;
                     unsigned refinement_idx = 1u;
                     bool within_tolerance = false;
                     std::vector<double> initial_conditions = p_cell->GetStdVecStateVariables();
                     double period = CellModelUtilities::GetDefaultPeriod(p_cell);
-
-
 ```
 
 For the one step models: keep solving with smaller timesteps until we meet the desired accuracy.
 For CVODE, use the timestep divisor to index a vector of tolerance pairs.
 
-```
-
-#!cpp
+```cpp
                     do
                     {
                         double timestep = sampling_time / timestep_divisor;
@@ -230,40 +188,29 @@ For CVODE, use the timestep divisor to index a vector of tolerance pairs.
 
                         std::cout << "Computing error for model " << model_name << " solver '" << CellModelUtilities::GetSolverName(solver) << "'"
                                   << using_tables << " with" << refinement_description << std::endl;
-
-
 ```
 
 Prepare the loop variables for the next iteration here, since a subsequent block contains a
 `continue` statement, which would skip the adjustment if it happened later.
 
 
-```
-
-#!cpp
+```cpp
                         timestep_divisor *= 2;
                         refinement_idx++;
-
-
 ```
 
 Make sure the model is in exactly the same state at the beginning of every run.
 
-```
-
-#!cpp
+```cpp
                         p_cell->SetStateVariables(initial_conditions);
 
                         OdeSolution solution;
                         double time_taken;
-
 ```
 
 We enclose the solve in a try-catch, as large timesteps can lead to solver crashes.
 
-```
-
-#!cpp
+```cpp
                         try
                         {
                             Timer::Reset();
@@ -285,15 +232,11 @@ We enclose the solve in a try-catch, as large timesteps can lead to solver crash
                             std::cout << model_name << " failed to solve with" << refinement_description << ".\n Got: " << e.GetMessage() << std::endl << std::flush;
                             continue;
                         }
-
-
 ```
 
 Calculate the error associated with this simulated trace (compared to the reference trace).
 
-```
-
-#!cpp
+```cpp
                         std::stringstream filename;
                         filename << model_name << "_deltaT_" << timestep;
                         solution.WriteToFile(handler.GetRelativePath(), filename.str(), "ms", 1, false, 16, false);
@@ -320,7 +263,6 @@ Calculate the error associated with this simulated trace (compared to the refere
                         }
                     }
                     while (!within_tolerance && timestep_divisor <= 2048);
-
 ```
 
 The above means we allow at most 12 refinements of the time step (2^12^ = 2048).
@@ -334,9 +276,7 @@ could lead to memory exhaustion if a fine table granularity is used, so we tell 
 tables when we know we've finished with them.
 
 
-```
-
-#!cpp
+```cpp
                     if (use_lookup_tables)
                     {
                         p_cell->GetLookupTableCollection()->FreeMemory();
@@ -344,36 +284,24 @@ tables when we know we've finished with them.
                 }
             }
         }
-
-
 ```
 
 Close each process' results file.
 
-```
-
-#!cpp
+```cpp
         p_file->close();
-
-
 ```
 
 Turn off process isolation and wait for all files to be written.
 
-```
-
-#!cpp
+```cpp
         PetscTools::IsolateProcesses(false);
         PetscTools::Barrier("TestCalculateTimesteps");
-
-
 ```
 
 Master process writes the concatenated file, and copies it into the project's data folder.
 
-```
-
-#!cpp
+```cpp
         if (PetscTools::AmMaster())
         {
             out_stream p_combined_file = test_base_handler.OpenOutputFile("required_steps.txt", std::ios::out | std::ios::trunc | std::ios::binary);
@@ -387,14 +315,11 @@ Master process writes the concatenated file, and copies it into the project's da
                 *p_combined_file << process_file.rdbuf();
             }
             p_combined_file->close();
-
 ```
 
 Copy to repository for storage and use by other tests.
 
-```
-
-#!cpp
+```cpp
             FileFinder this_file(__FILE__);
             FileFinder data_folder("data", this_file);
             FileFinder summary_file = test_base_handler.FindFile("required_steps.txt");
@@ -402,8 +327,6 @@ Copy to repository for storage and use by other tests.
         }
     }
 };
-
-
 ```
 
 
@@ -415,9 +338,7 @@ The full code is given below
 ## File name `TestCalculateRequiredTimestepsLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 // The testing framework we use
 #include <cxxtest/TestSuite.h>
 
@@ -629,8 +550,6 @@ public:
         }
     }
 };
-
-
 ```
 
 

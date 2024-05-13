@@ -4,9 +4,7 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 
 #include <cstdio>
@@ -297,8 +295,6 @@ void TestCylinderImposedPressureWithRandomMeshes() throw (Exception)
     }
 
 };
-
-
 ```
 
 
@@ -310,9 +306,7 @@ The full code is given below
 ## File name `TestAnalyticComparisonLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 
 #include <cstdio>
@@ -603,8 +597,6 @@ void TestCylinderImposedPressureWithRandomMeshes() throw (Exception)
     }
 
 };
-
-
 ```
 
 

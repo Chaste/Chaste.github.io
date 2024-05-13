@@ -27,9 +27,7 @@ The easiest way to visualize this simulation is with meshalyzer.
 The first thing to do is to include the necessary header files.
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 
 #include "MonodomainProblem.hpp"
@@ -37,22 +35,17 @@ The first thing to do is to include the necessary header files.
 #include "LuoRudyCellFactory.hpp" // This is defined in this project 'src' folder, the rest are in Chaste 3.1.
 
 #include "PetscSetupAndFinalize.hpp"
-
-
 ```
 
 Having included all the necessary header files, we proceed by defining the test class.
 
 
-```
-
-#!cpp
+```cpp
 class TestSpiralWaveLiteratePaper : public CxxTest::TestSuite
 {
 public:
     void TestSpiralWaveSimulation() throw (Exception)
     {
-
 ```
 
 
@@ -61,14 +54,11 @@ provide a mesh file name. This is how to generate a cuboid mesh with
 a given spatial stepsize h
 
 
-```
-
-#!cpp
+```cpp
         DistributedTetrahedralMesh<2,2> mesh;
         double node_spacing_in_mesh = 0.015;
         double mesh_width = 3; // cm
         mesh.ConstructRegularSlabMesh(node_spacing_in_mesh, mesh_width /*length*/, mesh_width /*width*/);
-
 ```
 
 
@@ -81,15 +71,11 @@ So if you want to alter the monodomain conductivity call
 `HeartConfig::Instance()->SetIntracellularConductivities()`
 
 
-```
-
-#!cpp
+```cpp
         HeartConfig::Instance()->SetSimulationDuration(500); //ms
         HeartConfig::Instance()->SetOutputDirectory("Plos2013_SpiralWave");
         HeartConfig::Instance()->SetOutputFilenamePrefix("results");
         HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(0.01, 0.01, 1);
-
-
 ```
 
 "Cell factory" objects have the task of providing a cardiac cell model
@@ -99,36 +85,24 @@ to provide the necessary S1-S2 style stimulus to initiate a spiral wave.
 This class can be found in the project's 'src' folder.
 
 
-```
-
-#!cpp
+```cpp
         LuoRudyCellFactory cell_factory(mesh_width,mesh_width);
-
-
 ```
 
 Now we declare the problem class, `MonodomainProblem<2>`.
 To do a bidomain simulation is as simple as changing the following line to `BidomainProblem<2>`.
 
 
-```
-
-#!cpp
+```cpp
         MonodomainProblem<2> monodomain_problem( &cell_factory );
-
-
 ```
 
 If a mesh-file-name hasn't been set using `HeartConfig`, we have to pass in
 a mesh using the `SetMesh` method (must be called before `Initialise`).
 
 
-```
-
-#!cpp
+```cpp
         monodomain_problem.SetMesh(&mesh);
-
-
 ```
 
 `SetWriteInfo` is a useful method that means that the min/max voltage is
@@ -137,25 +111,17 @@ and the wave propagating, for example) (although note scons does buffer output
 before printing to screen)
 
 
-```
-
-#!cpp
+```cpp
         monodomain_problem.SetWriteInfo();
-
-
 ```
 
 Finally, call `Initialise` and `Solve`
 
-```
-
-#!cpp
+```cpp
         monodomain_problem.Initialise();
         monodomain_problem.Solve();
     }
 };
-
-
 ```
 
 
@@ -167,9 +133,7 @@ The full code is given below
 ## File name `TestSpiralWaveLiteratePaper.hpp`
 
 
-```
-
-#!cpp
+```cpp
 #include <cxxtest/TestSuite.h>
 
 #include "MonodomainProblem.hpp"
@@ -204,8 +168,6 @@ public:
         monodomain_problem.Solve();
     }
 };
-
-
 ```
 
 

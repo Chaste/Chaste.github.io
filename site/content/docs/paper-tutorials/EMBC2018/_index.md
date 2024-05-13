@@ -22,11 +22,9 @@ YOU WILL ALSO NEED TO INSTALL HEMELB. INSTRUCTIONS TO FOLLOW.
 
 
 Finally you will need the source for the EMBC2018 project.  This can be done by checking out the version from the repository by using the command
-
 ```
 
 svn checkout https://chaste.cs.ox.ac.uk/svn/chaste/projects/EMBC2018
-
 ```
 
 in the projects folder of the Chaste directory. You can register for a username and password or use
@@ -49,12 +47,10 @@ There are four folders - `matlab`,`python',`src` and `test`.
 
  == Running tests ==
 You can then run tests and simulations with,
-
 ```
 
 cd <Chaste path>
 scons b=GccOpt ts=projects/EMBC2018/test/TestAnalyticComparisonLiteratePaper.hpp
-
 ```
 
 
