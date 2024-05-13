@@ -1,4 +1,4 @@
-This tutorial is automatically generated from the file projects/CryptFissionPlos2016/test/TestCryptFissionLiteratePaper.hpp at revision r26908.
+This tutorial was generated from the file projects/CryptFissionPlos2016/test/TestCryptFissionLiteratePaper.hpp at revision r26908.
 Note that the code is given in full at the bottom of the page.
 
 

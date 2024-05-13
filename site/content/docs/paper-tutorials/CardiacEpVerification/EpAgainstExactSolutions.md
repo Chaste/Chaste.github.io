@@ -1,4 +1,4 @@
-This tutorial is automatically generated from the file projects/CardiacEpVerification/test/TestEpAgainstExactSolutionsLiteratePaper.hpp at revision r20536.
+This tutorial was generated from the file projects/CardiacEpVerification/test/TestEpAgainstExactSolutionsLiteratePaper.hpp at revision r20536.
 Note that the code is given in full at the bottom of the page.
 
 

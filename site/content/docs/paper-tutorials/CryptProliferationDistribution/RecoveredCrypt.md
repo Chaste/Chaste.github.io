@@ -1,4 +1,4 @@
-This tutorial is automatically generated from the file projects/CryptProliferationDistribution/test/TestRecoveredCryptLiteratePaper.hpp at revision r25342.
+This tutorial was generated from the file projects/CryptProliferationDistribution/test/TestRecoveredCryptLiteratePaper.hpp at revision r25342.
 Note that the code is given in full at the bottom of the page.
 
 

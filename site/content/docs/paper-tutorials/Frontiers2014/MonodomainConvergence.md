@@ -1,4 +1,4 @@
-This tutorial is automatically generated from the file projects/Frontiers2014/test/TestMonodomainConvergenceLiteratePaper.hpp at revision r23346.
+This tutorial was generated from the file projects/Frontiers2014/test/TestMonodomainConvergenceLiteratePaper.hpp at revision r23346.
 Note that the code is given in full at the bottom of the page.
 
 

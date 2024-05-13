@@ -1,4 +1,4 @@
-This tutorial is automatically generated from the file projects/FunctionalCuration/test/TestFunctionalCurationLiteratePaper.hpp at revision [changeset:27416/git_repo](changeset:27416/git_repo).
+This tutorial was generated from the file projects/FunctionalCuration/test/TestFunctionalCurationLiteratePaper.hpp at revision [changeset:27416/git_repo](changeset:27416/git_repo).
 Note that the code is given in full at the bottom of the page.
 
 

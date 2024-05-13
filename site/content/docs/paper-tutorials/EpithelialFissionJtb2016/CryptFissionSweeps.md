@@ -1,4 +1,4 @@
-This tutorial is automatically generated from the file projects/EpithelialFissionJtb2016/test/TestCryptFissionSweepsLiteratePaper.hpp at revision r26993.
+This tutorial was generated from the file projects/EpithelialFissionJtb2016/test/TestCryptFissionSweepsLiteratePaper.hpp at revision r26993.
 Note that the code is given in full at the bottom of the page.
 
 

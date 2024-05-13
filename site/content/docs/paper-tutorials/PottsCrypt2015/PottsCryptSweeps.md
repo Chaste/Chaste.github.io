@@ -1,4 +1,4 @@
-This tutorial is automatically generated from the file projects/PottsCrypt2015/test/TestPottsCryptSweepsLiteratePaper.hpp at revision r24335.
+This tutorial was generated from the file projects/PottsCrypt2015/test/TestPottsCryptSweepsLiteratePaper.hpp at revision r24335.
 Note that the code is given in full at the bottom of the page.
 
 

@@ -1,4 +1,4 @@
-This tutorial is automatically generated from the file projects/InterfaceFocus2013/test/TestCaWithMultipleMutationStatesLiteratePaper.hpp at revision r26247.
+This tutorial was generated from the file projects/InterfaceFocus2013/test/TestCaWithMultipleMutationStatesLiteratePaper.hpp at revision r26247.
 Note that the code is given in full at the bottom of the page.
 
 

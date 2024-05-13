@@ -1,4 +1,4 @@
-This tutorial is automatically generated from the file projects/CellBasedComparison/test/TestCylindricalCryptLiteratePaper.hpp at revision r27207.
+This tutorial was generated from the file projects/CellBasedComparison/test/TestCylindricalCryptLiteratePaper.hpp at revision r27207.
 Note that the code is given in full at the bottom of the page.
 
 

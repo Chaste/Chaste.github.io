@@ -1,4 +1,4 @@
-This tutorial is automatically generated from the file projects/CryptProliferationDistribution/test/TestCryptTakeoverProbabilityLiteratePaper.hpp at revision r25435.
+This tutorial was generated from the file projects/CryptProliferationDistribution/test/TestCryptTakeoverProbabilityLiteratePaper.hpp at revision r25435.
 Note that the code is given in full at the bottom of the page.
 
 

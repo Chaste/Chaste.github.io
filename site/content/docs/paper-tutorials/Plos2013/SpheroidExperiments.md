@@ -1,4 +1,4 @@
-This tutorial is automatically generated from the file projects/Plos2013/test/TestSpheroidExperimentsLiteratePaper.hpp at revision r24485.
+This tutorial was generated from the file projects/Plos2013/test/TestSpheroidExperimentsLiteratePaper.hpp at revision r24485.
 Note that the code is given in full at the bottom of the page.
 
 

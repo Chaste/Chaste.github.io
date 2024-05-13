@@ -1,4 +1,4 @@
-This tutorial is automatically generated from the file projects/MouseLesion/test/TestFibroblasts3dLiteratePaper.hpp at revision r27528.
+This tutorial was generated from the file projects/MouseLesion/test/TestFibroblasts3dLiteratePaper.hpp at revision r27528.
 Note that the code is given in full at the bottom of the page.
 
 

@@ -1,4 +1,4 @@
-This tutorial is automatically generated from the file projects/Angiogenesis/test/tutorials/TestSnailTrailLiteratePaper.hpp at revision r26872.
+This tutorial was generated from the file projects/Angiogenesis/test/tutorials/TestSnailTrailLiteratePaper.hpp at revision r26872.
 Note that the code is given in full at the bottom of the page.
 
 

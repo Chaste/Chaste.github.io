@@ -1,4 +1,4 @@
-This tutorial is automatically generated from the file projects/Microvessel/test/tutorials/TestOffLatticeAngiogenesisLiteratePaper.hpp at revision r27276.
+This tutorial was generated from the file projects/Microvessel/test/tutorials/TestOffLatticeAngiogenesisLiteratePaper.hpp at revision r27276.
 Note that the code is given in full at the bottom of the page.
 
 

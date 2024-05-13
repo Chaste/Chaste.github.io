@@ -1,4 +1,4 @@
-This tutorial is automatically generated from the file projects/CellBasedComparison2016/test/TestMorphogenMonolayerLiteratePaper.hpp at revision r27286.
+This tutorial was generated from the file projects/CellBasedComparison2016/test/TestMorphogenMonolayerLiteratePaper.hpp at revision r27286.
 Note that the code is given in full at the bottom of the page.
 
 

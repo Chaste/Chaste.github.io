@@ -1,4 +1,4 @@
-This tutorial is automatically generated from the file projects/Angiogenesis/test/tutorials/TestSolvingPdesLiteratePaper.hpp at revision r27204.
+This tutorial was generated from the file projects/Angiogenesis/test/tutorials/TestSolvingPdesLiteratePaper.hpp at revision r27204.
 Note that the code is given in full at the bottom of the page.
 
 

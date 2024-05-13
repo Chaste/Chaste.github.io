@@ -1,4 +1,4 @@
-This tutorial is automatically generated from the file projects/DanieleM/test/TestCryptsAndVillusLiteratePaper.hpp at revision r26738.
+This tutorial was generated from the file projects/DanieleM/test/TestCryptsAndVillusLiteratePaper.hpp at revision r26738.
 Note that the code is given in full at the bottom of the page.
 
 

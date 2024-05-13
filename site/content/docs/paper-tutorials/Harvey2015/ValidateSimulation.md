@@ -1,4 +1,4 @@
-This tutorial is automatically generated from the file projects/Harvey2015/test/TestValidateSimulationLiteratePaper.hpp at revision r23521.
+This tutorial was generated from the file projects/Harvey2015/test/TestValidateSimulationLiteratePaper.hpp at revision r23521.
 Note that the code is given in full at the bottom of the page.
 
 

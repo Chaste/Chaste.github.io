@@ -1,4 +1,4 @@
-This tutorial is automatically generated from the file projects/CaDiffusion/test/TestCaDiffusionLiteratePaper.hpp at revision r27328.
+This tutorial was generated from the file projects/CaDiffusion/test/TestCaDiffusionLiteratePaper.hpp at revision r27328.
 Note that the code is given in full at the bottom of the page.
 
 

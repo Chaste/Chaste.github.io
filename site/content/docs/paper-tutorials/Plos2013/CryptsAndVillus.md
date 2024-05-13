@@ -1,6 +1,5 @@
-This tutorial is automatically generated from the file projects/Plos2013/test/TestCryptsAndVillusLiteratePaper.hpp at revision r26076.
+This tutorial was generated from the file [TestCryptsAndVillusLiteratePaper.hpp].
 Note that the code is given in full at the bottom of the page.
-
 
 
 ![PaperTutorials/Plos2013:combined.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//PaperTutorials%2FPlos2013%3Acombined.png)

@@ -1,4 +1,4 @@
-This tutorial is automatically generated from the file projects/HR2015/test/TestSanWithFunnyCurrentBlockLiteratePaper.hpp at revision r24269.
+This tutorial was generated from the file projects/HR2015/test/TestSanWithFunnyCurrentBlockLiteratePaper.hpp at revision r24269.
 Note that the code is given in full at the bottom of the page.
 
 

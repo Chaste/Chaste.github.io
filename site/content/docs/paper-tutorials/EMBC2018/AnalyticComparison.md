@@ -1,4 +1,4 @@
-This tutorial is automatically generated from the file projects/EMBC2018/test/TestAnalyticComparisonLiteratePaper.hpp at revision r27516.
+This tutorial was generated from the file projects/EMBC2018/test/TestAnalyticComparisonLiteratePaper.hpp at revision r27516.
 Note that the code is given in full at the bottom of the page.
 
 

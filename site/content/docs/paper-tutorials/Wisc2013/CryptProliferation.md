@@ -1,4 +1,4 @@
-This tutorial is automatically generated from the file projects/Wisc2013/test/TestCryptProliferationLiteratePaper.hpp at revision r22049.
+This tutorial was generated from the file projects/Wisc2013/test/TestCryptProliferationLiteratePaper.hpp at revision r22049.
 Note that the code is given in full at the bottom of the page.
 
 
