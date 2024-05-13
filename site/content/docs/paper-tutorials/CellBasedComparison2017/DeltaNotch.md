@@ -3,7 +3,7 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# Short-range Signalling Example
+## Short-range Signalling Example
 
 On this wiki page we describe in detail the code that is used to run this example from the paper.
 
@@ -11,7 +11,7 @@ The easiest way to visualize these simulations is with Paraview.
 
 [EmbedYoutube(SX2GFOr0Dus)](EmbedYoutube(SX2GFOr0Dus))
 
-## Code overview
+### Code overview
 
 The first thing to do is to include the necessary header files.
 
@@ -117,7 +117,7 @@ This is a helper method to generate cells and is used in all simulations.
 public:
 ```
 
-## CA
+### CA
 
 Simulate juxtacrine signalling in a population of cells in the
 Cellular Automaton model.
@@ -185,7 +185,7 @@ Cellular Automaton model.
     }
 ```
 
-## CP
+### CP
 
 Simulate juxtacrine signalling in a population of cells in the
 Cellular Potts model.
@@ -259,7 +259,7 @@ Cellular Potts model.
     }
 ```
 
-## OS
+### OS
 
 Simulate juxtacrine signalling in a population of cells in the
 Overlapping Spheres model.
@@ -327,7 +327,7 @@ Overlapping Spheres model.
    }
 ```
 
-## VT
+### VT
 
 Simulate juxtacrine signalling in a population of cells in the
 Voronoi Tesselation model.
@@ -392,7 +392,7 @@ Voronoi Tesselation model.
     }
 ```
 
-## VM
+### VM
 
 Simulate juxtacrine signalling in a population of cells
 Cell Vertex model.
@@ -461,11 +461,11 @@ Cell Vertex model.
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestDeltaNotchLiteratePaper.hpp`
+### File name `TestDeltaNotchLiteratePaper.hpp`
 
 
 ```cpp

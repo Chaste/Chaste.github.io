@@ -3,7 +3,7 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# Building A Vessel Network Tutorial
+## Building A Vessel Network Tutorial
 This tutorial is designed to introduce the C++ interface for modelling vessel networks.
 
 The following is covered:
@@ -14,7 +14,7 @@ The following is covered:
 * Vessel network generators
 
 
-# The Test
+## The Test
 Start by introducing the necessary header files. The first contain functionality for setting up unit tests.
 
 
@@ -99,7 +99,7 @@ public:
 ```
 
 
-# Test 1 - Building a vessel network manually, writing it to file and visualizing it
+## Test 1 - Building a vessel network manually, writing it to file and visualizing it
 ![source:/chaste/projects/Angiogenesis/test/tutorials/images/bifurcating_network.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//source%3A%2Fchaste%2Fprojects%2FAngiogenesis%2Ftest%2Ftutorials%2Fimages%2Fbifurcating_network.png)
 
 In the first test build a vessel network from its constituent components; nodes, segments and vessels. Do some
@@ -231,7 +231,7 @@ which will have a .vtp extension.
 Now we can visualize then network in Paraview. See the tutorial [here](https://github.com/Chaste/trac_archive/wiki/User-Tutorials-_-Visualizing-With-Paraview), to get started. To view the network import the file
 `TestBuildVesselNetworkLiteratePaper\bifurcating_network.vtp` into Paraview. For a nicer rendering you can do `Filters->Alphabetical->Tube`.
 
-# Test 2 - Building a vessel network using a generator and reading from file
+## Test 2 - Building a vessel network using a generator and reading from file
 ![source:/chaste/projects/Angiogenesis/test/tutorials/images/hexagonal_network.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//source%3A%2Fchaste%2Fprojects%2FAngiogenesis%2Ftest%2Ftutorials%2Fimages%2Fhexagonal_network.png)
 
 It is usually tedious to build a vessel network from scratch. In this test we use a generator to automatically construct a network.
@@ -319,11 +319,11 @@ It is suggested that the tutorial [on flow modelling](https://github.com/Chaste/
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestBuildVesselNetworkLiteratePaper.hpp`
+### File name `TestBuildVesselNetworkLiteratePaper.hpp`
 
 
 ```cpp

@@ -5,11 +5,11 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# Sino-atrial node simulation with funny current block
+## Sino-atrial node simulation with funny current block
 
 This is the code that was used to perform the simulation in Capel *et al.*, Heart Rhythm (2015).
 
-## Code Walkthrough
+### Code Walkthrough
 
 This include is needed to utilise the cxx test framework, which we use to execute programs
 
@@ -253,11 +253,11 @@ public:
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestSanWithFunnyCurrentBlockLiteratePaper.hpp`
+### File name `TestSanWithFunnyCurrentBlockLiteratePaper.hpp`
 
 
 ```cpp

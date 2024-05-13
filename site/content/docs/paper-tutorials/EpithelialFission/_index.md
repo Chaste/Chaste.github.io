@@ -1,4 +1,4 @@
-# Investigation of Buckling and Fission in an Epithelial Layer
+## Investigation of Buckling and Fission in an Epithelial Layer
 
 This section contains pages generated automatically from the source code accompanying Almet et al. (2016)
 "A multicellular model of intestinal crypt fission".
@@ -9,7 +9,7 @@ The code to run single simulations can be found at the Paper Tutorial for that p
 Before looking at this, you may wish to look at some of the [basic user tutorials](https://github.com/Chaste/trac_archive/wiki/User-Tutorials) for Chaste.
 
 
-## Getting the code and installing dependencies
+### Getting the code and installing dependencies
 
 Before running these examples you will need to [install Chaste's dependencies](https://github.com/Chaste/trac_archive/wiki/Install-Guides-_-Install-Guide) and the [source code for version 3.4](http://www.cs.ox.ac.uk/chaste/download.html).
 The easiest way to do this is using an Ubuntu machine (or an Ubuntu virtual machine) as discussed on [InstallGuides/UbuntuPackage](https://github.com/Chaste/trac_archive/wiki/Install-Guides-_-Ubuntu-Package).
@@ -27,7 +27,7 @@ in the projects folder of the Chaste directory. You will need to use the supplie
 Now the project should be installed, and everything should compile and run correctly.
 You can now run the tests or simulations, or create your own test suites.
 
-## Documentation
+### Documentation
 There are two folders - `src` and `test`.
  1. The `src` folder contains the classes necesary to run the simulation. These define the additional forces and boundary conditions not in the core chaste code.
 
@@ -73,6 +73,6 @@ You may also wish to look at some of the [basic user tutorials](https://github.c
 
 
 -----
-## Section contents
+### Section contents
 [SubWiki()](SubWiki())
 

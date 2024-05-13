@@ -8,11 +8,11 @@ layout: "single"
 images: []
 ---
 
-{{< callout context="note" title="Note" icon="info-circle" >}} 
+{{< callout context="note" title="Note" icon="info-circle" >}}
 If you are viewing this on the Chaste website, **the tutorials here are static, and are only likely to work with the specific version of Chaste indicated. They are unlikley to work with the development version of Chaste**.
 {{< /callout >}}
 
-# Paper Tutorials
+## Paper Tutorials
 
 This is the home page for what we call *Paper Tutorials*.
 
@@ -26,27 +26,27 @@ Since we tend to use the Chaste build infrastructure to do our science, as well 
 
 *Note that this is a new feature: the framework for setting up these paper tutorials is still being finalised, and more papers will be added in time. In the future we envisage external users, who wish to release their own documented Chaste code, also being able to contribute to these pages.*
 
-## 2018
+### 2018
 
 * [Almet et al.(2018) "A multicellular model of intestinal crypt fission"](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Epithelial-Fission)
 * [Osborne JM and Bernabeu MO (2018) "A fully discrete open source framework for the simulation of vascular remodelling"](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials_EMBC2018)
 * [Daly et al. (under submission) "Inference-based assessment of identifiability in nonlinear biological models"](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Daly-ID)
 
 
-## 2017
+### 2017
 
 * [Osborne JM, Fletcher AG, et al. (2017) "Comparing individual-based approaches to modelling the self-organization of multicellular tissues". PLoS Computational Biology](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Cell-Based-Comparison2017)
 * [Daly AC, Cooper J, Gavaghan DJ, Holmes C (2017) "Comparing two sequential Monte Carlo samplers for exact and approximate Bayesian inference on biological models". J. Roy. Soc. Interface](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Daly-SMC)
 
 
-## 2016
+### 2016
 
 * [Mahoney et al. (2016) "Connexin 43 contributes to electrotonic conduction across scar tissue in the intact heart", ​Scientific Reports](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Mouse-Lesion)
 * [Langlands et al (2016) "Paneth cell-rich regions separated by a cluster of Lgr5+ cells initiate fission in the intestinal stem cell niche", PLoS Biology](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Crypt-Fission-Plos2016).
 * [S-J. Dunn et al (2016) "Combined changes in Wnt signaling response and contact inhibition induce altered proliferation in radiation-treated intestinal crypts", Mol. Biol. Cell](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Crypt-Proliferation-Distribution).
 
 
-## 2015
+### 2015
 
 * [Daly et al. ​Hodgkin-Huxley revisited: reparameterization and identifiability analysis of the classic action potential model with approximate Bayesian methods, J. R. Soc. Interface, 2015](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Hodgkin-Huxley-ABC).
 * [Osborne. Multiscale Model of Colorectal Cancer Using the Cellular Potts Framework, Cancer Informatics, 2015](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Potts-Crypt2015).
@@ -56,12 +56,12 @@ Since we tend to use the Chaste build infrastructure to do our science, as well 
 * [Harvey, Fletcher, Osborne and Pitt-Francis. A parallel implementation of an off-lattice individual-based model of multicellular populations, Computer Physics Communications, 2015](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Harvey2015).
 
 
-## 2014
+### 2014
 
 * [J. Cooper, R. Spiteri and G. Mirams. Cellular cardiac electrophysiology modelling with Chaste and CellML, Frontiers in Physiology, 2014](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Frontiers2014).
 
 
-## 2013
+### 2013
 
 * [Figueredo et al. On-lattice agent-based simulation of populations of cells within the open-source Chaste framework, Interface Focus, 2013](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Interface-Focus2013).
 * [Pathmanathan and Gray. Verification of computational models of cardiac electro-physiology, Int. J. Numerical Methods in Bioengineering, 2013](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Cardiac-Ep-Verification).
@@ -71,12 +71,12 @@ Since we tend to use the Chaste build infrastructure to do our science, as well 
 * [Mirams et al. Chaste: an open source C++ library for computational physiology and biology. PLoS Computational Biology, 2013](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Plos2013).
 
 
-## 2012
+### 2012
 
 * [Dunn et al. A Two-Dimensional Model of the Colonic Crypt Accounting for the Role of the Basement Membrane and Pericryptal Fibroblast Sheath. PLoS Computational Biology, 2012](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Plos-Dunn2012).
 
 
-## 2011
+### 2011
 
 * [Cooper, Mirams, Niederer. High throughput functional curation of cellular electrophysiology models. Prog Biophys Mol Biol, 2011](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Functional-Curation).
 
@@ -85,7 +85,7 @@ Since we tend to use the Chaste build infrastructure to do our science, as well 
 ----
 
 
-## Autogenerated list of all paper tutorials
+### Autogenerated list of all paper tutorials
 
 *Note: some of the following links are not public, which either means the paper is still in submission or the tutorial is not yet complete. Pages which are completed and public should all be listed above.*
 

@@ -1,4 +1,4 @@
-# Comparing individual-based approaches to modelling the self-organization of multicellular tissues
+## Comparing individual-based approaches to modelling the self-organization of multicellular tissues
 
 Welcome to the Chaste wiki.
 
@@ -9,7 +9,7 @@ This section contains pages generated automatically from the source code accompa
 [EmbedYoutube(SX2GFOr0Dus)](EmbedYoutube(SX2GFOr0Dus))
 [EmbedYoutube(Yl2GT2x2ohc)](EmbedYoutube(Yl2GT2x2ohc))
 
-## Getting the code and installing dependencies
+### Getting the code and installing dependencies
 
 Before running these examples you will need to [install Chaste's dependencies](https://github.com/Chaste/trac_archive/wiki/Install-Guides-_-Install-Guide).
 The easiest way to do this is using an Ubuntu machine (or an Ubuntu virtual machine) as discussed on [InstallGuides/UbuntuPackage](https://github.com/Chaste/trac_archive/wiki/Install-Guides-_-Ubuntu-Package).
@@ -20,7 +20,7 @@ For manual installation of each dependency, on any version of Linux, see Develop
 Presently it does not work with any of the previous release versions.  However we will tie this code to the next release of Chaste.
 
 ----
-### Instructions for Ubuntu 16.04 or similar (Chaste version 3.x)
+#### Instructions for Ubuntu 16.04 or similar (Chaste version 3.x)
 To checkout the source code for the specific code revision use the command
 ```
 
@@ -45,7 +45,7 @@ svn checkout -r 27368 --username anonymous https://chaste.cs.ox.ac.uk/svn/chaste
 
 in the Chaste directory. Note that **username** for checking out the project code is 'anonymous'.  When prompted for a password then please give an email address.
 ----
-### Instructions for Ubuntu 18.04 or similar (Chaste version 2017.x)
+#### Instructions for Ubuntu 18.04 or similar (Chaste version 2017.x)
 To checkout the source code for the specific code revision use the command
 ```
 
@@ -74,7 +74,7 @@ in the Chaste directory. Note that **username** for checking out the project cod
 Now the project should be installed, and everything should compile and run correctly.
 You can now run the tests or simulations, or create your own test suites.
 
-## Documentation
+### Documentation
 There are two folders - `src` and `test`.
  1. The `src` folder contains classes which add functionality to the core Chaste code.
  1. The `test` folder contains:
@@ -96,17 +96,17 @@ There are two folders - `src` and `test`.
 | VM | ![source:projects/CellBasedComparison2017/figures/Sorting_Vertex_1_t1000.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//source%3Aprojects%2FCellBasedComparison2017%2Ffigures%2FSorting_Vertex_1_t1000.png) |
 
 
-## Running tests
+### Running tests
 With SCons you can run tests with,
 ```
 
 cd <Chaste path>
 
-# Make and run a test at a time:
+## Make and run a test at a time:
 scons b=GccOpt ts=projects/CellBasedComparison2017/test/TestCellSortingLiteratePaper.hpp
-# etc.
+## etc.
 
-# Make and run all tests on 4 threads:
+## Make and run all tests on 4 threads:
 scons b=GccOpt -j4 projects/CellBasedComparison2017
 ```
 
@@ -115,15 +115,15 @@ With CMake you can run tests with,
 ```
 
 cd <Chaste path>
-cd ../chaste-build  # Assuming you have configured CMake here.
-cmake . # Unnecessary extra step to pick up project and reconfigure
+cd ../chaste-build  ## Assuming you have configured CMake here.
+cmake . ## Unnecessary extra step to pick up project and reconfigure
 
-# Make and run a test at a time:
+## Make and run a test at a time:
 make  TestCellSortingLiteratePaperRunner
 ctest -R TestCellSortingLiteratePaper
-# etc.
+## etc.
 
-# Make and run all tests on 4 threads:
+## Make and run all tests on 4 threads:
 make -j 4 project_CellBasedComparison2017
 ctest -j 4 -L project_CellBasedComparison2017
 ```
@@ -142,6 +142,6 @@ You may also wish to look at some of the [basic user tutorials](https://github.c
 
 
 -----
-## Section contents
+### Section contents
 [SubWiki()](SubWiki())
 

@@ -1,10 +1,10 @@
-# Writing Paper Tutorials
+## Writing Paper Tutorials
 
 The steps to create '[paper tutorial](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials)' wiki pages associated with a new or forthcoming publication are as follows.
 For an example see the [source for the project Plos2013](/tags/Plos2013_release_3.1), which gets rendered as shown at [PaperTutorials/Plos2013](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Plos2013).
 
 
-## Developing the project
+### Developing the project
 
 
 * Create a new project for the paper, and move the appropriate source code and tests into the project.
@@ -18,7 +18,7 @@ For an example see the [source for the project Plos2013](/tags/Plos2013_release_
     * Commit and the wiki page will automatically be created or updated. (Note: if it doesn't appear, this is probably because `CreateTutorial.py` (see above) gave an error; check it locally and try again.)
 
 
-### Details of the tutorial file syntax
+#### Details of the tutorial file syntax
 
 Briefly, any C-style comment (`/*` to `*/`) with no code on the same line gets converted into wiki text. See the code for [the main tutorials](https://github.com/Chaste/trac_archive/wiki/User-Tutorials) for examples.
 
@@ -44,7 +44,7 @@ To do so, you need a comment line (or multiple lines for multiple files) before 
 The `file_path` is relative to the folder the tutorial is in, *not* to your project.
 See source:/tags/Wisc2013_release_3.2/test/TestCryptProliferationLiteratePaper.hpp?rev=22049#L36 for an example.
 
-## Publishing
+### Publishing
 
 Once the paper is accepted, to publish the project:
 
@@ -55,7 +55,7 @@ Once the paper is accepted, to publish the project:
 
 
 
-## Making the project available during submission
+### Making the project available during submission
 
 For papers about to be submitted, if you would like reviewers to be able to see unpublished wiki pages, ask an admin to send you details of the reviewer account, and ask for your wiki pages (and optionally your project code or a tag thereof) to be viewable from this account.
 (Admins, this information can be found at #2022.)

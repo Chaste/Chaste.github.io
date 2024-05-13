@@ -3,7 +3,7 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# Introduction
+## Introduction
 This tutorial is designed to introduce...
 
 
@@ -259,11 +259,11 @@ public:
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestLatticeBasedAngiogenesisLiteratePaper.hpp`
+### File name `TestLatticeBasedAngiogenesisLiteratePaper.hpp`
 
 
 ```cpp

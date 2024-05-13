@@ -7,7 +7,7 @@ edit that file, don't edit this page on trac!
 ```
 
 
-# Connexin 43 contributes to electrotonic conduction across scar tissue in the intact heart
+## Connexin 43 contributes to electrotonic conduction across scar tissue in the intact heart
 
 Welcome to the Chaste wiki.
 
@@ -23,7 +23,7 @@ For manual installation of each dependency, on any version of Linux, see Develop
 The simulations featured in the paper supplement are explained and annotated below.
 For further information on using Chaste to solve these and related problems, see our [extensive guide material](https://github.com/Chaste/trac_archive/wiki/Chaste-Guides).
 
-## Sample commands to install Chaste
+### Sample commands to install Chaste
 
 If you wish to install Chaste direct from our repository, you may do so from the command line as follows:
 ```
@@ -36,7 +36,7 @@ cd <path to Chaste source>/projects
 (replacing "`<path to Chaste source>`" with the filepath to where you have installed Chaste).
 Now unzip the downloaded `MouseLesion.tar.gz` into this folder.
 
-## Code compilation
+### Code compilation
 
 To compile the simulators, use:
 ```
@@ -47,7 +47,7 @@ scons chaste_libs=1 brief=1 build=GccOptNative projects/MouseLesion
 ```
 
 
-## Mouse Lesion study
+### Mouse Lesion study
 
 The steps required to reproduce the study are:
  1. Run a simulation of a 2D lesion, with varying command line parameters ([C++ file for performing simulation](https://github.com/Chaste/trac_archive/wiki/._Fibroblasts))
@@ -57,6 +57,6 @@ To vary parameters and run simulations for the results shown in the paper, use t
 followed by the matlab script `test/data/processing_scripts/process_APs_capacitance.m` to do the post-processing.
 
 -----
-## Section contents
+### Section contents
 [SubWiki()](SubWiki())
 

@@ -3,7 +3,7 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# Proliferation Example
+## Proliferation Example
 
 On this wiki page we describe in detail the code that is used to run this example from the paper.
 
@@ -11,7 +11,7 @@ The easiest way to visualize these simulations is with Paraview.
 
 [EmbedYoutube(F04IlE2PyY0)](EmbedYoutube(F04IlE2PyY0))
 
-## Code overview
+### Code overview
 
 The first thing to do is to include the necessary header files.
 
@@ -117,7 +117,7 @@ This is a helper method to generate cells and is used in all simulations.
 public:
 ```
 
-## CA
+### CA
 
 Simulate cell proliferation in the colorectal crypt using the
 Cellular Automaton model.
@@ -189,7 +189,7 @@ Cellular Automaton model.
     }
 ```
 
-## CP
+### CP
 
 Simulate cell proliferation in the colorectal crypt using the
 Cellular Potts model.
@@ -272,7 +272,7 @@ Cellular Potts model.
     }
 ```
 
-## OS
+### OS
 
 Simulate cell proliferation in the colorectal crypt using the
 Overlapping Spheres model.
@@ -358,7 +358,7 @@ Overlapping Spheres model.
     }
 ```
 
-## VT
+### VT
 
 Simulate cell proliferation in the colorectal crypt using the
 Voronoi Tesselation model.
@@ -434,7 +434,7 @@ Voronoi Tesselation model.
     }
 ```
 
-## VM
+### VM
 
 Simulate cell proliferation in the colorectal crypt using the
 Cell Vertex model.
@@ -513,11 +513,11 @@ Cell Vertex model.
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestCylindricalCryptLiteratePaper.hpp`
+### File name `TestCylindricalCryptLiteratePaper.hpp`
 
 
 ```cpp

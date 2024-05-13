@@ -3,15 +3,15 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# Analysis of fission in epithelial layer
+## Analysis of fission in epithelial layer
 
-## Introduction
+### Introduction
 
 In this test we show how Chaste can be used to analyse the incidence of buckling in a layer of epithelial cells.
 Details of the computational model can be found in
 Almet et al (2016) "A multicellular model of intestinal crypt fission".
 
-## Including header files
+### Including header files
 
 We begin by including the necessary header files. The first ones are common to all cell_based Chaste simulations
 
@@ -600,11 +600,11 @@ a hard cell and 0 otherwise.
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestCryptFissionSweepsLiteratePaper.hpp`
+### File name `TestCryptFissionSweepsLiteratePaper.hpp`
 
 
 ```cpp

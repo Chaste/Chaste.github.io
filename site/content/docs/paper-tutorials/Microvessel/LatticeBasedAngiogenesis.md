@@ -3,7 +3,7 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# A Lattice Based Angiogenesis Tutorial
+## A Lattice Based Angiogenesis Tutorial
 This tutorial is designed to introduce a lattice based angiogenesis problem based on a simplified version of the
 vascular tumour application described in
 [Owen et al. 2011](http://www.ncbi.nlm.nih.gov/pubmed/21363914). It is a 2D simulation using cellular automaton
@@ -12,7 +12,7 @@ for oxygen and VEGF transport using the finite difference method.
 
 ![source:/chaste/projects/Microvessel/test/tutorials/images/LatticeTurortialEndSample.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//source%3A%2Fchaste%2Fprojects%2FMicrovessel%2Ftest%2Ftutorials%2Fimages%2FLatticeTurortialEndSample.png)
 
-# The Test
+## The Test
 Start by introducing the necessary header files. The first contain functionality for setting up unit tests,
 smart pointer tools and output management,
 
@@ -501,11 +501,11 @@ Dump the parameters to file for inspection.
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestLatticeBasedAngiogenesisLiteratePaper.hpp`
+### File name `TestLatticeBasedAngiogenesisLiteratePaper.hpp`
 
 
 ```cpp

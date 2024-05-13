@@ -3,20 +3,20 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# Validate a simple three cell simulation in parallel and serial (Section 3.1)
+## Validate a simple three cell simulation in parallel and serial (Section 3.1)
 
 On this wiki page we describe in detail some code that is used to compare the results of a simple three
 cell simulation in parallel and serial.  The results should be the same (to machine output precision)
 as described in Section 3.1.
 
-## Use
+### Use
 
 Both tests in this file are designed to be run twice:
 ```
 
-# in serial
+## in serial
 scons build=GccOptNative projects/Harvey2015/test/TestUnitValidationLiteratePaper.hpp
-# In parallel
+## In parallel
 scons build=GccOptNative_2 projects/Harvey2015/test/TestUnitValidationLiteratePaper.hpp
 ```
 
@@ -25,9 +25,9 @@ After this the positional output may be checked to machine output precision:
 ```
 
 cd /tmp/$USER/testoutput
-# first test comparison
+## first test comparison
 diff ValidateTwoCells_1_Procs/results_from_time_0/results.viznodes ValidateTwoCells_2_Procs/results_from_time_0/results.viznodes
-# second test
+## second test
 diff ValidateTwoCellsOneProc_1_Procs/results_from_time_0/results.viznodes ValidateTwoCellsOneProc_2_Procs/results_from_time_0/results.viznodes
 ```
 
@@ -40,10 +40,10 @@ VTK files will contain full machine precision position information, together wit
 ```
 
 paraview --data=/tmp/$USER/testoutput/ValidateTwoCells_2_Procs/results_from_time_0/results.pvd
-# View the cells by adding the Glyph filter and rotating the z-axis
+## View the cells by adding the Glyph filter and rotating the z-axis
 ```
 
-## Code overview
+### Code overview
 
 The first thing to do is to include the necessary header files.
 
@@ -69,7 +69,7 @@ The first thing to do is to include the necessary header files.
 #include "PetscSetupAndFinalize.hpp"
 ```
 
-## The test suite
+### The test suite
 
 
 ```cpp
@@ -78,7 +78,7 @@ class TestUnitValidation : public AbstractCellBasedTestSuite
 public:
 ```
 
-## First unit test
+### First unit test
 
 This test places the three cells at
 1. z=0.0
@@ -191,7 +191,7 @@ Run the simulation
     }
 ```
 
-## Second unit test
+### Second unit test
 
 This test places the three cells at
 1. z=0.0
@@ -259,11 +259,11 @@ simulation.
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestUnitValidationLiteratePaper.hpp`
+### File name `TestUnitValidationLiteratePaper.hpp`
 
 
 ```cpp

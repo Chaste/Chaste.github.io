@@ -1,4 +1,4 @@
-# Chaste: an open source C++ library for computational physiology and biology
+## Chaste: an open source C++ library for computational physiology and biology
 
 Welcome to the Chaste wiki.
 
@@ -13,6 +13,6 @@ The code required to run these examples can be downloaded from [the main downloa
 
 
 -----
-## Section contents
+### Section contents
 [SubWiki()](SubWiki())
 

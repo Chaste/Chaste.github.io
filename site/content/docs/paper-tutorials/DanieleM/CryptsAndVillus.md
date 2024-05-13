@@ -4,7 +4,7 @@ Note that the code is given in full at the bottom of the page.
 
 
 ![PaperTutorials/Plos2013:combined.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//PaperTutorials%2FPlos2013%3Acombined.png)
-# Cell-based simulation: multiple crypts and a villus
+## Cell-based simulation: multiple crypts and a villus
 
 On this wiki page we describe in detail the code that is used to run this example from the paper.
 
@@ -22,14 +22,14 @@ This example uses some source files that can be found in the `Plos2013/src` fold
 
 Remember to run with `build=GccOptNative` for speed.
 e.g.
-`scons build=GccOptNative test_suite=projects/Plos2013/test/TestCryptsAndVillusLiteratePaper.hpp`
+`scons build=GccOptNative test_suite=projects/project_Plos2013/test/TestCryptsAndVillusLiteratePaper.hpp`
 
 The easiest way to visualize this simulation is with Paraview, as follows. After opening Paraview,
 load the file results.pvd, then click "Apply" in the object inspector panel. As this simulation
 uses a `NodeBasedCellPopulation`, you must use glyphs to visualize cells: click the button marked
 "Glyph" in the toolbar of common filters; specify cells to be displayed as spheres; then click "Apply".
 
-## Code overview
+### Code overview
 
 The first thing to do is to include the necessary header files.
 
@@ -313,11 +313,11 @@ We now solve for a further 750 hours, up to a total of 1000 hours
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestCryptsAndVillusLiteratePaper.hpp`
+### File name `TestCryptsAndVillusLiteratePaper.hpp`
 
 
 ```cpp

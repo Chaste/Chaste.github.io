@@ -7,7 +7,7 @@ edit that file, don't edit this page on trac!
 ```
 
 
-# A parallel implementation of an off-lattice individual-based model of multicellular populations
+## A parallel implementation of an off-lattice individual-based model of multicellular populations
 
 Welcome to the Chaste wiki.
 
@@ -26,11 +26,11 @@ This is subject to your having access to a machine/cluster with sufficient proce
 
 Before looking at these, you may wish to look at some of the [basic user tutorials](https://github.com/Chaste/trac_archive/wiki/User-Tutorials).
 
-## Getting the code
+### Getting the code
 
 If you are reading this as a Wiki page and do not have the bolt-on project you can download it anonymously as  [an attachment](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//Harvey2015_release_3.2.tgz) to this page. *Todo: add to main download page and collect stats.*
 
-## Documentation
+### Documentation
 
 There are three folders - `build`, `src` and `test`.
 
@@ -95,6 +95,6 @@ For further information on using Chaste to solve these and related problems, see
 
 
 -----
-## Section contents
+### Section contents
 [SubWiki()](SubWiki())
 

@@ -1,28 +1,37 @@
+---
+title: "Cardiac electrophysiology: spiral wave"
+draft: false
+layout: "single"
+---
+
+
 This tutorial was generated from the file [TestSpiralWaveLiteratePaper.hpp](https://github.com/Chaste/project_Plos2013/blob/5b522e0ce55ac81ce8728f858b10464e9d7cfb98/test/TestSpiralWaveLiteratePaper.hpp).
 Note that the code is given in full at the bottom of the page.
 
 
+{{< img src="/fig/paper-tutorials/raw_spiral_wave_image.png" alt="Raw spiral wave image" h="200px" >}}
 
-![PaperTutorials/Plos2013:raw_spiral_wave_image.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//PaperTutorials%2FPlos2013%3Araw_spiral_wave_image.png)
-# Cardiac electrophysiology: spiral wave
 
 On this wiki page we describe in detail the code that is used to run this example from the paper.
 
 Here we use a domain and model suggested in the paper Qu *et al.* "Origins of spiral wave meander and breakup
-in a two-dimensional cardiac tissue model" Annals of biomedical engineering. 28(7):755-771 (2000) [| link](http://www.springerlink.com/index/XQ0268R4K70847PR.pdf).
+in a two-dimensional cardiac tissue model" Annals of biomedical engineering. 28(7):755-771 (2000) [| link](https://doi.org/10.1114/1.1289474).
 
 The example includes a pacing protocol and model ion-channel conductance modifications that result in a stable spiral wave.
 
 This example uses a specially annotated CellML file, and illustrates how to change parameters in a
-cell model in an automated manner in the associated cell factory at `Plos2013/src/SpiralWave`.
+cell model in an automated manner in the associated cell factory at [`Plos2013/src/SpiralWave`](https://github.com/Chaste/project_Plos2013/tree/5b522e0ce55ac81ce8728f858b10464e9d7cfb98/src/SpiralWave).
 
 This test can be run in parallel and will speed up well proportional to the number of processors you have.
 e.g.
-`scons build=GccOptNative_4 test_suite=projects/Plos2013/test/TestSpiralWaveLiteratePaper.hpp`
+
+```bash
+scons build=GccOptNative_4 test_suite=projects/project_Plos2013/test/TestSpiralWaveLiteratePaper.hpp
+```
 
 The easiest way to visualize this simulation is with meshalyzer.
 
-## Code overview
+### Code overview
 
 The first thing to do is to include the necessary header files.
 
@@ -126,11 +135,11 @@ Finally, call `Initialise` and `Solve`
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestSpiralWaveLiteratePaper.hpp`
+### File name `TestSpiralWaveLiteratePaper.hpp`
 
 
 ```cpp

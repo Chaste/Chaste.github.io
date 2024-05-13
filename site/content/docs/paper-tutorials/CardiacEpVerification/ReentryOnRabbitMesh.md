@@ -3,7 +3,7 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-## Reentry simulations on realistic rabbit geometry
+### Reentry simulations on realistic rabbit geometry
 
 This file provides the code used to run the simulations on the realistic rabbit geometry in the second calculation
 verification case study.
@@ -244,11 +244,11 @@ Write the archive if required and print out timings.
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestReentryOnRabbitMeshLiteratePaper.hpp`
+### File name `TestReentryOnRabbitMeshLiteratePaper.hpp`
 
 
 ```cpp

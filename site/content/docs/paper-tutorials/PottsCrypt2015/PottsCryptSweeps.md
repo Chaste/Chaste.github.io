@@ -3,9 +3,9 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# Multiple CPM simulations of a healty crypt with varying dynamic parameters
+## Multiple CPM simulations of a healty crypt with varying dynamic parameters
 
-## Introduction
+### Introduction
 
 In this test we run multiple simulations if a Cellular Potts model of a
 colon crypt. We do this to see the dependance of the simulation
@@ -16,7 +16,7 @@ Osborne (2015) "A Multiscale Model of Colorectal Cancer Using the Cellular Potts
 
 This class was used to produce the data for Figure 4.
 
-## Including header files
+### Including header files
 
 We begin by including the necessary header files which are the same as for a single simulation.
 
@@ -48,7 +48,7 @@ We begin by including the necessary header files which are the same as for a sin
 #include "Debug.hpp"
 ```
 
-## Running Multiple Simulations
+### Running Multiple Simulations
 
 First of all, we define the test class.
 
@@ -323,11 +323,11 @@ The data is in the
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestPottsCryptSweepsLiteratePaper.hpp`
+### File name `TestPottsCryptSweepsLiteratePaper.hpp`
 
 
 ```cpp

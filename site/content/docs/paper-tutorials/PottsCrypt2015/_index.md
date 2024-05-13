@@ -1,4 +1,4 @@
-# A Cellular Potts Model (CPM) of Colorectal Cancer
+## A Cellular Potts Model (CPM) of Colorectal Cancer
 
 This section contains pages generated automatically from the source code accompanying "Multiscale Model of Colorectal Cancer Using the Cellular Potts Framework" http://dx.doi.org/10.4137/CIN.S19332
 
@@ -11,7 +11,7 @@ The code to run include mutations and was used produce Figures 5, 7 and 8 can be
 Before looking at these, you may wish to look at some of the [basic user tutorials](https://github.com/Chaste/trac_archive/wiki/User-Tutorials) for Chaste.
 
 
-## Getting the code and installing dependencies
+### Getting the code and installing dependencies
 
 Before running these examples you will need to [install Chaste's dependencies](https://github.com/Chaste/trac_archive/wiki/Install-Guides-_-Install-Guide) and the [source code for version 3.3](http://www.cs.ox.ac.uk/chaste/download.html).
 The easiest way to do this is using an Ubuntu machine (or an Ubuntu virtual machine) as discussed on [InstallGuides/UbuntuPackage](https://github.com/Chaste/trac_archive/wiki/Install-Guides-_-Ubuntu-Package).
@@ -31,7 +31,7 @@ in the projects folder of the Chaste directory.
 Now the project should be installed, and everything should compile and run correctly.
 You can now run the tests or simulations, or create your own test suites.
 
-## Documentation
+### Documentation
 There are two folders - `src` and `test`.
  1. The `src` folder contains the following classes:
 
@@ -46,7 +46,7 @@ There are two folders - `src` and `test`.
 * [TestPottsCryptSweepsLiteratePaper.hpp](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Potts-Crypt2015-_-Potts-Crypt-Sweeps) - this file can be run to generate the results in Figure 4.
 * [TestPottsCryptMutantLiteratePaper.hpp](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Potts-Crypt2015-_-Potts-Crypt-Mutant) - this file can be run to generate the results in Figures 5 7 and 8.
 
-## Running tests
+### Running tests
 You can then run tests and simulations with,
 ```
 
@@ -74,6 +74,6 @@ You may also wish to look at some of the [basic user tutorials](https://github.c
 
 
 -----
-## Section contents
+### Section contents
 [SubWiki()](SubWiki())
 

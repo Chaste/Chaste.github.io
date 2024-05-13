@@ -7,7 +7,7 @@ edit that file, don't edit this page on trac!
 ```
 
 
-# HCQ reduces heart rate by modulating the hyperpolarisation-activated current *If*: Novel electrophysiological insights and therapeutic potential
+## HCQ reduces heart rate by modulating the hyperpolarisation-activated current *If*: Novel electrophysiological insights and therapeutic potential
 
 Welcome to the Chaste wiki.
 
@@ -21,13 +21,13 @@ For manual installation of each dependency, on any version of Linux, see Develop
 The simulations featured in the paper supplement are explained and annotated below.
 For further information on using Chaste to solve these and related problems, see our [extensive guide material](https://github.com/Chaste/trac_archive/wiki/Chaste-Guides).
 
-## Sino-atrial node study
+### Sino-atrial node study
 
 The steps required to reproduce the study are:
  1. Run a single cell simulation of a sino-atrial node model, with varying degrees of funny current block ([C++ file for performing simulation](https://github.com/Chaste/trac_archive/wiki/._SanWithFunnyCurrentBlock))
  1. Run the matlab script `whole_cell_apd_changes.m` (after updating a folder name at the top to match your `CHASTE_TEST_OUTPUT` environment variable).
 
-## Sample commands to install and run everything
+### Sample commands to install and run everything
 
 If you wish to install Chaste and this project direct from our repository, you may do so from the command line as follows:
 ```
@@ -51,6 +51,6 @@ scons chaste_libs=1 brief=1 build=GccOptNative projects/HR2015
 
 
 -----
-## Section contents
+### Section contents
 [SubWiki()](SubWiki())
 

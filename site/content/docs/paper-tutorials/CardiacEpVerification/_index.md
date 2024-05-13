@@ -56,6 +56,6 @@ The extent to which his observations apply to our findings, and the extent to wh
 needs further investigation.
 
 -----
-## Section contents
+### Section contents
 [SubWiki()](SubWiki())
 

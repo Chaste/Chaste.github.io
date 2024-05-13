@@ -7,7 +7,7 @@ edit that file, don't edit this page on trac!
 ```
 
 
-# Ca^2+^ Channel Re-localization to Plasma-Membrane Microdomains Strengthens Activation of Ca^2+^-Dependent Nuclear Gene Expression
+## Ca^2+^ Channel Re-localization to Plasma-Membrane Microdomains Strengthens Activation of Ca^2+^-Dependent Nuclear Gene Expression
 
 Welcome to the Chaste wiki.
 
@@ -32,11 +32,11 @@ For further information on using Chaste to solve these and related problems, see
 * GR Mirams, CJ Arthurs, MO Bernabeu, R Bordas, J Cooper, A Corrias, Y Davit, S-J Dunn, AG Fletcher, DG Harvey, ME Marsh, JM Osborne, P Pathmanathan, J Pitt-Francis, J Southern, N Zemzemi, DJ Gavaghan (2013). Chaste: an open source C++ library for computational physiology and biology. PLoS Computational Biology, 9(3), e1002970. [doi:10.1371/journal.pcbi.1002970](http://dx.doi.org/10.1371/journal.pcbi.1002970).
 
 
-## Diffusion study
+### Diffusion study
 
 The steps required to reproduce the study are given in the following tutorial file: [C++ file for performing simulation](https://github.com/Chaste/trac_archive/wiki/._CaDiffusion).
 
-## Sample commands to run everything
+### Sample commands to run everything
 
 Either
 
@@ -66,6 +66,6 @@ scons chaste_libs=1 brief=1 build=GccOptNative projects/CaDiffusion
 
 
 -----
-## Section contents
+### Section contents
 [SubWiki()](SubWiki())
 

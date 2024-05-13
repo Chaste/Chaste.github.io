@@ -1,4 +1,4 @@
-# On-Lattice Agent-based Simulation of Populations of Cells within the Open-Source Chaste Framework"
+## On-Lattice Agent-based Simulation of Populations of Cells within the Open-Source Chaste Framework"
 
 This section contains pages generated automatically from the source code accompanying
 Figueredo et al (2013) "On-Lattice Agent-based Simulation of Populations of Cells within the Open-Source Chaste Framework", Royal Society Interface Focus.
@@ -11,7 +11,7 @@ and here [TestCaBasedCellPopulationUsingPdesLiteratePaper.hpp](https://github.co
 Before looking at this, you may wish to look at some of the [basic user tutorials](https://github.com/Chaste/trac_archive/wiki/User-Tutorials) for Chaste.
 
 
-## Getting the code and installing dependencies
+### Getting the code and installing dependencies
 
 Before running these examples you will need to [install Chaste's dependencies](https://github.com/Chaste/trac_archive/wiki/Install-Guides-_-Install-Guide) and the [source code for version 3.2](http://www.cs.ox.ac.uk/chaste/download.html).
 The easiest way to do this is using an Ubuntu machine (or an Ubuntu virtual machine) as discussed on [InstallGuides/UbuntuPackage](https://github.com/Chaste/trac_archive/wiki/Install-Guides-_-Ubuntu-Package).
@@ -36,7 +36,7 @@ in the projects folder of the Chaste directory. If you dont have a Chaste user a
 Now the project should be installed, and everything should compile and run correctly.
 You can now run the tests or simulations, or create your own test suites.
 
-## Documentation
+### Documentation
 There are two folders - `src` and `test`.
  1. The `src` folder contains the classes necesary to run the simulation. These define the aditional ell cycle models etc. that  not in the core chaste code.
  1. The `test` folder contains:
@@ -66,6 +66,6 @@ For further information on using Chaste, see the [extensive guide material](http
 You may also wish to look at some of the [basic user tutorials](https://github.com/Chaste/trac_archive/wiki/User-Tutorials).
 
 -----
-## Section contents
+### Section contents
 [SubWiki()](SubWiki())
 

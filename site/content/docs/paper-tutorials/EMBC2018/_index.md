@@ -1,4 +1,4 @@
-# Model of Vascular Remodelling
+## Model of Vascular Remodelling
 
 This section contains pages generated automatically from the source code accompanying Osborne and Bernabeu (2018)
 "A fully discrete open source framework for the simulation of vascular remodelling". in TODO doi:TODO
@@ -11,7 +11,7 @@ The code to run single coupled simulations, which was used to produce Figure 3, 
 
 Before looking at this, you may wish to look at some of the [basic user tutorials](https://github.com/Chaste/trac_archive/wiki/User-Tutorials) for Chaste.
 
-## Getting the code and installing dependencies
+### Getting the code and installing dependencies
 
 Before running these examples you will need to [install Chaste's dependencies](https://github.com/Chaste/trac_archive/wiki/Install-Guides-_-Install-Guide) and the [source code for version 3.3](http://www.cs.ox.ac.uk/chaste/download.html).
 The easiest way to do this is using an Ubuntu machine (or an Ubuntu virtual machine) as discussed on [InstallGuides/UbuntuPackage](https://github.com/Chaste/trac_archive/wiki/Install-Guides-_-Ubuntu-Package).
@@ -34,7 +34,7 @@ password: [email](your).
 Now the project should be installed, and everything should compile and run correctly.
 You can now run the tests or simulations, or create your own test suites.
 
-## Documentation
+### Documentation
 There are four folders - `matlab`,`python',`src` and `test`.
  1. The `matlab` folder contains scripts to plot Figure 2 from the paper.
  1. The `python` folder contains python scrips to couple our Chaste executables from `src` to HemeLB.
@@ -62,6 +62,6 @@ You may also wish to look at some of the [basic user tutorials](https://github.c
 
 
 -----
-## Section contents
+### Section contents
 [SubWiki()](SubWiki())
 

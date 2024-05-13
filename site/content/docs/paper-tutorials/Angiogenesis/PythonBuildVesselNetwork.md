@@ -3,7 +3,7 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# Introduction
+## Introduction
 This tutorial is designed to introduce the Python interface for modelling vessel networks. An equivalent C++ tutorial
 is [here](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Angiogenesis-_-Build-Vessel-Network).
 
@@ -17,7 +17,7 @@ This tutorial covers:
 
 Further functionality is gradually introduced over the course of subsequent tutorials.
 
-# The Test
+## The Test
 ```
 
 #!python
@@ -28,7 +28,7 @@ import chaste.population.vessel as vessel
 class TestPythonBuildVesselNetworkLiteratePaper(unittest.TestCase):
 ```
 
-# Test 1 - Building a vessel network manually, writing it to file and visualizing it
+## Test 1 - Building a vessel network manually, writing it to file and visualizing it
 In the first test we will build a vessel network from its constituent components; nodes, segments and vessels. We will do some
 simple tests to make sure the network has been formed as expected. Then we write the network to file and visualize it in Paraview.
 ```

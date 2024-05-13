@@ -3,11 +3,11 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# Three dimensional mouse ventricle with lesion simulation
+## Three dimensional mouse ventricle with lesion simulation
 
 This is the code that was used to perform the simulation in Mahoney *et al.* (2016).
 
-## Code Walkthrough
+### Code Walkthrough
 
 
 ```cpp
@@ -372,11 +372,11 @@ COMPLETE THE SET UP OF PROBLEM
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestFibroblasts3dLiteratePaper.hpp`
+### File name `TestFibroblasts3dLiteratePaper.hpp`
 
 
 ```cpp

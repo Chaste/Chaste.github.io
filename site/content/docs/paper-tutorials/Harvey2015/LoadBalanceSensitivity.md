@@ -3,12 +3,12 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# Test the load-balancing algorithm, and its sensitivity to the rebalancing frequency  (Figure 6).
+## Test the load-balancing algorithm, and its sensitivity to the rebalancing frequency  (Figure 6).
 
 This test suites demonstrates the use of the load-balancing algorithm
 for parallel cell-based simulations.
 
-# Use
+## Use
 
 The test in this class is designed to be run using multiple processes to
 recreate figure 6.
@@ -26,7 +26,7 @@ scons build=GccOptNative_8 projects/Harvey2015/tests/TestLoadBalanceSensitivityL
 ```
 
 
-### Header files
+#### Header files
 
 
 ```cpp
@@ -60,7 +60,7 @@ class TestLoadBalanceSensitivity : public AbstractCellBasedTestSuite
 public:
 ```
 
-## The first unit test
+### The first unit test
 
 This test starts a population from a seed of 25 cells, and allows
 the population to grow for 100 hours. This test should be run on
@@ -262,7 +262,7 @@ Print the number of local cells to screen.
     }
 ```
 
-## The second unit test
+### The second unit test
 
 This test starts a population from a seed of 25 cells, and allows
 the population to grow for 100 hours. The entire simulation is
@@ -480,11 +480,11 @@ We multiply by 5 or 2 on alternating iterations
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestLoadBalanceSensitivityLiteratePaper.hpp`
+### File name `TestLoadBalanceSensitivityLiteratePaper.hpp`
 
 
 ```cpp

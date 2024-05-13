@@ -3,7 +3,7 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# An Off Lattice Angiogenesis Tutorial
+## An Off Lattice Angiogenesis Tutorial
 This tutorial demonstrates most features of the Angiogenesis Project code. It can be used
 to get a rough idea of how the code works, and then individual components can
 be looked at in more detailed, dedicated tutorials.
@@ -17,7 +17,7 @@ The following is covered:
 * Interacting with Cell Based Chaste
 
 
-# The Test
+## The Test
 Start by introducing the necessary header files. The first contain functionality for setting up unit tests,
 smart pointer tools and output management.
 
@@ -120,7 +120,7 @@ public:
 ```
 
 
-# Test 1 - Angiogenesis With No Cells
+## Test 1 - Angiogenesis With No Cells
 In the first example angiogenesis is simulated without interaction with a cell population.
 
 
@@ -376,11 +376,11 @@ Reset the simulation time and run the solver.
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestOffLatticeAngiogenesisLiteratePaper.hpp`
+### File name `TestOffLatticeAngiogenesisLiteratePaper.hpp`
 
 
 ```cpp

@@ -3,7 +3,7 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# Generate accurate reference traces and record a target error metric
+## Generate accurate reference traces and record a target error metric
 
 On this wiki page we describe in detail the code that is used to run this example from the paper.
 
@@ -15,7 +15,7 @@ to set time steps for other solvers in CalculateRequiredTimesteps.
 
 At the end of this test this information is copied into the file `test/data/error_summary.txt` within the project.
 
-## Code overview
+### Code overview
 
 The first thing to do is to include the necessary header files.
 
@@ -186,11 +186,11 @@ Save these to a dedicated file for this model, and copy to reference data folder
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestGeneratingReferenceDataLiteratePaper.hpp`
+### File name `TestGeneratingReferenceDataLiteratePaper.hpp`
 
 
 ```cpp

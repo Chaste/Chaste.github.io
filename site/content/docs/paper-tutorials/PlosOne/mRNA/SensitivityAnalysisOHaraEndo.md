@@ -3,7 +3,7 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# PLOS ONE mRNA population study
+## PLOS ONE mRNA population study
 
 On this wiki page we describe in detail the code that is used to run the Chaste simulations in the paper
 
@@ -28,7 +28,7 @@ To generate the results in the paper we ran the simulations with 8 processes per
 
 Figures were generated from the postprocessed output using the matlab files found in the matlab/ folder of this user project.
 
-## Code overview
+### Code overview
 
 The code only runs if Chaste is set up to use Cvode, hence the #ifdef CHASTE_CVODE line at the top of the file (not shown on wiki, see downloadable project).
 
@@ -93,7 +93,7 @@ Read in the command line arguments supplied to the executable
         //////////// DEFINE PARAMETERS ///////////////
         CommandLineArguments* p_args = CommandLineArguments::Instance();
         unsigned argc = *(p_args->p_argc); // has the number of arguments.
-        std::cout << "# " << argc-1 << " arguments supplied.\n" << std::flush;
+        std::cout << "## " << argc-1 << " arguments supplied.\n" << std::flush;
 ```
 
 If no file is set then we display an error explaining valid options
@@ -718,11 +718,11 @@ End the loop over the experiment
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestSensitivityAnalysisOHaraEndoLiteratePaper.hpp`
+### File name `TestSensitivityAnalysisOHaraEndoLiteratePaper.hpp`
 
 
 ```cpp
@@ -760,7 +760,7 @@ public:
         //////////// DEFINE PARAMETERS ///////////////
         CommandLineArguments* p_args = CommandLineArguments::Instance();
         unsigned argc = *(p_args->p_argc); // has the number of arguments.
-        std::cout << "# " << argc-1 << " arguments supplied.\n" << std::flush;
+        std::cout << "## " << argc-1 << " arguments supplied.\n" << std::flush;
 
         if ( !CommandLineArguments::Instance()->OptionExists("--file"))
         {

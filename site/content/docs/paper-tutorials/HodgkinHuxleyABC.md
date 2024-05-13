@@ -1,10 +1,10 @@
-# ABC Parameterization of the Hodgkin-Huxley Model
+## ABC Parameterization of the Hodgkin-Huxley Model
 
 This tutorial describes how to download and execute the Approximate Bayesian Computation code
 for inference on the Hodgkin-Huxley model as described in "[Hodgkin-Huxley revisited: reparameterization and identifiability analysis of the classic action potential model with approximate Bayesian methods](http://dx.doi.org/10.1098/rsos.150499)",
 *J. R. Soc. Interface* 2:150499, 2015.
 
-## Installation
+### Installation
 
 This project requires the Functional Curation add-on to Chaste in order to run, which in turn requires the Chaste source tree to be installed.
 To install these dependencies, follow the [installation instructions](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Functional-Curation) in the Functional Curation paper tutorial.
@@ -20,7 +20,7 @@ svn checkout --username anonymous https://chaste.cs.ox.ac.uk/svn/chaste/projects
 
 Use your email address as the password for the 'anonymous' account.
 
-## Usage
+### Usage
 
 Source code for the ABC-SMC parameter fitting algorithm is contained in the `src` folder.
 Python scripts for performing inference on both the simplified and full Hodgkin-Huxley
@@ -73,6 +73,6 @@ Note however that this will prevent storing a copy of the output on disk.
 
 
 -----
-## Section contents
+### Section contents
 [SubWiki()](SubWiki())
 

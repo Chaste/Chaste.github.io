@@ -3,7 +3,7 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# Adhesion Example
+## Adhesion Example
 
 On this wiki page we describe in detail the code that is used to run this example from the paper.
 
@@ -11,7 +11,7 @@ The easiest way to visualize these simulations is with Paraview.
 
 [EmbedYoutube(4YZp_WmBZTI)](EmbedYoutube(4YZp_WmBZTI))
 
-## Code overview
+### Code overview
 
 The first thing to do is to include the necessary header files.
 
@@ -99,7 +99,7 @@ This is a helper method to randomly label cells add is used in all simulations.
 public:
 ```
 
-## CA
+### CA
 
 Simulate a population of cells exhibiting cell sorting using the
 Cellular Automaton model.
@@ -182,7 +182,7 @@ Cellular Automaton model.
     }
 ```
 
-## CP
+### CP
 
 Simulate a population of cells exhibiting cell sorting using the
 Cellular Potts model.
@@ -264,7 +264,7 @@ Cellular Potts model.
     }
 ```
 
-## OS
+### OS
 
 Simulate a population of cells exhibiting cell sorting using the
 Overlapping Sphere model.
@@ -345,7 +345,7 @@ Overlapping Sphere model.
 ```
 
 
-## VT
+### VT
 
 Simulate a population of cells exhibiting cell sorting using the
 Voronoi tesselation model.
@@ -419,7 +419,7 @@ Voronoi tesselation model.
     }
 ```
 
-## VM
+### VM
 
 Simulate a population of cells exhibiting cell sorting using the
 Cell Vertex model.
@@ -508,11 +508,11 @@ Cell Vertex model.
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestCellSortingLiteratePaper.hpp`
+### File name `TestCellSortingLiteratePaper.hpp`
 
 
 ```cpp

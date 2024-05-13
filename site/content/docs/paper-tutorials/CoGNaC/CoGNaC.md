@@ -1,4 +1,4 @@
-# CoGNaC: a Chaste plugin for the multiscale simulation of Gene regulatory Networks driving the spatial dynamics of tissues and Cancer
+## CoGNaC: a Chaste plugin for the multiscale simulation of Gene regulatory Networks driving the spatial dynamics of tissues and Cancer
 
 Welcome to the Chaste wiki.
 
@@ -6,10 +6,10 @@ Designed only to work as bolt-on project for Chaste v3.2 or v3.3.
 
 This section contains pages generated automatically from the source code accompanying Rubinacci et al. "[CoGNaC: A Chaste Plugin for the Multiscale Simulation of Gene Regulatory Networks Driving the Spatial Dynamics of Tissues and Cancer](http://dx.doi.org/10.4137/CIN.S19965)", our paper in [Cancer informatics](http://www.la-press.com/journal-cancer-informatics-j10), 2015.
 
-## User manual
+### User manual
 A detailed user guide of CoGNaC can be found as an attachment at the bottom of this page.
 
-## Getting the code and installing dependencies
+### Getting the code and installing dependencies
 
 Before running these examples you will need to [install Chaste's dependencies](https://github.com/Chaste/trac_archive/wiki/Install-Guides-_-Install-Guide) and the [source code for version 3.3](http://www.cs.ox.ac.uk/chaste/download.html).
 The easiest way to do this is using an Ubuntu machine (or an Ubuntu virtual machine) as discussed on [InstallGuides/UbuntuPackage](https://github.com/Chaste/trac_archive/wiki/Install-Guides-_-Ubuntu-Package).
@@ -65,7 +65,7 @@ scons test_suite=projects/CoGNaC/test/TestRandomBooleanNetwork.hpp
 
 If each test run is passed, you can run some tests or simulations, or create your own test suites.
 
-## Documentation
+### Documentation
 There are three folders - `networks_samples`, `src` and `test`.
 
  1. The `networks_samples` folder contains networks and matrices used for tests and simulations.
@@ -87,7 +87,7 @@ There are three folders - `networks_samples`, `src` and `test`.
 * [TestCancerCellColonizationOfaColonCryptLiteratePaper.hpp](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Co-G-Na-C-_-Cancer-Cell-Colonization-Ofa-Colon-Crypt) - this file can be run to generate the results in Figure 4 showing the ATN and the differentiation tree and to generate the crypt simulations shown in Figure 5.
 
 
-## Running tests
+### Running tests
 You can then run tests and simulations with, for example,
 ```
 
@@ -110,6 +110,6 @@ You may also wish to look at some of the [basic user tutorials](https://github.c
 
 
 -----
-## Section contents
+### Section contents
 [SubWiki()](SubWiki())
 

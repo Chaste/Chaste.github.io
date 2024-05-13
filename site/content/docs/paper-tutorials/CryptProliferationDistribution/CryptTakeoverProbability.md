@@ -299,11 +299,11 @@ public:
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestCryptTakeoverProbabilityLiteratePaper.hpp`
+### File name `TestCryptTakeoverProbabilityLiteratePaper.hpp`
 
 
 ```cpp

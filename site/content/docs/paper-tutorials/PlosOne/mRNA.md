@@ -1,4 +1,4 @@
-# mRNA Expression Levels Predict Cellular Electrophysiological Remodeling in Failing Human Hearts: A Population-Based Simulation Study
+## mRNA Expression Levels Predict Cellular Electrophysiological Remodeling in Failing Human Hearts: A Population-Based Simulation Study
 
 Welcome to the Chaste wiki.
 
@@ -17,6 +17,6 @@ For further information on using Chaste, see our [extensive guide material](http
 Click [here](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Plos-One_m-RNA-_-Sensitivity-Analysis-O-Hara-Endo) to view the annotated example code.
 
 -----
-## Section contents
+### Section contents
 [SubWiki()](SubWiki())
 

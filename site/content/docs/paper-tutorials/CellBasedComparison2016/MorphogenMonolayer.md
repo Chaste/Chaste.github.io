@@ -3,7 +3,7 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# Long-range Signalling Example
+## Long-range Signalling Example
 
 On this wiki page we describe in detail the code that is used to run this example from the paper.
 
@@ -11,7 +11,7 @@ The easiest way to visualize these simulations is with Paraview.
 
 [EmbedYoutube(Yl2GT2x2ohc)](EmbedYoutube(Yl2GT2x2ohc))
 
-## Code overview
+### Code overview
 
 The first thing to do is to include the necessary header files.
 
@@ -124,7 +124,7 @@ This is a helper method to generate cells and is used in all simulations.
 public:
 ```
 
-## CA
+### CA
 
 Simulate reaction diffusion on a growing a population of cells in the
 Cellular Automaton model.
@@ -204,7 +204,7 @@ Cellular Automaton model.
     }
 ```
 
-## CP
+### CP
 
 Simulate reaction diffusion on a growing a population of cells in the
 Cellular Potts model.
@@ -293,7 +293,7 @@ Cellular Potts model.
     }
 ```
 
-## OS
+### OS
 
 Simulate reaction diffusion on a growing a population of cells in the
 Overlapping Spheres model.
@@ -368,7 +368,7 @@ Overlapping Spheres model.
     }
 ```
 
-## VT
+### VT
 
 Simulate reaction diffusion on a growing a population of cells in the
 Voronoi Tesselation model.
@@ -440,7 +440,7 @@ Voronoi Tesselation model.
     }
 ```
 
-## VM
+### VM
 
 Simulate reaction diffusion on a growing a population of cells in the
 Cell Vertex model.
@@ -522,11 +522,11 @@ Cell Vertex model.
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestMorphogenMonolayerLiteratePaper.hpp`
+### File name `TestMorphogenMonolayerLiteratePaper.hpp`
 
 
 ```cpp

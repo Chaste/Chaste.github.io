@@ -300,11 +300,11 @@ public:
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestCryptProliferationDistributionLiteratePaper.hpp`
+### File name `TestCryptProliferationDistributionLiteratePaper.hpp`
 
 
 ```cpp

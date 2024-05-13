@@ -3,7 +3,7 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# An Off Lattice Angiogenesis Tutorial
+## An Off Lattice Angiogenesis Tutorial
 This tutorial demonstrates functionality for modelling 3D off-lattice angiogenesis in a corneal micro
 pocket application, similar to that described in [Connor et al. 2015](http://rsif.royalsocietypublishing.org/content/12/110/20150546.abstract).
 It is a 3D simulation modelling VEGF diffusion and decay from an implanted pellet using finite element methods and lattice-free angiogenesis
@@ -11,7 +11,7 @@ from a large limbal vessel towards the pellet.
 
 ![source:/chaste/projects/Microvessel/test/tutorials/images/OffLatticeMidPoint.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//source%3A%2Fchaste%2Fprojects%2FMicrovessel%2Ftest%2Ftutorials%2Fimages%2FOffLatticeMidPoint.png)
 
-# The Test
+## The Test
 Start by introducing the necessary header files. The first contain functionality for setting up unit tests,
 smart pointer tools and output management,
 
@@ -347,11 +347,11 @@ Set the simulation time and run the solver. The result is shown at the top of th
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestOffLatticeAngiogenesisLiteratePaper.hpp`
+### File name `TestOffLatticeAngiogenesisLiteratePaper.hpp`
 
 
 ```cpp

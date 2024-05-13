@@ -3,7 +3,7 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# Testing the cardiac solvers against exact solutions
+## Testing the cardiac solvers against exact solutions
 
 This is the main code for solving the monodomain, bidomain and bidomain-with-bath model problems.
 
@@ -220,7 +220,7 @@ and related classes.
     }
 ```
 
-## Monodomain model problem
+### Monodomain model problem
 
 This function is the code for running the monodomain model problem, which we will walk through.
 
@@ -393,7 +393,7 @@ calculate analytically.
     }
 ```
 
-## Bidomain model problem
+### Bidomain model problem
 
 Next, the main function for solving the bidomain model problem. This is basically the same as the monodomain code, except has
 an extracellular conductivity, and gets the errors for both voltage and extracellular potential.
@@ -536,7 +536,7 @@ Test code similar to monodomain version:
     }
 ```
 
-## Bidomain-with-bath model problem
+### Bidomain-with-bath model problem
 
 Finally, the bidomain-with-bath-model problem:
 
@@ -692,7 +692,7 @@ Similar to before:
     }
 ```
 
-## Main test
+### Main test
 
 Finally, we have the public 'tests', which actually run the simulations. Note that only the first two tests will be run,
 as the code is written below, as only those whose name begins with 'Test' are run. To run the others, change
@@ -786,11 +786,11 @@ public:
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestEpAgainstExactSolutionsLiteratePaper.hpp`
+### File name `TestEpAgainstExactSolutionsLiteratePaper.hpp`
 
 
 ```cpp

@@ -4,11 +4,11 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestCellSortingLiteratePaper.hpp`
+### File name `TestCellSortingLiteratePaper.hpp`
 
 
 ```cpp

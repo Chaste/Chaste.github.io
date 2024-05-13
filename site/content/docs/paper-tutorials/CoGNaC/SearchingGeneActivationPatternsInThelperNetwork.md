@@ -3,9 +3,9 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# Searching gene activation patterns in T-helper cell differentiation
+## Searching gene activation patterns in T-helper cell differentiation
 
-## Introduction
+### Introduction
 
 In this class we show how to search gene activation patterns starting from a network,
 calculate its Attractor Transition Network (Figure 3).
@@ -33,7 +33,7 @@ public:
 ```
 
 
-## Finding attractors and calculating the ATN from 'thelper' network
+### Finding attractors and calculating the ATN from 'thelper' network
 
 In this example we search the attractors of the thelper network. We test that
 the network has three single-point attractors and calculate the ATN.
@@ -119,11 +119,11 @@ We release Buddy.
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestSearchingGeneActivationPatternsInThelperNetworkLiteratePaper.hpp`
+### File name `TestSearchingGeneActivationPatternsInThelperNetworkLiteratePaper.hpp`
 
 
 ```cpp

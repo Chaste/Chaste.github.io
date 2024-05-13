@@ -1,4 +1,4 @@
-# Connecting models to data in multiscale multicellular tissue simulations
+## Connecting models to data in multiscale multicellular tissue simulations
 
 This section of the Chaste wiki contains pages generated automatically from the source code accompanying
 "[Connecting models to data in multiscale multicellular tissue simulations](http://dx.doi.org/10.1016/j.procs.2013.05.235)",
@@ -41,6 +41,6 @@ You may also wish to look at some of the [basic user tutorials](https://github.c
 
 
 -----
-## Section contents
+### Section contents
 [SubWiki()](SubWiki())
 

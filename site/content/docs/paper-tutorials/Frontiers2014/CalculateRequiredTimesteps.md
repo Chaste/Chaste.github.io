@@ -3,7 +3,7 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# Calculate the required ODE solver timesteps to meet target accuracy
+## Calculate the required ODE solver timesteps to meet target accuracy
 
 On this wiki page we describe in detail the code that is used to run this example from the paper.
 
@@ -14,7 +14,7 @@ with CVODE using slack tolerances in GeneratingReferenceData.
 This is intended to define a time step required for each method to
 get a numerical solution of comparable accuracy, for fair timing comparisons.
 
-## Code overview
+### Code overview
 
 The first thing to do is to include the necessary header files.
 
@@ -331,11 +331,11 @@ Copy to repository for storage and use by other tests.
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestCalculateRequiredTimestepsLiteratePaper.hpp`
+### File name `TestCalculateRequiredTimestepsLiteratePaper.hpp`
 
 
 ```cpp

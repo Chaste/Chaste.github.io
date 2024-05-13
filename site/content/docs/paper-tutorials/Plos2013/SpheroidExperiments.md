@@ -1,10 +1,14 @@
-This tutorial was generated from the file projects/Plos2013/test/TestSpheroidExperimentsLiteratePaper.hpp at revision r24485.
+---
+title: "Cell-based simulation: tumour spheroid with oxygen diffusion and uptake"
+draft: false
+layout: "single"
+---
+
+This tutorial was generated from the file [TestSpheroidExperimentsLiteratePaper.hpp](https://github.com/Chaste/project_Plos2013/blob/5b522e0ce55ac81ce8728f858b10464e9d7cfb98/test/TestSpheroidExperimentsLiteratePaper.hpp).
 Note that the code is given in full at the bottom of the page.
 
 
-
-![PaperTutorials/Plos2013:spheroid_v2.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//PaperTutorials%2FPlos2013%3Aspheroid_v2.png)
-# Cell-based simulation: tumour spheroid with oxygen diffusion and uptake
+{{< img src="/fig/paper-tutorials/spheroid_v2.png" alt="Spheroid experiments" h="200px" >}}
 
 On this wiki page we describe in detail the code that is used to run this example from the paper.
 
@@ -20,11 +24,14 @@ This example uses only files from the core repository.
 
 Remember to run with `build=GccOptNative` for speed.
 e.g.
-`scons build=GccOptNative test_suite=projects/Plos2013/test/TestSpheroidExperimentsLiteratePaper.hpp`
+
+```bash
+scons build=GccOptNative test_suite=projects/project_Plos2013/test/TestSpheroidExperimentsLiteratePaper.hpp
+```
 
 The easiest way to visualize this simulation is with paraview.
 
-## Code overview
+### Code overview
 
 The first thing to do is to include the necessary header files.
 
@@ -290,11 +297,11 @@ Save the results
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestSpheroidExperimentsLiteratePaper.hpp`
+### File name `TestSpheroidExperimentsLiteratePaper.hpp`
 
 
 ```cpp

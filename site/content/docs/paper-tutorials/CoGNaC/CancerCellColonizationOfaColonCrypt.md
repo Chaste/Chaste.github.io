@@ -3,9 +3,9 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# Cancer cell colonization of a colon crypt
+## Cancer cell colonization of a colon crypt
 
-## Introduction
+### Introduction
 
 In this test we show how Chaste can be used to simulate a model of a colon crypt
 combining a center-based 2-D representation of cells at the spatial level and a
@@ -16,7 +16,7 @@ Rubinacci *et al.* (2015).
 This class was used to produce Figure 5 and the differentiation tree
 in Figure 4.
 
-## Including header files
+### Including header files
 
 We begin by including the necessary header files.
 
@@ -122,7 +122,7 @@ the mechanical interactions between neighbouring cells in the crypt.
 #include "FakePetscSetup.hpp"
 ```
 
-## Creating the boundary condition
+### Creating the boundary condition
 
 We create a new cell population boundary condition class to specify a fixed domain within which cells are constrained to lie.
 For details, see [this tutorial](https://github.com/Chaste/trac_archive/wiki/User-Tutorials-_-Creating-And-Using-A-New-Cell-Population-Boundary-Condition).
@@ -238,7 +238,7 @@ namespace boost
 }
 ```
 
-## Testing the cell population boundary condition
+### Testing the cell population boundary condition
 
 First of all, we define the test class.
 
@@ -287,7 +287,7 @@ very similar to the test implemented in
 	}
 ```
 
-## Testing the properties of the network
+### Testing the properties of the network
 
 Starting from 'fig4_atm.dat' containing a description of the ATN
 and the attractors lengths of the network, we calculate a differentiation tree using
@@ -386,7 +386,7 @@ Release the memory.
     }
 ```
 
-## Simulating a cancer cell colonization (Figure 5)
+### Simulating a cancer cell colonization (Figure 5)
 
 Starting from 'fig4_atm.dat' containing a description of the ATN
 and the attractors lengths, we calculate a differentiation tree using
@@ -755,11 +755,11 @@ the appropriate options from the file menu.
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestCancerCellColonizationOfaColonCryptLiteratePaper.hpp`
+### File name `TestCancerCellColonizationOfaColonCryptLiteratePaper.hpp`
 
 
 ```cpp

@@ -3,9 +3,9 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# Mutliple CPM simulations of a crypt with Mutant Cells
+## Mutliple CPM simulations of a crypt with Mutant Cells
 
-## Introduction
+### Introduction
 
 In this test we show how Chaste can be used to simulate a Cellular Potts model of a
 colon crypt with mutant cells. Full details of the computational model can be found in
@@ -13,7 +13,7 @@ Osborne (2015) "A Multiscale Model of Colorectal Cancer Using the Cellular Potts
 
 This class was used to produce the data for Figures 5, 6 and 7.
 
-## Including header files
+### Including header files
 
 We begin by including the necessary header files.
 
@@ -60,7 +60,7 @@ The remaining headers are covered in the regular Chaste tutorials
 #include "Debug.hpp"
 ```
 
-## Running Multiple Simulations
+### Running Multiple Simulations
 
 First of all, we define the test class.
 
@@ -352,11 +352,11 @@ https://www.youtube.com/watch?v=8qlLFpV7ugI
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestPottsCryptMutantLiteratePaper.hpp`
+### File name `TestPottsCryptMutantLiteratePaper.hpp`
 
 
 ```cpp

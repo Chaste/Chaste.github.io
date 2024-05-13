@@ -3,7 +3,7 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# Study the convergence of reference monodomain tissue simulation solutions
+## Study the convergence of reference monodomain tissue simulation solutions
 
 On this wiki page we describe in detail the code that is used to run this example from the paper.
 
@@ -13,7 +13,7 @@ the left hand end, and saves the voltage trace at the right hand end to file for
 at different step settings.  It also checks that the excitation wave has propagated along the fibre,
 and calculates some summary properties of the action potential, again writing these to file.
 
-## Code overview
+### Code overview
 
 The first thing to do is to include the necessary header files.
 
@@ -326,11 +326,11 @@ Next, check that the solution looks like an action potential, and save summary s
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestMonodomainConvergenceLiteratePaper.hpp`
+### File name `TestMonodomainConvergenceLiteratePaper.hpp`
 
 
 ```cpp

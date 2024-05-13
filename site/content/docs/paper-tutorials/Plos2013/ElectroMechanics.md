@@ -1,10 +1,14 @@
-This tutorial was generated from the file projects/Plos2013/test/TestElectroMechanicsLiteratePaper.hpp at revision r24473.
+---
+title: "Cardiac electro-mechanics: a cardiac tissue wedge with varying fibre directions"
+draft: false
+layout: "single"
+---
+
+This tutorial was generated from the file [TestElectroMechanicsLiteratePaper.hpp](https://github.com/Chaste/project_Plos2013/blob/5b522e0ce55ac81ce8728f858b10464e9d7cfb98/test/TestElectroMechanicsLiteratePaper.hpp).
 Note that the code is given in full at the bottom of the page.
 
 
-
-![PaperTutorials/Plos2013:composite.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//PaperTutorials%2FPlos2013%3Acomposite.png)
-# Cardiac electro-mechanics: a cardiac tissue wedge with varying fibre directions
+{{< img src="/fig/paper-tutorials/composite.png" alt="Electromechanics" h="200px" >}}
 
 On this wiki page we describe in detail the code that is used to run this example from the paper.
 This example is based on UserTutorials/CardiacElectroMechanics
@@ -15,14 +19,17 @@ The fibres have different orientations in different parts of the tissue, resulti
 
 Remember to run with `build=GccOptNative` for speed.
 e.g.
-`scons build=GccOptNative test_suite=projects/Plos2013/test/TestElectroMechanicsLiteratePaper.hpp`
+
+```bash
+scons build=GccOptNative test_suite=projects/project_Plos2013/test/TestElectroMechanicsLiteratePaper.hpp
+```
 
 This example uses only files from the core Chaste code.
 
 There is a special cmgui visualization script that loads both mechanics and voltage solution onto the
 same mesh, which is in the same folder as this file: `LoadElectroMechanicsSimulation.com`
 
-## Code overview
+### Code overview
 
 We first include some header files which define the classes we will use.
 
@@ -190,11 +197,11 @@ Report where time was spent to std::cout.
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestElectroMechanicsLiteratePaper.hpp`
+### File name `TestElectroMechanicsLiteratePaper.hpp`
 
 
 ```cpp
@@ -280,5 +287,3 @@ public:
     }
 };
 ```
-
-

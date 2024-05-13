@@ -3,16 +3,16 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# Simulation of fission in epithelial layer
+## Simulation of fission in epithelial layer
 
-## Introduction
+### Introduction
 
 In this test we show how Chaste can be used to simulate a buckling layer of epithelial cells.
 Details of the computational model can be found in
 Langlands et al (2016) "Paneth cell-rich regions separated by a cluster of Lgr5+ cells initiate
 fission in the intestinal stem cell niche".
 
-## Including header files
+### Including header files
 
 We begin by including the necessary header files. The first ones are common to all cell_based Chaste simulations
 
@@ -481,11 +481,11 @@ javac Visualize2dCentreCells.java
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestCryptFissionLiteratePaper.hpp`
+### File name `TestCryptFissionLiteratePaper.hpp`
 
 
 ```cpp

@@ -1,9 +1,13 @@
-This tutorial was generated from the file [TestCryptsAndVillusLiteratePaper.hpp].
+---
+title: "Cell-based simulation: multiple crypts and a villus"
+draft: false
+layout: "single"
+---
+
+This tutorial was generated from the file [TestCryptsAndVillusLiteratePaper.hpp](https://github.com/Chaste/project_Plos2013/blob/5b522e0ce55ac81ce8728f858b10464e9d7cfb98/test/TestCryptsAndVillusLiteratePaper.hpp).
 Note that the code is given in full at the bottom of the page.
 
-
-![PaperTutorials/Plos2013:combined.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//PaperTutorials%2FPlos2013%3Acombined.png)
-# Cell-based simulation: multiple crypts and a villus
+{{< img src="/fig/paper-tutorials/combined.png" alt="Crypts and villus" h="200px" >}}
 
 On this wiki page we describe in detail the code that is used to run this example from the paper.
 
@@ -17,18 +21,21 @@ We show use of `CellKiller`s - both random and acting on a plane at the top of t
 
 We also show the use of lineage tracking, and cell-signalling leading to Delta-Notch patterning.
 
-This example uses some source files that can be found in the `Plos2013/src` folder.
+This example uses some source files that can be found in the [`Plos2013/src`](https://github.com/Chaste/project_Plos2013/tree/5b522e0ce55ac81ce8728f858b10464e9d7cfb98/src) folder.
 
 Remember to run with `build=GccOptNative` for speed.
 e.g.
-`scons build=GccOptNative test_suite=projects/Plos2013/test/TestCryptsAndVillusLiteratePaper.hpp`
+
+```bash
+scons build=GccOptNative test_suite=projects/project_Plos2013/test/TestCryptsAndVillusLiteratePaper.hpp
+```
 
 The easiest way to visualize this simulation is with Paraview, as follows. After opening Paraview,
 load the file results.pvd, then click "Apply" in the object inspector panel. As this simulation
 uses a `NodeBasedCellPopulation`, you must use glyphs to visualize cells: click the button marked
 "Glyph" in the toolbar of common filters; specify cells to be displayed as spheres; then click "Apply".
 
-## Code overview
+### Code overview
 
 The first thing to do is to include the necessary header files.
 
@@ -251,8 +258,7 @@ cell locations to a 2D surface in 3D space. This has been defined in a separate 
         simulator.AddCellKiller(p_cell_killer_1);
 ```
 
-We now create an instance of a Wnt concentration, this dictates where cell division occurs
-in the [SimpleWntCellCycleModelWithDeltaNotch](https://github.com/Chaste/trac_archive/wiki/Simple-Wnt-Cell-Cycle-Model-With-Delta-Notch) cell cycle model
+We now create an instance of a Wnt concentration.
 
 ```cpp
         WntConcentration<3>::Instance()->SetType(LINEAR);
@@ -304,11 +310,11 @@ We now solve for a further 750 hours, up to a total of 1000 hours
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestCryptsAndVillusLiteratePaper.hpp`
+### File name `TestCryptsAndVillusLiteratePaper.hpp`
 
 
 ```cpp

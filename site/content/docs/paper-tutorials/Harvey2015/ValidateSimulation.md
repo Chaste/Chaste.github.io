@@ -3,7 +3,7 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# Validate a 256 cell simulation in parallel and serial (Figure 3)
+## Validate a 256 cell simulation in parallel and serial (Figure 3)
 
 This class was used to generate the results in Figure 3.
 A script `CompareParallelResults.py` is provided to aid comparison
@@ -27,14 +27,14 @@ node_iter != pCellPopulation->rGetMesh().GetNodeIteratorEnd();
 ++node_iter)
 ```
 
-## Use
+### Use
 
 This test suite is designed to be run twice.  Each run will take roughly a minute (depending on your machine configuration).
 ```
 
-# in serial
+## in serial
 scons build=GccOptNative projects/Harvey2015/test/TestValidateSimulationLiteratePaper.hpp
-# In parallel
+## In parallel
 scons build=GccOptNative_2 projects/Harvey2015/test/TestValidateSimulationLiteratePaper.hpp
 ```
 
@@ -42,16 +42,16 @@ scons build=GccOptNative_2 projects/Harvey2015/test/TestValidateSimulationLitera
 After this the positional output may be checked to machine output precision:
 ```
 
-# May need to see this to $CHASTE_TEST_OUTPUT
+## May need to see this to $CHASTE_TEST_OUTPUT
 export OUTPUT=/tmp/$USER/testoutput
 ./projects/Harvey2015/test/CompareParallelResults.py 2 $OUTPUT/ValidateSimulation3Rand1/results_from_time_0/results.viznodes $OUTPUT/ValidateSimulation3Rand2/results_from_time_0/results.viznodes
 ```
 
-## Code overview
+### Code overview
 
 The first thing to do is to include the necessary header files.
 
-### Include header files
+#### Include header files
 
 
 ```cpp
@@ -144,11 +144,11 @@ Report on the time taken to run the simulation
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestValidateSimulationLiteratePaper.hpp`
+### File name `TestValidateSimulationLiteratePaper.hpp`
 
 
 ```cpp

@@ -3,11 +3,11 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# Benchmark monodomain tissue simulation solving times with different numerical methods
+## Benchmark monodomain tissue simulation solving times with different numerical methods
 
 On this wiki page we describe in detail the code that is used to run this example from the paper.
 
-## Code overview
+### Code overview
 
 The first thing to do is to include the necessary header files.
 
@@ -500,11 +500,11 @@ A helper method that populates `mTimesteps` from the stored data file in
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestMonodomainSolvingTimesLiteratePaper.hpp`
+### File name `TestMonodomainSolvingTimesLiteratePaper.hpp`
 
 
 ```cpp

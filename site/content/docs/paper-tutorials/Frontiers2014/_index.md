@@ -7,7 +7,7 @@ edit that file, don't edit this page on trac!
 ```
 
 
-# Cellular cardiac electrophysiology modelling with Chaste and CellML
+## Cellular cardiac electrophysiology modelling with Chaste and CellML
 
 Welcome to the Chaste wiki.
 
@@ -21,7 +21,7 @@ For manual installation of each dependency, on any version of Linux, see Develop
 The benchmark simulations from the paper are explained and annotated below.
 For further information on using Chaste to solve these and related problems, see our [extensive guide material](https://github.com/Chaste/trac_archive/wiki/Chaste-Guides).
 
-## Cellular electrophysiology benchmarks
+### Cellular electrophysiology benchmarks
 
 The steps required to reproduce the study are:
  1. Generate accurate reference traces and calculate an acceptable level of error for each model ([Generating Reference Data](https://github.com/Chaste/trac_archive/wiki/._GeneratingReferenceData))
@@ -30,7 +30,7 @@ The steps required to reproduce the study are:
 
 You may if you wish run just the final step to benchmark the solvers on your system against our reference data and suggested timesteps.
 
-## Tissue electrophysiology benchmarks
+### Tissue electrophysiology benchmarks
 
 The [preliminary study examining convergence properties in space and time for the different models](https://github.com/Chaste/trac_archive/wiki/._MonodomainConvergence) was run separately.
 We then hardcoded suitable space and time steps for the PDE in the following steps, which can be followed to reproduce the study:
@@ -39,7 +39,7 @@ We then hardcoded suitable space and time steps for the PDE in the following ste
 
 Again, you may if you wish run just the final step to benchmark the solvers on your system against our reference data and suggested timesteps.
 
-## Sample commands to install and run everything
+### Sample commands to install and run everything
 
 If you wish to install the latest versions Chaste and this project direct from our repository, you may do so from the command line as follows:
 ```
@@ -56,24 +56,24 @@ To run all the steps listed above, exploiting multiple cores on your machine whe
 
 #!sh
 cd path/to/Chaste
-# Change the occurrences of 8 below to match the number of cores available
+## Change the occurrences of 8 below to match the number of cores available
 scons chaste_libs=1 brief=1 build=GccOptNative_8 -j8 projects/Frontiers2014/test/TestGeneratingReferenceDataLiteratePaper.hpp
 scons chaste_libs=1 brief=1 build=GccOptNative_8 -j8 projects/Frontiers2014/test/TestCalculateRequiredTimestepsLiteratePaper.hpp
 scons chaste_libs=1 brief=1 build=GccOptNative_8 -j8 projects/Frontiers2014/test/TestOdeSolvingTimesLiteratePaper.hpp
 
-# Note the change in build= option: these simulations cannot run in parallel
+## Note the change in build= option: these simulations cannot run in parallel
 scons chaste_libs=1 brief=1 build=GccOptNative -j8 projects/Frontiers2014/test/TestMonodomainCalculateRequiredTimestepsLiteratePaper.hpp
 scons chaste_libs=1 brief=1 build=GccOptNative -j8 projects/Frontiers2014/test/TestMonodomainSolvingTimesLiteratePaper.hpp
 
-# To run the preliminary study on PDE convergence, use
+## To run the preliminary study on PDE convergence, use
 scons chaste_libs=1 brief=1 build=GccOptNative -j8 projects/Frontiers2014/test/TestMonodomainConvergenceLiteratePaper.hpp run_time_flags="--timestep 0.001 --spacestep 0.001 --reset"
-# Other values for timestep & spacestep can be given, as desired.
-# The --reset flag says to reset CVODE fully at each PDE time step.
+## Other values for timestep & spacestep can be given, as desired.
+## The --reset flag says to reset CVODE fully at each PDE time step.
 ```
 
 
 
 -----
-## Section contents
+### Section contents
 [SubWiki()](SubWiki())
 

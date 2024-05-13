@@ -326,11 +326,11 @@ Contact Inhibition specific parameters
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestRecoveredCryptLiteratePaper.hpp`
+### File name `TestRecoveredCryptLiteratePaper.hpp`
 
 
 ```cpp

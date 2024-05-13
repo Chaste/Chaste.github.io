@@ -3,12 +3,12 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# Connecting models to data in multiscale multicellular tissue simulations
+## Connecting models to data in multiscale multicellular tissue simulations
 
 This Chaste test file runs the main protocols for the above
 [paper published in ICCS2013](http://dx.doi.org/10.1016/j.procs.2013.05.235).
 
-## How to run this code
+### How to run this code
 
 For performance, it is recommended to build Chaste using the `GccOptNative` build type when using
 the Functional Curation extension project, on which this code is built.  You can run the code shown
@@ -35,7 +35,7 @@ scons -j4 chaste_libs=1 build=GccOptNative_5 projects/Wisc2013/test/TestCryptPro
 
 With these settings on our test machine, reproducing the paper results takes about 19 hours.
 
-## The code itself
+### The code itself
 
 The first step is to include the header files we need.  This code is written as a Chaste test suite, for
 easy execution using the Chaste build framework.  We thus need to include the `TestSuite.h` header, along
@@ -320,11 +320,11 @@ plots (a)-(c) in Figure 2.
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestCryptProliferationLiteratePaper.hpp`
+### File name `TestCryptProliferationLiteratePaper.hpp`
 
 
 ```cpp
@@ -470,14 +470,14 @@ public:
 
 
 
-## File name `protocols/CryptProliferationSweep.txt`
+### File name `protocols/CryptProliferationSweep.txt`
 ```
 
-# A simple parameter sweep over the crypt proliferation protocol, varying crypt height
+## A simple parameter sweep over the crypt proliferation protocol, varying crypt height
 
 inputs {
-    num_boxes = 10                  # The number of boxes to use in the location histogram
-    heights = [10, 15, 20, 25, 30]  # The crypt heights to sweep over
+    num_boxes = 10                  ## The number of boxes to use in the location histogram
+    heights = [10, 15, 20, 25, 30]  ## The crypt heights to sweep over
 }
 import std = '../../../FunctionalCuration/src/proto/library/BasicLibrary.xml'
 units { percent = dimensionless "%" }
@@ -485,17 +485,17 @@ tasks {
     simulation sweep = nested {
         range crypt_height units lengthUnits vector heights
         nests protocol 'CryptProliferation.txt' {
-            num_boxes = num_boxes         # Pass through
-            crypt_height = crypt_height   # Set crypt height for this iteration
-            # Output of interest, with shape [num_boxes] for a single protocol run
+            num_boxes = num_boxes         ## Pass through
+            crypt_height = crypt_height   ## Set crypt height for this iteration
+            ## Output of interest, with shape [num_boxes] for a single protocol run
             select output freqs
-        }? # Turn on debug tracing, so the outputs of each run are saved separately
+        }? ## Turn on debug tracing, so the outputs of each run are saved separately
     }
 }
 post-processing {
-    # Compute box centres as % of crypt height, for plotting all crypts on the same axes
+    ## Compute box centres as % of crypt height, for plotting all crypts on the same axes
     centres_percent = [(100/num_boxes)*(box_num+0.5)  for box_num in 0:num_boxes]
-    # Normalise division counts for easier comparison
+    ## Normalise division counts for easier comparison
     total_divisions = std:Stretch(std:Sum(sweep:freqs, 1), num_boxes, 1)
     norm_freqs = map(lambda n, tot: n/tot*100, sweep:freqs, total_divisions)
 }
@@ -503,7 +503,7 @@ outputs {
     freqs = sweep:freqs   units dimensionless  "Number of divisions per box"
     norm_freqs            units percent        "Percentage of divisions per box"
     centres_percent       units percent        "Percentage height up the crypt"
-    heights               units dimensionless  "Crypt height"  # Note: fake units for display
+    heights               units dimensionless  "Crypt height"  ## Note: fake units for display
 }
 plots {
     plot 'Cell division locations' { norm_freqs against centres_percent key heights }
@@ -513,35 +513,35 @@ plots {
 
 
 
-## File name `protocols/CryptProliferation.txt`
+### File name `protocols/CryptProliferation.txt`
 ```
 
-# Core protocol for the Crypt Proliferation project, containing a single cell-based simulation and post-processing thereof
+## Core protocol for the Crypt Proliferation project, containing a single cell-based simulation and post-processing thereof
 
-# The 'ontology' to use for referencing model variables
+## The 'ontology' to use for referencing model variables
 namespace cellbased = 'https://chaste.cs.ox.ac.uk/nss/cellbased/0.1#'
-inputs {    # Protocol inputs
-    num_boxes = 10       # The number of boxes to use in the location histogram
-    crypt_height = 20    # The height of the crypt (in nominal cell diameters)
-    end_time = 2200       # The simulation end time (hours)
-    # The time at which the system is assumed to have reached quasi steady state (hours).
-    # We ignore division events occurring before this point.
+inputs {    ## Protocol inputs
+    num_boxes = 10       ## The number of boxes to use in the location histogram
+    crypt_height = 20    ## The height of the crypt (in nominal cell diameters)
+    end_time = 2200       ## The simulation end time (hours)
+    ## The time at which the system is assumed to have reached quasi steady state (hours).
+    ## We ignore division events occurring before this point.
     steady_state_time = 200
 }
-# Import the standard library of post-processing operations, using a relative path.
-# Functions from this library may then be used by prefixing their names with 'std:'.
+## Import the standard library of post-processing operations, using a relative path.
+## Functions from this library may then be used by prefixing their names with 'std:'.
 import std = '../../../FunctionalCuration/src/proto/library/BasicLibrary.xml'
-library {   # Define some extra utility functions
+library {   ## Define some extra utility functions
     def InBox(loc, boxLow, boxHigh) { return loc >= boxLow && loc < boxHigh }
-    # Extend an array by copying it a given number of times along a newly added dimension
+    ## Extend an array by copying it a given number of times along a newly added dimension
     Stretch = lambda array, length, dim: [array for dim$i in 0:length]
 }
-units {     # Units definitions for this protocol
+units {     ## Units definitions for this protocol
     hours = 3600 second
     lengthUnits = 10 micro metre "Nominal cell diameters"
 }
-tasks {     # The raw simulations to perform
-    # Just run the cell-based simulation as-is, setting a few parameters at the start
+tasks {     ## The raw simulations to perform
+    ## Just run the cell-based simulation as-is, setting a few parameters at the start
     simulation sim = oneStep {
         modifiers {
             at start set cellbased:end_time = end_time
@@ -551,31 +551,31 @@ tasks {     # The raw simulations to perform
     }
 }
 post-processing {
-    # The main simulation output is the 2d array of division data, with 4 columns:
-    # time, x, y, age.  We extract division y coordinates for events after the given time.
+    ## The main simulation output is the 2d array of division data, with 4 columns:
+    ## time, x, y, age.  We extract division y coordinates for events after the given time.
     locations = std:After(sim:divisions[1$2], sim:divisions[1$0], steady_state_time)
     num_divisions = locations.SHAPE[0]
 
-    # Determine the histogram boxes, noting that a few divisions can occur below or above the nominal crypt bounds
-    box_size = crypt_height / num_boxes  # y coordinates nominally start at zero
+    ## Determine the histogram boxes, noting that a few divisions can occur below or above the nominal crypt bounds
+    box_size = crypt_height / num_boxes  ## y coordinates nominally start at zero
     box_lows = std:Join([MathML:min(std:Min(locations)[0], 0.0)],
                         [i*box_size for i in 1:num_boxes])
     box_highs = std:Join([(i+1)*box_size for i in 0:num_boxes-1],
                          [MathML:max(std:Max(locations)[0]*1.00001, crypt_height)])
     centres = map(lambda a, b: (a+b)/2, box_lows, box_highs)
 
-    # Figure out which histogram box each cell division occurred in, and count them up
-    locations_ext = Stretch(locations, num_boxes, 0)       # Make all the _ext arrays the same
-    box_lows_ext = Stretch(box_lows, num_divisions, 1)     # shape: [num_boxes, num_divisions]
+    ## Figure out which histogram box each cell division occurred in, and count them up
+    locations_ext = Stretch(locations, num_boxes, 0)       ## Make all the _ext arrays the same
+    box_lows_ext = Stretch(box_lows, num_divisions, 1)     ## shape: [num_boxes, num_divisions]
     box_highs_ext = Stretch(box_highs, num_divisions, 1)
     in_box_pattern = map(InBox, locations_ext, box_lows_ext, box_highs_ext)
-    freqs = std:RemoveDim(std:Sum(in_box_pattern), 1)            # Shape [num_boxes]
-    assert std:RemoveDim(std:Sum(freqs), 0) == num_divisions     # Sanity check
+    freqs = std:RemoveDim(std:Sum(in_box_pattern), 1)            ## Shape [num_boxes]
+    assert std:RemoveDim(std:Sum(freqs), 0) == num_divisions     ## Sanity check
 }
 outputs {
-    divisions = sim:divisions     "Raw division data"            # Shape [num_divisions, 4]
-    freqs     units dimensionless "Number of divisions per box"  # Shape [num_boxes]
-    centres   units lengthUnits   "Box centres"                  # Shape [num_boxes]
+    divisions = sim:divisions     "Raw division data"            ## Shape [num_divisions, 4]
+    freqs     units dimensionless "Number of divisions per box"  ## Shape [num_boxes]
+    centres   units lengthUnits   "Box centres"                  ## Shape [num_boxes]
 }
 plots {
     plot 'Cell division locations' { freqs against centres }

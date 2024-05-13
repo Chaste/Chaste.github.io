@@ -1,4 +1,4 @@
-# A Two-Dimensional Model of the Colonic Crypt Accounting for the Role of the Basement Membrane and Pericryptal Fibroblast Sheath
+## A Two-Dimensional Model of the Colonic Crypt Accounting for the Role of the Basement Membrane and Pericryptal Fibroblast Sheath
 
 This project contains code to accompany the 2012 paper by Sara-Jane Dunn et al.,
 "[A Two-Dimensional Model of the Colonic Crypt Accounting for the Role of the Basement Membrane and Pericryptal Fibroblast Sheath](http://dx.doi.org/10.1371/journal.pcbi.1002515)",
@@ -33,6 +33,6 @@ scons -j4 b=GccOpt_warn projects/PlosDunn2012/test/TestCrossSectionModel.hpp
 
 
 -----
-## Section contents
+### Section contents
 [SubWiki()](SubWiki())
 

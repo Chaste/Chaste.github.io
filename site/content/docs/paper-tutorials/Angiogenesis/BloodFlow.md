@@ -3,7 +3,7 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# Modelling Blood Flow Tutorial
+## Modelling Blood Flow Tutorial
 This tutorial demonstrates functionality for modelling blood flow, structural adaptation and vessel
 regression in a vessel network.
 
@@ -16,7 +16,7 @@ This tutorial covers:
 * Adding vessel regression in low flow regions
 
 
-# The Test
+## The Test
 Start by introducing the necessary header files, explained in previous tutorials.
 
 
@@ -92,7 +92,7 @@ public:
 ```
 
 
-# Test 1 - Simulating 1d Flow in a Bifurcating Network
+## Test 1 - Simulating 1d Flow in a Bifurcating Network
 ![source:/chaste/projects/Angiogenesis/test/tutorials/images/bifurcation_network_flow.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//source%3A%2Fchaste%2Fprojects%2FAngiogenesis%2Ftest%2Ftutorials%2Fimages%2Fbifurcation_network_flow.png)
 
 In the first test we will simulate blood flow in a simple bifurcating vessel network. Subsequent tests will add detail in the form of
@@ -234,7 +234,7 @@ Finally, dump our parameter collection to an xml file and, importantly, clear it
 ```
 
 
-# Test 2 - Simulating Haematocrit Transport in 3D
+## Test 2 - Simulating Haematocrit Transport in 3D
 ![source:/chaste/projects/Angiogenesis/test/tutorials/images/haematocrit.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//source%3A%2Fchaste%2Fprojects%2FAngiogenesis%2Ftest%2Ftutorials%2Fimages%2Fhaematocrit.png)
 
 In this test we will simulate haematocrit transport in a 3d vessel network.
@@ -352,7 +352,7 @@ Now we can visualize the results in Paraview. See [here](https://github.com/Chas
 ```
 
 
-# Test 3 - Simulating Flow With Structural Adaptation
+## Test 3 - Simulating Flow With Structural Adaptation
 ![source:/chaste/projects/Angiogenesis/test/tutorials/images/structural_adaptation.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//source%3A%2Fchaste%2Fprojects%2FAngiogenesis%2Ftest%2Ftutorials%2Fimages%2Fstructural_adaptation.png)
 
 In this test the vessel network will adapt over time as a result of flow conditions.
@@ -459,7 +459,7 @@ Do the solve and write the network to file.
 ```
 
 
-# Test 4 - Simulating Flow With Regression
+## Test 4 - Simulating Flow With Regression
 
 In this test the vessel network will adapt over time as a result of flow conditions and also vessels will be removed
 to regression in low wall shear stress regions.
@@ -557,11 +557,11 @@ Run the solver
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestBloodFlowLiteratePaper.hpp`
+### File name `TestBloodFlowLiteratePaper.hpp`
 
 
 ```cpp

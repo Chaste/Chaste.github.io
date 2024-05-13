@@ -5,11 +5,11 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# Ca^2+^ Channel Re-localization to Plasma-Membrane Microdomains Strengthens Activation of Ca^2+^-Dependent Nuclear Gene Expression
+## Ca^2+^ Channel Re-localization to Plasma-Membrane Microdomains Strengthens Activation of Ca^2+^-Dependent Nuclear Gene Expression
 
 Code to accompany the paper [Samanta et al. 2015](http://dx.doi.org/10.1016/j.celrep.2015.06.018).
 
-## Code Walkthrough
+### Code Walkthrough
 
 The following wiki page provides a walk-through of the Chaste code
 that was used to perform the simulations in this paper.
@@ -33,7 +33,7 @@ First we include some header files:
 #include "PetscSetupAndFinalize.hpp"
 ```
 
-### Set up a diffusion equation with a source term
+#### Set up a diffusion equation with a source term
 
 d[Ca]/dt = D_Ca Laplacian([Ca]) + Q
 
@@ -137,7 +137,7 @@ This is equivalent to
 };
 ```
 
-### Test class and method to look at Calcium diffusion
+#### Test class and method to look at Calcium diffusion
 
 
 ```cpp
@@ -345,11 +345,11 @@ All PETSc vectors should be destroyed when they are no longer needed.
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestCaDiffusionLiteratePaper.hpp`
+### File name `TestCaDiffusionLiteratePaper.hpp`
 
 
 ```cpp

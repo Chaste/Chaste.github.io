@@ -3,7 +3,7 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# Determining the accuracy of the conduction velocity in 1D
+## Determining the accuracy of the conduction velocity in 1D
 
 This is the main code for the first calculation verification case study. The simulation just involves a simple
 extension of a standard monodomain simulation.
@@ -268,11 +268,11 @@ exact solution part (see the comment in `L2ErrorSquaredCalculator` about Section
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestConductionVelocityCaseStudyLiteratePaper.hpp`
+### File name `TestConductionVelocityCaseStudyLiteratePaper.hpp`
 
 
 ```cpp

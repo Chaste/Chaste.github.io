@@ -1,4 +1,4 @@
-# Functional Curation
+## Functional Curation
 
 The [FunctionalCuration](https://github.com/Chaste/trac_archive/wiki/Functional-Curation) project is an add-on to Chaste aiming to provide a framework
 for a coherent approach to model fitting, simulation, comparison and validation.  It
@@ -16,7 +16,7 @@ as set out below.
 For work on applying Functional Curation to the cell-based side of Chaste, see our
 [paper in ICCS2013](../Wisc2013).
 
-## Installation
+### Installation
 
 This project requires the Chaste source tree to be installed, and you to have write access to your local copy, in order to be usable.
 You will thus need to [install Chaste's dependencies](https://github.com/Chaste/trac_archive/wiki/Install-Guides-_-Install-Guide) and build the Chaste software yourself.
@@ -46,7 +46,7 @@ svn checkout --username anonymous https://chaste.cs.ox.ac.uk/svn/chaste/projects
 
 Use your email address as the password for the 'anonymous' account.
 
-## Usage
+### Usage
 
 Source code for the project is contained in the `src` folder, and tests of its
 functionality in `tests`.  Annotated CellML files suitable for use with the framework
@@ -90,6 +90,6 @@ You may also wish to look at some of the [basic user tutorials](https://github.c
 
 
 -----
-## Section contents
+### Section contents
 [SubWiki()](SubWiki())
 

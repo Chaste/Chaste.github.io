@@ -3,7 +3,7 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# Benchmark ODE solving times with different numerical methods
+## Benchmark ODE solving times with different numerical methods
 
 On this wiki page we describe in detail the code that is used to run this example from the paper.
 
@@ -13,7 +13,7 @@ as calculated by CalculateRequiredTimesteps.
 We then time solving all models under most solvers, using a simulation duration that should give about
 5 seconds of real time based on the calculations in CalculateRequiredTimesteps.
 
-## Code overview
+### Code overview
 
 The first thing to do is to include the necessary header files.
 
@@ -287,7 +287,7 @@ Record the result.
 Close each process' results files.
 
 ```cpp
-        *p_file << "# Complete" << std::endl;
+        *p_file << "## Complete" << std::endl;
         p_file->close();
         p_errors_file->close();
 ```
@@ -492,11 +492,11 @@ Convert the elapsed time into a time per simulated second.
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestOdeSolvingTimesLiteratePaper.hpp`
+### File name `TestOdeSolvingTimesLiteratePaper.hpp`
 
 
 ```cpp
@@ -684,7 +684,7 @@ public:
             }
         }
 
-        *p_file << "# Complete" << std::endl;
+        *p_file << "## Complete" << std::endl;
         p_file->close();
         p_errors_file->close();
 

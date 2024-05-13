@@ -3,7 +3,7 @@ Note that the code is given in full at the bottom of the page.
 
 
 
-# Measure memory use per process (Figure 4)
+## Measure memory use per process (Figure 4)
 This class was used to produce the results in Figure 4.
 It constructs a large cell population and measures the amount of memory
 in use. By running on larger numbers of processes, a proportionally
@@ -16,7 +16,7 @@ projects/Harvey2015/test/data/1024000_2d_cells.dat
 ```
 
 
-## Use
+### Use
 
 This test suite should be run in parallel.  It should be run on several numbers of processes (from 1 to 32 processes in figure
 in the paper.)
@@ -68,7 +68,7 @@ void PrintMemoryUsage(const std::string& rPrefix)
 }
 ```
 
-## The test suite
+### The test suite
 This class was used to produce the results in Figure 4.
 It constructs a large cell population and measures the amount of memory
 in use. By running on larger numbers of processes, a proportionally
@@ -139,11 +139,11 @@ Print the approximate memory use
 
 
 
-# Code
+## Code
 The full code is given below
 
 
-## File name `TestMemoryUseLiteratePaper.hpp`
+### File name `TestMemoryUseLiteratePaper.hpp`
 
 
 ```cpp

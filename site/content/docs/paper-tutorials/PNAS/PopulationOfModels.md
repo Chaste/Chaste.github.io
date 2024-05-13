@@ -3,6 +3,6 @@ This is the wiki page for the paper [Experimentally calibrated population of mod
 Model code used in the paper is provided here: https://chaste.cs.ox.ac.uk/trac/browser/projects/PNAS_PopulationOfModels/PurkinjeModel_BrittonEtAl2013.hpp
 
 -----
-## Section contents
+### Section contents
 [SubWiki()](SubWiki())
 
