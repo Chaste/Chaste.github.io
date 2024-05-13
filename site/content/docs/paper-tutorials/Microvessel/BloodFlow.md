@@ -93,7 +93,7 @@ public:
 
 
 ## Test 1 - Simulating 1d Flow in a Bifurcating Network
-![source:/chaste/projects/Microvessel/test/tutorials/images/bifurcation_network_flow.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//source%3A%2Fchaste%2Fprojects%2FMicrovessel%2Ftest%2Ftutorials%2Fimages%2Fbifurcation_network_flow.png)
+{{< img src="https://raw.githubusercontent.com/Chaste/project_Microvessel/9a87df2f16da8b433914025dab92ce2324394dc6/test/tutorials/images/bifurcation_network_flow.png" alt="bifurcation_network_flow" h="200px" >}}
 
 In the first test we will simulate blood flow in a simple bifurcating vessel network. Subsequent tests will add detail in the form of
 more complex networks, structural adaptation and vessel regression.
@@ -235,7 +235,8 @@ Finally, dump our parameter collection to an xml file and, importantly, clear it
 
 
 ## Test 2 - Simulating Haematocrit Transport in 3D
-![source:/chaste/projects/Microvessel/test/tutorials/images/haematocrit.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//source%3A%2Fchaste%2Fprojects%2FMicrovessel%2Ftest%2Ftutorials%2Fimages%2Fhaematocrit.png)
+
+{{< img src="https://raw.githubusercontent.com/Chaste/project_Microvessel/main/test/tutorials/images/haematocrit.png" alt="haematocrit" h="200px" >}}
 
 In this test we will simulate haematocrit transport in a 3d vessel network.
 
@@ -353,7 +354,8 @@ Now we can visualize the results in Paraview. See [here](https://github.com/Chas
 
 
 ## Test 3 - Simulating Flow With Structural Adaptation
-![source:/chaste/projects/Microvessel/test/tutorials/images/structural_adaptation.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//source%3A%2Fchaste%2Fprojects%2FMicrovessel%2Ftest%2Ftutorials%2Fimages%2Fstructural_adaptation.png)
+
+{{< img src="https://raw.githubusercontent.com/Chaste/project_Microvessel/main/test/tutorials/images/structural_adaptation.png" alt="LatticeTutorialSampleGrowth" h="200px" >}}
 
 In this test the vessel network will adapt over time as a result of flow conditions.
 

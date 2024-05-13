@@ -10,7 +10,7 @@ vascular tumour application described in
 for cells, a regular grid for vessel movement and the same grid for the solution of partial differential equations
 for oxygen and VEGF transport using the finite difference method.
 
-![source:/chaste/projects/Microvessel/test/tutorials/images/LatticeTurortialEndSample.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//source%3A%2Fchaste%2Fprojects%2FMicrovessel%2Ftest%2Ftutorials%2Fimages%2FLatticeTurortialEndSample.png)
+{{< img src="https://raw.githubusercontent.com/Chaste/project_Microvessel/main/test/tutorials/images/LatticeTurortialEndSample.png" alt="LatticeTurortialEndSample" h="200px" >}}
 
 ## The Test
 Start by introducing the necessary header files. The first contain functionality for setting up unit tests,
@@ -174,7 +174,7 @@ A record of all parameters used in a simulation can be dumped to file on complet
 We can write the lattice to file for quick visualization with Paraview. Rendering of this and subsequent images is performed
 using standard Paraview operations, not detailed here.
 
-![source:/chaste/projects/Microvessel/test/tutorials/images/Lattice_Tutorial_Initial_Grid.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//source%3A%2Fchaste%2Fprojects%2FMicrovessel%2Ftest%2Ftutorials%2Fimages%2FLattice_Tutorial_Initial_Grid.png)
+{{< img src="https://raw.githubusercontent.com/Chaste/project_Microvessel/main/test/tutorials/images/Lattice_Tutorial_Initial_Grid.png" alt="Lattice_Tutorial_Initial_Grid" h="200px" >}}
 
 
 ```cpp
@@ -209,7 +209,7 @@ and outlet pressures and flags.
 
 Again, we can write the network to file for quick visualization with Paraview.
 
-![source:/chaste/projects/Microvessel/test/tutorials/images/Lattice_Angiogenesis_Tutorial_Grid_Vessels.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//source%3A%2Fchaste%2Fprojects%2FMicrovessel%2Ftest%2Ftutorials%2Fimages%2FLattice_Angiogenesis_Tutorial_Grid_Vessels.png)
+{{< img src="https://raw.githubusercontent.com/Chaste/project_Microvessel/main/test/tutorials/images/Lattice_Angiogenesis_Tutorial_Grid_Vessels.png" alt="Lattice_Angiogenesis_Tutorial_Grid_Vessels" h="200px" >}}
 
 
 ```cpp
@@ -234,12 +234,13 @@ the population using conventional Cell Based Chaste methods.
 
 At this point the simulation domain will look as follows:
 
-![source:/chaste/projects/Microvessel/test/tutorials/images/Lattice_Based_Tutorial_Cell_Setup.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//source%3A%2Fchaste%2Fprojects%2FMicrovessel%2Ftest%2Ftutorials%2Fimages%2FLattice_Based_Tutorial_Cell_Setup.png)
+{{< img src="https://raw.githubusercontent.com/Chaste/project_Microvessel/main/test/tutorials/images/Lattice_Based_Tutorial_Cell_Setup.png" alt="Lattice_Based_Tutorial_Cell_Setup" h="200px" >}}
+
 
 Next set up the PDEs for oxygen and VEGF. Cells will act as discrete oxygen sinks and discrete vegf sources. A sample PDE solution for
 oxygen is shown below:
 
-![source:/chaste/projects/Microvessel/test/tutorials/images/LatticeTutorialSampleOxygen.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//source%3A%2Fchaste%2Fprojects%2FMicrovessel%2Ftest%2Ftutorials%2Fimages%2FLatticeTutorialSampleOxygen.png)
+{{< img src="https://raw.githubusercontent.com/Chaste/project_Microvessel/main/test/tutorials/images/LatticeTutorialSampleOxygen.png" alt="LatticeTutorialSampleOxygen" h="200px" >}}
 
 
 ```cpp
@@ -281,7 +282,7 @@ Set up a finite difference solver and pass it the pde and grid.
 The rate of VEGF release depends on the cell type and intracellular VEGF levels, so we need a more detailed
 type of discrete source. A sample PDE solution for VEGF is shown below.
 
-![source:/chaste/projects/Microvessel/test/tutorials/images/LatticeTutorialSampleVegf.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//source%3A%2Fchaste%2Fprojects%2FMicrovessel%2Ftest%2Ftutorials%2Fimages%2FLatticeTutorialSampleVegf.png)
+{{< img src="https://raw.githubusercontent.com/Chaste/project_Microvessel/main/test/tutorials/images/LatticeTutorialSampleVegf.png" alt="LatticeTutorialSampleVegf" h="200px" >}}
 
 
 ```cpp
@@ -338,7 +339,7 @@ Next set up the flow problem. Assign a blood plasma viscosity to the vessels. Th
 depend on haematocrit and diameter. This solver manages growth and shrinkage of vessels in response to
 flow related stimuli. A sample plot of the stimulus distrbution during a simulation is shown below:
 
-![source:/chaste/projects/Microvessel/test/tutorials/images/LatticeTutorialSampleGrowth.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//source%3A%2Fchaste%2Fprojects%2FMicrovessel%2Ftest%2Ftutorials%2Fimages%2FLatticeTutorialSampleGrowth.png)
+{{< img src="https://raw.githubusercontent.com/Chaste/project_Microvessel/main/test/tutorials/images/LatticeTutorialSampleGrowth.png" alt="LatticeTutorialSampleGrowth" h="200px" >}}
 
 
 ```cpp

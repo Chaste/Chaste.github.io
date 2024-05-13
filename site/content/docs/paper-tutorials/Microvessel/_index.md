@@ -6,9 +6,10 @@ Quiries via the [Chaste mailing list](mailto:chaste-users@maillist.ox.ac.uk) are
 
 Click on the images below to see some example applications.
 
-![source:/chaste/projects/Microvessel/test/tutorials/images/haematocrit.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//source%3A%2Fchaste%2Fprojects%2FMicrovessel%2Ftest%2Ftutorials%2Fimages%2Fhaematocrit.png)
-![source:/chaste/projects/Microvessel/test/tutorials/images/LatticeTutorialSampleGrowth.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//source%3A%2Fchaste%2Fprojects%2FMicrovessel%2Ftest%2Ftutorials%2Fimages%2FLatticeTutorialSampleGrowth.png)
-![source:/chaste/projects/Microvessel/test/tutorials/images/OffLatticeMidPoint.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//source%3A%2Fchaste%2Fprojects%2FMicrovessel%2Ftest%2Ftutorials%2Fimages%2FOffLatticeMidPoint.png)
+{{< img src="https://raw.githubusercontent.com/Chaste/project_Microvessel/9a87df2f16da8b433914025dab92ce2324394dc6/test/tutorials/images/haematocrit.png" alt="haematocrit" h="200px" >}}
+{{< img src="https://raw.githubusercontent.com/Chaste/project_Microvessel/9a87df2f16da8b433914025dab92ce2324394dc6/test/tutorials/images/LatticeTutorialSampleGrowth.png" alt="LatticeTutorialSampleGrowth" h="200px" >}}
+{{< img src="https://raw.githubusercontent.com/Chaste/project_Microvessel/9a87df2f16da8b433914025dab92ce2324394dc6/test/tutorials/images/OffLatticeMidPoint.png" alt="OffLatticeMidPoint" h="200px" >}}
+
 
 ## Installation = #Installation
 The project can be used directly as a typical C++ Chaste project. First, Chaste dependencies need to be built following the [Chaste Install Guide](https://github.com/Chaste/trac_archive/wiki/Install-Guides-_-Install-Guide).

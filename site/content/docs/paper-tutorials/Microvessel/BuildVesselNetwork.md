@@ -100,7 +100,8 @@ public:
 
 
 ## Test 1 - Building a vessel network manually, writing it to file and visualizing it
-![source:/chaste/projects/Microvessel/test/tutorials/images/bifurcating_network.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//source%3A%2Fchaste%2Fprojects%2FMicrovessel%2Ftest%2Ftutorials%2Fimages%2Fbifurcating_network.png)
+
+{{< img src="https://raw.githubusercontent.com/Chaste/project_Microvessel/main/test/tutorials/images/bifurcating_network.png" alt="bifurcating_network" h="200px" >}}
 
 In the first test build a vessel network from its constituent components; nodes, segments and vessels. Do some
 simple tests to make sure the network has been formed as expected. Then write the network to file and visualize it in Paraview. The
@@ -232,7 +233,9 @@ Now we can visualize then network in Paraview. See the tutorial [here](https://g
 `TestBuildVesselNetworkLiteratePaper\bifurcating_network.vtp` into Paraview. For a nicer rendering you can do `Filters->Alphabetical->Tube`.
 
 ## Test 2 - Building a vessel network using a generator and reading from file
-![source:/chaste/projects/Microvessel/test/tutorials/images/hexagonal_network.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//source%3A%2Fchaste%2Fprojects%2FMicrovessel%2Ftest%2Ftutorials%2Fimages%2Fhexagonal_network.png)
+
+{{< img src="https://raw.githubusercontent.com/Chaste/project_Microvessel/main/test/tutorials/images/hexagonal_network.png" alt="hexagonal_network" h="200px" >}}
+
 
 It is usually tedious to build a vessel network from scratch. In this test we use a generator to automatically construct a network.
 We then write it to file, read it back in and check that it is restored as expected.

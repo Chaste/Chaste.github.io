@@ -2,8 +2,8 @@ This tutorial was generated from the file projects/DanieleM/test/TestCryptsAndVi
 Note that the code is given in full at the bottom of the page.
 
 
+{{< img src="/fig/paper-tutorials/combined.png" alt="Crypts and villus" h="200px" >}}
 
-![PaperTutorials/Plos2013:combined.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//PaperTutorials%2FPlos2013%3Acombined.png)
 ## Cell-based simulation: multiple crypts and a villus
 
 On this wiki page we describe in detail the code that is used to run this example from the paper.

@@ -9,7 +9,7 @@ pocket application, similar to that described in [Connor et al. 2015](http://rsi
 It is a 3D simulation modelling VEGF diffusion and decay from an implanted pellet using finite element methods and lattice-free angiogenesis
 from a large limbal vessel towards the pellet.
 
-![source:/chaste/projects/Microvessel/test/tutorials/images/OffLatticeMidPoint.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//source%3A%2Fchaste%2Fprojects%2FMicrovessel%2Ftest%2Ftutorials%2Fimages%2FOffLatticeMidPoint.png)
+{{< img src="https://raw.githubusercontent.com/Chaste/project_Microvessel/main/test/tutorials/images/OffLatticeMidPoint.png" alt="OffLatticeMidPoint" h="200px" >}}
 
 ## The Test
 Start by introducing the necessary header files. The first contain functionality for setting up unit tests,
@@ -193,7 +193,7 @@ Set up a vessel network, with divisions roughly every 'cell length'. Initially i
 
 The initial domain and vessel network now look as follows:
 
-![source:/chaste/projects/Microvessel/test/tutorials/images/OffLatticeTurorialHemisphere.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//source%3A%2Fchaste%2Fprojects%2FMicrovessel%2Ftest%2Ftutorials%2Fimages%2FOffLatticeTurorialHemisphere.png)
+{{< img src="https://raw.githubusercontent.com/Chaste/project_Microvessel/main/test/tutorials/images/OffLatticeTurorialHemisphere.png" alt="OffLatticeTurorialHemisphere" h="200px" >}}
 
 In the experimental assay a pellet containing VEGF is implanted near the top of the cornea. We model this
 as a fixed concentration of VEGF in a cuboidal region. First set up the vegf sub domain.
@@ -262,7 +262,7 @@ precision problems.
 
 An example of the VEGF solution is shown here:
 
-![source:/chaste/projects/Microvessel/test/tutorials/images/OffLatticeTutorialVegf.png](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//source%3A%2Fchaste%2Fprojects%2FMicrovessel%2Ftest%2Ftutorials%2Fimages%2FOffLatticeTutorialVegf.png)
+{{< img src="https://raw.githubusercontent.com/Chaste/project_Microvessel/main/test/tutorials/images/OffLatticeTutorialVegf.png" alt="OffLatticeTutorialVegf" h="200px" >}}
 
 
 ```cpp
