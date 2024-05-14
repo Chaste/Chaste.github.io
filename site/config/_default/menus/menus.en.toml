@@ -85,6 +85,13 @@
   parent = "docs"
 
 [[main]]
+  name = "Paper tutorials"
+  weight = 410
+  identifier = "paper-tutorials"
+  url = "/docs/paper-tutorials/"
+  parent = "docs"
+
+[[main]]
   name = "How-tos"
   weight = 420
   identifier = "HowTos"

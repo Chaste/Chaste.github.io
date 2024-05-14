@@ -102,7 +102,8 @@ The executable will then display a list of command line arguments.
 
 When you start blocking ion channels, various funny things can happen and lead to error codes in action potential evaluation. Here is a schematic of the errors you can get back from ApPredict's main methods.
 
-![appredict_error_codes.jpg](appredict_error_codes.jpg)
+{{< img src="/fig/appredict_error_codes.jpg" alt="ApPredict error codes" h="600px" >}}
+
 
 ## Release Notes
 

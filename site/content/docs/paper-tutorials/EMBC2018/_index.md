@@ -1,0 +1,67 @@
+## Model of Vascular Remodelling
+
+This section contains pages generated automatically from the source code accompanying Osborne and Bernabeu (2018)
+"A fully discrete open source framework for the simulation of vascular remodelling". in TODO doi:TODO
+
+Email jmosborne@unimelb.edu.au or miguel.bernabeu@ed.ac.uk with any questions.
+
+The code to run the multiple cylinder comparison simulations, which were used to produce Figure 2, can be found here [TestAnalyticComparisonLiteratePaper.hpp](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials_EMBC2018-_-Analytic-Comparison)
+
+The code to run single coupled simulations, which was used to produce Figure 3, can be found in the `python` and `src` folders.
+
+Before looking at this, you may wish to look at some of the [basic user tutorials](https://github.com/Chaste/trac_archive/wiki/User-Tutorials) for Chaste.
+
+### Getting the code and installing dependencies
+
+Before running these examples you will need to [install Chaste's dependencies](https://github.com/Chaste/trac_archive/wiki/Install-Guides-_-Install-Guide) and the [source code for version 3.3](http://www.cs.ox.ac.uk/chaste/download.html).
+The easiest way to do this is using an Ubuntu machine (or an Ubuntu virtual machine) as discussed on [InstallGuides/UbuntuPackage](https://github.com/Chaste/trac_archive/wiki/Install-Guides-_-Ubuntu-Package).
+Note that Chaste is only fully supported on Linux/Unix systems, so users of Windows or Mac OS X may need to follow the virtual machine route.
+For manual installation of each dependency, on any version of Linux, see DeveloperInstallGuide.
+
+YOU WILL ALSO NEED TO INSTALL HEMELB. INSTRUCTIONS TO FOLLOW.
+
+
+Finally you will need the source for the EMBC2018 project.  This can be done by checking out the version from the repository by using the command
+```
+
+svn checkout https://chaste.cs.ox.ac.uk/svn/chaste/projects/EMBC2018
+```
+
+in the projects folder of the Chaste directory. You can register for a username and password or use
+username: anonymous
+password: [email](your).
+
+Now the project should be installed, and everything should compile and run correctly.
+You can now run the tests or simulations, or create your own test suites.
+
+### Documentation
+There are four folders - `matlab`,`python',`src` and `test`.
+ 1. The `matlab` folder contains scripts to plot Figure 2 from the paper.
+ 1. The `python` folder contains python scrips to couple our Chaste executables from `src` to HemeLB.
+ 1. The `src` folder contains the classes necesary to run the simulation. These define the aditional forces and boundary conditions not in the core Chaste code.
+ 1. The `test` folder contains:
+
+* [TestAnalyticComparisonLiteratePaper.hpp](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials_EMBC2016-_-Analytic-Comparison) - this file can be run to generate the results presented in Figure 2.
+    * `TestSetupFlowinPipe.hpp` and 'TestRunFlowInPipe.hpp` these files can be compiled and used with the code from `python` to generate the results in Figure 3.
+
+
+ == Running tests ==
+You can then run tests and simulations with,
+```
+
+cd <Chaste path>
+scons b=GccOpt ts=projects/EMBC2018/test/TestAnalyticComparisonLiteratePaper.hpp
+```
+
+
+----
+**NB**: the paper was developed with release version 3.4. It will not work with with release version 3.3 or under.
+
+For further information on using Chaste, see the [extensive guide material](https://github.com/Chaste/trac_archive/wiki/Chaste-Guides).
+You may also wish to look at some of the [basic user tutorials](https://github.com/Chaste/trac_archive/wiki/User-Tutorials).
+
+
+-----
+### Section contents
+[SubWiki()](SubWiki())
+
