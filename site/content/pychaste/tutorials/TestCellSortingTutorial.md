@@ -8,7 +8,7 @@ toc: true
 layout: "single"
 ---
 
-This tutorial is automatically generated from [TestCellSortingTutorial](https://github.com/Chaste/PyChaste/blob/develop/test/python/cell_based/tutorials/TestCellSortingTutorial.py) at revision [0b3a27c7](https://github.com/Chaste/PyChaste/commit/0b3a27c701e1dafd6502417c69d2a7a27456ac71).
+This tutorial is automatically generated from [TestCellSortingTutorial](https://github.com/Chaste/PyChaste/blob/develop/test/python/cell_based/tutorials/TestCellSortingTutorial.py) at revision [0fea8c3b](https://github.com/Chaste/PyChaste/commit/0fea8c3bfc488762c8fe8792aca6c6dfe2b136fc).
 Note that the code is given in full at the bottom of the page.
 
 
