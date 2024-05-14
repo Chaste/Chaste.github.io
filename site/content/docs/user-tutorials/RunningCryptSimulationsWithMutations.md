@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningCryptSimulationsWithMutationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/tutorial/TestRunningCryptSimulationsWithMutationsTutorial.hpp) at revision [3c544f98da9c](https://github.com/Chaste/Chaste/commit/3c544f98da9c243234f00db27b7aadaaa98eeef6). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningCryptSimulationsWithMutationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/tutorial/TestRunningCryptSimulationsWithMutationsTutorial.hpp) at revision [409e06cb314b](https://github.com/Chaste/Chaste/commit/409e06cb314bfcd008e972a1d4fe1b7799cb3f8a). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to run crypt simulations with various mutations
 
 ### Introduction
@@ -251,9 +251,9 @@ singleton object. This avoids memory leaks occurring.
 ```
 
 To visualize the results, open a new terminal, `cd` to the Chaste directory,
-then `cd` to `anim`. Then do: `java Visualize2dCentreCells /tmp/$USER/testoutput/MeshBasedCryptWithMutations/results_from_time_0`.
+then `cd` to `anim`. Then do: `java Visualize2dCentreCells $CHASTE_TEST_OUTPUT/MeshBasedCryptWithMutations/results_from_time_0`.
 
-These are the results before we add the mutations do: `java Visualize2dCentreCells /tmp/$USER/testoutput/MeshBasedCryptWithMutations/results_from_time_10`
+These are the results before we add the mutations do: `java Visualize2dCentreCells $CHASTE_TEST_OUTPUT/MeshBasedCryptWithMutations/results_from_time_10`
 to see the results from after the mutation has been added.
 
 We may have to do: `javac Visualize2dCentreCells.java` beforehand to create the

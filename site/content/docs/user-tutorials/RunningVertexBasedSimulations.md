@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningVertexBasedSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningVertexBasedSimulationsTutorial.hpp) at revision [3c544f98da9c](https://github.com/Chaste/Chaste/commit/3c544f98da9c243234f00db27b7aadaaa98eeef6). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningVertexBasedSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningVertexBasedSimulationsTutorial.hpp) at revision [409e06cb314b](https://github.com/Chaste/Chaste/commit/409e06cb314bfcd008e972a1d4fe1b7799cb3f8a). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to create, run and visualize vertex-based simulations
 
 ### Introduction
@@ -200,7 +200,7 @@ the lines should be removed.
 ```
 
 To visualize the results, open a new terminal, `cd` to the Chaste directory,
-then `cd` to `anim`. Then do: `java Visualize2dVertexCells /tmp/$USER/testoutput/VertexBasedMonolayer/results_from_time_0`.
+then `cd` to `anim`. Then do: `java Visualize2dVertexCells $CHASTE_TEST_OUTPUT/VertexBasedMonolayer/results_from_time_0`.
 We may have to do: `javac Visualize2dVertexCells.java` beforehand to create the
 java executable.
 
@@ -333,7 +333,7 @@ The next two lines are for test purposes only and are not part of this tutorial.
 ```
 
 To visualize the results, open a new terminal, `cd` to the Chaste directory,
-then `cd` to `anim`. Then do: `java Visualize2dVertexCells /tmp/$USER/testoutput/VertexBasedPeriodicMonolayer/results_from_time_0`.
+then `cd` to `anim`. Then do: `java Visualize2dVertexCells $CHASTE_TEST_OUTPUT/VertexBasedPeriodicMonolayer/results_from_time_0`.
 
 You should see that the edges of the mesh are identical on both sides; cells no
 longer pass through the line y=0; and cells are removed at y=3.

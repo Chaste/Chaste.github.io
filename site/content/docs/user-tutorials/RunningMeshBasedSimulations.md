@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningMeshBasedSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningMeshBasedSimulationsTutorial.hpp) at revision [3c544f98da9c](https://github.com/Chaste/Chaste/commit/3c544f98da9c243234f00db27b7aadaaa98eeef6). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningMeshBasedSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningMeshBasedSimulationsTutorial.hpp) at revision [409e06cb314b](https://github.com/Chaste/Chaste/commit/409e06cb314bfcd008e972a1d4fe1b7799cb3f8a). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to create, run and visualize mesh-based simulations
 
 ### Introduction
@@ -221,7 +221,7 @@ the lines should be removed.
 ```
 
 To visualize the results, open a new terminal, `cd` to the Chaste directory,
-then `cd` to `anim`. Then do: `java Visualize2dCentreCells /tmp/$USER/testoutput/MeshBasedMonolayer/results_from_time_0`.
+then `cd` to `anim`. Then do: `java Visualize2dCentreCells $CHASTE_TEST_OUTPUT/MeshBasedMonolayer/results_from_time_0`.
 We may have to do: `javac Visualize2dCentreCells.java` beforehand to create the
 java executable.
 
@@ -342,7 +342,7 @@ The next two lines are for test purposes only and are not part of this tutorial.
 ```
 
 To visualize the results, open a new terminal, `cd` to the Chaste directory,
-then `cd` to `anim`. Then do: `java Visualize2dCentreCells /tmp/$USER/testoutput/MeshBasedMonolayerWithGhostNodes/results_from_time_0`.
+then `cd` to `anim`. Then do: `java Visualize2dCentreCells $CHASTE_TEST_OUTPUT/MeshBasedMonolayerWithGhostNodes/results_from_time_0`.
 
 ## Full code
 

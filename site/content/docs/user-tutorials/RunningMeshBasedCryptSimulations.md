@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningMeshBasedCryptSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/tutorial/TestRunningMeshBasedCryptSimulationsTutorial.hpp) at revision [3c544f98da9c](https://github.com/Chaste/Chaste/commit/3c544f98da9c243234f00db27b7aadaaa98eeef6). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningMeshBasedCryptSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/tutorial/TestRunningMeshBasedCryptSimulationsTutorial.hpp) at revision [409e06cb314b](https://github.com/Chaste/Chaste/commit/409e06cb314bfcd008e972a1d4fe1b7799cb3f8a). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to run crypt simulations on periodic meshes with different cell-cycle models
 
 ### Introduction
@@ -165,7 +165,7 @@ which will be used to simulate the crypt model.
 ```
 
 We must set the output directory on the simulator (relative to
-"`$CHASTE_TEST_OUTPUT`") and the end time (in hours).
+`cd $CHASTE_TEST_OUTPUT`) and the end time (in hours).
 
 ```cpp
         simulator.SetOutputDirectory("CryptTutorialFixedCellCycle");
