@@ -8,7 +8,7 @@ toc: true
 layout: "single"
 ---
 
-This tutorial is automatically generated from [TestImmersedBoundaryTutorial](https://github.com/Chaste/PyChaste/blob/develop/test/python/cell_based/tutorials/TestImmersedBoundaryTutorial.py) at revision [27f9c309](https://github.com/Chaste/PyChaste/commit/27f9c3092e9eaf9fa12cab741c98a08d26ad3a7c).
+This tutorial is automatically generated from [TestImmersedBoundaryTutorial](https://github.com/Chaste/PyChaste/blob/develop/test/python/cell_based/tutorials/TestImmersedBoundaryTutorial.py) at revision [0b3a27c7](https://github.com/Chaste/PyChaste/commit/0b3a27c701e1dafd6502417c69d2a7a27456ac71).
 Note that the code is given in full at the bottom of the page.
 
 
