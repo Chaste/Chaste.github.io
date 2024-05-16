@@ -8,7 +8,7 @@ toc: true
 layout: "single"
 ---
 
-This tutorial is automatically generated from [TestImmersedBoundaryTutorial](https://github.com/Chaste/PyChaste/blob/develop/test/python/cell_based/tutorials/TestImmersedBoundaryTutorial.py) at revision [0fea8c3b](https://github.com/Chaste/PyChaste/commit/0fea8c3bfc488762c8fe8792aca6c6dfe2b136fc).
+This tutorial is automatically generated from [TestImmersedBoundaryTutorial](https://github.com/Chaste/PyChaste/blob/develop/test/python/cell_based/tutorials/TestImmersedBoundaryTutorial.py) at revision [98e266d4](https://github.com/Chaste/PyChaste/commit/98e266d45b53fb6d27f935caeb174755a05cf4e7).
 Note that the code is given in full at the bottom of the page.
 
 
@@ -81,13 +81,7 @@ forces are also transmitted across these boundaries.
 Setup the simulation environment in the notebook
 
 ```python
-        SetupNotebookTest()
-
-```
-Set the start time for the simulation
-
-```python
-        SimulationTime.Instance().SetStartTime(0.0)
+        # JUPYTER_SETUP
 
 ```
 Next, we define the necessary geometry by generating a mesh to
@@ -216,7 +210,7 @@ Finally, to run the simulation we call the `Solve()` method.
 Reset the simulation environment in the notebook
 
 ```python
-        TearDownNotebookTest()
+        # JUPYTER_TEARDOWN
 
 ```
 ### 2. Adding More Cells
@@ -230,13 +224,7 @@ Reset the simulation environment in the notebook
 Setup the simulation environment in the notebook
 
 ```python
-        SetupNotebookTest()
-
-```
-Set the start time for the simulation
-
-```python
-        SimulationTime.Instance().SetStartTime(0.0)
+        # JUPYTER_SETUP
 
 ```
 We can use the mesh generator to generate multiple cells. The first
@@ -365,7 +353,7 @@ We can visualize the end state of the cell population
 Reset the simulation environment in the notebook
 
 ```python
-        TearDownNotebookTest()
+        # JUPYTER_TEARDOWN
 
 ```
 ### 3. Adding Fluid Sources
@@ -381,13 +369,7 @@ introduce fluid sources.
 Setup the simulation environment in the notebook
 
 ```python
-        SetupNotebookTest()
-
-```
-Set the start time for the simulation
-
-```python
-        SimulationTime.Instance().SetStartTime(0.0)
+        # JUPYTER_SETUP
 
 ```
 We begin by constructing a fluid source object:
@@ -521,11 +503,8 @@ Then we visualize the end state
 
 ```
 Reset the simulation environment in the notebook
+JUPYTER_TEARDOWN
 
-```python
-        TearDownNotebookTest()
-
-```
 #### Further Exercises
  * Try integrating a different cell cycle model to introduce cell
  division. See how the presence of a fluid source impacts the
@@ -578,9 +557,7 @@ class TestImmersedBoundaryTutorial(AbstractCellBasedTestSuite):
 
     def test_simple_immersed_boundary_simulation(self):
 
-        SetupNotebookTest()
-
-        SimulationTime.Instance().SetStartTime(0.0)
+        # JUPYTER_SETUP
 
         gen = ImmersedBoundaryPalisadeMeshGenerator(1, 128, 0.1, 2.0, 0.0, False)
         mesh = gen.GetMesh()
@@ -623,13 +600,11 @@ class TestImmersedBoundaryTutorial(AbstractCellBasedTestSuite):
 
         simulator.Solve()
 
-        TearDownNotebookTest()
+        # JUPYTER_TEARDOWN
 
     def test_multicell_immersed_boundary_simulation(self):
 
-        SetupNotebookTest()
-
-        SimulationTime.Instance().SetStartTime(0.0)
+        # JUPYTER_SETUP
 
         gen = ImmersedBoundaryPalisadeMeshGenerator(5, 128, 0.1, 2.0, 0.0, False)
 
@@ -673,13 +648,11 @@ class TestImmersedBoundaryTutorial(AbstractCellBasedTestSuite):
 
         nb_manager.vtk_show(scene, height=300)
 
-        TearDownNotebookTest()
+        # JUPYTER_TEARDOWN
 
     def test_fluid_source_immersed_boundary_simulation(self):
 
-        SetupNotebookTest()
-
-        SimulationTime.Instance().SetStartTime(0.0)
+        # JUPYTER_SETUP
 
         source = FluidSource2(0, 0.5, 0.7)
 
@@ -728,8 +701,6 @@ class TestImmersedBoundaryTutorial(AbstractCellBasedTestSuite):
         simulator.Solve()
 
         nb_manager.vtk_show(scene, height=300)
-
-        TearDownNotebookTest()
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
