@@ -45,7 +45,7 @@ ctest -V -R TestSolvingOdesTutorial
 
 ### Where's my file output?
 
-By default, Chaste will attempt to write any file output from tests and tutorials to the temporary file directory at `/tmp/${USER}/testoutput` where `$USER` resolves to your username.
+By default, Chaste will attempt to write any file output from tests and tutorials to the subdirectory `testoutput` of the build directory (the directory that you run `cmake` from).
 
 It is recommended to redirect the output to a more permanent folder of your choosing. To do this you set an environment variable called `CHASTE_TEST_OUTPUT` in the terminal. We also recommend that you set this automatically and globally whenever you log in by adding a line like
 ```bash
@@ -58,7 +58,7 @@ The tutorials below will refer to `$CHASTE_TEST_OUTPUT` whether or not it is set
 ```bash
 echo $CHASTE_TEST_OUTPUT
 ```
-in a terminal and it will return either a directory path or nothing -- in which case look in `/tmp/${USER}/testoutput`.
+in a terminal and it will return either a directory path or nothing -- in which case look in the subdirectory `testoutput` of the build directory.
 
 ---
 
