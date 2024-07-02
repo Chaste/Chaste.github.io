@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningDifferentialAdhesionSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningDifferentialAdhesionSimulationsTutorial.hpp) at revision [66cf8dbe76c3](https://github.com/Chaste/Chaste/commit/66cf8dbe76c3d7130712beffdbe05527fd51e0f1). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningDifferentialAdhesionSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningDifferentialAdhesionSimulationsTutorial.hpp) at revision [409e06cb314b](https://github.com/Chaste/Chaste/commit/409e06cb314bfcd008e972a1d4fe1b7799cb3f8a). Note that the code is given in full at the bottom of the page.
 ## An example showing how to simulate cell sorting due to differential adhesion in a vertex-based model
 
 ### Introduction
@@ -163,7 +163,7 @@ Finally, we run the simulation.
 
 To visualize the results, use Paraview. See the [Visualizing With Paraview](../visualizingwithparaview/) tutorial for more information.
 
-Load the file `/tmp/$USER/testoutput/TestVertexBasedDifferentialAdhesionSimulation/results_from_time_0/results.pvd`.
+Load the file `$CHASTE_TEST_OUTPUT/TestVertexBasedDifferentialAdhesionSimulation/results_from_time_0/results.pvd`.
 
 ## Full code
 

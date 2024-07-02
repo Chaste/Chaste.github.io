@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningContactInhibitionSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningContactInhibitionSimulationsTutorial.hpp) at revision [9ccbb9cb6db8](https://github.com/Chaste/Chaste/commit/9ccbb9cb6db82df6a0b826c92e756309c24e1c93). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningContactInhibitionSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningContactInhibitionSimulationsTutorial.hpp) at revision [409e06cb314b](https://github.com/Chaste/Chaste/commit/409e06cb314bfcd008e972a1d4fe1b7799cb3f8a). Note that the code is given in full at the bottom of the page.
 ## An example showing how to use a contact inhibition cell cycle model and volume tracking simulation modifier
 
 ### Introduction
@@ -246,7 +246,7 @@ To run the simulation, we call `Solve()`.
 ```
 
 To visualize the results, open a new terminal, `cd` to the Chaste directory,
-then `cd` to `anim`. Then do: `java Visualize2dCentreCells /tmp/$USER/testoutput/TestContactInhibitionInBox/results_from_time_0`.
+then `cd` to `anim`. Then do: `java Visualize2dCentreCells $CHASTE_TEST_OUTPUT/TestContactInhibitionInBox/results_from_time_0`.
 We may have to do: `javac Visualize2dCentreCells.java` beforehand to create the
 java executable.
 
@@ -378,7 +378,7 @@ Finally, to run the simulation, we call `Solve()`.
 ```
 
 To visualize the results, open a new terminal, `cd` to the Chaste directory,
-then `cd` to `anim`. Then do: `java Visualize2dCentreCells /tmp/$USER/testoutput/TestContactInhibitionTumourInBox/results_from_time_0`.
+then `cd` to `anim`. Then do: `java Visualize2dCentreCells $CHASTE_TEST_OUTPUT/TestContactInhibitionTumourInBox/results_from_time_0`.
 We may have to do: `javac Visualize2dCentreCells.java` beforehand to create the
 java executable.
 
@@ -467,7 +467,7 @@ To run the simulation, we call `Solve()`.
 ```
 
 To visualize the results, open a new terminal, `cd` to the Chaste directory,
-then `cd` to `anim`. Then do: `java Visualize2dVertexCells /tmp/$USER/testoutput/TestVertexContactInhibition/results_from_time_0`.
+then `cd` to `anim`. Then do: `java Visualize2dVertexCells $CHASTE_TEST_OUTPUT/TestVertexContactInhibition/results_from_time_0`.
 We may have to do: `javac Visualize2dVertexCells.java` beforehand to create the
 java executable.
 

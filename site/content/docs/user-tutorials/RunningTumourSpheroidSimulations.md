@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningTumourSpheroidSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningTumourSpheroidSimulationsTutorial.hpp) at revision [66cf8dbe76c3](https://github.com/Chaste/Chaste/commit/66cf8dbe76c3d7130712beffdbe05527fd51e0f1). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningTumourSpheroidSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningTumourSpheroidSimulationsTutorial.hpp) at revision [1684df04656d](https://github.com/Chaste/Chaste/commit/1684df04656dc7fae8d14b8eef4c72e32435fa40). Note that the code is given in full at the bottom of the page.
 ## An example showing how to run tumour spheroid simulations
 
 ### Introduction
@@ -52,7 +52,7 @@ allowed us to avoid having to construct cells directly.
 #include "StemCellProliferativeType.hpp"
 ```
 
-The next three header files define: a PDE that describes how oxygen is transported via through the
+The next three header files define: a PDE that describes how oxygen is transported through the
 domain via diffusion and is consumed by live cells; a constant-valued boundary condition to
 associate with the PDE; and a PDE modifier class, which is passed to the simulation object and
 handles the numerical solution of any PDEs.
@@ -97,8 +97,7 @@ don't run this test if in parallel.
 First we want to create a **non-periodic** 'honeycomb' mesh.
 We use the honeycomb mesh generator, as before, saying 10 cells wide
 and 10 cells high. Note that the thickness of the ghost nodes layer is
-0, i.e. there are no ghost nodes, and the `false` indicates that the
-returned mesh is **not** cylindrical. In contrast to the crypt simulation
+0, i.e. there are no ghost nodes. In contrast to the crypt simulation
 tutorial, here we call `GetMesh()` on the `HoneycombMeshGenerator`
 object to return the mesh, which is of type `MutableMesh`.
 
@@ -167,8 +166,9 @@ of cells.
 ```
 
 Now that we have defined the cells, we can define the `CellPopulation`. We use a
-`MeshBasedCellPopulation` since although the cell population is mesh-based, it does
-not include any ghost nodes. The constructor takes in the mesh and the cells vector.
+`MeshBasedCellPopulation`, rather than a `MeshBasedCellPopulationWithGhostNodes`
+since this particular cell population does not include any ghost nodes. The
+constructor takes in the mesh and the cells vector.
 
 ```cpp
         MeshBasedCellPopulation<2> cell_population(*p_mesh, cells);
@@ -177,13 +177,11 @@ not include any ghost nodes. The constructor takes in the mesh and the cells vec
 Next we instantiate an instance of the PDE class which we defined above.
 This will be passed into the `OffLatticeSimulationWithPdes` object. The
 `CellwiseSourceEllipticPde` is a `PDE` class which inherits from
-`AbstractLinearEllipticPde` and represents
-the PDE $u_{xx}$ + u_{yy} = k(x,y)u$, where $u(x,y)$ denotes
-the oxygen concentration at
-position $(x,y)$ and the function $k(x,y)$ specifies the rate of consumption by live cells
-there. Here $k(x,y)$ takes the value $-0.03$ (the coefficient below) if
-the cell located at $(x,y)$ is a live cell, and zero if the cell has died due
-to oxygen deprivation.
+`AbstractLinearEllipticPde` and represents the PDE $u_{xx} + u_{yy} = k(x,y)u$,
+where $u(x,y)$ denotes the oxygen concentration at position $(x,y)$ and the function
+$k(x,y)$ specifies the rate of consumption by live cells there. Here $k(x,y)$
+takes the value $-0.03$ (the coefficient below) if the cell located at $(x,y)$ is a
+live cell, and zero if the cell has died due to oxygen deprivation.
 
 ```cpp
         MAKE_PTR_ARGS(CellwiseSourceEllipticPde<2>, p_pde, (cell_population, -0.03));
@@ -191,9 +189,9 @@ to oxygen deprivation.
 
 We also create a constant-valued boundary condition to associate with the PDE.
 This boundary condition object takes in a single argument in its constructor,
-the value at the boundary. We also introduce a boolean to specify whether this value is the flux at the boundary
-(a Neumann boundary condition) or the value of the state variable at the boundary
-(a Dirichlet boundary condition) below.
+the value at the boundary. We also introduce a boolean to specify whether this value
+is the flux at the boundary (a Neumann boundary condition) or the value of the state
+variable at the boundary (a Dirichlet boundary condition) below.
 
 ```cpp
         MAKE_PTR_ARGS(ConstBoundaryCondition<2>, p_bc, (1.0));
@@ -214,7 +212,7 @@ the boundary condition itself can be made spatially varying or time-dependent.
 The PDE is tagged to show that the quantity to be solved for (the quantity of interest in
 the cells' data is `"oxygen"`).
 
-The `CellData` class, is used to stores the value of the current nutrient concentration for each cell.
+The `CellData` class is used to store the value of the current nutrient concentration for each cell.
 
 ```cpp
         MAKE_PTR_ARGS(EllipticGrowingDomainPdeModifier<2>, p_pde_modifier, (p_pde, p_bc, is_neumann_bc));
@@ -262,10 +260,16 @@ We call `Solve()` on the simulator to run the simulation.
 };
 ```
 
-To visualize the results, open a new terminal, `cd` to the Chaste directory,
-then `cd` to `anim`. Then do: `java Visualize2dCentreCells /tmp/$USER/testoutput/SpheroidTutorial/results_from_time_0`.
+To visualize the results, use Paraview.
+- [Visualizing With Paraview tutorial](../visualizingwithparaview/)
+- [Where's my file output?](../#wheres-my-file-output)
 
-Or use Paraview, see the [Visualizing With Paraview](../visualizingwithparaview/) tutorial for details.
+Open `SpheroidTutorial/results_from_time_0/pde_results_oxygen_..vtu`.
+
+1. Click the green `Apply` button.
+2. Select `oxygen` from the `Active Variable Controls` (default is: `Solid Color`)
+3. Select `Surface With Edges` from the `Representation Toolbar` (default is: `Surface`)
+4. Press `Play` to visualize the simulation
 
 ## Full code
 

@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestCreatingAndUsingANewCellBasedSimulationModifierTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellBasedSimulationModifierTutorial.hpp) at revision [9ccbb9cb6db8](https://github.com/Chaste/Chaste/commit/9ccbb9cb6db82df6a0b826c92e756309c24e1c93). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCreatingAndUsingANewCellBasedSimulationModifierTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellBasedSimulationModifierTutorial.hpp) at revision [409e06cb314b](https://github.com/Chaste/Chaste/commit/409e06cb314bfcd008e972a1d4fe1b7799cb3f8a). Note that the code is given in full at the bottom of the page.
 ## An example showing how to create a new cell-based simulation modifier and use it in a simulation
 
 ### Introduction
@@ -252,7 +252,7 @@ To run the simulation, we call `Solve()`.
 ```
 
 It is most straightforward to visualize the results of this simulation in Paraview.
-Load the file `/tmp/$USER/testoutput/TestOffLatticeSimulationWithCellHeightTrackingModifier/results_from_time_0/results.pvd`,
+Load the file `$CHASTE_TEST_OUTPUT/TestOffLatticeSimulationWithCellHeightTrackingModifier/results_from_time_0/results.pvd`,
 and add glyphs to represent cells.
 
 ## Full code

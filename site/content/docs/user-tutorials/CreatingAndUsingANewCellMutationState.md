@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestCreatingAndUsingANewCellMutationStateTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellMutationStateTutorial.hpp) at revision [4fe05a0e1d9c](https://github.com/Chaste/Chaste/commit/4fe05a0e1d9c1c8a9bf287a759806efd561f77cc). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCreatingAndUsingANewCellMutationStateTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellMutationStateTutorial.hpp) at revision [409e06cb314b](https://github.com/Chaste/Chaste/commit/409e06cb314bfcd008e972a1d4fe1b7799cb3f8a). Note that the code is given in full at the bottom of the page.
 ## An example showing how to create a new cell mutation state and use it in a cell-based simulation
 
 ### Introduction
@@ -292,7 +292,7 @@ To run the simulation, we call `Solve()`.
 
 When you visualize the results with
 
-`java Visualize2dCentreCells /tmp/$USER/testoutput/TestOffLatticeSimulationWithNewMutationState/results_from_time_0`
+`java Visualize2dCentreCells $CHASTE_TEST_OUTPUT/TestOffLatticeSimulationWithNewMutationState/results_from_time_0`
 
 you should see two cells in black which are the cells with the new mutation. If we want these cells to behave differently we
 would need to write an new `CellCycleModel`, `CellKiller`, `Force`, or `CellPopulationBoundaryCondition`

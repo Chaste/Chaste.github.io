@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningPottsBasedSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningPottsBasedSimulationsTutorial.hpp) at revision [3c544f98da9c](https://github.com/Chaste/Chaste/commit/3c544f98da9c243234f00db27b7aadaaa98eeef6). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningPottsBasedSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningPottsBasedSimulationsTutorial.hpp) at revision [409e06cb314b](https://github.com/Chaste/Chaste/commit/409e06cb314bfcd008e972a1d4fe1b7799cb3f8a). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to create, run and visualize Potts-based simulations
 
 ### Introduction
@@ -215,7 +215,7 @@ the lines should be removed.
 ```
 
 To visualize the results, open a new terminal, `cd` to the Chaste directory,
-then `cd` to `anim`. Then do: `java Visualize2dVertexCells /tmp/$USER/testoutput/PottsBasedMonolayer/results_from_time_0`.
+then `cd` to `anim`. Then do: `java Visualize2dVertexCells $CHASTE_TEST_OUTPUT/PottsBasedMonolayer/results_from_time_0`.
 We may have to do: `javac Visualize2dVertexCells.java` beforehand to create the
 java executable.
 
@@ -223,7 +223,7 @@ We could also visualize the results using Paraview.
 
 See the [Visualizing With Paraview](../visualizingwithparaview/) tutorial for more information.
 
-Load the file `/tmp/$USER/testoutput/PottsBasedMonolayer/results_from_time_0/results.pvd`, and click apply.
+Load the file `$CHASTE_TEST_OUTPUT/PottsBasedMonolayer/results_from_time_0/results.pvd`, and click apply.
 
 Add box "Glyphs" to represent lattice sites. You will need to adjust the size so they don't overlap.
 
@@ -234,7 +234,7 @@ Select the "Display" tab and select "color by" cell index to see individual cell
 
 Add a "Threshold" filter, filter by cell type and make the lower threshold 0 or greater (unoccupied lattice sites are labelled with -1). This will allow you to view only the cells.
 
-Load the files `/tmp/$USER/testoutput/PottsBasedMonolayer/results_from_time_0/outlines_..vtu`, and click apply.
+Load the files `$CHASTE_TEST_OUTPUT/PottsBasedMonolayer/results_from_time_0/outlines_..vtu`, and click apply.
 
 In order to see the cell outlines you will need to select "Surface With Edges" in the drop down menu.
 
@@ -352,7 +352,7 @@ The next two lines are for test purposes only and are not part of this tutorial.
 ```
 
 To visualize the results, open a new terminal, `cd` to the Chaste directory,
-then `cd` to `anim`. Then do: `java Visualize2dVertexCells /tmp/$USER/testoutput/PottsMonolayerCellSorting/results_from_time_0`.
+then `cd` to `anim`. Then do: `java Visualize2dVertexCells $CHASTE_TEST_OUTPUT/PottsMonolayerCellSorting/results_from_time_0`.
 We may have to do: `javac Visualize2dVertexCells.java` beforehand to create the
 java executable.
 
@@ -480,7 +480,7 @@ The next two lines are for test purposes only and are not part of this tutorial.
 To visualize the results, we need to use Paraview. Note that we don't output the cell boundaries (outlines) in 3D.
 See the [Visualizing With Paraview](../visualizingwithparaview/) tutorial for more information.
 
-Load the file `/tmp/$USER/testoutput/PottsCellSorting3D/results_from_time_0/results.pvd`, and click apply.
+Load the file `$CHASTE_TEST_OUTPUT/PottsCellSorting3D/results_from_time_0/results.pvd`, and click apply.
 
 Add box "Glyphs" to represent lattice sites. You will need to adjust the size so they don't overlap.
 

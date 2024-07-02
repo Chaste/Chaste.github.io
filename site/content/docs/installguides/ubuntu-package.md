@@ -77,6 +77,19 @@ sudo apt update
 sudo apt install chaste-dependencies
 ```
 
+{{< callout context="warning" title="Known issue affecting Ubuntu 22.04" icon="alert-triangle" >}}
+
+Due to a change in `libexpat` that addresses a security vulnerability, VTK functionality is currently affected.
+This is a [known issue](https://bugs.launchpad.net/ubuntu/+source/expat/+bug/2058415) that cannot be easily addressed by Chaste.
+
+If you are using Chaste on Ubuntu 22.04, a temporary workaround is to explicitly install and hold an older versions of `libexpat`:
+
+```
+sudo apt install libexpat1=2.4.7-1 libexpat1-dev=2.4.7-1
+sudo apt-mark hold libexpat1 libexpat1-dev
+```
+{{< /callout >}}
+
 You should now decide whether you want to be a Code User or a Code Developer.
 
 * Code Users - are people who want to work with a stable released version of the Chaste code (a new release is made roughly every six months).

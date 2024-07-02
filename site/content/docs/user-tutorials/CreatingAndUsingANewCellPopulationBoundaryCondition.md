@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestCreatingAndUsingANewCellPopulationBoundaryConditionTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellPopulationBoundaryConditionTutorial.hpp) at revision [66cf8dbe76c3](https://github.com/Chaste/Chaste/commit/66cf8dbe76c3d7130712beffdbe05527fd51e0f1). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCreatingAndUsingANewCellPopulationBoundaryConditionTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellPopulationBoundaryConditionTutorial.hpp) at revision [409e06cb314b](https://github.com/Chaste/Chaste/commit/409e06cb314bfcd008e972a1d4fe1b7799cb3f8a). Note that the code is given in full at the bottom of the page.
 ## An example showing how to create and use a new cell population boundary condition
 
 ### Introduction
@@ -361,7 +361,7 @@ To run the simulation, we call `Solve()`.
 
 When you visualize the results with
 
-`java Visualize2dCentreCells /tmp/$USER/testoutput/TestOffLatticeSimulationWithMyBoundaryCondition/results_from_time_0`
+`java Visualize2dCentreCells $CHASTE_TEST_OUTPUT/TestOffLatticeSimulationWithMyBoundaryCondition/results_from_time_0`
 
 you should see that cells are restricted to the domain $0 \leqslant y \leqslant 5$.
 

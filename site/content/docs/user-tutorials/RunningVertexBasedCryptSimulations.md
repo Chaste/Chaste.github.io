@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningVertexBasedCryptSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/tutorial/TestRunningVertexBasedCryptSimulationsTutorial.hpp) at revision [3c544f98da9c](https://github.com/Chaste/Chaste/commit/3c544f98da9c243234f00db27b7aadaaa98eeef6). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningVertexBasedCryptSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/tutorial/TestRunningVertexBasedCryptSimulationsTutorial.hpp) at revision [409e06cb314b](https://github.com/Chaste/Chaste/commit/409e06cb314bfcd008e972a1d4fe1b7799cb3f8a). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to create, run and visualize vertex-based simulations on periodic meshes with different cell-cycle models
 
 ### Introduction
@@ -184,7 +184,7 @@ To run the simulation, we call `Solve()`.
 ```
 
 To visualize the results, open a new terminal, `cd` to the Chaste directory,
-then `cd` to `anim`. Then do: `java Visualize2dVertexCells /tmp/$USER/testoutput/VertexCrypt/results_from_time_0`.
+then `cd` to `anim`. Then do: `java Visualize2dVertexCells $CHASTE_TEST_OUTPUT/VertexCrypt/results_from_time_0`.
 You may have to do: `javac Visualize2dVertexCells.java` beforehand to create the
 java executable.
 
@@ -274,7 +274,7 @@ Run the simulation, by calling `Solve()`.
 ```
 
 To visualize the results, open a new terminal, `cd` to the Chaste directory,
-then `cd` to `anim`. Then do: `java Visualize2dVertexCells /tmp/$USER/testoutput/VertexCryptWithSimpleWntCellCycleModel/results_from_time_0`.
+then `cd` to `anim`. Then do: `java Visualize2dVertexCells $CHASTE_TEST_OUTPUT/VertexCryptWithSimpleWntCellCycleModel/results_from_time_0`.
 You may have to do: `javac Visualize2dVertexCells.java` beforehand to create the
 java executable.
 

@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningNodeBasedSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningNodeBasedSimulationsTutorial.hpp) at revision [3c544f98da9c](https://github.com/Chaste/Chaste/commit/3c544f98da9c243234f00db27b7aadaaa98eeef6). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningNodeBasedSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningNodeBasedSimulationsTutorial.hpp) at revision [409e06cb314b](https://github.com/Chaste/Chaste/commit/409e06cb314bfcd008e972a1d4fe1b7799cb3f8a). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to create, run and visualize node-based simulations
 
 ### Introduction
@@ -167,13 +167,13 @@ the lines should be removed.
 ```
 
 To visualize the results, open a new terminal, `cd` to the Chaste directory,
-then `cd anim`. Then do `java Visualize2dCentreCells /tmp/$USER/testoutput/NodeBasedMonolayer/results_from_time_0`.
+then `cd anim`. Then do `java Visualize2dCentreCells $CHASTE_TEST_OUTPUT/NodeBasedMonolayer/results_from_time_0`.
 We need to select the `Cells as circles` option to be able to visualize the cells, as opposed
 to just the centres.
 You may have to do: `javac Visualize2dCentreCells.java` beforehand to create the
 java executable if you haven't done that before.
 
-Alternatively, to view in Paraview, load the file `/tmp/$USER/testoutput/NodeBasedMonolayer/results_from_time_0/results.pvd`
+Alternatively, to view in Paraview, load the file `$CHASTE_TEST_OUTPUT/NodeBasedMonolayer/results_from_time_0/results.pvd`
 and add glyphs to represent cells. An option is to use 3D spherical glyphs and then make a planar cut.
 Note that, for larger simulations, you may need to unclick "Mask Points" (or similar) so as not to limit the number of glyphs
 displayed by Paraview.
@@ -282,7 +282,7 @@ Note that you **cannot view the results of a 3D simulation using the Java visual
 to visualize the results, use Paraview.
 See the [Visualizing With Paraview](../visualizingwithparaview/) tutorial for more information.
 
-Load the file `/tmp/$USER/testoutput/NodeBasedSpheroid/results_from_time_0/results.pvd`,
+Load the file `$CHASTE_TEST_OUTPUT/NodeBasedSpheroid/results_from_time_0/results.pvd`,
 and add spherical glyphs to represent cells.
 
 ### Test 3 - a node-based simulation on a restricted geometry
@@ -387,7 +387,7 @@ To avoid memory leaks, we conclude by deleting any pointers that we created in t
 
 To visualize the results, use Paraview. See the [Visualizing With Paraview](../visualizingwithparaview/) tutorial for more information.
 
-Load the file `/tmp/$USER/testoutput/NodeBasedOnSphere/results_from_time_0/results.pvd`,
+Load the file `$CHASTE_TEST_OUTPUT/NodeBasedOnSphere/results_from_time_0/results.pvd`,
 and add spherical glyphs to represent cells.
 
 ## Full code
