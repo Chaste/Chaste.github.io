@@ -1,4 +1,8 @@
-## Functional Curation
+---
+title: "Functional Curation"
+draft: false
+layout: "single"
+---
 
 The [FunctionalCuration](https://github.com/Chaste/trac_archive/wiki/Functional-Curation) project is an add-on to Chaste aiming to provide a framework
 for a coherent approach to model fitting, simulation, comparison and validation.  It
