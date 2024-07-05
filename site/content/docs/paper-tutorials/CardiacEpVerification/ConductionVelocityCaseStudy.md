@@ -1,6 +1,9 @@
-This tutorial was generated from the file projects/CardiacEpVerification/test/TestConductionVelocityCaseStudyLiteratePaper.hpp at revision r20535.
-Note that the code is given in full at the bottom of the page.
-
+---
+title: "Determining the accuracy of the conduction velocity in 1D"
+draft: false
+layout: "single"
+paperTutorialTestFile: "https://github.com/Chaste/project_CardiacEpVerification/blob/33e755d3e94176c51662f0e47176b6349d22840b/test/TestConductionVelocityCaseStudyLiteratePaper.hpp"
+---
 
 
 ## Determining the accuracy of the conduction velocity in 1D

@@ -1,5 +1,10 @@
+---
+title: "Verification of computational models of cardiac electro-physiology"
+draft: false
+layout: "single"
+paperTutorialProject: "https://github.com/Chaste/project_CardiacEpVerification"
+---
 
- = Verification of computational models of cardiac electro-physiology =
 
 The project corresponds to the paper: Pras Pathmanathan and Richard A. Gray, *Verification of computational models of
 cardiac electro-physiology*, accepted for publication in International Journal for Numerical Methods in Bioengineering.
