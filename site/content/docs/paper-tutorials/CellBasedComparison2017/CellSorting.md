@@ -1,9 +1,10 @@
-This tutorial was generated from the file projects/CellBasedComparison2017/test/TestCellSortingLiteratePaper.hpp at revision r27522.
-Note that the code is given in full at the bottom of the page.
+---
+title: "Adhesion Example"
+draft: false
+layout: "single"
+paperTutorialTestFile: "https://github.com/Chaste/project_CellBasedComparison2017/blob/e93c9513a0a9e992614d94fd6378e64f77811d0d/test/TestCellSortingLiteratePaper.hpp"
+---
 
-
-
-## Adhesion Example
 
 On this wiki page we describe in detail the code that is used to run this example from the paper.
 

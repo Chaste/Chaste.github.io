@@ -2,6 +2,7 @@
 title: "Comparing individual-based approaches to modelling the self-organization of multicellular tissues"
 draft: false
 layout: "single"
+paperTutorialProject: "https://github.com/Chaste/project_CellBasedComparison2017"
 ---
 
 Welcome to the Chaste wiki.
