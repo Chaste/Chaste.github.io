@@ -1,9 +1,16 @@
+---
+title: "Testing the cardiac solvers against exact solutions"
+draft: false
+layout: "single"
+paperTutorialTestFile: "https://github.com/Chaste/project_CardiacEpVerification/blob/33e755d3e94176c51662f0e47176b6349d22840b/test/TestEpAgainstExactSolutionsLiteratePaper.hpp"
+---
+
 This tutorial was generated from the file projects/CardiacEpVerification/test/TestEpAgainstExactSolutionsLiteratePaper.hpp at revision r20536.
 Note that the code is given in full at the bottom of the page.
 
 
 
-## Testing the cardiac solvers against exact solutions
+## 
 
 This is the main code for solving the monodomain, bidomain and bidomain-with-bath model problems.
 

@@ -2,7 +2,7 @@
 title: "Determining the accuracy of the conduction velocity in 1D"
 draft: false
 layout: "single"
-paperTutorialTestFile: "https://github.com/Chaste/project_CardiacEpVerification/blob/33e755d3e94176c51662f0e47176b6349d22840b/test/TestConductionVelocityCaseStudyLiteratePaper.hpp"
+paperTutorialTestFile: "https://github.com/Chaste/project_CardiacEpVerification/blob/89a79caae847ba8c06903d84b8b1d1ddea14fe70/test/TestConductionVelocityCaseStudyLiteratePaper.hpp"
 ---
 
 

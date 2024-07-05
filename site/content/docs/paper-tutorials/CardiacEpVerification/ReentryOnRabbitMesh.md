@@ -1,9 +1,10 @@
-This tutorial was generated from the file projects/CardiacEpVerification/test/TestReentryOnRabbitMeshLiteratePaper.hpp at revision r20661.
-Note that the code is given in full at the bottom of the page.
-
-
-
-### Reentry simulations on realistic rabbit geometry
+---
+title: "Reentry simulations on realistic rabbit geometry"
+draft: false
+layout: "single"
+paperTutorialTestFile: "https://github.com/Chaste/project_CardiacEpVerification/blob/5ad1f6827bba0b03808b98b10da48fc2a9515492/test/TestReentryOnRabbitMeshLiteratePaper.hpp"
+---
+ 
 
 This file provides the code used to run the simulations on the realistic rabbit geometry in the second calculation
 verification case study.
