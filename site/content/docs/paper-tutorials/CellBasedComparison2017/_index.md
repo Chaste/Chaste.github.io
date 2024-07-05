@@ -2,6 +2,7 @@
 title: "Comparing individual-based approaches to modelling the self-organization of multicellular tissues"
 draft: false
 layout: "single"
+showPageLinks: true
 paperTutorialProject: "https://github.com/Chaste/project_CellBasedComparison2017"
 ---
 
@@ -150,5 +151,3 @@ You may also wish to look at some of the [basic user tutorials](https://github.c
 
 -----
 ### Section contents
-[SubWiki()](SubWiki())
-

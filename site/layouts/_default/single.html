@@ -52,6 +52,12 @@
 			{{ else -}}
 				{{ .Content }}
 			{{ end -}}
+
+			
+			{{ if .Params.showPageLinks -}}
+			{{ partial "list_pages.html" . }}
+			{{ end -}}
+
 			<div class="page-footer-meta d-flex flex-column flex-md-row justify-content-between">
 				{{ if site.Params.doks.lastMod -}}
 					{{ partial "main/last-modified.html" . }}
