@@ -1,9 +1,9 @@
-This tutorial was generated from the file projects/CoGNaC/test/TestSearchingGeneActivationPatternsInThelperNetworkLiteratePaper.hpp at revision r27518.
-Note that the code is given in full at the bottom of the page.
-
-
-
-## Searching gene activation patterns in T-helper cell differentiation
+---
+title: "Searching gene activation patterns in T-helper cell differentiation"
+draft: false
+layout: "single"
+paperTutorialTestFile: "https://github.com/Chaste/project_CoGNaC/blob/44e32b4e42453762681831e3fa7a84e6b0d41dd4/test/TestSearchingGeneActivationPatternsInThelperNetworkLiteratePaper.hpp"
+---
 
 ### Introduction
 
