@@ -1,4 +1,9 @@
-## Model of Crypt Fission
+---
+title: "Model of Crypt Fission"
+draft: false
+layout: "single"
+paperTutorialProject: "https://github.com/Chaste/project_CryptFissionPlos2016"
+---
 
 This section contains pages generated automatically from the source code accompanying Langlands et al. (2016)
 "Paneth cell-rich regions separated by a cluster of Lgr5+ cells initiate fission in the intestinal stem cell niche" http://dx.doi.org/10.1371/journal.pbio.1002491

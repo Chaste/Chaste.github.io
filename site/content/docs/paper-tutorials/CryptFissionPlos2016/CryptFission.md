@@ -1,9 +1,9 @@
-This tutorial was generated from the file projects/CryptFissionPlos2016/test/TestCryptFissionLiteratePaper.hpp at revision r26908.
-Note that the code is given in full at the bottom of the page.
-
-
-
-## Simulation of fission in epithelial layer
+---
+title: "Simulation of fission in epithelial layer"
+draft: false
+layout: "single"
+paperTutorialTestFile: "https://github.com/Chaste/project_CryptFissionPlos2016/blob/04483b5e62bff1094bb320564c0fbaa2698563b0/test/TestCryptFissionLiteratePaper.hpp"
+---
 
 ### Introduction
 
