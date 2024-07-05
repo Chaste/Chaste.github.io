@@ -1,11 +1,13 @@
+---
+title: "Ca<sup>2+</sup> Channel Re-localization to Plasma-Membrane Microdomains Strengthens Activation of Ca<sup>2+</sup>-Dependent Nuclear Gene Expression"
+draft: false
+layout: "single"
+paperTutorialTestFile: "https://github.com/Chaste/project_CaDiffusion/blob/2013ec7101a1f24ddab6ec0396a918f597cd1433/test/TestCaDiffusionLiteratePaper.hpp"
+---
+
 This tutorial was generated from the file projects/CaDiffusion/test/TestCaDiffusionLiteratePaper.hpp at revision r27328.
 Note that the code is given in full at the bottom of the page.
 
-
-
-
-
-## Ca^2+^ Channel Re-localization to Plasma-Membrane Microdomains Strengthens Activation of Ca^2+^-Dependent Nuclear Gene Expression
 
 Code to accompany the paper [Samanta et al. 2015](http://dx.doi.org/10.1016/j.celrep.2015.06.018).
 
