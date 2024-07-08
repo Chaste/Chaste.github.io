@@ -1,9 +1,11 @@
-This tutorial was generated from the file projects/FunctionalCuration/test/TestFunctionalCurationLiteratePaper.hpp at revision [changeset:27416/git_repo](changeset:27416/git_repo).
+---
+title: "High throughput functional curation of cellular electrophysiology models"
+draft: false
+layout: "single"
+paperTutorialTestFile: "https://github.com/Chaste/project_FunctionalCuration/blob/86363bc5190f9b0d420232fb2cd6c6fd2bc22080/test/TestFunctionalCurationLiteratePaper.hpp"
+---
+
 Note that the code is given in full at the bottom of the page.
-
-
-
-## High throughput functional curation of cellular electrophysiology models
 
 This test reproduces the results from our
 [reference publication on Functional Curation](http://dx.doi.org/10.1016/j.pbiomolbio.2011.06.003)
@@ -29,16 +31,16 @@ very different). This led to us finding a bug in the CellML encoding which we ha
 and now the Decker 2009 model gives a sensible S1-S2 curve, unlike that shown in our paper!)
 
 You can run these simulations using the following command from within the Chaste source tree:
-```
 
+```
 scons cl=1 b=GccOptNative ts=projects/FunctionalCuration/test/TestFunctionalCurationPaper.hpp
 ```
 
 
 If you have multiple cores available, these may be used to speed up simulation.  For instance, to use
 8 cores, run
-```
 
+```
 scons cl=1 b=GccOptNative_8 ts=projects/FunctionalCuration/test/TestFunctionalCurationPaper.hpp
 ```
 
