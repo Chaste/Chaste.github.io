@@ -2,6 +2,7 @@
 title: "Ca<sup>2+</sup> Channel Re-localization to Plasma-Membrane Microdomains Strengthens Activation of Ca<sup>2+</sup>-Dependent Nuclear Gene Expression"
 draft: false
 layout: "single"
+showPageLinks: true
 paperTutorialProject: "https://github.com/Chaste/project_CaDiffusion"
 ---
 
@@ -61,7 +62,4 @@ scons chaste_libs=1 brief=1 build=GccOptNative projects/CaDiffusion
 
 
 
------
 ### Section contents
-[SubWiki()](SubWiki())
-
