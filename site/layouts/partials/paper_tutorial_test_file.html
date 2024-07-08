@@ -1,12 +1,13 @@
 {{- $testFile := .Param "paperTutorialTestFile" -}}
-{{- $link := printf "[test file](%s)" $testFile -}}
+{{- $fileName := path.Base $testFile -}}
+{{- $link := printf "[%s](%s)" $fileName $testFile -}}
 
 <div class="callout callout-note d-flex flex-row mt-4 mb-4 pt-4 pe-4 pb-2 ps-3">
     {{ partial "inline-svg" (dict "src" "info-circle" "class" "callout-icon me-2 mb-3") }}
     <div class="callout-content">
         <div class="callout-title">
             {{ with $link -}}
-            This page had historically been auto-generated from this {{ . | $.Page.RenderString }}, but it is now a static archive.
+            This page is a static archive generated from the test file: {{ . | $.Page.RenderString }}
             {{- end }}
         </div>
     </div>
