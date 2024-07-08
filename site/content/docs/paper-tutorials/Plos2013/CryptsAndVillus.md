@@ -2,9 +2,9 @@
 title: "Cell-based simulation: multiple crypts and a villus"
 draft: false
 layout: "single"
+paperTutorialTestFile: "https://github.com/Chaste/project_Plos2013/blob/5b522e0ce55ac81ce8728f858b10464e9d7cfb98/test/TestCryptsAndVillusLiteratePaper.hpp"
 ---
 
-This tutorial was generated from the file [TestCryptsAndVillusLiteratePaper.hpp](https://github.com/Chaste/project_Plos2013/blob/5b522e0ce55ac81ce8728f858b10464e9d7cfb98/test/TestCryptsAndVillusLiteratePaper.hpp).
 Note that the code is given in full at the bottom of the page.
 
 {{< img src="/fig/paper-tutorials/combined.png" alt="Crypts and villus" h="200px" >}}

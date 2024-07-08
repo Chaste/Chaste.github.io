@@ -2,10 +2,10 @@
 title: "Cardiac electrophysiology: spiral wave"
 draft: false
 layout: "single"
+paperTutorialTestFile: "https://github.com/Chaste/project_Plos2013/blob/5b522e0ce55ac81ce8728f858b10464e9d7cfb98/test/TestSpiralWaveLiteratePaper.hpp"
 ---
 
 
-This tutorial was generated from the file [TestSpiralWaveLiteratePaper.hpp](https://github.com/Chaste/project_Plos2013/blob/5b522e0ce55ac81ce8728f858b10464e9d7cfb98/test/TestSpiralWaveLiteratePaper.hpp).
 Note that the code is given in full at the bottom of the page.
 
 

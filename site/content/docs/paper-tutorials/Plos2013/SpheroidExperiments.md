@@ -2,9 +2,9 @@
 title: "Cell-based simulation: tumour spheroid with oxygen diffusion and uptake"
 draft: false
 layout: "single"
+paperTutorialTestFile: "https://github.com/Chaste/project_Plos2013/blob/5b522e0ce55ac81ce8728f858b10464e9d7cfb98/test/TestSpheroidExperimentsLiteratePaper.hpp"
 ---
 
-This tutorial was generated from the file [TestSpheroidExperimentsLiteratePaper.hpp](https://github.com/Chaste/project_Plos2013/blob/5b522e0ce55ac81ce8728f858b10464e9d7cfb98/test/TestSpheroidExperimentsLiteratePaper.hpp).
 Note that the code is given in full at the bottom of the page.
 
 
