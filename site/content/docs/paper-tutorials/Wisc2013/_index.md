@@ -24,26 +24,22 @@ You will also need the Chaste source code for this paper and the source for the 
 These are available from the [main Chaste download page](http://www.cs.ox.ac.uk/chaste/download.html) as extensions to
 Chaste release 3.2 under the projects heading,
 or you can [access the source code direct from our repository](https://github.com/Chaste/trac_archive/wiki/Chaste-Guides-_-Access-Code-Repository).
-For the latter option, using a command-line subversion client, you can get the required code in a new folder called 'Chaste' with the commands:
+For the latter option, using a command-line git client, you can get the required code in a new folder called 'Chaste' with the commands:
 
 ```
-
-#!sh
-svn --username anonymous checkout https://chaste.cs.ox.ac.uk/svn/chaste/tags/release_3.2 Chaste
+git clone --branch "release_3.2" https://github.com/Chaste/Chaste.git Chaste
 cd Chaste/projects
-svn --username anonymous checkout https://chaste.cs.ox.ac.uk/svn/chaste/tags/FunctionalCuration_release_3.2 FunctionalCuration
-svn --username anonymous checkout https://chaste.cs.ox.ac.uk/svn/chaste/tags/Wisc2013_release_3.2 Wisc2013
+git clone --branch "FunctionalCuration_release_3.2" https://github.com/Chaste/project_FunctionalCuration.git FunctionalCuration
+git clone --branch "Wisc2013_release_3.2" https://github.com/Chaste/project_Wisc2013.git Wisc2013
 ```
-
-Use your email address as the password for the 'anonymous' account.
 
 **NB**: Note that the code for this paper *will not work* with Chaste release 3.1 or earlier.
 It has been tested with release 3.3, but will not be tested with future versions.
 
-You are now ready to [run the simulations featured in the paper](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Wisc2013-_-Crypt-Proliferation).
+You are now ready to [run the simulations featured in the paper](./cryptproliferation).
 
-For further information on using Chaste, see our [extensive guide material](https://github.com/Chaste/trac_archive/wiki/Chaste-Guides).
-You may also wish to look at some of the [basic user tutorials](https://github.com/Chaste/trac_archive/wiki/User-Tutorials).
+For further information on using Chaste, see our [extensive guide material](/docs/user-guides/).
+You may also wish to look at some of the [basic user tutorials](/docs/user-tutorials/).
 
 
 -----
