@@ -1,9 +1,11 @@
-This tutorial was generated from the file projects/Wisc2013/test/TestCryptProliferationLiteratePaper.hpp at revision r22049.
+---
+title: "Connecting models to data in multiscale multicellular tissue simulations"
+draft: false
+layout: "single"
+paperTutorialTestFile: "https://github.com/Chaste/project_Wisc2013/blob/8db731800a58c7ffb15b949c87cfd397adb4e5a7/test/TestCryptProliferationLiteratePaper.hpp"
+---
+
 Note that the code is given in full at the bottom of the page.
-
-
-
-## Connecting models to data in multiscale multicellular tissue simulations
 
 This Chaste test file runs the main protocols for the above
 [paper published in ICCS2013](http://dx.doi.org/10.1016/j.procs.2013.05.235).
