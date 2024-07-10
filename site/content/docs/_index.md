@@ -38,7 +38,7 @@ contribute new code or changes back to the core Chaste code you can either:
 3. Stay right up to date with latest developments using our git `develop`
    branch.
 
-and follow subsequent **User's** guides. The first option is most stable, and
+and follow subsequent [User guides](/docs/user-guides/). The first option is most stable, and
 recommended for new users so the code doesn't change underneath you. The second
 option will let you stay up to date with the latest release, which can be a good
 idea so that your code will also work on the latest versions of Chaste
@@ -61,6 +61,13 @@ Perusing the [release notes](release-notes/release-notes) and
 [changes since last release](release-notes/changes-since-last-release) can
 give you a good overview of what features are in each release, and what has been
 added since.
+
+---
+
+If you have been forwarded here from the old www.cs.ox.ac.uk/chaste/downloads page
+you can find the archived contents of that site [here](https://chaste.cs.ox.ac.uk/old-chaste-data/downloads/), 
+Note that the *[projects](https://chaste.cs.ox.ac.uk/old-chaste-data/downloads/projects/)* 
+folder contains code associated with older research paper 'projects'.
 
 ## Installing Dependencies
 
