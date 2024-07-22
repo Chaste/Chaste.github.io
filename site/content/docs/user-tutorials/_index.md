@@ -91,6 +91,9 @@ in a terminal and it will return either a directory path or nothing -- in which 
 * [UserTutorials/SolvingElasticityProblems](solvingelasticityproblems/) - computing the deformation of a nonlinearly elastic body
 * [UserTutorials/SolvingMoreElasticityProblems](solvingmoreelasticityproblems/)
 
+### Command line functionality
+* [UserTutorials/CommandLineArguments](commandlinearguments/) - Utilising command line arguments as simulation parameters
+
 ---
 
 ## Cardiac
