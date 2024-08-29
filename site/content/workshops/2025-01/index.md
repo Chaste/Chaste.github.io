@@ -1,5 +1,5 @@
 ---
-title: "Chaste workshop on cell-based modelling"
+title: "Chaste Workshop on Cell-Based Modelling"
 draft: false
 images: []
 toc: true
@@ -33,23 +33,27 @@ development.
 
 ## Audience
 This workshop is aimed at anyone with an interest in developing, or learning
-more about multi-scale computational cell based models. In order to get the 
-most out of the workshop participants should have a working knowledge of 
-C++ and some experience of mathematical modelling in the life sciences. 
-On completion of the workshop, participants will be equipped with the skills 
-to use Chaste to develop a simulation of a biological problem related to their own research.
+more about multi-scale computational cell based models. Participants at all
+career stages are welcome. In order to get the most out of the workshop,
+participants should have a working knowledge of C++ and some experience of
+mathematical modelling in the life sciences. On completion of the workshop,
+participants will be equipped with the skills to use Chaste to develop a
+simulation of a biological problem related to their own research.
 
 ## Registration
 Admission to the workshop is free. We also have funding to cover accommodation 
 and travel within the UK for students and early career researchers.
 
-Due to limited seats, an application is required. Please fill out the 
-form here: [https://www.google.com/forms/about/](https://www.google.com/forms/about/)
+Due to limited seats, an application is required. To register, please fill out the 
+form: [forms.gle/yFd1JGaxyGzHyo4k6](https://forms.gle/yFd1JGaxyGzHyo4k6)
 
 We look forward to your participation!
 
-For additional information, please contact Kwabena Amponsah 
-[kwabena.amponsah1@nottingham.ac.uk](mailto:kwabena.amponsah1@nottingham.ac.uk).
+
+{{< callout context="grey" >}}
+For additional information, please contact
+[Kwabena Amponsah](mailto:kwabena.amponsah1@nottingham.ac.uk)(kwabena.amponsah1@nottingham.ac.uk).
+{{< /callout >}}
 
 ### Supported by
 {{< img src="/docs/ukri-bbsrc-square-logo.png" alt="BBSRC Logo" h="150px" >}}<br>
