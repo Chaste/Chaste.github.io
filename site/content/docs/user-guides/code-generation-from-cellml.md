@@ -326,7 +326,7 @@ Full example:
 
 Chaste has the ability to check at each time step that cell model variables have not gone out of an expected range. 
 This is especially useful for Hodgkin-Huxley style gating variables, or ion channel Markov state occupancies, which (being probabilities) must lie between 0 and 1; and also for concentrations which must be non-negative.
-At code generation time, methods are added that will throw an error when running code *built under `CMAKE_BUILD_TYPE=Debug`* (but not with `Release` or other [optimised build types](/docs/dev-guides/cmake-build-guide/#chaste-configuration-options)) if variables go out of range, with a suitable tolerance [if using CVODE](https://sundials.readthedocs.io/en/latest/cvode/Usage/index.html#advice-on-controlling-unphysical-negative-values).
+At code generation time, methods are added that will throw an error when running code *built under `CMAKE_BUILD_TYPE=Debug`* (but not with `Release` or other [optimised build types](../../dev-guides/cmake-build-guide/#chaste-configuration-options)) if variables go out of range, with a suitable tolerance [if using CVODE](https://sundials.readthedocs.io/en/latest/cvode/Usage/index.html#advice-on-controlling-unphysical-negative-values).
 
 {{< callout context="note" title="Note" icon="info-circle" >}}
 CellML files that are tagged with suitable [standardised names](#standardised-names) will automatically generate checks when the [Oxmeta ontology](https://github.com/ModellingWebLab/ontologies/blob/master/oxford-metadata.ttl) identifies those standardised names as gating variables/concentrations. So you no longer have to manually specify these checks - anything the ontology identifies as a gating variable or concentration will get the methods automatically.
