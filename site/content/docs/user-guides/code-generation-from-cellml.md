@@ -9,8 +9,8 @@ layout: "single"
 
 {{< callout context="note" title="Note" icon="info-circle" >}}
 
-This is the guide for chaste_codegen, the **Python 3** code generator. For the
-Python 2 code generator (PyCml) used up to release 2019.1, see the
+This is the guide for chaste_codegen, the **Python 3** code generator used in Chaste 2021.1 onwards. 
+For the Python 2 code generator (PyCml) used up to release 2019.1, see the
 [release 2019.1](https://github.com/Chaste/Chaste/releases/tag/release_2019.1)
 version of this guide.
 
@@ -62,7 +62,7 @@ project within your own project.
 {{< callout context="note" title="Note" icon="info-circle" >}}
 
 Unlike its predecessor, chaste_codegen calculates its own
-analytic jacobians and does not use `.out` files.
+analytic jacobians (using [SymPy](https://www.sympy.org) in the background) and no longer needs users to manually run the proprietary Maple software to generate `.out` files.
 
 {{< /callout >}}
 
@@ -94,8 +94,8 @@ project-specific options, please make use of dynamic loading (see
 ### Dynamic loading
 
 If the CellML file is placed within a `dynamic` folder (e.g.
-[`heart/dynamic`](https://github.com/Chaste/Chaste/tree/develop/heart/dynamic)), however, it will be compiled to a shared library
-suitable for loading dynamically by the executable. In this case, only a single
+[`heart/dynamic`](https://github.com/Chaste/Chaste/tree/develop/heart/dynamic)), it will be compiled to a shared library
+suitable for loading dynamically at runtime by compiled tests/executables. In this case, only a single
 output variant (.hpp & .cpp pair) can be generated, so by default normal cells
 will be generated (see [command line arguments](#command-line-arguments)). If
 other types are required, edit `CODEGEN_EXTRA_ARGS` (see
@@ -324,11 +324,15 @@ Full example:
 
 #### Variable range checking
 
-Chaste has the ability to check at each time step that cell model variables have
-not gone out of an expected range. This is especially useful for gating
-variables, which must lie between 0 and 1, being probabilities. In order to take
-advantage of this, you must annotate your model to specify the expected range,
-using the `pycml:range-low` and `pycml:range-high` annotations, e.g.
+Chaste has the ability to check at each time step that cell model variables have not gone out of an expected range. 
+This is especially useful for Hodgkin-Huxley style gating variables, or ion channel Markov state occupancies, which (being probabilities) must lie between 0 and 1; and also for concentrations which must be non-negative.
+At code generation time, methods are added that will throw an error when running code *built under `CMAKE_BUILD_TYPE=Debug`* (but not with `Release` or other [optimised build types](../../dev-guides/cmake-build-guide/#chaste-configuration-options)) if variables go out of range, with a suitable tolerance [if using CVODE](https://sundials.readthedocs.io/en/latest/cvode/Usage/index.html#advice-on-controlling-unphysical-negative-values).
+
+{{< callout context="note" title="Note" icon="info-circle" >}}
+CellML files that are tagged with suitable [standardised names](#standardised-names) will automatically generate checks when the [Oxmeta ontology](https://github.com/ModellingWebLab/ontologies/blob/master/oxford-metadata.ttl) identifies those standardised names as gating variables/concentrations. So you no longer have to manually specify these checks - anything the ontology identifies as a gating variable or concentration will get the methods automatically.
+{{< /callout >}}
+
+In order to take advantage of this for variables that the ontology has not automatically identified as probabilities or concentrations, you must annotate your model to specify the expected range, using the `pycml:range-low` and `pycml:range-high` annotations, e.g.
 
 ```xml
 <range-low xmlns="https://chaste.comlab.ox.ac.uk/cellml/ns/pycml#">0</range-low>
