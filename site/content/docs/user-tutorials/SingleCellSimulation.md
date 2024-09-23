@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestSingleCellSimulationTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestSingleCellSimulationTutorial.hpp) at revision [3c544f98da9c](https://github.com/Chaste/Chaste/commit/3c544f98da9c243234f00db27b7aadaaa98eeef6). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestSingleCellSimulationTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestSingleCellSimulationTutorial.hpp) at revision [ae22e7ae012e](https://github.com/Chaste/Chaste/commit/ae22e7ae012e9fb79231d8294d3bdde565561820). Note that the code is given in full at the bottom of the page.
 ## An example showing how to run a single cell simulation
 
 ### Introduction
@@ -50,7 +50,8 @@ public:
 
 CVODE is still an optional Chaste dependency, but it is highly recommended for
 working with single cell simulations. This tutorial code will only run if CVODE is installed and enabled
-(see InstallCvode and ChasteGuides/CmakeBuildGuide).
+(see [InstallSundials](/docs/dev-guides/developer-install-guide/#sundials) for a manual installation if needed,
+and [CmakeBuildGuide](/docs/dev-guides/cmake-build-guide/)).
 
 ```cpp
 #ifdef CHASTE_CVODE

@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningBidomainSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestRunningBidomainSimulationsTutorial.hpp) at revision [1dfba06b4d82](https://github.com/Chaste/Chaste/commit/1dfba06b4d8265be2322817e6dfe1536071d9a0a). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningBidomainSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestRunningBidomainSimulationsTutorial.hpp) at revision [140cb4550f47](https://github.com/Chaste/Chaste/commit/140cb4550f479528f0873548f39c3abdd0d14826). Note that the code is given in full at the bottom of the page.
 ## An example showing how to run bidomain simulations
 
 ### Introduction
@@ -48,7 +48,7 @@ a class called `Cell<CELLMODEL>FromCellML`. So to use a particular cell model in
 given the CellML, you just have to do two things: include this `.hpp` file, and then use the class.
 For example, we will use the Luo-Rudy 1991 model, so we have to include the following, and
 later on use `CellLuoRudy1991FromCellML` as the cell model class.
-See ["ChasteGuides/CodeGenerationFromCellML"] for more information on this process.
+See [CodeGenerationFromCellML](/docs/user-guides/code-generation-from-cellml/) for more information on this process.
 
 ```cpp
 #include "LuoRudy1991.hpp"
@@ -93,8 +93,8 @@ and we also initialise the stimulus to have magnitude -500000 uA/cm^3 and durati
 
 ```cpp
     PointStimulus2dCellFactory()
-        : AbstractCardiacCellFactory<2>(),
-          mpStimulus(new SimpleStimulus(-5e5, 0.5))
+            : AbstractCardiacCellFactory<2>(),
+              mpStimulus(new SimpleStimulus(-5e5, 0.5))
     {
     }
 ```
@@ -111,7 +111,7 @@ class just so that the user doesn't have to create them here.
     {
         double x = pNode->rGetLocation()[0];
         double y = pNode->rGetLocation()[1];
-        if (x<0.02+1e-6 && y<0.02+1e-6) // ie if x<=0.02 and y<=0.02 (and we are assuming here x,y>=0).
+        if (x < 0.02 + 1e-6 && y < 0.02 + 1e-6) // ie if x<=0.02 and y<=0.02 (and we are assuming here x,y>=0).
         {
 ```
 
@@ -173,7 +173,7 @@ output directory and filename-prefix. Note that the spatial units in cardiac Cha
 so that mesh 2D_0_to_1mm_800_elements is a mesh over [0,0.1]x[0,0.1].
 
 ```cpp
-        HeartConfig::Instance()->SetSimulationDuration(5.0); //ms
+        HeartConfig::Instance()->SetSimulationDuration(5.0); // ms
         HeartConfig::Instance()->SetMeshFileName("mesh/test/data/2D_0_to_1mm_800_elements");
         HeartConfig::Instance()->SetOutputDirectory("BidomainTutorial");
         HeartConfig::Instance()->SetOutputFilenamePrefix("results");
@@ -194,7 +194,7 @@ post-processing).
 If the mesh is a DistributedTetrahedralMesh then we can use parallel VTK files (.pvtu)
 
 ```cpp
-        //HeartConfig::Instance()->SetVisualizeWithParallelVtk(true);
+        // HeartConfig::Instance()->SetVisualizeWithParallelVtk(true);
 ```
 
 Next, we have to create a cell factory of the type we defined above.
@@ -206,7 +206,7 @@ Next, we have to create a cell factory of the type we defined above.
 Now we create a problem class using (a pointer to) the cell factory.
 
 ```cpp
-        BidomainProblem<2> bidomain_problem( &cell_factory );
+        BidomainProblem<2> bidomain_problem(&cell_factory);
 ```
 
 This is enough setup to run a simulation: we could now call `Initialise()`
@@ -283,9 +283,9 @@ will mention how to do parallel access).
 
 ```cpp
         ReplicatableVector res_repl(bidomain_problem.GetSolution());
-        for (unsigned i=0; i<res_repl.GetSize(); i++)
+        for (unsigned i = 0; i < res_repl.GetSize(); i++)
         {
-        //    std::cout << res_repl[i] << "\n";
+            //    std::cout << res_repl[i] << "\n";
         }
 ```
 
@@ -328,8 +328,8 @@ private:
 
 public:
     PointStimulus2dCellFactory()
-        : AbstractCardiacCellFactory<2>(),
-          mpStimulus(new SimpleStimulus(-5e5, 0.5))
+            : AbstractCardiacCellFactory<2>(),
+              mpStimulus(new SimpleStimulus(-5e5, 0.5))
     {
     }
 
@@ -337,7 +337,7 @@ public:
     {
         double x = pNode->rGetLocation()[0];
         double y = pNode->rGetLocation()[1];
-        if (x<0.02+1e-6 && y<0.02+1e-6) // ie if x<=0.02 and y<=0.02 (and we are assuming here x,y>=0).
+        if (x < 0.02 + 1e-6 && y < 0.02 + 1e-6) // ie if x<=0.02 and y<=0.02 (and we are assuming here x,y>=0).
         {
             return new CellLuoRudy1991FromCellML(mpSolver, mpStimulus);
         }
@@ -354,7 +354,7 @@ class TestRunningBidomainSimulationsTutorial : public CxxTest::TestSuite
 public:
     void TestSimpleSimulation()
     {
-        HeartConfig::Instance()->SetSimulationDuration(5.0); //ms
+        HeartConfig::Instance()->SetSimulationDuration(5.0); // ms
         HeartConfig::Instance()->SetMeshFileName("mesh/test/data/2D_0_to_1mm_800_elements");
         HeartConfig::Instance()->SetOutputDirectory("BidomainTutorial");
         HeartConfig::Instance()->SetOutputFilenamePrefix("results");
@@ -362,11 +362,11 @@ public:
         HeartConfig::Instance()->SetVisualizeWithMeshalyzer(true);
         HeartConfig::Instance()->SetVisualizeWithCmgui(true);
         HeartConfig::Instance()->SetVisualizeWithVtk(true);
-        //HeartConfig::Instance()->SetVisualizeWithParallelVtk(true);
+        // HeartConfig::Instance()->SetVisualizeWithParallelVtk(true);
 
         PointStimulus2dCellFactory cell_factory;
 
-        BidomainProblem<2> bidomain_problem( &cell_factory );
+        BidomainProblem<2> bidomain_problem(&cell_factory);
 
         // bidomain_problem.Initialise();
         // bidomain_problem.Solve();
@@ -384,9 +384,9 @@ public:
         bidomain_problem.Solve();
 
         ReplicatableVector res_repl(bidomain_problem.GetSolution());
-        for (unsigned i=0; i<res_repl.GetSize(); i++)
+        for (unsigned i = 0; i < res_repl.GetSize(); i++)
         {
-        //    std::cout << res_repl[i] << "\n";
+            //    std::cout << res_repl[i] << "\n";
         }
 
         HeartEventHandler::Headings();
