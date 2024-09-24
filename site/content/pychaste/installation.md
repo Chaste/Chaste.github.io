@@ -54,15 +54,15 @@ jupyter lab
 
 ## Docker Image
 
-The docker image comes with PyChaste and Jupyter pre-installed. If you do not
+The Chaste docker image comes with PyChaste and Jupyter pre-installed. If you do not
 already have docker installed, please follow the instructions to
 [get docker](https://docs.docker.com/get-docker/).
 
-With docker installed, you can pull the image and launch a PyChaste container
-with the following command:
+With docker installed, you can pull the Chaste docker image and launch a 
+PyChaste container with the following command:
 
 ```sh
-docker run -it --init --rm -p 8888:8888 chaste/pychaste
+docker run -it --init --rm -v chaste_data:/home/chaste -p 8888:8888 chaste/release
 ```
 
 You can open a Jupyter notebook from the container by launching a web
@@ -70,49 +70,35 @@ browser and going to the address `http://localhost:8888`.
 
 ## Build from Source
 
-To build PyChaste from source, we first need to install Chaste. See the
+First, we need to install the Chaste dependencies. See the
 [Chaste Install Guides](../../docs/installguides/) for information on installing
 Chaste dependencies.
 
 After installing the required dependencies, clone the Chaste repository:
 
 ```sh
-git clone --recursive https://github.com/Chaste/Chaste.git
+git clone https://github.com/Chaste/Chaste.git
 ```
-
-Clone the PyChaste repository into the Chaste projects directory:
-
-```sh
-git clone --recursive https://github.com/Chaste/PyChaste.git /path/to/Chaste/projects/PyChaste
-```
-
-{{< callout context="note" title="Note" icon="info-circle" >}}
-
-`--recursive` is important for retrieving git submodules. The build will fail
-without it!
-
-{{< /callout >}}
 
 From outside the source tree, create a build folder and generate the CMake
 configuration:
 
 ```sh
 mkdir build && cd build
-cmake /path/to/Chaste
+cmake -DChaste_ENABLE_PYCHASTE=ON /path/to/Chaste
 ```
 
 To build PyChaste, run:
 
 ```sh
-make -j4 chaste_project_PyChaste
-make -j4 chaste_project_PyChaste_Python
+make -j4 pychaste
 ```
 
 Finally, `pip install` the built package with these commands:
 
 ```sh
-cd /path/to/build/projects/PyChaste/python/chaste
-pip install .
+cd /path/to/build
+pip install pychaste/package
 ```
 
 {{< callout context="tip" title="See Also" icon="rocket" >}}
