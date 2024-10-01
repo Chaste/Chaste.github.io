@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestSingleCellSimulationTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestSingleCellSimulationTutorial.hpp) at revision [ae22e7ae012e](https://github.com/Chaste/Chaste/commit/ae22e7ae012e9fb79231d8294d3bdde565561820). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestSingleCellSimulationTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestSingleCellSimulationTutorial.hpp) at revision [19713b20fdb8](https://github.com/Chaste/Chaste/commit/19713b20fdb8e2e4b0ecf34dae3a40876630155e). Note that the code is given in full at the bottom of the page.
 ## An example showing how to run a single cell simulation
 
 ### Introduction
@@ -154,7 +154,7 @@ to a numerical approximation. This can be done with the following command:
 You can also change any parameters that are labelled in the cell model.
 
 Instructions for annotating parameters can be found at
-[ChasteGuides/CodeGenerationFromCellML](https://chaste.cs.ox.ac.uk/trac/wiki/ChasteGuides/CodeGenerationFromCellML)
+[ChasteGuides/CodeGenerationFromCellML](/docs/user-guides/code-generation-from-cellml/).
 
 Here we show how to change the parameter dictating the maximal conductance of the IKs current.
 Note this call actually leaves it unchanged from the default,
@@ -215,7 +215,7 @@ for the same reason.
 This call will add to the solution object the ODE system's labelled "derived quantities"
 these are things that are not state variables, but are calculated from state variables
 (e.g. currents), and have been tagged in the CellML file with metadata.
-See [CodeGenerationFromCellML](https://chaste.cs.ox.ac.uk/trac/wiki/ChasteGuides/CodeGenerationFromCellML)
+See [CodeGenerationFromCellML](/docs/user-guides/code-generation-from-cellml/)
 for annotation instructions.
 
 ```cpp
