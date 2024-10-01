@@ -124,7 +124,7 @@ Do not edit it manually, as your changes will be overwritten!
 
 ## Continuum mechanics
 - Write strain after solve
-  - [line 944 of TestCompressibleNonlinearElasticitySolver.hpp](https://github.com/Chaste/Chaste/blob/develop/continuum_mechanics/test/TestCompressibleNonlinearElasticitySolver.hpp#L944)
+  - [line 946 of TestCompressibleNonlinearElasticitySolver.hpp](https://github.com/Chaste/Chaste/blob/develop/continuum_mechanics/test/TestCompressibleNonlinearElasticitySolver.hpp#L946)
 - Get or output stresses during a solve
   - [line 634 of TestIncompressibleNonlinearElasticitySolver.hpp](https://github.com/Chaste/Chaste/blob/develop/continuum_mechanics/test/TestIncompressibleNonlinearElasticitySolver.hpp#L634)
 - Solve nonlinear elasticity problems
