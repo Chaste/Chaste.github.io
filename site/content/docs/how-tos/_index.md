@@ -118,7 +118,7 @@ Do not edit it manually, as your changes will be overwritten!
 
 ### Simulation
 - Time various aspects of a cell-based simulation using `CellBasedEventHandler`.
-  - [line 434 of TestCryptSimulation2dNightly.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/simulation/TestCryptSimulation2dNightly.hpp#L434)
+  - [line 436 of TestCryptSimulation2dNightly.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/simulation/TestCryptSimulation2dNightly.hpp#L436)
 - Save and load ('checkpoint') a cell-based simulation to file.
   - [line 135 of TestGenerateSteadyStateCrypt.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/simulation/TestGenerateSteadyStateCrypt.hpp#L135)
 
