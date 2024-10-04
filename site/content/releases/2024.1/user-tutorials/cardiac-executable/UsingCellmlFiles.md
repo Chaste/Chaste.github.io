@@ -6,7 +6,7 @@ images: []
 version: "2024.1"
 ---
 
-{{< callout context="note" title="File related to this tutorial" icon="folder" >}} 
+{{< callout context="note" title="File related to this tutorial" icon="outline/folder" >}} 
 [UsingCellmlFiles.tgz](/docs/UsingCellmlFiles.tgz)
 {{< /callout >}}
 

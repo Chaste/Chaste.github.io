@@ -13,7 +13,7 @@ then the best versions are selected and installed automatically for you. If you
 are doing a manual Linux installation, then this page shows you the supported
 and preferred versions of each dependency.
 
-{{< callout context="note" title="Note" icon="info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 This page reflects the status of the 2024.1 release, not the current development version.
 {{< /callout >}}
 
@@ -41,7 +41,7 @@ minimum required to work fine.
 |------------|-----------------|---------|---------|---------|---------|---------|--------------|---------|---------|---------|---------|---------|---------|
 | 🟥 <3.16.3 | 🟩 3.16.3+ [^b] | 🟨 3.17 | 🟨 3.18 | 🟨 3.19 | 🟨 3.20 | 🟨 3.21 | 🟢 3.22 [^a] | 🟨 3.23 | 🟨 3.24 | 🟨 3.25 | 🟨 3.26 | 🟨 3.27 | 🟨 3.28 |
 
-{{< callout context="note" title="Note" icon="info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 Scons was the legacy build system and is no longer supported.
 {{< /callout >}}
 
@@ -73,7 +73,7 @@ to compile Chaste with no problems.
 Preferred library versions are the default versions on Ubuntu LTS releases, and
 specific versions that we regularly test Chaste with.
 
-{{< callout context="note" title="Note" icon="info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 In some instances the version number is linked to the GitHub issue in which support was/is being introduced.
 {{< /callout >}}
 
@@ -103,7 +103,7 @@ In some instances the version number is linked to the GitHub issue in which supp
 |                |                   |                  |                     | 🟥 <3.1     |                    |               |                  |
 
 
-{{< callout context="caution" title="Caution" icon="alert-triangle" >}}
+{{< callout context="caution" title="Caution" icon="outline/alert-triangle" >}}
 Some versions of dependencies have quirks that may not be documented on this
 page, but you may find hints in the documentation for the dependency.
 {{< /callout >}}

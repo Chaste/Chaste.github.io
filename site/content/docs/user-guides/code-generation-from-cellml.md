@@ -7,7 +7,7 @@ toc: true
 layout: "single"
 ---
 
-{{< callout context="note" title="Note" icon="info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 This is the guide for chaste_codegen, the **Python 3** code generator used in Chaste 2021.1 onwards. 
 For the Python 2 code generator (PyCml) used up to release 2019.1, see the
@@ -59,7 +59,7 @@ and tagging of many of the common parameters you may wish to vary/investigate.
 See the `README` at the previous link for instructions on including this
 project within your own project.
 
-{{< callout context="note" title="Note" icon="info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 Unlike its predecessor, chaste_codegen calculates its own
 analytic jacobians (using [SymPy](https://www.sympy.org) in the background) and no longer needs users to manually run the proprietary Maple software to generate `.out` files.
@@ -81,7 +81,7 @@ set(Chaste_CODEGEN_EXTRA_ARGS "--use-modifiers")
 
 ### Model-specific conversion options
 
-{{< callout context="note" title="Note" icon="info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 Unlike its predecessor, chaste_codegen does not make use of config files, instead
 chaste_codegen uses [command line arguments](#command-line-arguments). In order
@@ -228,7 +228,7 @@ Chaste CellML translation process.
   `UseCellMLDefaultStimulus` method that uses a `RegularStimulus` class. The
   presence of `membrane_stimulus_current_offset` is optional.
 
-{{< callout context="note" title="Note" icon="info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 - All non-state-variables, annotated in this way, are accessible as
   [parameters](#modifiable-parameters) or
@@ -328,7 +328,7 @@ Chaste has the ability to check at each time step that cell model variables have
 This is especially useful for Hodgkin-Huxley style gating variables, or ion channel Markov state occupancies, which (being probabilities) must lie between 0 and 1; and also for concentrations which must be non-negative.
 At code generation time, methods are added that will throw an error when running code *built under `CMAKE_BUILD_TYPE=Debug`* (but not with `Release` or other [optimised build types](../../dev-guides/cmake-build-guide/#chaste-configuration-options)) if variables go out of range, with a suitable tolerance [if using CVODE](https://sundials.readthedocs.io/en/latest/cvode/Usage/index.html#advice-on-controlling-unphysical-negative-values).
 
-{{< callout context="note" title="Note" icon="info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 CellML files that are tagged with suitable [standardised names](#standardised-names) will automatically generate checks when the [Oxmeta ontology](https://github.com/ModellingWebLab/ontologies/blob/master/oxford-metadata.ttl) identifies those standardised names as gating variables/concentrations. So you no longer have to manually specify these checks - anything the ontology identifies as a gating variable or concentration will get the methods automatically.
 {{< /callout >}}
 
@@ -420,7 +420,7 @@ is a cytosolic_calcium_concentration but is also marked as derived quantity:
 chaste_codegen can be supplied with command line arguments directly, to specify
 the desired conversion.
 
-{{< callout context="note" title="Note" icon="info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 Unlike its predecessor, chaste_codegen does not make use of config files.
 
@@ -516,7 +516,7 @@ This adds an additional current to the model, specified by:
 I_data = g_data*(V - V_data);
 ```
 
-{{< callout context="note" title="Note" icon="info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 This current affects `dV/dt` for single cell simulations only. It is not
 reported by `GetIIonic()` so it assumes `I_data=0` in tissue simulations!

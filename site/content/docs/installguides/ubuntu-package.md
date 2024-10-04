@@ -101,7 +101,7 @@ sudo apt update
 sudo apt install chaste-dependencies
 ```
 
-{{< callout context="warning" title="Known issue affecting Ubuntu 22.04" icon="alert-triangle" >}}
+{{< callout context="caution" title="Known issue affecting Ubuntu 22.04" icon="outline/alert-triangle" >}}
 
 Due to a change in `libexpat` that addresses a security vulnerability, VTK functionality is currently affected.
 This is a [known issue](https://bugs.launchpad.net/ubuntu/+source/expat/+bug/2058415) that cannot be easily addressed by Chaste.

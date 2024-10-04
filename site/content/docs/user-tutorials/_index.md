@@ -8,7 +8,7 @@ layout: "single"
 images: []
 ---
 
-{{< callout context="note" title="Note" icon="info-circle" >}} 
+{{< callout context="note" title="Note" icon="outline/info-circle" >}} 
 If you are viewing this on the Chaste website, **the tutorials here are automatically updated to work with the latest development version of Chaste**.
 They are not guaranteed to work with any release version, in fact they are unlikely to!
 If you are working with a release version of the code then this page is archived upon releases; the tutorials corresponding to each release version of Chaste can be found on the [releases page](/releases/).

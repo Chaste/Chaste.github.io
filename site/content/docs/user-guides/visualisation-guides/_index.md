@@ -24,7 +24,7 @@ stages*
 
 * [Combining consecutive cell-based simulations](combine-consecutive-simulations)
 
-{{< callout context="tip" title="See Also" icon="rocket" >}}
+{{< callout context="tip" title="See Also" icon="outline/rocket" >}}
 
 - [Chaste Tutorials](../../user-tutorials/): Visualisation is also discussed in
   some of the tutorials.

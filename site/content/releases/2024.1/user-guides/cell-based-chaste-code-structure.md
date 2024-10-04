@@ -211,7 +211,7 @@ in a straightforward manner, by using whichever components are desired, and
 prevent unnecessary repetition of code shared by the crypt and tumour spheroid
 models. More examples are available as [tutorials](../../user-tutorials/).
 
-{{< callout context="tip" title="See Also" icon="rocket" >}}
+{{< callout context="tip" title="See Also" icon="outline/rocket" >}}
 
 - [Structure of Cell-based Simulations](../structure-of-cell-based-simulations)
 - [User Tutorials](../../user-tutorials/)
