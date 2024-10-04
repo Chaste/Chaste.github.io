@@ -23,6 +23,7 @@ If you don't know anything about these we recommend a first course in C++, there
 There is also a [Scientific Computing in C++ book](http://www.springer.com/computer/swe/book/978-1-4471-2735-2) by some of our team available too.
 
 To run any of these tutorials, it is assumed you have first configured Chaste using `CMake`:
+
 ```bash
 cmake /path/to/chaste/src
 ```
