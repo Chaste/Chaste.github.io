@@ -31,7 +31,7 @@ jobs:
       - name: Install Hugo
         run: |
           sudo snap install hugo
-          hugo --version
+          hugo version
           
       - name: Setup Node.js
         uses: actions/setup-node@v4
