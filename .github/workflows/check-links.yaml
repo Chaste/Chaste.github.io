@@ -25,13 +25,28 @@ jobs:
     steps:
     
       - name: Checkout
-        uses: actions/checkout@v3
-
+        uses: actions/checkout@v4
+      
+      - name: Install Hugo
+        run: |
+          sudo snap install hugo
+          hugo --version
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
       - name: Build site
         run: |
           npm install
           npm run build
         working-directory: site
+        env:
+          HUGO_ENVIRONMENT: production
+          HUGO_ENV: production
+          TZ: Europe/London
 
       - name: Setup python
         uses: actions/setup-python@v5
@@ -52,5 +67,3 @@ jobs:
         run: |
           bash generate-summary.sh
           cat broken-links.md > $GITHUB_STEP_SUMMARY
-      
-
