@@ -20,7 +20,7 @@ jobs:
   # Single deploy job since we're just deploying
   build-and-check-links:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     
     steps:
     
