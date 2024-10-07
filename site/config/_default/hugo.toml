@@ -1,5 +1,5 @@
 title = "Chaste"
-baseurl = "/"
+baseURL = "https://chaste.github.io/"
 canonifyURLs = false
 disableAliases = true
 disableHugoGeneratorInject = true
