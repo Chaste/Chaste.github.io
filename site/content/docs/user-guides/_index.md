@@ -7,7 +7,7 @@ toc: true
 layout: "single"
 ---
 
-{{< callout context="note" title="Note" icon="info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 Before reading this have a look at [Getting Started](../) to decide whether you
 are a _user_ of releases or a _developer_ contributing back to Chaste core code.

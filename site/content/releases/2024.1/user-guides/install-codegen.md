@@ -23,7 +23,7 @@ prerequisites, should be installed for you automatically.
 
 ## Installing chaste_codegen with an internet connection
 
-{{< callout context="note" title="Note" icon="info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 The Chaste build process automatically creates a virtual environment and installs
 chaste_codegen from [PyPI](https://pypi.org/project/chaste-codegen/) into
@@ -112,7 +112,7 @@ activated:
 - If there are any installation instructions contained in the documentation,
   follow them. Otherwise, use `python3 setup.py install`
 
-{{< callout context="tip" title="See Also" icon="rocket" >}}
+{{< callout context="tip" title="See Also" icon="outline/rocket" >}}
 
 [Code Generation from CellML](../code-generation-from-cellml)
 

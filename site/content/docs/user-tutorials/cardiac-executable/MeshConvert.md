@@ -5,7 +5,7 @@ layout: "single"
 images: []
 ---
 
-{{< callout context="note" title="File related to this tutorial" icon="folder" >}} 
+{{< callout context="note" title="File related to this tutorial" icon="outline/folder" >}} 
 [MeshConvert.tgz](/docs/MeshConvert.tgz)
 {{< /callout >}}
 

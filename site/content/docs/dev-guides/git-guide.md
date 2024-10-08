@@ -10,7 +10,7 @@ layout: "single"
 This page is a brief guide on using Git, designed primarily for developers
 that are already used to Subversion.
 
-{{< callout context="tip" title="See Also" icon="rocket" >}}
+{{< callout context="tip" title="See Also" icon="outline/rocket" >}}
 [Pro Git](https://git-scm.com/book/en/): Everything
 you need to know about Git.
 {{< /callout >}}
@@ -384,6 +384,6 @@ projects, or to convert existing svn ones to git.
   Use the `.git/info/excludes` file
   [as explained here](http://stackoverflow.com/questions/1753070/git-ignore-files-only-locally).
 
-{{< callout context="tip" title="See Also" icon="rocket" >}}
+{{< callout context="tip" title="See Also" icon="outline/rocket" >}}
 [Pull Request Strategy](../chaste-strategies/pull-request-strategy)
 {{< /callout >}}

@@ -191,7 +191,7 @@ Note this only works if all the changes have been merged into `develop`
 (clever!). If for any reason you have extra local changes, but definitely don't
 want them merging in, you need to use an extra `--force` flag.
 
-{{< callout context="tip" title="See Also" icon="rocket" >}}
+{{< callout context="tip" title="See Also" icon="outline/rocket" >}}
 * [External Developer Guide](../../external-developer-guide)
 * [Git Guide](../../git-guide)
 {{< /callout >}}

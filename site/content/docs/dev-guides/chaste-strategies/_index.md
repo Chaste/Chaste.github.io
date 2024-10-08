@@ -21,6 +21,6 @@ layout: "single"
 * [Refactoring Strategy](refactoring-strategy): When to refactor.
 * [Testing Strategy](testing-strategy): How to write tests.
 
-{{< callout context="tip" title="See Also" icon="rocket" >}}
+{{< callout context="tip" title="See Also" icon="outline/rocket" >}}
 [Developer Guides](../)
 {{< /callout >}}

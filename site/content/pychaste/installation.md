@@ -37,7 +37,7 @@ environment activated, run:
 mamba install -c pychaste -c conda-forge chaste
 ```
 
-{{< callout context="note" title="Note" icon="info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 Trying to install in an existing environment may fail if it already has
 conflicting dependencies installed!
@@ -101,7 +101,7 @@ cd /path/to/build
 pip install pychaste/package
 ```
 
-{{< callout context="tip" title="See Also" icon="rocket" >}}
+{{< callout context="tip" title="See Also" icon="outline/rocket" >}}
 
 [PyChaste Tutorials](../tutorials/)
 

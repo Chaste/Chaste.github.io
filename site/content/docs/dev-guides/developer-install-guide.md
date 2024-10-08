@@ -65,7 +65,7 @@ below, but make sure that you have the 'includes' and 'libraries' where required
 (if you don't know what this means then just follow all the below
 instructions!).
 
-{{< callout context="note" title="Note" icon="info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 The newest versions of libraries may not have been tested yet, so don't
 simply install latest version! Ideally follow these instructions, but if this
 isn't possible (or you have pre-installed versions) then check
@@ -812,7 +812,7 @@ Chaste code. See [Getting Started](../..) for the options to pick here. Once
 you've done this, you are ready to build and run the test suite -- see the
 [CMake First Run Guide](../../user-guides/cmake-first-run).
 
-{{< callout context="tip" title="See Also" icon="rocket" >}}
+{{< callout context="tip" title="See Also" icon="outline/rocket" >}}
 * [Code Repository Access](../access-code-repository)
 * [CMake First Run Guide](../../user-guides/cmake-first-run)
 {{< /callout >}}

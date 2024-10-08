@@ -22,62 +22,62 @@ Each release of Chaste should work with [all supported versions of Ubuntu](http:
 The package can be downloaded using your package manager (e.g. [apt](https://ubuntu.com/server/docs/package-management)) by adding our repository to your configuration.
 This can be done by, for example, opening a terminal and running
 
-```
+```bash
 sudo nano /etc/apt/sources.list.d/chaste.list
 ```
 
 and, depending on your version of Ubuntu, add **one** of the following lines to the `chaste.list` text file:
 
-{{< details "Ubuntu 24.04 LTS (coming soon)" >}}
-```
+{{< details "Ubuntu 24.04 LTS" open >}}
+```text
 deb [signed-by=/usr/share/keyrings/chaste.asc] https://chaste.github.io/ubuntu noble/
 ```
 {{< /details >}}
 
 {{< details "Ubuntu 23.10" >}}
-```
+```text
 deb [signed-by=/usr/share/keyrings/chaste.asc] https://chaste.github.io/ubuntu mantic/
 ```
 {{< /details >}}
 
 {{< details "Ubuntu 23.04" >}}
-```
+```text
 deb [signed-by=/usr/share/keyrings/chaste.asc] https://chaste.github.io/ubuntu lunar/
 ```
 {{< /details >}}
 
 {{< details "Ubuntu 22.10" >}}
-```
+```text
 deb [signed-by=/usr/share/keyrings/chaste.asc] https://chaste.github.io/ubuntu kinetic/
 ```
 {{< /details >}}
 
-{{< details "Ubuntu 22.04 LTS" open >}}
-```
+{{< details "Ubuntu 22.04 LTS" >}}
+```text
 deb [signed-by=/usr/share/keyrings/chaste.asc] https://chaste.github.io/ubuntu jammy/
 ```
 {{< /details >}}
 
 {{< details "Ubuntu 21.10" >}}
-```
+```text
 deb [signed-by=/usr/share/keyrings/chaste.asc] https://chaste.github.io/ubuntu hirsute/
 ```
 {{< /details >}}
 
 {{< details "Ubuntu 21.04" >}}
-```
+```text
 deb [signed-by=/usr/share/keyrings/chaste.asc] https://chaste.github.io/ubuntu impish/
 ```
 {{< /details >}}
 
 {{< details "Ubuntu 20.10" >}}
-```
+```text
 deb [signed-by=/usr/share/keyrings/chaste.asc] https://chaste.github.io/ubuntu groovy/
 ```
 {{< /details >}}
 
 {{< details "Ubuntu 20.04 LTS" >}}
-```
+```text
 deb [signed-by=/usr/share/keyrings/chaste.asc] https://chaste.github.io/ubuntu focal/
 ```
 {{< /details >}}
@@ -88,7 +88,7 @@ Note that the trailing "/" is necessary!
 
 Next, install the Chaste public licence key.
 Back in the terminal, type:
-```
+```bash
 sudo wget -O /usr/share/keyrings/chaste.asc https://chaste.github.io/chaste.asc
 ```
 
@@ -96,19 +96,19 @@ sudo wget -O /usr/share/keyrings/chaste.asc https://chaste.github.io/chaste.asc
 
 After following point 1 above, you should be able to install the dependencies for Chaste by running:
 
-```
+```bash
 sudo apt update
 sudo apt install chaste-dependencies
 ```
 
-{{< callout context="warning" title="Known issue affecting Ubuntu 22.04" icon="alert-triangle" >}}
+{{< callout context="caution" title="Known issue affecting Ubuntu 22.04" icon="outline/alert-triangle" >}}
 
 Due to a change in `libexpat` that addresses a security vulnerability, VTK functionality is currently affected.
 This is a [known issue](https://bugs.launchpad.net/ubuntu/+source/expat/+bug/2058415) that cannot be easily addressed by Chaste.
 
 If you are using Chaste on Ubuntu 22.04, a temporary workaround is to explicitly install and hold an older versions of `libexpat`:
 
-```
+```bash
 sudo apt install libexpat1=2.4.7-1 libexpat1-dev=2.4.7-1
 sudo apt-mark hold libexpat1 libexpat1-dev
 ```
@@ -126,7 +126,7 @@ See [Getting Started](../..) for more detail if you still aren't sure.
 
 You can obtain the latest stable release of the Chaste source code from our GitHub repository:
 
-```sh
+```bash
 git clone -b <release-tag> https://github.com/Chaste/Chaste.git
 ```
 
@@ -143,7 +143,7 @@ If you want a specific version of Chaste, you can download the source code from 
 
 To install the suggested packages:
 
-```
+```bash
 sudo apt update
 sudo apt install --install-recommends chaste-dependencies
 sudo apt install `dpkg -s chaste-dependencies | egrep "^Suggests" | cut -d "," -f 1-111 --output-delimiter " " | cut -d ":" -f 2`
