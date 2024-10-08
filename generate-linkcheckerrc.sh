@@ -29,4 +29,5 @@ echo "  ^.*doxygen-releases.*" >> linkcheckerrc
 echo "  ^.*doxygen-latest.*" >> linkcheckerrc
 echo "  ^.*github.com/Chaste/developer_wiki/wiki$" >> linkcheckerrc
 echo "  ^.*github.com/Chaste/trac_archive/wiki$" >> linkcheckerrc
+echo "  ^.*paper-tutorials/.*" >> linkcheckerrc   # TEMPORARY - ignore links in paper tutorials until they're finished
 echo "checkextern=1" >> linkcheckerrc

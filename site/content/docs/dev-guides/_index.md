@@ -7,7 +7,7 @@ toc: true
 layout: "single"
 ---
 
-{{< callout context="note" title="Note" icon="info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 Before reading this have a look at [Getting Started](../) to decide whether you
 are a _user_ of releases or a _developer_ contributing back to Chaste core code.
@@ -37,7 +37,7 @@ New developers should read the [User Guides](../user-guides/), and also see:
 - [Using Debug Macros](using-debug-macros): A guide on using the debug macros in
   Chaste.
 
-{{< callout context="tip" title="See Also" icon="rocket" >}}
+{{< callout context="tip" title="See Also" icon="outline/rocket" >}}
 
 [Chaste Strategies](chaste-strategies/): Guidelines for
 [naming variables](chaste-strategies/coding-standards-strategy),

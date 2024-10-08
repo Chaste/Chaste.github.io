@@ -8,7 +8,7 @@ layout: "single"
 version: "2024.1"
 ---
 
-{{< callout context="note" title="Note" icon="info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 Before you start -- if you are Chaste User, and never want to contribute back to
 the source code, you might want to consider just downloading one of the
 [release versions](https://github.com/Chaste/Chaste/releases) of Chaste.

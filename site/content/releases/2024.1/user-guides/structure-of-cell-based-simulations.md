@@ -88,7 +88,7 @@ File format information is given in the file `docs/FileFormats.html`, supplied
 with the release. (The latest version of this file may also be viewed
 [here](https://raw.githubusercontent.com/Chaste/Chaste/develop/docs/FileFormats.html)).
 
-{{< callout context="tip" title="See Also" icon="rocket" >}}
+{{< callout context="tip" title="See Also" icon="outline/rocket" >}}
 
 - [Cell-based Chaste Code Structure](../cell-based-chaste-code-structure)
 - [User Tutorials](../../user-tutorials/)

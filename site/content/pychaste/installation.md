@@ -37,7 +37,7 @@ environment activated, run:
 mamba install -c pychaste -c conda-forge chaste
 ```
 
-{{< callout context="note" title="Note" icon="info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 Trying to install in an existing environment may fail if it already has
 conflicting dependencies installed!
@@ -86,7 +86,7 @@ Clone the PyChaste repository into the Chaste projects directory:
 git clone --recursive https://github.com/Chaste/PyChaste.git /path/to/Chaste/projects/PyChaste
 ```
 
-{{< callout context="note" title="Note" icon="info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 `--recursive` is important for retrieving git submodules. The build will fail
 without it!
@@ -115,7 +115,7 @@ cd /path/to/build/projects/PyChaste/python/chaste
 pip install .
 ```
 
-{{< callout context="tip" title="See Also" icon="rocket" >}}
+{{< callout context="tip" title="See Also" icon="outline/rocket" >}}
 
 [PyChaste Tutorials](../tutorials/)
 

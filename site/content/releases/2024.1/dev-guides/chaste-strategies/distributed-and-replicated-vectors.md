@@ -14,7 +14,7 @@ will be a mapping between the local and global indices.
 It's important to distinguish between the two, especially as in some 
 loops (e.g. when replicating data), both indicies will need to be used.
 
-{{< callout context="note" title="Verdict" icon="info-circle" >}}
+{{< callout context="note" title="Verdict" icon="outline/info-circle" >}}
 Either local or global indices can be used. 
 They must be named as such. 
 If a loop body needs to refer to both global/local values, then a second 
@@ -43,7 +43,7 @@ VecGetArray(currentSolution, &answer_elements);
 It will not be obvious later on that `currentSolution` and `answer_elements` 
 are storing the same data.
 
-{{< callout context="note" title="Verdict" icon="info-circle" >}}
+{{< callout context="note" title="Verdict" icon="outline/info-circle" >}}
 All pointers that are used in calls to [`VecGetArray`](https://petsc.org/main/manualpages/Vec/VecGetArray/) 
 ought to have the prefix `p` (for pointer). 
 This will distinguish them from locally declared arrays also. 
@@ -101,7 +101,7 @@ public:
   std::vector<double> solutionCacheReplicated;
 ```
 
-{{< callout context="note" title="Verdict" icon="info-circle" >}}
+{{< callout context="note" title="Verdict" icon="outline/info-circle" >}}
 By default, `std::vector`s are local. When they are replicated or 
 distributed then they ought to have a name which reflects that fact. 
 Following the patterns in the verdicts above, the following suffices: 
