@@ -55,7 +55,7 @@ checked by the
 [`Coverage`](https://github.com/Chaste/Chaste/actions/workflows/coverage.yml)
 automated test.
 
-{{< callout context="tip" title="See Also" icon="rocket" >}}
+{{< callout context="tip" title="See Also" icon="outline/rocket" >}}
 [Testing Strategy](../chaste-strategies/testing-strategy)
 {{< /callout >}}
 

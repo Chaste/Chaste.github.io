@@ -15,7 +15,7 @@ code they wrote, and code written by other developers. This page documents
 naming conventions we adhere to in Chaste. If you are writing Chaste code, 
 please follow them!
 
-{{< callout context="tip" title="See Also" icon="rocket" >}}
+{{< callout context="tip" title="See Also" icon="outline/rocket" >}}
 * [Code Structure Strategy](../code-structure-strategy)
 * [Distributed and Replicated Vectors](../distributed-and-replicated-vectors)
 * [How Not to Write FORTRAN in Any Language](http://queue.acm.org/detail.cfm?id=1039535)
