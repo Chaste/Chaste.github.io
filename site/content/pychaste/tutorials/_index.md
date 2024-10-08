@@ -8,7 +8,7 @@ layout: "single"
 
 It is recommended that you follow the tutorials in the order below.
 
-{{< callout context="note" title="Note" icon="info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 If you are using the [docker image](../installation#docker-image), you should
 see a list of tutorials in your browser on launch.

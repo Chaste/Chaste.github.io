@@ -113,6 +113,6 @@ Include the following file in each test suite file that uses PETSc, in order to 
 
 We use [TextTest](http://www.texttest.org) for these, in order to test the standalone executables.
 
-{{< callout context="tip" title="See Also" icon="rocket" >}}
+{{< callout context="tip" title="See Also" icon="outline/rocket" >}}
 [CMake Build Guide](../../cmake-build-guide#build-step): How to build and run tests.
 {{< /callout >}}

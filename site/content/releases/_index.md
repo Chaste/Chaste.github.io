@@ -14,7 +14,7 @@ layout: "single"
 
 ## Old releases
 
-{{< callout context="caution" title="Caution" icon="alert-triangle" >}}
+{{< callout context="caution" title="Caution" icon="outline/alert-triangle" >}}
 The following links are to release archives, and should be used only if you need historic information or instructions releated to a specific old version of Chaste.
 
 Some descriptions will be out of date, and some links may no longer work.

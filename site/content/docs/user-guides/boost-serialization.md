@@ -12,7 +12,7 @@ In order to checkpoint and save/resume simulations, we use the
 from [Boost](http://www.boost.org/). This page contains some notes on how to use
 this functionality well in Chaste.
 
-{{< callout context="tip" title="See Also" icon="rocket" >}}
+{{< callout context="tip" title="See Also" icon="outline/rocket" >}}
 
 [Full Boost Serialization Documentation](http://www.boost.org/libs/serialization/doc/index.html)
 
@@ -104,7 +104,7 @@ after the class definition, to indicate to the serialization library that it
 should not try to instantiate the class, thus avoiding compiler errors on some
 systems.
 
-{{< callout context="caution" title="Caution" icon="alert-triangle" >}}
+{{< callout context="caution" title="Caution" icon="outline/alert-triangle" >}}
 
 This macro should **_only_** be used for classes with **_pure virtual_**
 methods. If they only have virtual methods with implementations, then the class
@@ -160,7 +160,7 @@ CHASTE_CLASS_EXPORT(class_name)
 Note that the name given to `CHASTE_CLASS_EXPORT` **must** match that used in
 the .hpp file.
 
-{{< callout context="note" title="Note" icon="info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 This macro is **not** needed for **abstract** base classes, only in
 derived classes, since no instances of the base itself will be serialized.

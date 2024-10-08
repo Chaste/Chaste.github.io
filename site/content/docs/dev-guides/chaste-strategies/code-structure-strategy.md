@@ -14,7 +14,7 @@ they wrote, and code written by other developers. This page documents
 code standards we adhere to in Chaste. If you are writing Chaste code, 
 please follow them!
 
-{{< callout context="tip" title="See Also" icon="rocket" >}}
+{{< callout context="tip" title="See Also" icon="outline/rocket" >}}
 * [Coding Standards Strategy](../coding-standards-strategy)
 * [Distributed and Replicated Vectors](../distributed-and-replicated-vectors)
 * [How Not to Write FORTRAN in Any Language](http://queue.acm.org/detail.cfm?id=1039535)
@@ -94,7 +94,7 @@ also need to be given in a particular order. Generally Ublas headers
 should come first -- in particular they must appear before any PETSc headers 
 (or some PETSc/Boost version combinations might break e.g. PETSc 2.2/Boost 1.33.1).
 
-{{< callout context="tip" title="See Also" icon="rocket" >}}
+{{< callout context="tip" title="See Also" icon="outline/rocket" >}}
 * [Boost Serialization](../../../user-guides/boost-serialization) for details on the archiving headers.
 * [Include What You Use](https://code.google.com/p/include-what-you-use/wiki/WhyIWYU) for more about this kind of includes policy.
 {{< /callout >}}
@@ -211,7 +211,7 @@ Such files should include the doxygen block
 
 ## Excluding lines from coverage testing
 
-{{< callout context="caution" title="Caution" icon="alert-triangle" >}}
+{{< callout context="caution" title="Caution" icon="outline/alert-triangle" >}}
 Generally to be avoided. If at all possible, write a test to cover each 
 line of code!
 {{< /callout >}}

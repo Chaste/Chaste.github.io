@@ -24,7 +24,7 @@ ion channels can be included:
 If you have any questions/comments, please get in touch with
 `gary.mirams@nottingham.ac.uk`.
 
-{{< callout context="note" title="Web Portal" icon="info-circle" >}}
+{{< callout context="note" title="Web Portal" icon="outline/info-circle" >}}
 
 A web-based portal interface to this program is now available:
 [https://chaste.cs.ox.ac.uk/ActionPotential/](https://chaste.cs.ox.ac.uk/ActionPotential/)

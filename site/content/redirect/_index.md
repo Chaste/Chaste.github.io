@@ -8,7 +8,7 @@ toc: true
 layout: "single"
 ---
 
-{{< callout context="note" title="Redirection" icon="info-circle" >}}
+{{< callout context="note" title="Redirection" icon="outline/info-circle" >}}
 
 The Chaste project has migrated from https://chaste.cs.ox.ac.uk/ to https://chaste.github.io/.
 

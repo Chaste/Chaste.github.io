@@ -12,7 +12,7 @@ then the best versions are selected and installed automatically for you. If you
 are doing a manual Linux installation, then this page shows you the supported
 and preferred versions of each dependency.
 
-{{< callout context="note" title="Note" icon="info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 This page reflects the status of the current trunk code. If you are looking for
 information about supported dependency versions for a
 [previous release](https://github.com/Chaste/Chaste/releases) of Chaste, see
@@ -58,7 +58,7 @@ minimum required to work fine.
  </tr>
 </table>
 
-{{< callout context="note" title="Note" icon="info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 Scons was the legacy build system and is no longer supported.
 {{< /callout >}}
 
@@ -146,7 +146,7 @@ to compile Chaste with no problems.
 Preferred library versions are the default versions on Ubuntu LTS releases, and
 specific versions that we regularly test Chaste with.
 
-{{< callout context="note" title="Note" icon="info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 In some instances the version number is linked to the GitHub issue in which support was/is being introduced.
 {{< /callout >}}
 
@@ -376,7 +376,7 @@ In some instances the version number is linked to the GitHub issue in which supp
  </tr>
 </table>
 
-{{< callout context="caution" title="Caution" icon="alert-triangle" >}}
+{{< callout context="caution" title="Caution" icon="outline/alert-triangle" >}}
 Some versions of dependencies have quirks that may not be documented on this
 page, but you may find hints in the documentation for the dependency.
 {{< /callout >}}
