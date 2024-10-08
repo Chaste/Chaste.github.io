@@ -261,13 +261,13 @@ In some instances the version number is linked to the GitHub issue in which supp
       <br>
       🟦 3.20 
       <br>
-      🟦 <a href="https://github.com/Chaste/Chaste/issues/257">3.19</a> <sup>3</sup> 
+      🟢 <a href="https://github.com/Chaste/Chaste/issues/257">3.19</a> <sup>3</sup> 
       <br>
-      🟦 3.18 
+      🟨 3.18 
       <br>
-      🟦 3.17 
+      🟨 3.17 
       <br>
-      🟦 3.16 
+      🟨 3.16 
       <br>
       🟢 <a href="https://github.com/Chaste/Chaste/issues/37">3.15</a> <sup>2</sup> 
       <br>
