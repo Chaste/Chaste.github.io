@@ -43,7 +43,7 @@ Admission to the workshop is free. There is also funding to cover accommodation
 and travel within the UK for students and early career researchers.
 
 Due to limited seats, an application is required. To attend, please fill out the 
-registration form: [forms.gle/yFd1JGaxyGzHyo4k6](https://forms.gle/yFd1JGaxyGzHyo4k6)
+registration form by 13th December 2024: [forms.gle/yFd1JGaxyGzHyo4k6](https://forms.gle/yFd1JGaxyGzHyo4k6)
 
 We look forward to your participation!
 
