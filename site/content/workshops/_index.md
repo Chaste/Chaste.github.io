@@ -11,7 +11,7 @@ layout: "single"
 
 ## Upcoming workshops
 
-### [Jan 2025, Nottingham, UK](./2025-01)
+### [8-10 January 2025, Nottingham, UK](./2025-01)
 
 ## Past workshops
 
