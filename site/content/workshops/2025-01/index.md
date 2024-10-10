@@ -1,5 +1,6 @@
 ---
-title: "Chaste Workshop on Cell-Based Modelling"
+title: "2025 Nottingham Workshop"
+description: "Chaste workshop on cell-based modelling in Nottingham, UK from 8-10 January 2025"
 draft: false
 images: []
 toc: true
@@ -11,7 +12,7 @@ We are pleased to announce a workshop on cell-based modelling with
 for the computational modelling of biological systems.
 
 The workshop will take place from 10am on Wed 8th to 5pm on Fri 10th January 
-2025 at the [University of Nottingham, UK](https://maps.app.goo.gl/qDBHxr516rGgKCfMA).
+2025 at the [University of Nottingham, UK](https://maps.app.goo.gl/gzSVQkApgimLArtt7).
 
 ## Background
 The Chaste (Cancer, Heart and Soft-Tissue Environment) software library 
