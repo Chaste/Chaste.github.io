@@ -20,7 +20,11 @@ If you want a single citation for Chaste, please use one of these, especially if
  
 ## Publications using Chaste
 
-Here is a list of preprints and peer-reviewed publications that have used Chaste from its inception up to October 2022.
+Here is a list of preprints and peer-reviewed publications that have used Chaste from its inception up to October 2024.
+
+### 2024
+
+1. Li et al. 2024. Parallelization of Three Dimensional Cardiac Simulation on GPU. *Biomedicines* 12(9):2126. doi:[10.3390/biomedicines12092126](https://doi.org/10.3390/biomedicines12092126)
 
 ### 2022
 
