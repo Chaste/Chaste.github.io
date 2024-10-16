@@ -1,0 +1,57 @@
+
+```
+#!comment
+This wiki page is auto-generated from the file
+projects/HR2015/Summary.wiki
+edit that file, don't edit this page on trac!
+```
+
+
+## HCQ reduces heart rate by modulating the hyperpolarisation-activated current *If*: Novel electrophysiological insights and therapeutic potential
+
+Welcome to the Chaste wiki.
+
+This section contains pages generated automatically from the source code accompanying Capel et al., [Hydroxychloroquine reduces heart rate by modulating the hyperpolarisation activated current ‘If’: Novel electrophysiological insights and therapeutic potential.](http://dx.doi.org/10.1016/j.hrthm.2015.05.027), Heart Rhythm, (2015).
+
+Before running these examples you will need to [install Chaste's dependencies](https://github.com/Chaste/trac_archive/wiki/Install-Guides-_-Install-Guide) and the [source code for version 3.3](http://www.cs.ox.ac.uk/chaste/download.html).
+The easiest way to do this is using an Ubuntu machine (or an Ubuntu virtual machine) as discussed on InstallGuides/UbuntuPackage.
+Note that cardiac Chaste is not supported on Windows, so users of Windows will need to follow the virtual machine route.
+For manual installation of each dependency, on any version of Linux, see DeveloperInstallGuide.
+
+The simulations featured in the paper supplement are explained and annotated below.
+For further information on using Chaste to solve these and related problems, see our [extensive guide material](https://github.com/Chaste/trac_archive/wiki/Chaste-Guides).
+
+### Sino-atrial node study
+
+The steps required to reproduce the study are:
+ 1. Run a single cell simulation of a sino-atrial node model, with varying degrees of funny current block ([C++ file for performing simulation](https://github.com/Chaste/trac_archive/wiki/._SanWithFunnyCurrentBlock))
+ 1. Run the matlab script `whole_cell_apd_changes.m` (after updating a folder name at the top to match your `CHASTE_TEST_OUTPUT` environment variable).
+
+### Sample commands to install and run everything
+
+If you wish to install Chaste and this project direct from our repository, you may do so from the command line as follows:
+```
+
+#!sh
+svn checkout https://chaste.cs.ox.ac.uk/svn/chaste/trunk Chaste
+cd Chaste/projects
+svn checkout https://chaste.cs.ox.ac.uk/svn/chaste/projects/HR2015
+```
+
+
+To run the simulations, use:
+```
+
+#!sh
+cd path/to/Chaste
+scons chaste_libs=1 brief=1 build=GccOptNative projects/HR2015
+```
+
+
+
+
+version: "2024.2"
+-----
+### Section contents
+[SubWiki()](SubWiki())
+
