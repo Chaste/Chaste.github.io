@@ -34,7 +34,7 @@ from pathlib import Path
 
 import shutil
 
-VERSION_STRING = '2024.1'
+VERSION_STRING = '2024.2'
 
 CONTENT_DIR = Path(__file__).parent.parent / 'site' / 'content'
 DOCS_DIR = CONTENT_DIR / 'docs'
