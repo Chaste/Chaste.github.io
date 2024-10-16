@@ -315,7 +315,7 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- VTK -->
     <td>
-      🟢  <a href="https://github.com/Chaste/Chaste/issues/257">9.3</a>
+      🟢 <a href="https://github.com/Chaste/Chaste/issues/257">9.3</a>
       <br>
       🟩 <a href="https://github.com/Chaste/Chaste/issues/36">9.2</a> 
       <br>
