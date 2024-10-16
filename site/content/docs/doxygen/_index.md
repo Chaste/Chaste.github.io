@@ -18,6 +18,8 @@ The latest doxygen, corresponding to the most recent commit on the Chaste [devel
 
 Doxygen corresponding to specific static releases of Chaste:
 
+### [2024.2](/doxygen-releases/release_2024.2)
+
 ### [2024.1](/doxygen-releases/release_2024.1)
 
 ### [2021.1](/doxygen-releases/release_2021.1)
