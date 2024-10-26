@@ -25,6 +25,13 @@ Here is a list of preprints and peer-reviewed publications that have used Chaste
 ### 2024
 
 1. Li et al. 2024. Parallelization of Three Dimensional Cardiac Simulation on GPU. *Biomedicines* 12(9):2126. doi:[10.3390/biomedicines12092126](https://doi.org/10.3390/biomedicines12092126)
+1. Köry et al. 2024 Enhanced perfusion following exposure to radiotherapy: A theoretical investigation. *PLOS Computational Biology* 20.2:e1011252. doi:[10.1371/journal.pcbi.1011252](https://doi.org/10.1371/journal.pcbi.1011252)
+1. Dimbath et al. 2024. Physics-based in silico modelling of microvascular pulmonary perfusion in COVID-19. *Proceedings of the Institution of Mechanical Engineers, Part H: Journal of Engineering in Medicine* 238(5):562-574. doi:[10.1177/09544119241241550](https://doi.org/10.1177/09544119241241550)
+1. Xiao et al. 2024. Multi-scale modeling of aerosol transport in a mouth-to-truncated bronchial tree system. *Computers in Biology and Medicine* 183:109292. doi:[10.1016/j.compbiomed.2024.109292](https://doi.org/10.1016/j.compbiomed.2024.109292)
+1. Osborne 2024. An adaptive numerical method for multi-cellular simulations of tissue development and maintenance. *Journal of Theoretical Biology* 594:111922. doi:[10.1016/j.jtbi.2024.111922](https://doi.org/10.1016/j.jtbi.2024.111922)
+1. Kolokotroni et al. 2024. A multidisciplinary hyper-modeling scheme in personalized in silico oncology: coupling cell kinetics with metabolism, signaling networks, and biomechanics as plug-in component models of a cancer digital twin. *Journal of personalized medicine* 14(5):475. doi:[10.3390/jpm14050475](https://doi.org/10.3390/jpm14050475)
+1. Pak et al. 2024. A mathematical framework for the emergence of winners and losers in cell competition. *Journal of Theoretical Biology* 577:111666. doi:[10.1016/j.jtbi.2023.111666](https://doi.org/10.1016/j.jtbi.2023.111666)
+1. Selvamani et al. 2024. Emergence of Spatial Scales and Macroscopic Tissue Dynamics in Active Epithelial Monolayers. *Cells Tissues Organs* 213(4):269-282. doi:[10.1159/000528501](https://doi.org/10.1159/000528501)
 
 ### 2022
 
