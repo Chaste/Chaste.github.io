@@ -24,7 +24,25 @@ Here is a list of preprints and peer-reviewed publications that have used Chaste
 
 ### 2024
 
-1. Li et al. 2024. Parallelization of Three Dimensional Cardiac Simulation on GPU. *Biomedicines* 12(9):2126. doi:[10.3390/biomedicines12092126](https://doi.org/10.3390/biomedicines12092126)
+ 1. Li et al. 2024. Parallelization of Three Dimensional Cardiac Simulation on GPU. *Biomedicines* 12(9):2126. doi:[10.3390/biomedicines12092126](https://doi.org/10.3390/biomedicines12092126)
+ 1. Köry et al. 2024 Enhanced perfusion following exposure to radiotherapy: A theoretical investigation. *PLOS Computational Biology* 20.2:e1011252. doi:[10.1371/journal.pcbi.1011252](https://doi.org/10.1371/journal.pcbi.1011252)
+ 1. Dimbath et al. 2024. Physics-based in silico modelling of microvascular pulmonary perfusion in COVID-19. *Proceedings of the Institution of Mechanical Engineers, Part H: Journal of Engineering in Medicine* 238(5):562-574. doi:[10.1177/09544119241241550](https://doi.org/10.1177/09544119241241550)
+ 1. Xiao et al. 2024. Multi-scale modeling of aerosol transport in a mouth-to-truncated bronchial tree system. *Computers in Biology and Medicine* 183:109292. doi:[10.1016/j.compbiomed.2024.109292](https://doi.org/10.1016/j.compbiomed.2024.109292)
+ 1. Osborne 2024. An adaptive numerical method for multi-cellular simulations of tissue development and maintenance. *Journal of Theoretical Biology* 594:111922. doi:[10.1016/j.jtbi.2024.111922](https://doi.org/10.1016/j.jtbi.2024.111922)
+ 1. Kolokotroni et al. 2024. A multidisciplinary hyper-modeling scheme in personalized in silico oncology: coupling cell kinetics with metabolism, signaling networks, and biomechanics as plug-in component models of a cancer digital twin. *Journal of personalized medicine* 14(5):475. doi:[10.3390/jpm14050475](https://doi.org/10.3390/jpm14050475)
+ 1. Pak et al. 2024. A mathematical framework for the emergence of winners and losers in cell competition. *Journal of Theoretical Biology* 577:111666. doi:[10.1016/j.jtbi.2023.111666](https://doi.org/10.1016/j.jtbi.2023.111666)
+ 1. Selvamani et al. 2024. Emergence of Spatial Scales and Macroscopic Tissue Dynamics in Active Epithelial Monolayers. *Cells Tissues Organs* 213(4):269-282. doi:[10.1159/000528501](https://doi.org/10.1159/000528501)
+ 1. Drozdowski & Schwarz 2024. Morphological instability at topological defects in a three-dimensional vertex model for spherical epithelia. *Physical Review Research* 6(2):L022045. doi:[10.1103/PhysRevResearch.6.L022045](https://doi.org/10.1103/PhysRevResearch.6.L022045)
+
+### 2023
+
+ 1. Boocock et al. 2023. Interplay between mechanochemical patterning and glassy dynamics in cellular monolayers. *PRX Life* 1(1):013001. doi:[10.1103/PRXLife.1.013001](https://doi.org/10.1103/PRXLife.1.013001)
+ 1. Means et al. 2023. Steady-state approximations for Hodgkin-Huxley cell models: Reduction of order for uterine smooth muscle cell model. *PLOS Computational Biology* 19(8):e1011359. doi:[10.1371/journal.pcbi.1011359](https://doi.org/10.1371/journal.pcbi.1011359)
+ 1. Bull & Byrne 2023. Quantification of spatial and phenotypic heterogeneity in an agent-based model of tumour-macrophage interactions. *PLOS Computational Biology* 19(3):e1010994. doi:[10.1371/journal.pcbi.1010994](https://doi.org/10.1371/journal.pcbi.1010994)
+ 1. Germano et al. 2023. Free and interfacial boundaries in individual-based models of multicellular biological systems. *Bulletin of Mathematical Biology* 85(11):111. doi:[10.1007/s11538-023-01214-8](https://doi.org/10.1007/s11538-023-01214-8)
+ 1. Mathias et al. 2023. Contributions of cell behavior to geometric order in embryonic cartilage. *PLOS Computational Biology* 19(11):e1011658. doi:[10.1371/journal.pcbi.1011658](https://doi.org/10.1371/journal.pcbi.1011658)
+ 1. Reimer et al. 2023. Physiological accuracy in simulating refractory cardiac tissue: the volume-averaged bidomain model vs. the cell-based EMI model. *arXiv preprint*. doi:[10.48550/arXiv.2304.04115](https://doi.org/10.48550/arXiv.2304.04115)
+ 1. Galappaththige et al. 2023. A computational modeling framework for pre-clinical evaluation of cardiac mapping systems. *Frontiers in Physiology* 14:1074527. doi:[10.3389/fphys.2023.1074527](https://doi.org/10.3389/fphys.2023.1074527)
 
 ### 2022
 
@@ -33,7 +51,10 @@ Here is a list of preprints and peer-reviewed publications that have used Chaste
  1. Cook et al. 2022. Modelling cellular interactions and dynamics during kidney morphogenesis. *Bull Math Biol* 84:8. doi:[10.1007/s11538-021-00968-3](https://doi.org/10.1007/s11538-021-00968-3)
  1. Donath et al. 2022. Investigation of colonic regeneration via precise damage application using femtosecond laser-based nanosurgery. *Cells* 11:1143. doi:[10.3390/cells11071143](https://doi.org/10.3390/cells11071143)
  1. Middleton et al. 2022. Towards a multi-scale computer modeling workflow for simulation of pulmonary ventilation in advanced COVID-19. *Comput Biol Med* 145:105513. doi:[10.1016/j.compbiomed.2022.105513](https://doi.org/10.1016/j.compbiomed.2022.105513)
- 
+ 1. Zanca et al. 2022. Push or pull? Cell proliferation and migration during wound healing. *Frontiers in Systems Biology* 2:876075. doi:[10.3389/fsysb.2022.876075](https://doi.org/10.3389/fsysb.2022.876075)
+ 1. Miller et al. 2022. Multiscale modelling of desquamation in the interfollicular epidermis. *PLoS Computational Biology* 18(8):e1010368. doi:[10.1371/journal.pcbi.1010368](https://doi.org/10.1371/journal.pcbi.1010368)
+ 1. Avci et al. 2022. A computational model of biophysical properties of the rat stomach informed by comprehensive analysis of muscle anatomy. *44th Annual International Conference of the IEEE Engineering in Medicine & Biology Society (EMBC)* 4954-4957. doi:[10.1109/EMBC48229.2022.9871314](https://doi.org/10.1109/EMBC48229.2022.9871314)
+
 ### 2021
 
  1. Conrad et al. 2021. The biomechanical basis of biased epithelial tube elongation in lung and kidney development. *Development* 148:dev194209. doi:[10.1242/dev.194209](https://doi.org/10.1242/dev.194209)
