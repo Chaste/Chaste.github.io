@@ -33,6 +33,16 @@ Here is a list of preprints and peer-reviewed publications that have used Chaste
 1. Pak et al. 2024. A mathematical framework for the emergence of winners and losers in cell competition. *Journal of Theoretical Biology* 577:111666. doi:[10.1016/j.jtbi.2023.111666](https://doi.org/10.1016/j.jtbi.2023.111666)
 1. Selvamani et al. 2024. Emergence of Spatial Scales and Macroscopic Tissue Dynamics in Active Epithelial Monolayers. *Cells Tissues Organs* 213(4):269-282. doi:[10.1159/000528501](https://doi.org/10.1159/000528501)
 
+### 2023
+
+1. Boocock et al. 2023. Interplay between mechanochemical patterning and glassy dynamics in cellular monolayers. *PRX Life* 1(1):013001. doi:[10.1103/PRXLife.1.013001](https://doi.org/10.1103/PRXLife.1.013001)
+1. Means et al. 2023. Steady-state approximations for Hodgkin-Huxley cell models: Reduction of order for uterine smooth muscle cell model. *PLOS Computational Biology* 19(8):e1011359. doi:[10.1371/journal.pcbi.1011359](https://doi.org/10.1371/journal.pcbi.1011359)
+1. Bull & Byrne 2023. Quantification of spatial and phenotypic heterogeneity in an agent-based model of tumour-macrophage interactions. *PLOS Computational Biology* 19(3):e1010994. doi:[10.1371/journal.pcbi.1010994](https://doi.org/10.1371/journal.pcbi.1010994)
+1. Germano et al. 2023. Free and interfacial boundaries in individual-based models of multicellular biological systems. *Bulletin of Mathematical Biology* 85(11):111. doi:[10.1007/s11538-023-01214-8](https://doi.org/10.1007/s11538-023-01214-8)
+1. Mathias et al. 2023. Contributions of cell behavior to geometric order in embryonic cartilage. *PLOS Computational Biology* 19(11):e1011658. doi:[10.1371/journal.pcbi.1011658](https://doi.org/10.1371/journal.pcbi.1011658)
+1. Reimer et al. 2023. Physiological accuracy in simulating refractory cardiac tissue: the volume-averaged bidomain model vs. the cell-based EMI model. *arXiv preprint*. doi:[10.48550/arXiv.2304.04115](https://doi.org/10.48550/arXiv.2304.04115)
+1. Galappaththige et al. 2023. A computational modeling framework for pre-clinical evaluation of cardiac mapping systems. *Frontiers in Physiology* 14:1074527. doi:[10.3389/fphys.2023.1074527](https://doi.org/10.3389/fphys.2023.1074527)
+
 ### 2022
 
  1. Galappaththige et al. 2022. Credibility assessment of patient-specific computational modeling using patient-specific cardiac modeling as an exemplar. *PLoS Computational Biology* 18(10): e1010541. doi:[10.1371/journal.pcbi.1010541](https://doi.org/10.1371/journal.pcbi.1010541)
