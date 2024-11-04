@@ -56,7 +56,7 @@ The workshop will be held on the [University of Nottingham Jubilee Campus](https
 
 If you are arranging your own accommodation, there is a wide selection of hotels available in Nottingham. A number of reasonably priced options can be found below.
 
-*Please note that accommodation you book yourself is __not__ eligible for a bursary -- if you are applying for an accommodation bursary and your application is successful, suitable accommodation will be reserved for you at the University of Nottingham.*
+*Please note that accommodation you book yourself is __not__ eligible for a bursary -- if you are applying for an accommodation bursary and your application is successful (we anticipate that there should be funding for most attendees), suitable accommodation will be reserved for you at the University of Nottingham.*
 
 - [Nottingham Venues](https://nottinghamvenues.com/nottingham-hotels-accomodation/)
 - [Travelodge Nottingham Wollaton Park](https://www.travelodge.co.uk/hotels/474/Nottingham-Wollaton-Park-hotel)
