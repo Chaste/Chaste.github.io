@@ -48,6 +48,22 @@ registration form by 13th December 2024: [forms.gle/yFd1JGaxyGzHyo4k6](https://f
 
 We look forward to your participation!
 
+## Venue and Accommodation
+
+The workshop will be held on the [University of Nottingham Jubilee Campus](https://maps.app.goo.gl/ZiALQ11HqA9etDZn9).
+
+### Hotel Information
+
+If you are arranging your own accommodation, there is a wide selection of hotels available in Nottingham. A number of reasonably priced options can be found below.
+
+*Please note that accommodation you book yourself is __not__ eligible for a bursary -- if you are applying for an accommodation bursary and your application is successful, suitable accommodation will be reserved for you at the University of Nottingham.*
+
+- [Nottingham Venues](https://nottinghamvenues.com/nottingham-hotels-accomodation/)
+- [Travelodge Nottingham Wollaton Park](https://www.travelodge.co.uk/hotels/474/Nottingham-Wollaton-Park-hotel)
+- [Premier Inn Nottingham City Centre (Chapel Bar)](https://www.premierinn.com/gb/en/hotels/england/nottinghamshire/nottingham/nottingham-city-centre-chapel-bar.html)
+- [Travelodge Nottingham Central](https://www.travelodge.co.uk/hotels/290/Nottingham-Central-hotel)
+- [Premier Inn Nottingham Castle Marina](https://www.premierinn.com/gb/en/hotels/england/nottinghamshire/nottingham/nottingham-castle-marina.html)
+- [Holiday Inn Nottingham](https://www.ihg.com/holidayinn/hotels/gb/en/nottingham/notuk/hoteldetail)
 
 {{< callout context="grey" >}}
 For additional information, please contact
