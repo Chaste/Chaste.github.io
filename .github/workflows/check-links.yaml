@@ -21,15 +21,18 @@ jobs:
   build-and-check-links:
 
     runs-on: ubuntu-24.04
+    env:
+      HUGO_VERSION: 0.126.0
     
     steps:
     
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       - name: Install Hugo
         run: |
-          sudo snap install hugo
+          wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
+          && sudo dpkg -i ${{ runner.temp }}/hugo.deb
           hugo version
           
       - name: Setup Node.js

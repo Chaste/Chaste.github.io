@@ -78,9 +78,9 @@ to compile Chaste with no problems.
   <tr>
     <!-- GCC -->
     <td>
-      🟦 14.x 
+      🟩 14.x
       <br>
-      🟦 13.x 
+      🟢 13.x <sup>3</sup>
       <br>
       🟢 12.x <sup>2</sup> 
       <br>
@@ -100,19 +100,19 @@ to compile Chaste with no problems.
     <td>	
       🟦 19.x <sup>3</sup> 
       <br>
-      🟦 18.x <sup>3</sup> 
+      🟩 18.x <sup>3</sup> 
       <br>
-      🟦 17.x <sup>3</sup> 
+      🟩 17.x <sup>3</sup> 
       <br>
-      🟦 16.x <sup>3</sup> 
+      🟩 16.x <sup>3</sup> 
       <br>
-      🟦 15.x <sup>3</sup> 
+      🟩 15.x <sup>3</sup> 
       <br>
-      🟢 14.x <sup>2</sup> <sup>3</sup> 
+      🟩 14.x <sup>2</sup> <sup>3</sup> 
       <br>
-      🟨 13.x <sup>2</sup> 
+      🟩 13.x <sup>2</sup> 
       <br>
-      🟢 12.x <sup>1</sup> <sup>2</sup> 
+      🟨 12.x <sup>1</sup> <sup>2</sup> 
       <br>
       🟨 11.x <sup>2</sup> 
       <br>
@@ -130,7 +130,7 @@ to compile Chaste with no problems.
     </td>
     <!-- Intel oneAPI -->
     <td>
-      🟢 2024.x
+      🟩 2024.x
       <br>
       🟨 2023.x
       <br>
@@ -170,15 +170,15 @@ In some instances the version number is linked to the GitHub issue in which supp
       <br>
       🟦 1.84
       <br>
-      🟦 <a href="https://github.com/Chaste/Chaste/issues/257">1.83</a> <sup>3</sup>
+      🟢 <a href="https://github.com/Chaste/Chaste/issues/257">1.83</a> <sup>3</sup>
       <br>
-      🟦 1.82
+      🟨 1.82
       <br>
-      🟦 1.81
+      🟨 1.81
       <br>
-      🟦 1.80
+      🟨 1.80
       <br>
-      🟦 1.79
+      🟨 1.79
       <br>
       🟨 <a href="https://github.com/Chaste/Chaste/issues/28">1.78</a>
       <br>
@@ -228,11 +228,11 @@ In some instances the version number is linked to the GitHub issue in which supp
       <br>
       🟨 <a href="https://github.com/Chaste/Chaste/issues/163">1.12.0</a> 
       <br>
-      🟦 1.10.11 
+      🟨 1.10.11 
       <br>
-      🟦 <a href="https://github.com/Chaste/Chaste/issues/257">1.10.10</a> <sup>3</sup>
+      🟢 <a href="https://github.com/Chaste/Chaste/issues/257">1.10.10</a> <sup>3</sup>
       <br>
-      🟦 1.10.9 
+      🟨 1.10.9 
       <br>
       🟩 1.10.8 
       <br>
@@ -291,7 +291,7 @@ In some instances the version number is linked to the GitHub issue in which supp
       <br>
       🟦 6.5 
       <br>
-      🟦 <a href="https://github.com/Chaste/Chaste/issues/257">6.4</a> <sup>3</sup> 
+      🟢 <a href="https://github.com/Chaste/Chaste/issues/257">6.4</a> <sup>3</sup> 
       <br>
       🟦 6.3 
       <br>
@@ -331,7 +331,7 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- VTK -->
     <td>
-      🟦 9.3 
+      🟢 <a href="https://github.com/Chaste/Chaste/issues/257">9.3</a>
       <br>
       🟩 <a href="https://github.com/Chaste/Chaste/issues/36">9.2</a> 
       <br>
