@@ -24,14 +24,14 @@ updated to reflect installation instructions for one of the preferred versions.
 
 ## Key to tables
 
-| Symbol | Label         | Description       |
-| :----- | :------------ | :---------------- |
-| 🟢     | Preferred     | These are preferred versions which we regularly test and have no known problems with. We intend to maintain Chaste compatibility for as long as practical (usually longer than the package developers). Our preferred versions are normally the defaults in an Ubuntu LTS. |
-| 🟩     | Supported     | These are versions that we test against regularly and so should pass all standard tests. They are not our preferred versions because they might have small bugs, or not have as many features, or won't be supported for as long (e.g. because they're not the default in an Ubuntu LTS). |
-| 🟨     | Should Work   | These versions are expected to work. We've generally tested them at least once, but these versions are not regularly tested with the development code. |
-| 🟦     | Future        | We do not yet support these versions, but plan to add support for them in the future. This may just mean we have not yet had the chance to test them for compatibility and adapt the code for them if needed. |
-| 🟪     | Sunsetting    | These versions will not be supported in future releases. However, they may work with the current Chaste release, and perhaps/probably/parts-of the development version. |
-| 🟥     | Not Supported | These versions are not compatible/supported, either because they have bugs, or are deprecated because they don't do everything we need now, or are too old to continue tested support for. |
+| Symbol | Label         | Description                                                                                                                                                                                                                                                                               |
+| :----- | :------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 🟢      | Preferred     | These are preferred versions which we regularly test and have no known problems with. We intend to maintain Chaste compatibility for as long as practical (usually longer than the package developers). Our preferred versions are normally the defaults in an Ubuntu LTS.                |
+| 🟩      | Supported     | These are versions that we test against regularly and so should pass all standard tests. They are not our preferred versions because they might have small bugs, or not have as many features, or won't be supported for as long (e.g. because they're not the default in an Ubuntu LTS). |
+| 🟨      | Should Work   | These versions are expected to work. We've generally tested them at least once, but these versions are not regularly tested with the development code.                                                                                                                                    |
+| 🟦      | Future        | We do not yet support these versions, but plan to add support for them in the future. This may just mean we have not yet had the chance to test them for compatibility and adapt the code for them if needed.                                                                             |
+| 🟪      | Sunsetting    | These versions will not be supported in future releases. However, they may work with the current Chaste release, and perhaps/probably/parts-of the development version.                                                                                                                   |
+| 🟥      | Not Supported | These versions are not compatible/supported, either because they have bugs, or are deprecated because they don't do everything we need now, or are too old to continue tested support for.                                                                                                |
 
 ## Build Systems
 
@@ -46,8 +46,14 @@ minimum required to work fine.
   <tr>
     <!-- CMake -->
     <td>
-      🟥 &lt;3.16.3 🟩 3.16.3+ <sup>1</sup> 🟨 3.17 🟨 3.18 🟨 3.19 🟨 3.20 🟨 3.21 
-      🟢 3.22 <sup>2</sup> 🟨 3.23 🟨 3.24 🟨 3.25 🟨 3.26 🟨 3.27 🟢 3.28 <sup>3</sup> 🟨 3.29
+    🟦 3.30 <br>
+    🟨 3.29 <br>
+    🟢 3.28 <sup>3</sup> <br>
+    🟨 3.23 -- 3.27 <br>
+    🟢 3.22 <sup>2</sup> <br>
+    🟨 3.17 -- 3.21 <br>
+    🟩 3.16.3 <sup>1</sup> <br>
+    🟥 &lt;3.16.3
     </td>
  </tr>
 </table>
@@ -92,6 +98,8 @@ to compile Chaste with no problems.
     </td>
     <!-- Clang -->
     <td>	
+      🟦 19.x <sup>3</sup> 
+      <br>
       🟩 18.x <sup>3</sup> 
       <br>
       🟩 17.x <sup>3</sup> 
@@ -156,11 +164,13 @@ In some instances the version number is linked to the GitHub issue in which supp
   <tr>
      <!-- Boost -->
     <td>
+      🟦 1.86
+      <br>
       🟦 1.85
       <br>
       🟦 1.84
       <br>
-      🟢 1.83 <sup>3</sup>
+      🟢 <a href="https://github.com/Chaste/Chaste/issues/257">1.83</a> <sup>3</sup>
       <br>
       🟨 1.82
       <br>
@@ -198,6 +208,8 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- HDF5 -->
     <td>
+      🟦 1.14.5 
+      <br>
       🟦 1.14.4 
       <br>
       🟦 1.14.3 
@@ -218,7 +230,7 @@ In some instances the version number is linked to the GitHub issue in which supp
       <br>
       🟨 1.10.11 
       <br>
-      🟢 1.10.10 <sup>3</sup>
+      🟢 <a href="https://github.com/Chaste/Chaste/issues/257">1.10.10</a> <sup>3</sup>
       <br>
       🟨 1.10.9 
       <br>
@@ -243,17 +255,19 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- PETSc -->
     <td>
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/327">3.22</a>  
+      <br>
       🟦 3.21 
       <br>
       🟦 3.20 
       <br>
-      🟢 3.19 <sup>3</sup> 
+      🟢 <a href="https://github.com/Chaste/Chaste/issues/257">3.19</a> <sup>3</sup> 
       <br>
-      🟦 3.18 
+      🟨 3.18 
       <br>
-      🟦 3.17 
+      🟨 3.17 
       <br>
-      🟦 3.16 
+      🟨 3.16 
       <br>
       🟢 <a href="https://github.com/Chaste/Chaste/issues/37">3.15</a> <sup>2</sup> 
       <br>
@@ -267,6 +281,8 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- SUNDIALS -->
     <td>
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/266">7.1</a> 
+      <br>
       🟦 <a href="https://github.com/Chaste/Chaste/issues/266">7.0</a> 
       <br>
       🟦 6.7 
@@ -275,7 +291,7 @@ In some instances the version number is linked to the GitHub issue in which supp
       <br>
       🟦 6.5 
       <br>
-      🟢 6.4 <sup>3</sup> 
+      🟢 <a href="https://github.com/Chaste/Chaste/issues/257">6.4</a> <sup>3</sup> 
       <br>
       🟦 6.3 
       <br>
