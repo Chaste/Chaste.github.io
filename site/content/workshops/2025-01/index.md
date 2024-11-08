@@ -52,6 +52,13 @@ We look forward to your participation!
 
 The workshop will be held on the [University of Nottingham Jubilee Campus](https://maps.app.goo.gl/ZiALQ11HqA9etDZn9).
 
+<iframe width="100%" height="550px" frameborder="0" allowfullscreen allow="geolocation" src="//umap.openstreetmap.fr/en/map/chaste-workshop_1135862?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&editMode=disabled&moreControl=false&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=null&onLoadPanel=none&captionBar=false&captionMenus=false&captionControl=null&fullscreenControl=null"></iframe>
+
+### Transport Links
+
+Information on public transport in Nottingham can be found on the following page: 
+[https://www.nottingham.ac.uk/about/visitorinformation/public-transport-to-our-campuses.aspx](https://www.nottingham.ac.uk/about/visitorinformation/public-transport-to-our-campuses.aspx)
+
 ### Hotel Information
 
 If you are arranging your own accommodation, there is a wide selection of hotels available in Nottingham. A number of reasonably priced options can be found below.
