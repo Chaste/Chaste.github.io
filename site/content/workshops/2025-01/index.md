@@ -11,7 +11,7 @@ We are pleased to announce a workshop on cell-based modelling with
 [Chaste](https://chaste.github.io), an open-source multi-scale framework 
 for the computational modelling of biological systems.
 
-The workshop will take place from 10am on Wed 8th to 5pm on Fri 10th January 
+The workshop will take place from Wed 8th to Fri 10th January 
 2025 at the [University of Nottingham, UK](https://maps.app.goo.gl/gzSVQkApgimLArtt7).
 
 ## Background
@@ -47,6 +47,52 @@ Due to limited seats, an application is required. To attend, please fill out the
 registration form by 13th December 2024: [forms.gle/yFd1JGaxyGzHyo4k6](https://forms.gle/yFd1JGaxyGzHyo4k6)
 
 We look forward to your participation!
+
+## Timetable
+
+### Wednesday 8th January
+
+| Start | End   | Description                                            |
+| ----- | ----- | ------------------------------------------------------ |
+| 10:30 | 11:00 | Arrivals                                               |
+| 11:00 | 11:15 | Welcome address                                        |
+| 11:15 | 11:30 | Introductions (1 minute each, optional slide)          |
+| 11:30 | 12:30 | Overview of cell-based modelling                       |
+| 12:30 | 13:30 | Lunch                                                  |
+| 13:30 | 14:00 | PyChaste for cell-based modelling                      |
+| 14:00 | 15:00 | Hands-on session [ PyChaste for cell-based modelling ] |
+| 15:00 | 15:30 | Chaste on GPUs                                         |
+| 15:30 | 16:45 | Installing Chaste and running tests                    |
+| 16:45 | 17:00 | Early feedback session                                 |
+
+### Thursday 9th January
+
+| Start | End   | Description                                                                                                                     |
+| ----- | ----- | ------------------------------------------------------------------------------------------------------------------------------- |
+| 9:30  | 9:55  | Scientific case study #1                                                                                                        |
+| 10:00 | 10:50 | Chaste for cell-based modelling: latest features and future plans                                                               |
+| 11:10 | 12:30 | C++ Chaste for cell-based modelling (with user projects)                                                                        |
+| 12:30 | 13:30 | Lunch                                                                                                                           |
+| 13:30 | 14:30 | Hands-on session [ C++ Chaste for cell-based modelling (with user projects) ]                                                   |
+| 14:30 | 15:00 | Stream A: Immersed Boundary Method in C++ and Python <br> Stream B: Cardiac Modelling                                           |
+| 15:00 | 16:30 | Stream A: Hands-on session [ Immersed Boundary Method in C++ and Python ] <br> Stream B: Hands-on session [ Cardiac Modelling ] |
+| 16:30 | 17:00 | Scientific case study #2                                                                                                        |
+| 19:00 |       | Dinner                                                                                                                          |
+
+### Friday 10th January
+
+| Start | End   | Description                                                                     |
+| ----- | ----- | ------------------------------------------------------------------------------- |
+| 9:30  | 10:00 | Scientific case study #3                                                        |
+| 10:00 | 10:30 | Modelling cell-environment feedback                                             |
+| 10:30 | 11:40 | Hands-on session [ Modelling cell-environment feedback ]                        |
+| 11:40 | 12:00 | How to get further support / how to contribute to Chaste                        |
+| 12:00 | 12:30 | Scientific case study #4                                                        |
+| 12:30 | 12:45 | Retrospective: lessons learned, future plans with Chaste                        |
+| 12:45 | 13:00 | Feedback Survey                                                                 |
+| 13:00 | 14:00 | Lunch                                                                           |
+| 14:00 | 16:00 | Bring your own project: get support to code up a model related to your research |
+| 16:00 |       | Departures                                                                      |
 
 ## Venue and Accommodation
 
