@@ -13,15 +13,15 @@ for the computational modelling of biological systems.
 
 ## Event Details
 
-### Where
+#### When
+Wednesday 8th January to Friday 10th January 2025.
+
+#### Where
 Dearing Building<br>
 Jubilee Campus<br>
 Nottingham<br>
 NG8 1AW<br>
-https://maps.app.goo.gl/zWxN1PKRQBBqCRhTA
-
-### When
-Wednesday 8th January to Friday 10th January 2025.
+[https://maps.app.goo.gl/zWxN1PKRQBBqCRhTA](https://maps.app.goo.gl/zWxN1PKRQBBqCRhTA)
 
 ## Background
 The Chaste (Cancer, Heart and Soft-Tissue Environment) software library 
@@ -52,42 +52,43 @@ simulation of a biological problem related to their own research.
 
 ### Wednesday 8th January
 
-| Start | End   | Description                                            |
-| ----- | ----- | ------------------------------------------------------ |
-| 10:00 | 11:00 | Arrivals                                               |
-| 11:00 | 11:15 | Welcome address                                        |
-| 11:15 | 11:30 | Introductions (1 minute each, optional slide)          |
-| 11:30 | 12:30 | Overview of cell-based modelling                       |
-| 12:30 | 13:30 | Lunch                                                  |
-| 13:30 | 14:00 | PyChaste for cell-based modelling                      |
-| 14:00 | 15:00 | Hands-on session [ PyChaste for cell-based modelling ] |
-| 15:00 | 15:30 | Chaste on GPUs                                         |
-| 15:30 | 16:45 | Installing Chaste and running tests                    |
-| 16:45 | 17:00 | Early feedback session                                 |
+| Start | End   | Description                                              |
+| ----- | ----- | -------------------------------------------------------- |
+| 10:00 | 11:00 | Arrivals                                                 |
+| 11:00 | 11:15 | Welcome address                                          |
+| 11:15 | 11:30 | Introductions (1 minute each, optional slide)            |
+| 11:30 | 12:30 | Overview of cell-based modelling                         |
+| 12:30 | 13:30 | Lunch                                                    |
+| 13:30 | 14:00 | PyChaste for cell-based modelling                        |
+| 14:00 | 15:00 | Hands-on session [ PyChaste for cell-based modelling ]   |
+| 15:00 | 15:30 | Chaste on GPUs                                           |
+| 15:30 | 16:45 | Hands-on session [ Installing Chaste and running tests ] |
+| 16:45 | 17:00 | Early feedback session                                   |
 
 ### Thursday 9th January
 
 | Start | End   | Description                                                                                                                     |
 | ----- | ----- | ------------------------------------------------------------------------------------------------------------------------------- |
-| 9:30  | 9:55  | Scientific case study #1: James Osborne                                                                                         |
+| 9:30  | 9:55  | Scientific case study #1: James Osborne (Melbourne)                                                                             |
 | 10:00 | 10:50 | Chaste for cell-based modelling: latest features and future plans                                                               |
-| 11:10 | 12:30 | C++ Chaste for cell-based modelling (with user projects)                                                                        |
+| 11:10 | 11:40 | C++ Chaste for cell-based modelling (with user projects)                                                                        |
+| 11:40 | 12:30 | Hands-on session [ C++ Chaste for cell-based modelling (with user projects) ]                                                   |
 | 12:30 | 13:30 | Lunch                                                                                                                           |
 | 13:30 | 14:30 | Hands-on session [ C++ Chaste for cell-based modelling (with user projects) ]                                                   |
 | 14:30 | 15:00 | Stream A: Immersed Boundary Method in C++ and Python <br> Stream B: Cardiac Modelling                                           |
 | 15:00 | 16:30 | Stream A: Hands-on session [ Immersed Boundary Method in C++ and Python ] <br> Stream B: Hands-on session [ Cardiac Modelling ] |
-| 16:30 | 17:00 | Scientific case study #2: Martin Homer                                                                                          |
+| 16:30 | 17:00 | Scientific case study #2: Martin Homer (Bristol)                                                                                |
 | 19:00 |       | Dinner                                                                                                                          |
 
 ### Friday 10th January
 
 | Start | End   | Description                                                                     |
 | ----- | ----- | ------------------------------------------------------------------------------- |
-| 9:30  | 10:00 | Scientific case study #3: Jochen Kursawe                                        |
+| 9:30  | 10:00 | Scientific case study #3: Jochen Kursawe (St. Andrews)                          |
 | 10:00 | 10:30 | Modelling cell-environment feedback                                             |
 | 10:30 | 11:40 | Hands-on session [ Modelling cell-environment feedback ]                        |
 | 11:40 | 12:00 | How to get further support / how to contribute to Chaste                        |
-| 12:00 | 12:30 | Scientific case study #4: Philip Murray                                         |
+| 12:00 | 12:30 | Scientific case study #4: Philip Murray (Dundee)                                |
 | 12:30 | 12:45 | Retrospective: lessons learned, future plans with Chaste                        |
 | 12:45 | 13:00 | Feedback Survey                                                                 |
 | 13:00 | 14:00 | Lunch                                                                           |
@@ -95,10 +96,9 @@ simulation of a biological problem related to their own research.
 | 16:00 |       | Departures                                                                      |
 
 ## Registration
-Admission to the workshop is free. There is also funding to cover accommodation 
-and travel within the UK for students and early career researchers.
+Admission to the workshop is free. There is also funding to cover accommodation and travel within the UK for students and early career researchers.
 
-Registration is now closed. Please see https://chaste.github.io/workshops/ for a list of upcoming workshops.
+Registration is now closed. For a list of upcoming workshops, please see [https://chaste.github.io/workshops/](https://chaste.github.io/workshops/).
 
 We look forward to your participation!
 
@@ -127,8 +127,7 @@ If you are arranging your own accommodation, there is a wide selection of hotels
 - [Holiday Inn Nottingham](https://www.ihg.com/holidayinn/hotels/gb/en/nottingham/notuk/hoteldetail)
 
 {{< callout context="grey" >}}
-For additional information, please contact
-[Kwabena Amponsah](mailto:kwabena.amponsah1@nottingham.ac.uk)(kwabena.amponsah1@nottingham.ac.uk).
+For additional information, please contact Kwabena Amponsah&lt;kwabena.amponsah1@nottingham.ac.uk&gt;.
 {{< /callout >}}
 
 ### Supported by

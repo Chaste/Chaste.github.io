@@ -12,6 +12,7 @@ layout: "single"
 ## Upcoming workshops
 
 ### [8-10 January 2025, Nottingham, UK](./2025-01)
+A workshop on cell-based modelling with Chaste.
 
 ## Past workshops
 
