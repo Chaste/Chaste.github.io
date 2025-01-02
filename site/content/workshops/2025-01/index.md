@@ -78,7 +78,7 @@ simulation of a biological problem related to their own research.
 | 14:30 | 15:00 | Stream A: Immersed Boundary Method in C++ and Python <br> Stream B: Cardiac Modelling                                           |
 | 15:00 | 16:30 | Stream A: Hands-on session [ Immersed Boundary Method in C++ and Python ] <br> Stream B: Hands-on session [ Cardiac Modelling ] |
 | 16:30 | 17:00 | Scientific case study #2: Martin Homer (Bristol)                                                                                |
-| 19:00 |       | Dinner                                                                                                                          |
+| 18:30 | 20:30 | Dinner at [Spokes Restaurant](https://www.visit-nottinghamshire.co.uk/food-and-drink/spokes-restaurant-p734991)                 |
 
 ### Friday 10th January
 
