@@ -6,7 +6,7 @@ images: []
 toc: true
 layout: "single"
 ---
-This tutorial is automatically generated from [TestPyCellSortingTutorial.py](https://github.com/Chaste/Chaste/blob/develop/pychaste/test/tutorial/TestPyCellSortingTutorial.py) at revision [1fd4e48e3990](https://github.com/Chaste/Chaste/commit/1fd4e48e3990e67db148bc1bc4cf6991a0049d0c).
+This tutorial is automatically generated from [TestPyCellSortingTutorial.py](https://github.com/Chaste/Chaste/blob/develop/pychaste/test/tutorial/TestPyCellSortingTutorial.py) at revision [86da82f2455f](https://github.com/Chaste/Chaste/commit/86da82f2455f25c9cd8530546419e71b65cf716e).
 
 Note that the code is given in full at the bottom of the page.
 
