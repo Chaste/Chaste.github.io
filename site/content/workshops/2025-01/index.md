@@ -48,9 +48,12 @@ mathematical modelling in the life sciences. On completion of the workshop,
 participants will be equipped with the skills to use Chaste to develop a
 simulation of a biological problem related to their own research.
 
+## Resources
+Links to slides and practical materials are available at [https://github.com/Chaste/chaste-workshop-materials-2025](https://github.com/Chaste/chaste-workshop-materials-2025)
+
 ## Timetable
 
-### Wednesday 8th January
+### Wednesday 8th January [[materials]](https://github.com/Chaste/chaste-workshop-materials-2025/tree/main/day-01)
 
 | Start | End   | Description                                              |
 | ----- | ----- | -------------------------------------------------------- |
@@ -65,7 +68,7 @@ simulation of a biological problem related to their own research.
 | 15:30 | 16:45 | Hands-on session [ Installing Chaste and running tests ] |
 | 16:45 | 17:00 | Early feedback session                                   |
 
-### Thursday 9th January
+### Thursday 9th January [[materials]](https://github.com/Chaste/chaste-workshop-materials-2025/tree/main/day-02)
 
 | Start | End   | Description                                                                                                                     |
 | ----- | ----- | ------------------------------------------------------------------------------------------------------------------------------- |
@@ -80,7 +83,7 @@ simulation of a biological problem related to their own research.
 | 16:30 | 17:00 | Scientific case study #2: Martin Homer (Bristol)                                                                                |
 | 18:30 | 20:30 | Dinner at [Spokes Restaurant](https://www.visit-nottinghamshire.co.uk/food-and-drink/spokes-restaurant-p734991)                 |
 
-### Friday 10th January
+### Friday 10th January [[materials]](https://github.com/Chaste/chaste-workshop-materials-2025/tree/main/day-03)
 
 | Start | End   | Description                                                                     |
 | ----- | ----- | ------------------------------------------------------------------------------- |
