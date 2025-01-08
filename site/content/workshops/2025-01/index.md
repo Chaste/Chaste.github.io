@@ -7,16 +7,18 @@ toc: true
 layout: "single"
 ---
 
-We are pleased to announce a workshop on cell-based modelling with 
-[Chaste](https://chaste.github.io), an open-source multi-scale framework 
+We are pleased to announce a workshop on cell-based modelling with
+[Chaste](https://chaste.github.io), an open-source multi-scale framework
 for the computational modelling of biological systems.
 
 ## Event Details
 
 #### When
+
 Wednesday 8th January to Friday 10th January 2025.
 
 #### Where
+
 Dearing Building<br>
 Jubilee Campus<br>
 Nottingham<br>
@@ -24,22 +26,25 @@ NG8 1AW<br>
 [https://maps.app.goo.gl/zWxN1PKRQBBqCRhTA](https://maps.app.goo.gl/zWxN1PKRQBBqCRhTA)
 
 ## Background
-The Chaste (Cancer, Heart and Soft-Tissue Environment) software library 
-consists of object-oriented C++ code that is extensible, reliable, robust, and 
-well-tested. The library enables general computational biology simulations 
-to be undertaken and includes tools to visualise, analyse, automatically 
+
+The Chaste (Cancer, Heart and Soft-Tissue Environment) software library
+consists of object-oriented C++ code that is extensible, reliable, robust, and
+well-tested. The library enables general computational biology simulations
+to be undertaken and includes tools to visualise, analyse, automatically
 curate, and store simulation results, thus expediting model
 development.
 
 ## Workshop Aims
-* Introduce Chaste's basic functionality. 
-* Provide hands-on training on implementing simulations of model biological systems.
-* Provide hands-on training on PyChaste, the Python bindings for Chaste.
-* Exhibit the use of Chaste by various researchers in their work.
-* Guide participants on applying Chaste to novel problems, including participants' own research.
-* Showcase the latest features that have been added to the Chaste codebase.
+
+- Introduce Chaste's basic functionality.
+- Provide hands-on training on implementing simulations of model biological systems.
+- Provide hands-on training on PyChaste, the Python bindings for Chaste.
+- Exhibit the use of Chaste by various researchers in their work.
+- Guide participants on applying Chaste to novel problems, including participants' own research.
+- Showcase the latest features that have been added to the Chaste codebase.
 
 ## Audience
+
 This workshop is aimed at anyone with an interest in developing or learning
 more about multi-scale computational cell-based models. Participants at all
 career stages are welcome. In order to get the most out of the workshop,
@@ -49,6 +54,7 @@ participants will be equipped with the skills to use Chaste to develop a
 simulation of a biological problem related to their own research.
 
 ## Resources
+
 Links to slides and practical materials are available at [https://github.com/Chaste/chaste-workshop-materials-2025](https://github.com/Chaste/chaste-workshop-materials-2025)
 
 ## Timetable
@@ -99,6 +105,7 @@ Links to slides and practical materials are available at [https://github.com/Cha
 | 16:00 |       | Departures                                                                      |
 
 ## Registration
+
 Admission to the workshop is free. There is also funding to cover accommodation and travel within the UK for students and early career researchers.
 
 Registration is now closed. For a list of upcoming workshops, please see [https://chaste.github.io/workshops/](https://chaste.github.io/workshops/).
@@ -114,27 +121,42 @@ The workshop will be held on the [University of Nottingham Jubilee Campus](https
 ### Places to Eat
 
 #### On Campus
-* [Aspire Cafe](https://www.nottingham.ac.uk/hospitality/cafesbars/jubileecampus.aspx)
-* [Atrium](https://www.nottingham.ac.uk/hospitality/cafesbars/jubileecampus.aspx)
-* [Cafe Terrazzo](https://www.nottingham.ac.uk/hospitality/cafesbars/jubileecampus.aspx)
-* [Costa Coffee](https://www.nottingham.ac.uk/hospitality/cafesbars/jubileecampus.aspx)
-* [SNG](https://www.nottingham.ac.uk/hospitality/cafesbars/jubileecampus.aspx)
-* [Spokes Cafe](https://www.nottingham.ac.uk/hospitality/cafesbars/jubileecampus.aspx)
+
+| Place                                                                                  | Opening times                          |
+| -------------------------------------------------------------------------------------- | -------------------------------------- |
+| [Aspire Cafe](https://www.nottingham.ac.uk/hospitality/cafesbars/jubileecampus.aspx)   | 8.30am-3.30pm                          |
+| [Atrium](https://www.nottingham.ac.uk/hospitality/cafesbars/jubileecampus.aspx)        | 7.30am-9.30am, 11.30am-2pm, 5pm-7.30pm |
+| [Cafe Terrazzo](https://www.nottingham.ac.uk/hospitality/cafesbars/jubileecampus.aspx) | 8.30am-4pm                             |
+| [Costa Coffee](https://www.nottingham.ac.uk/hospitality/cafesbars/jubileecampus.aspx)  | 8am-7pm                                |
+| [SNG](https://www.nottingham.ac.uk/hospitality/cafesbars/jubileecampus.aspx)           | 8.15am-3.15pm                          |
+| [Spokes Cafe](https://www.nottingham.ac.uk/hospitality/cafesbars/jubileecampus.aspx)   | 10am-4pm                               |
 
 #### Off Campus
-* [Rose and Crown](https://www.greeneking.co.uk/pubs/nottinghamshire/rose-and-crown)
-* [Savera](https://saverabalti.com)
+
+| Place                                                                                  | Opening times |
+| -------------------------------------------------------------------------------------- | ------------- |
+| [Rose and Crown Pub](https://www.greeneking.co.uk/pubs/nottinghamshire/rose-and-crown) | 10am-10pm     |
+| [Savera Balti](https://saverabalti.com)                                                | 5:30pm-7:30pm |
+| [Sea Fish & Chips](https://maps.app.goo.gl/EDNivVD9s3apu56RA)                          | 11.30am-8pm   |
+
+#### Shops
+
+| Place                                              | Opening times |
+| -------------------------------------------------- | ------------- |
+| [Lidl](https://maps.app.goo.gl/ivQtRFWn5CrpB1eL7)  | 8am-10pm      |
+| [Co-op](https://maps.app.goo.gl/fatH9Ha2fux9vWrP9) | 6am-10pm      |
+| [Tesco](https://maps.app.goo.gl/mPLj2hb5EAGbC9ta8) | 6am-11pm      |
 
 ### Transport Links
 
-Information on public transport in Nottingham can be found on the following page: 
+Information on public transport in Nottingham can be found on the following page:
 [https://www.nottingham.ac.uk/about/visitorinformation/public-transport-to-our-campuses.aspx](https://www.nottingham.ac.uk/about/visitorinformation/public-transport-to-our-campuses.aspx)
 
 ### Hotel Information
 
 If you are arranging your own accommodation, there is a wide selection of hotels available in Nottingham. A number of reasonably priced options can be found below.
 
-*Please note that accommodation you book yourself is __not__ eligible for a bursary -- if you are applying for an accommodation bursary and your application is successful (we anticipate that there should be funding for most attendees), suitable accommodation will be reserved for you at the University of Nottingham.*
+_Please note that accommodation you book yourself is **not** eligible for a bursary -- if you are applying for an accommodation bursary and your application is successful (we anticipate that there should be funding for most attendees), suitable accommodation will be reserved for you at the University of Nottingham._
 
 - [Nottingham Venues](https://nottinghamvenues.com/nottingham-hotels-accomodation/)
 - [Travelodge Nottingham Wollaton Park](https://www.travelodge.co.uk/hotels/474/Nottingham-Wollaton-Park-hotel)
@@ -148,5 +170,7 @@ For additional information, please contact Kwabena Amponsah&lt;kwabena.amponsah1
 {{< /callout >}}
 
 ### Supported by
+
 {{< img src="/docs/ukri-bbsrc-square-logo.png" alt="BBSRC Logo" h="150px" >}}<br>
 BBSRC Grant BB/V018647/1
+
