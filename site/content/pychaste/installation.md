@@ -57,7 +57,7 @@ already have Docker installed, please follow the instructions in the [Docker doc
 With Docker installed, you can pull the Chaste Docker image and launch a PyChaste container:
 
 ```sh
-docker run -it --init --rm -v chaste_data:/home/chaste -p 8888:8888 chaste/release
+docker run -it --init --rm -p 8888:8888 chaste/pychaste
 ```
 
 You can open a Jupyter notebook by launching a web browser to `http://localhost:8888`.
@@ -67,7 +67,7 @@ You can open a Jupyter notebook by launching a web browser to `http://localhost:
 To build PyChaste from source, we first need to install Chaste dependencies.
 See the [Chaste Install Guides](../../docs/installguides/) for step-by-step instructions on how to do this.
 
-PyChaste requires additional pre-installed dependencies: `castxml`, `clang`, `matplotlib`, `mpi4py`, `numpy`, `petsc4py`, Python bindings for `vtk` , `xvfbwrapper`, and `xvfb`.
+PyChaste requires additional pre-installed dependencies: `castxml`, `clang`, `matplotlib`, `mpi4py`, `numpy`, `petsc4py`, `xvfb`, and Python bindings for `vtk` and `xvfbwrapper`.
 
 To install these additional dependencies on Ubuntu 24.04, for example:
 
