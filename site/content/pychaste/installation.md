@@ -67,7 +67,7 @@ You can open a Jupyter notebook by launching a web browser to `http://localhost:
 To build PyChaste from source, we first need to install Chaste dependencies.
 See the [Chaste Install Guides](../../docs/installguides/) for step-by-step instructions on how to do this.
 
-PyChaste requires additional pre-installed dependencies: `castxml`, `clang`, `matplotlib`, `mpi4py`, `numpy`, `petsc4py`, `xvfb`, and Python bindings for `vtk` and `xvfbwrapper`.
+PyChaste requires additional pre-installed dependencies: `castxml`, `clang`, `matplotlib`, `mpi4py`, `numpy`, `petsc4py`, `xvfb`, `xvfbwrapper`, and Python bindings for `vtk`.
 
 To install these additional dependencies on Ubuntu 24.04, for example:
 
