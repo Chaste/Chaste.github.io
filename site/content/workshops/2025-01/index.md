@@ -111,6 +111,20 @@ The workshop will be held on the [University of Nottingham Jubilee Campus](https
 
 <iframe width="100%" height="550px" frameborder="0" allowfullscreen allow="geolocation" src="//umap.openstreetmap.fr/en/map/chaste-workshop_1135862?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&editMode=disabled&moreControl=false&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=null&onLoadPanel=none&captionBar=false&captionMenus=false&captionControl=null&fullscreenControl=null"></iframe>
 
+### Places to Eat
+
+#### On Campus
+* [Aspire Cafe](https://www.nottingham.ac.uk/hospitality/cafesbars/jubileecampus.aspx)
+* [Atrium](https://www.nottingham.ac.uk/hospitality/cafesbars/jubileecampus.aspx)
+* [Cafe Terrazzo](https://www.nottingham.ac.uk/hospitality/cafesbars/jubileecampus.aspx)
+* [Costa Coffee](https://www.nottingham.ac.uk/hospitality/cafesbars/jubileecampus.aspx)
+* [SNG](https://www.nottingham.ac.uk/hospitality/cafesbars/jubileecampus.aspx)
+* [Spokes Cafe](https://www.nottingham.ac.uk/hospitality/cafesbars/jubileecampus.aspx)
+
+#### Off Campus
+* [Rose and Crown](https://www.greeneking.co.uk/pubs/nottinghamshire/rose-and-crown)
+* [Savera](https://saverabalti.com)
+
 ### Transport Links
 
 Information on public transport in Nottingham can be found on the following page: 
