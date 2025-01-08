@@ -122,21 +122,22 @@ The workshop will be held on the [University of Nottingham Jubilee Campus](https
 
 #### On Campus
 
-| Place                                                                                  | Opening times                          |
-| -------------------------------------------------------------------------------------- | -------------------------------------- |
-| [Aspire Cafe](https://www.nottingham.ac.uk/hospitality/cafesbars/jubileecampus.aspx)   | 8.30am-3.30pm                          |
-| [Atrium](https://www.nottingham.ac.uk/hospitality/cafesbars/jubileecampus.aspx)        | 7.30am-9.30am, 11.30am-2pm, 5pm-7.30pm |
-| [Cafe Terrazzo](https://www.nottingham.ac.uk/hospitality/cafesbars/jubileecampus.aspx) | 8.30am-4pm                             |
-| [Costa Coffee](https://www.nottingham.ac.uk/hospitality/cafesbars/jubileecampus.aspx)  | 8am-7pm                                |
-| [SNG](https://www.nottingham.ac.uk/hospitality/cafesbars/jubileecampus.aspx)           | 8.15am-3.15pm                          |
-| [Spokes Cafe](https://www.nottingham.ac.uk/hospitality/cafesbars/jubileecampus.aspx)   | 10am-4pm                               |
+| Place                                                                                          | Opening times                          |
+| ---------------------------------------------------------------------------------------------- | -------------------------------------- |
+| [Aspire Cafe](https://www.nottingham.ac.uk/hospitality/cafesbars/jubileecampus.aspx)           | 8.30am-3.30pm                          |
+| [Atrium](https://www.nottingham.ac.uk/hospitality/cafesbars/jubileecampus.aspx)                | 7.30am-9.30am, 11.30am-2pm, 5pm-7.30pm |
+| [Business Library Cafe](https://www.nottingham.ac.uk/hospitality/cafesbars/jubileecampus.aspx) | 8.30am-3.30pm                          |
+| [Cafe Terrazzo](https://www.nottingham.ac.uk/hospitality/cafesbars/jubileecampus.aspx)         | 8.30am-4pm                             |
+| [Costa Coffee](https://www.nottingham.ac.uk/hospitality/cafesbars/jubileecampus.aspx)          | 8am-7pm                                |
+| [SNG](https://www.nottingham.ac.uk/hospitality/cafesbars/jubileecampus.aspx)                   | 8.15am-3.15pm                          |
+| [Spokes Cafe](https://www.nottingham.ac.uk/hospitality/cafesbars/jubileecampus.aspx)           | 10am-4pm                               |
 
 #### Off Campus
 
 | Place                                                                                  | Opening times |
 | -------------------------------------------------------------------------------------- | ------------- |
-| [Rose and Crown Pub](https://www.greeneking.co.uk/pubs/nottinghamshire/rose-and-crown) | 10am-10pm     |
-| [Savera Balti](https://saverabalti.com)                                                | 5:30pm-7:30pm |
+| [Rose and Crown Pub](https://maps.app.goo.gl/AY3UZgS3hMMJtYLX6)                        | 10am-10pm     |
+| [Savera Balti](https://maps.app.goo.gl/WFtuePVAZJRiBr4C6)                              | 5:30pm-7:30pm |
 | [Sea Fish & Chips](https://maps.app.goo.gl/EDNivVD9s3apu56RA)                          | 11.30am-8pm   |
 | [Subway (Derby Road)](https://maps.app.goo.gl/rTBuBb38Cg3CKxqL7)                       | 8am-9pm       |
 | [Subway (Wollaton Road)](https://maps.app.goo.gl/t1RsJuNCDaLEJbX69)                    | 8am-10pm      |
@@ -146,7 +147,7 @@ The workshop will be held on the [University of Nottingham Jubilee Campus](https
 
 | Place                                              | Opening times |
 | -------------------------------------------------- | ------------- |
-| [Lidl](https://maps.app.goo.gl/ivQtRFWn5CrpB1eL7)  | 8am-10pm      |
+| [Lidl](https://maps.app.goo.gl/L5ZyZbpJaRFYdt926)  | 8am-10pm      |
 | [Co-op](https://maps.app.goo.gl/fatH9Ha2fux9vWrP9) | 6am-10pm      |
 | [Tesco](https://maps.app.goo.gl/mPLj2hb5EAGbC9ta8) | 6am-11pm      |
 
