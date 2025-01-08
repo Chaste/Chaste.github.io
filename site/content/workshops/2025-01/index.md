@@ -138,6 +138,9 @@ The workshop will be held on the [University of Nottingham Jubilee Campus](https
 | [Rose and Crown Pub](https://www.greeneking.co.uk/pubs/nottinghamshire/rose-and-crown) | 10am-10pm     |
 | [Savera Balti](https://saverabalti.com)                                                | 5:30pm-7:30pm |
 | [Sea Fish & Chips](https://maps.app.goo.gl/EDNivVD9s3apu56RA)                          | 11.30am-8pm   |
+| [Subway (Derby Road)](https://maps.app.goo.gl/rTBuBb38Cg3CKxqL7)                       | 8am-9pm       |
+| [Subway (Wollaton Road)](https://maps.app.goo.gl/t1RsJuNCDaLEJbX69)                    | 8am-10pm      |
+| [Greggs](https://maps.app.goo.gl/aq54rCHgmNxjMX4R6)                                    | 7am-7pm       |
 
 #### Shops
 
