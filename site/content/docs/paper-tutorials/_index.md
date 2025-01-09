@@ -11,7 +11,7 @@ We are working on fixing these.
 {{< /callout >}}
 
 {{< callout context="note" title="Note" icon="outline/info-circle" >}}
-If you are viewing this on the Chaste website, **the tutorials here are static, and are only likely to work with the specific version of Chaste indicated. They are unlikley to work with the development version of Chaste**.
+**The tutorials here are static, and are only likely to work with the specific version of Chaste indicated. They are unlikley to work with the development version of Chaste**.
 {{< /callout >}}
 
 ## Paper Tutorials
