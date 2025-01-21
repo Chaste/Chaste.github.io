@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestSingleCellSimulationTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestSingleCellSimulationTutorial.hpp) at revision [86da82f2455f](https://github.com/Chaste/Chaste/commit/86da82f2455f25c9cd8530546419e71b65cf716e). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestSingleCellSimulationTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestSingleCellSimulationTutorial.hpp) at revision [7845d6c00765](https://github.com/Chaste/Chaste/commit/7845d6c00765950feff6704dfe5152af1c50e64b). Note that the code is given in full at the bottom of the page.
 ## An example showing how to run a single cell simulation
 
 ### Introduction
@@ -237,11 +237,12 @@ Write the data out to a file. Here we show the full range of options.
 
 ### Calculating APD and Upstroke Velocity
 
-Calculate APD and upstroke velocity using `CellProperties`
+Calculate APD and upstroke velocity using `CellProperties`.
+"Any" in the method name refers to the fact that the variable can be
+a state variable, a derived quantity, or a parameter.
 
 ```cpp
-        unsigned voltage_index = p_model->GetSystemInformation()->GetStateVariableIndex("membrane_voltage");
-        std::vector<double> voltages = solution.GetVariableAtIndex(voltage_index);
+        std::vector<double> voltages = solution.GetAnyVariable("membrane_voltage");
         CellProperties cell_props(voltages, solution.rGetTimes());
 
         double apd = cell_props.GetLastActionPotentialDuration(90);
@@ -326,8 +327,7 @@ public:
         bool include_derived_quantities = true;
         solution.WriteToFile("TestCvodeCells", "Shannon2004Cvode", "ms", steps_per_row, clean_dir, precision, include_derived_quantities);
 
-        unsigned voltage_index = p_model->GetSystemInformation()->GetStateVariableIndex("membrane_voltage");
-        std::vector<double> voltages = solution.GetVariableAtIndex(voltage_index);
+        std::vector<double> voltages = solution.GetAnyVariable("membrane_voltage");
         CellProperties cell_props(voltages, solution.rGetTimes());
 
         double apd = cell_props.GetLastActionPotentialDuration(90);

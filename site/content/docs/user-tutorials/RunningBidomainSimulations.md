@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningBidomainSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestRunningBidomainSimulationsTutorial.hpp) at revision [86da82f2455f](https://github.com/Chaste/Chaste/commit/86da82f2455f25c9cd8530546419e71b65cf716e). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningBidomainSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestRunningBidomainSimulationsTutorial.hpp) at revision [34df7b562361](https://github.com/Chaste/Chaste/commit/34df7b562361ecabb92bcb519337b057e3c2584a). Note that the code is given in full at the bottom of the page.
 ## An example showing how to run bidomain simulations
 
 ### Introduction
@@ -165,7 +165,7 @@ Define the test.
     {
 ```
 
-The `HeartConfig` class is used to set various parameters (see the main ChasteGuides page
+The `HeartConfig` class is used to set various parameters (see the main [ChasteGuides](/docs/user-guides/#miscellaneous-information) page
 for information on default parameter values. Parameters in this file can be re-set
 with `HeartConfig` if the user wishes, and other parameters such as end time must be set
 using `HeartConfig`. Let us begin by setting the end time (in ms), the mesh to use, and the
@@ -270,7 +270,7 @@ In order to visualise the results, go to one of the sub-folders
  * `/tmp/$USER/testoutput/BidomainTutorial/vtk_output` for Paraview (VTK)
  where you should find the geometric mesh data and simulation output.
  
-Please see ChasteGuides/VisualisationGuides for details of using Meshalyzer/Cmgui/Paraview.
+Please see [ChasteGuides/VisualisationGuides](/docs/user-guides/visualisation-guides/#cardiac-simulations) for details of using Meshalyzer/Cmgui/Paraview.
 
 Note: the easiest way to look at the resultant voltage values from the code
 (for the last timestep - the data for the previous timesteps is written to file

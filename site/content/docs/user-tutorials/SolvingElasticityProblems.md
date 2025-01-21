@@ -5,14 +5,14 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestSolvingElasticityProblemsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/continuum_mechanics/test/TestSolvingElasticityProblemsTutorial.hpp) at revision [86da82f2455f](https://github.com/Chaste/Chaste/commit/86da82f2455f25c9cd8530546419e71b65cf716e). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestSolvingElasticityProblemsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/continuum_mechanics/test/TestSolvingElasticityProblemsTutorial.hpp) at revision [796938b5f26a](https://github.com/Chaste/Chaste/commit/796938b5f26aa4b9dbb04c4037849448e7147cca). Note that the code is given in full at the bottom of the page.
 ## Solving solid mechanics problems
 
 In this tutorial we show how Chaste can be used to solve solid mechanics problems.
 We assume the reader has some familiarity with solid mechanics problems (the
 equations of nonlinear elasticity are given in the PDF on equations
-and finite element implementations (see ChasteGuides --> Miscellaneous information)). It is also best
-to have had a look at the solving linear PDEs tutorials.
+and [finite element implementations](/docs/fem_implementation.pdf) ).
+It is also best to have had a look at the solving linear PDEs tutorials.
 
 In brief, there several facets to solid mechanics models:
  * Time-dependent problems versus static problems
