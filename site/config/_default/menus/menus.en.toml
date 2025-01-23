@@ -162,6 +162,13 @@
   url = "/pychaste/tutorials/"
   parent = "pychaste"
 
+[[main]]
+  name = "Dev guide"
+  weight = 530
+  identifier = "pychaste-dev-guide"
+  url = "/pychaste/dev-guide/"
+  parent = "pychaste"
+
 #==================#
 
 [[main]]
