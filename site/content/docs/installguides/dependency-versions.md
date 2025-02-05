@@ -190,21 +190,7 @@ In some instances the version number is linked to the GitHub issue in which supp
       <br>
       🟢 1.74 <sup>2</sup>
       <br>
-      🟩 1.73
-      <br>
-      🟨 1.72
-      <br>
-      🟩 1.71 <sup>1</sup>
-      <br>
-      🟨 1.70
-      <br>
-      🟩 1.69
-      <br>
-      🟨 1.68
-      <br>
-      🟢 1.67 <sup>1</sup>
-      <br>
-      🟥 &lt;1.67
+      🟥 &lt;1.74
     </td>
     <!-- HDF5 -->
     <td>
@@ -238,13 +224,7 @@ In some instances the version number is linked to the GitHub issue in which supp
       <br>
       🟢 1.10.7 <sup>2</sup>
       <br>
-      🟩 1.10.6 
-      <br>
-      🟩 1.10.5 
-      <br>
-      🟢 1.10.4 <sup>1</sup>
-      <br>
-      🟥 &lt;1.10.4
+      🟥 &lt;1.10.7
       <br>
     </td>
     <!-- ParMETIS -->
@@ -271,13 +251,7 @@ In some instances the version number is linked to the GitHub issue in which supp
       <br>
       🟢 <a href="https://github.com/Chaste/Chaste/issues/37">3.15</a> <sup>2</sup> 
       <br>
-      🟩 3.14 
-      <br>
-      🟩 3.13 
-      <br>
-      🟢 3.12 <sup>1</sup> 
-      <br>
-      🟥 &lt;3.12 
+      🟥 &lt;3.15
     </td>
     <!-- SUNDIALS -->
     <td>
@@ -303,31 +277,7 @@ In some instances the version number is linked to the GitHub issue in which supp
       <br>
       🟢 5.8 <sup>2</sup> 
       <br>
-      🟨 5.7 
-      <br>
-      🟨 5.6 
-      <br>
-      🟨 5.5 
-      <br>
-      🟨 5.4 
-      <br>
-      🟨 5.3 
-      <br>
-      🟨 5.2 
-      <br>
-      🟨 5.1 
-      <br>
-      🟨 5.0 
-      <br>
-      🟩 4.1 
-      <br>
-      🟨 4.0 
-      <br>
-      🟩 3.2 
-      <br>
-      🟢 3.1 <sup>1</sup> 
-      <br>
-      🟥 &lt;3.1 
+      🟥 &lt;5.8
     </td>
     <!-- VTK -->
     <td>
@@ -347,11 +297,7 @@ In some instances the version number is linked to the GitHub issue in which supp
       <br>
       🟢 7.1 <sup>1</sup> <sup>2</sup> 
       <br>
-      🟨 7.0 
-      <br>
-      🟩 6.3 <sup>1</sup> 
-      <br>
-      🟥 &lt;6.3 
+      🟥 &lt;7.1
     </td>
     <!-- Xerces-C  -->
     <td>
@@ -361,11 +307,7 @@ In some instances the version number is linked to the GitHub issue in which supp
       <br>
       🟢 3.2.3 <sup>2</sup> 
       <br>
-      🟢 3.2.2 <sup>1</sup> 
-      <br>
-      🟩 3.2.1 
-      <br>
-      🟥 &lt;3.2.1 
+      🟥 &lt;3.2.3
     </td>
     <!-- XSD  -->
     <td>
@@ -382,7 +324,6 @@ page, but you may find hints in the documentation for the dependency.
 {{< /callout >}}
 
 <small>
-<p>1. Available on Ubuntu 20.04 LTS Focal Fossa.</p>
 <p>2. Available on Ubuntu 22.04 LTS Jammy Jellyfish.</p>
 <p>3. Available on Ubuntu 24.04 LTS Noble Numbat.</p>
 </small>
