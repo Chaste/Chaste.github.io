@@ -46,13 +46,22 @@ minimum required to work fine.
   <tr>
     <!-- CMake -->
     <td>
-    🟦 3.30 <br>
-    🟨 3.29 <br>
-    🟢 3.28 <sup>3</sup> <br>
-    🟨 3.23 -- 3.27 <br>
-    🟢 3.22 <sup>2</sup> <br>
-    🟨 3.17 -- 3.21 <br>
-    🟩 3.16.3 <sup>1</sup> <br>
+    🟦 3.31 
+    <br>
+    🟦 3.30 
+    <br>
+    🟨 3.29 
+    <br>
+    🟢 3.28 <sup>3</sup> 
+    <br>
+    🟨 3.23 -- 3.27 
+    <br>
+    🟢 3.22 <sup>2</sup> 
+    <br>
+    🟨 3.17 -- 3.21 
+    <br>
+    🟩 3.16.3 (Minimum supported version)
+    <br>
     🟥 &lt;3.16.3
     </td>
  </tr>
@@ -86,13 +95,13 @@ to compile Chaste with no problems.
       <br>
       🟨 11.x <sup>2</sup> 
       <br>
-      🟢 10.x <sup>1</sup> <sup>2</sup> 
+      🟢 10.x <sup>2</sup> 
       <br>
-      🟩 9.x <sup>1</sup> <sup>2</sup> 
+      🟩 9.x <sup>2</sup> 
       <br>
-      🟨 8.x <sup>1</sup> 
+      🟨 8.x 
       <br>
-      🟨 7.x <sup>1</sup> 
+      🟨 7.x 
       <br>
       🟥 &lt;7.0 
     </td>
@@ -112,25 +121,27 @@ to compile Chaste with no problems.
       <br>
       🟩 13.x <sup>2</sup> 
       <br>
-      🟨 12.x <sup>1</sup> <sup>2</sup> 
+      🟨 12.x <sup>2</sup> 
       <br>
       🟨 11.x <sup>2</sup> 
       <br>
-      🟨 10.x <sup>1</sup> 
+      🟨 10.x 
       <br>
-      🟨 9.x <sup>1</sup> 
+      🟨 9.x 
       <br>
-      🟨 8.x <sup>1</sup> 
+      🟨 8.x 
       <br>
-      🟨 7.x <sup>1</sup> 
+      🟨 7.x 
       <br>
-      🟨 6.x <sup>1</sup> 
+      🟨 6.x 
       <br>
       🟥 &lt;6.0 
     </td>
     <!-- Intel oneAPI -->
     <td>
-      🟩 2024.x
+      🟩 2025.x
+      <br>
+      🟨 2024.x
       <br>
       🟨 2023.x
       <br>
@@ -164,6 +175,8 @@ In some instances the version number is linked to the GitHub issue in which supp
   <tr>
      <!-- Boost -->
     <td>
+      🟦 1.87
+      <br>
       🟦 1.86
       <br>
       🟦 1.85
@@ -194,17 +207,19 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- HDF5 -->
     <td>
-      🟦 1.14.5 
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/375">1.14.6</a> 
       <br>
-      🟦 1.14.4 
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/375">1.14.5</a> 
       <br>
-      🟦 1.14.3 
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/375">1.14.4</a>
       <br>
-      🟦 1.14.2 
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/375">1.14.3</a>
       <br>
-      🟦 1.14.1 
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/375">1.14.2</a>
       <br>
-      🟦 1.14.0 
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/375">1.14.1</a>
+      <br>
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/375">1.14.0</a>
       <br>
       🟦 1.12.3 
       <br>
@@ -229,7 +244,7 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- ParMETIS -->
     <td>
-      🟢 4.0 <sup>1</sup> <sup>2</sup> <sup>3</sup>
+      🟢 4.0 <sup>2</sup> <sup>3</sup>
       <br>
       🟥 &lt;4.0
     </td>
@@ -255,6 +270,8 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- SUNDIALS -->
     <td>
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/266">7.2</a> 
+      <br>
       🟦 <a href="https://github.com/Chaste/Chaste/issues/266">7.1</a> 
       <br>
       🟦 <a href="https://github.com/Chaste/Chaste/issues/266">7.0</a> 
@@ -281,6 +298,8 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- VTK -->
     <td>
+      🟦 9.4
+      <br>
       🟢 <a href="https://github.com/Chaste/Chaste/issues/257">9.3</a>
       <br>
       🟩 <a href="https://github.com/Chaste/Chaste/issues/36">9.2</a> 
@@ -295,23 +314,25 @@ In some instances the version number is linked to the GitHub issue in which supp
       <br>
       🟨 8.0 
       <br>
-      🟢 7.1 <sup>1</sup> <sup>2</sup> 
+      🟢 7.1 <sup>2</sup> 
       <br>
       🟥 &lt;7.1
     </td>
     <!-- Xerces-C  -->
     <td>
-      🟦 3.2.5 
+      🟦 3.3
       <br>
-      🟢 3.2.4 <sup>3</sup> 
+      🟢 3.2 <sup>2</sup> <sup>3</sup>
       <br>
-      🟢 3.2.3 <sup>2</sup> 
-      <br>
-      🟥 &lt;3.2.3
+      🟥 &lt;3.2
     </td>
     <!-- XSD  -->
     <td>
-      🟢 4.0 <sup>1</sup> <sup>2</sup> <sup>3</sup> 
+      🟦 4.2
+      <br>
+      🟦 4.1
+      <br>
+      🟢 4.0 <sup>2</sup> <sup>3</sup> 
       <br>
       🟥 &lt;4.0 
     </td>
