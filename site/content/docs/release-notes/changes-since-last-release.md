@@ -22,6 +22,14 @@ by a recent interface change then please see here for fix suggestions.
 ### Headline features
 
 ### Dependency changes
+This will be the last Chaste release to support
+- Clang >=6, <11
+- GCC >=7, <9
+- Boost >=1.67, <1.74
+- HDF5 >=1.10.4, <1.10.7
+- PETSc >=3.12, <3.15
+- SUNDIALS >=3.1, <5.8
+- VTK >=6.3, <7.1
 
 ### Core
 
