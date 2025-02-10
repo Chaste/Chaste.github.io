@@ -365,7 +365,9 @@ In some instances the version number is linked to the GitHub issue in which supp
       <br>
       🟢 7.1 <sup>1</sup> <sup>2</sup> 
       <br>
-      🟩 6.3 <sup>1</sup> 
+      🟪 7.0 
+      <br>
+      🟪 6.3 <sup>1</sup> 
       <br>
       🟥 &lt;6.3
     </td>
