@@ -13,3 +13,33 @@ Chaste aims to demonstrate correctness through substantial testing and automatio
 With new operating systems, platforms, architectures, compilers and dependency versions constantly being released, it is important that we continue to demonstrate that Chaste enables reproducible and replicable science.
 
 Our [testing strategy](../testing-strategy) describes our approach to writing tests using the [CxxTest](https://github.com/CxxTest/cxxtest) unit testing framework, and how those tests are organised. This page describes how those tests are automated using [GitHub actions](https://github.com/features/actions) and other tools.
+
+## Cross-platform support
+
+Chaste is primarily tested on [Ubuntu Long Term Support](https://ubuntu.com/about/release-cycle) (LTS) versions.
+These are released in April of every even-numbered year, and typically remain in support for 5 years.
+
+Cross-platform support is recommended via our [pre-configured Docker images](https://github.com/Chaste/chaste-docker) which allow you to run Chaste on your local hardware whether you use Windows, macOS or Linux, and whether you have amd64 or arm64 hardware.
+
+Alternatively, you can use Chaste in the browser via [GitHub codespaces](https://github.com/features/codespaces).
+
+## Testing with different compilers
+
+Our strategy is to compile Chaste with a wide range of warnings and diagnostics enabled, and to treat compilation warnings as errors.
+Each C++ compiler provides different warnings and diagnostics, and results in different compiled code.
+
+We compile Chaste with as many different compilers as possible, to ensure that we use a safe and modern subset of the C++ language, and that new warnings and diagnostics are enabled as they become available.
+
+Chaste is compiled with:
+
+- [GCC](https://gcc.gnu.org/): every version available on the latest [GitHub hosted Ubuntu runner](https://docs.github.com/en/actions/using-github-hosted-runners/using-github-hosted-runners/about-github-hosted-runners)
+- [Clang](https://clang.llvm.org/): every version available on the latest [GitHub hosted Ubuntu runner](https://docs.github.com/en/actions/using-github-hosted-runners/using-github-hosted-runners/about-github-hosted-runners)
+- [Intel](https://www.intel.com/content/www/us/en/developer/tools/oneapi/dpc-compiler.html): latest version
+
+## Additional portability testing
+
+We aim for Chaste to work, where reasonably possible, with all new versions of dependencies.
+We test a range of dependency versions, including:
+
+- Default versions on [Ubuntu Long Term Support](https://ubuntu.com/about/release-cycle)
+- Default versions on current interim Ubuntu releases
