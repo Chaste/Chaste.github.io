@@ -189,7 +189,7 @@ In some instances the version number is linked to the GitHub issue in which supp
       <br>
       🟨 1.81
       <br>
-      🟨 1.80
+      🟩 1.80
       <br>
       🟨 1.79
       <br>
@@ -199,7 +199,7 @@ In some instances the version number is linked to the GitHub issue in which supp
       <br>
       🟨 <a href="https://github.com/Chaste/Chaste/issues/28">1.76</a>
       <br>
-      🟨 <a href="https://github.com/Chaste/Chaste/issues/28">1.75</a>
+      🟩 <a href="https://github.com/Chaste/Chaste/issues/28">1.75</a>
       <br>
       🟢 1.74 <sup>2</sup>
       <br>
@@ -237,11 +237,11 @@ In some instances the version number is linked to the GitHub issue in which supp
       <br>
       🟦 1.12.3 
       <br>
-      🟩 <a href="https://github.com/Chaste/Chaste/issues/163">1.12.2</a> 
+      🟨 <a href="https://github.com/Chaste/Chaste/issues/163">1.12.2</a> 
       <br>
-      🟨 <a href="https://github.com/Chaste/Chaste/issues/163">1.12.1</a> 
+      🟩 <a href="https://github.com/Chaste/Chaste/issues/163">1.12.1</a> 
       <br>
-      🟨 <a href="https://github.com/Chaste/Chaste/issues/163">1.12.0</a> 
+      🟩 <a href="https://github.com/Chaste/Chaste/issues/163">1.12.0</a> 
       <br>
       🟨 1.10.11 
       <br>
@@ -271,17 +271,17 @@ In some instances the version number is linked to the GitHub issue in which supp
     <td>
       🟦 <a href="https://github.com/Chaste/Chaste/issues/327">3.22</a>  
       <br>
-      🟦 3.21 
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/327">3.21</a>
       <br>
-      🟦 3.20 
+      🟩 3.20 
       <br>
       🟢 <a href="https://github.com/Chaste/Chaste/issues/257">3.19</a> <sup>3</sup> 
       <br>
-      🟨 3.18 
+      🟩 3.18 
       <br>
-      🟨 3.17 
+      🟩 3.17 
       <br>
-      🟨 3.16 
+      🟩 3.16 
       <br>
       🟢 <a href="https://github.com/Chaste/Chaste/issues/37">3.15</a> <sup>2</sup> 
       <br>
@@ -301,21 +301,21 @@ In some instances the version number is linked to the GitHub issue in which supp
       <br>
       🟦 <a href="https://github.com/Chaste/Chaste/issues/266">7.0</a> 
       <br>
-      🟦 6.7 
+      🟩 6.7 
       <br>
-      🟦 6.6 
+      🟨 6.6 
       <br>
-      🟦 6.5 
+      🟨 6.5 
       <br>
       🟢 <a href="https://github.com/Chaste/Chaste/issues/257">6.4</a> <sup>3</sup> 
       <br>
-      🟦 6.3 
+      🟨 6.3 
       <br>
-      🟦 6.2 
+      🟨 6.2 
       <br>
-      🟦 6.1 
+      🟨 6.1 
       <br>
-      🟩 6.0 
+      🟨 6.0 
       <br>
       🟢 5.8 <sup>2</sup> 
       <br>
