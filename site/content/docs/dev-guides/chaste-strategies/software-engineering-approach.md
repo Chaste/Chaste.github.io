@@ -43,3 +43,17 @@ We test a range of dependency versions, including:
 
 - Default versions on [Ubuntu Long Term Support](https://ubuntu.com/about/release-cycle)
 - Default versions on current interim Ubuntu releases
+- All newer versions, where we have been able to verify compatibility
+
+We maintain a table of dependency versions that we expect to be compatible:
+<https://chaste.github.io/docs/installguides/dependency-versions/>
+
+## Other testing
+
+In addition, we use GitHub actions workflows for the following purposes:
+
+- Testing code coverage. Chaste aims for 100% line coverage with our extensive suite of unit tests. We upload coverage results to [Codecov](https://about.codecov.io/).
+- Memory testing. We use [valgrind](https://valgrind.org/) to detect memory management and threading bugs, and automatically generate a report from each checked commit: <https://chaste.github.io/memory-testing/>
+- Profiling. We use [GNU gprof](https://ftp.gnu.org/old-gnu/Manuals/gprof-2.9.1/html_mono/gprof.html) to profile and monitor performance of a subset of our unit tests, and generate a report from each checked commit: <https://chaste.github.io/profiling-gprof/>
+- API documentation is automatically generated for each commit on the [develop](https://github.com/Chaste/Chaste/tree/develop/) branch, meaning our [latest doxygen](https://chaste.github.io/doxygen-latest/) is always up-to-date.
+- [User tutorials](https://chaste.github.io/docs/user-tutorials/) and [how-tos](https://chaste.github.io/docs/how-tos/) are automatically generated, ensuring the webpages are always up-to-date with the [develop](https://github.com/Chaste/Chaste/tree/develop/) branch
