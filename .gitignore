@@ -13,3 +13,5 @@ linkcheckerrc
 site/.DS_Store
 
 venv
+
+site/hugo_stats.json
