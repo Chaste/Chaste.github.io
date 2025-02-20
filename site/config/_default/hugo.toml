@@ -8,7 +8,6 @@ enableEmoji = true
 enableGitInfo = false
 enableRobotsTXT = true
 languageCode = "en-GB"
-paginate = 10
 rssLimit = 10
 summarylength = 20 # 70 (default)
 
@@ -18,6 +17,9 @@ disableLanguages = ["de", "nl"]
 defaultContentLanguageInSubdir = false
 
 copyRight = "Copyright (c) 2024 Chaste developers"
+
+[pagination]
+pagerSize = 10
 
 [build.buildStats]
   enable = true
