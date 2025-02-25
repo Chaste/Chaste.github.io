@@ -135,6 +135,59 @@ you can get back from ApPredict's main methods.
 
 <img src=/fig/appredict_error_codes.jpg alt="ApPredict error codes" style=height:600px class=chaste-figure>
 
+## Using your own CellML models
+
+{{< callout context="note" title="Model Tagging" icon="outline/info-circle" >}}
+
+Whichever method you use, you will need to "tag" the CellML file with our RDF metadata, to tell ApPredict which variable represents which current, etc. See the next section for instructions on how to do this.
+
+{{< /callout >}}
+
+There are a number of ways to use CellML models with ApPredict:
+
+ * **Pre-compiled**: the fastest method is to provide a CellML file when building the ApPredict executable. This is then automatically converted to C++ hpp and cpp files just once, at ApPredict's compile time, and compiled-in to the ApPredict library for instant use. 
+
+    To do this, you simply need to put your CellML file into your local clone of the `ApPredict/src/extra_models` folder ([here on github](https://github.com/Chaste/ApPredict/tree/main/src/extra_models)), before beginning the compilation process. These pre-compiled models can be used by providing the argument `--model <name of cellml file (without .cellml on the end)>`.
+  
+    A handful of the most commonly-used models for drug studies are already compiled into ApPredict, and these can be accessed by the `--model N` argument, where `N` is the model number (or their name as above). These models are:
+
+    | N    | Model Name    | species and cell type | Reference |
+    | ---- | -----------   | --------------------- | --------- |
+    | 1    | Shannon       | rabbit ventricle      |           |
+    | 2    | Ten Tusscher  | human ventricle       |           |
+
+ * **Runtime conversion and compilation**: the most flexible method is to convert a CellML file to C++ at runtime, and compile it on the fly. This is slower, but allows any CellML file to be used with a pre-existing ApPredict binary executable, note you do need a working Chaste installation/dependencies and source tree to do the on-the-fly compilation step.
+
+   To do this option, simply provide the argument `--cellml <relative or absolute path to cellml file (including .cellml on the end)>`.
+
+## Tagging CellML models
+
+Chaste needs to know:
+
+1) what variable is `Voltage`, `Stimulus Current`, `Capacitance` etc., so that the model can be converted to a consistent interface for Chaste (behind the scenes, with automatic units conversion, thanks to a piece of software called [chaste_codegen](https://github.com/ModellingWebLab/chaste-codegen)). 
+
+ApPredict also needs to know:
+
+2) which variables in a CellML model represent the currents that it is going to block. 
+
+Both of these sets of info are communicated by adding some metadata 'tags' or 'annotations' to the CellML file. 
+
+The tags themselves take the form of [RDF metadata](https://en.wikipedia.org/wiki/Resource_Description_Framework) (but that's not so important to know!), and the list of recognised tags is given in our [oxmeta ontology](www.github.com/ModellingWebLab/ontology), which is shared by Chaste, ApPredict and [Web Lab](https://chaste.cs.ox.ac.uk/WebLab).
+
+There are a number of ways to do this:
+
+ * ***Easiest***: Some 'heavily annotated' models that will probably already have all the necessary metadata annotated/tagged are available at [https://github.com/Chaste/cellml](https://github.com/Chaste/cellml). So check here first as it may contain the model you want, already tagged with the necessary metadata for ApPredict to work with it.
+
+ * **Fairly Easy**: the [Cardiac Electrophysiology Web Lab](https://chaste.cs.ox.ac.uk/WebLab) contains an annotation tool, so that you can drag and drop metadata terms onto variables/parameters in the CellML model. To do this you'll need to [register](https://scrambler.cs.ox.ac.uk/accounts/register/) then contact [gary.mirams@nottingham.ac.uk](mailto:gary.mirams@nottingham.ac.uk) to ask for 'Modeller' permissions for the account you just created, and then when we've granted that you can upload your CellML model and annotate it. 
+   * My Files ->  Models -> Create New Model. Put in a name and upload your CellML file as a Private file. This becomes version 1.
+   * Navigate to the model (My files -> Models) and click on it.
+   * Now click on the little blue molecule symbol which takes you to the annotation tool: 
+  <img src=/fig/annotating_cellml.png alt="Button to Annotate CellML files on Web Lab" style=width:700px class=chaste-figure>
+   * You can then drag terms from the ontology on the right onto variables in the model on the left.
+   * Once you're done, click 'Save Model Annotations' which creates version 2, and then you can click the green arrow to the right of the annotation tool to download your annotated CellML file.
+
+ * **More involved**: 'manual' annotation can be done by inserting some text into the CellML files themselves. See [Code Generation from CellML](/docs/user-guides/code-generation-from-cellml/#model-annotation-with-rdf) as well as the ontology terms.
+
 ## Release Notes
 
 * ApPredict is still in active development. More recent release notes are on [https://github.com/Chaste/ApPredict/releases](https://github.com/Chaste/ApPredict/releases).
