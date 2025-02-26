@@ -47,6 +47,8 @@ paper](http://dx.doi.org/10.1016/j.vascn.2015.05.002).
 **N.B.** you don't need to do any of the below to use the [web portal version of
 ApPredict](https://chaste.cs.ox.ac.uk/ActionPotential/).
 
+Although you may want to read the [Annotating CellML section](#tagging-or-annotating-cellml-models) if you want to upload your own models to the portal.
+
 #### Pre-requisites
 
 ApPredict requires a 'Code User' or 'Code Developer' version of Chaste to be
@@ -235,7 +237,7 @@ There are a number of ways to do this:
 
  * ***Easiest***: Some 'heavily-annotated' models that will probably already have all the necessary metadata annotated/tagged are available at [https://github.com/Chaste/cellml](https://github.com/Chaste/cellml). So check here first as it may contain the model you want, already tagged with the necessary metadata for ApPredict to work with it.
 
- * **Fairly Easy**: the [Cardiac Electrophysiology Web Lab](https://chaste.cs.ox.ac.uk/WebLab) contains an annotation tool, so that you can drag and drop metadata terms onto variables/parameters in the CellML model. To do this you'll need to [register](https://scrambler.cs.ox.ac.uk/accounts/register/) then contact [gary.mirams@nottingham.ac.uk](mailto:gary.mirams@nottingham.ac.uk) to ask for 'Modeller' permissions for the account you just created, and then when we've granted that you can upload your CellML model and annotate it. 
+ * **Fairly Easy**: the [Cardiac Electrophysiology Web Lab](https://chaste.cs.ox.ac.uk/WebLab) contains an annotation tool, so that you can drag and drop metadata terms onto variables/parameters in the CellML model. To do this you'll need to [register](https://scrambler.cs.ox.ac.uk/accounts/register/) then contact <a href="mailto:gary.mirams@nottingham.ac.uk?subject=Web Lab User Permissions">gary.mirams@nottingham.ac.uk</a> to ask for 'Modeller' permissions for the account you just created, and then when we've granted that you can upload your CellML model and annotate it. 
    * My Files ->  Models -> Create New Model. Put in a name and upload your CellML file as a Private file. This becomes version 1.
    * Navigate to the model (My files -> Models) and click on it.
    * Now click on the little blue molecule symbol which takes you to the annotation tool: 
