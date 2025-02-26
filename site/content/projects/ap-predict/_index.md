@@ -162,7 +162,7 @@ There are a number of ways to use CellML models with ApPredict:
     | 7   | Paci 2013                        | human stem-cell derived myocyte (ventricular-like) | doi: [10.1007/s10439-013-0833-3](https://doi.org/10.1007/s10439-013-0833-3)                   |
     | 8   | Dutta (O'Hara-Rudy CiPA v1) 2017 | human ventricle  (endo)                            | doi: [10.3389/fphys.2017.00616](https://doi.org/10.3389/fphys.2017.00616)                     |
 
- * **Runtime conversion and compilation**: the most flexible method is to convert a CellML file to C++ at runtime, and compile it on the fly. This is slower, but allows any CellML file to be used with a pre-existing ApPredict binary executable, note you do need a working Chaste installation/dependencies and source tree to do the on-the-fly compilation step.
+ * **Runtime conversion and compilation**: the most flexible method is to convert a CellML file to C++ at runtime, and compile it on the fly. This is slower, but allows any CellML file to be used with a pre-existing ApPredict binary executable, without recompiling Chaste and ApPredict. Although note you do need a working Chaste installation/dependencies and source tree to do the on-the-fly compilation step.
 
    To do this option, simply provide the argument `--model <relative or absolute path to cellml file (including .cellml on the end)>`.
 
