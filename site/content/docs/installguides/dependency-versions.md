@@ -203,9 +203,7 @@ In some instances the version number is linked to the GitHub issue in which supp
       <br>
       🟢 1.74 <sup>2</sup>
       <br>
-      🟩 1.73
-      <br>
-      🟥 &lt;1.73
+      🟥 &lt;1.74
     </td>
     <!-- HDF5 -->
     <td>
