@@ -74,6 +74,13 @@ The 'Used by' column indicates where these libraries are used:
 </tr>
 
 <tr>
+  <td> OpenSimplex </td>
+  <td> <a href="https://github.com/KdotJPG/OpenSimplex2/blob/master/_old/cpp/UNLICENSE">https://github.com/KdotJPG/OpenSimplex2/blob/master/_old/cpp/UNLICENSE</a> </td>
+  <td> <a href="https://github.com/Chaste/Chaste/blob/develop/mesh/src/3rdparty/opensimplex/UNLICENSE"> UNLICENSE </a> </td>
+  <td> Source, Distributed </td>
+</tr>
+
+<tr>
   <td> (Par)METIS </td>
   <td> <a href="http://glaros.dtc.umn.edu/gkhome/metis/metis/faq?q=metis/metis/faq#distribute">http://glaros.dtc.umn.edu/gkhome/metis/metis/faq?q=metis/metis/faq#distribute</a> </td>
   <td><a href="https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/METIS.txt"> METIS.txt</a>,
@@ -95,6 +102,13 @@ The 'Used by' column indicates where these libraries are used:
   <td><a href="https://petsc.org/release/install/license/">https://petsc.org/release/install/license/</a></td>
   <td><a href="https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/PETSc.html">PETSc.html</a> </td>
   <td> Source </td>
+</tr>
+
+<tr>
+  <td> Pocketfft </td>
+  <td><a href="https://gitlab.mpcdf.mpg.de/mtr/pocketfft/-/blob/master/LICENSE.md">https://gitlab.mpcdf.mpg.de/mtr/pocketfft/-/blob/master/LICENSE.md</a></td>
+  <td><a href="https://github.com/Chaste/Chaste/blob/develop/mesh/src/3rdparty/pocketfft-src/LICENSE.md">LICENSE.md</a></td>
+  <td> Source, Distributed </td>
 </tr>
 
 <tr>
