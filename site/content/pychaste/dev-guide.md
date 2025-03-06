@@ -48,6 +48,30 @@ To add a new class, put a new entry with the name of the class in the `config.ya
 - name: NewCellCycleModel
 ```
 
+Next, add an import for the class (or its template instantiations) in the appropriate `__init__.py` under `pychaste/src/py/chaste`. For example, if it is templated on spatial dimensions and belongs in `cell_based`, add the following to the imports list in `pychaste/src/py/chaste/cell_based/__init__.py`:
+
+```py
+from ... import (
+  ...
+  NewCellCycleModel_2
+  NewCellCycleModel_3
+  ...
+)
+```
+
+If the class is templated, add a template syntax entry for it further down in the same `__init__.py`. For example:
+
+```py
+NewCellCycleModel = TemplateClassDict(
+    {
+        ("2",): NewCellCycleModel_2,
+        ("3",): NewCellCycleModel_3,
+    }
+)
+```
+
+This enables using the class via the more convenient `ccm = NewCellCycleModel[2]` notation.
+
 If cmake configuration has already been run, re-generate the wrappers with:
 
 ```sh
@@ -74,6 +98,8 @@ If a class has been removed or renamed in the main codebase, it should be remove
 ```console
 fatal error: 'NewCellCycleModel.hpp' file not found
 ```
+
+All other references to the removed/renamed class and its instantiations should be removed from the code as well.
 
 ## Fixing errors
 
