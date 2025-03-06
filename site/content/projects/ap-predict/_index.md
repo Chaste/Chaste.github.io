@@ -231,7 +231,7 @@ The distinction is used by the [Web Lab](https://chaste.cs.ox.ac.uk/WebLab) beca
 
 ### Applying the tags
 
-The tags themselves take the form of [RDF metadata](https://en.wikipedia.org/wiki/Resource_Description_Framework) (but that's not so important to know!), and the list of recognised tags is given in our [oxmeta ontology](www.github.com/ModellingWebLab/ontology), which is shared by Chaste, ApPredict and [Web Lab](https://chaste.cs.ox.ac.uk/WebLab). 
+The tags themselves take the form of [RDF metadata](https://en.wikipedia.org/wiki/Resource_Description_Framework) (but that's not so important to know!), and the list of recognised tags is given in our [oxmeta ontology](https://www.github.com/ModellingWebLab/ontology), which is shared by Chaste, ApPredict and [Web Lab](https://chaste.cs.ox.ac.uk/WebLab). 
 
 There are a number of ways to do this:
 
