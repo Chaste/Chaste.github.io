@@ -261,9 +261,11 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- PETSc -->
     <td>
-      🟦 <a href="https://github.com/Chaste/Chaste/issues/327">3.22</a>  
+      🟦 3.23
       <br>
-      🟦 <a href="https://github.com/Chaste/Chaste/issues/327">3.21</a>
+      🟩 <a href="https://github.com/Chaste/Chaste/issues/327">3.22</a>  
+      <br>
+      🟩 <a href="https://github.com/Chaste/Chaste/issues/327">3.21</a>
       <br>
       🟩 3.20 
       <br>
