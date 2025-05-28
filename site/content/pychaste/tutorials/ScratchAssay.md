@@ -6,7 +6,7 @@ images: []
 toc: true
 layout: "single"
 ---
-This tutorial is automatically generated from [TestPyScratchAssayTutorial.py](https://github.com/Chaste/Chaste/blob/develop/pychaste/test/tutorial/TestPyScratchAssayTutorial.py) at revision [86da82f2455f](https://github.com/Chaste/Chaste/commit/86da82f2455f25c9cd8530546419e71b65cf716e).
+This tutorial is automatically generated from [TestPyScratchAssayTutorial.py](https://github.com/Chaste/Chaste/blob/develop/pychaste/test/tutorial/TestPyScratchAssayTutorial.py) at revision [65027cff1d70](https://github.com/Chaste/Chaste/commit/65027cff1d70f866314a2eba838d8d29d669b5c9).
 
 Note that the code is given in full at the bottom of the page.
 
@@ -144,70 +144,11 @@ positions for real time plotting.
         scene_modifier.SetUpdateFrequency(10)
         simulator.AddSimulationModifier(scene_modifier)
 ```
-Chaste and PyChaste use object oriented programming. This may require some background reading,
-but allows for great flexibility in terms of modifying existing functionality. In
-order to pull the data we want out of the simulation as it runs we will create our own
-simulation modifier class and use it for real time plotting. This Python class over-rides
-one of the built-in classes, giving us access to the quantities we want during the simulation.
-Usually we would define such a class in a different module and import it, it is placed
-here for the purposes of the tutorial.
-
-```python
-        class PlottingModifier(chaste.cell_based.PythonSimulationModifier[2]):
-            """Class for real time plotting of cell numbers using Matplotlib"""
-
-            def __init__(self, num_points_in_x, num_points_in_y):
-                super(PlottingModifier, self).__init__()
-
-                # Set up a figure for plotting
-                plt.ioff()
-                self.fig = plt.figure()
-                self.fig.ax = self.fig.add_subplot(111)
-                self.fig.ax.set_xlabel("y - Position (Cell Lengths)")
-                self.fig.ax.set_ylabel("Number Of Cells")
-                self.plot_frequency = 10  # only plot every 10 steps
-                self.num_points_in_x = num_points_in_x
-                self.num_points_in_y = num_points_in_y
-
-            def UpdateAtEndOfTimeStep(self, cell_population):
-                """Plot the number of cells at each lattice point and time-point
-
-                Use the SimulationTime singleton to determine when to plot.
-                """
-
-                num_increments = chaste.cell_based.SimulationTime.Instance().GetTimeStepsElapsed()
-                if num_increments % self.plot_frequency == 0:
-                    y_locations = np.linspace(0, num_points_in_y, num_points_in_y)
-                    num_cells = []
-                    for idx in range(num_points_in_y):
-                        counter = 0
-                        for jdx in range(num_points_in_x):
-                            if cell_population.IsCellAttachedToLocationIndex(
-                                jdx + idx * num_points_in_x
-                            ):
-                                counter += 1
-                        num_cells.append(counter)
-
-                    self.fig.ax.plot(y_locations, num_cells, color="black")
-                    self.fig.canvas.draw()
-                    # display.display(self.fig)
-                    # display.clear_output(wait=True)
-
-            def SetupSolve(self, cell_population, output_directory):
-                """Ensure the cell population is in the correct state at the start of the simulation"""
-
-                cell_population.Update()
-
-        plotting_modifier = PlottingModifier(num_points_in_x, num_points_in_y)
-        simulator.AddSimulationModifier(plotting_modifier)
-```
 To run the simulation, we call `Solve()` and optionally set up interactive plotting. We will see the cells
 migrate and the population distribution gradually become more uniform.
 
 ```python
         scene.Start()
-        plt.ion()
-        plt.show()
         simulator.Solve()
 
         # JUPYTER_TEARDOWN
@@ -285,57 +226,7 @@ class TestPyScratchAssayTutorial(chaste.cell_based.AbstractCellBasedTestSuite):
         scene_modifier.SetUpdateFrequency(10)
         simulator.AddSimulationModifier(scene_modifier)
 
-        class PlottingModifier(chaste.cell_based.PythonSimulationModifier[2]):
-            """Class for real time plotting of cell numbers using Matplotlib"""
-
-            def __init__(self, num_points_in_x, num_points_in_y):
-                super(PlottingModifier, self).__init__()
-
-                # Set up a figure for plotting
-                plt.ioff()
-                self.fig = plt.figure()
-                self.fig.ax = self.fig.add_subplot(111)
-                self.fig.ax.set_xlabel("y - Position (Cell Lengths)")
-                self.fig.ax.set_ylabel("Number Of Cells")
-                self.plot_frequency = 10  # only plot every 10 steps
-                self.num_points_in_x = num_points_in_x
-                self.num_points_in_y = num_points_in_y
-
-            def UpdateAtEndOfTimeStep(self, cell_population):
-                """Plot the number of cells at each lattice point and time-point
-
-                Use the SimulationTime singleton to determine when to plot.
-                """
-
-                num_increments = chaste.cell_based.SimulationTime.Instance().GetTimeStepsElapsed()
-                if num_increments % self.plot_frequency == 0:
-                    y_locations = np.linspace(0, num_points_in_y, num_points_in_y)
-                    num_cells = []
-                    for idx in range(num_points_in_y):
-                        counter = 0
-                        for jdx in range(num_points_in_x):
-                            if cell_population.IsCellAttachedToLocationIndex(
-                                jdx + idx * num_points_in_x
-                            ):
-                                counter += 1
-                        num_cells.append(counter)
-
-                    self.fig.ax.plot(y_locations, num_cells, color="black")
-                    self.fig.canvas.draw()
-                    # display.display(self.fig)
-                    # display.clear_output(wait=True)
-
-            def SetupSolve(self, cell_population, output_directory):
-                """Ensure the cell population is in the correct state at the start of the simulation"""
-
-                cell_population.Update()
-
-        plotting_modifier = PlottingModifier(num_points_in_x, num_points_in_y)
-        simulator.AddSimulationModifier(plotting_modifier)
-
         scene.Start()
-        plt.ion()
-        plt.show()
         simulator.Solve()
 
         # JUPYTER_TEARDOWN
