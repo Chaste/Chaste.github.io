@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningTumourSpheroidSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningTumourSpheroidSimulationsTutorial.hpp) at revision [d66a26c3a2bc](https://github.com/Chaste/Chaste/commit/d66a26c3a2bc366095f5243e00921f7ab3cc8da8). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningTumourSpheroidSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningTumourSpheroidSimulationsTutorial.hpp) at revision [9b2fbd0903ca](https://github.com/Chaste/Chaste/commit/9b2fbd0903ca2b6f15277d895db8cff9ddbdaa50). Note that the code is given in full at the bottom of the page.
 ## An example showing how to run tumour spheroid simulations
 
 ### Introduction
@@ -34,6 +34,7 @@ or `CellBasedSimulationArchiver.hpp` must be included as the first Chaste header
 #include "AbstractCellBasedTestSuite.hpp"
 #include "HoneycombMeshGenerator.hpp"
 #include "GeneralisedLinearSpringForce.hpp"
+#include "MeshBasedCellPopulation.hpp"
 #include "RandomNumberGenerator.hpp"
 #include "SmartPointers.hpp"
 ```
@@ -282,6 +283,7 @@ Open `SpheroidTutorial/results_from_time_0/pde_results_oxygen_..vtu`.
 #include "AbstractCellBasedTestSuite.hpp"
 #include "HoneycombMeshGenerator.hpp"
 #include "GeneralisedLinearSpringForce.hpp"
+#include "MeshBasedCellPopulation.hpp"
 #include "RandomNumberGenerator.hpp"
 #include "SmartPointers.hpp"
 #include "SimpleOxygenBasedCellCycleModel.hpp"

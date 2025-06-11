@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestCreatingAndUsingANewCellCycleModelTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellCycleModelTutorial.hpp) at revision [86da82f2455f](https://github.com/Chaste/Chaste/commit/86da82f2455f25c9cd8530546419e71b65cf716e). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCreatingAndUsingANewCellCycleModelTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellCycleModelTutorial.hpp) at revision [9b2fbd0903ca](https://github.com/Chaste/Chaste/commit/9b2fbd0903ca2b6f15277d895db8cff9ddbdaa50). Note that the code is given in full at the bottom of the page.
 ## An example showing how to create a new cell-cycle model and use it in a cell-based simulation
 
 ### Introduction
@@ -60,6 +60,7 @@ class for testing a cell-cycle model.
 #include "HoneycombMeshGenerator.hpp"
 #include "WildTypeCellMutationState.hpp"
 #include "GeneralisedLinearSpringForce.hpp"
+#include "MeshBasedCellPopulation.hpp"
 #include "OffLatticeSimulation.hpp"
 #include "StemCellProliferativeType.hpp"
 #include "TransitCellProliferativeType.hpp"
@@ -542,6 +543,7 @@ To run the simulation, we call `Solve()`.
 #include "HoneycombMeshGenerator.hpp"
 #include "WildTypeCellMutationState.hpp"
 #include "GeneralisedLinearSpringForce.hpp"
+#include "MeshBasedCellPopulation.hpp"
 #include "OffLatticeSimulation.hpp"
 #include "StemCellProliferativeType.hpp"
 #include "TransitCellProliferativeType.hpp"

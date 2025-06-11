@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestCreatingAndUsingANewCellKillerTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellKillerTutorial.hpp) at revision [86da82f2455f](https://github.com/Chaste/Chaste/commit/86da82f2455f25c9cd8530546419e71b65cf716e). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCreatingAndUsingANewCellKillerTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellKillerTutorial.hpp) at revision [9b2fbd0903ca](https://github.com/Chaste/Chaste/commit/9b2fbd0903ca2b6f15277d895db8cff9ddbdaa50). Note that the code is given in full at the bottom of the page.
 ## An example showing how to create a new cell killer and use it in a cell-based simulation
 
 ### Introduction
@@ -51,6 +51,7 @@ Chaste tutorials.
 #include "HoneycombMeshGenerator.hpp"
 #include "FixedG1GenerationalCellCycleModel.hpp"
 #include "GeneralisedLinearSpringForce.hpp"
+#include "MeshBasedCellPopulation.hpp"
 #include "OffLatticeSimulation.hpp"
 #include "CellsGenerator.hpp"
 #include "SmartPointers.hpp"
@@ -403,6 +404,7 @@ you should see that once cells move out of the ellipse they are removed from the
 #include "HoneycombMeshGenerator.hpp"
 #include "FixedG1GenerationalCellCycleModel.hpp"
 #include "GeneralisedLinearSpringForce.hpp"
+#include "MeshBasedCellPopulation.hpp"
 #include "OffLatticeSimulation.hpp"
 #include "CellsGenerator.hpp"
 #include "SmartPointers.hpp"
