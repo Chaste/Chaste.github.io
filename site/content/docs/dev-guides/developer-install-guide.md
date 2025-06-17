@@ -217,6 +217,7 @@ of the dependencies listed below.
 Download and extract the source code:
 
 ```sh
+cd $CHASTE_LIBS
 wget https://www.cmake.org/files/v3.22/cmake-3.22.6.tar.gz
 tar -zxf cmake-3.22.6.tar.gz
 ```
@@ -269,6 +270,7 @@ sudo apt-get install cmake cmake-curses-gui
 Download and extract the source code:
 
 ```sh
+cd $CHASTE_LIBS
 wget https://boostorg.jfrog.io/artifactory/main/release/1.74.0/source/boost_1_74_0.tar.gz
 tar -zxf boost_1_74_0.tar.gz
 ```
@@ -519,6 +521,7 @@ sudo apt-get install libmetis-dev libparmetis-dev
 Download and extract the source code:
 
 ```sh
+cd $CHASTE_LIBS
 wget https://github.com/LLNL/sundials/releases/download/v5.8.0/sundials-5.8.0.tar.gz
 tar -zxf sundials-5.8.0.tar.gz
 ```
@@ -628,6 +631,7 @@ sudo apt-get install xsdcxx
 Download and extract the source code:
 
 ```sh
+cd $CHASTE_LIBS
 wget https://archive.apache.org/dist/xerces/c/3/sources/xerces-c-3.2.3.tar.gz
 tar -zxf xerces-c-3.2.3.tar.gz
 ```
@@ -682,6 +686,7 @@ sudo apt-get install libxerces-c-dev
 Download and extract the source code:
 
 ```sh
+cd $CHASTE_LIBS
 wget https://www.vtk.org/files/release/9.1/VTK-9.1.0.tar.gz
 tar -zxf VTK-9.1.0.tar.gz
 ```
