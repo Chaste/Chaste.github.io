@@ -189,7 +189,7 @@ repository.
 
 ```sh
 git clone https://github.com/Chaste/dependency-modules.git
-cd dependency-modules/scripts
+cd dependency-modules/scripts/custom
 ```
 
 {{< /tab >}}
@@ -214,19 +214,31 @@ of the dependencies listed below.
 {{< tabs "install-cmake" >}}
 {{< tab "Manual" >}}
 
+Download and extract the source code:
+
 ```sh
 wget https://www.cmake.org/files/v3.22/cmake-3.22.6.tar.gz
 tar -zxf cmake-3.22.6.tar.gz
+```
+
+Configure, build and install:
+
+```sh
 cd cmake-3.22.6
 ./bootstrap --prefix=$CHASTE_LIBS --parallel=4 && make -j4 && make install
+```
+
+Clean up:
+
+```sh
 cd ..
-rm -rf cmake-3.22.6.tar.gz cmake-3.22.6
+rm -r cmake-3.22.6.tar.gz cmake-3.22.6
 ```
 
 {{< /tab >}}
 {{< tab "Modules" >}}
 
-From the `dependency-modules/scripts` directory, run
+From the `dependency-modules/scripts/custom` directory, run
 
 ```sh
 ./install_cmake.sh  --version=3.22.6  --modules-dir=$CHASTE_LIBS --parallel=4
@@ -254,20 +266,32 @@ sudo apt-get install cmake cmake-curses-gui
 {{< tabs "install-boost" >}}
 {{< tab "Manual" >}}
 
+Download and extract the source code:
+
 ```sh
 wget https://boostorg.jfrog.io/artifactory/main/release/1.74.0/source/boost_1_74_0.tar.gz
 tar -zxf boost_1_74_0.tar.gz
+```
+
+Configure, build and install:
+
+```sh
 cd boost_1_74_0
 ./bootstrap.sh --prefix=$CHASTE_LIBS --with-libraries=system,serialization,program_options
 ./b2 install
+```
+
+Clean up:
+
+```sh
 cd ..
-rm -rf boost_1_74_0.tar.gz boost_1_74_0
+rm -r boost_1_74_0.tar.gz boost_1_74_0
 ```
 
 {{< /tab >}}
 {{< tab "Modules" >}}
 
-From the `dependency-modules/scripts` directory, run
+From the `dependency-modules/scripts/custom` directory, run
 
 ```sh
 ./install_boost.sh --version=1.74.0 --modules-dir=$CHASTE_LIBS --parallel=4
@@ -295,49 +319,38 @@ sudo apt-get install libboost-system-dev libboost-serialization-dev libboost-pro
 {{< tabs "install-petsc" >}}
 {{< tab "Manual" >}}
 
-PETSc can install a lot of Chaste's dependencies for us.
+This requires a working system MPI installation. If you do not have
+MPI installed, you can install it using the instructions for your system.
 
-(There is a `--download-boost` option, but this doesn't include the particular
-libraries we need, so we can't use that.)
-
-These steps can take some time (potentially an hour or more).
+Download and extract the source code:
 
 ```sh
 cd $CHASTE_LIBS
 wget https://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.18.6.tar.gz
 tar -zxf petsc-lite-3.18.6.tar.gz
-rm -f petsc-lite-3.18.6.tar.gz
+```
+
+Configure, build and test:
+
+```sh
 cd petsc-3.18.6
 export PETSC_DIR=`pwd`
-```
-
-Define package versions for MPICH and HDF5
-
-```sh
-mpich=https://www.mpich.org/static/downloads/4.1.2/mpich-4.1.2.tar.gz
-hdf5=https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-1.10.11/src/hdf5-1.10.11.tar.bz2
-```
-
-If you want to build PETSc with hypre, optionally remove `--with-fc=0` and add
-`--download-hypre=1` in the following code blocks. If you are not sure whether
-you want to build PETSc with hypre, leave the following as is.
-
-```sh
 export PETSC_ARCH=linux-gnu
 ./configure \
-  --with-make-np=4 \
-  --with-cc=gcc \
-  --with-cxx=g++ \
-  --with-fc=0 \
-  --with-x=false \
-  --with-ssl=false \
+  --COPTFLAGS=-Og \
+  --CXXOPTFLAGS=-Og \
   --download-f2cblaslapack=1 \
-  --download-mpich=$mpich \
-  --download-hdf5=$hdf5 \
-  --download-parmetis=1 \
+  --download-hypre=1 \
   --download-metis=1 \
-  --with-shared-libraries
-make all
+  --download-parmetis=1 \
+  --with-cc=mpicc \
+  --with-cxx=mpicxx \
+  --with-debugging=1 \
+  --with-fc=0 \
+  --with-shared-libraries \
+  --with-ssl=false \
+  --with-x=false
+make -j4 all
 make test # optional
 ```
 
@@ -346,51 +359,41 @@ Optional -- install optimised PETSc build too.
 ```sh
 export PETSC_ARCH=linux-gnu-opt
 ./configure \
-  --with-make-np=4 \
-  --with-cc=gcc \
-  --with-cxx=g++ \
-  --with-fc=0 \
-  --with-x=false \
-  --with-ssl=false \
   --download-f2cblaslapack=1 \
-  --download-mpich=$mpich \
-  --download-hdf5=$hdf5 \
-  --download-parmetis=1 \
+  --download-hypre=1 \
   --download-metis=1 \
+  --download-parmetis=1 \
+  --with-cc=mpicc \
+  --with-cxx=mpicxx \
+  --with-debugging=0 \
+  --with-fc=0 \
   --with-shared-libraries \
-  --with-debugging=0
-make all
+  --with-ssl=false \
+  --with-x=false && \
+make -j4 all
 make test # optional
 ```
 
+Clean up:
+
 ```sh
-unset PETSC_ARCH
-unset PETSC_DIR
+cd ..
+rm petsc-lite-3.18.6.tar.gz
 ```
 
 {{< /tab >}}
 {{< tab "Modules" >}}
 
-From the `dependency-modules/scripts` directory, run
+From the `dependency-modules/scripts/custom` directory, run
 
 ```sh
-./install_petsc_hdf5.sh \
-    --petsc-version=3.18.6 \
-    --hdf5-version=1.10.11 \
-    --petsc-arch=linux-gnu \
-    --modules-dir=$CHASTE_LIBS \
-    --parallel=4
+./install_petsc.sh --version=3.18.6 --arch=linux-gnu --modules-dir=$CHASTE_LIBS --parallel=4
 ```
 
 Optional -- install optimised PETSc build too.
 
 ```sh
-./install_petsc_hdf5.sh \
-    --petsc-version=3.18.6 \
-    --hdf5-version=1.10.11 \
-    --petsc-arch=linux-gnu-opt \
-    --modules-dir=$CHASTE_LIBS \
-    --parallel=4
+./install_petsc.sh --version=3.18.6 --arch=linux-gnu-opt --modules-dir=$CHASTE_LIBS --parallel=4
 ```
 
 {{< /tab >}}
@@ -424,12 +427,47 @@ sudo apt-get install libpetsc-real3.15 libpetsc-real3.15-dev libpetsc-real3.15-d
 {{< tabs "install-hdf5" >}}
 {{< tab "Manual" >}}
 
-See the manual instructions for [PETSc](#petsc).
+This requires a working system MPI installation. If you do not have
+MPI installed, you can install it using the instructions for your system.
+
+Download and extract the source code:
+
+```sh
+cd $CHASTE_LIBS
+wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-1.10.11/src/hdf5-1.10.11.tar.bz2
+tar -zxf hdf5-1.10.11.tar.bz2
+```
+
+Configure, build and install:
+
+```sh
+mkdir build-hdf5-1.10.11 && cd build-hdf5-1.10.11
+CC=mpicc cmake \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DCMAKE_INSTALL_PREFIX=$CHASTE_LIBS \
+  -DHDF5_BUILD_TOOLS=OFF \
+  -DHDF5_ENABLE_PARALLEL=ON \
+  -DHDF5_ENABLE_Z_LIB_SUPPORT=ON \
+  -DHDF5_ENABLE_SZIP_SUPPORT=ON \
+  -DHDF5_ENABLE_UNSUPPORTED=OFF ../hdf5-1.10.11
+make -j4 && make install
+```
+
+Clean up:
+
+```sh
+cd ..
+rm -r hdf5-1.10.11.tar.bz2 hdf5-1.10.11 build-hdf5-1.10.11
+```
 
 {{< /tab >}}
 {{< tab "Modules" >}}
 
-See the module install instructions for [PETSc](#petsc).
+From the `dependency-modules/scripts/custom` directory, run
+
+```sh
+./install_hdf5.sh --version=1.10.11 --modules-dir=$CHASTE_LIBS --parallel=4
+```
 
 {{< /tab >}}
 {{< tab "Fedora" >}}
@@ -475,12 +513,19 @@ sudo apt-get install libmetis-dev libparmetis-dev
 
 ### SUNDIALS
 
-{{< tabs "install-parmetis" >}}
+{{< tabs "install-sundials" >}}
 {{< tab "Manual" >}}
+
+Download and extract the source code:
 
 ```sh
 wget https://github.com/LLNL/sundials/releases/download/v5.8.0/sundials-5.8.0.tar.gz
 tar -zxf sundials-5.8.0.tar.gz
+```
+
+Configure, build and install:
+
+```sh
 mkdir build-sundials-5.8.0 && cd build-sundials-5.8.0
 cmake \
   -DCMAKE_INSTALL_PREFIX=$CHASTE_LIBS \
@@ -488,8 +533,13 @@ cmake \
   -DCMAKE_BUILD_TYPE=Release \
   -DEXAMPLES_ENABLE=OFF ../sundials-5.8.0
 make -j4 && make install
+```
+
+Clean up:
+
+```sh
 cd ..
-rm -rf build-sundials-5.8.0 sundials-5.8.0 sundials-5.8.0.tar.gz
+rm -r build-sundials-5.8.0 sundials-5.8.0 sundials-5.8.0.tar.gz
 ```
 
 {{< /tab >}}
@@ -501,7 +551,7 @@ Load the CMake module
 module load cmake/3.22.6
 ```
 
-From the `dependency-modules/scripts` directory, run
+From the `dependency-modules/scripts/custom` directory, run
 
 ```sh
 ./install_sundials.sh --version=5.8.0 --modules-dir=$CHASTE_LIBS --parallel=4
@@ -529,18 +579,25 @@ sudo apt-get install libsundials-dev
 {{< tabs "install-xsd" >}}
 {{< tab "Manual" >}}
 
+Download and install the binary distribution:
+
 ```sh
 cd $CHASTE_LIBS
 wget https://www.codesynthesis.com/download/xsd/4.0/linux-gnu/x86_64/xsd-4.0.0-x86_64-linux-gnu.tar.bz2
 tar -xjf xsd-4.0.0-x86_64-linux-gnu.tar.bz2
 ln -s $CHASTE_LIBS/xsd-4.0.0-x86_64-linux-gnu/bin/xsd $CHASTE_LIBS/bin/xsd
-rm -f xsd-4.0.0-x86_64-linux-gnu.tar.bz2
+```
+
+Clean up:
+
+```sh
+rm xsd-4.0.0-x86_64-linux-gnu.tar.bz2
 ```
 
 {{< /tab >}}
 {{< tab "Modules" >}}
 
-From the `dependency-modules/scripts` directory, run
+From the `dependency-modules/scripts/custom` directory, run
 
 ```sh
 ./install_xsd.sh --version=4.0.0 --modules-dir=$CHASTE_LIBS
@@ -568,22 +625,33 @@ sudo apt-get install xsdcxx
 {{< tabs "install-xerces" >}}
 {{< tab "Manual" >}}
 
+Download and extract the source code:
+
 ```sh
 wget https://archive.apache.org/dist/xerces/c/3/sources/xerces-c-3.2.3.tar.gz
 tar -zxf xerces-c-3.2.3.tar.gz
+```
+
+Configure, build and install:
+
+```sh
 cd xerces-c-3.2.3/
 export XERCESCROOT=`pwd`
 ./configure --prefix=$CHASTE_LIBS
-make -j4 all
-make install
+make -j4 all && make install
+```
+
+Clean up:
+
+```sh
 cd ..
-rm -rf xerces-c-3.2.3 xerces-c-3.2.3.tar.gz
+rm -r xerces-c-3.2.3 xerces-c-3.2.3.tar.gz
 ```
 
 {{< /tab >}}
 {{< tab "Modules" >}}
 
-From the `dependency-modules/scripts` directory, run
+From the `dependency-modules/scripts/custom` directory, run
 
 ```sh
 ./install_xercesc.sh  --version=3.2.3  --modules-dir=$CHASTE_LIBS --parallel=4
@@ -611,13 +679,25 @@ sudo apt-get install libxerces-c-dev
 {{< tabs "install-vtk" >}}
 {{< tab "Manual" >}}
 
+Download and extract the source code:
+
 ```sh
 wget https://www.vtk.org/files/release/9.1/VTK-9.1.0.tar.gz
 tar -zxf VTK-9.1.0.tar.gz
+```
+
+Configure, build and install:
+
+```sh
 mkdir build_VTK-9.1.0 && cd build_VTK-9.1.0
 cmake -DCMAKE_INSTALL_PREFIX=$CHASTE_LIBS ../VTK-9.1.0 && make -j4 && make install
+```
+
+Clean up:
+
+```sh
 cd ..
-rm -rf build_VTK-9.1.0 VTK-9.1.0 VTK-9.1.0.tar.gz
+rm -r build_VTK-9.1.0 VTK-9.1.0 VTK-9.1.0.tar.gz
 ```
 
 **Troubleshooting**
@@ -640,7 +720,7 @@ Load the CMake module
 module load cmake/3.22.6
 ```
 
-From the `dependency-modules/scripts` directory, run
+From the `dependency-modules/scripts/custom` directory, run
 
 ```sh
 ./install_vtk.sh --version=9.1.0 --modules-dir=$CHASTE_LIBS --parallel=4
@@ -735,7 +815,7 @@ export PETSC_ARCH=linux-gnu
 
 export SUNDIALS_ROOT=$CHASTE_LIBS
 
-export HDF5_ROOT=$PETSC_DIR/$PETSC_ARCH
+export HDF5_ROOT=$CHASTE_LIBS
 
 export XERCES_INCLUDE_DIR=$CHASTE_LIBS/include
 export XERCES_LIBRARY_DIR=$CHASTE_LIBS/lib
@@ -755,7 +835,7 @@ source ~/.bashrc
 Clean up residual build artifacts and source tarballs
 
 ```sh
-rm -rf $CHASTE_LIBS/src
+rm -r $CHASTE_LIBS/src
 ```
 
 To view installed modules, run
@@ -768,9 +848,9 @@ The output should be similar to:
 
 ```
 --------------------- /home/runner/chaste-libs/modulefiles ---------------------
-cmake/3.22.6      boost/1.74.0    petsc_hdf5/3.18.6_1.10.11/linux-gnu
-sundials/5.8.0    vtk/9.1.0       xercesc/3.2.3
-xsd/4.0.0  
+cmake/3.22.6              boost/1.74.0      hdf5/1.10.11
+petsc/3.18.6/linux-gnu    sundials/5.8.0    vtk/9.1.0
+xercesc/3.2.3             xsd/4.0.0  
 
 ------------------------ /usr/share/modules/modulefiles ------------------------
 dot  module-git  module-info  modules  null  use.own  
@@ -785,7 +865,8 @@ Chaste. To do this, run
 ```sh
 module load cmake/3.22.6
 module load boost/1.74.0
-module load petsc_hdf5/3.18.6_1.10.11/linux-gnu
+module load hdf5/1.10.11
+module load petsc/3.18.6/linux-gnu
 module load sundials/5.8.0
 module load vtk/9.1.0
 module load xercesc/3.2.3
