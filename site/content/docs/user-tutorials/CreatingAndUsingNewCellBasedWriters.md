@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestCreatingAndUsingNewCellBasedWritersTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingNewCellBasedWritersTutorial.hpp) at revision [9b2fbd0903ca](https://github.com/Chaste/Chaste/commit/9b2fbd0903ca2b6f15277d895db8cff9ddbdaa50). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCreatingAndUsingNewCellBasedWritersTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingNewCellBasedWritersTutorial.hpp) at revision [7999851e01da](https://github.com/Chaste/Chaste/commit/7999851e01da65d808b924deb504fb7d0b09d571). Note that the code is given in full at the bottom of the page.
 ## An example showing how to create a new cell writer and use it in a cell-based simulation
 
 ### Introduction
@@ -270,7 +270,7 @@ As in [Creating And Using A New Cell Property](../creatingandusinganewcellproper
 you should see a collection of cells with the `MotileCellProperty` (labelled dark blue) moving towards the origin.
 
 Upon running this test, the output file `cellmotilityresults.dat` should be created in the folder
-`tmp/$USER/testoutput/TestOffLatticeSimulationWithMotileCellPropertyAndWriters/results_from_time_0`.
+`$CHASTE_TEST_OUTPUT/TestOffLatticeSimulationWithMotileCellPropertyAndWriters/results_from_time_0`.
 
 ## Full code
 
