@@ -1,42 +1,43 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Check links
+name: Check links on PRs
 
 on:
-  # Runs on pushes targeting the default branch
+
   pull_request:
-    branches:
-      - no-branch-matches
-      
+    branches: ["**"]
+
   push:
-    branches:
-      - no-branch-matches
-      
+    branches: ["main"]
+    
   workflow_dispatch:
 
-# Allow one concurrent deployment
-concurrency:
-  group: link-check-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
-  # Single deploy job since we're just deploying
-  build-and-check-links:
+  linkcheck:
 
+    timeout-minutes: 20
     runs-on: ubuntu-24.04
     env:
       HUGO_VERSION: 0.144.2
-    
+
     steps:
-    
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install LinkChecker
+        run: |
+          pip install --upgrade pip setuptools wheel
+          pip install linkchecker
 
       - name: Install Hugo
         run: |
           wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
           && sudo dpkg -i ${{ runner.temp }}/hugo.deb
           hugo version
-          
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -45,26 +46,18 @@ jobs:
       - name: Build site
         run: |
           npm install
-          npm run build
+          hugo --baseURL="http://localhost:8002"
         working-directory: site
         env:
           HUGO_ENVIRONMENT: production
           HUGO_ENV: production
           TZ: Europe/London
 
-      - name: Setup python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
-
-      - name: Install linkchecker
-        run: pip install linkchecker
-          
-      - name: Generate link checking config
-        run: bash generate-linkcheckerrc.sh
-
-      - name: Check links
-        run: linkchecker -f linkcheckerrc site/public
+      - name: Serve site and run LinkChecker
+        run: |
+          python -m http.server 8002 --directory site/public/ > /dev/null 2>&1 &
+          sleep 2
+          linkchecker -f .linkcheckerrc http://localhost:8002/
           
       - name: Generate summary
         if: always()
