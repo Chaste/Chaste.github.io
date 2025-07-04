@@ -1,0 +1,28 @@
+[output]
+log=csv
+fileoutput=csv
+warnings=0
+ignoreerrors=
+  ^.* ^.*403.*
+  ^.* ^.*418.*
+  ^.* ^.*406.*
+  ^.* ^.*503.*
+  ^.* ^.*500.*
+
+[csv]
+filename=broken-links.csv
+separator=|
+parts=parentname,urlname,name,result
+
+[filtering]
+ignore=
+  ^.*doxygen-releases.*
+  ^.*doxygen-latest.*
+  ^.*github.com/Chaste/developer_wiki/.*
+  ^.*github.com/Chaste/trac_archive/.*
+  ^.*paper-tutorials/.*
+  ^.*memory-testing/.*
+  ^.*profiling-gprof/.*
+  ^.*old_releases/.*
+
+checkextern=1
