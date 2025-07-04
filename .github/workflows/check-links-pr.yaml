@@ -13,6 +13,7 @@ on:
 jobs:
   linkcheck:
 
+    timeout-minutes: 20
     runs-on: ubuntu-24.04
     env:
       HUGO_VERSION: 0.144.2
