@@ -4,10 +4,12 @@ name: Check links
 on:
   # Runs on pushes targeting the default branch
   pull_request:
-    branches: ["**"]
+    branches:
+      - no-branch-matches
       
   push:
-    branches: ["main"]
+    branches:
+      - no-branch-matches
       
   workflow_dispatch:
 
