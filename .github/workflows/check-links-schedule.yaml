@@ -1,0 +1,33 @@
+name: Check links on schedule
+
+on:
+  schedule:
+    - cron: '48 2 * * 0'  # Every Sunday at 02:48 AM UTC
+  workflow_dispatch:
+
+jobs:
+  linkcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install LinkChecker
+        run: |
+          pip install --upgrade pip setuptools wheel
+          pip install linkchecker
+
+      - name: Run LinkChecker
+        run: |
+          linkchecker -f .linkcheckerrc https://chaste.github.io/
+          
+      - name: Generate summary
+        if: always()
+        run: |
+          bash generate-summary.sh
+          cat broken-links.md > $GITHUB_STEP_SUMMARY
