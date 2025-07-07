@@ -56,11 +56,11 @@ minimum required to work fine.
     <br>
     🟨 3.23 -- 3.27 
     <br>
-    🟢 3.22 <sup>2</sup> 
+    🟢 3.22.1 <sup>2</sup> (minimum supported version)
     <br>
-    🟨 3.17 -- 3.21 
+    🟪 3.17 -- 3.21 
     <br>
-    🟩 3.16.3 (Minimum supported version)
+    🟪 3.16 <sup>1</sup>
     <br>
     🟥 &lt;3.16.3
     </td>
