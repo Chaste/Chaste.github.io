@@ -4,7 +4,6 @@ description: "License"
 draft: false
 images: []
 toc: true
-layout: "single"
 ---
 
 Chaste is released under an open source [BSD 3-Clause License](https://opensource.org/license/bsd-3-clause/).
