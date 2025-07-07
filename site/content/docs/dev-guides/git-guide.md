@@ -23,11 +23,13 @@ independent Git repository that contains the **entire** history of the Git
 repository that you are cloning.
 
 ### Official Chaste repository locations
-|Repository |Description |
-|---|---|
-|`https://github.com/Chaste/Chaste.git`| Main Chaste repository for development; contains history since version 3.0.|
-|`https://chaste.cs.ox.ac.uk/git/chaste_history.git`| Old Chaste repository; contains older history.|
-|`https://chaste.cs.ox.ac.uk/git/project/<project_name>.git`| Old Chaste project repositories.|
+
+| Repository                                                       | Description                                                                       |
+| ---------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `https://github.com/Chaste/Chaste.git`                           | Main Chaste repository for development; contains history since version 3.0.       |
+| No public link; contact us for access                            | Old Chaste repository; contains older history.                                    |
+| `https://chaste.cs.ox.ac.uk/old-chaste-data/downloads/projects/` | Old Chaste project repositories.                                                  |
+| `https://github.com/Chaste/project_<NAME>/`                      | Public user projects, e.g. [Plos2013](https://github.com/Chaste/project_Plos2013) |
 
 ### Code developer
 
@@ -352,12 +354,13 @@ If you want to get a new branch pushed by another developer, you can use the
 `checkout` command to create a new branch and set it up to track the correct
 remote branch
 
-For convenience on your own machine you can get git to remember your username
-for the Chaste repositories. (Search for `git credential` to find out how to
-store passwords securely on your OS too.)
+For convenience on your own machine, you can configure Git to remember your username for the Chaste repositories hosted on GitHub.
+To securely store passwords or personal access tokens, search for `git-credential` and choose a method appropriate for your operating system (e.g., credential manager, keychain, or credential cache).
+
+To set your GitHub username for Chaste repositories:
 
 ```sh
-git config --global credential.https://chaste.cs.ox.ac.uk.username <your-username>
+git config --global credential."https://github.com".username <your-github-username>
 ```
 
 ## User projects
