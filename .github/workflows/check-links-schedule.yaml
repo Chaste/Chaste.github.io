@@ -25,7 +25,7 @@ jobs:
 
       - name: Run LinkChecker
         run: |
-          linkchecker -f .linkcheckerrc https://chaste.github.io/
+          linkchecker --config=".linkcheckerrc" --timeout=120 --threads=4 https://chaste.github.io/
           
       - name: Generate summary
         if: always()

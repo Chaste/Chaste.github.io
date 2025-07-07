@@ -21,143 +21,29 @@ In most cases, source code for these packages is not distributed with Chaste
 installed separately.  
 
 The 'Used by' column indicates where these libraries are used:
-<dl>
-<dt>Distributed:</dt><dd> source code that is distributed with the Chaste source</dd>
-<dt>Source:</dt><dd> required for building Chaste from source</dd>
-<dt>Tests:</dt><dd> only required for testing Chaste</dd>
-<dt>Cardiac:</dt><dd> only really needed if you're building the cardiac-specific source</dd>
-<dt>Optional:</dt><dd> may be used by Chaste if installed, but not essential</dd>
-</dl>
 
-<table border="1">
-<tr>
-  <th> Library/package </th>
-  <th> Licence URL </th>
-  <th> Local copy of licence </th>
-  <th> Used by </th>
-</tr>
+- **Distributed:** source code that is distributed with the Chaste source  
+- **Source:** required for building Chaste from source  
+- **Tests:** only required for testing Chaste  
+- **Cardiac:** only really needed if you're building the cardiac-specific source  
+- **Optional:** may be used by Chaste if installed, but not essential  
 
-<tr>
-  <td> Boost </td>
-  <td> <a href="http://www.boost.org/users/license.html">http://www.boost.org/users/license.html</a> </td>
-  <td> <a href="https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/Boost.txt"> Boost.txt </a> </td>
-  <td> Source </td>
-</tr>
-
-<tr>
-  <td> CodeSynthesis XSD </td>
-  <td> <a href="http://www.codesynthesis.com/products/xsd/license.xhtml">http://www.codesynthesis.com/products/xsd/license.xhtml</a>,
-       <a href="http://www.codesynthesis.com/projects/xsd/FLOSSE">http://www.codesynthesis.com/projects/xsd/FLOSSE</a> </td>
-  <td> (GPL) <a href="https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/CodeSynthesis_Exception.txt">CodeSynthesis_Exception.txt</a> </td>
-  <td> Source, Cardiac </td>
-</tr>
-
-<tr>
-  <td>CVODE (part of SUNDIALS)</td>
-  <td><a href="https://computing.llnl.gov/projects/sundials/license">https://computing.llnl.gov/projects/sundials/license</a></td>
-  <td> (BSD) <a href="https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/CVODE.txt">CVODE.txt</a></td>
-  <td> Optional </td>
-</tr>
-
-<tr>
-  <td> CxxTest </td>
-  <td> LGPL: <a href="http://www.gnu.org/copyleft/lesser.html">http://www.gnu.org/copyleft/lesser.html</a> </td>
-  <td>(LGPL) <a href="https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/CxxTest.txt">CxxTest.txt</a> </td>
-  <td> Tests, Distributed </td>
-</tr>
-
-<tr>
-  <td> HDF5 </td>
-  <td> <a href="http://www.hdfgroup.org/products/licenses.html">http://www.hdfgroup.org/products/licenses.html</a> </td>
-  <td> <a href="https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/HDF5.txt"> HDF5.txt </a> </td>
-  <td> Source </td>
-</tr>
-
-<tr>
-  <td> OpenSimplex </td>
-  <td> <a href="https://github.com/KdotJPG/OpenSimplex2/blob/master/_old/cpp/UNLICENSE">https://github.com/KdotJPG/OpenSimplex2/blob/master/_old/cpp/UNLICENSE</a> </td>
-  <td> <a href="https://github.com/Chaste/Chaste/blob/develop/mesh/src/3rdparty/opensimplex/UNLICENSE"> UNLICENSE </a> </td>
-  <td> Source, Distributed </td>
-</tr>
-
-<tr>
-  <td> (Par)METIS </td>
-  <td> <a href="http://glaros.dtc.umn.edu/gkhome/metis/metis/faq?q=metis/metis/faq#distribute">http://glaros.dtc.umn.edu/gkhome/metis/metis/faq?q=metis/metis/faq#distribute</a> </td>
-  <td><a href="https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/METIS.txt"> METIS.txt</a>,
-      <a href="https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/METIS_manual.pdf"> METIS manual </a></td>
-  <td> Source </td>
-</tr>
-
-<tr>
-  <td> MPICH </td>
-  <td> <a href="https://github.com/pmodels/mpich/blob/main/COPYRIGHT">https://github.com/pmodels/mpich/blob/main/COPYRIGHT</a>,
-       <a href="https://www.anl.gov/mcs/romio-highperformance-portable-mpiio-implementation">https://www.anl.gov/mcs/romio-highperformance-portable-mpiio-implementation</a> </td>
-  <td><a href="https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/mpich-license.txt">mpich-license.txt</a>
-      <a href="https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/romio-license.txt">romio-license.txt</a></td>
-  <td> Source (although note that other MPI implementations may be used instead, e.g. OpenMPI) </td>
-</tr>
-
-<tr>
-  <td> PETSc </td>
-  <td><a href="https://petsc.org/release/install/license/">https://petsc.org/release/install/license/</a></td>
-  <td><a href="https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/PETSc.html">PETSc.html</a> </td>
-  <td> Source </td>
-</tr>
-
-<tr>
-  <td> Pocketfft </td>
-  <td><a href="https://gitlab.mpcdf.mpg.de/mtr/pocketfft/-/blob/master/LICENSE.md">https://gitlab.mpcdf.mpg.de/mtr/pocketfft/-/blob/master/LICENSE.md</a></td>
-  <td><a href="https://github.com/Chaste/Chaste/blob/develop/mesh/src/3rdparty/pocketfft-src/LICENSE.md">LICENSE.md</a></td>
-  <td> Source, Distributed </td>
-</tr>
-
-<tr>
-  <td>Pyparsing</td>
-  <td><a href="https://pypi.org/project/pyparsing/">Pyparsing home page</a></td>
-  <td> (MIT) <a href="https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/pyparsing.txt">pyparsing.txt</a></td>
-  <td> Source, Cardiac, Distributed </td>
-</tr>
-
-<tr>
-  <td> RDFLib </td>
-  <td><a href="http://code.google.com/p/rdflib/source/browse/LICENSE">http://code.google.com/p/rdflib/source/browse/LICENSE</a></td>
-  <td> (BSD) <a href="https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/RDFLib.txt">RDFLib.txt</a></td>
-  <td> Source, Cardiac </td>
-</tr>
-
-<tr>
-  <td> RNV </td>
-  <td><a href="http://ftp.davidashen.net/PreTI/RNV/license.txt">http://ftp.davidashen.net/PreTI/RNV/license.txt</a></td>
-  <td> (BSD) <a href="https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/rnv.txt">rnv.txt</a></td>
-  <td> Source, Cardiac </td>
-</tr>
-
-<tr>
-  <td> TetGen </td>
-  <td><a href="http://tetgen.berlios.de/">http://tetgen.berlios.de/</a></td>
-  <td><a href="https://github.com/Chaste/Chaste/blob/develop/mesh/src/3rdparty/tetgen1.4.2/LICENSE">TetGen</a></td>
-  <td> Source, Distributed </td>
-</tr>
-
-<tr>
-  <td> triangle </td>
-  <td><a href="http://www.cs.cmu.edu/~quake/triangle.html">http://www.cs.cmu.edu/~quake/triangle.html</a></td>
-  <td><a href="https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/Triangle.txt">Triangle.txt</a></td>
-  <td> Source, Distributed </td>
-</tr>
-
-<tr>
-  <td> VTK </td>
-  <td> <a href="https://vtk.org/about/#license">https://vtk.org/about/#license</a></td>
-  <td> (BSD) <a href="https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/VTK.txt">VTK.txt</a> </td>
-  <td> Optional </td>
-</tr>
-
-<tr>
-  <td> Xerces </td>
-  <td><a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a></td>
-  <td> (Apache 2) <a href="https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/Xerces-Apache2.0.txt">Xerces-Apache2.0.txt</a></td>
-  <td> Source, Cardiac </td>
-</tr>
-
-</table>
+| Library/package   | Licence URL                                                                                                                                             | Local copy of licence                                                                                                                                                                                                      | Used by                            |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| Boost             | [boost.org](http://www.boost.org/users/license.html)                                                                                                    | [Boost.txt](https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/Boost.txt)                                                                                                                               | Source                             |
+| CodeSynthesis XSD | [xsd license](http://www.codesynthesis.com/products/xsd/license.xhtml), [FLOSSE](http://www.codesynthesis.com/projects/xsd/FLOSSE)                      | (GPL) [CodeSynthesis_Exception.txt](https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/CodeSynthesis_Exception.txt)                                                                                     | Source, Cardiac                    |
+| CVODE (SUNDIALS)  | [sundials license](https://computing.llnl.gov/projects/sundials/license)                                                                                | (BSD) [CVODE.txt](https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/CVODE.txt)                                                                                                                         | Optional                           |
+| CxxTest           | [LGPL](http://www.gnu.org/copyleft/lesser.html)                                                                                                         | (LGPL) [CxxTest.txt](https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/CxxTest.txt)                                                                                                                    | Tests, Distributed                 |
+| HDF5              | [hdfgroup.org](https://www.hdfgroup.org/licenses/)                                                                                                      | [HDF5.txt](https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/HDF5.txt)                                                                                                                                 | Source                             |
+| OpenSimplex       | [UNLICENSE](https://github.com/KdotJPG/OpenSimplex2/blob/master/_old/cpp/UNLICENSE)                                                                     | [UNLICENSE](https://github.com/Chaste/Chaste/blob/develop/mesh/src/3rdparty/opensimplex/UNLICENSE)                                                                                                                         | Source, Distributed                |
+| (Par)METIS        | [karypis.github.io](https://karypis.github.io/glaros/software/metis/overview.html)                                                                      | [METIS.txt](https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/METIS.txt), [manual](https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/METIS_manual.pdf)                             | Source                             |
+| MPICH             | [COPYRIGHT](https://github.com/pmodels/mpich/blob/main/COPYRIGHT), [ROMIO](https://www.anl.gov/mcs/romio-highperformance-portable-mpiio-implementation) | [mpich-license.txt](https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/mpich-license.txt), [romio-license.txt](https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/romio-license.txt) | Source (or other MPI like OpenMPI) |
+| PETSc             | [petsc.org](https://petsc.org/release/install/license/)                                                                                                 | [PETSc.html](https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/PETSc.html)                                                                                                                             | Source                             |
+| Pocketfft         | [LICENSE.md](https://gitlab.mpcdf.mpg.de/mtr/pocketfft/-/blob/master/LICENSE.md)                                                                        | [LICENSE.md](https://github.com/Chaste/Chaste/blob/develop/mesh/src/3rdparty/pocketfft-src/LICENSE.md)                                                                                                                     | Source, Distributed                |
+| Pyparsing         | [Pyparsing home](https://pypi.org/project/pyparsing/)                                                                                                   | (MIT) [pyparsing.txt](https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/pyparsing.txt)                                                                                                                 | Source, Cardiac, Distributed       |
+| RDFLib            | [rdflib license](http://code.google.com/p/rdflib/source/browse/LICENSE)                                                                                 | (BSD) [RDFLib.txt](https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/RDFLib.txt)                                                                                                                       | Source, Cardiac                    |
+| RNV               | [rnv license](http://ftp.davidashen.net/PreTI/RNV/license.txt)                                                                                          | (BSD) [rnv.txt](https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/rnv.txt)                                                                                                                             | Source, Cardiac                    |
+| TetGen            | [tetgen.berlios.de](http://tetgen.berlios.de/)                                                                                                          | [TetGen](https://github.com/Chaste/Chaste/blob/develop/mesh/src/3rdparty/tetgen1.4.2/LICENSE)                                                                                                                              | Source, Distributed                |
+| triangle          | [triangle](http://www.cs.cmu.edu/~quake/triangle.html)                                                                                                  | [Triangle.txt](https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/Triangle.txt)                                                                                                                         | Source, Distributed                |
+| VTK               | [vtk.org license](https://vtk.org/about/#license)                                                                                                       | (BSD) [VTK.txt](https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/VTK.txt)                                                                                                                             | Optional                           |
+| Xerces            | [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)                                                                                           | (Apache 2) [Xerces-Apache2.0.txt](https://github.com/Chaste/Chaste/blob/develop/docs/licencing/licences/Xerces-Apache2.0.txt)                                                                                              | Source, Cardiac                    |
