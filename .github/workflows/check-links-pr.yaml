@@ -57,7 +57,7 @@ jobs:
         run: |
           python -m http.server 8002 --directory site/public/ > /dev/null 2>&1 &
           sleep 2
-          linkchecker -f .linkcheckerrc http://localhost:8002/
+          linkchecker --config=".linkcheckerrc" --timeout=120 --threads=4 http://localhost:8002/
           
       - name: Generate summary
         if: always()

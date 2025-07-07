@@ -29,7 +29,7 @@ where N is the number of processes to run with.
 
 ## Visualization
 
-In all of these examples, you can change to use the visualizer that you want by setting one of these options ([meshalyzer](https://opencarp.org/documentation/examples/visualization/meshalyzer), [vtk](https://vtk.org/) or [cmgui](https://www.cmiss.org/cmgui)) in the `<Simulation>` block:
+In all of these examples, you can change to use the visualizer that you want by setting one of these options ([meshalyzer](https://opencarp.org/documentation/examples/06_visualization/02_meshalyzer), [vtk](https://vtk.org/) or [cmgui](https://www.cmiss.org/cmgui)) in the `<Simulation>` block:
 
 ```xml
 <OutputVisualizer meshalyzer="yes" vtk="yes" cmgui="yes" precision="8"/>
