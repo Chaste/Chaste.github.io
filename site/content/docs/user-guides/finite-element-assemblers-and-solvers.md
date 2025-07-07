@@ -73,7 +73,7 @@ See [section](#cardiac-assemblers-and-solvers) section in full description (more
 {{< callout context="tip" title="See Also" icon="outline/rocket" >}}
 
 - [Solving Linear PDEs](../../user-tutorials/solvinglinearpdes/)
-- [Numerical Methods and Object-oriented Design](/docs/nmood_slides.pdf) {{< inline-svg "outline/file-type-pdf" >}}
+- [Numerical Methods and Object-oriented Design](/docs/nmood_slides.pdf) (.pdf)
 
 {{< /callout >}}
 

@@ -64,10 +64,8 @@ added since.
 
 ---
 
-If you have been forwarded here from the old www.cs.ox.ac.uk/chaste/downloads page
-you can find the archived contents of that site [here](https://chaste.cs.ox.ac.uk/old-chaste-data/downloads/), 
-Note that the *[projects](https://chaste.cs.ox.ac.uk/old-chaste-data/downloads/projects/)* 
-folder contains code associated with older research paper 'projects'.
+If you have been forwarded here from the old <www.cs.ox.ac.uk/chaste/downloads> page (no longer valid) you can find the archived contents of that site at the following URL: <https://chaste.cs.ox.ac.uk/old-chaste-data/downloads/>
+Note that the [projects](https://chaste.cs.ox.ac.uk/old-chaste-data/downloads/projects/) folder contains code associated with older research paper 'projects'.
 
 ## Installing Dependencies
 
