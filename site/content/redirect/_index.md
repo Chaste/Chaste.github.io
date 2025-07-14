@@ -10,14 +10,14 @@ layout: "single"
 
 {{< callout context="note" title="Redirection" icon="outline/info-circle" >}}
 
-The Chaste project has migrated from https://chaste.cs.ox.ac.uk/ to https://chaste.github.io/.
+The Chaste project has migrated from <https://chaste.cs.ox.ac.uk/> (outdated) to <https://chaste.github.io/>.
 
 As part of this migration, the location of many resources has been updated.
 If you have landed on this page, we have not been able to redirect you to the specific resource you are trying to access.
 
 Please use the links below to find what you are looking for.
 
-If you reached this page by following a link, please report it [here](https://github.com/Chaste/Chaste/issues/new) and we will investigate adding a more specific redirection.
+If you reached this page by following a link, please report it by [opening a new issue](https://github.com/Chaste/Chaste/issues/new) and we will investigate adding a more specific redirection.
 
 {{< /callout >}}
 
