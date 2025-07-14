@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningTumourSpheroidSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningTumourSpheroidSimulationsTutorial.hpp) at revision [1684df04656d](https://github.com/Chaste/Chaste/commit/1684df04656dc7fae8d14b8eef4c72e32435fa40). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningTumourSpheroidSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningTumourSpheroidSimulationsTutorial.hpp) at revision [9b2fbd0903ca](https://github.com/Chaste/Chaste/commit/9b2fbd0903ca2b6f15277d895db8cff9ddbdaa50). Note that the code is given in full at the bottom of the page.
 ## An example showing how to run tumour spheroid simulations
 
 ### Introduction
@@ -34,6 +34,7 @@ or `CellBasedSimulationArchiver.hpp` must be included as the first Chaste header
 #include "AbstractCellBasedTestSuite.hpp"
 #include "HoneycombMeshGenerator.hpp"
 #include "GeneralisedLinearSpringForce.hpp"
+#include "MeshBasedCellPopulation.hpp"
 #include "RandomNumberGenerator.hpp"
 #include "SmartPointers.hpp"
 ```
@@ -177,14 +178,17 @@ constructor takes in the mesh and the cells vector.
 Next we instantiate an instance of the PDE class which we defined above.
 This will be passed into the `OffLatticeSimulationWithPdes` object. The
 `CellwiseSourceEllipticPde` is a `PDE` class which inherits from
-`AbstractLinearEllipticPde` and represents the PDE $u_{xx} + u_{yy} = k(x,y)u$,
-where $u(x,y)$ denotes the oxygen concentration at position $(x,y)$ and the function
-$k(x,y)$ specifies the rate of consumption by live cells there. Here $k(x,y)$
-takes the value $-0.03$ (the coefficient below) if the cell located at $(x,y)$ is a
+`AbstractLinearEllipticPde` and represents the PDE $u_{xx} + u_{yy} + a(x,y)u + b(x,y)$,
+where $u(x,y)$ denotes the oxygen concentration at position $(x,y)$ and the functions
+$a(x,y)$ and $b(x,y)$ specifies the linear and constant rate of consumption by live cells there. Here $a(x,y)$
+takes the value $-0.03$ (the coefficient below) and $b(x,y)$ takes the value $0$ (the coefficient below) if the cell located at $(x,y)$ is a
 live cell, and zero if the cell has died due to oxygen deprivation.
 
 ```cpp
-        MAKE_PTR_ARGS(CellwiseSourceEllipticPde<2>, p_pde, (cell_population, -0.03));
+        double constant_coefficient = 0.0;
+        double linear_coefficient = -0.03;
+        double diffusion_coefficient = 1.0;
+        MAKE_PTR_ARGS(CellwiseSourceEllipticPde<2>, p_pde, (cell_population, constant_coefficient, linear_coefficient, diffusion_coefficient));
 ```
 
 We also create a constant-valued boundary condition to associate with the PDE.
@@ -279,6 +283,7 @@ Open `SpheroidTutorial/results_from_time_0/pde_results_oxygen_..vtu`.
 #include "AbstractCellBasedTestSuite.hpp"
 #include "HoneycombMeshGenerator.hpp"
 #include "GeneralisedLinearSpringForce.hpp"
+#include "MeshBasedCellPopulation.hpp"
 #include "RandomNumberGenerator.hpp"
 #include "SmartPointers.hpp"
 #include "SimpleOxygenBasedCellCycleModel.hpp"
@@ -325,7 +330,10 @@ public:
 
         MeshBasedCellPopulation<2> cell_population(*p_mesh, cells);
 
-        MAKE_PTR_ARGS(CellwiseSourceEllipticPde<2>, p_pde, (cell_population, -0.03));
+        double constant_coefficient = 0.0;
+        double linear_coefficient = -0.03;
+        double diffusion_coefficient = 1.0;
+        MAKE_PTR_ARGS(CellwiseSourceEllipticPde<2>, p_pde, (cell_population, constant_coefficient, linear_coefficient, diffusion_coefficient));
 
         MAKE_PTR_ARGS(ConstBoundaryCondition<2>, p_bc, (1.0));
         bool is_neumann_bc = false;

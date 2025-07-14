@@ -1,0 +1,66 @@
+name: Check links on PRs
+
+on:
+
+  pull_request:
+    branches: ["**"]
+
+  push:
+    branches: ["main"]
+    
+  workflow_dispatch:
+
+jobs:
+  linkcheck:
+
+    timeout-minutes: 20
+    runs-on: ubuntu-24.04
+    env:
+      HUGO_VERSION: 0.144.2
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install LinkChecker
+        run: |
+          pip install --upgrade pip setuptools wheel
+          pip install linkchecker
+
+      - name: Install Hugo
+        run: |
+          wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
+          && sudo dpkg -i ${{ runner.temp }}/hugo.deb
+          hugo version
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Build site
+        run: |
+          npm install
+          hugo --baseURL="http://localhost:8002"
+        working-directory: site
+        env:
+          HUGO_ENVIRONMENT: production
+          HUGO_ENV: production
+          TZ: Europe/London
+
+      - name: Serve site and run LinkChecker
+        run: |
+          python -m http.server 8002 --directory site/public/ > /dev/null 2>&1 &
+          sleep 2
+          linkchecker --config=".linkcheckerrc" --timeout=120 --threads=4 http://localhost:8002/
+          
+      - name: Generate summary
+        if: always()
+        run: |
+          bash generate-summary.sh
+          cat broken-links.md > $GITHUB_STEP_SUMMARY

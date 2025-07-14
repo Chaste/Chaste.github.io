@@ -6,7 +6,7 @@ images: []
 version: "2024.1"
 ---
 
-{{< callout context="note" title="Getting the data" icon="folder" >}}
+{{< callout context="note" title="Getting the data" icon="outline/folder" >}}
 Download and save the attached file: [DrugAction.tgz](/docs/DrugAction.tgz).
 Either use an Archive Manager to extract the contents to disk or save it and then unpack it with
 

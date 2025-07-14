@@ -10,7 +10,7 @@ version: "2024.1"
 
 This page explains how to run binaries directly rather than via `ctest`.
 
-{{< callout context="note" title="Note" icon="info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 The recommended way to run test suite binaries is via `ctest`. See the
 [CMake Build Guide](../../dev-guides/cmake-build-guide#testing-step)

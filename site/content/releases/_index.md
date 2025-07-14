@@ -10,12 +10,14 @@ layout: "single"
 ---
 
 
+### [2024.2](2024.2)
+
 ### [2024.1](2024.1)
 
 ## Old releases
 
-{{< callout context="caution" title="Caution" icon="alert-triangle" >}}
-The following links are to release archives, and should be used only if you need historic information or instructions releated to a specific old version of Chaste.
+{{< callout context="caution" title="Caution" icon="outline/alert-triangle" >}}
+The following links are to release archives, and should be used only if you need historic information or instructions related to a specific old version of Chaste.
 
 Some descriptions will be out of date, and some links may no longer work.
 {{< /callout >}}

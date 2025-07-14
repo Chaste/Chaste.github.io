@@ -17,13 +17,19 @@ by a recent interface change then please see here for fix suggestions.
 ## Changes since last release appear below
 ---
 
-## (changes since Release 2024.1)
+## (changes since Release 2024.2)
 
 ### Headline features
 
-- [#270](https://github.com/Chaste/Chaste/issues/270) The default location of test output is now the subdirectory `testoutput` of the build directory (the directory that `cmake` is run from). The old default behaviour was `tmp\${USER}\testoutput`. It is still recommended to set the environment variable `CHASTE_TEST_OUTPUT` to override this default behaviour.
-
 ### Dependency changes
+This will be the last Chaste release to support
+- Clang >=6, <11
+- GCC >=7, <9
+- Boost >=1.67, <1.74
+- HDF5 >=1.10.4, <1.10.7
+- PETSc >=3.12, <3.15
+- SUNDIALS >=3.1, <5.8
+- VTK >=6.3, <7.1
 
 ### Core
 

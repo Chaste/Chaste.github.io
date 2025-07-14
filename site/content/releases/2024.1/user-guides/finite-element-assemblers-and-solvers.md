@@ -8,7 +8,7 @@ layout: "single"
 version: "2024.1"
 ---
 
-{{< callout context="note" title="Important Notes" icon="info-circle" >}}
+{{< callout context="note" title="Important Notes" icon="outline/info-circle" >}}
 
 - New users should read the tutorial on solving linear PDEs before reading this;
   this page is more on how the assemblers and solvers work internally.
@@ -71,10 +71,10 @@ the static/dynamic solver (as appropriate). See below for more details.
 
 See [section](#cardiac-assemblers-and-solvers) section in full description (more or less self-contained).
 
-{{< callout context="tip" title="See Also" icon="rocket" >}}
+{{< callout context="tip" title="See Also" icon="outline/rocket" >}}
 
 - [Solving Linear PDEs](../../user-tutorials/solvinglinearpdes/)
-- [Numerical Methods and Object-oriented Design](/docs/nmood_slides.pdf) {{< inline-svg "file-type-pdf" >}}
+- [Numerical Methods and Object-oriented Design](/docs/nmood_slides.pdf) {{< inline-svg "outline/file-type-pdf" >}}
 
 {{< /callout >}}
 

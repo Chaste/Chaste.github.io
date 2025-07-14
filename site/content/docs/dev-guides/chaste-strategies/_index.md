@@ -20,7 +20,8 @@ layout: "single"
   review and merge pull requests on GitHub.
 * [Refactoring Strategy](refactoring-strategy): When to refactor.
 * [Testing Strategy](testing-strategy): How to write tests.
+* [Software Engineering Approach](software-engineering-approach): An overview of software engineering practices and infrastructure used by Chaste.
 
-{{< callout context="tip" title="See Also" icon="rocket" >}}
+{{< callout context="tip" title="See Also" icon="outline/rocket" >}}
 [Developer Guides](../)
 {{< /callout >}}

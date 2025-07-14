@@ -11,11 +11,10 @@ layout: "single"
 
 ## Upcoming workshops
 
-We plan to hold workshops in Sheffield and Nottingham in 2024 and 2025.
-
-To be the first to hear when we announce these workshops, please join our [mailing list](https://web.maillist.ox.ac.uk/ox/subscribe/chaste-users).
-
 ## Past workshops
+
+### [8-10 January 2025, Nottingham, UK](./2025-01)
+A workshop on cell-based modelling with Chaste.
 
 ### [11-14 September, Oxford, UK](./2023-09-11)
 

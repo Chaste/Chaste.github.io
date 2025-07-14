@@ -4,14 +4,14 @@ draft: false
 layout: "single"
 ---
 
-{{< callout context="note" title="May 2024: Paper tutorials are under migration" icon="alert-triangle" >}}
+{{< callout context="note" title="May 2024: Paper tutorials are under migration" icon="outline/alert-triangle" >}}
 These paper tutorials are in the process of being migrated to this new website.
 It is currently expected that some links are incorrect and some images may not display properly.
 We are working on fixing these.
 {{< /callout >}}
 
-{{< callout context="note" title="Note" icon="info-circle" >}}
-If you are viewing this on the Chaste website, **the tutorials here are static, and are only likely to work with the specific version of Chaste indicated. They are unlikley to work with the development version of Chaste**.
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+**The tutorials here are static, and are only likely to work with the specific version of Chaste indicated. They are unlikley to work with the development version of Chaste**.
 {{< /callout >}}
 
 ## Paper Tutorials

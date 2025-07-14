@@ -124,7 +124,7 @@ details in the more detailed
 If you are still having problems, please let us know on our
 [Q&A page](https://github.com/Chaste/Chaste/discussions).
 
-{{< callout context="tip" title="See Also" icon="rocket" >}}
+{{< callout context="tip" title="See Also" icon="outline/rocket" >}}
 
 [CMake Build Guide](../../dev-guides/cmake-build-guide): A list of all available
 CMake configuration options -- how to do optimised builds, parallel builds, run

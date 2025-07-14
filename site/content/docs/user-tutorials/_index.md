@@ -8,7 +8,7 @@ layout: "single"
 images: []
 ---
 
-{{< callout context="note" title="Note" icon="info-circle" >}} 
+{{< callout context="note" title="Note" icon="outline/info-circle" >}} 
 If you are viewing this on the Chaste website, **the tutorials here are automatically updated to work with the latest development version of Chaste**.
 They are not guaranteed to work with any release version, in fact they are unlikely to!
 If you are working with a release version of the code then this page is archived upon releases; the tutorials corresponding to each release version of Chaste can be found on the [releases page](/releases/).
@@ -23,6 +23,7 @@ If you don't know anything about these we recommend a first course in C++, there
 There is also a [Scientific Computing in C++ book](http://www.springer.com/computer/swe/book/978-1-4471-2735-2) by some of our team available too.
 
 To run any of these tutorials, it is assumed you have first configured Chaste using `CMake`:
+
 ```bash
 cmake /path/to/chaste/src
 ```
@@ -90,6 +91,9 @@ in a terminal and it will return either a directory path or nothing -- in which 
 
 * [UserTutorials/SolvingElasticityProblems](solvingelasticityproblems/) - computing the deformation of a nonlinearly elastic body
 * [UserTutorials/SolvingMoreElasticityProblems](solvingmoreelasticityproblems/)
+
+### Command line functionality
+* [UserTutorials/CommandLineArguments](commandlinearguments/) - Utilising command line arguments as simulation parameters
 
 ---
 

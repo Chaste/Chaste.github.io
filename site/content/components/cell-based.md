@@ -71,3 +71,24 @@ User functionality
 ### Videos
 
 
+In addition to the examples shown below, you can find a variety of movies of simulations using the cancer and cell-based Chaste code on the [Chaste YouTube channel](https://youtube.com/user/ChasteProject).
+
+A crypt represented by a cell-centre model (left) and a cell-vertex model (right):
+{{< youtube id="HTJY6f-TyL8" title="Crypt comparison" >}}
+
+A crypt represented by a cell-centre model with a population of mutant cells shown in black, the simulation on the right represents mutant cells with increased adhesiveness. 
+{{< youtube id="_biqJPu4FY4" title="Mutant cells in the crypt" >}}
+
+Monoclonal conversion in a healthy crypt using a cylindrical geometry.
+{{< youtube id="Jw3mXwOUpPk" title="Monoclonal conversion in the crypt" >}}
+
+Cross-sectional simulation of a crypt including stromal cells and basement membrane.
+{{< youtube id="TBqfSOeN4-E" title="Crypt cross section" >}}
+
+ Monoclonal conversion in a healthy crypt in a three-dimensional fixed geometry. 
+ {{< youtube id="EeB-6SAQUH4" title="3-d crypt" >}}
+
+ Demonstration of a simulation with multiple crypts.
+ {{< youtube id="iwkxBHeTxkk" title="3-d multiple crypts" >}}
+
+

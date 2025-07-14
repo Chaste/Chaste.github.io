@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestWritingPdeSolversTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestWritingPdeSolversTutorial.hpp) at revision [3c544f98da9c](https://github.com/Chaste/Chaste/commit/3c544f98da9c243234f00db27b7aadaaa98eeef6). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestWritingPdeSolversTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/tutorials/TestWritingPdeSolversTutorial.hpp) at revision [86da82f2455f](https://github.com/Chaste/Chaste/commit/86da82f2455f25c9cd8530546419e71b65cf716e). Note that the code is given in full at the bottom of the page.
 ### Introduction
 
 Chaste can be used to set up solvers for more general (coupled) PDEs. To do this the
@@ -23,7 +23,7 @@ be easily written in generic form, so the user has to write their own solver. In
 we explain how to do this.
 
 For this tutorial the user needs to have read the solving-PDEs tutorials. It may also be
-helpful to read the associated [lectures notes](https://chaste.cs.ox.ac.uk/trac/wiki/ChasteGuides/NmoodLectureNotes),
+helpful to read the associated [lectures notes](/docs/nmood_slides.pdf) {{< inline-svg "outline/file-type-pdf" >}},
 in particular the slides on solving equations using finite elements if you are not familiar
 with this (lecture 2), the slides on the general design of the Chaste finite element solvers
 (lecture 3), and the first part of lecture 4.

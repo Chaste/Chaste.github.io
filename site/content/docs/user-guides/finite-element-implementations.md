@@ -56,4 +56,4 @@ Contents:
 
 ```
 
-{{< inline-svg "file-type-pdf" >}} [Finite Element Implementations](/docs/fem_implementation.pdf)
+{{< inline-svg "outline/file-type-pdf" >}} [Finite Element Implementations](/docs/fem_implementation.pdf)

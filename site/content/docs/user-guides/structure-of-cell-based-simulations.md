@@ -7,11 +7,8 @@ toc: true
 layout: "single"
 ---
 
-This page is intended for new cell-based Chaste users/developers and was written
-as part of the
-[2012 Chaste cell-based modelling workshop](https://chaste.cs.ox.ac.uk/trac/wiki/CellBasedWorkshop2012)
-to summarize the structure of cell-based simulations in Chaste. For information,
-see the technical [Chaste papers](/publications).
+This page is intended for new cell-based Chaste users/developers and was written as part of the 2012 Chaste cell-based modelling workshop to summarize the structure of cell-based simulations in Chaste.
+For information, see the technical [Chaste papers](/publications).
 
 ## Initialization
 
@@ -87,7 +84,7 @@ File format information is given in the file `docs/FileFormats.html`, supplied
 with the release. (The latest version of this file may also be viewed
 [here](https://raw.githubusercontent.com/Chaste/Chaste/develop/docs/FileFormats.html)).
 
-{{< callout context="tip" title="See Also" icon="rocket" >}}
+{{< callout context="tip" title="See Also" icon="outline/rocket" >}}
 
 - [Cell-based Chaste Code Structure](../cell-based-chaste-code-structure)
 - [User Tutorials](../../user-tutorials/)
