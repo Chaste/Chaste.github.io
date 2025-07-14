@@ -27,7 +27,7 @@ If you have any questions/comments, please get in touch with
 {{< callout context="note" title="Web Portal" icon="outline/info-circle" >}}
 
 A web-based portal interface to this program is now available:
-[https://chaste.cs.ox.ac.uk/ActionPotential/](https://chaste.cs.ox.ac.uk/ActionPotential/)
+[https://cardiac.nottingham.ac.uk/ActionPotentialPortal/](https://cardiac.nottingham.ac.uk/ActionPotentialPortal/)
 (feedback welcome), if you use this you can ignore all the instructions below --
 it's all set up for you!
 
@@ -44,8 +44,7 @@ paper](http://dx.doi.org/10.1016/j.vascn.2015.05.002).
 
 ### Installation
 
-**N.B.** you don't need to do any of the below to use the [web portal version of
-ApPredict](https://chaste.cs.ox.ac.uk/ActionPotential/).
+**N.B.** you don't need to do any of the below to use the [web portal version of ApPredict](https://cardiac.nottingham.ac.uk/ActionPotentialPortal/).
 
 Although you may want to read the [Annotating CellML section](#tagging-or-annotating-cellml-models) if you want to upload your own models to the portal.
 
