@@ -213,19 +213,19 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- HDF5 -->
     <td>
-      🟦 <a href="https://github.com/Chaste/Chaste/issues/375">1.14.6</a> 
+      🟩 <a href="https://github.com/Chaste/Chaste/issues/375">1.14.6</a> 
       <br>
-      🟦 <a href="https://github.com/Chaste/Chaste/issues/375">1.14.5</a> 
+      🟨 <a href="https://github.com/Chaste/Chaste/issues/375">1.14.5</a> 
       <br>
-      🟦 <a href="https://github.com/Chaste/Chaste/issues/375">1.14.4</a>
+      🟨 <a href="https://github.com/Chaste/Chaste/issues/375">1.14.4</a>
       <br>
-      🟦 <a href="https://github.com/Chaste/Chaste/issues/375">1.14.3</a>
+      🟨 <a href="https://github.com/Chaste/Chaste/issues/375">1.14.3</a>
       <br>
-      🟦 <a href="https://github.com/Chaste/Chaste/issues/375">1.14.2</a>
+      🟩 <a href="https://github.com/Chaste/Chaste/issues/375">1.14.2</a>
       <br>
-      🟦 <a href="https://github.com/Chaste/Chaste/issues/375">1.14.1</a>
+      🟨 <a href="https://github.com/Chaste/Chaste/issues/375">1.14.1</a>
       <br>
-      🟦 <a href="https://github.com/Chaste/Chaste/issues/375">1.14.0</a>
+      🟨 <a href="https://github.com/Chaste/Chaste/issues/375">1.14.0</a>
       <br>
       🟦 1.12.3 
       <br>
@@ -261,7 +261,7 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- PETSc -->
     <td>
-      🟦 3.23
+      🟩 3.23 <a href="https://github.com/Chaste/Chaste/issues/405">3.23</a> 
       <br>
       🟩 <a href="https://github.com/Chaste/Chaste/issues/327">3.22</a>  
       <br>
@@ -289,11 +289,11 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- SUNDIALS -->
     <td>
-      🟦 <a href="https://github.com/Chaste/Chaste/issues/266">7.2</a> 
+      🟩 <a href="https://github.com/Chaste/Chaste/issues/266">7.2</a> 
       <br>
-      🟦 <a href="https://github.com/Chaste/Chaste/issues/266">7.1</a> 
+      🟨 <a href="https://github.com/Chaste/Chaste/issues/266">7.1</a> 
       <br>
-      🟦 <a href="https://github.com/Chaste/Chaste/issues/266">7.0</a> 
+      🟩 <a href="https://github.com/Chaste/Chaste/issues/266">7.0</a> 
       <br>
       🟩 6.7 
       <br>
@@ -305,7 +305,7 @@ In some instances the version number is linked to the GitHub issue in which supp
       <br>
       🟨 6.3 
       <br>
-      🟨 6.2 
+      🟩 6.2 
       <br>
       🟨 6.1 
       <br>
