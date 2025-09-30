@@ -150,7 +150,7 @@ Do not edit it manually, as your changes will be overwritten!
 - Read and use parameters from the command line
   - [line 46 of TestCommandLineArguments.hpp](https://github.com/Chaste/Chaste/blob/develop/global/test/TestCommandLineArguments.hpp#L46)
 - Use mock (pretend) command line arguments
-  - [line 260 of TestCommandLineArguments.hpp](https://github.com/Chaste/Chaste/blob/develop/global/test/TestCommandLineArguments.hpp#L260)
+  - [line 265 of TestCommandLineArguments.hpp](https://github.com/Chaste/Chaste/blob/develop/global/test/TestCommandLineArguments.hpp#L265)
 
 ### Archiving
 - Use a binary rather than ascii boost archive format, for speed and smaller file sizes.
