@@ -35,10 +35,10 @@ Do not edit it manually, as your changes will be overwritten!
   - [line 270 of TestAnotherCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherCardiacElectroMechanicsTutorial.hpp#L270)
 - Run electro-mechanical simulations using bidomain instead of monodomain
   - [line 215 of TestCardiacElectroMechanicsProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/mechanics/TestCardiacElectroMechanicsProblem.hpp#L215)
-- Run basic electro-mechanics simulations; specify different models, boundary conditions, fibres
+- Run basic electro-mechanics simulations; specify different models, boundary conditions, fibres, visualize electro-mechanics output with VTK (Paraview)
   - [line 117 of TestCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestCardiacElectroMechanicsTutorial.hpp#L117)
 - Visualise results in Cmgui (very brief description)
-  - [line 205 of TestCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestCardiacElectroMechanicsTutorial.hpp#L205)
+  - [line 206 of TestCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestCardiacElectroMechanicsTutorial.hpp#L206)
 
 ### Output
 - Specify output formats (for different visualisers)
