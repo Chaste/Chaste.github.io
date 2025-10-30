@@ -175,13 +175,17 @@ In some instances the version number is linked to the GitHub issue in which supp
   <tr>
      <!-- Boost -->
     <td>
-      🟦 1.87
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/453">1.89</a> 
       <br>
-      🟦 1.86
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/453">1.88</a>
       <br>
-      🟦 1.85
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/453">1.87</a>
       <br>
-      🟦 1.84
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/453">1.86</a>
+      <br>
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/453">1.85</a>
+      <br>
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/453">1.84</a>
       <br>
       🟢 <a href="https://github.com/Chaste/Chaste/issues/257">1.83</a> <sup>3</sup>
       <br>
