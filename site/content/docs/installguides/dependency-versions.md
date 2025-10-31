@@ -265,7 +265,9 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- PETSc -->
     <td>
-      🟩 3.23 <a href="https://github.com/Chaste/Chaste/issues/405">3.23</a> 
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/456">3.24</a> 
+      <br>
+      🟩 <a href="https://github.com/Chaste/Chaste/issues/405">3.23</a> 
       <br>
       🟩 <a href="https://github.com/Chaste/Chaste/issues/327">3.22</a>  
       <br>
@@ -293,6 +295,12 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- SUNDIALS -->
     <td>
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/457">7.5</a> 
+      <br>
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/457">7.4</a> 
+      <br>
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/457">7.3</a> 
+      <br>
       🟩 <a href="https://github.com/Chaste/Chaste/issues/266">7.2</a> 
       <br>
       🟨 <a href="https://github.com/Chaste/Chaste/issues/266">7.1</a> 
@@ -345,7 +353,9 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- VTK -->
     <td>
-      🟦 9.4
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/458">9.5</a>
+      <br>
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/458">9.4</a>
       <br>
       🟢 <a href="https://github.com/Chaste/Chaste/issues/257">9.3</a>
       <br>
