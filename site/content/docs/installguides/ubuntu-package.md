@@ -28,6 +28,18 @@ sudo nano /etc/apt/sources.list.d/chaste.list
 
 and, depending on your version of Ubuntu, add **one** of the following lines to the `chaste.list` text file:
 
+{{< details "Ubuntu 25.10" >}}
+```text
+deb [signed-by=/usr/share/keyrings/chaste.asc] https://chaste.github.io/ubuntu questing/
+```
+{{< /details >}}
+
+{{< details "Ubuntu 25.04" >}}
+```text
+deb [signed-by=/usr/share/keyrings/chaste.asc] https://chaste.github.io/ubuntu plucky/
+```
+{{< /details >}}
+
 {{< details "Ubuntu 24.10" >}}
 ```text
 deb [signed-by=/usr/share/keyrings/chaste.asc] https://chaste.github.io/ubuntu oracular/
