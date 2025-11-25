@@ -87,6 +87,8 @@ to compile Chaste with no problems.
   <tr>
     <!-- GCC -->
     <td>
+      🟩 15.x
+      <br>
       🟩 14.x
       <br>
       🟢 13.x <sup>3</sup>
