@@ -21,6 +21,11 @@ by a recent interface change then please see here for fix suggestions.
 
 ### Headline features
 
+Python bindings are now integrated directly into the main Chaste repository,
+simplifying installation and development workflows. For installation
+instructions, usage examples and API details, consult the
+[PyChaste documentation](https://chaste.github.io//pychaste/).
+
 ### Dependency changes
 This will be the last Chaste release to support
 - Clang >=6, <11
