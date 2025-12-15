@@ -200,8 +200,15 @@
   url = "/community/"
 
 [[main]]
-  name = "Workshops"
+  name = "Using Chaste"
   weight = 700
+  identifier = "using-chaste"
+  url = "/community/using-chaste"
+  parent = "community"
+
+[[main]]
+  name = "Workshops"
+  weight = 705
   identifier = "workshops"
   url = "/workshops/"
   parent = "community"
