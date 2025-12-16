@@ -241,7 +241,12 @@
   url = "https://twitter.com/Chaste_Project"
   weight = 20
 
-# [[footer]]
-#   name = "Privacy"
-#   url = "/privacy-policy/"
-#   weight = 10
+[[footer]]
+  name = "Privacy policy"
+  url = "/privacy/"
+  weight = 10
+
+[[footer]]
+  name = "Analytics"
+  url = "/analytics/"
+  weight = 12
