@@ -37,11 +37,16 @@ First we include some header files:
 
 #### Set up a diffusion equation with a source term
 
-d[Ca]/dt = D_Ca Laplacian([Ca]) + Q
+The calcium concentration $[\mathrm{Ca}]$ evolves according to
 
-[Ca] in units of uM
-D_Ca = 300 (nm)^2^/us
-integral of Q per ion channel's worth of elements over which is to be applied = 2.5133e4 uM / us
+$$\frac{d[\mathrm{Ca}]}{dt} = D_{\mathrm{Ca}} \nabla^2[\mathrm{Ca}] + Q.$$
+
+Here $[\mathrm{Ca}]$ is measured in $\mu\mathrm{M}$, and the diffusion coefficient is
+$D_{\mathrm{Ca}} = 300~~\mathrm{nm}^2~\mu\mathrm{s}^{-1}$.
+
+The integral of the source term over the elements associated with one ion channel satisfies
+
+$$\int Q~dV = 2.5133 \times 10^{4}~~\mu\mathrm{M} ~\mu\mathrm{s}^{-1}.$$
 
 
 ```cpp
@@ -119,9 +124,10 @@ public:
     }
 ```
 
-The Diffusion constant for calcium is 300 um^2^ / s
-This is equivalent to
-300 (nm)^2^ / us
+The diffusion constant for calcium is $300 ~~ \mu\mathrm{m}^2/\mathrm{s}$.
+
+This is equivalent to $300 ~~ \mathrm{nm}^2/\mu\mathrm{s}$.
+
 
 
 ```cpp
