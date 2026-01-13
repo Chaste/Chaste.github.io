@@ -35,10 +35,10 @@ Do not edit it manually, as your changes will be overwritten!
   - [line 270 of TestAnotherCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherCardiacElectroMechanicsTutorial.hpp#L270)
 - Run electro-mechanical simulations using bidomain instead of monodomain
   - [line 215 of TestCardiacElectroMechanicsProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/mechanics/TestCardiacElectroMechanicsProblem.hpp#L215)
-- Run basic electro-mechanics simulations; specify different models, boundary conditions, fibres
+- Run basic electro-mechanics simulations; specify different models, boundary conditions, fibres, visualize electro-mechanics output with VTK (Paraview)
   - [line 117 of TestCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestCardiacElectroMechanicsTutorial.hpp#L117)
 - Visualise results in Cmgui (very brief description)
-  - [line 205 of TestCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestCardiacElectroMechanicsTutorial.hpp#L205)
+  - [line 206 of TestCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestCardiacElectroMechanicsTutorial.hpp#L206)
 
 ### Output
 - Specify output formats (for different visualisers)
@@ -50,9 +50,9 @@ Do not edit it manually, as your changes will be overwritten!
 - Output data using a light-weight output modifier.  This can be used in addition to regular HDF5 output or can replace it.
   - [line 588 of TestBidomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainProblem.hpp#L588)
 - Output all cell model state variables for the cell model used in a particular simulation
-  - [line 951 of TestBidomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainProblem.hpp#L951)
+  - [line 967 of TestBidomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainProblem.hpp#L967)
 - Use the `SingleTraceOutputModifier` to output based on a global index (index AFTER any permutation has been applied)
-  - [line 1046 of TestBidomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainProblem.hpp#L1046)
+  - [line 1062 of TestBidomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainProblem.hpp#L1062)
 - Calculating and outputting ionic currents ('derived quantities') in a single cell simulation using [OdeSolution](/doxygen-latest/classOdeSolution.html) - see also [chaste_codegen documentation](/docs/user-guides/code-generation-from-cellml/#derived-quantities).
   - [line 395 of TestCvodeCells.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/ionicmodels/TestCvodeCells.hpp#L395)
 - Calculating and outputting ionic currents ('derived quantities') in a tissue simulation using [HeartConfig](/doxygen-latest/classHeartConfig.html) - see also [chaste_codegen documentation](/docs/user-guides/code-generation-from-cellml/#derived-quantities).
@@ -150,7 +150,7 @@ Do not edit it manually, as your changes will be overwritten!
 - Read and use parameters from the command line
   - [line 46 of TestCommandLineArguments.hpp](https://github.com/Chaste/Chaste/blob/develop/global/test/TestCommandLineArguments.hpp#L46)
 - Use mock (pretend) command line arguments
-  - [line 260 of TestCommandLineArguments.hpp](https://github.com/Chaste/Chaste/blob/develop/global/test/TestCommandLineArguments.hpp#L260)
+  - [line 265 of TestCommandLineArguments.hpp](https://github.com/Chaste/Chaste/blob/develop/global/test/TestCommandLineArguments.hpp#L265)
 
 ### Archiving
 - Use a binary rather than ascii boost archive format, for speed and smaller file sizes.
@@ -172,7 +172,7 @@ Do not edit it manually, as your changes will be overwritten!
 
 ## Mesh
 - Construct a distributed regular mesh (rectangle in 2D or cuboid in 3D) which does not have a default split plane.  The default is for parallel code to split 2-D meshes into slices in the y-dimension and 3-D meshes in the z-dimension.
-  - [line 2283 of TestDistributedTetrahedralMesh.hpp](https://github.com/Chaste/Chaste/blob/develop/mesh/test/TestDistributedTetrahedralMesh.hpp#L2283)
+  - [line 2275 of TestDistributedTetrahedralMesh.hpp](https://github.com/Chaste/Chaste/blob/develop/mesh/test/TestDistributedTetrahedralMesh.hpp#L2275)
 - Write meshes to file
   - [line 58 of TestMeshWriters.hpp](https://github.com/Chaste/Chaste/blob/develop/mesh/test/writer/TestMeshWriters.hpp#L58)
 - Convert a linear tetrahedral mesh to quadratic and write back to file.

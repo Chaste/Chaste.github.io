@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestCardiacElectroMechanicsTutorial.hpp) at revision [86da82f2455f](https://github.com/Chaste/Chaste/commit/86da82f2455f25c9cd8530546419e71b65cf716e). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestCardiacElectroMechanicsTutorial.hpp) at revision [7fa8a1fe59f6](https://github.com/Chaste/Chaste/commit/7fa8a1fe59f6d98cbf1cb5cc25a5f4c0fd6f1198). Note that the code is given in full at the bottom of the page.
 ## Cardiac Electro-mechanical Problems
 
 ### Introduction
@@ -274,7 +274,30 @@ in the electrics problem (1 for MONODOMAIN, 2 for BIDOMAIN)
                                                     &cell_factory,
                                                     &problem_defn,
                                                     "TestCardiacElectroMechanicsExample2");
+```
 
+In this second example, we ask for VTK output as well, to be visualized using, for example,
+Paraview. Having specified TestCardiacElectroMechanicsExample2 as output
+directory in the problem class (relative to CHASTE_TEST_OUTPUT), you will find the VTK files in
+the directory TestCardiacElectroMechanicsExample2/deformation/vtk/
+The files will be called deformed_mechanics_mesh_X.vtu, where X=0 will contain
+the initial conditions and X=n cprresponds to the n-th step.
+Each of those VTU files contains information on the node locations of the mechanics mesh,
+voltage solution interpolated onto the nodes of the mechanics mesh, displacement vectors
+at each node of the mechanics mesh, and deformation gradient tensor (F) at each element
+of the mechanics mesh.
+
+To visualize with Paraview, click on "Open", navigate to the directory mentioned above,
+and select the .vtu files, which will appear as a group (because of how they are named).
+You can then click on the "eye" icon in the pipeline browser on the left next to the files
+just loaded. The drop-down menus on top allows you to choose what to see
+(voltage, displacements, etc) and on what visual entity (surface, nodes, etc).
+The properties of the spectrum can also be adjusted. By pressing the "Play"
+button you will see the mesh deforming over time with the chosen variable
+plotted with the color according to the spectrum.
+
+```cpp
+        HeartConfig::Instance()->SetVisualizeWithVtk(true);
         problem.Solve();
 ```
 
@@ -543,7 +566,7 @@ public:
                                                     &cell_factory,
                                                     &problem_defn,
                                                     "TestCardiacElectroMechanicsExample2");
-
+        HeartConfig::Instance()->SetVisualizeWithVtk(true);
         problem.Solve();
         CompressibleMooneyRivlinMaterialLaw<2> law(2.0,1.0); // random (non-cardiac) material law
         problem_defn.SetMaterialLaw(COMPRESSIBLE,&law);

@@ -87,6 +87,8 @@ to compile Chaste with no problems.
   <tr>
     <!-- GCC -->
     <td>
+      🟩 15.x
+      <br>
       🟩 14.x
       <br>
       🟢 13.x <sup>3</sup>
@@ -175,13 +177,17 @@ In some instances the version number is linked to the GitHub issue in which supp
   <tr>
      <!-- Boost -->
     <td>
-      🟦 1.87
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/465">1.89</a>
       <br>
-      🟦 1.86
+      🟩 <a href="https://github.com/Chaste/Chaste/issues/453">1.88</a>
       <br>
-      🟦 1.85
+      🟨 <a href="https://github.com/Chaste/Chaste/issues/453">1.87</a>
       <br>
-      🟦 1.84
+      🟨 <a href="https://github.com/Chaste/Chaste/issues/453">1.86</a>
+      <br>
+      🟨 <a href="https://github.com/Chaste/Chaste/issues/453">1.85</a>
+      <br>
+      🟨 <a href="https://github.com/Chaste/Chaste/issues/453">1.84</a>
       <br>
       🟢 <a href="https://github.com/Chaste/Chaste/issues/257">1.83</a> <sup>3</sup>
       <br>
@@ -261,7 +267,9 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- PETSc -->
     <td>
-      🟩 3.23 <a href="https://github.com/Chaste/Chaste/issues/405">3.23</a> 
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/456">3.24</a> 
+      <br>
+      🟩 <a href="https://github.com/Chaste/Chaste/issues/405">3.23</a> 
       <br>
       🟩 <a href="https://github.com/Chaste/Chaste/issues/327">3.22</a>  
       <br>
@@ -289,6 +297,12 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- SUNDIALS -->
     <td>
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/457">7.5</a> 
+      <br>
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/457">7.4</a> 
+      <br>
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/457">7.3</a> 
+      <br>
       🟩 <a href="https://github.com/Chaste/Chaste/issues/266">7.2</a> 
       <br>
       🟨 <a href="https://github.com/Chaste/Chaste/issues/266">7.1</a> 
@@ -341,7 +355,9 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- VTK -->
     <td>
-      🟦 9.4
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/458">9.5</a>
+      <br>
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/458">9.4</a>
       <br>
       🟢 <a href="https://github.com/Chaste/Chaste/issues/257">9.3</a>
       <br>

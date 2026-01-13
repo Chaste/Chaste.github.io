@@ -5,14 +5,14 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningVertexBasedSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningVertexBasedSimulationsTutorial.hpp) at revision [86da82f2455f](https://github.com/Chaste/Chaste/commit/86da82f2455f25c9cd8530546419e71b65cf716e). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningVertexBasedSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningVertexBasedSimulationsTutorial.hpp) at revision [7fa8a1fe59f6](https://github.com/Chaste/Chaste/commit/7fa8a1fe59f6d98cbf1cb5cc25a5f4c0fd6f1198). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to create, run and visualize vertex-based simulations
 
 ### Introduction
 
 In this tutorial we show how Chaste can be used to create, run and visualize vertex-based simulations.
-Full details of the mechanical model proposed by T. Nagai and H. Honda, 2000, "A dynamic cell model for
-the formation of epithelial tissues", Philosophical Magazine Part B 81:699-719, doi:[10.1103/PhysRevLett.69.2013](https://doi.org/10.1103/PhysRevLett.69.2013).
+Full details of the mechanical model proposed by T. Nagai and H. Honda, 2001, "A dynamic cell model for
+the formation of epithelial tissues", Philosophical Magazine Part B 81:699-719, doi:[10.1080/13642810108205772](https://doi.org/10.1080/13642810108205772).
 
 ### The test
 

@@ -48,6 +48,22 @@ Some examples are:
 
 :information_source: :information_source: :information_source:
 
+### Links to other chaste.github.io pages
+
+Links can either be relative (preferred, but only because that seems to be what we have more of) or absolute. For instnace, if you're linking to <https://chaste.github.io/docs/user-guides/cmake-first-run/> from <https://chaste.github.io/docs/release-notes/release-notes/> you can do either:
+
+```
+[link name](../../user-guides/cmake-first-run/)
+```
+
+or
+
+```
+[link name](/docs/user-guides/cmake-first-run/)
+```
+
+When using an absolute link, the link must start with a `/` (or it's all relative to the current location), and must specify everything after the root (in this case, everything after <https://chaste.github.io>.
+
 
 ### Creating a new page
 
