@@ -26,7 +26,7 @@ Chaste release 3.2 under the projects heading,
 or you can [access the source code direct from our repository](https://github.com/Chaste/trac_archive/wiki/Chaste-Guides-_-Access-Code-Repository).
 For the latter option, using a command-line git client, you can get the required code in a new folder called 'Chaste' with the commands:
 
-```
+```bash
 git clone --branch "release_3.2" https://github.com/Chaste/Chaste.git Chaste
 cd Chaste/projects
 git clone --branch "FunctionalCuration_release_3.2" https://github.com/Chaste/project_FunctionalCuration.git FunctionalCuration

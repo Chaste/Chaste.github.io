@@ -42,8 +42,8 @@ Either
 Or
 
 * Install Chaste 3.4 and this project direct from our repository, you may do so from the command line as follows:
-```
 
+```bash
 #!sh
 cd <path/to>
 svn export --username anonymous --password <your email address (not stored)> --no-auth-cache https://chaste.cs.ox.ac.uk/svn/chaste/tags/release_3.4 Chaste
@@ -53,8 +53,8 @@ svn export --username anonymous --password <your email address (not stored)> --n
 
 
 For either method, to run the simulations, use:
-```
 
+```bash
 #!sh
 cd <path/to>/Chaste
 scons chaste_libs=1 brief=1 build=GccOptNative projects/CaDiffusion

@@ -15,23 +15,23 @@ This Chaste test file runs the main protocols for the above
 For performance, it is recommended to build Chaste using the `GccOptNative` build type when using
 the Functional Curation extension project, on which this code is built.  You can run the code shown
 below using the commands:
-```
 
+```bash
 cd path_to_Chaste
 scons chaste_libs=1 build=GccOptNative projects/Wisc2013/test/TestCryptProliferationLiteratePaper.hpp
 ```
 
 A clean build of Chaste takes a considerable amount of time.  If you have multiple cores available
 then the process can be sped up greatly using the '-j' flag to scons, e.g.
-```
 
+```bash
 scons -j4 chaste_libs=1 build=GccOptNative projects/Wisc2013/test/TestCryptProliferationLiteratePaper.hpp
 ```
 
 to build on 4 cores.  You can additionally run the code itself in parallel, in order to run each value
 in the main parameter sweep simultaneously, using 5 cores with the `GccOptNative_5` build type, e.g.
-```
 
+```bash
 scons -j4 chaste_libs=1 build=GccOptNative_5 projects/Wisc2013/test/TestCryptProliferationLiteratePaper.hpp
 ```
 
@@ -280,14 +280,14 @@ figure in the paper (Figure 1).
 
 To visualise the results, open a new terminal, `cd` to the Chaste directory,
 then `cd` to `anim`. Then do:
-```
 
+```bash
 java -cp . Visualize2dCentreCells /tmp/$USER/testoutput/CryptProliferationSteadyState/Stochastic_Generation-based/raw_results/results_from_time_0
 ```
 
 and
-```
 
+```bash
 java -cp . Visualize2dCentreCells /tmp/$USER/testoutput/CryptProliferationSteadyState/Uniform_Wnt/raw_results/results_from_time_0
 ```
 
@@ -326,7 +326,7 @@ plots (a)-(c) in Figure 2.
 The full code is given below
 
 
-### File name `TestCryptProliferationLiteratePaper.hpp`
+### File: `TestCryptProliferationLiteratePaper.hpp`
 
 
 ```cpp
@@ -472,9 +472,9 @@ public:
 
 
 
-### File name `protocols/CryptProliferationSweep.txt`
-```
+### File:  `protocols/CryptProliferationSweep.txt`
 
+```yaml
 ## A simple parameter sweep over the crypt proliferation protocol, varying crypt height
 
 inputs {
@@ -515,9 +515,9 @@ plots {
 
 
 
-### File name `protocols/CryptProliferation.txt`
-```
+### File:  `protocols/CryptProliferation.txt`
 
+```yaml
 ## Core protocol for the Crypt Proliferation project, containing a single cell-based simulation and post-processing thereof
 
 ## The 'ontology' to use for referencing model variables
