@@ -779,17 +779,19 @@ reset the lower threshold to be less than 0, and the upper threshold to be betwe
 selected in the 'Scalars' drop down menu. Once we have edited this, we click apply (we may need to click it twice), and the visualisation on the
 right window will have changed to eliminate ghost nodes.
 
-In order to view cells with different colours, we must click} in the drop down tab under
+In order to view cells with different colours, we must click in the drop down tab under
 
 ```text
-Coloring}} and select 'Differentiation Colour'.
-Once we have selected this, we click the 'Set Range' button in the
+Coloring
 ```
 
-Mapping Data
+and select 'Differentiation Colour'. Once we have selected this, we click the 'Set Range' button in the
 
 ```text
- tab (on the right) and set 0 as minimum and 4 as maximum value.
+Mapping Data
+```
+
+tab (on the right) and set 0 as minimum and 4 as maximum value.
 
 To view the simulation, simply use the animation buttons located on the top toolbar. We can also save a screenshot, or an animation, using
 the appropriate options from the file menu.
@@ -799,7 +801,7 @@ the appropriate options from the file menu.
 
 };
 
-```text
+```
 ## Code
 The full code is given below
 
@@ -1132,4 +1134,4 @@ public:
 
 };
 
-```text
+```
