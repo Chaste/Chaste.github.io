@@ -32,7 +32,7 @@ scons build=GccOptNative_4 test_suite=projects/project_Plos2013/test/TestSpiralW
 
 The easiest way to visualize this simulation is with meshalyzer.
 
-### Code overview
+## Code overview
 
 The first thing to do is to include the necessary header files.
 
@@ -136,14 +136,11 @@ Finally, call `Initialise` and `Solve`
 
 
 
-## Code
+## Full code
 The full code is given below
 
 
-### File name `TestSpiralWaveLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestSpiralWaveLiteratePaper.hpp"}
 #include <cxxtest/TestSuite.h>
 
 #include "MonodomainProblem.hpp"

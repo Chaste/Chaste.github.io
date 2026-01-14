@@ -30,7 +30,7 @@ This example uses only files from the core Chaste code.
 There is a special cmgui visualization script that loads both mechanics and voltage solution onto the
 same mesh, which is in the same folder as this file: `LoadElectroMechanicsSimulation.com`
 
-### Code overview
+## Code overview
 
 We first include some header files which define the classes we will use.
 
@@ -198,14 +198,9 @@ Report where time was spent to std::cout.
 
 
 
-## Code
-The full code is given below
+## Full code
 
-
-### File name `TestElectroMechanicsLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestElectroMechanicsLiteratePaper.hpp"}
 #include <cxxtest/TestSuite.h>
 #include "PlaneStimulusCellFactory.hpp"
 #include "LuoRudy1991.hpp"

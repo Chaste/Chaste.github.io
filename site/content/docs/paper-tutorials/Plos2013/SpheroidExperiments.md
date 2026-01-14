@@ -32,7 +32,7 @@ scons build=GccOptNative test_suite=projects/project_Plos2013/test/TestSpheroidE
 
 The easiest way to visualize this simulation is with paraview.
 
-### Code overview
+## Code overview
 
 The first thing to do is to include the necessary header files.
 
@@ -298,14 +298,9 @@ Save the results
 
 
 
-## Code
-The full code is given below
+## Full code
 
-
-### File name `TestSpheroidExperimentsLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestSpheroidExperimentsLiteratePaper.hpp"}
 #include <cxxtest/TestSuite.h>
 
 // Must be included before other cell_based headers
