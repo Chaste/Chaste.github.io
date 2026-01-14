@@ -453,32 +453,32 @@ Run the simulation.
 
 To visualize the results, open a new terminal and
 
-```
+```bash
 cd
 ```
 
  to the Chaste directory, then
 
-```
+```bash
 cd
 ```
 
  to
 
-```
+```text
 anim
 ```
 
 . Then do:
 
-```
+```bash
 java Visualize2dCentreCells /tmp/$USER/testoutput/CryptFissionLiteratePaper/results_from_time_0
 ```
 
 .
 You may have to do:
 
-```
+```bash
 javac Visualize2dCentreCells.java
 ```
 

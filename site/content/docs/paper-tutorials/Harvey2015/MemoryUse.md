@@ -11,7 +11,7 @@ smaller amount of memory is used by each process.
 
 The geometry for the construction of the population is contained in
 
-```
+```text
 projects/Harvey2015/test/data/1024000_2d_cells.dat
 ```
 
@@ -23,7 +23,7 @@ in the paper.)
 
 A useful for loop (in `bash`) would be
 
-```
+```bash
 for i in {1..32}; do echo $i "processes ===";scons build=GccOptNative_$i projects/Harvey2015/test/TestMemoryUseLiteratePaper.hpp | grep memory; done
 ```
 

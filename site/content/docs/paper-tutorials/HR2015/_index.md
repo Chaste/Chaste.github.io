@@ -1,5 +1,5 @@
 
-```
+```text
 #!comment
 This wiki page is auto-generated from the file
 projects/HR2015/Summary.wiki
@@ -31,7 +31,7 @@ The steps required to reproduce the study are:
 
 If you wish to install Chaste and this project direct from our repository, you may do so from the command line as follows:
 
-```
+```bash
 #!sh
 svn checkout https://chaste.cs.ox.ac.uk/svn/chaste/trunk Chaste
 cd Chaste/projects
@@ -41,7 +41,7 @@ svn checkout https://chaste.cs.ox.ac.uk/svn/chaste/projects/HR2015
 
 To run the simulations, use:
 
-```
+```bash
 #!sh
 cd path/to/Chaste
 scons chaste_libs=1 brief=1 build=GccOptNative projects/HR2015

@@ -64,20 +64,20 @@ See the [sub-page for our main paper](./functionalcuration) for details of how t
 its results.  There are also many tests covering the lower-level functionality available for use by
 protocols.  Run all the default tests with:
 
-```
+```bash
 scons cl=1 b=GccOpt projects/FunctionalCuration
 ```
 
 If you have multiple cores available, you can build in parallel with (using 4 cores for example):
 
-```
+```bash
 scons -j4 cl=1 b=GccOpt projects/FunctionalCuration
 ```
 
 
 To build an executable that can run a single protocol on a single model, do:
 
-```
+```bash
 scons cl=1 exe=1 b=GccOpt projects/FunctionalCuration/apps
 ```
 

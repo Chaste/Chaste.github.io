@@ -54,31 +54,31 @@ First of all we initialise Buddy.
 
 We instantiate a
 
-```
+```text
 [RandomBooleanNetwork](https://github.com/Chaste/trac_archive/wiki/Random-Boolean-Network)
 ```
 
  object using a
 
-```
+```text
 [ThresholdErgodicSetDifferentiationTree](https://github.com/Chaste/trac_archive/wiki/Threshold-Ergodic-Set-Differentiation-Tree)
 ```
 
 which is used for generate a
 
-```
+```text
 [DifferentiationTree](https://github.com/Chaste/trac_archive/wiki/Differentiation-Tree)
 ```
 
  object. In the constructor, the
 
-```
+```text
 [ThresholdErgodicSetDifferentiationTree](https://github.com/Chaste/trac_archive/wiki/Threshold-Ergodic-Set-Differentiation-Tree)
 ```
 
  object initialise a
 
-```
+```text
 [RandomBooleanNetwork](https://github.com/Chaste/trac_archive/wiki/Random-Boolean-Network)
 ```
 

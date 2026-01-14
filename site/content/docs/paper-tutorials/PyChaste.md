@@ -13,21 +13,21 @@ First, Chaste dependencies need to be built from source following the [Chaste In
 
 The project only supports the development version of Chaste. This can be obtained by doing:
 
-```
+```bash
 svn --username anonymous checkout https://chaste.cs.ox.ac.uk/svn/chaste/trunk/ Chaste
 ```
 
 
 using subversion. The project code itself can be obtained by doing:
 
-```
+```bash
 svn co "https://chaste.cs.ox.ac.uk/svn/chaste/projects/PyChaste"
 ```
 
 
 The [PyChaste](https://github.com/Chaste/trac_archive/wiki/Py-Chaste) project code needs to be included in the `projects` folder of the main Chaste source. This can be done with a symbolic link:
 
-```
+```bash
 cd $CHASTE_SOURCE_DIR/projects
 ln -s $PYCHASTE_PROJECT_SOURCE_DIR
 ```
@@ -35,7 +35,7 @@ ln -s $PYCHASTE_PROJECT_SOURCE_DIR
 
 or just by copying the project in. The project can then be configured in the typical way using CMake (see [CMake build system](https://github.com/Chaste/trac_archive/wiki/Chaste-Guides-_-Cmake-Build-Guide) guide for additional details). First, create a build directory outside the source tree and proceed as:
 
-```
+```bash
 cd $BUILD_DIR
 cmake $CHASTE_SOURCE_DIR
 make project_PyChaste
@@ -48,7 +48,7 @@ The Python package `chaste` will be in `$BUILD_DIR` under `Chaste/projects/PyCha
 ### Usage
 The package can be imported in Python as normal. For example, in a Python session do:
 
-```
+```python
 >>> import chaste.core
 >>> file_handler = chaste.core.OutputFileHandler("Directory_For_My_Output_Files", False)
 >>> print file_handler.GetOutputDirectoryFullPath()
@@ -59,14 +59,14 @@ The package can be imported in Python as normal. For example, in a Python sessio
 
 Often it is neccessary to initialize MPI/PETSc when launching the C++ version of Chaste. This is the same for the Python version, with MPI initialization errors returned if you try to use functions which depend on it. To use MPI/PETSc functionality it is neccessary to install the `petsc4py` Python interface to PETSc. This can be done using pip:
 
-```
+```bash
 pip install petsc4py
 ```
 
 
 however care should be taken to ensure that the installed version of `petsc4py` matches your PETSc version. To initialize MPI/PETSc with Chaste you can do:
 
-```
+```python
 import chaste
 chaste.init()
 ```
@@ -75,7 +75,7 @@ chaste.init()
 ## User Projects
 User projects, such as the [Angiogenesis Project](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Angiogenesis) can have their own Python packages, which depend on PyChaste. They can be placed in the `chaste/projects` module of [PyChaste](https://github.com/Chaste/trac_archive/wiki/Py-Chaste) and can be loaded as follows:
 
-```
+```python
 import chaste
 chaste.init()
 import chaste.projects.angiogenesis
@@ -85,7 +85,7 @@ import chaste.projects.angiogenesis
 ## Binding Regeneration (Developers Only)
 [PyChaste](https://github.com/Chaste/trac_archive/wiki/Py-Chaste) is a mix of manual and automatically generated bindings. Binding logic is in `WrapPython.cmake` and `dynamic\generate_X_bindings.py`. To regenerate the automatic binding code do:
 
-```
+```bash
 cd $BUILD_DIR
 cmake $CHASTE_SOURCE_DIR
 make project_PyChaste

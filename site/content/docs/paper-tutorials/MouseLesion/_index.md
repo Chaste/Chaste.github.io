@@ -1,5 +1,5 @@
 
-```
+```text
 #!comment
 This wiki page is auto-generated from the file
 projects/MouseLesion/Summary.wiki
@@ -27,7 +27,7 @@ For further information on using Chaste to solve these and related problems, see
 
 If you wish to install Chaste direct from our repository, you may do so from the command line as follows:
 
-```
+```bash
 #!sh
 svn checkout https://chaste.cs.ox.ac.uk/svn/chaste/trunk Chaste
 cd <path to Chaste source>/projects
@@ -40,7 +40,7 @@ Now unzip the downloaded `MouseLesion.tar.gz` into this folder.
 
 To compile the simulators, use:
 
-```
+```bash
 #!sh
 cd <path to Chaste source>
 scons chaste_libs=1 brief=1 build=GccOptNative projects/MouseLesion

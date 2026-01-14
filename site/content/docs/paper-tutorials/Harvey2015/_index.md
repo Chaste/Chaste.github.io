@@ -1,5 +1,5 @@
 
-```
+```text
 #!comment
 This wiki page is auto-generated from the file
 projects/Harvey2015/Summary.wiki
@@ -58,20 +58,20 @@ Once you have all the Chaste dependencies installed (as per https://chaste.cs.ox
 using Ubuntu is by far the easiest way to do this). You should get a copy of Chaste 3.2 (from http://www.cs.ox.ac.uk/chaste/download)
 and copy the folder containing this README file into
 
-```
+```text
 <Chaste3.2 path>/projects/Harvey2015
 ```
 
 You can then run things with, for example,
 
-```
+```bash
 cd <Chaste3.2 path>
 scons build=GccOptNative test_suite=projects/Harvey2015/test/TestUnitValidationLiteratePaper.hpp
 ```
 
 to run the simulations in parallel on (e.g.) 2 processes the command is
 
-```
+```bash
 scons build=GccOptNative_2 test_suite=projects/Harvey2015/test/TestUnitValidationLiteratePaper.hpp
 ```
 
@@ -79,7 +79,7 @@ scons build=GccOptNative_2 test_suite=projects/Harvey2015/test/TestUnitValidatio
 To obtain optimal results on a given architecture, you should use no more than the number of physical
 processors contained in the machine. On most Linux platforms this can be found using a command such as:
 
-```
+```bash
 grep ^processor /proc/cpuinfo | wc -l
 ```
 

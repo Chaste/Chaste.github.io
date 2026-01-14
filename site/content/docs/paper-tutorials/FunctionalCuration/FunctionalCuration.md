@@ -32,7 +32,7 @@ and now the Decker 2009 model gives a sensible S1-S2 curve, unlike that shown in
 
 You can run these simulations using the following command from within the Chaste source tree:
 
-```
+```bash
 scons cl=1 b=GccOptNative ts=projects/FunctionalCuration/test/TestFunctionalCurationPaper.hpp
 ```
 
@@ -40,7 +40,7 @@ scons cl=1 b=GccOptNative ts=projects/FunctionalCuration/test/TestFunctionalCura
 If you have multiple cores available, these may be used to speed up simulation.  For instance, to use
 8 cores, run
 
-```
+```bash
 scons cl=1 b=GccOptNative_8 ts=projects/FunctionalCuration/test/TestFunctionalCurationPaper.hpp
 ```
 

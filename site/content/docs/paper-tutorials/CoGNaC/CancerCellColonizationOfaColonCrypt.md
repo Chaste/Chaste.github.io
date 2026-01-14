@@ -459,14 +459,14 @@ with \Lambda (a NRBN time step corresponds to 0.25 hours).
 
 Next, we generate a mutable mesh. To create a
 
-```
+```text
 [MutableMesh](https://chaste.cs.ox.ac.uk/public-docs/classMutableMesh.html)
 ```
 
 , we can use
 the
 
-```
+```text
 [HoneycombMeshGenerator](https://chaste.cs.ox.ac.uk/public-docs/classHoneycombMeshGenerator.html)
 ```
 
@@ -484,7 +484,7 @@ cells) wide, and 20 nodes high. The third argument defines the number of ghost n
 We only want to create cells to attach to real nodes, so we
 use the method
 
-```
+```text
 [GetCellLocationIndices](https://github.com/Chaste/trac_archive/wiki/Get-Cell-Location-Indices)
 ```
 
@@ -499,13 +499,13 @@ cell population later on.
 
 Having created a mesh, we now create a
 
-```
+```cpp
 std::vector
 ```
 
  of
 
-```
+```text
 [CellPtr](https://github.com/Chaste/trac_archive/wiki/Cell-Ptr)
 ```
 
@@ -514,7 +514,7 @@ To do this, we use the `CellsGenerator` helper class again. This time the second
 argument is different and is the number of real nodes in the mesh.
 All cells have
 
-```
+```text
 [StemCellProliferativeType](https://chaste.cs.ox.ac.uk/public-docs/classStemCellProliferativeType.html)
 ```
 
@@ -530,7 +530,7 @@ All cells have
 
 Now we need to associate each cell with a
 
-```
+```text
 [DifferentiationTreeBasedWithAsymmetricDivisionCellCycleModel](https://github.com/Chaste/trac_archive/wiki/Differentiation-Tree-Based-With-Asymmetric-Division-Cell-Cycle-Model)
 ```
 
@@ -552,7 +552,7 @@ initialise its cell cycle model and randomly set its birthtime.
 
 Now we have a mesh and a set of cells to go with it, we can create a
 
-```
+```text
 [CellPopulation](https://github.com/Chaste/trac_archive/wiki/Cell-Population)
 ```
 
@@ -560,14 +560,14 @@ Now we have a mesh and a set of cells to go with it, we can create a
 In general, this class associates a collection of cells with a set of elements or a mesh.
 For this test, because we have a
 
-```
+```text
 [MutableMesh](https://chaste.cs.ox.ac.uk/public-docs/classMutableMesh.html)
 ```
 
 , and ghost nodes we use a particular type of
 cell population called a
 
-```
+```text
 [MeshBasedCellPopulationWithGhostNodes](https://chaste.cs.ox.ac.uk/public-docs/classMeshBasedCellPopulationWithGhostNodes.html)
 ```
 
@@ -590,7 +590,7 @@ Add writers used for visualise the simulation using Paraview.
 
 We then pass in the cell population into an
 
-```
+```text
 [OffLatticeSimulation](https://chaste.cs.ox.ac.uk/public-docs/classOffLatticeSimulation.html)
 ```
 
@@ -605,7 +605,7 @@ and set the output directory and end time.
 
 We create a force law, and pass it to the
 
-```
+```text
 [OffLatticeSimulation](https://chaste.cs.ox.ac.uk/public-docs/classOffLatticeSimulation.html)
 ```
 
@@ -630,7 +630,7 @@ Impose the boundary condition to the cell population object.
 We also add a cell killer to the simulator. This object dictates under
 what conditions cells die. For this test, we use a
 
-```
+```text
 [SloughingCellKiller](https://chaste.cs.ox.ac.uk/public-docs/classSloughingCellKiller.html)
 ```
 
@@ -646,7 +646,7 @@ which kills cells above a certain height (passed as an argument to the construct
 
 To run the simulation, we call
 
-```
+```text
 Solve()
 ```
 
@@ -716,7 +716,7 @@ marking the less probable to have the highest value (from the range [0,4]).
 To visualize the results, we must first open Paraview. We open the folder containing our test output using the 'file' menu at
 the top. The output will be located in
 
-```
+```text
 /tmp/$USER/testoutput/SimulationCancerCellColonization/results_from_time_0
 ```
 
@@ -724,38 +724,38 @@ the top. The output will be located in
 There will be a .vtu file generated for every timestep, which must all be opened at once to view the simulation. To do this,
 simply select
 
-```
+```text
 results.pvd
 ```
 
 . We should now see
 
-```
+```text
 results.pvd
 ```
 
   in the pipeline browser. We click
 
-```
+```text
 Apply
 ```
 
  in the properties tab
 of the object inspector, and we should now see a visualization in the right hand window.  (An alternative to opening the
 
-```
+```text
 results.pvd
 ```
 
 file is to open all the time steps en masse where we open
 
-```
+```text
 results_..vtu
 ```
 
  and see
 
-```
+```text
 results_*
 ```
 
@@ -764,7 +764,7 @@ results_*
 At this stage, it will be necessary to refine how we wish to view this particular visualisation. The viewing styles can be edited using
 the display tab of the object inspector. In particular, under
 
-```
+```text
 Style
 ```
 
@@ -781,14 +781,14 @@ right window will have changed to eliminate ghost nodes.
 
 In order to view cells with different colours, we must click} in the drop down tab under
 
-```
+```text
 Coloring}} and select 'Differentiation Colour'.
 Once we have selected this, we click the 'Set Range' button in the
 ```
 
 Mapping Data
 
-```
+```text
  tab (on the right) and set 0 as minimum and 4 as maximum value.
 
 To view the simulation, simply use the animation buttons located on the top toolbar. We can also save a screenshot, or an animation, using
@@ -799,7 +799,7 @@ the appropriate options from the file menu.
 
 };
 
-```
+```text
 ## Code
 The full code is given below
 
@@ -1132,4 +1132,4 @@ public:
 
 };
 
-```
+```text

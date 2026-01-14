@@ -20,7 +20,7 @@ For manual installation of each dependency, on any version of Linux, see Develop
 
 You will also need the source for the [CryptProliferationDistribution](https://github.com/Chaste/trac_archive/wiki/Crypt-Proliferation-Distribution) project.  This can be done by checking out the version from the repository by using the command
 
-```
+```bash
 svn checkout https://chaste.cs.ox.ac.uk/svn/chaste/projects/CryptProliferationDistribution
 ```
 
@@ -48,14 +48,14 @@ There are two folders - `src` and `test`.
 ### Running tests
 You can then run tests and simulations with,
 
-```
+```bash
 cd <Chaste3.3 path>
 scons b=GccOpt ts=projects/CryptProliferationDistribution/test/TestCryptProliferationDistributionLiteratePaper.hpp
 ```
 
 and
 
-```
+```bash
 scons b=GccOpt ts=projects/CryptProliferationDistribution/test/TestCryptTakeoverProbilityLiteratePaper.hpp
 ```
 

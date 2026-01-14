@@ -15,13 +15,13 @@ recreate figure 6.
 
 For example:
 
-```
+```bash
 scons build=GccOptNative_2 test_suite=projects/Harvey2015/tests/TestLoadBalanceSensitivityLiteratePaper.hpp
 ```
 
 or, to produce the 8-way simulation of Figure 6c and Figure 7,
 
-```
+```bash
 scons build=GccOptNative_8 projects/Harvey2015/tests/TestLoadBalanceSensitivityLiteratePaper.hpp
 ```
 

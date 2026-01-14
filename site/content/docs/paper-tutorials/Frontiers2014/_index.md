@@ -1,5 +1,5 @@
 
-```
+```text
 #!comment
 This wiki page is auto-generated from the file
 projects/Frontiers2014/Summary.wiki
@@ -43,7 +43,7 @@ Again, you may if you wish run just the final step to benchmark the solvers on y
 
 If you wish to install the latest versions Chaste and this project direct from our repository, you may do so from the command line as follows:
 
-```
+```bash
 #!sh
 svn checkout https://chaste.cs.ox.ac.uk/svn/chaste/trunk Chaste
 cd Chaste/projects
@@ -53,7 +53,7 @@ svn checkout https://chaste.cs.ox.ac.uk/svn/chaste/projects/Frontiers2014
 
 To run all the steps listed above, exploiting multiple cores on your machine where appropriate, use:
 
-```
+```bash
 #!sh
 cd path/to/Chaste
 ## Change the occurrences of 8 below to match the number of cores available
