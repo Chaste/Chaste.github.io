@@ -177,7 +177,9 @@ In some instances the version number is linked to the GitHub issue in which supp
   <tr>
      <!-- Boost -->
     <td>
-      🟦 <a href="https://github.com/Chaste/Chaste/issues/465">1.89</a>
+      🟦 1.90
+      <br>
+      🟩 <a href="https://github.com/Chaste/Chaste/issues/465">1.89</a>
       <br>
       🟩 <a href="https://github.com/Chaste/Chaste/issues/453">1.88</a>
       <br>
