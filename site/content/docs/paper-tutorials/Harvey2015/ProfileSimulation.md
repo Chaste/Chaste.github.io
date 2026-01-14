@@ -34,7 +34,6 @@ It must be run multiple times in order to gauge the parallel efficiency/speed-up
 The geometry for the construction of the population is contained in
 
 ```
-
 projects/Harvey2015/test/data/2d_1024_cells.dat
 ```
 
@@ -52,7 +51,6 @@ The program does not produce output to screen during the simulation.
 A useful for loop (in `bash`) would be
 
 ```
-
 for i in {1..32}; do echo $i "processes ===";scons build=GccOptNative_$i projects/Harvey2015/test/TestProfileSimulationLiteratePaper.hpp | grep ##Prof; done
 ```
 
@@ -177,7 +175,6 @@ This distribution file may be found relative to `CHASTE_TEST_OUTPUT` which by de
 `/tmp/$USER/testoutput`
 
 ```
-
 cat /tmp/$USER/testoutput/DivisionResults/division_results.txt
 ```
 

@@ -14,7 +14,6 @@ as described in Section 3.1.
 Both tests in this file are designed to be run twice:
 
 ```
-
 ## in serial
 scons build=GccOptNative projects/Harvey2015/test/TestUnitValidationLiteratePaper.hpp
 ## In parallel
@@ -25,7 +24,6 @@ scons build=GccOptNative_2 projects/Harvey2015/test/TestUnitValidationLiteratePa
 After this the positional output may be checked to machine output precision:
 
 ```
-
 cd /tmp/$USER/testoutput
 ## first test comparison
 diff ValidateTwoCells_1_Procs/results_from_time_0/results.viznodes ValidateTwoCells_2_Procs/results_from_time_0/results.viznodes
@@ -41,7 +39,6 @@ the  `NodeLocationWriter` (see wiki:PaperTutorials/Harvey2015/ValidateSimulation
 VTK files will contain full machine precision position information, together with process ownership.
 
 ```
-
 paraview --data=/tmp/$USER/testoutput/ValidateTwoCells_2_Procs/results_from_time_0/results.pvd
 ## View the cells by adding the Glyph filter and rotating the z-axis
 ```

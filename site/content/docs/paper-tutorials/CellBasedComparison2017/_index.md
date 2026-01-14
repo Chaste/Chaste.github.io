@@ -30,7 +30,6 @@ Presently it does not work with any of the previous release versions.  However w
 To checkout the source code for the specific code revision use the command
 
 ```
-
   git clone --depth 1 --branch paper/CellBasedComparison https://chaste.cs.ox.ac.uk/git/chaste.git Chaste
   cd Chaste
 ```
@@ -49,7 +48,6 @@ At this point you should configure Chaste with [CMake](https://github.com/Chaste
 You will also need the source for the CellBasedComparison2017 project.  This can be done by checking out the version from the repository by using the command
 
 ```
-
 svn checkout -r 27368 --username anonymous https://chaste.cs.ox.ac.uk/svn/chaste/projects/CellBasedComparison2017 projects/CellBasedComparison2017
 ```
 
@@ -59,7 +57,6 @@ in the Chaste directory. Note that **username** for checking out the project cod
 To checkout the source code for the specific code revision use the command
 
 ```
-
   git clone --depth 1 --branch paper/CellBasedComparison18 https://chaste.cs.ox.ac.uk/git/chaste.git Chaste
   cd Chaste
 ```
@@ -78,7 +75,6 @@ At this point you should configure Chaste with [CMake](https://github.com/Chaste
 You will also need the (updated-since-publication) source for the CellBasedComparison2017 project.  This can be done by checking out the version from the repository by using the command
 
 ```
-
 svn checkout -r 27524 --username anonymous https://chaste.cs.ox.ac.uk/svn/chaste/projects/CellBasedComparison2017 projects/CellBasedComparison2017
 ```
 
@@ -116,7 +112,6 @@ There are two folders - `src` and `test`.
 With SCons you can run tests with,
 
 ```
-
 cd <Chaste path>
 
 ## Make and run a test at a time:
@@ -131,7 +126,6 @@ scons b=GccOpt -j4 projects/CellBasedComparison2017
 With CMake you can run tests with,
 
 ```
-
 cd <Chaste path>
 cd ../chaste-build  ## Assuming you have configured CMake here.
 cmake . ## Unnecessary extra step to pick up project and reconfigure

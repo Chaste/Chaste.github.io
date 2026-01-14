@@ -19,7 +19,6 @@ For manual installation of each dependency, on any version of Linux, see Develop
 You will also need the source for the [EpithelialFission](https://github.com/Chaste/trac_archive/wiki/Epithelial-Fission) project.  This can be done by checking out the version from the repository by using the command
 
 ```
-
 svn checkout https://chaste.cs.ox.ac.uk/svn/chaste/projects/EpithelialFission
 ```
 
@@ -47,7 +46,6 @@ There are two folders - `src` and `test`.
 You can then run tests and simulations with,
 
 ```
-
 cd <Chaste3.4 path>
 scons b=GccOpt cl=0 co=1 ts=projects/EpithelialFission/test/TestCryptFissionSweepsLiteratePaper.hpp
 ```
@@ -67,7 +65,6 @@ FINAL_SEED
 :
 
 ```
-
 cd projects/EpithelialFission/test/
 sh run_script_for_epithelial_layer_sweeps.sh INIT_SEED FINAL_SEED
 ```

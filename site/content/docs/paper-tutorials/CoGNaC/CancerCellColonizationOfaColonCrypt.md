@@ -800,9 +800,6 @@ the appropriate options from the file menu.
 };
 
 ```
-
-
-
 ## Code
 The full code is given below
 
@@ -1136,5 +1133,3 @@ public:
 };
 
 ```
-
-

@@ -16,7 +16,6 @@ The project can be used directly as a typical C++ Chaste project. First, Chaste 
 The project only supports the development version of Chaste. This can be obtained by doing:
 
 ```
-
 git clone https://chaste.cs.ox.ac.uk/git/chaste.git $CHASTE_SOURCE_DIR
 ```
 
@@ -24,7 +23,6 @@ git clone https://chaste.cs.ox.ac.uk/git/chaste.git $CHASTE_SOURCE_DIR
 The project code itself can be obtained by doing:
 
 ```
-
 svn co "https://chaste.cs.ox.ac.uk/svn/chaste/projects/Microvessel" $MICROVESSEL_PROJECT_SOURCE_DIR
 ```
 
@@ -32,7 +30,6 @@ svn co "https://chaste.cs.ox.ac.uk/svn/chaste/projects/Microvessel" $MICROVESSEL
 The Microvessel project code needs to be included in the main Chaste source. This can be done with a symbolic link:
 
 ```
-
 cd $CHASTE_SOURCE_DIR/projects
 ln -s $MICROVESSEL_PROJECT_SOURCE_DIR
 ```
@@ -41,7 +38,6 @@ ln -s $MICROVESSEL_PROJECT_SOURCE_DIR
 The C++ libraries can be built using the [Chaste CMake build system](https://github.com/Chaste/trac_archive/wiki/Chaste-Guides-_-Cmake-Build-Guide). First, create a build directory outside the source tree and proceed as:
 
 ```
-
 cd $CHASTE_BUILD_DIR
 cmake $CHASTE_SOURCE_DIR
 make project_Microvessel -j $NUM_AVAILABLE_CPUS
@@ -51,7 +47,6 @@ make project_Microvessel -j $NUM_AVAILABLE_CPUS
 This will build the C++ library and all tests. To avoid building tests do:
 
 ```
-
 make chaste_project_Microvessel -j $NUM_AVAILABLE_CPUS
 ```
 
@@ -63,7 +58,6 @@ other types of test and installation as a system library.
 The source and test code are in the `src` and `test` folders respectively.  Unit tests can be built and run using the Chaste CMake framework [as detailed here](https://github.com/Chaste/trac_archive/wiki/Chaste-Guides-_-Cmake-Build-Guide). It is recommended that the [tutorials](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Microvessel-_-Build-Vessel-Network) are followed. To run the first tutorial do:
 
 ```
-
 ctest -R TestBuildVesselNetworkLiteratePaper
 ```
 
@@ -71,7 +65,6 @@ ctest -R TestBuildVesselNetworkLiteratePaper
 To run all C++ tests and tutorials do:
 
 ```
-
 ctest -L project_Microvessel
 ```
 
@@ -81,7 +74,6 @@ A [conda](http://conda.pydata.org/docs/intro.html) Python package for Linux is c
 Then, follow the above C++ instructions to build the Microvessel project, but with the additional CMake flag `-DBUILD_MICROVESSEL_PYTHON=ON`. The final steps should look like:
 
 ```
-
 cmake -DBUILD_MICROVESSEL_PYTHON=ON $CHASTE_SOURCE_DIR
 make project_Microvessel
 make project_Microvessel_Python
@@ -96,7 +88,6 @@ The Python source and tests are in the `src/python` and `test/python` folders. T
 To run the Python tutorial do:
 
 ```
-
 ctest -R TestPythonBuildVesselNetworkLiteratePaper.py
 ```
 
@@ -104,7 +95,6 @@ ctest -R TestPythonBuildVesselNetworkLiteratePaper.py
 To run all Python tests do:
 
 ```
-
 ctest -L project_Microvessel
 ```
 

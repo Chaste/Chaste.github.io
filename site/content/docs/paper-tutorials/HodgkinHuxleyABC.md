@@ -17,7 +17,6 @@ In addition, you will need the dependencies for the new Python implementation de
 Afterwards, obtain the latest version of the project code from the Chaste repository using:
 
 ```
-
 #!sh
 cd [path_to_Chaste]/projects
 svn checkout --username anonymous https://chaste.cs.ox.ac.uk/svn/chaste/projects/HodgkinHuxleyABC
@@ -59,7 +58,6 @@ To generate ABC posterior estimates for the six-parameter simplified Hodgkin-Hux
 as described in the paper, use:
 
 ```
-
 scons projects/HodgkinHuxleyABC/test/HodgkinHuxleyFittingABC_simple.py
 ```
 
@@ -67,7 +65,6 @@ To generate ABC posterior estimates for the 14-parameter full Hodgkin-Huxley mod
 as described in the paper, use:
 
 ```
-
 scons projects/HodgkinHuxleyABC/test/HodgkinHuxleyFittingABC.py
 ```
 

@@ -59,14 +59,12 @@ using Ubuntu is by far the easiest way to do this). You should get a copy of Cha
 and copy the folder containing this README file into
 
 ```
-
 <Chaste3.2 path>/projects/Harvey2015
 ```
 
 You can then run things with, for example,
 
 ```
-
 cd <Chaste3.2 path>
 scons build=GccOptNative test_suite=projects/Harvey2015/test/TestUnitValidationLiteratePaper.hpp
 ```
@@ -74,7 +72,6 @@ scons build=GccOptNative test_suite=projects/Harvey2015/test/TestUnitValidationL
 to run the simulations in parallel on (e.g.) 2 processes the command is
 
 ```
-
 scons build=GccOptNative_2 test_suite=projects/Harvey2015/test/TestUnitValidationLiteratePaper.hpp
 ```
 
@@ -83,7 +80,6 @@ To obtain optimal results on a given architecture, you should use no more than t
 processors contained in the machine. On most Linux platforms this can be found using a command such as:
 
 ```
-
 grep ^processor /proc/cpuinfo | wc -l
 ```
 

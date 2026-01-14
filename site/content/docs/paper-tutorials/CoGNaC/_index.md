@@ -31,7 +31,6 @@ Move the project in Chaste/projects where 'Chaste' is the folder containing the 
 Once you have checked out the project you need to install [BuDDy](http://buddy.sourceforge.net/manual/main.html) tool, you may do so from the command line as follows:
 
 ```
-
 sudo apt-get install libbdd-dev
 ```
 
@@ -41,7 +40,6 @@ adding this information to the hostconfing file.
 Scons will tell you which machine file it's using in the first few lines, e.g:
 
 ```
-
 cd <Chaste3.3 path>
 scons
  scons: Reading SConscript files ...
@@ -53,7 +51,6 @@ scons
 So, in the file you are using (e.g. `python/hostconfig/ubuntu.py`), just add 'bdd' similar to:
 
 ```
-
 other_libraries = boost_libs + ['xerces-c',
                                 'hdf5', 'z',
                                 'parmetis', 'metis', 'bdd']
@@ -64,7 +61,6 @@ Now the project should be installed, and everything should compile and run corre
 test if everything is installed correctly, you can run some tests. So from a command line do:
 
 ```
-
 cd <Chaste3.3 path>
 scons test_suite=projects/CoGNaC/test/TestGraphNode.hpp
 scons test_suite=projects/CoGNaC/test/TestArrayDirectedGraph.hpp
@@ -101,7 +97,6 @@ There are three folders - `networks_samples`, `src` and `test`.
 You can then run tests and simulations with, for example,
 
 ```
-
 cd <Chaste3.3 path>
 scons test_suite=projects/CoGNaC/test/TestSearchingGeneActivationPatternsInThelperNetwork.hpp
 ```
@@ -109,7 +104,6 @@ scons test_suite=projects/CoGNaC/test/TestSearchingGeneActivationPatternsInThelp
 or
 
 ```
-
 scons test_suite=projects/CoGNaC/test/TestCancerCellColonizationOfaColonCryptLiteratePaper.hpp
 ```
 

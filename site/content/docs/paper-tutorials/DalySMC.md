@@ -16,7 +16,6 @@ Instructions for this installation can be found for a variety of operating syste
 Extra install commands needed as well as the Ubuntu chaste-dependencies package are (on 14.04 at least):
 
 ```
-
 #!sh
 sudo apt-get install python-dev python-scipy python-numpy cython python-tables python-matplotlib python-numexpr python-pip
 sudo apt-get install scons
@@ -27,7 +26,6 @@ sudo -H pip install dill pathos
 Afterwards, obtain the latest version of all the code from the Chaste repositories using:
 
 ```
-
 #!sh
 git clone -b develop https://chaste.cs.ox.ac.uk/git/chaste.git Chaste
 cd Chaste/projects
@@ -80,7 +78,6 @@ To generate all described posterior estimates for the linear model
 as described in the paper, go to the top-level Chaste directory and use:
 
 ```
-
 scons projects/DalySMC/test/LinearFitting.py
 ```
 
@@ -88,7 +85,6 @@ To generate all described posterior estimates for the polynomial model
 as described in the paper, use:
 
 ```
-
 scons projects/DalySMC/test/PolynomialFitting.py
 ```
 
@@ -96,7 +92,6 @@ To generate all described posterior estimates for the O'Hara-Rudy model
 as described in the paper, use:
 
 ```
-
 scons projects/DalySMC/test/OHaraRudyFitting.py
 ```
 

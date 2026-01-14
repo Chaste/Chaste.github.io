@@ -23,7 +23,6 @@ For manual installation of each dependency, on any version of Linux, see Develop
 You will also need the source for the PottsCrypt2015 project.  This can be done by checking out the version from the repository by using the command
 
 ```
-
 svn checkout https://chaste.cs.ox.ac.uk/svn/chaste/projects/PottsCrypt2015
 ```
 
@@ -51,7 +50,6 @@ There are two folders - `src` and `test`.
 You can then run tests and simulations with,
 
 ```
-
 cd <Chaste3.3 path>
 scons b=GccOpt ts=projects/PottsCrypt2015/test/TestPottsCryptLiteratePaper.hpp
 ```
@@ -59,14 +57,12 @@ scons b=GccOpt ts=projects/PottsCrypt2015/test/TestPottsCryptLiteratePaper.hpp
 and
 
 ```
-
 scons b=GccOpt ts=projects/PottsCrypt2015/test/TestPottsCryptSweepLiteratePaper.hpp
 ```
 
 and
 
 ```
-
 scons b=GccOpt ts=projects/PottsCrypt2015/test/TestPottsCryptMutantLiteratePaper.hpp
 ```
 

@@ -52,7 +52,6 @@ Tests in this project are not designed to be run directly through scons. Instead
 you should first build the tests
 
 ```
-
 cd <chaste_directory>
 scons co=1 b=GccOptNative_ndebug projects/AirwayGeneration2015
 ```
@@ -64,7 +63,6 @@ running them. For example, to generate the complete conducting airway tree model
 run
 
 ```
-
 source projects/AirwayGeneration2015/bin/airways_paper_setup.sh
 projects/AirwayGeneration2015/bin/generate_airways.sh
 ```

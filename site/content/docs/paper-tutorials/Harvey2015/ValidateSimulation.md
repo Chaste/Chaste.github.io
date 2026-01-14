@@ -13,7 +13,6 @@ of the output results of the simulation.
 You can do so by adding single line `setprecision(..)` to `NodeLocationWriter` in the main code base
 
 ```
-
 Index: cell_based/src/population/writers/population_writers/NodeLocationWriter.cpp
 ===================================================================
 --- cell_based/src/population/writers/population_writers/NodeLocationWriter.cpp (revision 21854)
@@ -33,7 +32,6 @@ node_iter != pCellPopulation->rGetMesh().GetNodeIteratorEnd();
 This test suite is designed to be run twice.  Each run will take roughly a minute (depending on your machine configuration).
 
 ```
-
 ## in serial
 scons build=GccOptNative projects/Harvey2015/test/TestValidateSimulationLiteratePaper.hpp
 ## In parallel
@@ -44,7 +42,6 @@ scons build=GccOptNative_2 projects/Harvey2015/test/TestValidateSimulationLitera
 After this the positional output may be checked to machine output precision:
 
 ```
-
 ## May need to see this to $CHASTE_TEST_OUTPUT
 export OUTPUT=/tmp/$USER/testoutput
 ./projects/Harvey2015/test/CompareParallelResults.py 2 $OUTPUT/ValidateSimulation3Rand1/results_from_time_0/results.viznodes $OUTPUT/ValidateSimulation3Rand2/results_from_time_0/results.viznodes

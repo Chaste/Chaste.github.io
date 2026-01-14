@@ -14,7 +14,6 @@ It will need modification to work with released versions, especially recent rele
 To install it and get something to run, try the following commands:
 
 ```
-
 #!sh
 svn checkout https://chaste.cs.ox.ac.uk/svn/chaste/trunk -r 13354 Chaste_r13354
 cd Chaste_r13354
@@ -29,7 +28,6 @@ You may find that such an old revision of Chaste does not have suitable hostconf
 In case of compiler errors, try the following commands from within the Chaste folder.
 
 ```
-
 #!sh
 svn up python */SConscript
 cp projects/PlosDunn2012/SConstruct .
