@@ -53,26 +53,35 @@ First of all we initialise Buddy.
 ```
 
 We instantiate a
+
 ```
 [RandomBooleanNetwork](https://github.com/Chaste/trac_archive/wiki/Random-Boolean-Network)
 ```
+
  object using a
+
 ```
 [ThresholdErgodicSetDifferentiationTree](https://github.com/Chaste/trac_archive/wiki/Threshold-Ergodic-Set-Differentiation-Tree)
 ```
 
 which is used for generate a
+
 ```
 [DifferentiationTree](https://github.com/Chaste/trac_archive/wiki/Differentiation-Tree)
 ```
+
  object. In the constructor, the
+
 ```
 [ThresholdErgodicSetDifferentiationTree](https://github.com/Chaste/trac_archive/wiki/Threshold-Ergodic-Set-Differentiation-Tree)
 ```
+
  object initialise a
+
 ```
 [RandomBooleanNetwork](https://github.com/Chaste/trac_archive/wiki/Random-Boolean-Network)
 ```
+
  from the
 'thelper.net' network, and then it search the attractors of the network.
 

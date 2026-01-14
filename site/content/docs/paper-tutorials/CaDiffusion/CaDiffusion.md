@@ -193,6 +193,7 @@ the paper were run on the refined version included here:
 Or a square slab of membrane we construct on the fly
 
 Create a 20 by 20 by 1.5 mesh in 3D, this time using the
+
 ```
 [ConstructRegularSlabMesh](https://github.com/Chaste/trac_archive/wiki/Construct-Regular-Slab-Mesh)
 ```
@@ -304,18 +305,23 @@ Create a new boundary conditions container and specify u=0.0 on the boundary.
 For parabolic problems, initial conditions are also needed. The solver will expect
 a PETSc vector, where the i-th entry is the initial solution at node i, to be passed
 in. To create this PETSc
+
 ```
 Vec
 ```
+
 , we will use a helper function in the
+
 ```
 [PetscTools](https://chaste.cs.ox.ac.uk/public-docs/classPetscTools.html)
 ```
 
 class to create a
+
 ```
 Vec
 ```
+
  of size num_nodes, with each entry set to 0.0. Then we
 set the initial condition on the solver.
 

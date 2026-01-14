@@ -19,6 +19,7 @@ Note that Chaste is only fully supported on Linux/Unix systems, so users of Wind
 For manual installation of each dependency, on any version of Linux, see DeveloperInstallGuide.
 
 You will to checkout revision 18673 of the Chaste source code.  This can be done by checking out the version from the repository by using the command
+
 ```
 
 svn checkout https://chaste.cs.ox.ac.uk/svn/chaste/trunk -r 18673
@@ -26,6 +27,7 @@ svn checkout https://chaste.cs.ox.ac.uk/svn/chaste/trunk -r 18673
 
 
 You will also need the source for the InterfaceFocus2013 project.  This can be done by checking out the version from the repository by using the command
+
 ```
 
 svn checkout https://chaste.cs.ox.ac.uk/svn/chaste/projects/InterfaceFocus2013
@@ -46,6 +48,7 @@ There are two folders - `src` and `test`.
 
  == Running tests ==
 You can then run tests and simulations with,
+
 ```
 
 cd <Chaste path>
@@ -53,6 +56,7 @@ scons b=GccOpt ts=projects/InterfaceFocus2013/test/TestCaWithMultipleMutationSta
 ```
 
 and
+
 ```
 
 scons b=GccOpt ts=projects/InterfaceFocus2013/test/TestCaBasedCellPopulationUsingPdesLiteratePaper.hpp

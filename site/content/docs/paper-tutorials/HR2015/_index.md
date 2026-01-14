@@ -30,6 +30,7 @@ The steps required to reproduce the study are:
 ### Sample commands to install and run everything
 
 If you wish to install Chaste and this project direct from our repository, you may do so from the command line as follows:
+
 ```
 
 #!sh
@@ -40,6 +41,7 @@ svn checkout https://chaste.cs.ox.ac.uk/svn/chaste/projects/HR2015
 
 
 To run the simulations, use:
+
 ```
 
 #!sh

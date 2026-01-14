@@ -28,6 +28,7 @@ Presently it does not work with any of the previous release versions.  However w
 ----
 #### Instructions for Ubuntu 16.04 or similar (Chaste version 3.x)
 To checkout the source code for the specific code revision use the command
+
 ```
 
   git clone --depth 1 --branch paper/CellBasedComparison https://chaste.cs.ox.ac.uk/git/chaste.git Chaste
@@ -35,15 +36,18 @@ To checkout the source code for the specific code revision use the command
 ```
 
 Alternatively, if you already have a clone of our Git repository then simply run the command
+
 ```
 git pull; git checkout paper/CellBasedComparison
 ```
+
  to move your source to the correct revision.
 
 This project can be built with either of the two builders SCons or CMake.  (Note that SCons will be deprecated in a later release of Chaste.)
 At this point you should configure Chaste with [CMake](https://github.com/Chaste/trac_archive/wiki/Chaste-Guides-_-Cmake-Build-Guide) or deprecated [Scons](https://github.com/Chaste/trac_archive/wiki/Scons-Archive-_-User-Build-Guide).
 
 You will also need the source for the CellBasedComparison2017 project.  This can be done by checking out the version from the repository by using the command
+
 ```
 
 svn checkout -r 27368 --username anonymous https://chaste.cs.ox.ac.uk/svn/chaste/projects/CellBasedComparison2017 projects/CellBasedComparison2017
@@ -53,6 +57,7 @@ in the Chaste directory. Note that **username** for checking out the project cod
 ----
 #### Instructions for Ubuntu 18.04 or similar (Chaste version 2017.x)
 To checkout the source code for the specific code revision use the command
+
 ```
 
   git clone --depth 1 --branch paper/CellBasedComparison18 https://chaste.cs.ox.ac.uk/git/chaste.git Chaste
@@ -60,15 +65,18 @@ To checkout the source code for the specific code revision use the command
 ```
 
 Alternatively, if you already have a clone of our Git repository then simply run the command
+
 ```
 git pull; git checkout paper/CellBasedComparison18
 ```
+
  to move your source to the correct revision.
 
 This project can be built with either of the two builders SCons or CMake.  (Note that SCons will be deprecated in a later release of Chaste.)
 At this point you should configure Chaste with [CMake](https://github.com/Chaste/trac_archive/wiki/Chaste-Guides-_-Cmake-Build-Guide) or deprecated [Scons](https://github.com/Chaste/trac_archive/wiki/Scons-Archive-_-User-Build-Guide).
 
 You will also need the (updated-since-publication) source for the CellBasedComparison2017 project.  This can be done by checking out the version from the repository by using the command
+
 ```
 
 svn checkout -r 27524 --username anonymous https://chaste.cs.ox.ac.uk/svn/chaste/projects/CellBasedComparison2017 projects/CellBasedComparison2017
@@ -106,6 +114,7 @@ There are two folders - `src` and `test`.
 
 ### Running tests
 With SCons you can run tests with,
+
 ```
 
 cd <Chaste path>
@@ -120,6 +129,7 @@ scons b=GccOpt -j4 projects/CellBasedComparison2017
 
 
 With CMake you can run tests with,
+
 ```
 
 cd <Chaste path>
@@ -140,9 +150,11 @@ ctest -j 4 -L project_CellBasedComparison2017
 
 ----
 **NB**: the paper was developed with the specific tagged development version of Chaste
+
 ```
 paper/CellBasedComparison
 ```
+
 . It does not work with release version 3.4 or under, but will work on future releases.
 
 For further information on using Chaste, see the [extensive guide material](https://github.com/Chaste/trac_archive/wiki/Chaste-Guides).

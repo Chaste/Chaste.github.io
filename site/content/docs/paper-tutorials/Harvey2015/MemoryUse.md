@@ -10,6 +10,7 @@ in use. By running on larger numbers of processes, a proportionally
 smaller amount of memory is used by each process.
 
 The geometry for the construction of the population is contained in
+
 ```
 
 projects/Harvey2015/test/data/1024000_2d_cells.dat
@@ -22,6 +23,7 @@ This test suite should be run in parallel.  It should be run on several numbers 
 in the paper.)
 
 A useful for loop (in `bash`) would be
+
 ```
 
 for i in {1..32}; do echo $i "processes ===";scons build=GccOptNative_$i projects/Harvey2015/test/TestMemoryUseLiteratePaper.hpp | grep memory; done

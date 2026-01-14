@@ -14,6 +14,7 @@ This project requires the Functional Curation add-on to Chaste in order to run, 
 Instructions for this installation can be found for a variety of operating systems under InstallGuides/.
 
 Extra install commands needed as well as the Ubuntu chaste-dependencies package are (on 14.04 at least):
+
 ```
 
 #!sh
@@ -24,6 +25,7 @@ sudo -H pip install dill pathos
 
 
 Afterwards, obtain the latest version of all the code from the Chaste repositories using:
+
 ```
 
 #!sh
@@ -76,6 +78,7 @@ Files relevant for inference on the O'Hara-Rudy model:
 
 To generate all described posterior estimates for the linear model
 as described in the paper, go to the top-level Chaste directory and use:
+
 ```
 
 scons projects/DalySMC/test/LinearFitting.py
@@ -83,6 +86,7 @@ scons projects/DalySMC/test/LinearFitting.py
 
 To generate all described posterior estimates for the polynomial model
 as described in the paper, use:
+
 ```
 
 scons projects/DalySMC/test/PolynomialFitting.py
@@ -90,6 +94,7 @@ scons projects/DalySMC/test/PolynomialFitting.py
 
 To generate all described posterior estimates for the O'Hara-Rudy model
 as described in the paper, use:
+
 ```
 
 scons projects/DalySMC/test/OHaraRudyFitting.py

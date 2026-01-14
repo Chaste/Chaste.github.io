@@ -42,6 +42,7 @@ Again, you may if you wish run just the final step to benchmark the solvers on y
 ### Sample commands to install and run everything
 
 If you wish to install the latest versions Chaste and this project direct from our repository, you may do so from the command line as follows:
+
 ```
 
 #!sh
@@ -52,6 +53,7 @@ svn checkout https://chaste.cs.ox.ac.uk/svn/chaste/projects/Frontiers2014
 
 
 To run all the steps listed above, exploiting multiple cores on your machine where appropriate, use:
+
 ```
 
 #!sh

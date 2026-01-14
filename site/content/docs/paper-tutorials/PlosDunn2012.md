@@ -12,6 +12,7 @@ The code in this project was developed to run with revision 13354 of Chaste.
 It will need modification to work with released versions, especially recent releases.
 
 To install it and get something to run, try the following commands:
+
 ```
 
 #!sh
@@ -26,6 +27,7 @@ scons -j4 b=GccOpt_warn projects/PlosDunn2012/test/TestCrossSectionModel.hpp
 
 You may find that such an old revision of Chaste does not have suitable hostconfig capabilities to build on your machine.
 In case of compiler errors, try the following commands from within the Chaste folder.
+
 ```
 
 #!sh

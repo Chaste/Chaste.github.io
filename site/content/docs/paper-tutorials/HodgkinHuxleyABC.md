@@ -15,6 +15,7 @@ To install these dependencies, follow the [installation instructions](https://gi
 In addition, you will need the dependencies for the new Python implementation detailed at FunctionalCuration/PythonImplementation.
 
 Afterwards, obtain the latest version of the project code from the Chaste repository using:
+
 ```
 
 #!sh
@@ -56,6 +57,7 @@ A description of important files and their contents follows below:
 
 To generate ABC posterior estimates for the six-parameter simplified Hodgkin-Huxley model
 as described in the paper, use:
+
 ```
 
 scons projects/HodgkinHuxleyABC/test/HodgkinHuxleyFittingABC_simple.py
@@ -63,6 +65,7 @@ scons projects/HodgkinHuxleyABC/test/HodgkinHuxleyFittingABC_simple.py
 
 To generate ABC posterior estimates for the 14-parameter full Hodgkin-Huxley model
 as described in the paper, use:
+
 ```
 
 scons projects/HodgkinHuxleyABC/test/HodgkinHuxleyFittingABC.py

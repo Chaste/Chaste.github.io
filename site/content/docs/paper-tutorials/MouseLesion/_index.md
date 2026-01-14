@@ -26,6 +26,7 @@ For further information on using Chaste to solve these and related problems, see
 ### Sample commands to install Chaste
 
 If you wish to install Chaste direct from our repository, you may do so from the command line as follows:
+
 ```
 
 #!sh
@@ -39,6 +40,7 @@ Now unzip the downloaded `MouseLesion.tar.gz` into this folder.
 ### Code compilation
 
 To compile the simulators, use:
+
 ```
 
 #!sh

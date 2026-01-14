@@ -32,6 +32,7 @@ dynamics for 100 time-steps, printing out the total compute time at the end.
 It must be run multiple times in order to gauge the parallel efficiency/speed-up.
 
 The geometry for the construction of the population is contained in
+
 ```
 
 projects/Harvey2015/test/data/2d_1024_cells.dat
@@ -49,6 +50,7 @@ When run sequentially on a 2.7GHz machine with more than 8Gb of RAM this simulat
 The program does not produce output to screen during the simulation.
 
 A useful for loop (in `bash`) would be
+
 ```
 
 for i in {1..32}; do echo $i "processes ===";scons build=GccOptNative_$i projects/Harvey2015/test/TestProfileSimulationLiteratePaper.hpp | grep ##Prof; done
@@ -173,6 +175,7 @@ concurrent writes to a single file.
 
 This distribution file may be found relative to `CHASTE_TEST_OUTPUT` which by default is
 `/tmp/$USER/testoutput`
+
 ```
 
 cat /tmp/$USER/testoutput/DivisionResults/division_results.txt
