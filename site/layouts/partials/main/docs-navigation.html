@@ -1,7 +1,9 @@
 {{ if or .Prev .Next -}}
 <div class="page-nav d-flex flex-column flex-sm-row">
 	<!-- https://www.feliciano.tech/blog/custom-sort-hugo-single-pages/ -->
-	{{ $pages := where site.RegularPages "Section" .Section -}}
+	{{ $currentPage := . -}}
+	{{ $pages := where site.RegularPages "Section" $currentPage.Section -}}
+	{{ $pages = where $pages "File.Dir" $currentPage.File.Dir -}}
 	{{ with $pages.Next . -}}
 		<div class="card w-100">
 			<div class="card-body d-flex">
