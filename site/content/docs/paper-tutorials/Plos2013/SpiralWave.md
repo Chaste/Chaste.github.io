@@ -2,6 +2,7 @@
 title: "Cardiac electrophysiology: spiral wave"
 draft: false
 layout: "single"
+weight: 1
 paperTutorialTestFile: "https://github.com/Chaste/project_Plos2013/blob/5b522e0ce55ac81ce8728f858b10464e9d7cfb98/test/TestSpiralWaveLiteratePaper.hpp"
 ---
 

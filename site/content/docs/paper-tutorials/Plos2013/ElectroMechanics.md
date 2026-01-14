@@ -2,6 +2,7 @@
 title: "Cardiac electro-mechanics: a cardiac tissue wedge with varying fibre directions"
 draft: false
 layout: "single"
+weight: 4
 paperTutorialTestFile: "https://github.com/Chaste/project_Plos2013/blob/5b522e0ce55ac81ce8728f858b10464e9d7cfb98/test/TestElectroMechanicsLiteratePaper.hpp"
 ---
 
