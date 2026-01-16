@@ -1,0 +1,19 @@
+{{- $id := .Get "id" -}}
+{{- $title := .Get "title" | default "YouTube video" -}}
+{{- $width := .Get "width" | default "560" -}}
+{{- $height := .Get "height" -}}
+{{- if not $height -}}
+	{{- $height = printf "%.0f" (mul (div (float $width) 16) 9) -}}
+{{- end -}}
+<div class="youtube-embed" style="max-width: {{ $width }}px;">
+	<iframe
+		width="{{ $width }}"
+		height="{{ $height }}"
+		src="https://www.youtube.com/embed/{{ $id | urlquery }}"
+		title="{{ $title }}"
+		frameborder="0"
+		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+		referrerpolicy="strict-origin-when-cross-origin"
+		allowfullscreen>
+	</iframe>
+</div>
