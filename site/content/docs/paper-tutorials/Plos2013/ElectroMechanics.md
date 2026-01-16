@@ -29,6 +29,7 @@ This example uses only files from the core Chaste code.
 There is a special cmgui visualization script that loads both mechanics and voltage solution onto the
 same mesh, which is in the same folder as this file: `LoadElectroMechanicsSimulation.com`
 
+
 ## Code overview
 
 We first include some header files which define the classes we will use.
@@ -184,6 +185,7 @@ Report where time was spent to std::cout.
     }
 };
 ```
+
 
 ## Full code
 

@@ -29,6 +29,7 @@ scons build=GccOptNative_4 test_suite=projects/project_Plos2013/test/TestSpiralW
 
 The easiest way to visualize this simulation is with meshalyzer.
 
+
 ## Code overview
 
 The first thing to do is to include the necessary header files.
@@ -120,6 +121,7 @@ Finally, call `Initialise` and `Solve`
     }
 };
 ```
+
 
 ## Full code
 

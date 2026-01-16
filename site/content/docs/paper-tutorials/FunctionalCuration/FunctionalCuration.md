@@ -56,7 +56,8 @@ Note that some warnings will be printed at the end of the test output.  These ar
 expected, for model/protocol combinations where we cannot run the protocol to completion
 (for instance, some models lack extracellular calcium and so the ICaL protocol is not appropriate).
 
------
+
+## Code overview
 
 The test starts by including required headers.
 
@@ -440,15 +441,9 @@ We also display results for which no historical data has been saved yet.
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestFunctionalCurationLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestFunctionalCurationLiteratePaper.hpp"}
 #include <boost/pointer_cast.hpp> // NB: Not available on Boost 1.33.1
 #include <boost/shared_ptr.hpp>
 #include <boost/foreach.hpp>
@@ -774,5 +769,3 @@ public:
     }
 };
 ```
-
-

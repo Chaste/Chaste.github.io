@@ -21,7 +21,8 @@ as set out below.
 For work on applying Functional Curation to the cell-based side of Chaste, see our
 [paper in ICCS2013](../wisc2013).
 
-### Installation
+
+## Installation
 
 This project requires the Chaste source tree to be installed, and you to have write access to your local copy, in order to be usable.
 You will thus need to [install Chaste's dependencies](/docs/installguides) and build the Chaste software yourself.
@@ -49,7 +50,7 @@ git clone https://github.com/Chaste/project_FunctionalCuration.git FunctionalCur
 ```
 
 
-### Usage
+## Usage
 
 Source code for the project is contained in the `src` folder, and tests of its
 functionality in `tests`.  Annotated CellML files suitable for use with the framework
@@ -90,4 +91,4 @@ For further information on using Chaste generally, see our [extensive guide mate
 You may also wish to look at some of the [basic user tutorials](/docs/user-tutorials/).
 
 
-### Section contents
+## Section contents

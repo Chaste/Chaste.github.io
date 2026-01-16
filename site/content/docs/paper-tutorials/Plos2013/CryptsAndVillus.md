@@ -36,6 +36,7 @@ load the file results.pvd, then click "Apply" in the object inspector panel. As 
 uses a `NodeBasedCellPopulation`, you must use glyphs to visualize cells: click the button marked
 "Glyph" in the toolbar of common filters; specify cells to be displayed as spheres; then click "Apply".
 
+
 ## Code overview
 
 The first thing to do is to include the necessary header files.
@@ -293,6 +294,7 @@ We now solve for a further 750 hours, up to a total of 1000 hours
     }
 };
 ```
+
 
 ## Full code
 

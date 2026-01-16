@@ -10,7 +10,8 @@ Note that the code is given in full at the bottom of the page.
 This Chaste test file runs the main protocols for the above
 [paper published in ICCS2013](http://dx.doi.org/10.1016/j.procs.2013.05.235).
 
-### How to run this code
+
+## How to run this code
 
 For performance, it is recommended to build Chaste using the `GccOptNative` build type when using
 the Functional Curation extension project, on which this code is built.  You can run the code shown
@@ -37,7 +38,8 @@ scons -j4 chaste_libs=1 build=GccOptNative_5 projects/Wisc2013/test/TestCryptPro
 
 With these settings on our test machine, reproducing the paper results takes about 19 hours.
 
-### The code itself
+
+## The code itself
 
 The first step is to include the header files we need.  This code is written as a Chaste test suite, for
 easy execution using the Chaste build framework.  We thus need to include the `TestSuite.h` header, along
@@ -321,15 +323,12 @@ plots (a)-(c) in Figure 2.
 ```
 
 
-
-## Code
-The full code is given below
+## Full code
 
 
-### File: `TestCryptProliferationLiteratePaper.hpp`
+### `TestCryptProliferationLiteratePaper.hpp`
 
-
-```cpp
+```cpp {title="TestCryptProliferationLiteratePaper.hpp"}
 #include <cxxtest/TestSuite.h>
 
 #include <vector>
@@ -470,11 +469,9 @@ public:
 ```
 
 
+### `protocols/CryptProliferationSweep.txt`
 
-
-### File:  `protocols/CryptProliferationSweep.txt`
-
-```yaml
+```yaml {title="protocols/CryptProliferationSweep.txt"}
 ## A simple parameter sweep over the crypt proliferation protocol, varying crypt height
 
 inputs {
@@ -513,11 +510,9 @@ plots {
 ```
 
 
+### `protocols/CryptProliferation.txt`
 
-
-### File:  `protocols/CryptProliferation.txt`
-
-```yaml
+```yaml {title="protocols/CryptProliferation.txt"}
 ## Core protocol for the Crypt Proliferation project, containing a single cell-based simulation and post-processing thereof
 
 ## The 'ontology' to use for referencing model variables
@@ -583,5 +578,3 @@ plots {
     plot 'Cell division locations' { freqs against centres }
 }
 ```
-
-

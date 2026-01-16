@@ -31,6 +31,7 @@ scons build=GccOptNative test_suite=projects/project_Plos2013/test/TestSpheroidE
 
 The easiest way to visualize this simulation is with paraview.
 
+
 ## Code overview
 
 The first thing to do is to include the necessary header files.
@@ -288,6 +289,7 @@ Save the results
     }
 };
 ```
+
 
 ## Full code
 
