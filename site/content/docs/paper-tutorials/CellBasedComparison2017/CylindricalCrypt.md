@@ -2,7 +2,8 @@
 title: "Proliferation Example"
 draft: false
 layout: "single"
-paperTutorialTestFile: "https://github.com/Chaste/project_CellBasedComparison2017/blob/e93c9513a0a9e992614d94fd6378e64f77811d0d/test/TestCylindricalCryptLiteratePaper.hpp"
+weight: 2
+paperTutorialTestFile: "https://github.com/Chaste/CellBasedComparison2017/blob/main/test/TestCylindricalCryptLiteratePaper.hpp"
 ---
 
 
@@ -11,9 +12,10 @@ On this wiki page we describe in detail the code that is used to run this exampl
 
 The easiest way to visualize these simulations is with Paraview.
 
-[EmbedYoutube(F04IlE2PyY0)](EmbedYoutube(F04IlE2PyY0))
+{{< youtube id="F04IlE2PyY0" >}}
 
-### Code overview
+
+## Code overview
 
 The first thing to do is to include the necessary header files.
 
@@ -119,6 +121,7 @@ This is a helper method to generate cells and is used in all simulations.
 public:
 ```
 
+
 ### CA
 
 Simulate cell proliferation in the colorectal crypt using the
@@ -190,6 +193,7 @@ Cellular Automaton model.
         WntConcentration<2>::Instance()->Destroy();
     }
 ```
+
 
 ### CP
 
@@ -273,6 +277,7 @@ Cellular Potts model.
         WntConcentration<2>::Instance()->Destroy();
     }
 ```
+
 
 ### OS
 
@@ -360,6 +365,7 @@ Overlapping Spheres model.
     }
 ```
 
+
 ### VT
 
 Simulate cell proliferation in the colorectal crypt using the
@@ -435,6 +441,7 @@ Voronoi Tesselation model.
         WntConcentration<2>::Instance()->Destroy();
     }
 ```
+
 
 ### VM
 
@@ -514,15 +521,9 @@ Cell Vertex model.
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestCylindricalCryptLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title=TestCylindricalCryptLiteratePaper.hpp}
 #include <cxxtest/TestSuite.h>
 
 // Must be included before any other cell_based headers
@@ -966,5 +967,3 @@ public:
     }
 };
 ```
-
-
