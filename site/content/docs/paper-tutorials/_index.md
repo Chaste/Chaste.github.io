@@ -2,6 +2,7 @@
 title: "Paper tutorials"
 draft: false
 layout: "single"
+disable_adjacent_navigation: true
 ---
 
 {{< callout context="note" title="Note" icon="outline/info-circle" >}}

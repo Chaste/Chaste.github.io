@@ -1,7 +1,13 @@
-{{ if or .Prev .Next -}}
+{{ $currentPage := . -}}
+{{ $disableAdjacent := false -}}
+{{ with $currentPage.Parent -}}
+	{{ if eq .File.Dir $currentPage.File.Dir -}}
+		{{ $disableAdjacent = .Params.disable_adjacent_navigation | default false -}}
+	{{ end -}}
+{{ end -}}
+{{ if and (not $disableAdjacent) (or .Prev .Next) -}}
 <div class="page-nav d-flex flex-column flex-sm-row">
 	<!-- https://www.feliciano.tech/blog/custom-sort-hugo-single-pages/ -->
-	{{ $currentPage := . -}}
 	{{ $pages := where site.RegularPages "Section" $currentPage.Section -}}
 	{{ $pages = where $pages "File.Dir" $currentPage.File.Dir -}}
 	{{ with $pages.Next . -}}
