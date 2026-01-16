@@ -29,9 +29,9 @@ This is done, for instance, in the [functional curation](functionalcuration) and
 
 ### 2018
 
-* [Almet et al.(2018) "A multicellular model of intestinal crypt fission"](epithelialfission)
+* [Almet et al. (2018) "A multicellular model of intestinal crypt fission"](epithelialfission)
 * [Osborne JM and Bernabeu MO (2018) "A fully discrete open source framework for the simulation of vascular remodelling"](embc2018)
-* [Daly et al. (under submission) "Inference-based assessment of identifiability in nonlinear biological models"](dalyid)
+* [Daly et al. (2018) "Inference-based assessment of parameter identifiability in nonlinear biological models"](dalyid)
 
 
 ### 2017
