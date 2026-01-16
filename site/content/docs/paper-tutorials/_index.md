@@ -4,15 +4,10 @@ draft: false
 layout: "single"
 ---
 
-{{< callout context="note" title="May 2024: Paper tutorials are under migration" icon="outline/alert-triangle" >}}
-These paper tutorials are in the process of being migrated to this new website.
-It is currently expected that some links are incorrect and some images may not display properly.
-We are working on fixing these.
-{{< /callout >}}
-
 {{< callout context="note" title="Note" icon="outline/info-circle" >}}
 **The tutorials here are static, and are only likely to work with the specific version of Chaste indicated. They are unlikley to work with the development version of Chaste**.
 {{< /callout >}}
+
 
 ## Paper Tutorials
 
@@ -29,6 +24,7 @@ It is thus easy to check the results obtained when re-running against the publis
 This is done, for instance, in the [functional curation](functionalcuration) and [ICCS2013](wisc2013) papers.
 
 *Note that this is a new feature: the framework for setting up these paper tutorials is still being finalised, and more papers will be added in time. In the future we envisage external users, who wish to release their own documented Chaste code, also being able to contribute to these pages.*
+
 
 ### 2018
 
@@ -83,7 +79,6 @@ This is done, for instance, in the [functional curation](functionalcuration) and
 ### 2011
 
 * [Cooper, Mirams, Niederer. High throughput functional curation of cellular electrophysiology models. Prog Biophys Mol Biol, 2011](functionalcuration).
-
 
 
 ----
