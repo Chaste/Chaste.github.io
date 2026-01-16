@@ -8,7 +8,6 @@ paperTutorialTestFile: "https://github.com/Chaste/project_Plos2013/blob/5b522e0c
 
 Note that the code is given in full at the bottom of the page.
 
-
 {{< img src="/fig/paper-tutorials/spheroid_v2.png" alt="Spheroid experiments" h="200px" >}}
 
 On this wiki page we describe in detail the code that is used to run this example from the paper.
@@ -35,7 +34,6 @@ The easiest way to visualize this simulation is with paraview.
 ## Code overview
 
 The first thing to do is to include the necessary header files.
-
 
 ```cpp
 #include <cxxtest/TestSuite.h>
@@ -70,7 +68,6 @@ private:
 These methods are cxx-test instructions running before and after each test below.
 They just report the time the test took, in different parts of the code.
 
-
 ```cpp
     void setUp()
     {
@@ -96,7 +93,6 @@ and the second from t=100 to t=150.
 
 It could equally well be reproduced by setting the end time in the first
 test to 150.
-
 
 ```cpp
     void TestMeshBasedSpheroidWithPde() throw(Exception)
@@ -170,7 +166,6 @@ Set up cell-based simulation
 Default time step is 30 seconds,
 so this gives two visualisation outputs each hour.
 
-
 ```cpp
         simulator.SetSamplingTimestepMultiple(60);
         simulator.SetOutputDirectory("Plos2013_MeshBasedSpheroidWithPde");
@@ -215,7 +210,6 @@ In this simulation the cell cycle model gives cells an
 defined by the PDE). This cell killer removes cells that
 have this property.
 
-
 ```cpp
         MAKE_PTR_ARGS(ApoptoticCellKiller<3>, p_killer, (&cell_population));
         simulator.AddCellKiller(p_killer);
@@ -243,7 +237,6 @@ It could be stored and re-loaded from anywhere you like.
 This is useful for checkpointing on large HPC machines, and also
 if you want to experiment with different interventions on
 an existing spheroid state.
-
 
 ```cpp
         FileFinder test_data_directory("Plos2013_MeshBasedSpheroidWithPde/archive",
@@ -295,8 +288,6 @@ Save the results
     }
 };
 ```
-
-
 
 ## Full code
 
@@ -439,5 +430,3 @@ public:
     }
 };
 ```
-
-

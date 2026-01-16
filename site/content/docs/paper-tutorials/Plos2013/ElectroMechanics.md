@@ -8,7 +8,6 @@ paperTutorialTestFile: "https://github.com/Chaste/project_Plos2013/blob/5b522e0c
 
 Note that the code is given in full at the bottom of the page.
 
-
 {{< img src="/fig/paper-tutorials/composite.png" alt="Electromechanics" h="200px" >}}
 
 On this wiki page we describe in detail the code that is used to run this example from the paper.
@@ -34,7 +33,6 @@ same mesh, which is in the same folder as this file: `LoadElectroMechanicsSimula
 
 We first include some header files which define the classes we will use.
 
-
 ```cpp
 #include <cxxtest/TestSuite.h>
 #include "PlaneStimulusCellFactory.hpp"
@@ -51,10 +49,8 @@ class TestElectroMechanicsLiteratePaper : public CxxTest::TestSuite
 public:
 ```
 
-
 The following code is the `test` itself, we use the `scons` / `cxx-test` framework to run simulations, as it
 provides a handy way to do all the necessary linking and library building.
-
 
 ```cpp
     void TestTwistingCube() throw(Exception)
@@ -72,14 +68,12 @@ stimulate just those cells on the x=0 surface at t=0.
 
 We define the strength of stimulus that we need.
 
-
 ```cpp
         PlaneStimulusCellFactory<CellLuoRudy1991FromCellML, 3u> cell_factory(-1000*1000);
 ```
 
 For electro-mechanics we need to set up two meshes of 1mm by 1mm by 1mm
 We have a fine electrics mesh and a coarser mechanics one.
-
 
 ```cpp
         TetrahedralMesh<3u,3u> electrics_mesh;
@@ -89,7 +83,6 @@ We have a fine electrics mesh and a coarser mechanics one.
 
 We are going to fix some nodes on Z (dimension '2' indexed from 0)
 so we first need to identify these
-
 
 ```cpp
         std::vector<unsigned> fixed_nodes
@@ -102,7 +95,6 @@ as well as those nodes that are fixed and the mechanics timestep to use.
 
 Mechanics happens over a longer timescale than electrophysiology,
 so we can use larger space and time steps for this aspect.
-
 
 ```cpp
         ElectroMechanicsProblemDefinition<3u> problem_defn(mechanics_mesh);
@@ -121,7 +113,6 @@ We use a Streeter-style formula here.
 
 Usually the fibres for a scientific problem would be determined by e.g. DTMRI
 and stored with the mesh files.
-
 
 ```cpp
         {
@@ -150,7 +141,6 @@ We only compile the following if VTK is installed and set up.
 This is optional - it is only used here for visualizing the fibre directions as in the paper figure.
 The simulation will run without it.
 
-
 ```cpp
 #ifdef CHASTE_VTK
             VtkMeshWriter<3u,3u> mesh_writer(output_directory+ "Fibres", "mesh", false);
@@ -162,7 +152,6 @@ The simulation will run without it.
 ```
 
 Load up the file we just wrote to use as fibre directions for this mechanics problem.
-
 
 ```cpp
         FileFinder fibre_file_finder(output_directory + "Fibres/" + fibre_file_name, RelativeTo::ChasteTestOutput);
@@ -195,8 +184,6 @@ Report where time was spent to std::cout.
     }
 };
 ```
-
-
 
 ## Full code
 

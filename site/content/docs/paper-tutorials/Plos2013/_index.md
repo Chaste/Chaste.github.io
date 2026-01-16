@@ -29,5 +29,4 @@ For further information on using Chaste to solve these and related problems, see
 
 [{{< img src="/fig/paper-tutorials/composite.png" alt="Electromechanics" h="200px" >}}](electromechanics)
 
-
 ### Section contents
