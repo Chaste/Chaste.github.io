@@ -1,9 +1,11 @@
-This tutorial was generated from the file projects/Frontiers2014/test/TestCalculateRequiredTimestepsLiteratePaper.hpp at revision r23346.
-Note that the code is given in full at the bottom of the page.
+---
+title: "Calculate the required ODE solver timesteps to meet target accuracy"
+draft: false
+layout: "single"
+weight: 2
+paperTutorialTestFile: "https://github.com/Chaste/project_Frontiers2014/blob/e495d4d2f7ae14f988de496f659f5056470c0434/test/TestCalculateRequiredTimestepsLiteratePaper.hpp"
+---
 
-
-
-## Calculate the required ODE solver timesteps to meet target accuracy
 
 On this wiki page we describe in detail the code that is used to run this example from the paper.
 
@@ -14,7 +16,8 @@ with CVODE using slack tolerances in GeneratingReferenceData.
 This is intended to define a time step required for each method to
 get a numerical solution of comparable accuracy, for fair timing comparisons.
 
-### Code overview
+
+## Code overview
 
 The first thing to do is to include the necessary header files.
 
@@ -330,15 +333,9 @@ Copy to repository for storage and use by other tests.
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestCalculateRequiredTimestepsLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestCalculateRequiredTimestepsLiteratePaper.hpp"}
 // The testing framework we use
 #include <cxxtest/TestSuite.h>
 
@@ -551,5 +548,3 @@ public:
     }
 };
 ```
-
-

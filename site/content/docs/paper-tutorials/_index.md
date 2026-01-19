@@ -59,7 +59,7 @@ This is done, for instance, in the [functional curation](functionalcuration) and
 
 ### 2014
 
-* [J. Cooper, R. Spiteri and G. Mirams. Cellular cardiac electrophysiology modelling with Chaste and CellML, Frontiers in Physiology, 2014](https://github.com/Chaste/trac_archive/wiki/frontiers2014).
+* [J. Cooper, R. Spiteri and G. Mirams. Cellular cardiac electrophysiology modelling with Chaste and CellML, Frontiers in Physiology, 2014](frontiers2014).
 
 
 ### 2013

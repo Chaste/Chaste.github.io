@@ -1,9 +1,11 @@
-This tutorial was generated from the file projects/Frontiers2014/test/TestGeneratingReferenceDataLiteratePaper.hpp at revision r23346.
-Note that the code is given in full at the bottom of the page.
+---
+title: "Generate accurate reference traces and record a target error metric"
+draft: false
+layout: "single"
+weight: 1
+paperTutorialTestFile: "https://github.com/Chaste/project_Frontiers2014/blob/e495d4d2f7ae14f988de496f659f5056470c0434/test/TestGeneratingReferenceDataLiteratePaper.hpp"
+---
 
-
-
-## Generate accurate reference traces and record a target error metric
 
 On this wiki page we describe in detail the code that is used to run this example from the paper.
 
@@ -15,7 +17,8 @@ to set time steps for other solvers in CalculateRequiredTimesteps.
 
 At the end of this test this information is copied into the file `test/data/error_summary.txt` within the project.
 
-### Code overview
+
+## Code overview
 
 The first thing to do is to include the necessary header files.
 
@@ -185,15 +188,9 @@ Save these to a dedicated file for this model, and copy to reference data folder
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestGeneratingReferenceDataLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestGeneratingReferenceDataLiteratePaper.hpp"}
 // The testing framework we use
 #include <cxxtest/TestSuite.h>
 
@@ -304,5 +301,3 @@ public:
     }
 };
 ```
-
-
