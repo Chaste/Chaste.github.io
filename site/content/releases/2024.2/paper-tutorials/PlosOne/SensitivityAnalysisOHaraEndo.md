@@ -1,36 +1,43 @@
-This tutorial was generated from the file projects/PlosOne_mRNA/test/TestSensitivityAnalysisOHaraEndoLiteratePaper.hpp at revision r20146.
-Note that the code is given in full at the bottom of the page.
+---
+title: "PLOS ONE mRNA population study"
+draft: false
+layout: "single"
+weight: 1
+paperTutorialTestFile: "https://github.com/Chaste/project_PlosOne_mRNA/blob/391a761e5c09b225c9578c0315ed2a8c6f8da887/test/TestSensitivityAnalysisOHaraEndoLiteratePaper.hpp"
+version: "2024.2"
+---
 
-
-
-## PLOS ONE mRNA population study
-
-On this wiki page we describe in detail the code that is used to run the Chaste simulations in the paper
+On this wiki page we describe in detail the code that is used to run the Chaste simulations in the paper.
 
 This code, when compiled, runs one of the experimental design files in the test/data folder. This is
 designed to be done as part of a batch simulation on a supercomputer when generating all results. We
 recommend running the simulations by first compiling the code using a command such as
 
+```bash
 scons build=GccOpt compile_only=1 ts=projects/PlosOne_mRNA/test/TestSensitivityAnalysisOHaraEndoLiteratePaper.hpp
+```
 
-We recommend using the [GccOptNative](https://github.com/Chaste/trac_archive/wiki/Gcc-Opt-Native) or Intel compile options if they are available.
+We recommend using the `GccOptNative` or Intel compile options if they are available.
 
 The code is then run using a single thread using, for example:
 
+```bash
 ./${CHASTE}/projects/PlosOne_mRNA/build/optimised/TestSensitivityAnalysisOHaraEndoLiteratePaperRunner --file projects/PlosOne_mRNA/test/data/input_40_surf/exp_design_30_surf_1.dat
+```
 
 this runs and outputs results for all experiments in the file exp_design_30_surf_1.dat
 
-The setting --tag <tag> may be set to add <tag> to the name of the output to distinguish between different runs, for example
-The setting --store_data stores the action potentials from which biomarkers are calculated. Be aware that this can generate a lot of data!
+The setting `--tag <tag>` may be set to add `<tag>` to the name of the output to distinguish between different runs, for example
+The setting `--store_data` stores the action potentials from which biomarkers are calculated. Be aware that this can generate a lot of data!
 
 To generate the results in the paper we ran the simulations with 8 processes per node using the PBS batch scheduler on a cluster to enable execution of multiple files simultaneously.
 
 Figures were generated from the postprocessed output using the matlab files found in the matlab/ folder of this user project.
 
-### Code overview
 
-The code only runs if Chaste is set up to use Cvode, hence the #ifdef CHASTE_CVODE line at the top of the file (not shown on wiki, see downloadable project).
+## Code overview
+
+The code only runs if Chaste is set up to use Cvode, hence the `#ifdef CHASTE_CVODE` line at the top of the file (not shown on wiki, see downloadable project).
 
 Define the header files
 
@@ -104,7 +111,7 @@ If no file is set then we display an error explaining valid options
         {
             std::cerr << "TestSensitivityAnalysis::Please input an argument\n"
                          "* --file  the path of an experimental design file\n"
-            			 "* --tag  tag for identifying output (optional)\n"
+                         "* --tag  tag for identifying output (optional)\n"
                          "* --store-data  record voltage and calcium transients (optional)\n";
             return;
         }
@@ -129,9 +136,9 @@ If a tag is supplied then we read it in and append it to the output folder name.
 ```cpp
         std::string tag = "";
         if (CommandLineArguments::Instance()->OptionExists("--tag"))
-		{
-        	tag=CommandLineArguments::Instance()->GetStringCorrespondingToOption("--tag");
-		}
+        {
+            tag=CommandLineArguments::Instance()->GetStringCorrespondingToOption("--tag");
+        }
 
         std::string foldername = "SensitivityAnalysis/OHara2011_endo" +tag;
 ```
@@ -151,7 +158,7 @@ Check to see if action potentials and calcium transients are to be stored and se
         bool store_data = false;
         if (CommandLineArguments::Instance()->OptionExists("--store-data"))
         {
-        	store_data=true;
+            store_data=true;
         }
 ```
 
@@ -291,7 +298,7 @@ Create a vector of the pacing cycle lengths we're interested in.
          *
          * First we print how many experiments are in the file, taken from the SensitivityDataStructure.
          */
-	    std::cout << scale_factor_data.GetNumExperiments() << " experiments in data file.\n";
+        std::cout << scale_factor_data.GetNumExperiments() << " experiments in data file.\n";
         std::cout << "Running simulations..." << std::endl << std::flush;
 ```
 
@@ -309,14 +316,14 @@ file name with this index in its name.
 
 
 ```cpp
-        	unsigned current_experiment = scale_factor_data.GetExperimentNumber(experiment_idx);
+            unsigned current_experiment = scale_factor_data.GetExperimentNumber(experiment_idx);
 
-        	std::string current_experiment_string = boost::lexical_cast<std::string>(current_experiment);
+            std::string current_experiment_string = boost::lexical_cast<std::string>(current_experiment);
 
-        	std::string OutputFileName;
-        	std::stringstream OutputFileNameStream;
-        	OutputFileNameStream << "DYN_" << current_experiment <<".out";
-        	OutputFileName = OutputFileNameStream.str();
+            std::string OutputFileName;
+            std::stringstream OutputFileNameStream;
+            OutputFileNameStream << "DYN_" << current_experiment <<".out";
+            OutputFileName = OutputFileNameStream.str();
 ```
 
 Open the output file
@@ -446,9 +453,9 @@ If the store data flag is set then a file for the data traces is created.
                     data_traces_file = steady_handler.OpenOutputFile(data_traces_file_name);
                 }
 
-            	/**
-            	 * set the pacing period
-            	 */
+                /**
+                 * set the pacing period
+                 */
                 s1_period = pacing_cycle_lengths[pacing_idx];
                 p_regular_stimulus->SetPeriod(s1_period);
 ```
@@ -717,15 +724,9 @@ End the loop over the experiment
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestSensitivityAnalysisOHaraEndoLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestSensitivityAnalysisOHaraEndoLiteratePaper.hpp"}
 #include <cxxtest/TestSuite.h>
 #include <ctime>
 #include <iostream>
@@ -766,7 +767,7 @@ public:
         {
             std::cerr << "TestSensitivityAnalysis::Please input an argument\n"
                          "* --file  the path of an experimental design file\n"
-            			 "* --tag  tag for identifying output (optional)\n"
+                         "* --tag  tag for identifying output (optional)\n"
                          "* --store-data  record voltage and calcium transients (optional)\n";
             return;
         }
@@ -780,9 +781,9 @@ public:
 
         std::string tag = "";
         if (CommandLineArguments::Instance()->OptionExists("--tag"))
-		{
-        	tag=CommandLineArguments::Instance()->GetStringCorrespondingToOption("--tag");
-		}
+        {
+            tag=CommandLineArguments::Instance()->GetStringCorrespondingToOption("--tag");
+        }
 
         std::string foldername = "SensitivityAnalysis/OHara2011_endo" +tag;
 
@@ -791,7 +792,7 @@ public:
         bool store_data = false;
         if (CommandLineArguments::Instance()->OptionExists("--store-data"))
         {
-        	store_data=true;
+            store_data=true;
         }
 
         boost::shared_ptr<SimpleStimulus> p_stimulus(new SimpleStimulus(-80, 0.5, 0));
@@ -843,19 +844,19 @@ public:
          *
          * First we print how many experiments are in the file, taken from the SensitivityDataStructure.
          */
-	    std::cout << scale_factor_data.GetNumExperiments() << " experiments in data file.\n";
+        std::cout << scale_factor_data.GetNumExperiments() << " experiments in data file.\n";
         std::cout << "Running simulations..." << std::endl << std::flush;
 
         for(unsigned experiment_idx = 0; experiment_idx < scale_factor_data.GetNumExperiments(); experiment_idx++)
         {
-        	unsigned current_experiment = scale_factor_data.GetExperimentNumber(experiment_idx);
+            unsigned current_experiment = scale_factor_data.GetExperimentNumber(experiment_idx);
 
-        	std::string current_experiment_string = boost::lexical_cast<std::string>(current_experiment);
+            std::string current_experiment_string = boost::lexical_cast<std::string>(current_experiment);
 
-        	std::string OutputFileName;
-        	std::stringstream OutputFileNameStream;
-        	OutputFileNameStream << "DYN_" << current_experiment <<".out";
-        	OutputFileName = OutputFileNameStream.str();
+            std::string OutputFileName;
+            std::stringstream OutputFileNameStream;
+            OutputFileNameStream << "DYN_" << current_experiment <<".out";
+            OutputFileName = OutputFileNameStream.str();
 
             out_stream biomarker_results_file =  steady_handler.OpenOutputFile(OutputFileName);
 
@@ -934,9 +935,9 @@ public:
                     data_traces_file = steady_handler.OpenOutputFile(data_traces_file_name);
                 }
 
-            	/**
-            	 * set the pacing period
-            	 */
+                /**
+                 * set the pacing period
+                 */
                 s1_period = pacing_cycle_lengths[pacing_idx];
                 p_regular_stimulus->SetPeriod(s1_period);
                 p_model->SetStimulusFunction(p_regular_stimulus);
@@ -1082,5 +1083,3 @@ public:
 
 #endif //_TESTSENSITIVITYANALYSIS_HPP_
 ```
-
-

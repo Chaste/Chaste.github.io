@@ -1,9 +1,11 @@
-This tutorial was generated from the file projects/CardiacEpVerification/test/TestEpAgainstExactSolutionsLiteratePaper.hpp at revision r20536.
-Note that the code is given in full at the bottom of the page.
-
-
-
-## Testing the cardiac solvers against exact solutions
+---
+title: "Testing the cardiac solvers against exact solutions"
+draft: false
+layout: "single"
+weight: 1
+paperTutorialTestFile: "https://github.com/Chaste/project_CardiacEpVerification/blob/33e755d3e94176c51662f0e47176b6349d22840b/test/TestEpAgainstExactSolutionsLiteratePaper.hpp"
+version: "2024.2"
+---
 
 This is the main code for solving the monodomain, bidomain and bidomain-with-bath model problems.
 
@@ -154,7 +156,7 @@ class TestEpAgainstExactSolutionsLiteratePaper : public CxxTest::TestSuite
 private:
 ```
 
-[following function can be mostly ignored as an alternative is used](The):
+(The following function can be mostly ignored as an alternative is used):
 
 A function for computing errors, taking in the output directory of a cardiac problem and a class
 saying how to calculate the exact solution. Note: since the output directory must be written for
@@ -220,7 +222,8 @@ and related classes.
     }
 ```
 
-### Monodomain model problem
+
+## Monodomain model problem
 
 This function is the code for running the monodomain model problem, which we will walk through.
 
@@ -393,7 +396,8 @@ calculate analytically.
     }
 ```
 
-### Bidomain model problem
+
+## Bidomain model problem
 
 Next, the main function for solving the bidomain model problem. This is basically the same as the monodomain code, except has
 an extracellular conductivity, and gets the errors for both voltage and extracellular potential.
@@ -536,7 +540,8 @@ Test code similar to monodomain version:
     }
 ```
 
-### Bidomain-with-bath model problem
+
+## Bidomain-with-bath model problem
 
 Finally, the bidomain-with-bath-model problem:
 
@@ -692,7 +697,8 @@ Similar to before:
     }
 ```
 
-### Main test
+
+## Main test
 
 Finally, we have the public 'tests', which actually run the simulations. Note that only the first two tests will be run,
 as the code is written below, as only those whose name begins with 'Test' are run. To run the others, change
@@ -785,15 +791,9 @@ public:
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestEpAgainstExactSolutionsLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestEpAgainstExactSolutionsLiteratePaper.hpp"}
 #include <cxxtest/TestSuite.h>
 #include "AbstractCardiacCellFactory.hpp"
 #include "DistributedTetrahedralMesh.hpp"
@@ -1323,5 +1323,3 @@ public:
     }
 };
 ```
-
-

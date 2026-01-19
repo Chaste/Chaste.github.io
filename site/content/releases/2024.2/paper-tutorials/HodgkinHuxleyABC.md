@@ -9,23 +9,23 @@ This tutorial describes how to download and execute the Approximate Bayesian Com
 for inference on the Hodgkin-Huxley model as described in "[Hodgkin-Huxley revisited: reparameterization and identifiability analysis of the classic action potential model with approximate Bayesian methods](http://dx.doi.org/10.1098/rsos.150499)",
 *J. R. Soc. Interface* 2:150499, 2015.
 
-### Installation
+
+## Installation
 
 This project requires the Functional Curation add-on to Chaste in order to run, which in turn requires the Chaste source tree to be installed.
-To install these dependencies, follow the [installation instructions](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Functional-Curation) in the Functional Curation paper tutorial.
+To install these dependencies, follow the [installation instructions](../functionalcuration) in the Functional Curation paper tutorial.
 In addition, you will need the dependencies for the new Python implementation detailed at FunctionalCuration/PythonImplementation.
 
 Afterwards, obtain the latest version of the project code from the Chaste repository using:
-```
 
+```bash
 #!sh
 cd [path_to_Chaste]/projects
-svn checkout --username anonymous https://chaste.cs.ox.ac.uk/svn/chaste/projects/HodgkinHuxleyABC
+git clone https://github.com/Chaste/project_HodgkinHuxleyABC.git HodgkinHuxleyABC
 ```
 
-Use your email address as the password for the 'anonymous' account.
 
-### Usage
+## Usage
 
 Source code for the ABC-SMC parameter fitting algorithm is contained in the `src` folder.
 Python scripts for performing inference on both the simplified and full Hodgkin-Huxley
@@ -57,15 +57,15 @@ A description of important files and their contents follows below:
 
 To generate ABC posterior estimates for the six-parameter simplified Hodgkin-Huxley model
 as described in the paper, use:
-```
 
+```bash
 scons projects/HodgkinHuxleyABC/test/HodgkinHuxleyFittingABC_simple.py
 ```
 
 To generate ABC posterior estimates for the 14-parameter full Hodgkin-Huxley model
 as described in the paper, use:
-```
 
+```bash
 scons projects/HodgkinHuxleyABC/test/HodgkinHuxleyFittingABC.py
 ```
 
@@ -75,9 +75,3 @@ Note however that this will prevent storing a copy of the output on disk.
 **TODO:** Check that the above commands run on a fresh install.
 
 **TODO:** Information on producing each graph in the paper.
-
-
------
-### Section contents
-[SubWiki()](SubWiki())
-

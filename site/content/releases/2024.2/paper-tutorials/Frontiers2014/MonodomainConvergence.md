@@ -1,9 +1,12 @@
-This tutorial was generated from the file projects/Frontiers2014/test/TestMonodomainConvergenceLiteratePaper.hpp at revision r23346.
-Note that the code is given in full at the bottom of the page.
+---
+title: "Study the convergence of reference monodomain tissue simulation solutions"
+draft: false
+layout: "single"
+weight: 4
+paperTutorialTestFile: "https://github.com/Chaste/project_Frontiers2014/blob/e495d4d2f7ae14f988de496f659f5056470c0434/test/TestMonodomainConvergenceLiteratePaper.hpp"
+version: "2024.2"
+---
 
-
-
-## Study the convergence of reference monodomain tissue simulation solutions
 
 On this wiki page we describe in detail the code that is used to run this example from the paper.
 
@@ -13,7 +16,8 @@ the left hand end, and saves the voltage trace at the right hand end to file for
 at different step settings.  It also checks that the excitation wave has propagated along the fibre,
 and calculates some summary properties of the action potential, again writing these to file.
 
-### Code overview
+
+## Code overview
 
 The first thing to do is to include the necessary header files.
 
@@ -71,7 +75,6 @@ This test was run with the following values for PDE time step inserted here:
 - 1 ms (coarse)
 
 
-
 ```cpp
         double pde_timestep;
         if (CommandLineArguments::Instance()->OptionExists("--timestep"))
@@ -88,7 +91,6 @@ This test was run with the following values for mesh spacing inserted here:
 
 - 0.01 cm (fine)
 - 0.001 cm (much finer than normal)
-
 
 
 ```cpp
@@ -325,15 +327,9 @@ Next, check that the solution looks like an action potential, and save summary s
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestMonodomainConvergenceLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestMonodomainConvergenceLiteratePaper.hpp"}
 #include <cxxtest/TestSuite.h>
 
 #include <vector>
@@ -532,5 +528,3 @@ public:
     }
 };
 ```
-
-

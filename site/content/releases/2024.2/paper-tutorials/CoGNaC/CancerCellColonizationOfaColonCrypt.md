@@ -1,11 +1,14 @@
-This tutorial was generated from the file projects/CoGNaC/test/TestCancerCellColonizationOfaColonCryptLiteratePaper.hpp at revision r27518.
-Note that the code is given in full at the bottom of the page.
+---
+title: "Cancer cell colonization of a colon crypt"
+draft: false
+layout: "single"
+weight: 2
+paperTutorialTestFile: "https://github.com/Chaste/project_CoGNaC/blob/44e32b4e42453762681831e3fa7a84e6b0d41dd4/test/TestCancerCellColonizationOfaColonCryptLiteratePaper.hpp"
+version: "2024.2"
+---
 
 
-
-## Cancer cell colonization of a colon crypt
-
-### Introduction
+## Introduction
 
 In this test we show how Chaste can be used to simulate a model of a colon crypt
 combining a center-based 2-D representation of cells at the spatial level and a
@@ -16,7 +19,8 @@ Rubinacci *et al.* (2015).
 This class was used to produce Figure 5 and the differentiation tree
 in Figure 4.
 
-### Including header files
+
+## Including header files
 
 We begin by including the necessary header files.
 
@@ -122,7 +126,8 @@ the mechanical interactions between neighbouring cells in the crypt.
 #include "FakePetscSetup.hpp"
 ```
 
-### Creating the boundary condition
+
+## Creating the boundary condition
 
 We create a new cell population boundary condition class to specify a fixed domain within which cells are constrained to lie.
 For details, see [this tutorial](https://github.com/Chaste/trac_archive/wiki/User-Tutorials-_-Creating-And-Using-A-New-Cell-Population-Boundary-Condition).
@@ -171,7 +176,7 @@ public:
 
             if (y_coordinate < 0.0)
             {
-            	p_node->rGetModifiableLocation()[1] = 0.0;
+                p_node->rGetModifiableLocation()[1] = 0.0;
             }
         }
     }
@@ -238,7 +243,8 @@ namespace boost
 }
 ```
 
-### Testing the cell population boundary condition
+
+## Testing the cell population boundary condition
 
 First of all, we define the test class.
 
@@ -256,38 +262,39 @@ very similar to the test implemented in
 
 
 ```cpp
-	void TestBoundaryCondition() throw(Exception)
-	{
-		HoneycombMeshGenerator generator(25, 4);
-		MutableMesh<2,2>* p_mesh = generator.GetMesh();
+    void TestBoundaryCondition() throw(Exception)
+    {
+        HoneycombMeshGenerator generator(25, 4);
+        MutableMesh<2,2>* p_mesh = generator.GetMesh();
 
-		std::vector<CellPtr> cells;
-		CellsGenerator<FixedDurationGenerationBasedCellCycleModel, 2> cells_generator;
-		cells_generator.GenerateBasic(cells, p_mesh->GetNumNodes());
+        std::vector<CellPtr> cells;
+        CellsGenerator<FixedDurationGenerationBasedCellCycleModel, 2> cells_generator;
+        cells_generator.GenerateBasic(cells, p_mesh->GetNumNodes());
 
-		MeshBasedCellPopulation<2> cell_population(*p_mesh, cells);
+        MeshBasedCellPopulation<2> cell_population(*p_mesh, cells);
 
-		BoundaryConditionWidthAndBottom bc(&cell_population);
+        BoundaryConditionWidthAndBottom bc(&cell_population);
 
-		bool population_satisfies_bc = bc.VerifyBoundaryCondition();
-		TS_ASSERT_EQUALS(population_satisfies_bc, false);
+        bool population_satisfies_bc = bc.VerifyBoundaryCondition();
+        TS_ASSERT_EQUALS(population_satisfies_bc, false);
 
-		std::map<Node<2>*, c_vector<double, 2> > old_node_locations;
-		for (AbstractMesh<2,2>::NodeIterator node_iter = p_mesh->GetNodeIteratorBegin();
-				node_iter != p_mesh->GetNodeIteratorEnd();
-				++node_iter)
-		{
-			old_node_locations[&(*node_iter)] = node_iter->rGetLocation();
-		}
+        std::map<Node<2>*, c_vector<double, 2> > old_node_locations;
+        for (AbstractMesh<2,2>::NodeIterator node_iter = p_mesh->GetNodeIteratorBegin();
+                node_iter != p_mesh->GetNodeIteratorEnd();
+                ++node_iter)
+        {
+            old_node_locations[&(*node_iter)] = node_iter->rGetLocation();
+        }
 
-		bc.ImposeBoundaryCondition(old_node_locations);
+        bc.ImposeBoundaryCondition(old_node_locations);
 
-		population_satisfies_bc = bc.VerifyBoundaryCondition();
-		TS_ASSERT_EQUALS(population_satisfies_bc, true);
-	}
+        population_satisfies_bc = bc.VerifyBoundaryCondition();
+        TS_ASSERT_EQUALS(population_satisfies_bc, true);
+    }
 ```
 
-### Testing the properties of the network
+
+## Testing the properties of the network
 
 Starting from 'fig4_atm.dat' containing a description of the ATN
 and the attractors lengths of the network, we calculate a differentiation tree using
@@ -305,7 +312,7 @@ object from an ATN defined in the file `networks_samples/fig4_atn.dat`.
 
 
 ```cpp
-    	ThresholdErgodicSetDifferentiationTree TES_tree("projects/CoGNaC/networks_samples/fig4_atn.dat");
+        ThresholdErgodicSetDifferentiationTree TES_tree("projects/CoGNaC/networks_samples/fig4_atn.dat");
 ```
 
 We get the differentiation tree of the network.
@@ -318,13 +325,13 @@ Test the topological properties of the tree.
 
 ```cpp
         TS_ASSERT_EQUALS(diff_tree->getRoot()->getNumberOfChildren(), 3u);
-		TS_ASSERT_EQUALS(diff_tree->getLeaves().size(), 3u);
-		TS_ASSERT_EQUALS(diff_tree->size(), 4u);
-		std::vector<std::set<unsigned> > level_nodes = diff_tree->getLevelNodes();
+        TS_ASSERT_EQUALS(diff_tree->getLeaves().size(), 3u);
+        TS_ASSERT_EQUALS(diff_tree->size(), 4u);
+        std::vector<std::set<unsigned> > level_nodes = diff_tree->getLevelNodes();
 
-		TS_ASSERT_EQUALS(level_nodes.size(), 2u);
-		TS_ASSERT_EQUALS(level_nodes.at(0).size(), 1u);
-		TS_ASSERT_EQUALS(level_nodes.at(1).size(), 3u);
+        TS_ASSERT_EQUALS(level_nodes.size(), 2u);
+        TS_ASSERT_EQUALS(level_nodes.at(0).size(), 1u);
+        TS_ASSERT_EQUALS(level_nodes.at(1).size(), 3u);
 ```
 
 We want also test the differentiation probabilities associated
@@ -332,51 +339,51 @@ to the root node.
 We define an array of expected probabilities.
 
 ```cpp
-		double* test_prob = new double[3];
-		test_prob[0] = 0.946185;
-		test_prob[1] = 0.0518302;
-		test_prob[2] = 0.00198491;
+        double* test_prob = new double[3];
+        test_prob[0] = 0.946185;
+        test_prob[1] = 0.0518302;
+        test_prob[2] = 0.00198491;
 ```
 
 We also get the differentiation probabilities from the root node
 and we test the size of the vector.
 
 ```cpp
-		std::vector<double> diff_prob_root = diff_tree->getRoot()->getDifferentiationProbability();
-		TS_ASSERT_EQUALS(3u, diff_prob_root.size());
+        std::vector<double> diff_prob_root = diff_tree->getRoot()->getDifferentiationProbability();
+        TS_ASSERT_EQUALS(3u, diff_prob_root.size());
 ```
 
 Convert the vector into an array.
 
 ```cpp
-		double* array_diff_probs = &diff_prob_root[0];
+        double* array_diff_probs = &diff_prob_root[0];
 ```
 
 Sort the array of probabilities in decreasing order.
 
 ```cpp
-		for (unsigned i=0;i<2;i++)
-		{
-			for(unsigned j=i+1;j<3;j++)
-			{
-				if (array_diff_probs[j] > array_diff_probs[i])
-				{
-					double temp = array_diff_probs[j];
-					array_diff_probs[j] = array_diff_probs[i];
-					array_diff_probs[i] = temp;
-				}
-			}
-		}
+        for (unsigned i=0;i<2;i++)
+        {
+            for(unsigned j=i+1;j<3;j++)
+            {
+                if (array_diff_probs[j] > array_diff_probs[i])
+                {
+                    double temp = array_diff_probs[j];
+                    array_diff_probs[j] = array_diff_probs[i];
+                    array_diff_probs[i] = temp;
+                }
+            }
+        }
 ```
 
 Finally, we test that each probability has the correct
 value.
 
 ```cpp
-		for (unsigned i = 0; i<3; ++i)
-		{
-			TS_ASSERT_DELTA(test_prob[i], array_diff_probs[i], 1e-6);
-		}
+        for (unsigned i = 0; i<3; ++i)
+        {
+            TS_ASSERT_DELTA(test_prob[i], array_diff_probs[i], 1e-6);
+        }
 ```
 
 Release the memory.
@@ -386,7 +393,8 @@ Release the memory.
     }
 ```
 
-### Simulating a cancer cell colonization (Figure 5)
+
+## Simulating a cancer cell colonization (Figure 5)
 
 Starting from 'fig4_atm.dat' containing a description of the ATN
 and the attractors lengths, we calculate a differentiation tree using
@@ -399,7 +407,7 @@ closed boundaries.
 
 ```cpp
     void TestSimulationCancerCellColonization()
-	{
+    {
 ```
 
 We start reseeding the `RandomNumberGenerator`. In
@@ -414,7 +422,7 @@ where getpid() returns the system's process ID for the current program.
 
 
 ```cpp
-    	RandomNumberGenerator::Instance()->Reseed(0);
+        RandomNumberGenerator::Instance()->Reseed(0);
 ```
 
 We instantiate a `ThresholdErgodicSetDifferentiationTree`
@@ -422,13 +430,13 @@ object from an ATN defined in the file `networks_samples/fig4_atn.dat`.
 
 
 ```cpp
-    	ThresholdErgodicSetDifferentiationTree TES_tree("projects/CoGNaC/networks_samples/fig4_atn.dat");
+        ThresholdErgodicSetDifferentiationTree TES_tree("projects/CoGNaC/networks_samples/fig4_atn.dat");
 ```
 
 We get the differentiation tree of the network.
 
 ```cpp
-    	DifferentiationTree* diff_tree = TES_tree.getDifferentiationTree();
+        DifferentiationTree* diff_tree = TES_tree.getDifferentiationTree();
 ```
 
 Save the differentiation tree in a .gml file, in order
@@ -436,7 +444,7 @@ to visualise it using graph visualisation tool (e.g. Cytoscape).
 Figure 4 - Differentiation Tree.
 
 ```cpp
-    	diff_tree->printDifferentiationTreeToGmlFile("networks_generated","differentiation_tree.gml");
+        diff_tree->printDifferentiationTreeToGmlFile("networks_generated","differentiation_tree.gml");
 ```
 
 Call a method (defined below) which associates a distinct colour to
@@ -444,7 +452,7 @@ each node in the tree (cell type).
 
 
 ```cpp
-    	markLessProbableWithRedColour(diff_tree);
+        markLessProbableWithRedColour(diff_tree);
 ```
 
 We normalise the cell cycle length of each cell type using
@@ -453,18 +461,22 @@ with \Lambda (a NRBN time step corresponds to 0.25 hours).
 
 
 ```cpp
-		diff_tree->normaliseLength(8.0);
+        diff_tree->normaliseLength(8.0);
 ```
 
 Next, we generate a mutable mesh. To create a
-```
+
+```text
 [MutableMesh](https://chaste.cs.ox.ac.uk/public-docs/classMutableMesh.html)
 ```
+
 , we can use
 the
-```
+
+```text
 [HoneycombMeshGenerator](https://chaste.cs.ox.ac.uk/public-docs/classHoneycombMeshGenerator.html)
 ```
+
 . This generates a honeycomb-shaped mesh,
 in which all nodes are equidistant. Here the first and second arguments
 define the size of the mesh - we have chosen a mesh that is 20 nodes (i.e.
@@ -472,51 +484,60 @@ cells) wide, and 20 nodes high. The third argument defines the number of ghost n
 
 
 ```cpp
-		HoneycombMeshGenerator generator(20, 20, 4);
-		MutableMesh<2,2>* p_mesh = generator.GetMesh();
+        HoneycombMeshGenerator generator(20, 20, 4);
+        MutableMesh<2,2>* p_mesh = generator.GetMesh();
 ```
 
 We only want to create cells to attach to real nodes, so we
 use the method
-```
+
+```text
 [GetCellLocationIndices](https://github.com/Chaste/trac_archive/wiki/Get-Cell-Location-Indices)
 ```
+
  to get the indices
 of the real nodes in the mesh. This will be passed in to the
 cell population later on.
 
 
 ```cpp
-		std::vector<unsigned> location_indices = generator.GetCellLocationIndices();
+        std::vector<unsigned> location_indices = generator.GetCellLocationIndices();
 ```
 
 Having created a mesh, we now create a
-```
+
+```cpp
 std::vector
 ```
+
  of
-```
+
+```text
 [CellPtr](https://github.com/Chaste/trac_archive/wiki/Cell-Ptr)
 ```
+
 s.
 To do this, we use the `CellsGenerator` helper class again. This time the second
 argument is different and is the number of real nodes in the mesh.
 All cells have
-```
+
+```text
 [StemCellProliferativeType](https://chaste.cs.ox.ac.uk/public-docs/classStemCellProliferativeType.html)
 ```
+
 .
 
 
 ```cpp
-		std::vector<CellPtr> cells;
-		MAKE_PTR(StemCellProliferativeType, p_stem_type);
-		CellsGenerator<DifferentiationTreeBasedWithAsymmetricDivisionCellCycleModel, 2> cells_generator;
-		cells_generator.GenerateBasicRandom(cells, location_indices.size(), p_stem_type);
+        std::vector<CellPtr> cells;
+        MAKE_PTR(StemCellProliferativeType, p_stem_type);
+        CellsGenerator<DifferentiationTreeBasedWithAsymmetricDivisionCellCycleModel, 2> cells_generator;
+        cells_generator.GenerateBasicRandom(cells, location_indices.size(), p_stem_type);
 ```
 
 Now we need to associate each cell with a
-```
+
+```text
 [DifferentiationTreeBasedWithAsymmetricDivisionCellCycleModel](https://github.com/Chaste/trac_archive/wiki/Differentiation-Tree-Based-With-Asymmetric-Division-Cell-Cycle-Model)
 ```
 
@@ -525,75 +546,85 @@ initialise its cell cycle model and randomly set its birthtime.
 
 
 ```cpp
-		for (unsigned i=0; i<cells.size(); i++)
-		{
-			DifferentiationTreeBasedWithAsymmetricDivisionCellCycleModel* p_cell_cycle_model =
-								new DifferentiationTreeBasedWithAsymmetricDivisionCellCycleModel(diff_tree,0);
-			CellPtr p_cell = cells.at(i);
-			p_cell->SetCellCycleModel(p_cell_cycle_model);
-			p_cell->SetBirthTime(-diff_tree->getRoot()->getCellCycleLength()*RandomNumberGenerator::Instance()->ranf());
-			p_cell->InitialiseCellCycleModel();
-		}
+        for (unsigned i=0; i<cells.size(); i++)
+        {
+            DifferentiationTreeBasedWithAsymmetricDivisionCellCycleModel* p_cell_cycle_model =
+                                new DifferentiationTreeBasedWithAsymmetricDivisionCellCycleModel(diff_tree,0);
+            CellPtr p_cell = cells.at(i);
+            p_cell->SetCellCycleModel(p_cell_cycle_model);
+            p_cell->SetBirthTime(-diff_tree->getRoot()->getCellCycleLength()*RandomNumberGenerator::Instance()->ranf());
+            p_cell->InitialiseCellCycleModel();
+        }
 ```
 
 Now we have a mesh and a set of cells to go with it, we can create a
-```
+
+```text
 [CellPopulation](https://github.com/Chaste/trac_archive/wiki/Cell-Population)
 ```
+
 .
 In general, this class associates a collection of cells with a set of elements or a mesh.
 For this test, because we have a
-```
+
+```text
 [MutableMesh](https://chaste.cs.ox.ac.uk/public-docs/classMutableMesh.html)
 ```
+
 , and ghost nodes we use a particular type of
 cell population called a
-```
+
+```text
 [MeshBasedCellPopulationWithGhostNodes](https://chaste.cs.ox.ac.uk/public-docs/classMeshBasedCellPopulationWithGhostNodes.html)
 ```
+
 . The third
 argument of the constructor takes a vector of the indices of the real nodes and should be the
 same length as the vector of cell pointers.
 
 
 ```cpp
-		MeshBasedCellPopulationWithGhostNodes<2> cell_population(*p_mesh, cells, location_indices);
+        MeshBasedCellPopulationWithGhostNodes<2> cell_population(*p_mesh, cells, location_indices);
 ```
 
 Add writers used for visualise the simulation using Paraview.
 
 ```cpp
-		cell_population.AddCellWriter<CellDifferentiationTypeWriter>();
-		cell_population.SetWriteVtkAsPoints(false);
-		cell_population.AddPopulationWriter<VoronoiDataWriter>();
+        cell_population.AddCellWriter<CellDifferentiationTypeWriter>();
+        cell_population.SetWriteVtkAsPoints(false);
+        cell_population.AddPopulationWriter<VoronoiDataWriter>();
 ```
 
 We then pass in the cell population into an
-```
+
+```text
 [OffLatticeSimulation](https://chaste.cs.ox.ac.uk/public-docs/classOffLatticeSimulation.html)
 ```
+
 ,
 and set the output directory and end time.
 
 ```cpp
         OffLatticeSimulation<2> simulator(cell_population);
-		simulator.SetOutputDirectory("SimulationCancerCellColonization");
-		simulator.SetEndTime(16.0);
+        simulator.SetOutputDirectory("SimulationCancerCellColonization");
+        simulator.SetEndTime(16.0);
 ```
 
 We create a force law, and pass it to the
-```
+
+```text
 [OffLatticeSimulation](https://chaste.cs.ox.ac.uk/public-docs/classOffLatticeSimulation.html)
 ```
+
 . This
 force law ensures that ghost nodes don't exert forces on real nodes but real nodes
 exert forces on ghost nodes.
 
 ```cpp
-		MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);
-		p_linear_force->SetMeinekeSpringStiffness(30.0);
-		p_linear_force->SetMeinekeSpringGrowthDuration(0.0);
-		simulator.AddForce(p_linear_force);
+        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);
+        p_linear_force->SetMeinekeSpringStiffness(30.0);
+        p_linear_force->SetMeinekeSpringGrowthDuration(0.0);
+        simulator.AddForce(p_linear_force);
 ```
 
 Impose the boundary condition to the cell population object.
@@ -605,9 +636,11 @@ Impose the boundary condition to the cell population object.
 
 We also add a cell killer to the simulator. This object dictates under
 what conditions cells die. For this test, we use a
-```
+
+```text
 [SloughingCellKiller](https://chaste.cs.ox.ac.uk/public-docs/classSloughingCellKiller.html)
 ```
+
 ,
 which kills cells above a certain height (passed as an argument to the constructor).
 
@@ -619,9 +652,11 @@ which kills cells above a certain height (passed as an argument to the construct
 ```
 
 To run the simulation, we call
-```
+
+```text
 Solve()
 ```
+
 . Please note that
 in some cases the simulation could fail. The reason is that
 cancer cells have a fast replication rate and this can cause
@@ -631,15 +666,15 @@ the timestep which where the problem arise.
 
 
 ```cpp
-		simulator.Solve();
+        simulator.Solve();
 ```
 
 Release the memory.
 
 ```cpp
-		delete diff_tree;
+        delete diff_tree;
 
-	}
+    }
 ```
 
 This method associate a colour to each cell type in a differentiation tree,
@@ -648,83 +683,98 @@ marking the less probable to have the highest value (from the range [0,4]).
 ```cpp
     void markLessProbableWithRedColour(DifferentiationTree* diff_tree)
     {
-    	diff_tree->setColour(0, 0.0);
-    	double minimum = DBL_MAX;
-    	unsigned minimum_index = 0;
-    	double maximum = 0.0;
-    	unsigned maximum_index = 0;
+        diff_tree->setColour(0, 0.0);
+        double minimum = DBL_MAX;
+        unsigned minimum_index = 0;
+        double maximum = 0.0;
+        unsigned maximum_index = 0;
 
-    	for (unsigned i=1;i<diff_tree->size(); i++)
-    	{
-			if (diff_tree->getNode(i)->getCellCycleLength() < minimum)
-			{
-				minimum = diff_tree->getNode(i)->getCellCycleLength();
-				minimum_index = i;
-			}
-			if (diff_tree->getNode(i)->getCellCycleLength() > maximum)
-			{
-				maximum = diff_tree->getNode(i)->getCellCycleLength();
-				maximum_index = i;
-			}
-    	}
-    	if (minimum_index > 0)
-    	{
-    		for (unsigned i=1;i<diff_tree->size(); i++)
-			{
-    			if (i == minimum_index)
-    			{
-    				diff_tree->setColour(i, 4.0);
-    			}
-    			else if (i == maximum_index)
-    			{
-    				diff_tree->setColour(i, 2.0);
-    			}
-    			else diff_tree->setColour(i, 1.0);
-			}
-    	}
+        for (unsigned i=1;i<diff_tree->size(); i++)
+        {
+            if (diff_tree->getNode(i)->getCellCycleLength() < minimum)
+            {
+                minimum = diff_tree->getNode(i)->getCellCycleLength();
+                minimum_index = i;
+            }
+            if (diff_tree->getNode(i)->getCellCycleLength() > maximum)
+            {
+                maximum = diff_tree->getNode(i)->getCellCycleLength();
+                maximum_index = i;
+            }
+        }
+        if (minimum_index > 0)
+        {
+            for (unsigned i=1;i<diff_tree->size(); i++)
+            {
+                if (i == minimum_index)
+                {
+                    diff_tree->setColour(i, 4.0);
+                }
+                else if (i == maximum_index)
+                {
+                    diff_tree->setColour(i, 2.0);
+                }
+                else diff_tree->setColour(i, 1.0);
+            }
+        }
     }
 ```
 
 To visualize the results, we must first open Paraview. We open the folder containing our test output using the 'file' menu at
 the top. The output will be located in
-```
+
+```text
 /tmp/$USER/testoutput/SimulationCancerCellColonization/results_from_time_0
 ```
+
 .
 There will be a .vtu file generated for every timestep, which must all be opened at once to view the simulation. To do this,
 simply select
-```
+
+```text
 results.pvd
 ```
+
 . We should now see
-```
+
+```text
 results.pvd
 ```
+
   in the pipeline browser. We click
-```
+
+```text
 Apply
 ```
+
  in the properties tab
 of the object inspector, and we should now see a visualization in the right hand window.  (An alternative to opening the
-```
+
+```text
 results.pvd
 ```
 
 file is to open all the time steps en masse where we open
-```
+
+```text
 results_..vtu
 ```
+
  and see
-```
+
+```text
 results_*
 ```
+
  appear in the pipeline browser.)
 
 At this stage, it will be necessary to refine how we wish to view this particular visualisation. The viewing styles can be edited using
 the display tab of the object inspector. In particular, under
-```
+
+```text
 Style
 ```
+
 , the representation drop down menu allows us to view
 the cells as a surface with edges, or as simply a wireframe. It is advisable at this point to familiarize ourselves with the different
 viewing options, colour and size settings.
@@ -736,14 +786,19 @@ reset the lower threshold to be less than 0, and the upper threshold to be betwe
 selected in the 'Scalars' drop down menu. Once we have edited this, we click apply (we may need to click it twice), and the visualisation on the
 right window will have changed to eliminate ghost nodes.
 
-In order to view cells with different colours, we must click} in the drop down tab under
+In order to view cells with different colours, we must click in the drop down tab under
+
+```text
+Coloring
 ```
-Coloring}} and select 'Differentiation Colour'.
-Once we have selected this, we click the 'Set Range' button in the
-```
+
+and select 'Differentiation Colour'. Once we have selected this, we click the 'Set Range' button in the
+
+```text
 Mapping Data
 ```
- tab (on the right) and set 0 as minimum and 4 as maximum value.
+
+tab (on the right) and set 0 as minimum and 4 as maximum value.
 
 To view the simulation, simply use the animation buttons located on the top toolbar. We can also save a screenshot, or an animation, using
 the appropriate options from the file menu.
@@ -754,15 +809,10 @@ the appropriate options from the file menu.
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
+```cpp {title="TestCancerCellColonizationOfaColonCryptLiteratePaper.hpp"}
 
-
-### File name `TestCancerCellColonizationOfaColonCryptLiteratePaper.hpp`
-
-
-```cpp
 #include <cxxtest/TestSuite.h>
 #include "AbstractCellBasedTestSuite.hpp"
 
@@ -838,7 +888,7 @@ public:
 
             if (y_coordinate < 0.0)
             {
-            	p_node->rGetModifiableLocation()[1] = 0.0;
+                p_node->rGetModifiableLocation()[1] = 0.0;
             }
         }
     }
@@ -908,130 +958,130 @@ class TestCancerCellColonizationOfaColonCryptLiteratePaper : public AbstractCell
 {
 public:
 
-	void TestBoundaryCondition() throw(Exception)
-	{
-		HoneycombMeshGenerator generator(25, 4);
-		MutableMesh<2,2>* p_mesh = generator.GetMesh();
+    void TestBoundaryCondition() throw(Exception)
+    {
+        HoneycombMeshGenerator generator(25, 4);
+        MutableMesh<2,2>* p_mesh = generator.GetMesh();
 
-		std::vector<CellPtr> cells;
-		CellsGenerator<FixedDurationGenerationBasedCellCycleModel, 2> cells_generator;
-		cells_generator.GenerateBasic(cells, p_mesh->GetNumNodes());
+        std::vector<CellPtr> cells;
+        CellsGenerator<FixedDurationGenerationBasedCellCycleModel, 2> cells_generator;
+        cells_generator.GenerateBasic(cells, p_mesh->GetNumNodes());
 
-		MeshBasedCellPopulation<2> cell_population(*p_mesh, cells);
+        MeshBasedCellPopulation<2> cell_population(*p_mesh, cells);
 
-		BoundaryConditionWidthAndBottom bc(&cell_population);
+        BoundaryConditionWidthAndBottom bc(&cell_population);
 
-		bool population_satisfies_bc = bc.VerifyBoundaryCondition();
-		TS_ASSERT_EQUALS(population_satisfies_bc, false);
+        bool population_satisfies_bc = bc.VerifyBoundaryCondition();
+        TS_ASSERT_EQUALS(population_satisfies_bc, false);
 
-		std::map<Node<2>*, c_vector<double, 2> > old_node_locations;
-		for (AbstractMesh<2,2>::NodeIterator node_iter = p_mesh->GetNodeIteratorBegin();
-				node_iter != p_mesh->GetNodeIteratorEnd();
-				++node_iter)
-		{
-			old_node_locations[&(*node_iter)] = node_iter->rGetLocation();
-		}
+        std::map<Node<2>*, c_vector<double, 2> > old_node_locations;
+        for (AbstractMesh<2,2>::NodeIterator node_iter = p_mesh->GetNodeIteratorBegin();
+                node_iter != p_mesh->GetNodeIteratorEnd();
+                ++node_iter)
+        {
+            old_node_locations[&(*node_iter)] = node_iter->rGetLocation();
+        }
 
-		bc.ImposeBoundaryCondition(old_node_locations);
+        bc.ImposeBoundaryCondition(old_node_locations);
 
-		population_satisfies_bc = bc.VerifyBoundaryCondition();
-		TS_ASSERT_EQUALS(population_satisfies_bc, true);
-	}
+        population_satisfies_bc = bc.VerifyBoundaryCondition();
+        TS_ASSERT_EQUALS(population_satisfies_bc, true);
+    }
 
     void TestFigure4NetworkProperties()
     {
-    	ThresholdErgodicSetDifferentiationTree TES_tree("projects/CoGNaC/networks_samples/fig4_atn.dat");
+        ThresholdErgodicSetDifferentiationTree TES_tree("projects/CoGNaC/networks_samples/fig4_atn.dat");
 
         DifferentiationTree* diff_tree = TES_tree.getDifferentiationTree();
 
         TS_ASSERT_EQUALS(diff_tree->getRoot()->getNumberOfChildren(), 3u);
-		TS_ASSERT_EQUALS(diff_tree->getLeaves().size(), 3u);
-		TS_ASSERT_EQUALS(diff_tree->size(), 4u);
-		std::vector<std::set<unsigned> > level_nodes = diff_tree->getLevelNodes();
+        TS_ASSERT_EQUALS(diff_tree->getLeaves().size(), 3u);
+        TS_ASSERT_EQUALS(diff_tree->size(), 4u);
+        std::vector<std::set<unsigned> > level_nodes = diff_tree->getLevelNodes();
 
-		TS_ASSERT_EQUALS(level_nodes.size(), 2u);
-		TS_ASSERT_EQUALS(level_nodes.at(0).size(), 1u);
-		TS_ASSERT_EQUALS(level_nodes.at(1).size(), 3u);
+        TS_ASSERT_EQUALS(level_nodes.size(), 2u);
+        TS_ASSERT_EQUALS(level_nodes.at(0).size(), 1u);
+        TS_ASSERT_EQUALS(level_nodes.at(1).size(), 3u);
 
-		double* test_prob = new double[3];
-		test_prob[0] = 0.946185;
-		test_prob[1] = 0.0518302;
-		test_prob[2] = 0.00198491;
+        double* test_prob = new double[3];
+        test_prob[0] = 0.946185;
+        test_prob[1] = 0.0518302;
+        test_prob[2] = 0.00198491;
 
-		std::vector<double> diff_prob_root = diff_tree->getRoot()->getDifferentiationProbability();
-		TS_ASSERT_EQUALS(3u, diff_prob_root.size());
+        std::vector<double> diff_prob_root = diff_tree->getRoot()->getDifferentiationProbability();
+        TS_ASSERT_EQUALS(3u, diff_prob_root.size());
 
-		double* array_diff_probs = &diff_prob_root[0];
+        double* array_diff_probs = &diff_prob_root[0];
 
-		for (unsigned i=0;i<2;i++)
-		{
-			for(unsigned j=i+1;j<3;j++)
-			{
-				if (array_diff_probs[j] > array_diff_probs[i])
-				{
-					double temp = array_diff_probs[j];
-					array_diff_probs[j] = array_diff_probs[i];
-					array_diff_probs[i] = temp;
-				}
-			}
-		}
+        for (unsigned i=0;i<2;i++)
+        {
+            for(unsigned j=i+1;j<3;j++)
+            {
+                if (array_diff_probs[j] > array_diff_probs[i])
+                {
+                    double temp = array_diff_probs[j];
+                    array_diff_probs[j] = array_diff_probs[i];
+                    array_diff_probs[i] = temp;
+                }
+            }
+        }
 
-		for (unsigned i = 0; i<3; ++i)
-		{
-			TS_ASSERT_DELTA(test_prob[i], array_diff_probs[i], 1e-6);
-		}
+        for (unsigned i = 0; i<3; ++i)
+        {
+            TS_ASSERT_DELTA(test_prob[i], array_diff_probs[i], 1e-6);
+        }
 
         delete diff_tree;
     }
 
     void TestSimulationCancerCellColonization()
-	{
-    	RandomNumberGenerator::Instance()->Reseed(0);
+    {
+        RandomNumberGenerator::Instance()->Reseed(0);
 
-    	ThresholdErgodicSetDifferentiationTree TES_tree("projects/CoGNaC/networks_samples/fig4_atn.dat");
+        ThresholdErgodicSetDifferentiationTree TES_tree("projects/CoGNaC/networks_samples/fig4_atn.dat");
 
-    	DifferentiationTree* diff_tree = TES_tree.getDifferentiationTree();
+        DifferentiationTree* diff_tree = TES_tree.getDifferentiationTree();
 
-    	diff_tree->printDifferentiationTreeToGmlFile("networks_generated","differentiation_tree.gml");
+        diff_tree->printDifferentiationTreeToGmlFile("networks_generated","differentiation_tree.gml");
 
-    	markLessProbableWithRedColour(diff_tree);
+        markLessProbableWithRedColour(diff_tree);
 
-		diff_tree->normaliseLength(8.0);
+        diff_tree->normaliseLength(8.0);
 
-		HoneycombMeshGenerator generator(20, 20, 4);
-		MutableMesh<2,2>* p_mesh = generator.GetMesh();
+        HoneycombMeshGenerator generator(20, 20, 4);
+        MutableMesh<2,2>* p_mesh = generator.GetMesh();
 
-		std::vector<unsigned> location_indices = generator.GetCellLocationIndices();
+        std::vector<unsigned> location_indices = generator.GetCellLocationIndices();
 
-		std::vector<CellPtr> cells;
-		MAKE_PTR(StemCellProliferativeType, p_stem_type);
-		CellsGenerator<DifferentiationTreeBasedWithAsymmetricDivisionCellCycleModel, 2> cells_generator;
-		cells_generator.GenerateBasicRandom(cells, location_indices.size(), p_stem_type);
+        std::vector<CellPtr> cells;
+        MAKE_PTR(StemCellProliferativeType, p_stem_type);
+        CellsGenerator<DifferentiationTreeBasedWithAsymmetricDivisionCellCycleModel, 2> cells_generator;
+        cells_generator.GenerateBasicRandom(cells, location_indices.size(), p_stem_type);
 
-		for (unsigned i=0; i<cells.size(); i++)
-		{
-			DifferentiationTreeBasedWithAsymmetricDivisionCellCycleModel* p_cell_cycle_model =
-								new DifferentiationTreeBasedWithAsymmetricDivisionCellCycleModel(diff_tree,0);
-			CellPtr p_cell = cells.at(i);
-			p_cell->SetCellCycleModel(p_cell_cycle_model);
-			p_cell->SetBirthTime(-diff_tree->getRoot()->getCellCycleLength()*RandomNumberGenerator::Instance()->ranf());
-			p_cell->InitialiseCellCycleModel();
-		}
+        for (unsigned i=0; i<cells.size(); i++)
+        {
+            DifferentiationTreeBasedWithAsymmetricDivisionCellCycleModel* p_cell_cycle_model =
+                                new DifferentiationTreeBasedWithAsymmetricDivisionCellCycleModel(diff_tree,0);
+            CellPtr p_cell = cells.at(i);
+            p_cell->SetCellCycleModel(p_cell_cycle_model);
+            p_cell->SetBirthTime(-diff_tree->getRoot()->getCellCycleLength()*RandomNumberGenerator::Instance()->ranf());
+            p_cell->InitialiseCellCycleModel();
+        }
 
-		MeshBasedCellPopulationWithGhostNodes<2> cell_population(*p_mesh, cells, location_indices);
+        MeshBasedCellPopulationWithGhostNodes<2> cell_population(*p_mesh, cells, location_indices);
 
-		cell_population.AddCellWriter<CellDifferentiationTypeWriter>();
-		cell_population.SetWriteVtkAsPoints(false);
-		cell_population.AddPopulationWriter<VoronoiDataWriter>();
+        cell_population.AddCellWriter<CellDifferentiationTypeWriter>();
+        cell_population.SetWriteVtkAsPoints(false);
+        cell_population.AddPopulationWriter<VoronoiDataWriter>();
 
         OffLatticeSimulation<2> simulator(cell_population);
-		simulator.SetOutputDirectory("SimulationCancerCellColonization");
-		simulator.SetEndTime(16.0);
+        simulator.SetOutputDirectory("SimulationCancerCellColonization");
+        simulator.SetEndTime(16.0);
 
-		MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);
-		p_linear_force->SetMeinekeSpringStiffness(30.0);
-		p_linear_force->SetMeinekeSpringGrowthDuration(0.0);
-		simulator.AddForce(p_linear_force);
+        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);
+        p_linear_force->SetMeinekeSpringStiffness(30.0);
+        p_linear_force->SetMeinekeSpringGrowthDuration(0.0);
+        simulator.AddForce(p_linear_force);
 
         MAKE_PTR_ARGS(BoundaryConditionWidthAndBottom, p_bc, (&cell_population));
         simulator.AddCellPopulationBoundaryCondition(p_bc);
@@ -1040,51 +1090,49 @@ public:
         MAKE_PTR_ARGS(SloughingCellKiller<2>, p_killer, (&cell_population, tissue_height));
         simulator.AddCellKiller(p_killer);
 
-		simulator.Solve();
+        simulator.Solve();
 
-		delete diff_tree;
+        delete diff_tree;
 
-	}
+    }
 
     void markLessProbableWithRedColour(DifferentiationTree* diff_tree)
     {
-    	diff_tree->setColour(0, 0.0);
-    	double minimum = DBL_MAX;
-    	unsigned minimum_index = 0;
-    	double maximum = 0.0;
-    	unsigned maximum_index = 0;
+        diff_tree->setColour(0, 0.0);
+        double minimum = DBL_MAX;
+        unsigned minimum_index = 0;
+        double maximum = 0.0;
+        unsigned maximum_index = 0;
 
-    	for (unsigned i=1;i<diff_tree->size(); i++)
-    	{
-			if (diff_tree->getNode(i)->getCellCycleLength() < minimum)
-			{
-				minimum = diff_tree->getNode(i)->getCellCycleLength();
-				minimum_index = i;
-			}
-			if (diff_tree->getNode(i)->getCellCycleLength() > maximum)
-			{
-				maximum = diff_tree->getNode(i)->getCellCycleLength();
-				maximum_index = i;
-			}
-    	}
-    	if (minimum_index > 0)
-    	{
-    		for (unsigned i=1;i<diff_tree->size(); i++)
-			{
-    			if (i == minimum_index)
-    			{
-    				diff_tree->setColour(i, 4.0);
-    			}
-    			else if (i == maximum_index)
-    			{
-    				diff_tree->setColour(i, 2.0);
-    			}
-    			else diff_tree->setColour(i, 1.0);
-			}
-    	}
+        for (unsigned i=1;i<diff_tree->size(); i++)
+        {
+            if (diff_tree->getNode(i)->getCellCycleLength() < minimum)
+            {
+                minimum = diff_tree->getNode(i)->getCellCycleLength();
+                minimum_index = i;
+            }
+            if (diff_tree->getNode(i)->getCellCycleLength() > maximum)
+            {
+                maximum = diff_tree->getNode(i)->getCellCycleLength();
+                maximum_index = i;
+            }
+        }
+        if (minimum_index > 0)
+        {
+            for (unsigned i=1;i<diff_tree->size(); i++)
+            {
+                if (i == minimum_index)
+                {
+                    diff_tree->setColour(i, 4.0);
+                }
+                else if (i == maximum_index)
+                {
+                    diff_tree->setColour(i, 2.0);
+                }
+                else diff_tree->setColour(i, 1.0);
+            }
+        }
     }
 
 };
 ```
-
-

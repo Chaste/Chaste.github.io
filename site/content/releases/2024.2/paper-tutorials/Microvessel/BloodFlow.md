@@ -1,9 +1,12 @@
-This tutorial was generated from the file projects/Microvessel/test/tutorials/TestBloodFlowLiteratePaper.hpp at revision r27242.
-Note that the code is given in full at the bottom of the page.
+---
+title: "Modelling Blood Flow"
+draft: false
+layout: "single"
+wight: 2
+paperTutorialTestFile: "https://github.com/Chaste/project_Microvessel/blob/9a87df2f16da8b433914025dab92ce2324394dc6/test/tutorials/TestBloodFlowLiteratePaper.hpp"
+version: "2024.2"
+---
 
-
-
-## Modelling Blood Flow Tutorial
 This tutorial demonstrates functionality for modelling blood flow, structural adaptation and vessel
 regression in a vessel network.
 
@@ -93,6 +96,7 @@ public:
 
 
 ## Test 1 - Simulating 1d Flow in a Bifurcating Network
+
 {{< img src="https://raw.githubusercontent.com/Chaste/project_Microvessel/9a87df2f16da8b433914025dab92ce2324394dc6/test/tutorials/images/bifurcation_network_flow.png" alt="bifurcation_network_flow" h="200px" >}}
 
 In the first test we will simulate blood flow in a simple bifurcating vessel network. Subsequent tests will add detail in the form of
@@ -558,15 +562,9 @@ Run the solver
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestBloodFlowLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestBloodFlowLiteratePaper.hpp"}
 #include <vector>
 #include <cxxtest/TestSuite.h>
 #include "Owen11Parameters.hpp"
@@ -786,5 +784,3 @@ public:
     }
 };
 ```
-
-
