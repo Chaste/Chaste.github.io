@@ -1,15 +1,17 @@
-This tutorial was generated from the file projects/Harvey2015/test/TestUnitValidationLiteratePaper.hpp at revision r23521.
-Note that the code is given in full at the bottom of the page.
-
-
-
-## Validate a simple three cell simulation in parallel and serial (Section 3.1)
+---
+title: "Validate a simple three cell simulation in parallel and serial (Section 3.1)"
+draft: false
+layout: "single"
+weight: 1
+paperTutorialTestFile: "https://github.com/Chaste/project_Harvey2015/blob/a0fc3c6879e9b4bf55f507f3727560cdce653f23/test/TestUnitValidationLiteratePaper.hpp"
+---
 
 On this wiki page we describe in detail some code that is used to compare the results of a simple three
 cell simulation in parallel and serial.  The results should be the same (to machine output precision)
 as described in Section 3.1.
 
-### Use
+
+## Use
 
 Both tests in this file are designed to be run twice:
 
@@ -43,7 +45,8 @@ paraview --data=/tmp/$USER/testoutput/ValidateTwoCells_2_Procs/results_from_time
 ## View the cells by adding the Glyph filter and rotating the z-axis
 ```
 
-### Code overview
+
+## Code overview
 
 The first thing to do is to include the necessary header files.
 
@@ -69,7 +72,8 @@ The first thing to do is to include the necessary header files.
 #include "PetscSetupAndFinalize.hpp"
 ```
 
-### The test suite
+
+## The test suite
 
 
 ```cpp
@@ -78,15 +82,18 @@ class TestUnitValidation : public AbstractCellBasedTestSuite
 public:
 ```
 
-### First unit test
+
+## First unit test
 
 This test places the three cells at
+
 1. z=0.0
 1. z=0.4
 1. z=0.6
 
 The natural strip size of the simulation is 0.5 so, when run on 2 or more process,
 the start configuration is
+
 1. z=0.0 on Process 0
 1. z=0.4 on Process 0
 1. z=0.6 on Process 1
@@ -126,8 +133,6 @@ The following is to confirm that when run parallel in the distributed mesh
 * process 0 owns the first two nodes
 * process 1 owns the 3rd node
 * other processes do not take part
-
-
 
 ```cpp
         std::cout << "Node/cell ownership on process "<<PetscTools::GetMyRank();
@@ -191,9 +196,11 @@ Run the simulation
     }
 ```
 
-### Second unit test
+
+## Second unit test
 
 This test places the three cells at
+
 1. z=0.0
 1. z=0.4
 1. z=0.45
@@ -258,15 +265,9 @@ simulation.
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestUnitValidationLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestUnitValidationLiteratePaper.hpp"}
 // For any extra output
 #include <iostream>
 
@@ -375,5 +376,3 @@ public:
     }
 };
 ```
-
-

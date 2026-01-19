@@ -1,7 +1,10 @@
-This tutorial was generated from the file projects/Harvey2015/test/TestProfileSimulationLiteratePaper.hpp at revision r23521.
-Note that the code is given in full at the bottom of the page.
-
-
+---
+title: "Measure compute-time performance for a large population to plot parallel speed-up (Figure 5)"
+draft: false
+layout: "single"
+weight: 4
+paperTutorialTestFile: "https://github.com/Chaste/project_Harvey2015/blob/a0fc3c6879e9b4bf55f507f3727560cdce653f23/test/TestProfileSimulationLiteratePaper.hpp"
+---
 
 
 ```cpp
@@ -25,7 +28,7 @@ Note that the code is given in full at the bottom of the page.
 #include "PetscSetupAndFinalize.hpp"
 ```
 
-## Measure compute-time performance for a large population to plot parallel speed-up (Figure 5)
+
 This class was used to produce the results in Figure 5.
 It constructs a population of 1,024,000 cells and simulates the population
 dynamics for 100 time-steps, printing out the total compute time at the end.
@@ -38,7 +41,7 @@ projects/Harvey2015/test/data/2d_1024_cells.dat
 ```
 
 
-### Use
+## Use
 
 This test suite should be run in parallel.  It should be run on several numbers of processes (from 1 to 32 processes in figure
 in the paper.)
@@ -60,7 +63,9 @@ the total execution time for the simulation.
 N.B. The results for the paper were generated using a large shared-memory computer, and this test
 is not suitable for running on small desktop machines due to the large memory overhead.
 
-### The test suite
+
+## The test suite
+
 This class was used to produce the results in Figure 5.
 
 It constructs a population of 1,024,000 cells in a repeating pattern
@@ -178,8 +183,6 @@ This distribution file may be found relative to `CHASTE_TEST_OUTPUT` which by de
 cat /tmp/$USER/testoutput/DivisionResults/division_results.txt
 ```
 
-
-
 ```cpp
         PetscTools::BeginRoundRobin();
         OutputFileHandler output_file_handler("DivisionResults", false);
@@ -277,15 +280,9 @@ simulation.
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestProfileSimulationLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestProfileSimulationLiteratePaper.hpp"}
 // Includes for the testing framework
 #include <cxxtest/TestSuite.h>
 #include "AbstractCellBasedTestSuite.hpp"
@@ -406,5 +403,3 @@ public:
     }
 };
 ```
-
-

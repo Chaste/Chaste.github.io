@@ -1,9 +1,11 @@
-This tutorial was generated from the file projects/Harvey2015/test/TestValidateSimulationLiteratePaper.hpp at revision r23521.
-Note that the code is given in full at the bottom of the page.
+---
+title: "Validate a 256 cell simulation in parallel and serial (Figure 3)"
+draft: false
+layout: "single"
+weight: 2
+paperTutorialTestFile: "https://github.com/Chaste/project_Harvey2015/blob/a0fc3c6879e9b4bf55f507f3727560cdce653f23/test/TestLoadBalanceSensitivityLiteratePaper.hpp"
+---
 
-
-
-## Validate a 256 cell simulation in parallel and serial (Figure 3)
 
 This class was used to generate the results in Figure 3.
 A script `CompareParallelResults.py` is provided to aid comparison
@@ -27,7 +29,8 @@ node_iter != pCellPopulation->rGetMesh().GetNodeIteratorEnd();
 ++node_iter)
 ```
 
-### Use
+
+## Use
 
 This test suite is designed to be run twice.  Each run will take roughly a minute (depending on your machine configuration).
 
@@ -47,11 +50,13 @@ export OUTPUT=/tmp/$USER/testoutput
 ./projects/Harvey2015/test/CompareParallelResults.py 2 $OUTPUT/ValidateSimulation3Rand1/results_from_time_0/results.viznodes $OUTPUT/ValidateSimulation3Rand2/results_from_time_0/results.viznodes
 ```
 
-### Code overview
+
+## Code overview
 
 The first thing to do is to include the necessary header files.
 
-#### Include header files
+
+## Include header files
 
 
 ```cpp
@@ -143,15 +148,9 @@ Report on the time taken to run the simulation
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestValidateSimulationLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestValidateSimulationLiteratePaper.hpp"}
 // The testing framework
 #include <cxxtest/TestSuite.h>
 #include "AbstractCellBasedTestSuite.hpp"
@@ -218,5 +217,3 @@ public:
     }
 };
 ```
-
-
