@@ -1,35 +1,28 @@
 ---
-title: "Development and analysis of patient-based complete conducting airway models"
+title: "Development and Analysis of Patient-Based Complete Conducting Airways Models"
 draft: false
 layout: "single"
+paperTutorialProject: "https://github.com/Chaste/project_AirwayGeneration2015"
 ---
 
+This section contains pages generated automatically from the source code accompanying Bordas et al. "Development and Analysis of Patient-Based Complete Conducting Airways Models", PLoS ONE, 2015 [doi: 10.1371/journal.pone.0144105](https://doi.org/10.1371/journal.pone.0144105).
 
-```text
-#!comment
-This wiki page is auto-generated from the file
-projects/AirwayGeneration2015/Summary.wiki
-edit that file, don't edit this page on trac!
-```
-
-Welcome to the Chaste wiki.
-
-This section contains pages generated automatically from the source code accompanying Bordas et al. "Development and analysis of patient-based complete conducting airway models", currently in review at PLoS ONE.
-
-
-Before running these examples you will need to [install Chaste's dependencies and the source code for the current Chaste trunk version](https://github.com/Chaste/trac_archive/wiki/Install-Guides-_-Install-Guide).
-The easiest way to do this is using an Ubuntu machine (or an Ubuntu virtual machine) as discussed on InstallGuides/UbuntuPackage.
+Before running these examples you will need to [install Chaste's dependencies and the source code for the current Chaste trunk version](/old_releases/release_3.4/).
+The easiest way to do this is using an Ubuntu machine (or an Ubuntu virtual machine) as discussed on [InstallGuides/UbuntuPackage](/old_releases/release_3.4/InstallGuides/UbuntuPackage.html).
 Note that Chaste is only fully supported on Linux/Unix systems, so users of Windows or Mac OS X may need to follow the virtual machine route.
 For manual installation of each dependency, on any version of Linux, see DeveloperInstallGuide.
 
-Before looking at this project, you may wish to look at some of the [basic user tutorials](https://github.com/Chaste/trac_archive/wiki/User-Tutorials), particularly those marked as Lung tutorials.
+Before looking at this project, you may wish to look at some of the [basic user tutorials](/old_releases/release_3.4/UserTutorials.html), particularly those marked as Lung tutorials.
 
-### Getting the code and data
 
-If you are reading this as a Wiki page and do not have the bolt-on project you can download it anonymously as  [an attachment](https://github.com/Chaste/trac_archive/blob/master/attachment/ticket//AirwayGeneration2015.tar.gz) to this page.
+## Getting the code and data
+
+You can get the source code for this project from the [Chaste GitHub organisation](https://github.com/Chaste/project_AirwayGeneration2015).
+
 The segmentation data (AirwayGeneration2015Segmentations.tgz) associated with the project be downloaded from the [Chaste data repository](https://chaste.cs.ox.ac.uk/trac/browser/data/public).
 
-### Documentation
+
+## Documentation
 
 
 
@@ -75,9 +68,4 @@ A number of R scripts exist in the 'R' directory that can be used to recreate
 plots and tables from Bordas et al. 2015 using the data output from simulations
 
 
-For further information on using Chaste to solve these and related problems, see our [extensive guide material](https://github.com/Chaste/trac_archive/wiki/Chaste-Guides).
-
------
-### Section contents
-[SubWiki()](SubWiki())
-
+For further information on using Chaste to solve these and related problems, see our [extensive guide material](/old_releases/release_3.4/ChasteGuides.html).

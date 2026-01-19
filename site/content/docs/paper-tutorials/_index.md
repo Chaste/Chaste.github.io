@@ -56,6 +56,7 @@ This is done, for instance, in the [functional curation](functionalcuration) and
 * [Samanta et al. Ca2+ Channel Re-localization to Plasma-Membrane Microdomains Strengthens Activation of Ca2+-Dependent Nuclear Gene Expression, Cell Reports, 2015](cadiffusion).
 * [Capel et al. Hydroxychloroquine reduces heart rate by modulating the hyperpolarisation-activated current 'If': Novel electrophysiological insights and therapeutic potential, Heart Rhythm, 2015](hr2015).
 * [Harvey, Fletcher, Osborne and Pitt-Francis. A parallel implementation of an off-lattice individual-based model of multicellular populations, Computer Physics Communications, 2015](harvey2015).
+* [Bordas, R et al. Development and Analysis of Patient-Based Complete Conducting Airways Models, PLoS ONE, 2015](airwaygeneration2015)
 
 
 ### 2014
