@@ -155,7 +155,7 @@ class TestEpAgainstExactSolutionsLiteratePaper : public CxxTest::TestSuite
 private:
 ```
 
-[following function can be mostly ignored as an alternative is used](The):
+(The following function can be mostly ignored as an alternative is used):
 
 A function for computing errors, taking in the output directory of a cardiac problem and a class
 saying how to calculate the exact solution. Note: since the output directory must be written for

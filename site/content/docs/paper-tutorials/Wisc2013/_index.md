@@ -14,7 +14,7 @@ The paper describes a 'proof of concept' parameter sweep simulation performed us
 tools on a model implemented in [cell-based Chaste](/components/cell-based/).
 The code which achieves this, and enables reproduction of all the figures in the paper, is shown in [this sub-page](./cryptproliferation).
 
-Before running this simulation you will need to [install Chaste's dependencies](docs/installguides/).
+Before running this simulation you will need to [install Chaste's dependencies](/docs/installguides/).
 The easiest way to do this is using an Ubuntu machine (or an Ubuntu virtual machine) as discussed [here](/docs/installguides/ubuntu-package/).
 Note that while Chaste 3.2 has support for cell-based Chaste on Windows and Mac OS X, the code for this paper *does not work*
 on Windows, and has not been tested on Mac OS X, so the virtual machine route may be advisable in these instances.
