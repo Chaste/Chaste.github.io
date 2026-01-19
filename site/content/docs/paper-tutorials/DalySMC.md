@@ -2,13 +2,14 @@
 title: "Two Sequential Monte Carlo Samplers for Exact and Approximate Bayesian Inference on Cardiac Models"
 draft: false
 layout: "single"
+paperTutorialProject: "https://github.com/Chaste/project_DalySMC"
 ---
 
 This tutorial describes how to download and execute the Sequential Monte Carlo code
-for inference on the linear, polynomial, and O'Hara-Rudy models as described in "Two Sequential Monte Carlo Samplers for Exact and Approximate Bayesian Inference on Cardiac Models",
-Accepted by *Journal of the Royal Society Interface* in 2017.
+for inference on the linear, polynomial, and O'Hara-Rudy models as described in "Comparing two sequential Monte Carlo samplers for exact and approximate Bayesian inference on biological models", *J. R. Soc. Interface*, 2017, [doi: 10.1098/rsif.2017.0340](https://doi.org/10.1098/rsif.2017.0340).
 
-### Installation
+
+## Installation
 
 This project requires the Functional Curation add-on to Chaste in order to run, which in turn requires the Chaste source tree to be installed.
 Instructions for this installation can be found for a variety of operating systems under InstallGuides/.
@@ -22,21 +23,20 @@ sudo apt-get install scons
 sudo -H pip install dill pathos
 ```
 
-
-Afterwards, obtain the latest version of all the code from the Chaste repositories using:
+This project works with Chaste version 3.4.
+Obtain the relevant version of all the code from the Chaste repositories using:
 
 ```bash
 #!sh
-git clone -b develop https://chaste.cs.ox.ac.uk/git/chaste.git Chaste
+git clone -b release_3.4 https://chaste.cs.ox.ac.uk/git/chaste.git Chaste
 cd Chaste/projects
 
-## Use your email address as the password for the 'anonymous' account.
-svn co https://chaste.cs.ox.ac.uk/svn/chaste/projects/FunctionalCuration --username anonymous --password my.email@domain.com
-svn co https://chaste.cs.ox.ac.uk/svn/chaste/projects/DalySMC --username anonymous --password my.email@domain.com
+git clone https://github.com/Chaste/project_FunctionalCuration.git
+git clone https://github.com/Chaste/project_DalySMC
 ```
 
 
-### Usage
+## Usage
 
 Source code for the SMC parameter fitting algorithms is contained in the `src` folder.
 Python scripts for performing inference on all model problems can be found in `tests`.
@@ -97,10 +97,3 @@ scons projects/DalySMC/test/OHaraRudyFitting.py
 
 To see verbose output on the progress of the ABC algorithm, add the flag `no_store_results=1` to the `scons` commands above.
 Note however that this will prevent storing a copy of the output on disk.
-
-
-
------
-### Section contents
-[SubWiki()](SubWiki())
-
