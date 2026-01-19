@@ -2,10 +2,12 @@
 title: "Searching gene activation patterns in T-helper cell differentiation"
 draft: false
 layout: "single"
+weight: 1
 paperTutorialTestFile: "https://github.com/Chaste/project_CoGNaC/blob/44e32b4e42453762681831e3fa7a84e6b0d41dd4/test/TestSearchingGeneActivationPatternsInThelperNetworkLiteratePaper.hpp"
 ---
 
-### Introduction
+
+## Introduction
 
 In this class we show how to search gene activation patterns starting from a network,
 calculate its Attractor Transition Network (Figure 3).
@@ -33,7 +35,7 @@ public:
 ```
 
 
-### Finding attractors and calculating the ATN from 'thelper' network
+## Finding attractors and calculating the ATN from 'thelper' network
 
 In this example we search the attractors of the thelper network. We test that
 the network has three single-point attractors and calculate the ATN.
@@ -87,7 +89,7 @@ which is used for generate a
 
 
 ```cpp
-        	ThresholdErgodicSetDifferentiationTree TES_tree ("projects/CoGNaC/networks_samples/thelper.net");
+            ThresholdErgodicSetDifferentiationTree TES_tree ("projects/CoGNaC/networks_samples/thelper.net");
 ```
 
 We test that the number of attractors found is three.
@@ -101,7 +103,7 @@ We test that the attractors found are all single-point.
 ```cpp
             std::vector<unsigned> attractors_lengths = TES_tree.getBooleanNetwork()->getAttractorLength();
             for (unsigned i=0; i<attractors_lengths.size(); i++){
-            	TS_ASSERT_EQUALS(attractors_lengths.at(i),1u);
+                TS_ASSERT_EQUALS(attractors_lengths.at(i),1u);
             }
 ```
 
@@ -127,15 +129,9 @@ We release Buddy.
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestSearchingGeneActivationPatternsInThelperNetworkLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestSearchingGeneActivationPatternsInThelperNetworkLiteratePaper.hpp"}
 #include <cxxtest/TestSuite.h>
 
 #include "RandomBooleanNetwork.hpp"
@@ -153,13 +149,13 @@ public:
         bdd_init(10000,1000);
         try
         {
-        	ThresholdErgodicSetDifferentiationTree TES_tree ("projects/CoGNaC/networks_samples/thelper.net");
+            ThresholdErgodicSetDifferentiationTree TES_tree ("projects/CoGNaC/networks_samples/thelper.net");
 
             TS_ASSERT_EQUALS(TES_tree.getBooleanNetwork()->getAttractorsNumber(),3u);
 
             std::vector<unsigned> attractors_lengths = TES_tree.getBooleanNetwork()->getAttractorLength();
             for (unsigned i=0; i<attractors_lengths.size(); i++){
-            	TS_ASSERT_EQUALS(attractors_lengths.at(i),1u);
+                TS_ASSERT_EQUALS(attractors_lengths.at(i),1u);
             }
 
             TES_tree.printStochasticMatrixAndAttractorLengthsToDatFile("networks_generated","stochastic_matrix_thelper.dat");
@@ -173,5 +169,3 @@ public:
     }
 };
 ```
-
-
