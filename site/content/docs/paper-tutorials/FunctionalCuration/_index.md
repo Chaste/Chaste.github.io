@@ -25,7 +25,7 @@ For work on applying Functional Curation to the cell-based side of Chaste, see o
 ## Installation
 
 This project requires the Chaste source tree to be installed, and you to have write access to your local copy, in order to be usable.
-You will thus need to [install Chaste's dependencies](/docs/installguides) and build the Chaste software yourself.
+You will thus need to [install Chaste's dependencies](https://chaste.github.io/old_releases/release_3.2/InstallGuides/InstallGuide.html) and build the Chaste software yourself.
 The easiest way to do this is using an Ubuntu machine (or an Ubuntu virtual machine) as discussed on InstallGuides/UbuntuPackage.
 For manual installation of each dependency, on any version of Linux, see DeveloperInstallGuide.
 Note that you will require those Chaste dependencies marked as 'cardiac only', and that this project requires at least
@@ -44,9 +44,9 @@ If you wish to work with the latest version of the Chaste and project code, you 
 from the Chaste repository using the following commands:
 
 ```bash
-git clone -b develop https://chaste.cs.ox.ac.uk/git/chaste.git Chaste
+git clone --branch "release_3.2" https://github.com/Chaste/Chaste.git Chaste
 cd Chaste/projects
-git clone https://github.com/Chaste/project_FunctionalCuration.git FunctionalCuration
+git clone --branch "FunctionalCuration_release_3.2" https://github.com/Chaste/project_FunctionalCuration.git FunctionalCuration
 ```
 
 
@@ -87,8 +87,8 @@ You'll need the environment variable `LD_LIBRARY_PATH` set up as described in th
 documentation in order to run it, since it needs to find the Chaste libraries and their
 dependencies.
 
-For further information on using Chaste generally, see our [extensive guide material](/docs/user-guides).
-You may also wish to look at some of the [basic user tutorials](/docs/user-tutorials/).
+For further information on using Chaste generally, see our [extensive guide material](https://chaste.github.io/old_releases/release_3.2/ChasteGuides.html).
+You may also wish to look at some of the [basic user tutorials](https://chaste.github.io/old_releases/release_3.2/UserTutorials.html).
 
 
 ## Section contents
