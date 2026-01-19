@@ -38,6 +38,7 @@ This is done, for instance, in the [functional curation](functionalcuration) and
 
 * [Osborne JM, Fletcher AG, et al. (2017) "Comparing individual-based approaches to modelling the self-organization of multicellular tissues". PLoS Computational Biology](cellbasedcomparison2017)
 * [Daly AC, Cooper J, Gavaghan DJ, Holmes C (2017) "Comparing two sequential Monte Carlo samplers for exact and approximate Bayesian inference on biological models". J. Roy. Soc. Interface](dalysmc)
+* [Grogen, JA et al. (2017) "Microvessel Chaste: An Open Library for Spatial Modeling of Vascularized Tissues". Biophys J.](microvessel)
 
 
 ### 2016

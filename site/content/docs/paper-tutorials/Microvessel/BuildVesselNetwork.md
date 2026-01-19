@@ -1,9 +1,11 @@
-This tutorial was generated from the file projects/Microvessel/test/tutorials/TestBuildVesselNetworkLiteratePaper.hpp at revision r27242.
-Note that the code is given in full at the bottom of the page.
+---
+title: "Building a Vessel Network"
+draft: false
+layout: "single"
+wight: 1
+paperTutorialTestFile: "https://github.com/Chaste/project_Microvessel/blob/9a87df2f16da8b433914025dab92ce2324394dc6/test/tutorials/TestBuildVesselNetworkLiteratePaper.hpp"
+---
 
-
-
-## Building A Vessel Network Tutorial
 This tutorial is designed to introduce the C++ interface for modelling vessel networks.
 
 The following is covered:
@@ -15,6 +17,7 @@ The following is covered:
 
 
 ## The Test
+
 Start by introducing the necessary header files. The first contain functionality for setting up unit tests.
 
 
@@ -232,6 +235,7 @@ which will have a .vtp extension.
 Now we can visualize then network in Paraview. See the tutorial [here](https://github.com/Chaste/trac_archive/wiki/User-Tutorials-_-Visualizing-With-Paraview), to get started. To view the network import the file
 `TestBuildVesselNetworkLiteratePaper\bifurcating_network.vtp` into Paraview. For a nicer rendering you can do `Filters->Alphabetical->Tube`.
 
+
 ## Test 2 - Building a vessel network using a generator and reading from file
 
 {{< img src="https://raw.githubusercontent.com/Chaste/project_Microvessel/main/test/tutorials/images/hexagonal_network.png" alt="hexagonal_network" h="200px" >}}
@@ -321,15 +325,9 @@ It is suggested that the tutorial [on flow modelling](https://github.com/Chaste/
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestBuildVesselNetworkLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestBuildVesselNetworkLiteratePaper.hpp"}
 #include <cxxtest/TestSuite.h>
 #include "AbstractCellBasedWithTimingsTestSuite.hpp"
 #include "SmartPointers.hpp"
@@ -415,5 +413,3 @@ public:
     }
 };
 ```
-
-

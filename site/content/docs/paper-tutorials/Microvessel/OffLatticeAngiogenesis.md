@@ -1,9 +1,12 @@
-This tutorial was generated from the file projects/Microvessel/test/tutorials/TestOffLatticeAngiogenesisLiteratePaper.hpp at revision r27276.
-Note that the code is given in full at the bottom of the page.
+---
+title: "Off Lattice Angiogenesis"
+draft: false
+layout: "single"
+wight: 4
+paperTutorialTestFile: "https://github.com/Chaste/project_Microvessel/blob/9a87df2f16da8b433914025dab92ce2324394dc6/test/tutorials/TestOffLatticeAngiogenesisLiteratePaper.hpp"
+---
 
 
-
-## An Off Lattice Angiogenesis Tutorial
 This tutorial demonstrates functionality for modelling 3D off-lattice angiogenesis in a corneal micro
 pocket application, similar to that described in [Connor et al. 2015](http://rsif.royalsocietypublishing.org/content/12/110/20150546.abstract).
 It is a 3D simulation modelling VEGF diffusion and decay from an implanted pellet using finite element methods and lattice-free angiogenesis
@@ -11,7 +14,9 @@ from a large limbal vessel towards the pellet.
 
 {{< img src="https://raw.githubusercontent.com/Chaste/project_Microvessel/main/test/tutorials/images/OffLatticeMidPoint.png" alt="OffLatticeMidPoint" h="200px" >}}
 
+
 ## The Test
+
 Start by introducing the necessary header files. The first contain functionality for setting up unit tests,
 smart pointer tools and output management,
 
@@ -346,15 +351,9 @@ Set the simulation time and run the solver. The result is shown at the top of th
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestOffLatticeAngiogenesisLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestOffLatticeAngiogenesisLiteratePaper.hpp"}
 #include <cxxtest/TestSuite.h>
 #include "SmartPointers.hpp"
 #include "OutputFileHandler.hpp"
@@ -523,5 +522,3 @@ public:
     }
 };
 ```
-
-
