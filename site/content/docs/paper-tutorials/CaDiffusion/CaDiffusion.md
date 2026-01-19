@@ -5,13 +5,10 @@ layout: "single"
 paperTutorialTestFile: "https://github.com/Chaste/project_CaDiffusion/blob/2013ec7101a1f24ddab6ec0396a918f597cd1433/test/TestCaDiffusionLiteratePaper.hpp"
 ---
 
-This tutorial was generated from the file projects/CaDiffusion/test/TestCaDiffusionLiteratePaper.hpp at revision r27328.
-Note that the code is given in full at the bottom of the page.
-
-
 Code to accompany the paper [Samanta et al. 2015](http://dx.doi.org/10.1016/j.celrep.2015.06.018).
 
-### Code Walkthrough
+
+## Code Walkthrough
 
 The following wiki page provides a walk-through of the Chaste code
 that was used to perform the simulations in this paper.
@@ -35,7 +32,8 @@ First we include some header files:
 #include "PetscSetupAndFinalize.hpp"
 ```
 
-#### Set up a diffusion equation with a source term
+
+### Set up a diffusion equation with a source term
 
 The calcium concentration $[\mathrm{Ca}]$ evolves according to
 
@@ -129,7 +127,6 @@ The diffusion constant for calcium is $300 ~~ \mu\mathrm{m}^2/\mathrm{s}$.
 This is equivalent to $300 ~~ \mathrm{nm}^2/\mu\mathrm{s}$.
 
 
-
 ```cpp
     c_matrix<double, SPACE_DIM, SPACE_DIM> ComputeDiffusionTerm(const ChastePoint<SPACE_DIM>& rPoint,
                                                                 Element<SPACE_DIM,SPACE_DIM>* pElement=NULL)
@@ -145,7 +142,8 @@ This is equivalent to $300 ~~ \mathrm{nm}^2/\mu\mathrm{s}$.
 };
 ```
 
-#### Test class and method to look at Calcium diffusion
+
+### Test class and method to look at Calcium diffusion
 
 
 ```cpp
@@ -358,15 +356,9 @@ All PETSc vectors should be destroyed when they are no longer needed.
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestCaDiffusionLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestCaDiffusionLiteratePaper.hpp"}
 #include <cxxtest/TestSuite.h>
 
 #include "GmshMeshReader.hpp"
@@ -591,5 +583,3 @@ public:
     }
 };
 ```
-
-
