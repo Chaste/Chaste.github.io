@@ -2,14 +2,10 @@
 title: "Determining the accuracy of the conduction velocity in 1D"
 draft: false
 layout: "single"
+weight: 2
 paperTutorialTestFile: "https://github.com/Chaste/project_CardiacEpVerification/blob/89a79caae847ba8c06903d84b8b1d1ddea14fe70/test/TestConductionVelocityCaseStudyLiteratePaper.hpp"
 ---
 
-
-## Determining the accuracy of the conduction velocity in 1D
-
-This is the main code for the first calculation verification case study. The simulation just involves a simple
-extension of a standard monodomain simulation.
 
 The following are all standard includes:
 
@@ -270,15 +266,9 @@ after making a tiny edit to `L2ErrorSquaredCalculator` so that it only calculate
 exact solution part (see the comment in `L2ErrorSquaredCalculator` about Section 3.1).
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestConductionVelocityCaseStudyLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestConductionVelocityCaseStudyLiteratePaper.hpp"}
 #include <cxxtest/TestSuite.h>
 #include "MonodomainProblem.hpp"
 #include "DistributedTetrahedralMesh.hpp"
@@ -473,5 +463,3 @@ public:
     }
 };
 ```
-
-
