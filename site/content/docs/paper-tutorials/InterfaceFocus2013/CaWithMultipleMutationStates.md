@@ -1,7 +1,10 @@
-This tutorial was generated from the file projects/InterfaceFocus2013/test/TestCaWithMultipleMutationStatesLiteratePaper.hpp at revision r26247.
-Note that the code is given in full at the bottom of the page.
-
-
+---
+title: "CA With Multiple Mutation States"
+draft: false
+layout: "single"
+weight: 1
+paperTutorialTestFile: "https://github.com/Chaste/project_InterfaceFocus2013/blob/ad1b4be9d7cadeb23e931a8ab46e12022e5071e2/test/TestCaWithMultipleMutationStatesLiteratePaper.hpp"
+---
 
 
 ```cpp
@@ -67,196 +70,196 @@ private:
 
 public:
 
-	void TestWithMultipleCellTypesAndSingleOccupancy() throw (Exception)
-	{
-	   EXIT_IF_PARALLEL;
+    void TestWithMultipleCellTypesAndSingleOccupancy() throw (Exception)
+    {
+       EXIT_IF_PARALLEL;
 
-	   // Create a simple 2D PottsMesh
-	   PottsMeshGenerator<2> generator(50, 0, 0, 50, 0, 0);
-	   PottsMesh<2>* p_mesh = generator.GetMesh();
+       // Create a simple 2D PottsMesh
+       PottsMeshGenerator<2> generator(50, 0, 0, 50, 0, 0);
+       PottsMesh<2>* p_mesh = generator.GetMesh();
 
-	   // Create cells
-	   std::vector<CellPtr> cells;
-	   MAKE_PTR(StemCellProliferativeType, p_stem_type);
-	   CellsGenerator<Owen2011OxygenBasedCellCycleModel, 2> cells_generator;
-	   cells_generator.GenerateBasicRandom(cells, 49u, p_stem_type);
+       // Create cells
+       std::vector<CellPtr> cells;
+       MAKE_PTR(StemCellProliferativeType, p_stem_type);
+       CellsGenerator<Owen2011OxygenBasedCellCycleModel, 2> cells_generator;
+       cells_generator.GenerateBasicRandom(cells, 49u, p_stem_type);
 
-	   // Create a cell mutation state
-	   boost::shared_ptr<AbstractCellProperty> p_cancer_mutation(CellPropertyRegistry::Instance()->Get<CancerCellMutationState>());
-	   boost::shared_ptr<AbstractCellProperty> p_normal_mutation(CellPropertyRegistry::Instance()->Get<WildTypeCellMutationState>());
-	   boost::shared_ptr<AbstractCellProperty> p_macrophage_mutation(CellPropertyRegistry::Instance()->Get<MacrophageMutationState>());
+       // Create a cell mutation state
+       boost::shared_ptr<AbstractCellProperty> p_cancer_mutation(CellPropertyRegistry::Instance()->Get<CancerCellMutationState>());
+       boost::shared_ptr<AbstractCellProperty> p_normal_mutation(CellPropertyRegistry::Instance()->Get<WildTypeCellMutationState>());
+       boost::shared_ptr<AbstractCellProperty> p_macrophage_mutation(CellPropertyRegistry::Instance()->Get<MacrophageMutationState>());
 
-	   for (unsigned i = 0; i<cells.size(); i++)
-	   {
-		  if (i==23 || i==24 || i==25)
-			 cells[i]->SetMutationState(p_cancer_mutation);
-		  else if (i==48 || i==47)
-			 cells[i]->SetMutationState(p_macrophage_mutation);
-		  else
-			 cells[i]->SetMutationState(p_normal_mutation);
-	   }
+       for (unsigned i = 0; i<cells.size(); i++)
+       {
+          if (i==23 || i==24 || i==25)
+             cells[i]->SetMutationState(p_cancer_mutation);
+          else if (i==48 || i==47)
+             cells[i]->SetMutationState(p_macrophage_mutation);
+          else
+             cells[i]->SetMutationState(p_normal_mutation);
+       }
 
-	   // Specify where cells lie
-	   std::vector<unsigned> location_indices;
+       // Specify where cells lie
+       std::vector<unsigned> location_indices;
 
-	   for (unsigned i=1074; i<=1374; i=i+50)
-	   {
-		  for(unsigned j=0; j<7; j++)
-		  {
-			 location_indices.push_back(i+j);
-		  }
-	   }
+       for (unsigned i=1074; i<=1374; i=i+50)
+       {
+          for(unsigned j=0; j<7; j++)
+          {
+             location_indices.push_back(i+j);
+          }
+       }
 
-	   // Create cell population
-	   MultipleCaBasedCellPopulation<2> cell_population(*p_mesh, cells, location_indices);
-	   cell_population.SetOutputCellIdData(true);
-	   cell_population.SetOutputCellMutationStates(true);
-	   cell_population.SetOutputCellProliferativeTypes(true);
-	   cell_population.SetOutputCellCyclePhases(true);
-	   cell_population.SetOutputCellAncestors(true);
-	   cell_population.SetOutputCellAges(true);
+       // Create cell population
+       MultipleCaBasedCellPopulation<2> cell_population(*p_mesh, cells, location_indices);
+       cell_population.SetOutputCellIdData(true);
+       cell_population.SetOutputCellMutationStates(true);
+       cell_population.SetOutputCellProliferativeTypes(true);
+       cell_population.SetOutputCellCyclePhases(true);
+       cell_population.SetOutputCellAncestors(true);
+       cell_population.SetOutputCellAges(true);
 
-	   cell_population.SetDataOnAllCells("oxygen", 1.0);
+       cell_population.SetDataOnAllCells("oxygen", 1.0);
 
-	   // Set up cell-based simulation
-	   OnLatticeSimulationInterfaceFocus<2> simulator(cell_population);
-	   std::string output_directory = "TestWithMultipleMutationStatesAndSingleOccupancy";
-	   simulator.SetOutputDirectory(output_directory);
-	   simulator.SetDt(0.25);
-	   simulator.SetSamplingTimestepMultiple(10);
-	   simulator.SetEndTime(500.0);
+       // Set up cell-based simulation
+       OnLatticeSimulationInterfaceFocus<2> simulator(cell_population);
+       std::string output_directory = "TestWithMultipleMutationStatesAndSingleOccupancy";
+       simulator.SetOutputDirectory(output_directory);
+       simulator.SetDt(0.25);
+       simulator.SetSamplingTimestepMultiple(10);
+       simulator.SetEndTime(500.0);
 
-	   // Set up PDE and pass to simulation via handler
-	   OxygenPde<2> pde_1(cell_population, 0.1);
-	   ConstBoundaryCondition<2> bc_1(100.0);
-	   PdeAndBoundaryConditions<2> pde_and_bc_1(&pde_1, &bc_1, false);
-	   pde_and_bc_1.SetDependentVariableName("oxygen");
+       // Set up PDE and pass to simulation via handler
+       OxygenPde<2> pde_1(cell_population, 0.1);
+       ConstBoundaryCondition<2> bc_1(100.0);
+       PdeAndBoundaryConditions<2> pde_and_bc_1(&pde_1, &bc_1, false);
+       pde_and_bc_1.SetDependentVariableName("oxygen");
 
-	   CellBasedPdeHandlerInterfaceFocus<2> pde_handler(&cell_population);
-	   pde_handler.AddPdeAndBc(&pde_and_bc_1);
-	   ChastePoint<2> lower(0, 0);
-	   ChastePoint<2> upper(49, 49);
-	   ChasteCuboid<2> cuboid(lower, upper);
-	   pde_handler.UseCoarsePdeMesh(1.0, cuboid);
-	   pde_handler.SetImposeBcsOnCoarseBoundary(true);
+       CellBasedPdeHandlerInterfaceFocus<2> pde_handler(&cell_population);
+       pde_handler.AddPdeAndBc(&pde_and_bc_1);
+       ChastePoint<2> lower(0, 0);
+       ChastePoint<2> upper(49, 49);
+       ChasteCuboid<2> cuboid(lower, upper);
+       pde_handler.UseCoarsePdeMesh(1.0, cuboid);
+       pde_handler.SetImposeBcsOnCoarseBoundary(true);
 
-	   simulator.SetCellBasedPdeHandler(&pde_handler);
+       simulator.SetCellBasedPdeHandler(&pde_handler);
 
-	   // Adding update rule(s)
-	   MAKE_PTR(Owen2011MultipleCaUpdateRule<2u>, p_diffusion_update_rule);
-	   p_diffusion_update_rule->SetDiffusionParameter(0.02);
+       // Adding update rule(s)
+       MAKE_PTR(Owen2011MultipleCaUpdateRule<2u>, p_diffusion_update_rule);
+       p_diffusion_update_rule->SetDiffusionParameter(0.02);
 
-	   simulator.AddMultipleCaUpdateRule(p_diffusion_update_rule);
+       simulator.AddMultipleCaUpdateRule(p_diffusion_update_rule);
 
-	   // Create cell killer
-	   MAKE_PTR_ARGS(VasctumCellKiller<2>, cell_killer,(&cell_population));
+       // Create cell killer
+       MAKE_PTR_ARGS(VasctumCellKiller<2>, cell_killer,(&cell_population));
 
-	   simulator.AddCellKiller(cell_killer);
+       simulator.AddCellKiller(cell_killer);
 
-	   // Run simulation
-	   simulator.Solve();
+       // Run simulation
+       simulator.Solve();
 
-	 #ifdef CHASTE_VTK
-	//Test that VTK writer has produced a file
-	OutputFileHandler output_file_handler(output_directory, false);
-	std::string results_dir = output_file_handler.GetOutputDirectoryFullPath();
+     #ifdef CHASTE_VTK
+    //Test that VTK writer has produced a file
+    OutputFileHandler output_file_handler(output_directory, false);
+    std::string results_dir = output_file_handler.GetOutputDirectoryFullPath();
 
-	// Initial condition file
-	FileFinder vtk_file(results_dir + "results_from_time_0/results_0.vtu", RelativeTo::Absolute);
-	TS_ASSERT(vtk_file.Exists());
+    // Initial condition file
+    FileFinder vtk_file(results_dir + "results_from_time_0/results_0.vtu", RelativeTo::Absolute);
+    TS_ASSERT(vtk_file.Exists());
 
-	// Final file
-	FileFinder vtk_file2(results_dir + "results_from_time_0/results_200.vtu", RelativeTo::Absolute);
-	TS_ASSERT(vtk_file2.Exists());
-	#endif //CHASTE_VTK
+    // Final file
+    FileFinder vtk_file2(results_dir + "results_from_time_0/results_200.vtu", RelativeTo::Absolute);
+    TS_ASSERT(vtk_file2.Exists());
+    #endif //CHASTE_VTK
 
-	}
+    }
 
-	void TestWithMultipleCellTypesAndMultipleOccupancy() throw (Exception)
-	{
-	   EXIT_IF_PARALLEL;
+    void TestWithMultipleCellTypesAndMultipleOccupancy() throw (Exception)
+    {
+       EXIT_IF_PARALLEL;
 
-	   // Create a simple 2D PottsMesh
-	   PottsMeshGenerator<2> generator(50, 0, 0, 50, 0, 0);
-	   PottsMesh<2>* p_mesh = generator.GetMesh();
+       // Create a simple 2D PottsMesh
+       PottsMeshGenerator<2> generator(50, 0, 0, 50, 0, 0);
+       PottsMesh<2>* p_mesh = generator.GetMesh();
 
-	   // Create cells
-	   std::vector<CellPtr> cells;
-	   MAKE_PTR(StemCellProliferativeType, p_stem_type);
-	   CellsGenerator<Owen2011OxygenBasedCellCycleModel, 2> cells_generator;
-	   cells_generator.GenerateBasicRandom(cells, 49u, p_stem_type);
+       // Create cells
+       std::vector<CellPtr> cells;
+       MAKE_PTR(StemCellProliferativeType, p_stem_type);
+       CellsGenerator<Owen2011OxygenBasedCellCycleModel, 2> cells_generator;
+       cells_generator.GenerateBasicRandom(cells, 49u, p_stem_type);
 
-	   // Create a cell mutation state
-	   boost::shared_ptr<AbstractCellProperty> p_cancer_mutation(CellPropertyRegistry::Instance()->Get<CancerCellMutationState>());
-	   boost::shared_ptr<AbstractCellProperty> p_normal_mutation(CellPropertyRegistry::Instance()->Get<WildTypeCellMutationState>());
-	   boost::shared_ptr<AbstractCellProperty> p_macrophage_mutation(CellPropertyRegistry::Instance()->Get<MacrophageMutationState>());
+       // Create a cell mutation state
+       boost::shared_ptr<AbstractCellProperty> p_cancer_mutation(CellPropertyRegistry::Instance()->Get<CancerCellMutationState>());
+       boost::shared_ptr<AbstractCellProperty> p_normal_mutation(CellPropertyRegistry::Instance()->Get<WildTypeCellMutationState>());
+       boost::shared_ptr<AbstractCellProperty> p_macrophage_mutation(CellPropertyRegistry::Instance()->Get<MacrophageMutationState>());
 
-	   // Defining the types of cells in the lattice
-	   for (unsigned i = 0; i<cells.size(); i++)
-	   {
-		  if (i==23 || i==24 || i==25)
-			 cells[i]->SetMutationState(p_cancer_mutation);
-		  else
-			 if (i==48 || i==47)
-			   cells[i]->SetMutationState(p_macrophage_mutation);
-			 else
-				cells[i]->SetMutationState(p_normal_mutation);
-	   }
+       // Defining the types of cells in the lattice
+       for (unsigned i = 0; i<cells.size(); i++)
+       {
+          if (i==23 || i==24 || i==25)
+             cells[i]->SetMutationState(p_cancer_mutation);
+          else
+             if (i==48 || i==47)
+               cells[i]->SetMutationState(p_macrophage_mutation);
+             else
+                cells[i]->SetMutationState(p_normal_mutation);
+       }
 
-	   // Specify where cells lie
-	   std::vector<unsigned> location_indices;
+       // Specify where cells lie
+       std::vector<unsigned> location_indices;
 
-	   for(unsigned i = 1074; i<=1374; i+= 50)
-	   {
-		  for(unsigned j=0; j<7; j++)
-		  {
-			 location_indices.push_back(i+j);
-		  }
-		}
+       for(unsigned i = 1074; i<=1374; i+= 50)
+       {
+          for(unsigned j=0; j<7; j++)
+          {
+             location_indices.push_back(i+j);
+          }
+        }
 
-		// Create cell population
-		MultipleCaBasedCellPopulation<2> cell_population(*p_mesh, cells, location_indices, 4);
-		cell_population.SetOutputCellIdData(true);
-		cell_population.SetOutputCellMutationStates(true);
-		cell_population.SetOutputCellProliferativeTypes(true);
-		cell_population.SetOutputCellCyclePhases(true);
-		cell_population.SetOutputCellAncestors(true);
-		cell_population.SetOutputCellAges(true);
+        // Create cell population
+        MultipleCaBasedCellPopulation<2> cell_population(*p_mesh, cells, location_indices, 4);
+        cell_population.SetOutputCellIdData(true);
+        cell_population.SetOutputCellMutationStates(true);
+        cell_population.SetOutputCellProliferativeTypes(true);
+        cell_population.SetOutputCellCyclePhases(true);
+        cell_population.SetOutputCellAncestors(true);
+        cell_population.SetOutputCellAges(true);
 
-		cell_population.SetDataOnAllCells("oxygen", 1.0);
+        cell_population.SetDataOnAllCells("oxygen", 1.0);
 
-		// Set up cell-based simulation
-		OnLatticeSimulationInterfaceFocus<2> simulator(cell_population);
-		std::string output_directory = "TestWithMultipleMutationStatesAndMultipleOccupancy";
-		simulator.SetOutputDirectory(output_directory);
-		simulator.SetDt(0.5);
-		simulator.SetSamplingTimestepMultiple(10);
-		simulator.SetEndTime(500.0);
+        // Set up cell-based simulation
+        OnLatticeSimulationInterfaceFocus<2> simulator(cell_population);
+        std::string output_directory = "TestWithMultipleMutationStatesAndMultipleOccupancy";
+        simulator.SetOutputDirectory(output_directory);
+        simulator.SetDt(0.5);
+        simulator.SetSamplingTimestepMultiple(10);
+        simulator.SetEndTime(500.0);
 
-		// Set up PDE and pass to simulation via handler
-		OxygenPde<2> pde_1(cell_population, 0.1);
-		ConstBoundaryCondition<2> bc_1(100.0);
-		PdeAndBoundaryConditions<2> pde_and_bc_1(&pde_1, &bc_1, false);
-		pde_and_bc_1.SetDependentVariableName("oxygen");
+        // Set up PDE and pass to simulation via handler
+        OxygenPde<2> pde_1(cell_population, 0.1);
+        ConstBoundaryCondition<2> bc_1(100.0);
+        PdeAndBoundaryConditions<2> pde_and_bc_1(&pde_1, &bc_1, false);
+        pde_and_bc_1.SetDependentVariableName("oxygen");
 
-		CellBasedPdeHandlerInterfaceFocus<2> pde_handler(&cell_population);
-		pde_handler.AddPdeAndBc(&pde_and_bc_1);
-		//pde_handler.AddPdeAndBc(&pde_and_bc_2);
-		ChastePoint<2> lower(0, 0);
-		ChastePoint<2> upper(49, 49);
-		ChasteCuboid<2> cuboid(lower, upper);
-		pde_handler.UseCoarsePdeMesh(1.0, cuboid);
-		pde_handler.SetImposeBcsOnCoarseBoundary(true);
+        CellBasedPdeHandlerInterfaceFocus<2> pde_handler(&cell_population);
+        pde_handler.AddPdeAndBc(&pde_and_bc_1);
+        //pde_handler.AddPdeAndBc(&pde_and_bc_2);
+        ChastePoint<2> lower(0, 0);
+        ChastePoint<2> upper(49, 49);
+        ChasteCuboid<2> cuboid(lower, upper);
+        pde_handler.UseCoarsePdeMesh(1.0, cuboid);
+        pde_handler.SetImposeBcsOnCoarseBoundary(true);
 
-		simulator.SetCellBasedPdeHandler(&pde_handler);
+        simulator.SetCellBasedPdeHandler(&pde_handler);
 
-		// Create cell killer
-		MAKE_PTR_ARGS(VasctumCellKiller<2>, cell_killer,(&cell_population));
+        // Create cell killer
+        MAKE_PTR_ARGS(VasctumCellKiller<2>, cell_killer,(&cell_population));
 
-		simulator.AddCellKiller(cell_killer);
+        simulator.AddCellKiller(cell_killer);
 
-		// Run simulation
-		simulator.Solve();
+        // Run simulation
+        simulator.Solve();
 
    #ifdef CHASTE_VTK
    //Test that VTK writer has produced a file
@@ -305,7 +308,7 @@ public:
       // Create cell population
       MultipleCaBasedCellPopulation<3> cell_population(*p_mesh, cells, location_indices);
       cell_population.SetOutputCellIdData(true);
- 	  cell_population.SetOutputCellMutationStates(true);
+       cell_population.SetOutputCellMutationStates(true);
       cell_population.SetOutputCellProliferativeTypes(true);
       cell_population.SetOutputCellCyclePhases(true);
       cell_population.SetOutputCellAncestors(true);
@@ -362,15 +365,9 @@ public:
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestCaWithMultipleMutationStatesLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestCaWithMultipleMutationStatesLiteratePaper.hpp"}
 #include <cxxtest/TestSuite.h>
 
 // Must be included before other cell_based headers
@@ -433,196 +430,196 @@ private:
 
 public:
 
-	void TestWithMultipleCellTypesAndSingleOccupancy() throw (Exception)
-	{
-	   EXIT_IF_PARALLEL;
+    void TestWithMultipleCellTypesAndSingleOccupancy() throw (Exception)
+    {
+       EXIT_IF_PARALLEL;
 
-	   // Create a simple 2D PottsMesh
-	   PottsMeshGenerator<2> generator(50, 0, 0, 50, 0, 0);
-	   PottsMesh<2>* p_mesh = generator.GetMesh();
+       // Create a simple 2D PottsMesh
+       PottsMeshGenerator<2> generator(50, 0, 0, 50, 0, 0);
+       PottsMesh<2>* p_mesh = generator.GetMesh();
 
-	   // Create cells
-	   std::vector<CellPtr> cells;
-	   MAKE_PTR(StemCellProliferativeType, p_stem_type);
-	   CellsGenerator<Owen2011OxygenBasedCellCycleModel, 2> cells_generator;
-	   cells_generator.GenerateBasicRandom(cells, 49u, p_stem_type);
+       // Create cells
+       std::vector<CellPtr> cells;
+       MAKE_PTR(StemCellProliferativeType, p_stem_type);
+       CellsGenerator<Owen2011OxygenBasedCellCycleModel, 2> cells_generator;
+       cells_generator.GenerateBasicRandom(cells, 49u, p_stem_type);
 
-	   // Create a cell mutation state
-	   boost::shared_ptr<AbstractCellProperty> p_cancer_mutation(CellPropertyRegistry::Instance()->Get<CancerCellMutationState>());
-	   boost::shared_ptr<AbstractCellProperty> p_normal_mutation(CellPropertyRegistry::Instance()->Get<WildTypeCellMutationState>());
-	   boost::shared_ptr<AbstractCellProperty> p_macrophage_mutation(CellPropertyRegistry::Instance()->Get<MacrophageMutationState>());
+       // Create a cell mutation state
+       boost::shared_ptr<AbstractCellProperty> p_cancer_mutation(CellPropertyRegistry::Instance()->Get<CancerCellMutationState>());
+       boost::shared_ptr<AbstractCellProperty> p_normal_mutation(CellPropertyRegistry::Instance()->Get<WildTypeCellMutationState>());
+       boost::shared_ptr<AbstractCellProperty> p_macrophage_mutation(CellPropertyRegistry::Instance()->Get<MacrophageMutationState>());
 
-	   for (unsigned i = 0; i<cells.size(); i++)
-	   {
-		  if (i==23 || i==24 || i==25)
-			 cells[i]->SetMutationState(p_cancer_mutation);
-		  else if (i==48 || i==47)
-			 cells[i]->SetMutationState(p_macrophage_mutation);
-		  else
-			 cells[i]->SetMutationState(p_normal_mutation);
-	   }
+       for (unsigned i = 0; i<cells.size(); i++)
+       {
+          if (i==23 || i==24 || i==25)
+             cells[i]->SetMutationState(p_cancer_mutation);
+          else if (i==48 || i==47)
+             cells[i]->SetMutationState(p_macrophage_mutation);
+          else
+             cells[i]->SetMutationState(p_normal_mutation);
+       }
 
-	   // Specify where cells lie
-	   std::vector<unsigned> location_indices;
+       // Specify where cells lie
+       std::vector<unsigned> location_indices;
 
-	   for (unsigned i=1074; i<=1374; i=i+50)
-	   {
-		  for(unsigned j=0; j<7; j++)
-		  {
-			 location_indices.push_back(i+j);
-		  }
-	   }
+       for (unsigned i=1074; i<=1374; i=i+50)
+       {
+          for(unsigned j=0; j<7; j++)
+          {
+             location_indices.push_back(i+j);
+          }
+       }
 
-	   // Create cell population
-	   MultipleCaBasedCellPopulation<2> cell_population(*p_mesh, cells, location_indices);
-	   cell_population.SetOutputCellIdData(true);
-	   cell_population.SetOutputCellMutationStates(true);
-	   cell_population.SetOutputCellProliferativeTypes(true);
-	   cell_population.SetOutputCellCyclePhases(true);
-	   cell_population.SetOutputCellAncestors(true);
-	   cell_population.SetOutputCellAges(true);
+       // Create cell population
+       MultipleCaBasedCellPopulation<2> cell_population(*p_mesh, cells, location_indices);
+       cell_population.SetOutputCellIdData(true);
+       cell_population.SetOutputCellMutationStates(true);
+       cell_population.SetOutputCellProliferativeTypes(true);
+       cell_population.SetOutputCellCyclePhases(true);
+       cell_population.SetOutputCellAncestors(true);
+       cell_population.SetOutputCellAges(true);
 
-	   cell_population.SetDataOnAllCells("oxygen", 1.0);
+       cell_population.SetDataOnAllCells("oxygen", 1.0);
 
-	   // Set up cell-based simulation
-	   OnLatticeSimulationInterfaceFocus<2> simulator(cell_population);
-	   std::string output_directory = "TestWithMultipleMutationStatesAndSingleOccupancy";
-	   simulator.SetOutputDirectory(output_directory);
-	   simulator.SetDt(0.25);
-	   simulator.SetSamplingTimestepMultiple(10);
-	   simulator.SetEndTime(500.0);
+       // Set up cell-based simulation
+       OnLatticeSimulationInterfaceFocus<2> simulator(cell_population);
+       std::string output_directory = "TestWithMultipleMutationStatesAndSingleOccupancy";
+       simulator.SetOutputDirectory(output_directory);
+       simulator.SetDt(0.25);
+       simulator.SetSamplingTimestepMultiple(10);
+       simulator.SetEndTime(500.0);
 
-	   // Set up PDE and pass to simulation via handler
-	   OxygenPde<2> pde_1(cell_population, 0.1);
-	   ConstBoundaryCondition<2> bc_1(100.0);
-	   PdeAndBoundaryConditions<2> pde_and_bc_1(&pde_1, &bc_1, false);
-	   pde_and_bc_1.SetDependentVariableName("oxygen");
+       // Set up PDE and pass to simulation via handler
+       OxygenPde<2> pde_1(cell_population, 0.1);
+       ConstBoundaryCondition<2> bc_1(100.0);
+       PdeAndBoundaryConditions<2> pde_and_bc_1(&pde_1, &bc_1, false);
+       pde_and_bc_1.SetDependentVariableName("oxygen");
 
-	   CellBasedPdeHandlerInterfaceFocus<2> pde_handler(&cell_population);
-	   pde_handler.AddPdeAndBc(&pde_and_bc_1);
-	   ChastePoint<2> lower(0, 0);
-	   ChastePoint<2> upper(49, 49);
-	   ChasteCuboid<2> cuboid(lower, upper);
-	   pde_handler.UseCoarsePdeMesh(1.0, cuboid);
-	   pde_handler.SetImposeBcsOnCoarseBoundary(true);
+       CellBasedPdeHandlerInterfaceFocus<2> pde_handler(&cell_population);
+       pde_handler.AddPdeAndBc(&pde_and_bc_1);
+       ChastePoint<2> lower(0, 0);
+       ChastePoint<2> upper(49, 49);
+       ChasteCuboid<2> cuboid(lower, upper);
+       pde_handler.UseCoarsePdeMesh(1.0, cuboid);
+       pde_handler.SetImposeBcsOnCoarseBoundary(true);
 
-	   simulator.SetCellBasedPdeHandler(&pde_handler);
+       simulator.SetCellBasedPdeHandler(&pde_handler);
 
-	   // Adding update rule(s)
-	   MAKE_PTR(Owen2011MultipleCaUpdateRule<2u>, p_diffusion_update_rule);
-	   p_diffusion_update_rule->SetDiffusionParameter(0.02);
+       // Adding update rule(s)
+       MAKE_PTR(Owen2011MultipleCaUpdateRule<2u>, p_diffusion_update_rule);
+       p_diffusion_update_rule->SetDiffusionParameter(0.02);
 
-	   simulator.AddMultipleCaUpdateRule(p_diffusion_update_rule);
+       simulator.AddMultipleCaUpdateRule(p_diffusion_update_rule);
 
-	   // Create cell killer
-	   MAKE_PTR_ARGS(VasctumCellKiller<2>, cell_killer,(&cell_population));
+       // Create cell killer
+       MAKE_PTR_ARGS(VasctumCellKiller<2>, cell_killer,(&cell_population));
 
-	   simulator.AddCellKiller(cell_killer);
+       simulator.AddCellKiller(cell_killer);
 
-	   // Run simulation
-	   simulator.Solve();
+       // Run simulation
+       simulator.Solve();
 
-	 #ifdef CHASTE_VTK
-	//Test that VTK writer has produced a file
-	OutputFileHandler output_file_handler(output_directory, false);
-	std::string results_dir = output_file_handler.GetOutputDirectoryFullPath();
+     #ifdef CHASTE_VTK
+    //Test that VTK writer has produced a file
+    OutputFileHandler output_file_handler(output_directory, false);
+    std::string results_dir = output_file_handler.GetOutputDirectoryFullPath();
 
-	// Initial condition file
-	FileFinder vtk_file(results_dir + "results_from_time_0/results_0.vtu", RelativeTo::Absolute);
-	TS_ASSERT(vtk_file.Exists());
+    // Initial condition file
+    FileFinder vtk_file(results_dir + "results_from_time_0/results_0.vtu", RelativeTo::Absolute);
+    TS_ASSERT(vtk_file.Exists());
 
-	// Final file
-	FileFinder vtk_file2(results_dir + "results_from_time_0/results_200.vtu", RelativeTo::Absolute);
-	TS_ASSERT(vtk_file2.Exists());
-	#endif //CHASTE_VTK
+    // Final file
+    FileFinder vtk_file2(results_dir + "results_from_time_0/results_200.vtu", RelativeTo::Absolute);
+    TS_ASSERT(vtk_file2.Exists());
+    #endif //CHASTE_VTK
 
-	}
+    }
 
-	void TestWithMultipleCellTypesAndMultipleOccupancy() throw (Exception)
-	{
-	   EXIT_IF_PARALLEL;
+    void TestWithMultipleCellTypesAndMultipleOccupancy() throw (Exception)
+    {
+       EXIT_IF_PARALLEL;
 
-	   // Create a simple 2D PottsMesh
-	   PottsMeshGenerator<2> generator(50, 0, 0, 50, 0, 0);
-	   PottsMesh<2>* p_mesh = generator.GetMesh();
+       // Create a simple 2D PottsMesh
+       PottsMeshGenerator<2> generator(50, 0, 0, 50, 0, 0);
+       PottsMesh<2>* p_mesh = generator.GetMesh();
 
-	   // Create cells
-	   std::vector<CellPtr> cells;
-	   MAKE_PTR(StemCellProliferativeType, p_stem_type);
-	   CellsGenerator<Owen2011OxygenBasedCellCycleModel, 2> cells_generator;
-	   cells_generator.GenerateBasicRandom(cells, 49u, p_stem_type);
+       // Create cells
+       std::vector<CellPtr> cells;
+       MAKE_PTR(StemCellProliferativeType, p_stem_type);
+       CellsGenerator<Owen2011OxygenBasedCellCycleModel, 2> cells_generator;
+       cells_generator.GenerateBasicRandom(cells, 49u, p_stem_type);
 
-	   // Create a cell mutation state
-	   boost::shared_ptr<AbstractCellProperty> p_cancer_mutation(CellPropertyRegistry::Instance()->Get<CancerCellMutationState>());
-	   boost::shared_ptr<AbstractCellProperty> p_normal_mutation(CellPropertyRegistry::Instance()->Get<WildTypeCellMutationState>());
-	   boost::shared_ptr<AbstractCellProperty> p_macrophage_mutation(CellPropertyRegistry::Instance()->Get<MacrophageMutationState>());
+       // Create a cell mutation state
+       boost::shared_ptr<AbstractCellProperty> p_cancer_mutation(CellPropertyRegistry::Instance()->Get<CancerCellMutationState>());
+       boost::shared_ptr<AbstractCellProperty> p_normal_mutation(CellPropertyRegistry::Instance()->Get<WildTypeCellMutationState>());
+       boost::shared_ptr<AbstractCellProperty> p_macrophage_mutation(CellPropertyRegistry::Instance()->Get<MacrophageMutationState>());
 
-	   // Defining the types of cells in the lattice
-	   for (unsigned i = 0; i<cells.size(); i++)
-	   {
-		  if (i==23 || i==24 || i==25)
-			 cells[i]->SetMutationState(p_cancer_mutation);
-		  else
-			 if (i==48 || i==47)
-			   cells[i]->SetMutationState(p_macrophage_mutation);
-			 else
-				cells[i]->SetMutationState(p_normal_mutation);
-	   }
+       // Defining the types of cells in the lattice
+       for (unsigned i = 0; i<cells.size(); i++)
+       {
+          if (i==23 || i==24 || i==25)
+             cells[i]->SetMutationState(p_cancer_mutation);
+          else
+             if (i==48 || i==47)
+               cells[i]->SetMutationState(p_macrophage_mutation);
+             else
+                cells[i]->SetMutationState(p_normal_mutation);
+       }
 
-	   // Specify where cells lie
-	   std::vector<unsigned> location_indices;
+       // Specify where cells lie
+       std::vector<unsigned> location_indices;
 
-	   for(unsigned i = 1074; i<=1374; i+= 50)
-	   {
-		  for(unsigned j=0; j<7; j++)
-		  {
-			 location_indices.push_back(i+j);
-		  }
-		}
+       for(unsigned i = 1074; i<=1374; i+= 50)
+       {
+          for(unsigned j=0; j<7; j++)
+          {
+             location_indices.push_back(i+j);
+          }
+        }
 
-		// Create cell population
-		MultipleCaBasedCellPopulation<2> cell_population(*p_mesh, cells, location_indices, 4);
-		cell_population.SetOutputCellIdData(true);
-		cell_population.SetOutputCellMutationStates(true);
-		cell_population.SetOutputCellProliferativeTypes(true);
-		cell_population.SetOutputCellCyclePhases(true);
-		cell_population.SetOutputCellAncestors(true);
-		cell_population.SetOutputCellAges(true);
+        // Create cell population
+        MultipleCaBasedCellPopulation<2> cell_population(*p_mesh, cells, location_indices, 4);
+        cell_population.SetOutputCellIdData(true);
+        cell_population.SetOutputCellMutationStates(true);
+        cell_population.SetOutputCellProliferativeTypes(true);
+        cell_population.SetOutputCellCyclePhases(true);
+        cell_population.SetOutputCellAncestors(true);
+        cell_population.SetOutputCellAges(true);
 
-		cell_population.SetDataOnAllCells("oxygen", 1.0);
+        cell_population.SetDataOnAllCells("oxygen", 1.0);
 
-		// Set up cell-based simulation
-		OnLatticeSimulationInterfaceFocus<2> simulator(cell_population);
-		std::string output_directory = "TestWithMultipleMutationStatesAndMultipleOccupancy";
-		simulator.SetOutputDirectory(output_directory);
-		simulator.SetDt(0.5);
-		simulator.SetSamplingTimestepMultiple(10);
-		simulator.SetEndTime(500.0);
+        // Set up cell-based simulation
+        OnLatticeSimulationInterfaceFocus<2> simulator(cell_population);
+        std::string output_directory = "TestWithMultipleMutationStatesAndMultipleOccupancy";
+        simulator.SetOutputDirectory(output_directory);
+        simulator.SetDt(0.5);
+        simulator.SetSamplingTimestepMultiple(10);
+        simulator.SetEndTime(500.0);
 
-		// Set up PDE and pass to simulation via handler
-		OxygenPde<2> pde_1(cell_population, 0.1);
-		ConstBoundaryCondition<2> bc_1(100.0);
-		PdeAndBoundaryConditions<2> pde_and_bc_1(&pde_1, &bc_1, false);
-		pde_and_bc_1.SetDependentVariableName("oxygen");
+        // Set up PDE and pass to simulation via handler
+        OxygenPde<2> pde_1(cell_population, 0.1);
+        ConstBoundaryCondition<2> bc_1(100.0);
+        PdeAndBoundaryConditions<2> pde_and_bc_1(&pde_1, &bc_1, false);
+        pde_and_bc_1.SetDependentVariableName("oxygen");
 
-		CellBasedPdeHandlerInterfaceFocus<2> pde_handler(&cell_population);
-		pde_handler.AddPdeAndBc(&pde_and_bc_1);
-		//pde_handler.AddPdeAndBc(&pde_and_bc_2);
-		ChastePoint<2> lower(0, 0);
-		ChastePoint<2> upper(49, 49);
-		ChasteCuboid<2> cuboid(lower, upper);
-		pde_handler.UseCoarsePdeMesh(1.0, cuboid);
-		pde_handler.SetImposeBcsOnCoarseBoundary(true);
+        CellBasedPdeHandlerInterfaceFocus<2> pde_handler(&cell_population);
+        pde_handler.AddPdeAndBc(&pde_and_bc_1);
+        //pde_handler.AddPdeAndBc(&pde_and_bc_2);
+        ChastePoint<2> lower(0, 0);
+        ChastePoint<2> upper(49, 49);
+        ChasteCuboid<2> cuboid(lower, upper);
+        pde_handler.UseCoarsePdeMesh(1.0, cuboid);
+        pde_handler.SetImposeBcsOnCoarseBoundary(true);
 
-		simulator.SetCellBasedPdeHandler(&pde_handler);
+        simulator.SetCellBasedPdeHandler(&pde_handler);
 
-		// Create cell killer
-		MAKE_PTR_ARGS(VasctumCellKiller<2>, cell_killer,(&cell_population));
+        // Create cell killer
+        MAKE_PTR_ARGS(VasctumCellKiller<2>, cell_killer,(&cell_population));
 
-		simulator.AddCellKiller(cell_killer);
+        simulator.AddCellKiller(cell_killer);
 
-		// Run simulation
-		simulator.Solve();
+        // Run simulation
+        simulator.Solve();
 
    #ifdef CHASTE_VTK
    //Test that VTK writer has produced a file
@@ -671,7 +668,7 @@ public:
       // Create cell population
       MultipleCaBasedCellPopulation<3> cell_population(*p_mesh, cells, location_indices);
       cell_population.SetOutputCellIdData(true);
- 	  cell_population.SetOutputCellMutationStates(true);
+       cell_population.SetOutputCellMutationStates(true);
       cell_population.SetOutputCellProliferativeTypes(true);
       cell_population.SetOutputCellCyclePhases(true);
       cell_population.SetOutputCellAncestors(true);
@@ -726,5 +723,3 @@ public:
    }
 };
 ```
-
-
