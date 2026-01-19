@@ -21,10 +21,7 @@ on Windows, and has not been tested on Mac OS X, so the virtual machine route ma
 In order to generate result figures automatically, you will also need to install [Gnuplot](http://www.gnuplot.info/).
 
 You will also need the Chaste source code for this paper and the source for the extension [FunctionalCuration](https://github.com/Chaste/project_FunctionalCuration) project.
-These are available from the [main Chaste download page](http://www.cs.ox.ac.uk/chaste/download.html) as extensions to
-Chaste release 3.2 under the projects heading,
-or you can [access the source code direct from our repository](https://github.com/Chaste/trac_archive/wiki/Chaste-Guides-_-Access-Code-Repository).
-For the latter option, using a command-line git client, you can get the required code in a new folder called 'Chaste' with the commands:
+Using a command-line git client, you can get the required code in a new folder called 'Chaste' with the commands:
 
 ```bash
 git clone --branch "release_3.2" https://github.com/Chaste/Chaste.git Chaste
@@ -38,11 +35,8 @@ It has been tested with release 3.3, but will not be tested with future versions
 
 You are now ready to [run the simulations featured in the paper](./cryptproliferation).
 
-For further information on using Chaste, see our [extensive guide material](/docs/user-guides/).
-You may also wish to look at some of the [basic user tutorials](/docs/user-tutorials/).
-
-
------
+For further information on using Chaste, see our [extensive guide material](https://chaste.github.io/old_releases/release_3.2/ChasteGuides.html).
+You may also wish to look at some of the [basic user tutorials](https://chaste.github.io/old_releases/release_3.2/UserTutorials.html).
 
 
 ## Section contents
