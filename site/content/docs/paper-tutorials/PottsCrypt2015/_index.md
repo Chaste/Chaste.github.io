@@ -14,13 +14,13 @@ The code to run parameter sweeps and was used produce Figure 4 can be found here
 
 The code to run include mutations and was used produce Figures 5, 7 and 8 can be found here [TestPottsCryptMutantLiteratePaper.hpp](https://github.com/Chaste/project_PottsCrypt2015/blob/8bf784bde6cc2e8db10093789c3b89a95fb3cba6/test/TestPottsCryptMutantLiteratePaper.hpp)
 
-Before looking at these, you may wish to look at some of the [basic user tutorials](https://chaste.github.io/old_releases/release_3.3/UserTutorials.html) for Chaste.
+Before looking at these, you may wish to look at some of the [basic user tutorials](/old_releases/release_3.3/UserTutorials.html) for Chaste.
 
 
 ## Getting the code and installing dependencies
 
-Before running these examples you will need to [install Chaste's dependencies](https://chaste.github.io/old_releases/release_3.4/InstallGuides/InstallGuide.html) and the [source code for version 3.3](https://github.com/Chaste/Chaste/releases/tag/release_3.3).
-The easiest way to do this is using an Ubuntu machine (or an Ubuntu virtual machine) as discussed on [InstallGuides/UbuntuPackage](https://chaste.github.io/old_releases/release_3.3/InstallGuides/UbuntuPackage.html).
+Before running these examples you will need to [install Chaste's dependencies](/old_releases/release_3.4/InstallGuides/InstallGuide.html) and the [source code for version 3.3](https://github.com/Chaste/Chaste/releases/tag/release_3.3).
+The easiest way to do this is using an Ubuntu machine (or an Ubuntu virtual machine) as discussed on [InstallGuides/UbuntuPackage](/old_releases/release_3.3/InstallGuides/UbuntuPackage.html).
 Note that Chaste is only fully supported on Linux/Unix systems, so users of Windows or Mac OS X may need to follow the virtual machine route.
 For manual installation of each dependency, on any version of Linux, see DeveloperInstallGuide.
 
@@ -79,8 +79,8 @@ scons b=GccOpt ts=projects/PottsCrypt2015/test/TestPottsCryptMutantLiteratePaper
 
 **NB**: the paper was developed with release version 3.3. It will not work with with release version 3.2 or under.
 
-For further information on using Chaste, see the [extensive guide material](https://chaste.github.io/old_releases/release_3.3/ChasteGuides.html).
-You may also wish to look at some of the [basic user tutorials](https://chaste.github.io/old_releases/release_3.3/UserTutorials.html).
+For further information on using Chaste, see the [extensive guide material](/old_releases/release_3.3/ChasteGuides.html).
+You may also wish to look at some of the [basic user tutorials](/old_releases/release_3.3/UserTutorials.html).
 
 
 ## Section contents

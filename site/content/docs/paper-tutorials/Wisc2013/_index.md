@@ -35,8 +35,8 @@ It has been tested with release 3.3, but will not be tested with future versions
 
 You are now ready to [run the simulations featured in the paper](./cryptproliferation).
 
-For further information on using Chaste, see our [extensive guide material](https://chaste.github.io/old_releases/release_3.2/ChasteGuides.html).
-You may also wish to look at some of the [basic user tutorials](https://chaste.github.io/old_releases/release_3.2/UserTutorials.html).
+For further information on using Chaste, see our [extensive guide material](/old_releases/release_3.2/ChasteGuides.html).
+You may also wish to look at some of the [basic user tutorials](/old_releases/release_3.2/UserTutorials.html).
 
 
 ## Section contents

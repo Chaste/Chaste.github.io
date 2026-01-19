@@ -13,7 +13,7 @@ cardiac electro-physiology*, accepted for publication in International Journal f
 Walk-throughs of the main tests are given below. The entire project, which includes all source files, results files and matlab scripts, can be viewed at
 [https://github.com/Chaste/project_CardiacEpVerification](https://github.com/Chaste/project_CardiacEpVerification),
 
-New users of Chaste who wish to install Chaste and run this project, see [GettingStarted](https://chaste.github.io/old_releases/release_3.2/) and ChasteGuides.
+New users of Chaste who wish to install Chaste and run this project, see [GettingStarted](/old_releases/release_3.2/) and ChasteGuides.
 
 
 ## Testing against exact solutions

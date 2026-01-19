@@ -11,13 +11,13 @@ This section contains pages generated automatically from the source code accompa
 Mahoney et al. "Connexin 43 contributes to electrotonic conduction across scar tissue in the intact heart",
 [Scientific Reports 6:26744 (2016)](http://www.nature.com/articles/srep26744).
 
-Before running these examples you will need to [install Chaste's dependencies](https://chaste.github.io/old_releases/release_3.3/InstallGuides/InstallGuide.html) and the [source code for version 3.3](https://github.com/Chaste/Chaste/releases/tag/release_3.3).
-The easiest way to do this is using an Ubuntu machine (or an Ubuntu virtual machine) as discussed on [InstallGuides/UbuntuPackage](https://chaste.github.io/old_releases/release_3.3/InstallGuides/UbuntuPackage.html).
+Before running these examples you will need to [install Chaste's dependencies](/old_releases/release_3.3/InstallGuides/InstallGuide.html) and the [source code for version 3.3](https://github.com/Chaste/Chaste/releases/tag/release_3.3).
+The easiest way to do this is using an Ubuntu machine (or an Ubuntu virtual machine) as discussed on [InstallGuides/UbuntuPackage](/old_releases/release_3.3/InstallGuides/UbuntuPackage.html).
 Note that cardiac Chaste is not supported on Windows, so users of Windows will need to follow the virtual machine route.
 For manual installation of each dependency, on any version of Linux, see DeveloperInstallGuide.
 
 The simulations featured in the paper supplement are explained and annotated below.
-For further information on using Chaste to solve these and related problems, see our [extensive guide material](https://chaste.github.io/old_releases/release_3.3/ChasteGuides.html).
+For further information on using Chaste to solve these and related problems, see our [extensive guide material](/old_releases/release_3.3/ChasteGuides.html).
 
 
 ## Sample commands to install Chaste

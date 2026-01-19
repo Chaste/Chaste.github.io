@@ -15,13 +15,13 @@ The code to run single simulations, which was used to produce the figures in the
 [TestCaWithMultipleMutationStatesLiteratePaper.hpp](https://github.com/Chaste/project_InterfaceFocus2013/blob/ad1b4be9d7cadeb23e931a8ab46e12022e5071e2/test/TestCaWithMultipleMutationStatesLiteratePaper.hpp)
 and here [TestCaBasedCellPopulationUsingPdesLiteratePaper.hpp](https://github.com/Chaste/project_InterfaceFocus2013/blob/ad1b4be9d7cadeb23e931a8ab46e12022e5071e2/test/TestCaBasedCellPopulationUsingPdesLiteratePaper.hpp)
 
-Before looking at this, you may wish to look at some of the [basic user tutorials](https://chaste.github.io/old_releases/release_3.2/UserTutorials.html) for Chaste.
+Before looking at this, you may wish to look at some of the [basic user tutorials](/old_releases/release_3.2/UserTutorials.html) for Chaste.
 
 
 ## Getting the code and installing dependencies
 
-Before running these examples you will need to [install Chaste's dependencies](hhttps://chaste.github.io/old_releases/release_3.2/InstallGuides/InstallGuide.html) and the [source code for version 3.2](https://github.com/Chaste/Chaste/releases/tag/release_3.2).
-The easiest way to do this is using an Ubuntu machine (or an Ubuntu virtual machine) as discussed on [InstallGuides/UbuntuPackage](https://chaste.github.io/old_releases/release_3.4/InstallGuides/UbuntuPackage.html).
+Before running these examples you will need to [install Chaste's dependencies](h/old_releases/release_3.2/InstallGuides/InstallGuide.html) and the [source code for version 3.2](https://github.com/Chaste/Chaste/releases/tag/release_3.2).
+The easiest way to do this is using an Ubuntu machine (or an Ubuntu virtual machine) as discussed on [InstallGuides/UbuntuPackage](/old_releases/release_3.4/InstallGuides/UbuntuPackage.html).
 Note that Chaste is only fully supported on Linux/Unix systems, so users of Windows or Mac OS X may need to follow the virtual machine route.
 For manual installation of each dependency, on any version of Linux, see DeveloperInstallGuide.
 

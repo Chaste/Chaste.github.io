@@ -15,13 +15,13 @@ The code to simulate crypts and run parameter sweeps, which was used produce Fig
 
 The code to simulate crypts initialy comprised of control and gamma cells, and was used produce Figure 6, can be found here [TestCryptTakeoverProbabilityLiteratePaper.hpp](https://github.com/Chaste/project_CryptProliferationDistribution/blob/10970027a16db5f67a4257ac4bdce4c5ca51ab13/test/TestCryptTakeoverProbabilityLiteratePaper.hpp)
 
-Before looking at these, you may wish to look at some of the [basic user tutorials](https://chaste.github.io/old_releases/release_3.3/UserTutorials.html) for Chaste.
+Before looking at these, you may wish to look at some of the [basic user tutorials](/old_releases/release_3.3/UserTutorials.html) for Chaste.
 
 
 ### Getting the code and installing dependencies
 
-Before running these examples you will need to [install Chaste's dependencies](https://chaste.github.io/old_releases/release_3.3/InstallGuides/InstallGuide.html) and the [source code for version 3.3](https://github.com/Chaste/Chaste/releases/tag/release_3.3).
-The easiest way to do this is using an Ubuntu machine (or an Ubuntu virtual machine) as discussed on [InstallGuides/UbuntuPackage](https://chaste.github.io/old_releases/release_3.3/InstallGuides/UbuntuPackage.html).
+Before running these examples you will need to [install Chaste's dependencies](/old_releases/release_3.3/InstallGuides/InstallGuide.html) and the [source code for version 3.3](https://github.com/Chaste/Chaste/releases/tag/release_3.3).
+The easiest way to do this is using an Ubuntu machine (or an Ubuntu virtual machine) as discussed on [InstallGuides/UbuntuPackage](/old_releases/release_3.3/InstallGuides/UbuntuPackage.html).
 Note that Chaste is only fully supported on Linux/Unix systems, so users of Windows or Mac OS X may need to follow the virtual machine route.
 For manual installation of each dependency, on any version of Linux, see DeveloperInstallGuide.
 

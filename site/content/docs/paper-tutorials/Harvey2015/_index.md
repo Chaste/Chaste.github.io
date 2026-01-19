@@ -9,7 +9,7 @@ paperTutorialProject: "https://github.com/Chaste/project_Harvey2015"
 This section contains pages generated automatically from the source code accompanying Harvey el al. "A parallel implementation of an off-lattice individual-based model of multicellular populations", Computer Physics Communications, Volume 192, July 2015, Pages 130-137, <http://dx.doi.org/10.1016/j.cpc.2015.03.005>.
 
 
-Before running these examples you will need to [install Chaste's dependencies](https://chaste.github.io/old_releases/release_3.2/InstallGuides/InstallGuide.html) and the [source code for version 3.2](https://github.com/Chaste/Chaste/releases/tag/release_3.2).
+Before running these examples you will need to [install Chaste's dependencies](/old_releases/release_3.2/InstallGuides/InstallGuide.html) and the [source code for version 3.2](https://github.com/Chaste/Chaste/releases/tag/release_3.2).
 The easiest way to do this is using an Ubuntu machine (or an Ubuntu virtual machine) as discussed on InstallGuides/UbuntuPackage.
 Note that Chaste is only fully supported on Linux/Unix systems, so users of Windows or Mac OS X may need to follow the virtual machine route.
 For manual installation of each dependency, on any version of Linux, see DeveloperInstallGuide.
@@ -19,7 +19,7 @@ figures in the paper is annotated and explained here.  The idea is that with the
 This is subject to your having access to a machine/cluster with sufficient processing cores.  Please note the the exact timing results will be architecture dependent.
 **Note**: While the paper was developed with release version 3.2 (2014) the code presented here is also compatible with release version 3.3 (2015).
 
-Before looking at these, you may wish to look at some of the [basic user tutorials](https://chaste.github.io/old_releases/release_3.2/UserTutorials.html).
+Before looking at these, you may wish to look at some of the [basic user tutorials](/old_releases/release_3.2/UserTutorials.html).
 
 
 ## Getting the code
@@ -81,7 +81,7 @@ processors contained in the machine. On most Linux platforms this can be found u
 grep ^processor /proc/cpuinfo | wc -l
 ```
 
-For further information on using Chaste to solve these and related problems, see our [extensive guide material](https://chaste.github.io/old_releases/release_3.2/ChasteGuides.html).
+For further information on using Chaste to solve these and related problems, see our [extensive guide material](/old_releases/release_3.2/ChasteGuides.html).
 
 
 ## Section contents

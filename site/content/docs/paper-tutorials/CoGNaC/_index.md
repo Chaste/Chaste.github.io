@@ -21,8 +21,8 @@ A detailed user guide of CoGNaC can be found as an attachment at the bottom of t
 
 ## Getting the code and installing dependencies
 
-Before running these examples you will need to [install Chaste's dependencies](https://chaste.github.io/old_releases/release_3.4/InstallGuides/InstallGuide.html) and the [source code for version 3.3](https://github.com/Chaste/Chaste/releases/tag/release_3.3).
-The easiest way to do this is using an Ubuntu machine (or an Ubuntu virtual machine) as discussed on [InstallGuides/UbuntuPackage](https://chaste.github.io/old_releases/release_3.3/InstallGuides/UbuntuPackage.html).
+Before running these examples you will need to [install Chaste's dependencies](/old_releases/release_3.4/InstallGuides/InstallGuide.html) and the [source code for version 3.3](https://github.com/Chaste/Chaste/releases/tag/release_3.3).
+The easiest way to do this is using an Ubuntu machine (or an Ubuntu virtual machine) as discussed on [InstallGuides/UbuntuPackage](/old_releases/release_3.3/InstallGuides/UbuntuPackage.html).
 Note that Chaste is only fully supported on Linux/Unix systems, so users of Windows or Mac OS X may need to follow the virtual machine route.
 For manual installation of each dependency, on any version of Linux, see DeveloperInstallGuide.
 
@@ -121,8 +121,8 @@ scons test_suite=projects/CoGNaC/test/TestCancerCellColonizationOfaColonCryptLit
 
 **NB**: the paper was developed with release version 3.2 and 3.3. We have not tested the compatibility with release version 3.1 or under.
 
-For further information on using Chaste, see the [extensive guide material](https://chaste.github.io/old_releases/release_3.3/ChasteGuides.html).
-You may also wish to look at some of the [basic user tutorials](https://chaste.github.io/old_releases/release_3.3/UserTutorials.html).
+For further information on using Chaste, see the [extensive guide material](/old_releases/release_3.3/ChasteGuides.html).
+You may also wish to look at some of the [basic user tutorials](/old_releases/release_3.3/UserTutorials.html).
 
 
 ## Section contents

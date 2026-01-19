@@ -16,13 +16,13 @@ The code to run the multiple cylinder comparison simulations, which were used to
 
 The code to run single coupled simulations, which was used to produce Figure 3, can be found in the `python` and `src` folders.
 
-Before looking at this, you may wish to look at some of the [basic user tutorials](https://chaste.github.io/old_releases/release_3.4/UserTutorials.html) for Chaste.
+Before looking at this, you may wish to look at some of the [basic user tutorials](/old_releases/release_3.4/UserTutorials.html) for Chaste.
 
 
 ## Getting the code and installing dependencies
 
-Before running these examples you will need to [install Chaste's dependencies](https://chaste.github.io/old_releases/release_3.4/InstallGuides/InstallGuide.html) and the [source code for version 3.4](https://github.com/Chaste/Chaste/releases/tag/release_3.4).
-The easiest way to do this is using an Ubuntu machine (or an Ubuntu virtual machine) as discussed on [InstallGuides/UbuntuPackage](https://chaste.github.io/old_releases/release_3.4/InstallGuides/UbuntuPackage.html).
+Before running these examples you will need to [install Chaste's dependencies](/old_releases/release_3.4/InstallGuides/InstallGuide.html) and the [source code for version 3.4](https://github.com/Chaste/Chaste/releases/tag/release_3.4).
+The easiest way to do this is using an Ubuntu machine (or an Ubuntu virtual machine) as discussed on [InstallGuides/UbuntuPackage](/old_releases/release_3.4/InstallGuides/UbuntuPackage.html).
 Note that Chaste is only fully supported on Linux/Unix systems, so users of Windows or Mac OS X may need to follow the virtual machine route.
 For manual installation of each dependency, on any version of Linux, see DeveloperInstallGuide.
 
@@ -65,8 +65,8 @@ scons b=GccOpt ts=projects/EMBC2018/test/TestAnalyticComparisonLiteratePaper.hpp
 ----
 **NB**: the paper was developed with release version 3.4. It will not work with with release version 3.3 or under.
 
-For further information on using Chaste, see the [extensive guide material](https://chaste.github.io/old_releases/release_3.4/ChasteGuides.html).
-You may also wish to look at some of the [basic user tutorials](https://chaste.github.io/old_releases/release_3.4/UserTutorials.html).
+For further information on using Chaste, see the [extensive guide material](/old_releases/release_3.4/ChasteGuides.html).
+You may also wish to look at some of the [basic user tutorials](/old_releases/release_3.4/UserTutorials.html).
 
 
 ## Section contents

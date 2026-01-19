@@ -8,13 +8,13 @@ paperTutorialProject: "https://github.com/Chaste/project_Frontiers2014"
 
 This section contains pages generated automatically from the source code accompanying "[Cellular cardiac electrophysiology modelling with Chaste and CellML](http://dx.doi.org/10.3389/fphys.2014.00511)", our paper in [Frontiers in Physiology](http://journal.frontiersin.org/ResearchTopic/2502).
 
-Before running these examples you will need to [install Chaste's dependencies](https://chaste.github.io/old_releases/release_3.3/InstallGuides/InstallGuide.html) and the [source code for version 3.3](https://github.com/Chaste/Chaste/releases/tag/release_3.3).
-The easiest way to do this is using an Ubuntu machine (or an Ubuntu virtual machine) as discussed on [InstallGuides/UbuntuPackage](https://chaste.github.io/old_releases/release_3.3/InstallGuides/UbuntuPackage.html).
+Before running these examples you will need to [install Chaste's dependencies](/old_releases/release_3.3/InstallGuides/InstallGuide.html) and the [source code for version 3.3](https://github.com/Chaste/Chaste/releases/tag/release_3.3).
+The easiest way to do this is using an Ubuntu machine (or an Ubuntu virtual machine) as discussed on [InstallGuides/UbuntuPackage](/old_releases/release_3.3/InstallGuides/UbuntuPackage.html).
 Note that cardiac Chaste is not supported on Windows, so users of Windows will need to follow the virtual machine route.
 For manual installation of each dependency, on any version of Linux, see DeveloperInstallGuide.
 
 The benchmark simulations from the paper are explained and annotated below.
-For further information on using Chaste to solve these and related problems, see our [extensive guide material](https://chaste.github.io/old_releases/release_3.3/ChasteGuides.html).
+For further information on using Chaste to solve these and related problems, see our [extensive guide material](/old_releases/release_3.3/ChasteGuides.html).
 
 
 ## Cellular electrophysiology benchmarks

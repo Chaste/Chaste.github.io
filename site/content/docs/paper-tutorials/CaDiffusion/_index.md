@@ -10,13 +10,13 @@ Welcome to the Chaste wiki.
 
 This section contains pages generated automatically from the source code accompanying [Samanta et al. (2015)](http://dx.doi.org/10.1016/j.celrep.2015.06.018).
 
-Before running these examples you will need to [install Chaste's dependencies](https://chaste.github.io/old_releases/release_3.4/InstallGuides/InstallGuide.html).
+Before running these examples you will need to [install Chaste's dependencies](/old_releases/release_3.4/InstallGuides/InstallGuide.html).
 The easiest way to do this is using an Ubuntu machine (or an Ubuntu virtual machine) as discussed on InstallGuides/UbuntuPackage.
 Note that cardiac Chaste is not supported on Windows, so users of Windows will need to follow the virtual machine route.
 For manual installation of each dependency, on any version of Linux, see DeveloperInstallGuide.
 
 The simulations featured in the paper supplement are explained and annotated below.
-For further information on using Chaste to solve these and related problems, see our [extensive guide material](https://chaste.github.io/old_releases/release_3.4/ChasteGuides.html).
+For further information on using Chaste to solve these and related problems, see our [extensive guide material](/old_releases/release_3.4/ChasteGuides.html).
 
 This work is licensed under the Chaste BSD 3 clause licence and the [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). To comply with this licence, please cite the following papers if you re-use this code for an academic publication:
 
