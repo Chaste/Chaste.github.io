@@ -2,7 +2,7 @@
 title: "Lattice Based Angiogenesis"
 draft: false
 layout: "single"
-wight: 3
+weight: 3
 paperTutorialTestFile: "https://github.com/Chaste/project_Microvessel/blob/9a87df2f16da8b433914025dab92ce2324394dc6/test/tutorials/TestLatticeBasedAngiogenesisLiteratePaper.hpp"
 ---
 

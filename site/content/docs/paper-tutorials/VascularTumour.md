@@ -11,4 +11,4 @@ Before running these examples you will need to install Chaste's dependencies and
 For manual installation of each dependency, on any version of linux, see DeveloperInstallGuide.
 
 The paper is organised around model examples that are annotated and explained here.
-The code required to run these examples can be downloaded from [the main download site](http://www.cs.ox.ac.uk/chaste/download).
+The code required to run these examples can be downloaded from [the main download site](https://chaste.github.io/redirect/).

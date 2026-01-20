@@ -2,13 +2,13 @@
 title: "Off Lattice Angiogenesis"
 draft: false
 layout: "single"
-wight: 4
+weight: 4
 paperTutorialTestFile: "https://github.com/Chaste/project_Microvessel/blob/9a87df2f16da8b433914025dab92ce2324394dc6/test/tutorials/TestOffLatticeAngiogenesisLiteratePaper.hpp"
 ---
 
 
 This tutorial demonstrates functionality for modelling 3D off-lattice angiogenesis in a corneal micro
-pocket application, similar to that described in [Connor et al. 2015](http://rsif.royalsocietypublishing.org/content/12/110/20150546.abstract).
+pocket application, similar to that described in Connor et al. 2015 "An integrated approach to quantitative modelling in angiogenesis research", [doi: 10.1098/rsif.2015.0546](https://doi.org/10.1098/rsif.2015.0546).
 It is a 3D simulation modelling VEGF diffusion and decay from an implanted pellet using finite element methods and lattice-free angiogenesis
 from a large limbal vessel towards the pellet.
 
