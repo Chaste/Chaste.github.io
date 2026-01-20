@@ -4,7 +4,7 @@
 {{- $link := printf "[%s](%s)" $trimmedFileName $projectUrl -}}
 
 <div class="callout callout-note d-flex flex-row mt-4 mb-4 pt-4 pe-4 pb-2 ps-3">
-    {{ partial "inline-svg" (dict "src" "info-circle" "class" "callout-icon me-2 mb-3") }}
+    {{ partial "inline-svg" (dict "src" "outline/info-circle" "class" "callout-icon me-2 mb-3") }}
     <div class="callout-content">
         <div class="callout-title">
             {{ with $link -}}
