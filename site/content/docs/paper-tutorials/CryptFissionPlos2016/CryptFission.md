@@ -1,18 +1,20 @@
-This tutorial was generated from the file projects/CryptFissionPlos2016/test/TestCryptFissionLiteratePaper.hpp at revision r26908.
-Note that the code is given in full at the bottom of the page.
+---
+title: "Simulation of fission in epithelial layer"
+draft: false
+layout: "single"
+paperTutorialTestFile: "https://github.com/Chaste/project_CryptFissionPlos2016/blob/04483b5e62bff1094bb320564c0fbaa2698563b0/test/TestCryptFissionLiteratePaper.hpp"
+---
 
 
-
-## Simulation of fission in epithelial layer
-
-### Introduction
+## Introduction
 
 In this test we show how Chaste can be used to simulate a buckling layer of epithelial cells.
 Details of the computational model can be found in
 Langlands et al (2016) "Paneth cell-rich regions separated by a cluster of Lgr5+ cells initiate
 fission in the intestinal stem cell niche".
 
-### Including header files
+
+## Including header files
 
 We begin by including the necessary header files. The first ones are common to all cell_based Chaste simulations
 
@@ -62,26 +64,26 @@ in Chaste are defined.
 class TestCryptFissionLiteratePaper : public AbstractCellBasedTestSuite
 {
 public:
-	void TestEpithelialLayerUndergoingFission() throw(Exception)
-	{
+    void TestEpithelialLayerUndergoingFission() throw(Exception)
+    {
 ```
 
 We first set all the simulation parameters.
 
 
 ```cpp
-		//Simulation time parameters
-		double dt = 0.005; //Set dt
-		double end_time = 100.0; //Set end time
-		double sampling_timestep = 0.5/dt; //Set sampling timestep
+        //Simulation time parameters
+        double dt = 0.005; //Set dt
+        double end_time = 100.0; //Set end time
+        double sampling_timestep = 0.5/dt; //Set sampling timestep
 
-		//Set all the spring stiffness variables
-		double epithelial_epithelial_stiffness = 15.0; //Epithelial-epithelial spring connections
-		double epithelial_nonepithelial_stiffness = 15.0; //Epithelial-non-epithelial spring connections
-		double nonepithelial_nonepithelial_stiffness = 15.0; //Non-epithelial-non-epithelial spring connections
+        //Set all the spring stiffness variables
+        double epithelial_epithelial_stiffness = 15.0; //Epithelial-epithelial spring connections
+        double epithelial_nonepithelial_stiffness = 15.0; //Epithelial-non-epithelial spring connections
+        double nonepithelial_nonepithelial_stiffness = 15.0; //Non-epithelial-non-epithelial spring connections
 
-		//Set the stiffness ratio for Paneth cells to stem cells. This is the
-		double stiffness_ratio = 4.5;
+        //Set the stiffness ratio for Paneth cells to stem cells. This is the
+        double stiffness_ratio = 4.5;
 ```
 
 Set the target proportion for stem cells. Note that the target proportion and
@@ -90,75 +92,75 @@ mechanical heterogeneities.
 
 
 ```cpp
-		double target_proportion = 0.3; //This corresponds to the 20% stem cell (80% Paneth cell) case
-		// double target_proportion = 0.8; //This corresponds to the 60% stem cell (40% Paneth cell) case.
+        double target_proportion = 0.3; //This corresponds to the 20% stem cell (80% Paneth cell) case
+        // double target_proportion = 0.8; //This corresponds to the 60% stem cell (40% Paneth cell) case.
 
-		//Set the BM force parameters
-		double bm_force = 10.0; //Set the basement membrane stiffness
-		double target_curvature = 0.2; //Set the target curvature, i.e. how circular the layer wants to be
+        //Set the BM force parameters
+        double bm_force = 10.0; //Set the basement membrane stiffness
+        double target_curvature = 0.2; //Set the target curvature, i.e. how circular the layer wants to be
 ```
 
 Set the domain of the model.
 
 ```cpp
-		unsigned cells_across = 24; //Desired width + a few more layers, to avoid the box collapsing
-		unsigned cells_up = 27; //Since height of each cell is 0.5*sqrt(3), we need to specify the no. of cells such that #cells*0.5*sqrt(3) = desired height
-		unsigned ghosts = 4; //Define a sufficient layer of ghost nodes to avoid infinite tessellations and hence excessively large forces
+        unsigned cells_across = 24; //Desired width + a few more layers, to avoid the box collapsing
+        unsigned cells_up = 27; //Since height of each cell is 0.5*sqrt(3), we need to specify the no. of cells such that #cells*0.5*sqrt(3) = desired height
+        unsigned ghosts = 4; //Define a sufficient layer of ghost nodes to avoid infinite tessellations and hence excessively large forces
 
-		//Translate mesh 1.5 units left and 1.5 units down, so that we have a sufficient layer of fixed cells around the boundary.
-		c_vector<double, 2> translate_left = zero_vector<double>(2);
-		translate_left(0) = -1.5;
+        //Translate mesh 1.5 units left and 1.5 units down, so that we have a sufficient layer of fixed cells around the boundary.
+        c_vector<double, 2> translate_left = zero_vector<double>(2);
+        translate_left(0) = -1.5;
 
-		c_vector<double, 2> translate_down = zero_vector<double>(2);
-		translate_down(1) = -1.5;
+        c_vector<double, 2> translate_down = zero_vector<double>(2);
+        translate_down(1) = -1.5;
 ```
 
 Define the initially circular lumen by centre and radius
 
 ```cpp
-		c_vector<double,2> circle_centre;
-		circle_centre(0) = 10.5;
-		circle_centre(1) = 10.0;
+        c_vector<double,2> circle_centre;
+        circle_centre(0) = 10.5;
+        circle_centre(1) = 10.0;
 
-		double circle_radius = 2.5; //Size of hole
-		assert(circle_radius > 0); //Just in case someone does something crazy.
+        double circle_radius = 2.5; //Size of hole
+        assert(circle_radius > 0); //Just in case someone does something crazy.
 
-		double ring_radius = circle_radius + 2.0; //Radius of the ring of cells. This isn't the actual radius, just has to be large enough for later
-		assert((ring_radius <= cells_across)&&(ring_radius <= cells_up)); //Again, just in case.
+        double ring_radius = circle_radius + 2.0; //Radius of the ring of cells. This isn't the actual radius, just has to be large enough for later
+        assert((ring_radius <= cells_across)&&(ring_radius <= cells_up)); //Again, just in case.
 ```
 
 Generate the initial mesh of cells.
 
 ```cpp
-		HoneycombMeshGenerator generator(cells_across, cells_up, ghosts);
-		MutableMesh<2,2>* p_mesh = generator.GetMesh();
+        HoneycombMeshGenerator generator(cells_across, cells_up, ghosts);
+        MutableMesh<2,2>* p_mesh = generator.GetMesh();
 
-		//Translate mesh appropriately
-		p_mesh->Translate(translate_left);
-		p_mesh->Translate(translate_down);
+        //Translate mesh appropriately
+        p_mesh->Translate(translate_left);
+        p_mesh->Translate(translate_down);
 ```
 
 Define the lumen as an inner region of ghost nodes.
 
 
 ```cpp
-		std::vector<unsigned> initial_real_indices = generator.GetCellLocationIndices(); //Obtain the locations of real nodes
+        std::vector<unsigned> initial_real_indices = generator.GetCellLocationIndices(); //Obtain the locations of real nodes
 
-		std::vector<unsigned> real_indices; //Vector used to define the locations of non-ghost nodes
+        std::vector<unsigned> real_indices; //Vector used to define the locations of non-ghost nodes
 
-		//Sweep over the initial real indices
-		for (unsigned i = 0; i < initial_real_indices.size(); i++)
-		{
-			unsigned cell_index = initial_real_indices[i];
-			double x = p_mesh->GetNode(cell_index)->rGetLocation()[0];
-			double y = p_mesh->GetNode(cell_index)->rGetLocation()[1];
+        //Sweep over the initial real indices
+        for (unsigned i = 0; i < initial_real_indices.size(); i++)
+        {
+            unsigned cell_index = initial_real_indices[i];
+            double x = p_mesh->GetNode(cell_index)->rGetLocation()[0];
+            double y = p_mesh->GetNode(cell_index)->rGetLocation()[1];
 
-			// If the location of the node falls inside the defined lumen region, then it becomes a ghost node.
-			if (pow(x-circle_centre[0],2) + pow(y-circle_centre[1],2) > pow(circle_radius,2))
-			{
-				real_indices.push_back(cell_index);
-			}
-		}
+            // If the location of the node falls inside the defined lumen region, then it becomes a ghost node.
+            if (pow(x-circle_centre[0],2) + pow(y-circle_centre[1],2) > pow(circle_radius,2))
+            {
+                real_indices.push_back(cell_index);
+            }
+        }
 ```
 
 Define cell types: non-epithelial cells are differentiated, all proliferative epithelial cells
@@ -167,13 +169,13 @@ while Paneth cells are assigned a Paneth cell mutation state.
 
 
 ```cpp
-		boost::shared_ptr<AbstractCellProperty> p_diff_type = CellPropertyRegistry::Instance()->Get<DifferentiatedCellProliferativeType>();
-		boost::shared_ptr<AbstractCellProperty> p_stem_type = CellPropertyRegistry::Instance()->Get<TransitCellProliferativeType>();
-		boost::shared_ptr<AbstractCellProperty> p_paneth_state = CellPropertyRegistry::Instance()->Get<PanethCellMutationState>();
-		boost::shared_ptr<AbstractCellProperty> p_state = CellPropertyRegistry::Instance()->Get<WildTypeCellMutationState>();
+        boost::shared_ptr<AbstractCellProperty> p_diff_type = CellPropertyRegistry::Instance()->Get<DifferentiatedCellProliferativeType>();
+        boost::shared_ptr<AbstractCellProperty> p_stem_type = CellPropertyRegistry::Instance()->Get<TransitCellProliferativeType>();
+        boost::shared_ptr<AbstractCellProperty> p_paneth_state = CellPropertyRegistry::Instance()->Get<PanethCellMutationState>();
+        boost::shared_ptr<AbstractCellProperty> p_state = CellPropertyRegistry::Instance()->Get<WildTypeCellMutationState>();
 
-		//Create vector of cells
-		std::vector<CellPtr> cells;
+        //Create vector of cells
+        std::vector<CellPtr> cells;
 ```
 
 Create asymmetric-division-based cell cycle for each cell. However, we initially set all cells
@@ -181,35 +183,35 @@ to be non-epithelial cells before defining our layer of epithelial cells.
 
 
 ```cpp
-		for (unsigned i = 0; i<real_indices.size(); i++)
-		{
-			//Set cell cycle
-			StochasticTargetProportionBasedCellCycleModel* p_cycle_model = new StochasticTargetProportionBasedCellCycleModel();
-			p_cycle_model->SetTargetProportion(target_proportion); //Set the division parameter
-			p_cycle_model->SetDimension(2);
+        for (unsigned i = 0; i<real_indices.size(); i++)
+        {
+            //Set cell cycle
+            StochasticTargetProportionBasedCellCycleModel* p_cycle_model = new StochasticTargetProportionBasedCellCycleModel();
+            p_cycle_model->SetTargetProportion(target_proportion); //Set the division parameter
+            p_cycle_model->SetDimension(2);
 
-			//To avoid a 'pulsing' behaviour with birth events, we set each cell's initial age to be
-			// ~U(-12, 0) in the past, as each cell cycle duration is U(11, 13).
-			double birth_time = 12.0*RandomNumberGenerator::Instance()->ranf();
-			p_cycle_model->SetBirthTime(-birth_time);
+            //To avoid a 'pulsing' behaviour with birth events, we set each cell's initial age to be
+            // ~U(-12, 0) in the past, as each cell cycle duration is U(11, 13).
+            double birth_time = 12.0*RandomNumberGenerator::Instance()->ranf();
+            p_cycle_model->SetBirthTime(-birth_time);
 
-			CellPtr p_cell(new Cell(p_state, p_cycle_model));
-			p_cell->SetCellProliferativeType(p_diff_type); //Set the cell to be differentiated and hence non-epithelial
-			p_cell->InitialiseCellCycleModel();
+            CellPtr p_cell(new Cell(p_state, p_cycle_model));
+            p_cell->SetCellProliferativeType(p_diff_type); //Set the cell to be differentiated and hence non-epithelial
+            p_cell->InitialiseCellCycleModel();
 
-			cells.push_back(p_cell);
-		}
+            cells.push_back(p_cell);
+        }
 
-		//Create cell population
-		MeshBasedCellPopulationWithGhostNodes<2> cell_population(*p_mesh, cells, real_indices);
+        //Create cell population
+        MeshBasedCellPopulationWithGhostNodes<2> cell_population(*p_mesh, cells, real_indices);
 
-		//Create layer of proliferative cells
-		for (unsigned i = 0; i < real_indices.size(); i++)
-		{
-			unsigned cell_index = real_indices[i];
-			CellPtr cell_iter = cell_population.GetCellUsingLocationIndex(cell_index);
-			double x = cell_population.GetLocationOfCellCentre(cell_iter)[0];
-			double y = cell_population.GetLocationOfCellCentre(cell_iter)[1];
+        //Create layer of proliferative cells
+        for (unsigned i = 0; i < real_indices.size(); i++)
+        {
+            unsigned cell_index = real_indices[i];
+            CellPtr cell_iter = cell_population.GetCellUsingLocationIndex(cell_index);
+            double x = cell_population.GetLocationOfCellCentre(cell_iter)[0];
+            double y = cell_population.GetLocationOfCellCentre(cell_iter)[1];
 ```
 
 We 'un-differentiate' any cells adjacent to the lumen into epithelial cells.
@@ -219,41 +221,41 @@ turn them into epithelial cells.
 
 
 ```cpp
-			if (pow(x-circle_centre[0],2) + pow(y-circle_centre[1],2) <= pow(ring_radius,2))
-			{
-				Node<2>* p_node = cell_population.GetNodeCorrespondingToCell(cell_iter);
-				unsigned node_index = p_node->GetIndex();
+            if (pow(x-circle_centre[0],2) + pow(y-circle_centre[1],2) <= pow(ring_radius,2))
+            {
+                Node<2>* p_node = cell_population.GetNodeCorrespondingToCell(cell_iter);
+                unsigned node_index = p_node->GetIndex();
 
-				//Iterate over all possible neighbours of the node
-				for (Node<2>::ContainingElementIterator iter = p_node->ContainingElementsBegin();
-						iter != p_node->ContainingElementsEnd();
-						++iter)
-				{
-					bool element_contains_ghost_nodes = false;
+                //Iterate over all possible neighbours of the node
+                for (Node<2>::ContainingElementIterator iter = p_node->ContainingElementsBegin();
+                        iter != p_node->ContainingElementsEnd();
+                        ++iter)
+                {
+                    bool element_contains_ghost_nodes = false;
 
-					// Get a pointer to the element
-					Element<2,2>* p_element = cell_population.rGetMesh().GetElement(*iter);
+                    // Get a pointer to the element
+                    Element<2,2>* p_element = cell_population.rGetMesh().GetElement(*iter);
 
-					// Check whether it's triangulation contains a ghost node
-					for (unsigned local_index=0; local_index<3; local_index++)
-					{
-						unsigned nodeGlobalIndex = p_element->GetNodeGlobalIndex(local_index);
+                    // Check whether it's triangulation contains a ghost node
+                    for (unsigned local_index=0; local_index<3; local_index++)
+                    {
+                        unsigned nodeGlobalIndex = p_element->GetNodeGlobalIndex(local_index);
 
-						if (cell_population.IsGhostNode(nodeGlobalIndex) == true)
-						{
-							element_contains_ghost_nodes = true;
-							break; 				// This should break out of the inner for loop
-						}
-					}
+                        if (cell_population.IsGhostNode(nodeGlobalIndex) == true)
+                        {
+                            element_contains_ghost_nodes = true;
+                            break;                 // This should break out of the inner for loop
+                        }
+                    }
 
-					//If a cell has a ghost node as a neighbour, we make it an epithelial cells.
-					if(element_contains_ghost_nodes)
-					{
-						cell_iter->SetCellProliferativeType(p_stem_type);
-					}
-				}
-			}
-		}
+                    //If a cell has a ghost node as a neighbour, we make it an epithelial cells.
+                    if(element_contains_ghost_nodes)
+                    {
+                        cell_iter->SetCellProliferativeType(p_stem_type);
+                    }
+                }
+            }
+        }
 ```
 
 Iterate again and check that proliferative cells are also attached to non-epithelial
@@ -261,79 +263,79 @@ cells. If they are not, remove them from the simulation.
 
 
 ```cpp
-		for (unsigned i = 0; i < real_indices.size(); i++)
-		{
-			unsigned cell_index = real_indices[i];
-			CellPtr cell_iter = cell_population.GetCellUsingLocationIndex(cell_index);
-			double x = cell_population.GetLocationOfCellCentre(cell_iter)[0];
-			double y = cell_population.GetLocationOfCellCentre(cell_iter)[1];
+        for (unsigned i = 0; i < real_indices.size(); i++)
+        {
+            unsigned cell_index = real_indices[i];
+            CellPtr cell_iter = cell_population.GetCellUsingLocationIndex(cell_index);
+            double x = cell_population.GetLocationOfCellCentre(cell_iter)[0];
+            double y = cell_population.GetLocationOfCellCentre(cell_iter)[1];
 
-			//Only consider this inside the pre-defined ring to narrow down our search
+            //Only consider this inside the pre-defined ring to narrow down our search
 
-			if (pow(x-circle_centre[0],2) + pow(y-circle_centre[1],2) <= pow(ring_radius,2))
-			{
-				Node<2>* p_node = cell_population.GetNodeCorrespondingToCell(cell_iter);
-				unsigned node_index = p_node->GetIndex();
+            if (pow(x-circle_centre[0],2) + pow(y-circle_centre[1],2) <= pow(ring_radius,2))
+            {
+                Node<2>* p_node = cell_population.GetNodeCorrespondingToCell(cell_iter);
+                unsigned node_index = p_node->GetIndex();
 
-				//Only iterate over the initial layer of transit cells
-				if (cell_iter->GetCellProliferativeType()->IsType<DifferentiatedCellProliferativeType>() == false)
-				{
-					bool element_contains_gel_nodes = false;
+                //Only iterate over the initial layer of transit cells
+                if (cell_iter->GetCellProliferativeType()->IsType<DifferentiatedCellProliferativeType>() == false)
+                {
+                    bool element_contains_gel_nodes = false;
 
-					//Iterate over elements (triangles) containing the node
-					for (Node<2>::ContainingElementIterator iter = p_node->ContainingElementsBegin();
-							iter != p_node->ContainingElementsEnd();
-							++iter)
-					{
-						// Get a pointer to the element (triangle)
-						Element<2,2>* p_element = cell_population.rGetMesh().GetElement(*iter);
+                    //Iterate over elements (triangles) containing the node
+                    for (Node<2>::ContainingElementIterator iter = p_node->ContainingElementsBegin();
+                            iter != p_node->ContainingElementsEnd();
+                            ++iter)
+                    {
+                        // Get a pointer to the element (triangle)
+                        Element<2,2>* p_element = cell_population.rGetMesh().GetElement(*iter);
 
-						// Check if its triangulation contains a gel node
-						for (unsigned local_index=0; local_index<3; local_index++)
-						{
-							unsigned nodeGlobalIndex = p_element->GetNodeGlobalIndex(local_index);
-							bool is_ghost_node = cell_population.IsGhostNode(nodeGlobalIndex);
+                        // Check if its triangulation contains a gel node
+                        for (unsigned local_index=0; local_index<3; local_index++)
+                        {
+                            unsigned nodeGlobalIndex = p_element->GetNodeGlobalIndex(local_index);
+                            bool is_ghost_node = cell_population.IsGhostNode(nodeGlobalIndex);
 
-							if (is_ghost_node == false) //Make sure we're not dealing with ghost nodes (otherwise this stuff will fail)
-							{
-								CellPtr p_local_cell = cell_population.GetCellUsingLocationIndex(nodeGlobalIndex);
-								if (p_local_cell->GetCellProliferativeType()->IsType<DifferentiatedCellProliferativeType>()==true)
-								{
-									element_contains_gel_nodes = true;
-									break; 				// This should break out of the inner for loop
-								}
-							}
-						}
-					}
+                            if (is_ghost_node == false) //Make sure we're not dealing with ghost nodes (otherwise this stuff will fail)
+                            {
+                                CellPtr p_local_cell = cell_population.GetCellUsingLocationIndex(nodeGlobalIndex);
+                                if (p_local_cell->GetCellProliferativeType()->IsType<DifferentiatedCellProliferativeType>()==true)
+                                {
+                                    element_contains_gel_nodes = true;
+                                    break;                 // This should break out of the inner for loop
+                                }
+                            }
+                        }
+                    }
 
-					if(element_contains_gel_nodes == false)
-					{
-						cell_iter->Kill();
-					}
-				}
-			}
-		}
+                    if(element_contains_gel_nodes == false)
+                    {
+                        cell_iter->Kill();
+                    }
+                }
+            }
+        }
 ```
 
 Randomly assign cells in the layer to be Paneth cells.
 
 
 ```cpp
-		std::vector<unsigned> cells_in_layer; //Initialise vector
+        std::vector<unsigned> cells_in_layer; //Initialise vector
 
-		//Obtain the proliferative cells
-		for (AbstractCellPopulation<2>::Iterator cell_iter = cell_population.Begin();
-				cell_iter != cell_population.End();
-				++cell_iter)
-		{
-			unsigned node_index = cell_population.GetLocationIndexUsingCell(*cell_iter);
+        //Obtain the proliferative cells
+        for (AbstractCellPopulation<2>::Iterator cell_iter = cell_population.Begin();
+                cell_iter != cell_population.End();
+                ++cell_iter)
+        {
+            unsigned node_index = cell_population.GetLocationIndexUsingCell(*cell_iter);
 
-			//If the cell is an epithelial cell
-			if (!cell_iter->GetCellProliferativeType()->IsType<DifferentiatedCellProliferativeType>() )
-			{
-				cells_in_layer.push_back(node_index); //Add the angle and node index
-			}
-		}
+            //If the cell is an epithelial cell
+            if (!cell_iter->GetCellProliferativeType()->IsType<DifferentiatedCellProliferativeType>() )
+            {
+                cells_in_layer.push_back(node_index); //Add the angle and node index
+            }
+        }
 ```
 
 For each cell in the ring, we draw a random number and assign cells to be stem cells with
@@ -341,43 +343,43 @@ a probability equal to the target proportion, as defined above.
 
 
 ```cpp
-		for (unsigned i = 0; i < cells_in_layer.size(); i++)
-		{
-			unsigned node_index = cells_in_layer[i];
+        for (unsigned i = 0; i < cells_in_layer.size(); i++)
+        {
+            unsigned node_index = cells_in_layer[i];
 
-			CellPtr cell = cell_population.GetCellUsingLocationIndex(node_index);
+            CellPtr cell = cell_population.GetCellUsingLocationIndex(node_index);
 
-			//Randomly generate number
-			double random_number = RandomNumberGenerator::Instance()->ranf();
+            //Randomly generate number
+            double random_number = RandomNumberGenerator::Instance()->ranf();
 
-			if(random_number >= target_proportion) //Assign cells to be Paneth with 1 - target_proportion
-			{
-				cell->SetMutationState(p_paneth_state);
-			}
-		}
+            if(random_number >= target_proportion) //Assign cells to be Paneth with 1 - target_proportion
+            {
+                cell->SetMutationState(p_paneth_state);
+            }
+        }
 
-		//Allow output in Paraview, a program that can be used to visualise Chaste simulations
-		cell_population.AddPopulationWriter<VoronoiDataWriter>();
+        //Allow output in Paraview, a program that can be used to visualise Chaste simulations
+        cell_population.AddPopulationWriter<VoronoiDataWriter>();
 ```
 
 Define the simulation class.
 
 ```cpp
-		OffLatticeSimulation<2> simulator(cell_population);
+        OffLatticeSimulation<2> simulator(cell_population);
 
-		//Set output directory
-		simulator.SetOutputDirectory("CryptFissionLiteratePaper");
+        //Set output directory
+        simulator.SetOutputDirectory("CryptFissionLiteratePaper");
 
-		simulator.SetDt(dt); //Set the timestep dt for force volution
-		simulator.SetSamplingTimestepMultiple(sampling_timestep); //Set the sampling timestep multiple for animations
-		simulator.SetEndTime(end_time); //Set the number of hours to run the simulation to
+        simulator.SetDt(dt); //Set the timestep dt for force volution
+        simulator.SetSamplingTimestepMultiple(sampling_timestep); //Set the sampling timestep multiple for animations
+        simulator.SetEndTime(end_time); //Set the number of hours to run the simulation to
 ```
 
 We add a modifier class to track relevant cell population numbers and shape measurements.
 
 ```cpp
-		MAKE_PTR(EpithelialLayerDataTrackingModifier<2>, p_data_tracking_modifier);
-		simulator.AddSimulationModifier(p_data_tracking_modifier);
+        MAKE_PTR(EpithelialLayerDataTrackingModifier<2>, p_data_tracking_modifier);
+        simulator.AddSimulationModifier(p_data_tracking_modifier);
 ```
 
 Add linear spring force which has different spring stiffness constants, depending
@@ -385,93 +387,103 @@ on the pair of cells it is connecting.
 
 
 ```cpp
-		MAKE_PTR(EpithelialLayerLinearSpringForce<2>, p_spring_force);
-		p_spring_force->SetCutOffLength(1.5);
-		//Set the spring stiffnesses
-		p_spring_force->SetEpithelialEpithelialSpringStiffness(epithelial_epithelial_stiffness);
-		p_spring_force->SetEpithelialNonepithelialSpringStiffness(epithelial_nonepithelial_stiffness);
-		p_spring_force->SetNonepithelialNonepithelialSpringStiffness(nonepithelial_nonepithelial_stiffness);
-		p_spring_force->SetPanethCellStiffnessRatio(stiffness_ratio);
-		simulator.AddForce(p_spring_force);
+        MAKE_PTR(EpithelialLayerLinearSpringForce<2>, p_spring_force);
+        p_spring_force->SetCutOffLength(1.5);
+        //Set the spring stiffnesses
+        p_spring_force->SetEpithelialEpithelialSpringStiffness(epithelial_epithelial_stiffness);
+        p_spring_force->SetEpithelialNonepithelialSpringStiffness(epithelial_nonepithelial_stiffness);
+        p_spring_force->SetNonepithelialNonepithelialSpringStiffness(nonepithelial_nonepithelial_stiffness);
+        p_spring_force->SetPanethCellStiffnessRatio(stiffness_ratio);
+        simulator.AddForce(p_spring_force);
 ```
 
 Add the basement membrane force.
 
 ```cpp
-		MAKE_PTR(EpithelialLayerBasementMembraneForce, p_bm_force);
-		p_bm_force->SetBasementMembraneParameter(bm_force); //Equivalent to beta in SJD's papers
-		p_bm_force->SetTargetCurvature(target_curvature); //This is equivalent to 1/R in SJD's papers
-		simulator.AddForce(p_bm_force);
+        MAKE_PTR(EpithelialLayerBasementMembraneForce, p_bm_force);
+        p_bm_force->SetBasementMembraneParameter(bm_force); //Equivalent to beta in SJD's papers
+        p_bm_force->SetTargetCurvature(target_curvature); //This is equivalent to 1/R in SJD's papers
+        simulator.AddForce(p_bm_force);
 ```
 
 Add an anoikis-based cell killer.
 
 ```cpp
-		MAKE_PTR_ARGS(EpithelialLayerAnoikisCellKiller, p_anoikis_killer, (&cell_population));
-		simulator.AddCellKiller(p_anoikis_killer);
+        MAKE_PTR_ARGS(EpithelialLayerAnoikisCellKiller, p_anoikis_killer, (&cell_population));
+        simulator.AddCellKiller(p_anoikis_killer);
 ```
 
 We fix all cells outside of the 20 x 20 box.
 
 
 ```cpp
-		c_vector<double,2> point = zero_vector<double>(2);
-		c_vector<double,2> normal = zero_vector<double>(2);
+        c_vector<double,2> point = zero_vector<double>(2);
+        c_vector<double,2> normal = zero_vector<double>(2);
 
-		//Fix cells in the region x < 0
-		normal(0) = -1.0;
-		MAKE_PTR_ARGS(FixedRegionPlaneBoundaryCondition<2>, p_bc1, (&cell_population, point, normal));
-		simulator.AddCellPopulationBoundaryCondition(p_bc1);
+        //Fix cells in the region x < 0
+        normal(0) = -1.0;
+        MAKE_PTR_ARGS(FixedRegionPlaneBoundaryCondition<2>, p_bc1, (&cell_population, point, normal));
+        simulator.AddCellPopulationBoundaryCondition(p_bc1);
 
-		//Fix cells in the region x > 20
-		point(0) = 20.0;
-		normal(0) = 1.0;
-		MAKE_PTR_ARGS(FixedRegionPlaneBoundaryCondition<2>, p_bc2, (&cell_population, point, normal));
-		simulator.AddCellPopulationBoundaryCondition(p_bc2);
+        //Fix cells in the region x > 20
+        point(0) = 20.0;
+        normal(0) = 1.0;
+        MAKE_PTR_ARGS(FixedRegionPlaneBoundaryCondition<2>, p_bc2, (&cell_population, point, normal));
+        simulator.AddCellPopulationBoundaryCondition(p_bc2);
 
-		//Fix cells in the region y < 0
-		point(0) = 0.0;
-		point(1) = 0.0;
-		normal(0) = 0.0;
-		normal(1) = -1.0;
-		MAKE_PTR_ARGS(FixedRegionPlaneBoundaryCondition<2>, p_bc3, (&cell_population, point, normal));
-		simulator.AddCellPopulationBoundaryCondition(p_bc3);
+        //Fix cells in the region y < 0
+        point(0) = 0.0;
+        point(1) = 0.0;
+        normal(0) = 0.0;
+        normal(1) = -1.0;
+        MAKE_PTR_ARGS(FixedRegionPlaneBoundaryCondition<2>, p_bc3, (&cell_population, point, normal));
+        simulator.AddCellPopulationBoundaryCondition(p_bc3);
 
-		//Fix cells in the region y > 20
-		point(1) = 20.0;
-		normal(1) = 1.0;
-		MAKE_PTR_ARGS(FixedRegionPlaneBoundaryCondition<2>, p_bc4, (&cell_population, point, normal));
-		simulator.AddCellPopulationBoundaryCondition(p_bc4);
+        //Fix cells in the region y > 20
+        point(1) = 20.0;
+        normal(1) = 1.0;
+        MAKE_PTR_ARGS(FixedRegionPlaneBoundaryCondition<2>, p_bc4, (&cell_population, point, normal));
+        simulator.AddCellPopulationBoundaryCondition(p_bc4);
 ```
 
 Run the simulation.
 
 ```cpp
-		simulator.Solve();
-	}
+        simulator.Solve();
+    }
 ```
 
 To visualize the results, open a new terminal and
-```
+
+```bash
 cd
 ```
+
  to the Chaste directory, then
-```
+
+```bash
 cd
 ```
+
  to
-```
+
+```text
 anim
 ```
+
 . Then do:
-```
+
+```bash
 java Visualize2dCentreCells /tmp/$USER/testoutput/CryptFissionLiteratePaper/results_from_time_0
 ```
+
 .
 You may have to do:
-```
+
+```bash
 javac Visualize2dCentreCells.java
 ```
+
  beforehand to create the java executable. You should also select the axes equal option.
 
 
@@ -480,15 +492,9 @@ javac Visualize2dCentreCells.java
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestCryptFissionLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestCryptFissionLiteratePaper.hpp"}
 #include <cxxtest/TestSuite.h> //Needed for all test files
 #include "CellBasedSimulationArchiver.hpp" //Needed if we would like to save/load simulations
 #include "AbstractCellBasedTestSuite.hpp" //Needed for cell-based tests: times simulations, generates random numbers and has cell properties
@@ -517,296 +523,294 @@ The full code is given below
 class TestCryptFissionLiteratePaper : public AbstractCellBasedTestSuite
 {
 public:
-	void TestEpithelialLayerUndergoingFission() throw(Exception)
-	{
-		//Simulation time parameters
-		double dt = 0.005; //Set dt
-		double end_time = 100.0; //Set end time
-		double sampling_timestep = 0.5/dt; //Set sampling timestep
+    void TestEpithelialLayerUndergoingFission() throw(Exception)
+    {
+        //Simulation time parameters
+        double dt = 0.005; //Set dt
+        double end_time = 100.0; //Set end time
+        double sampling_timestep = 0.5/dt; //Set sampling timestep
 
-		//Set all the spring stiffness variables
-		double epithelial_epithelial_stiffness = 15.0; //Epithelial-epithelial spring connections
-		double epithelial_nonepithelial_stiffness = 15.0; //Epithelial-non-epithelial spring connections
-		double nonepithelial_nonepithelial_stiffness = 15.0; //Non-epithelial-non-epithelial spring connections
+        //Set all the spring stiffness variables
+        double epithelial_epithelial_stiffness = 15.0; //Epithelial-epithelial spring connections
+        double epithelial_nonepithelial_stiffness = 15.0; //Epithelial-non-epithelial spring connections
+        double nonepithelial_nonepithelial_stiffness = 15.0; //Non-epithelial-non-epithelial spring connections
 
-		//Set the stiffness ratio for Paneth cells to stem cells. This is the
-		double stiffness_ratio = 4.5;
+        //Set the stiffness ratio for Paneth cells to stem cells. This is the
+        double stiffness_ratio = 4.5;
 
-		double target_proportion = 0.3; //This corresponds to the 20% stem cell (80% Paneth cell) case
-		// double target_proportion = 0.8; //This corresponds to the 60% stem cell (40% Paneth cell) case.
+        double target_proportion = 0.3; //This corresponds to the 20% stem cell (80% Paneth cell) case
+        // double target_proportion = 0.8; //This corresponds to the 60% stem cell (40% Paneth cell) case.
 
-		//Set the BM force parameters
-		double bm_force = 10.0; //Set the basement membrane stiffness
-		double target_curvature = 0.2; //Set the target curvature, i.e. how circular the layer wants to be
+        //Set the BM force parameters
+        double bm_force = 10.0; //Set the basement membrane stiffness
+        double target_curvature = 0.2; //Set the target curvature, i.e. how circular the layer wants to be
 
-		unsigned cells_across = 24; //Desired width + a few more layers, to avoid the box collapsing
-		unsigned cells_up = 27; //Since height of each cell is 0.5*sqrt(3), we need to specify the no. of cells such that #cells*0.5*sqrt(3) = desired height
-		unsigned ghosts = 4; //Define a sufficient layer of ghost nodes to avoid infinite tessellations and hence excessively large forces
+        unsigned cells_across = 24; //Desired width + a few more layers, to avoid the box collapsing
+        unsigned cells_up = 27; //Since height of each cell is 0.5*sqrt(3), we need to specify the no. of cells such that #cells*0.5*sqrt(3) = desired height
+        unsigned ghosts = 4; //Define a sufficient layer of ghost nodes to avoid infinite tessellations and hence excessively large forces
 
-		//Translate mesh 1.5 units left and 1.5 units down, so that we have a sufficient layer of fixed cells around the boundary.
-		c_vector<double, 2> translate_left = zero_vector<double>(2);
-		translate_left(0) = -1.5;
+        //Translate mesh 1.5 units left and 1.5 units down, so that we have a sufficient layer of fixed cells around the boundary.
+        c_vector<double, 2> translate_left = zero_vector<double>(2);
+        translate_left(0) = -1.5;
 
-		c_vector<double, 2> translate_down = zero_vector<double>(2);
-		translate_down(1) = -1.5;
+        c_vector<double, 2> translate_down = zero_vector<double>(2);
+        translate_down(1) = -1.5;
 
-		c_vector<double,2> circle_centre;
-		circle_centre(0) = 10.5;
-		circle_centre(1) = 10.0;
+        c_vector<double,2> circle_centre;
+        circle_centre(0) = 10.5;
+        circle_centre(1) = 10.0;
 
-		double circle_radius = 2.5; //Size of hole
-		assert(circle_radius > 0); //Just in case someone does something crazy.
+        double circle_radius = 2.5; //Size of hole
+        assert(circle_radius > 0); //Just in case someone does something crazy.
 
-		double ring_radius = circle_radius + 2.0; //Radius of the ring of cells. This isn't the actual radius, just has to be large enough for later
-		assert((ring_radius <= cells_across)&&(ring_radius <= cells_up)); //Again, just in case.
+        double ring_radius = circle_radius + 2.0; //Radius of the ring of cells. This isn't the actual radius, just has to be large enough for later
+        assert((ring_radius <= cells_across)&&(ring_radius <= cells_up)); //Again, just in case.
 
-		HoneycombMeshGenerator generator(cells_across, cells_up, ghosts);
-		MutableMesh<2,2>* p_mesh = generator.GetMesh();
+        HoneycombMeshGenerator generator(cells_across, cells_up, ghosts);
+        MutableMesh<2,2>* p_mesh = generator.GetMesh();
 
-		//Translate mesh appropriately
-		p_mesh->Translate(translate_left);
-		p_mesh->Translate(translate_down);
+        //Translate mesh appropriately
+        p_mesh->Translate(translate_left);
+        p_mesh->Translate(translate_down);
 
-		std::vector<unsigned> initial_real_indices = generator.GetCellLocationIndices(); //Obtain the locations of real nodes
+        std::vector<unsigned> initial_real_indices = generator.GetCellLocationIndices(); //Obtain the locations of real nodes
 
-		std::vector<unsigned> real_indices; //Vector used to define the locations of non-ghost nodes
+        std::vector<unsigned> real_indices; //Vector used to define the locations of non-ghost nodes
 
-		//Sweep over the initial real indices
-		for (unsigned i = 0; i < initial_real_indices.size(); i++)
-		{
-			unsigned cell_index = initial_real_indices[i];
-			double x = p_mesh->GetNode(cell_index)->rGetLocation()[0];
-			double y = p_mesh->GetNode(cell_index)->rGetLocation()[1];
+        //Sweep over the initial real indices
+        for (unsigned i = 0; i < initial_real_indices.size(); i++)
+        {
+            unsigned cell_index = initial_real_indices[i];
+            double x = p_mesh->GetNode(cell_index)->rGetLocation()[0];
+            double y = p_mesh->GetNode(cell_index)->rGetLocation()[1];
 
-			// If the location of the node falls inside the defined lumen region, then it becomes a ghost node.
-			if (pow(x-circle_centre[0],2) + pow(y-circle_centre[1],2) > pow(circle_radius,2))
-			{
-				real_indices.push_back(cell_index);
-			}
-		}
+            // If the location of the node falls inside the defined lumen region, then it becomes a ghost node.
+            if (pow(x-circle_centre[0],2) + pow(y-circle_centre[1],2) > pow(circle_radius,2))
+            {
+                real_indices.push_back(cell_index);
+            }
+        }
 
-		boost::shared_ptr<AbstractCellProperty> p_diff_type = CellPropertyRegistry::Instance()->Get<DifferentiatedCellProliferativeType>();
-		boost::shared_ptr<AbstractCellProperty> p_stem_type = CellPropertyRegistry::Instance()->Get<TransitCellProliferativeType>();
-		boost::shared_ptr<AbstractCellProperty> p_paneth_state = CellPropertyRegistry::Instance()->Get<PanethCellMutationState>();
-		boost::shared_ptr<AbstractCellProperty> p_state = CellPropertyRegistry::Instance()->Get<WildTypeCellMutationState>();
+        boost::shared_ptr<AbstractCellProperty> p_diff_type = CellPropertyRegistry::Instance()->Get<DifferentiatedCellProliferativeType>();
+        boost::shared_ptr<AbstractCellProperty> p_stem_type = CellPropertyRegistry::Instance()->Get<TransitCellProliferativeType>();
+        boost::shared_ptr<AbstractCellProperty> p_paneth_state = CellPropertyRegistry::Instance()->Get<PanethCellMutationState>();
+        boost::shared_ptr<AbstractCellProperty> p_state = CellPropertyRegistry::Instance()->Get<WildTypeCellMutationState>();
 
-		//Create vector of cells
-		std::vector<CellPtr> cells;
+        //Create vector of cells
+        std::vector<CellPtr> cells;
 
-		for (unsigned i = 0; i<real_indices.size(); i++)
-		{
-			//Set cell cycle
-			StochasticTargetProportionBasedCellCycleModel* p_cycle_model = new StochasticTargetProportionBasedCellCycleModel();
-			p_cycle_model->SetTargetProportion(target_proportion); //Set the division parameter
-			p_cycle_model->SetDimension(2);
+        for (unsigned i = 0; i<real_indices.size(); i++)
+        {
+            //Set cell cycle
+            StochasticTargetProportionBasedCellCycleModel* p_cycle_model = new StochasticTargetProportionBasedCellCycleModel();
+            p_cycle_model->SetTargetProportion(target_proportion); //Set the division parameter
+            p_cycle_model->SetDimension(2);
 
-			//To avoid a 'pulsing' behaviour with birth events, we set each cell's initial age to be
-			// ~U(-12, 0) in the past, as each cell cycle duration is U(11, 13).
-			double birth_time = 12.0*RandomNumberGenerator::Instance()->ranf();
-			p_cycle_model->SetBirthTime(-birth_time);
+            //To avoid a 'pulsing' behaviour with birth events, we set each cell's initial age to be
+            // ~U(-12, 0) in the past, as each cell cycle duration is U(11, 13).
+            double birth_time = 12.0*RandomNumberGenerator::Instance()->ranf();
+            p_cycle_model->SetBirthTime(-birth_time);
 
-			CellPtr p_cell(new Cell(p_state, p_cycle_model));
-			p_cell->SetCellProliferativeType(p_diff_type); //Set the cell to be differentiated and hence non-epithelial
-			p_cell->InitialiseCellCycleModel();
+            CellPtr p_cell(new Cell(p_state, p_cycle_model));
+            p_cell->SetCellProliferativeType(p_diff_type); //Set the cell to be differentiated and hence non-epithelial
+            p_cell->InitialiseCellCycleModel();
 
-			cells.push_back(p_cell);
-		}
+            cells.push_back(p_cell);
+        }
 
-		//Create cell population
-		MeshBasedCellPopulationWithGhostNodes<2> cell_population(*p_mesh, cells, real_indices);
+        //Create cell population
+        MeshBasedCellPopulationWithGhostNodes<2> cell_population(*p_mesh, cells, real_indices);
 
-		//Create layer of proliferative cells
-		for (unsigned i = 0; i < real_indices.size(); i++)
-		{
-			unsigned cell_index = real_indices[i];
-			CellPtr cell_iter = cell_population.GetCellUsingLocationIndex(cell_index);
-			double x = cell_population.GetLocationOfCellCentre(cell_iter)[0];
-			double y = cell_population.GetLocationOfCellCentre(cell_iter)[1];
+        //Create layer of proliferative cells
+        for (unsigned i = 0; i < real_indices.size(); i++)
+        {
+            unsigned cell_index = real_indices[i];
+            CellPtr cell_iter = cell_population.GetCellUsingLocationIndex(cell_index);
+            double x = cell_population.GetLocationOfCellCentre(cell_iter)[0];
+            double y = cell_population.GetLocationOfCellCentre(cell_iter)[1];
 
-			if (pow(x-circle_centre[0],2) + pow(y-circle_centre[1],2) <= pow(ring_radius,2))
-			{
-				Node<2>* p_node = cell_population.GetNodeCorrespondingToCell(cell_iter);
-				unsigned node_index = p_node->GetIndex();
+            if (pow(x-circle_centre[0],2) + pow(y-circle_centre[1],2) <= pow(ring_radius,2))
+            {
+                Node<2>* p_node = cell_population.GetNodeCorrespondingToCell(cell_iter);
+                unsigned node_index = p_node->GetIndex();
 
-				//Iterate over all possible neighbours of the node
-				for (Node<2>::ContainingElementIterator iter = p_node->ContainingElementsBegin();
-						iter != p_node->ContainingElementsEnd();
-						++iter)
-				{
-					bool element_contains_ghost_nodes = false;
+                //Iterate over all possible neighbours of the node
+                for (Node<2>::ContainingElementIterator iter = p_node->ContainingElementsBegin();
+                        iter != p_node->ContainingElementsEnd();
+                        ++iter)
+                {
+                    bool element_contains_ghost_nodes = false;
 
-					// Get a pointer to the element
-					Element<2,2>* p_element = cell_population.rGetMesh().GetElement(*iter);
+                    // Get a pointer to the element
+                    Element<2,2>* p_element = cell_population.rGetMesh().GetElement(*iter);
 
-					// Check whether it's triangulation contains a ghost node
-					for (unsigned local_index=0; local_index<3; local_index++)
-					{
-						unsigned nodeGlobalIndex = p_element->GetNodeGlobalIndex(local_index);
+                    // Check whether it's triangulation contains a ghost node
+                    for (unsigned local_index=0; local_index<3; local_index++)
+                    {
+                        unsigned nodeGlobalIndex = p_element->GetNodeGlobalIndex(local_index);
 
-						if (cell_population.IsGhostNode(nodeGlobalIndex) == true)
-						{
-							element_contains_ghost_nodes = true;
-							break; 				// This should break out of the inner for loop
-						}
-					}
+                        if (cell_population.IsGhostNode(nodeGlobalIndex) == true)
+                        {
+                            element_contains_ghost_nodes = true;
+                            break;                 // This should break out of the inner for loop
+                        }
+                    }
 
-					//If a cell has a ghost node as a neighbour, we make it an epithelial cells.
-					if(element_contains_ghost_nodes)
-					{
-						cell_iter->SetCellProliferativeType(p_stem_type);
-					}
-				}
-			}
-		}
+                    //If a cell has a ghost node as a neighbour, we make it an epithelial cells.
+                    if(element_contains_ghost_nodes)
+                    {
+                        cell_iter->SetCellProliferativeType(p_stem_type);
+                    }
+                }
+            }
+        }
 
-		for (unsigned i = 0; i < real_indices.size(); i++)
-		{
-			unsigned cell_index = real_indices[i];
-			CellPtr cell_iter = cell_population.GetCellUsingLocationIndex(cell_index);
-			double x = cell_population.GetLocationOfCellCentre(cell_iter)[0];
-			double y = cell_population.GetLocationOfCellCentre(cell_iter)[1];
+        for (unsigned i = 0; i < real_indices.size(); i++)
+        {
+            unsigned cell_index = real_indices[i];
+            CellPtr cell_iter = cell_population.GetCellUsingLocationIndex(cell_index);
+            double x = cell_population.GetLocationOfCellCentre(cell_iter)[0];
+            double y = cell_population.GetLocationOfCellCentre(cell_iter)[1];
 
-			//Only consider this inside the pre-defined ring to narrow down our search
+            //Only consider this inside the pre-defined ring to narrow down our search
 
-			if (pow(x-circle_centre[0],2) + pow(y-circle_centre[1],2) <= pow(ring_radius,2))
-			{
-				Node<2>* p_node = cell_population.GetNodeCorrespondingToCell(cell_iter);
-				unsigned node_index = p_node->GetIndex();
+            if (pow(x-circle_centre[0],2) + pow(y-circle_centre[1],2) <= pow(ring_radius,2))
+            {
+                Node<2>* p_node = cell_population.GetNodeCorrespondingToCell(cell_iter);
+                unsigned node_index = p_node->GetIndex();
 
-				//Only iterate over the initial layer of transit cells
-				if (cell_iter->GetCellProliferativeType()->IsType<DifferentiatedCellProliferativeType>() == false)
-				{
-					bool element_contains_gel_nodes = false;
+                //Only iterate over the initial layer of transit cells
+                if (cell_iter->GetCellProliferativeType()->IsType<DifferentiatedCellProliferativeType>() == false)
+                {
+                    bool element_contains_gel_nodes = false;
 
-					//Iterate over elements (triangles) containing the node
-					for (Node<2>::ContainingElementIterator iter = p_node->ContainingElementsBegin();
-							iter != p_node->ContainingElementsEnd();
-							++iter)
-					{
-						// Get a pointer to the element (triangle)
-						Element<2,2>* p_element = cell_population.rGetMesh().GetElement(*iter);
+                    //Iterate over elements (triangles) containing the node
+                    for (Node<2>::ContainingElementIterator iter = p_node->ContainingElementsBegin();
+                            iter != p_node->ContainingElementsEnd();
+                            ++iter)
+                    {
+                        // Get a pointer to the element (triangle)
+                        Element<2,2>* p_element = cell_population.rGetMesh().GetElement(*iter);
 
-						// Check if its triangulation contains a gel node
-						for (unsigned local_index=0; local_index<3; local_index++)
-						{
-							unsigned nodeGlobalIndex = p_element->GetNodeGlobalIndex(local_index);
-							bool is_ghost_node = cell_population.IsGhostNode(nodeGlobalIndex);
+                        // Check if its triangulation contains a gel node
+                        for (unsigned local_index=0; local_index<3; local_index++)
+                        {
+                            unsigned nodeGlobalIndex = p_element->GetNodeGlobalIndex(local_index);
+                            bool is_ghost_node = cell_population.IsGhostNode(nodeGlobalIndex);
 
-							if (is_ghost_node == false) //Make sure we're not dealing with ghost nodes (otherwise this stuff will fail)
-							{
-								CellPtr p_local_cell = cell_population.GetCellUsingLocationIndex(nodeGlobalIndex);
-								if (p_local_cell->GetCellProliferativeType()->IsType<DifferentiatedCellProliferativeType>()==true)
-								{
-									element_contains_gel_nodes = true;
-									break; 				// This should break out of the inner for loop
-								}
-							}
-						}
-					}
+                            if (is_ghost_node == false) //Make sure we're not dealing with ghost nodes (otherwise this stuff will fail)
+                            {
+                                CellPtr p_local_cell = cell_population.GetCellUsingLocationIndex(nodeGlobalIndex);
+                                if (p_local_cell->GetCellProliferativeType()->IsType<DifferentiatedCellProliferativeType>()==true)
+                                {
+                                    element_contains_gel_nodes = true;
+                                    break;                 // This should break out of the inner for loop
+                                }
+                            }
+                        }
+                    }
 
-					if(element_contains_gel_nodes == false)
-					{
-						cell_iter->Kill();
-					}
-				}
-			}
-		}
+                    if(element_contains_gel_nodes == false)
+                    {
+                        cell_iter->Kill();
+                    }
+                }
+            }
+        }
 
-		std::vector<unsigned> cells_in_layer; //Initialise vector
+        std::vector<unsigned> cells_in_layer; //Initialise vector
 
-		//Obtain the proliferative cells
-		for (AbstractCellPopulation<2>::Iterator cell_iter = cell_population.Begin();
-				cell_iter != cell_population.End();
-				++cell_iter)
-		{
-			unsigned node_index = cell_population.GetLocationIndexUsingCell(*cell_iter);
+        //Obtain the proliferative cells
+        for (AbstractCellPopulation<2>::Iterator cell_iter = cell_population.Begin();
+                cell_iter != cell_population.End();
+                ++cell_iter)
+        {
+            unsigned node_index = cell_population.GetLocationIndexUsingCell(*cell_iter);
 
-			//If the cell is an epithelial cell
-			if (!cell_iter->GetCellProliferativeType()->IsType<DifferentiatedCellProliferativeType>() )
-			{
-				cells_in_layer.push_back(node_index); //Add the angle and node index
-			}
-		}
+            //If the cell is an epithelial cell
+            if (!cell_iter->GetCellProliferativeType()->IsType<DifferentiatedCellProliferativeType>() )
+            {
+                cells_in_layer.push_back(node_index); //Add the angle and node index
+            }
+        }
 
-		for (unsigned i = 0; i < cells_in_layer.size(); i++)
-		{
-			unsigned node_index = cells_in_layer[i];
+        for (unsigned i = 0; i < cells_in_layer.size(); i++)
+        {
+            unsigned node_index = cells_in_layer[i];
 
-			CellPtr cell = cell_population.GetCellUsingLocationIndex(node_index);
+            CellPtr cell = cell_population.GetCellUsingLocationIndex(node_index);
 
-			//Randomly generate number
-			double random_number = RandomNumberGenerator::Instance()->ranf();
+            //Randomly generate number
+            double random_number = RandomNumberGenerator::Instance()->ranf();
 
-			if(random_number >= target_proportion) //Assign cells to be Paneth with 1 - target_proportion
-			{
-				cell->SetMutationState(p_paneth_state);
-			}
-		}
+            if(random_number >= target_proportion) //Assign cells to be Paneth with 1 - target_proportion
+            {
+                cell->SetMutationState(p_paneth_state);
+            }
+        }
 
-		//Allow output in Paraview, a program that can be used to visualise Chaste simulations
-		cell_population.AddPopulationWriter<VoronoiDataWriter>();
+        //Allow output in Paraview, a program that can be used to visualise Chaste simulations
+        cell_population.AddPopulationWriter<VoronoiDataWriter>();
 
-		OffLatticeSimulation<2> simulator(cell_population);
+        OffLatticeSimulation<2> simulator(cell_population);
 
-		//Set output directory
-		simulator.SetOutputDirectory("CryptFissionLiteratePaper");
+        //Set output directory
+        simulator.SetOutputDirectory("CryptFissionLiteratePaper");
 
-		simulator.SetDt(dt); //Set the timestep dt for force volution
-		simulator.SetSamplingTimestepMultiple(sampling_timestep); //Set the sampling timestep multiple for animations
-		simulator.SetEndTime(end_time); //Set the number of hours to run the simulation to
+        simulator.SetDt(dt); //Set the timestep dt for force volution
+        simulator.SetSamplingTimestepMultiple(sampling_timestep); //Set the sampling timestep multiple for animations
+        simulator.SetEndTime(end_time); //Set the number of hours to run the simulation to
 
-		MAKE_PTR(EpithelialLayerDataTrackingModifier<2>, p_data_tracking_modifier);
-		simulator.AddSimulationModifier(p_data_tracking_modifier);
+        MAKE_PTR(EpithelialLayerDataTrackingModifier<2>, p_data_tracking_modifier);
+        simulator.AddSimulationModifier(p_data_tracking_modifier);
 
-		MAKE_PTR(EpithelialLayerLinearSpringForce<2>, p_spring_force);
-		p_spring_force->SetCutOffLength(1.5);
-		//Set the spring stiffnesses
-		p_spring_force->SetEpithelialEpithelialSpringStiffness(epithelial_epithelial_stiffness);
-		p_spring_force->SetEpithelialNonepithelialSpringStiffness(epithelial_nonepithelial_stiffness);
-		p_spring_force->SetNonepithelialNonepithelialSpringStiffness(nonepithelial_nonepithelial_stiffness);
-		p_spring_force->SetPanethCellStiffnessRatio(stiffness_ratio);
-		simulator.AddForce(p_spring_force);
+        MAKE_PTR(EpithelialLayerLinearSpringForce<2>, p_spring_force);
+        p_spring_force->SetCutOffLength(1.5);
+        //Set the spring stiffnesses
+        p_spring_force->SetEpithelialEpithelialSpringStiffness(epithelial_epithelial_stiffness);
+        p_spring_force->SetEpithelialNonepithelialSpringStiffness(epithelial_nonepithelial_stiffness);
+        p_spring_force->SetNonepithelialNonepithelialSpringStiffness(nonepithelial_nonepithelial_stiffness);
+        p_spring_force->SetPanethCellStiffnessRatio(stiffness_ratio);
+        simulator.AddForce(p_spring_force);
 
-		MAKE_PTR(EpithelialLayerBasementMembraneForce, p_bm_force);
-		p_bm_force->SetBasementMembraneParameter(bm_force); //Equivalent to beta in SJD's papers
-		p_bm_force->SetTargetCurvature(target_curvature); //This is equivalent to 1/R in SJD's papers
-		simulator.AddForce(p_bm_force);
+        MAKE_PTR(EpithelialLayerBasementMembraneForce, p_bm_force);
+        p_bm_force->SetBasementMembraneParameter(bm_force); //Equivalent to beta in SJD's papers
+        p_bm_force->SetTargetCurvature(target_curvature); //This is equivalent to 1/R in SJD's papers
+        simulator.AddForce(p_bm_force);
 
-		MAKE_PTR_ARGS(EpithelialLayerAnoikisCellKiller, p_anoikis_killer, (&cell_population));
-		simulator.AddCellKiller(p_anoikis_killer);
+        MAKE_PTR_ARGS(EpithelialLayerAnoikisCellKiller, p_anoikis_killer, (&cell_population));
+        simulator.AddCellKiller(p_anoikis_killer);
 
-		c_vector<double,2> point = zero_vector<double>(2);
-		c_vector<double,2> normal = zero_vector<double>(2);
+        c_vector<double,2> point = zero_vector<double>(2);
+        c_vector<double,2> normal = zero_vector<double>(2);
 
-		//Fix cells in the region x < 0
-		normal(0) = -1.0;
-		MAKE_PTR_ARGS(FixedRegionPlaneBoundaryCondition<2>, p_bc1, (&cell_population, point, normal));
-		simulator.AddCellPopulationBoundaryCondition(p_bc1);
+        //Fix cells in the region x < 0
+        normal(0) = -1.0;
+        MAKE_PTR_ARGS(FixedRegionPlaneBoundaryCondition<2>, p_bc1, (&cell_population, point, normal));
+        simulator.AddCellPopulationBoundaryCondition(p_bc1);
 
-		//Fix cells in the region x > 20
-		point(0) = 20.0;
-		normal(0) = 1.0;
-		MAKE_PTR_ARGS(FixedRegionPlaneBoundaryCondition<2>, p_bc2, (&cell_population, point, normal));
-		simulator.AddCellPopulationBoundaryCondition(p_bc2);
+        //Fix cells in the region x > 20
+        point(0) = 20.0;
+        normal(0) = 1.0;
+        MAKE_PTR_ARGS(FixedRegionPlaneBoundaryCondition<2>, p_bc2, (&cell_population, point, normal));
+        simulator.AddCellPopulationBoundaryCondition(p_bc2);
 
-		//Fix cells in the region y < 0
-		point(0) = 0.0;
-		point(1) = 0.0;
-		normal(0) = 0.0;
-		normal(1) = -1.0;
-		MAKE_PTR_ARGS(FixedRegionPlaneBoundaryCondition<2>, p_bc3, (&cell_population, point, normal));
-		simulator.AddCellPopulationBoundaryCondition(p_bc3);
+        //Fix cells in the region y < 0
+        point(0) = 0.0;
+        point(1) = 0.0;
+        normal(0) = 0.0;
+        normal(1) = -1.0;
+        MAKE_PTR_ARGS(FixedRegionPlaneBoundaryCondition<2>, p_bc3, (&cell_population, point, normal));
+        simulator.AddCellPopulationBoundaryCondition(p_bc3);
 
-		//Fix cells in the region y > 20
-		point(1) = 20.0;
-		normal(1) = 1.0;
-		MAKE_PTR_ARGS(FixedRegionPlaneBoundaryCondition<2>, p_bc4, (&cell_population, point, normal));
-		simulator.AddCellPopulationBoundaryCondition(p_bc4);
+        //Fix cells in the region y > 20
+        point(1) = 20.0;
+        normal(1) = 1.0;
+        MAKE_PTR_ARGS(FixedRegionPlaneBoundaryCondition<2>, p_bc4, (&cell_population, point, normal));
+        simulator.AddCellPopulationBoundaryCondition(p_bc4);
 
-		simulator.Solve();
-	}
+        simulator.Solve();
+    }
 
 };
 ```
-
-

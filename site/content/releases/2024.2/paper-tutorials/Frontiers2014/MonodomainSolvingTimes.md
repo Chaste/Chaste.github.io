@@ -1,13 +1,16 @@
-This tutorial was generated from the file projects/Frontiers2014/test/TestMonodomainSolvingTimesLiteratePaper.hpp at revision r23346.
-Note that the code is given in full at the bottom of the page.
-
-
-
-## Benchmark monodomain tissue simulation solving times with different numerical methods
+---
+title: "Benchmark monodomain tissue simulation solving times with different numerical methods"
+draft: false
+layout: "single"
+weight: 6
+paperTutorialTestFile: "https://github.com/Chaste/project_Frontiers2014/blob/e495d4d2f7ae14f988de496f659f5056470c0434/test/TestMonodomainSolvingTimesLiteratePaper.hpp"
+version: "2024.2"
+---
 
 On this wiki page we describe in detail the code that is used to run this example from the paper.
 
-### Code overview
+
+## Code overview
 
 The first thing to do is to include the necessary header files.
 
@@ -499,15 +502,9 @@ A helper method that populates `mTimesteps` from the stored data file in
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestMonodomainSolvingTimesLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestMonodomainSolvingTimesLiteratePaper.hpp"}
 #include <cxxtest/TestSuite.h>
 
 #include <boost/assign/list_of.hpp>
@@ -844,5 +841,3 @@ private:
     }
 };
 ```
-
-

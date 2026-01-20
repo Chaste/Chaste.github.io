@@ -1,61 +1,64 @@
+---
+title: "Verification of computational models of cardiac electro-physiology"
+draft: false
+layout: "single"
+showPageLinks: true
+paperTutorialProject: "https://github.com/Chaste/project_CardiacEpVerification"
+---
 
- = Verification of computational models of cardiac electro-physiology =
 
 The project corresponds to the paper: Pras Pathmanathan and Richard A. Gray, *Verification of computational models of
 cardiac electro-physiology*, accepted for publication in International Journal for Numerical Methods in Bioengineering.
 
 Walk-throughs of the main tests are given below. The entire project, which includes all source files, results files and matlab scripts, can be viewed at
-[projects/CardiacEpVerification](https://chaste.cs.ox.ac.uk/trac/browser/projects/CardiacEpVerification),
+[https://github.com/Chaste/project_CardiacEpVerification](https://github.com/Chaste/project_CardiacEpVerification),
 
-New users of Chaste who wish to install Chaste and run this project, see [GettingStarted](https://github.com/Chaste/trac_archive/wiki/Getting-Started) and ChasteGuides.
+New users of Chaste who wish to install Chaste and run this project, see [GettingStarted](/old_releases/release_3.2/) and ChasteGuides.
 
- == Testing against exact solutions ==
 
-This test compares the results of the cardiac electro-physiology solver in Chaste on model problems with exact solutions, for monodomain, bidomain and bidomain-with-bath,
-and in 1D, 2D and 3D. See [EpAgainstExactSolutions](PaperTutorials/CardiacEpVerification/EpAgainstExactSolutions).
+## Testing against exact solutions
+
+This test compares the results of the cardiac electro-physiology solver in Chaste on model problems with exact solutions, for monodomain, bidomain and bidomain-with-bath, and in 1D, 2D and 3D. See [EpAgainstExactSolutions](epagainstexactsolutions).
 A results file containing the raw results is included in the project (link above).
 
- == 1D conduction velocity ==
+
+## 1D conduction velocity
 
 This test computes the conduction velocity in a 1D monodomain simulation using different mesh resolutions. A matlab script applies Richardson extrapolation
-to the results. See [ConductionVelocityCaseStudy](PaperTutorials/CardiacEpVerification/ConductionVelocityCaseStudy).
+to the results. See [ConductionVelocityCaseStudy](conductionvelocitycasestudy).
 A results file containing the raw results is included in the project (link above), as is the matlab script.
 
- == Reentry on a 3D rabbit geometry  ==
+
+## Reentry on a 3D rabbit geometry
 
 The test uses an S1-S2 protocol to induce reentry on a rabbit geometry, and is set up to run on the full-resolution Oxford rabbit heart, as well
-as medium and coarse resolution versions of the same geometry. See [ReentryOnRabbitMesh](PaperTutorials/CardiacEpVerification/ReentryOnRabbitMesh).
+as medium and coarse resolution versions of the same geometry. See [ReentryOnRabbitMesh](reentryonrabbitmesh).
 
-To run this test you will need to download the meshes and provide their locations. The coarse mesh is already in the Chaste repository, so nothing
-needs to be done for this. Also, it is possible run the coarse mesh simulation on a normal desktop or laptop. The fine mesh is available for download
-at the main [download page](http://www.cs.ox.ac.uk/chaste/download.html) (`OxfordRabbitHeart_binary.tgz`). Simulations using this mesh will
-probably require high-performance computing resources (the simulation for the paper on this mesh took 74 minutes using 256 processes).
-The medium and fine resolution meshes are both contained in the public data repository -- see https://chaste.cs.ox.ac.uk/trac/browser/data/public.
+To run this test you will need to download the meshes and provide their locations.
+The coarse mesh is already in the Chaste repository, so nothing needs to be done for this.
+Also, it is possible run the coarse mesh simulation on a normal desktop or laptop.
+The fine mesh is available for download at the main [download page](https://chaste.github.io/redirect/) (`OxfordRabbitHeart_binary.tgz`).
+Simulations using this mesh will probably require high-performance computing resources (the simulation for the paper on this mesh took 74 minutes using 256 processes).
+The medium and fine resolution meshes are both contained in the public data repository -- see <https://chaste.github.io/redirect/>.
 
 **Note:** We have recently observed that these simulations can, when run on the same mesh but using different configurations
 (e.g. number of processes), look identical for (say) 500ms, but then begin to differ -- presumably an example of tiny differences in a chaotic
-system building up to large differences. This should be taken into account if you run any of the simulations and then compare with the figures
-in the paper. It may be possible to force these divergences to occur later by using much smaller tolerances; more investigation is required.
-These observations does not affect the conclusions of Section 3.2 in the paper, that anatomical detail (fine vs medium mesh) leads to large
-differences in activation patterns (much earlier than 500ms) and overall that calculation verification for simulations involving such arrhythmic
-activity is extremely difficult. When using such simulations it will be important to choose robust QOIs for which numerical error can be
-meaningfully estimated. It is however a major problem that floating point differences can add up to qualitative differences in arrhythmic
-simulations in less than 1s of simulation time.
+system building up to large differences.
+This should be taken into account if you run any of the simulations and then compare with the figures in the paper.
+It may be possible to force these divergences to occur later by using much smaller tolerances; more investigation is required.
+These observations does not affect the conclusions of Section 3.2 in the paper, that anatomical detail (fine vs medium mesh) leads to large differences in activation patterns (much earlier than 500ms) and overall that calculation verification for simulations involving such arrhythmic activity is extremely difficult.
+When using such simulations it will be important to choose robust QOIs for which numerical error can be meaningfully estimated.
+It is however a major problem that floating point differences can add up to qualitative differences in arrhythmic simulations in less than 1s of simulation time.
 
-Robert Blake (Department of Biomedical Engineering, Johns Hopkins University) observed similar phenomena in simulations of arrhythmia
-using a different solver, and performed a thorough investigation of his simulations and provided us with some highly useful information.
+Robert Blake (Department of Biomedical Engineering, Johns Hopkins University) observed similar phenomena in simulations of arrhythmia using a different solver, and performed a thorough investigation of his simulations and provided us with some highly useful information.
 The number of processes was observed to affect the large-time solution, and he determined that the cause was at the MPI level, with network
-latency affecting some floating point calculations. `MPI_Allreduce` for example was affected by network latency. (For a discussion of
-MPI reproducibility see http://www.mcs.anl.gov/papers/P4093-0713_1.pdf). He determined however that the biggest factor was very small
-differences in the assembled system matrix (specifically, the order messages are received in the PETSc methods `MatAssemblyBegin` and `MatAssemblyEnd`
-affecting the final matrix), which eventually led to a differences in solution. He points out that in the latest version of PETSc
-(version 3.4), there is a flag `matstash_reproduce` that forces such messages to be received in a predictable order, and may help reduce
-floating point differences and improve reproducibility. (Command line usage: `-matstash_reproduce 1`).
+latency affecting some floating point calculations.
+`MPI_Allreduce` for example was affected by network latency. (For a discussion of MPI reproducibility see <http://www.mcs.anl.gov/papers/P4093-0713_1.pdf>).
+He determined however that the biggest factor was very small differences in the assembled system matrix (specifically, the order messages are received in the PETSc methods `MatAssemblyBegin` and `MatAssemblyEnd` affecting the final matrix), which eventually led to a differences in solution.
+He points out that in the latest version of PETSc (version 3.4), there is a flag `matstash_reproduce` that forces such messages to be received in a predictable order, and may help reduce floating point differences and improve reproducibility.
+(Command line usage: `-matstash_reproduce 1`).
 
-The extent to which his observations apply to our findings, and the extent to which `matstash_reproduce` can fix these issues,
-needs further investigation.
+The extent to which his observations apply to our findings, and the extent to which `matstash_reproduce` can fix these issues, needs further investigation.
 
------
-### Section contents
-[SubWiki()](SubWiki())
 
+## Section contents

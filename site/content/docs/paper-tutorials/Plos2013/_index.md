@@ -2,6 +2,8 @@
 title: "Chaste: an open source C++ library for computational physiology and biology"
 draft: false
 layout: "single"
+showPageLinks: true
+paperTutorialProject: "https://github.com/Chaste/project_Plos2013"
 ---
 
 This section contains pages generated automatically from the source code accompanying [Chaste: an open source C++ library for computational physiology and biology](http://dx.doi.org/10.1371/journal.pcbi.1002970),
@@ -26,3 +28,6 @@ For further information on using Chaste to solve these and related problems, see
 [{{< img src="/fig/paper-tutorials/spheroid_v2.png" alt="Spheroid experiments" h="200px" >}}](spheroidexperiments)
 
 [{{< img src="/fig/paper-tutorials/composite.png" alt="Electromechanics" h="200px" >}}](electromechanics)
+
+
+## Section contents

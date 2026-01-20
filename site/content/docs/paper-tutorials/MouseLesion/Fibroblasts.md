@@ -1,13 +1,16 @@
-This tutorial was generated from the file projects/MouseLesion/test/TestFibroblastsLiteratePaper.hpp at revision r27528.
-Note that the code is given in full at the bottom of the page.
+---
+title: "Two dimensional mouse ventricle with lesion simulation"
+draft: false
+layout: "single"
+weight: 1
+paperTutorialTestFile: "https://github.com/Chaste/project_MouseLesion/blob/e3ec7ce88b6cfb18e58369923d8afaee558f7bd0/test/TestFibroblastsLiteratePaper.hpp"
+---
 
-
-
-## Two dimensional mouse ventricle with lesion simulation
 
 This is the code that was used to perform the simulation in Mahoney *et al.* (2016).
 
-### Code Walkthrough
+
+## Code Walkthrough
 
 
 ```cpp
@@ -68,7 +71,7 @@ public:
                     " * --pacing-period <x>  The time between paces applied on x=0 (defaults to 100ms)\n"
                     " * --end-time <x>       How long to perform the simulation for (defaults to pacing period).\n"
                     " * --lesion-pacing      Whether to perform pacing in the centre of the lesion (default false).\n"
-            		" * --cut  Whether to introduce a cut with complete conduction block (defaults to false).\n";
+                    " * --cut  Whether to introduce a cut with complete conduction block (defaults to false).\n";
             return;
         }
 
@@ -390,15 +393,9 @@ COMPLETE THE SET UP OF PROBLEM
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestFibroblastsLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestFibroblastsLiteratePaper.hpp"}
 #include <cxxtest/TestSuite.h>
 
 #include "ScarCellFactory.hpp"
@@ -446,7 +443,7 @@ public:
                     " * --pacing-period <x>  The time between paces applied on x=0 (defaults to 100ms)\n"
                     " * --end-time <x>       How long to perform the simulation for (defaults to pacing period).\n"
                     " * --lesion-pacing      Whether to perform pacing in the centre of the lesion (default false).\n"
-            		" * --cut  Whether to introduce a cut with complete conduction block (defaults to false).\n";
+                    " * --cut  Whether to introduce a cut with complete conduction block (defaults to false).\n";
             return;
         }
 
@@ -741,5 +738,3 @@ public:
     }
 };
 ```
-
-

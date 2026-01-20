@@ -2,9 +2,10 @@
 title: "Cell-based simulation: multiple crypts and a villus"
 draft: false
 layout: "single"
+weight: 2
+paperTutorialTestFile: "https://github.com/Chaste/project_Plos2013/blob/5b522e0ce55ac81ce8728f858b10464e9d7cfb98/test/TestCryptsAndVillusLiteratePaper.hpp"
 ---
 
-This tutorial was generated from the file [TestCryptsAndVillusLiteratePaper.hpp](https://github.com/Chaste/project_Plos2013/blob/5b522e0ce55ac81ce8728f858b10464e9d7cfb98/test/TestCryptsAndVillusLiteratePaper.hpp).
 Note that the code is given in full at the bottom of the page.
 
 {{< img src="/fig/paper-tutorials/combined.png" alt="Crypts and villus" h="200px" >}}
@@ -35,10 +36,10 @@ load the file results.pvd, then click "Apply" in the object inspector panel. As 
 uses a `NodeBasedCellPopulation`, you must use glyphs to visualize cells: click the button marked
 "Glyph" in the toolbar of common filters; specify cells to be displayed as spheres; then click "Apply".
 
-### Code overview
+
+## Code overview
 
 The first thing to do is to include the necessary header files.
-
 
 ```cpp
 #include <cxxtest/TestSuite.h>
@@ -71,10 +72,8 @@ class TestCryptsAndVillusLiteratePaper : public AbstractCellBasedTestSuite
 private:
 ```
 
-
 These methods are `cxx-test` instructions running before and after each test below.
 They are just here to report the time the test took.
-
 
 ```cpp
     void setUp()
@@ -95,7 +94,6 @@ public:
 
 The following code is the `test` itself, we use the `scons` / `cxx-test` framework to run simulations, as it
 provides a handy way to do all the necessary linking and library building.
-
 
 ```cpp
     void Test3dCrypt() throw (Exception)
@@ -132,7 +130,6 @@ We then create a couple of cells at the base of each crypt.
 We then convert this list of nodes to a `NodesOnlyMesh`,
 which doesn't do very much apart from keep track of the nodes.
 
-
 ```cpp
         NodesOnlyMesh<3> mesh;
         mesh.ConstructNodesWithoutMesh(nodes, 1.5);
@@ -142,7 +139,6 @@ Next we have to create the cells that will be associated with these nodes.
 So we make an empty vector in which to store the cells and then loop over
 each node, adding cells as we go.
 
-
 ```cpp
         std::vector<CellPtr> cells;
         MAKE_PTR(TransitCellProliferativeType, p_transit_type);
@@ -151,10 +147,8 @@ each node, adding cells as we go.
         {
 ```
 
-
 This cell cycle model carries a Delta-Notch signalling model,
 and also a simple rule about division based on extracellular Wnt concentration.
-
 
 ```cpp
             SimpleWntCellCycleModel* p_cc_model = new SimpleWntCellCycleModel();
@@ -186,7 +180,6 @@ We then create a cell with a mutation state (Wild Type in this case), a cell cyc
 We now create a cell population, which keeps track of a mesh and cells and the association between them.
 In this case we need a `NodeBasedCellPopulation` in three dimensions.
 
-
 ```cpp
         NodeBasedCellPopulation<3> crypt(mesh, cells);
         crypt.SetCellAncestorsToLocationIndices();
@@ -208,7 +201,6 @@ We then instruct the cell population to output some useful information for plott
 
 We now set up our cell-based simulation class.
 
-
 ```cpp
         OffLatticeSimulation<3> simulator(crypt);
         simulator.SetOutputDirectory("Plos2013_MultipleCrypt");
@@ -223,7 +215,6 @@ We limit the output to every 120 time steps (1 hour) to reduce output file sizes
 
 We now create a modifier, which updates the delta and notch levels on each timestep.
 
-
 ```cpp
         MAKE_PTR(DeltaNotchTrackingModifier<3>, p_modifier);
         simulator.AddSimulationModifier(p_modifier);
@@ -231,7 +222,6 @@ We now create a modifier, which updates the delta and notch levels on each times
 
 We now create a force law and pass it to the simulation
 We use linear springs between cells up to a maximum of 1.5 ('relaxed' cell diameters) apart, and add this to the simulation class.
-
 
 ```cpp
         MAKE_PTR(GeneralisedLinearSpringForce<3>, p_linear_force);
@@ -243,7 +233,6 @@ We use linear springs between cells up to a maximum of 1.5 ('relaxed' cell diame
 The most complex part of this problem definition is that of the boundary condition that limits
 cell locations to a 2D surface in 3D space. This has been defined in a separate class
 `MultipleCryptGeometryBoundaryCondition` which can be found in this project's `src` folder.
-
 
 ```cpp
         MAKE_PTR_ARGS(MultipleCryptGeometryBoundaryCondition,
@@ -276,7 +265,6 @@ We then set an end time and run the simulation
 These methods provide some reports of how much computation time is spent in which parts of the code.
 These would be done automatically at the beginning and end of the test, but we are interrupting mid-way through here.
 
-
 ```cpp
         CellBasedEventHandler::Headings();
         CellBasedEventHandler::Report();
@@ -285,7 +273,6 @@ These would be done automatically at the beginning and end of the test, but we a
 
 Having run the simulation to a roughly steady-state, and filled the villus with cells,
 we now add a random cell killer to represent random death in the epithelial layer.
-
 
 ```cpp
         MAKE_PTR_ARGS(RandomCellKiller<3>, p_cell_killer_2,(&crypt, 0.005)); // prob of death in an hour
@@ -309,15 +296,9 @@ We now solve for a further 750 hours, up to a total of 1000 hours
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestCryptsAndVillusLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestCryptsAndVillusLiteratePaper.hpp"}
 #include <cxxtest/TestSuite.h>
 
 // Must be included before any other cell_based headers
@@ -462,5 +443,3 @@ public:
     }
 };
 ```
-
-

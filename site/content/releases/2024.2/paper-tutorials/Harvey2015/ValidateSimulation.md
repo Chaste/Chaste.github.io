@@ -1,9 +1,12 @@
-This tutorial was generated from the file projects/Harvey2015/test/TestValidateSimulationLiteratePaper.hpp at revision r23521.
-Note that the code is given in full at the bottom of the page.
+---
+title: "Validate a 256 cell simulation in parallel and serial (Figure 3)"
+draft: false
+layout: "single"
+weight: 2
+paperTutorialTestFile: "https://github.com/Chaste/project_Harvey2015/blob/a0fc3c6879e9b4bf55f507f3727560cdce653f23/test/TestLoadBalanceSensitivityLiteratePaper.hpp"
+version: "2024.2"
+---
 
-
-
-## Validate a 256 cell simulation in parallel and serial (Figure 3)
 
 This class was used to generate the results in Figure 3.
 A script `CompareParallelResults.py` is provided to aid comparison
@@ -11,11 +14,10 @@ of the output results of the simulation.
 
 **Note:  before compiling this code you need to alter the precision of the output.**
 You can do so by adding single line `setprecision(..)` to `NodeLocationWriter` in the main code base
-```
 
+```diff
 Index: cell_based/src/population/writers/population_writers/NodeLocationWriter.cpp
 ===================================================================
-version: "2024.2"
 --- cell_based/src/population/writers/population_writers/NodeLocationWriter.cpp (revision 21854)
 +++ cell_based/src/population/writers/population_writers/NodeLocationWriter.cpp (working copy)
 @@ -50,6 +50,7 @@
@@ -28,11 +30,12 @@ node_iter != pCellPopulation->rGetMesh().GetNodeIteratorEnd();
 ++node_iter)
 ```
 
-### Use
+
+## Use
 
 This test suite is designed to be run twice.  Each run will take roughly a minute (depending on your machine configuration).
-```
 
+```text
 ## in serial
 scons build=GccOptNative projects/Harvey2015/test/TestValidateSimulationLiteratePaper.hpp
 ## In parallel
@@ -41,18 +44,20 @@ scons build=GccOptNative_2 projects/Harvey2015/test/TestValidateSimulationLitera
 
 
 After this the positional output may be checked to machine output precision:
-```
 
+```text
 ## May need to see this to $CHASTE_TEST_OUTPUT
 export OUTPUT=/tmp/$USER/testoutput
 ./projects/Harvey2015/test/CompareParallelResults.py 2 $OUTPUT/ValidateSimulation3Rand1/results_from_time_0/results.viznodes $OUTPUT/ValidateSimulation3Rand2/results_from_time_0/results.viznodes
 ```
 
-### Code overview
+
+## Code overview
 
 The first thing to do is to include the necessary header files.
 
-#### Include header files
+
+## Include header files
 
 
 ```cpp
@@ -144,15 +149,9 @@ Report on the time taken to run the simulation
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestValidateSimulationLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestValidateSimulationLiteratePaper.hpp"}
 // The testing framework
 #include <cxxtest/TestSuite.h>
 #include "AbstractCellBasedTestSuite.hpp"
@@ -219,5 +218,3 @@ public:
     }
 };
 ```
-
-

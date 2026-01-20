@@ -1,27 +1,36 @@
+---
+title: "Distribution of mitotic events in healthy and irradiated crypts"
+draft: false
+layout: "single"
+showPageLinks: true
+paperTutorialProject: "https://github.com/Chaste/project_CryptProliferationDistribution"
+---
+
+
 ## Distribution of mitotic events in healthy and irradiated crypts
 
-This section contains pages generated automatically from the source code accompanying Dunn et al. (2016) "Combined changes in Wnt signaling response and contact inhibition induce altered proliferation in radiation-treated intestinal crypts" in Mollecular Biology of the Cell http://dx.doi.org/10.1091/mbc.E15-12-0854
+This section contains pages generated automatically from the source code accompanying Dunn et al. (2016) "Combined changes in Wnt signaling response and contact inhibition induce altered proliferation in radiation-treated intestinal crypts" in Mollecular Biology of the Cell <http://dx.doi.org/10.1091/mbc.E15-12-0854>
 
-The code to simulate crypts and run parameter sweeps, which was used produce Figure 3 (and SI Figures 1.1-1.5), can be found here [TestCryptProliferationDistributionLiteratePaper.hpp](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Crypt-Proliferation-Distribution-_-Crypt-Proliferation-Distribution)
+The code to simulate crypts and run parameter sweeps, which was used produce Figure 3 (and SI Figures 1.1-1.5), can be found here [TestCryptProliferationDistributionLiteratePaper.hpp](https://github.com/Chaste/project_CryptProliferationDistribution/blob/10970027a16db5f67a4257ac4bdce4c5ca51ab13/test/TestCryptProliferationDistributionLiteratePaper.hpp)
 
-The code to simulate crypts initialy comprised of control and gamma cells, and was used produce Figure 6, can be found here [TestCryptTakeoverProbabilityLiteratePaper.hpp](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Crypt-Proliferation-Distribution-_-Crypt-Takeover-Probability)
+The code to simulate crypts initialy comprised of control and gamma cells, and was used produce Figure 6, can be found here [TestCryptTakeoverProbabilityLiteratePaper.hpp](https://github.com/Chaste/project_CryptProliferationDistribution/blob/10970027a16db5f67a4257ac4bdce4c5ca51ab13/test/TestCryptTakeoverProbabilityLiteratePaper.hpp)
 
-Before looking at these, you may wish to look at some of the [basic user tutorials](https://github.com/Chaste/trac_archive/wiki/User-Tutorials) for Chaste.
+Before looking at these, you may wish to look at some of the [basic user tutorials](/old_releases/release_3.3/UserTutorials.html) for Chaste.
 
 
 ### Getting the code and installing dependencies
 
-Before running these examples you will need to [install Chaste's dependencies](https://github.com/Chaste/trac_archive/wiki/Install-Guides-_-Install-Guide) and the [source code for version 3.3](http://www.cs.ox.ac.uk/chaste/download.html).
-The easiest way to do this is using an Ubuntu machine (or an Ubuntu virtual machine) as discussed on [InstallGuides/UbuntuPackage](https://github.com/Chaste/trac_archive/wiki/Install-Guides-_-Ubuntu-Package).
+Before running these examples you will need to [install Chaste's dependencies](/old_releases/release_3.3/InstallGuides/InstallGuide.html) and the [source code for version 3.3](https://github.com/Chaste/Chaste/releases/tag/release_3.3).
+The easiest way to do this is using an Ubuntu machine (or an Ubuntu virtual machine) as discussed on [InstallGuides/UbuntuPackage](/old_releases/release_3.3/InstallGuides/UbuntuPackage.html).
 Note that Chaste is only fully supported on Linux/Unix systems, so users of Windows or Mac OS X may need to follow the virtual machine route.
 For manual installation of each dependency, on any version of Linux, see DeveloperInstallGuide.
 
 **NB**: the paper was developed with release version 3.3 of Chaste. It does not work with release version 3.2 or under. It may need updating to work on newer revisions of the trunk code.
 
-You will also need the source for the [CryptProliferationDistribution](https://github.com/Chaste/trac_archive/wiki/Crypt-Proliferation-Distribution) project.  This can be done by checking out the version from the repository by using the command
-```
+You will also need the source for the [CryptProliferationDistribution](https://github.com/Chaste/project_CryptProliferationDistribution) project.  This can be done by checking out the version from the repository by using the command
 
-svn checkout https://chaste.cs.ox.ac.uk/svn/chaste/projects/CryptProliferationDistribution
+```bash
+git clone https://github.com/Chaste/project_CryptProliferationDistribution.git CryptProliferationDistribution
 ```
 
 in the projects folder of the Chaste directory.
@@ -29,8 +38,11 @@ in the projects folder of the Chaste directory.
 Now the project should be installed, and everything should compile and run correctly.
 You can now run the tests or simulations, or create your own test suites.
 
-### Documentation
+
+## Documentation
+
 There are two folders - `src` and `test`.
+
  1. The `src` folder contains the following classes:
 
 * `CellRetainerForce.xpp` - The force which restrains stem and paneth cells in the base of the crypt.
@@ -42,31 +54,29 @@ There are two folders - `src` and `test`.
 
  1. The `test` folder contains:
 
-* [TestCryptProliferationDistributionLiteratePaper.hpp](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Crypt-Proliferation-Distribution-_-Crypt-Proliferation-Distribution) - this file can be run to generate Figure 3.
-* [TestCryptTakeoverProbilityLiteratePaper.hpp](https://github.com/Chaste/trac_archive/wiki/Paper-Tutorials-_-Crypt-Proliferation-Distribution-_-Crypt-Takeover-Probability) - this file can be run to generate the results in Figure 6.
+* [TestCryptProliferationDistributionLiteratePaper.hpp](https://github.com/Chaste/project_CryptProliferationDistribution/blob/10970027a16db5f67a4257ac4bdce4c5ca51ab13/test/TestCryptProliferationDistributionLiteratePaper.hpp) - this file can be run to generate Figure 3.
+* [TestCryptTakeoverProbilityLiteratePaper.hpp](https://github.com/Chaste/project_CryptProliferationDistribution/blob/10970027a16db5f67a4257ac4bdce4c5ca51ab13/test/TestCryptTakeoverProbabilityLiteratePaper.hpp) - this file can be run to generate the results in Figure 6.
 
-### Running tests
+
+## Running tests
+
 You can then run tests and simulations with,
-```
 
+```bash
 cd <Chaste3.3 path>
 scons b=GccOpt ts=projects/CryptProliferationDistribution/test/TestCryptProliferationDistributionLiteratePaper.hpp
 ```
 
 and
-```
 
+```bash
 scons b=GccOpt ts=projects/CryptProliferationDistribution/test/TestCryptTakeoverProbilityLiteratePaper.hpp
 ```
 
-----
 **NB**: the paper was developed with release version 3.4. It will not work with with release version 3.3 or under.
 
 For further information on using Chaste, see the [extensive guide material](https://github.com/Chaste/trac_archive/wiki/Chaste-Guides).
 You may also wish to look at some of the [basic user tutorials](https://github.com/Chaste/trac_archive/wiki/User-Tutorials).
 
 
------
-### Section contents
-[SubWiki()](SubWiki())
-
+## Section contents

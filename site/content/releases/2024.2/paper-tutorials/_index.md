@@ -2,18 +2,14 @@
 title: "Paper tutorials"
 draft: false
 layout: "single"
+disable_adjacent_navigation: true
 version: "2024.2"
 ---
 
-{{< callout context="note" title="May 2024: Paper tutorials are under migration" icon="outline/alert-triangle" >}}
-These paper tutorials are in the process of being migrated to this new website.
-It is currently expected that some links are incorrect and some images may not display properly.
-We are working on fixing these.
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+**The tutorials here are static, and are only likely to work with the specific version of Chaste indicated. They are unlikley to work with the development version of Chaste**.
 {{< /callout >}}
 
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
-If you are viewing this on the Chaste website, **the tutorials here are static, and are only likely to work with the specific version of Chaste indicated. They are unlikley to work with the development version of Chaste**.
-{{< /callout >}}
 
 ## Paper Tutorials
 
@@ -31,17 +27,19 @@ This is done, for instance, in the [functional curation](functionalcuration) and
 
 *Note that this is a new feature: the framework for setting up these paper tutorials is still being finalised, and more papers will be added in time. In the future we envisage external users, who wish to release their own documented Chaste code, also being able to contribute to these pages.*
 
+
 ### 2018
 
-* [Almet et al.(2018) "A multicellular model of intestinal crypt fission"](epithelialfission)
+* [Almet et al. (2018) "A multicellular model of intestinal crypt fission"](epithelialfission)
 * [Osborne JM and Bernabeu MO (2018) "A fully discrete open source framework for the simulation of vascular remodelling"](embc2018)
-* [Daly et al. (under submission) "Inference-based assessment of identifiability in nonlinear biological models"](dalyid)
+* [Daly et al. (2018) "Inference-based assessment of parameter identifiability in nonlinear biological models"](dalyid)
 
 
 ### 2017
 
 * [Osborne JM, Fletcher AG, et al. (2017) "Comparing individual-based approaches to modelling the self-organization of multicellular tissues". PLoS Computational Biology](cellbasedcomparison2017)
 * [Daly AC, Cooper J, Gavaghan DJ, Holmes C (2017) "Comparing two sequential Monte Carlo samplers for exact and approximate Bayesian inference on biological models". J. Roy. Soc. Interface](dalysmc)
+* [Grogen, JA et al. (2017) "Microvessel Chaste: An Open Library for Spatial Modeling of Vascularized Tissues". Biophys J.](microvessel)
 
 
 ### 2016
@@ -59,11 +57,12 @@ This is done, for instance, in the [functional curation](functionalcuration) and
 * [Samanta et al. Ca2+ Channel Re-localization to Plasma-Membrane Microdomains Strengthens Activation of Ca2+-Dependent Nuclear Gene Expression, Cell Reports, 2015](cadiffusion).
 * [Capel et al. Hydroxychloroquine reduces heart rate by modulating the hyperpolarisation-activated current 'If': Novel electrophysiological insights and therapeutic potential, Heart Rhythm, 2015](hr2015).
 * [Harvey, Fletcher, Osborne and Pitt-Francis. A parallel implementation of an off-lattice individual-based model of multicellular populations, Computer Physics Communications, 2015](harvey2015).
+* [Bordas, R et al. Development and Analysis of Patient-Based Complete Conducting Airways Models, PLoS ONE, 2015](airwaygeneration2015)
 
 
 ### 2014
 
-* [J. Cooper, R. Spiteri and G. Mirams. Cellular cardiac electrophysiology modelling with Chaste and CellML, Frontiers in Physiology, 2014](https://github.com/Chaste/trac_archive/wiki/frontiers2014).
+* [J. Cooper, R. Spiteri and G. Mirams. Cellular cardiac electrophysiology modelling with Chaste and CellML, Frontiers in Physiology, 2014](frontiers2014).
 
 
 ### 2013
@@ -84,7 +83,6 @@ This is done, for instance, in the [functional curation](functionalcuration) and
 ### 2011
 
 * [Cooper, Mirams, Niederer. High throughput functional curation of cellular electrophysiology models. Prog Biophys Mol Biol, 2011](functionalcuration).
-
 
 
 ----

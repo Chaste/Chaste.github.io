@@ -1,17 +1,20 @@
-This tutorial was generated from the file projects/CellBasedComparison2017/test/TestDeltaNotchLiteratePaper.hpp at revision r27522.
-Note that the code is given in full at the bottom of the page.
+---
+title: "Short-range Signalling Example"
+draft: false
+layout: "single"
+weight: 3
+paperTutorialTestFile: "https://github.com/Chaste/CellBasedComparison2017/blob/main/test/TestDeltaNotchLiteratePaper.hpp"
+---
 
-
-
-## Short-range Signalling Example
 
 On this wiki page we describe in detail the code that is used to run this example from the paper.
 
 The easiest way to visualize these simulations is with Paraview.
 
-[EmbedYoutube(SX2GFOr0Dus)](EmbedYoutube(SX2GFOr0Dus))
+{{< youtube id="SX2GFOr0Dus" >}}
 
-### Code overview
+
+## Code overview
 
 The first thing to do is to include the necessary header files.
 
@@ -117,6 +120,7 @@ This is a helper method to generate cells and is used in all simulations.
 public:
 ```
 
+
 ### CA
 
 Simulate juxtacrine signalling in a population of cells in the
@@ -184,6 +188,7 @@ Cellular Automaton model.
         simulator.Solve();
     }
 ```
+
 
 ### CP
 
@@ -259,6 +264,7 @@ Cellular Potts model.
     }
 ```
 
+
 ### OS
 
 Simulate juxtacrine signalling in a population of cells in the
@@ -327,6 +333,7 @@ Overlapping Spheres model.
    }
 ```
 
+
 ### VT
 
 Simulate juxtacrine signalling in a population of cells in the
@@ -391,6 +398,7 @@ Voronoi Tesselation model.
         simulator.Solve();
     }
 ```
+
 
 ### VM
 
@@ -460,15 +468,9 @@ Cell Vertex model.
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestDeltaNotchLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestDeltaNotchLiteratePaper.hpp"}
 #include <cxxtest/TestSuite.h>
 
 // Must be included before other cell_based headers
@@ -860,5 +862,3 @@ public:
    }
 };
 ```
-
-

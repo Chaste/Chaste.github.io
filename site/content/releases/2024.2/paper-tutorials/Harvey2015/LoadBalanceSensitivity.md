@@ -1,12 +1,15 @@
-This tutorial was generated from the file projects/Harvey2015/test/TestLoadBalanceSensitivityLiteratePaper.hpp at revision r23521.
-Note that the code is given in full at the bottom of the page.
-
-
-
-## Test the load-balancing algorithm, and its sensitivity to the rebalancing frequency  (Figure 6).
+---
+title: "Test the load-balancing algorithm, and its sensitivity to the rebalancing frequency (Figure 6)"
+draft: false
+layout: "single"
+weight: 5
+paperTutorialTestFile: "https://github.com/Chaste/project_Harvey2015/blob/a0fc3c6879e9b4bf55f507f3727560cdce653f23/test/TestProfileSimulationLiteratePaper.hpp"
+version: "2024.2"
+---
 
 This test suites demonstrates the use of the load-balancing algorithm
 for parallel cell-based simulations.
+
 
 ## Use
 
@@ -14,19 +17,19 @@ The test in this class is designed to be run using multiple processes to
 recreate figure 6.
 
 For example:
-```
 
+```bash
 scons build=GccOptNative_2 test_suite=projects/Harvey2015/tests/TestLoadBalanceSensitivityLiteratePaper.hpp
 ```
 
 or, to produce the 8-way simulation of Figure 6c and Figure 7,
-```
 
+```bash
 scons build=GccOptNative_8 projects/Harvey2015/tests/TestLoadBalanceSensitivityLiteratePaper.hpp
 ```
 
 
-#### Header files
+## Header files
 
 
 ```cpp
@@ -60,7 +63,8 @@ class TestLoadBalanceSensitivity : public AbstractCellBasedTestSuite
 public:
 ```
 
-### The first unit test
+
+## The first unit test
 
 This test starts a population from a seed of 25 cells, and allows
 the population to grow for 100 hours. This test should be run on
@@ -262,7 +266,8 @@ Print the number of local cells to screen.
     }
 ```
 
-### The second unit test
+
+## The second unit test
 
 This test starts a population from a seed of 25 cells, and allows
 the population to grow for 100 hours. The entire simulation is
@@ -479,15 +484,9 @@ We multiply by 5 or 2 on alternating iterations
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestLoadBalanceSensitivityLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestLoadBalanceSensitivityLiteratePaper.hpp"}
 // Used for the test-suite set up
 #include <cxxtest/TestSuite.h>
 #include "AbstractCellBasedTestSuite.hpp"
@@ -714,5 +713,3 @@ public:
     }
 };
 ```
-
-

@@ -44,6 +44,21 @@
   width: auto; /* Width will adjust to maintain aspect ratio */
 }
 
+.card .list-group-item {
+  padding: 0.5rem 1.25rem;
+  margin-bottom: 0;
+  border: none;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.card .list-group-item:last-child {
+  border-bottom: none;
+}
+
+.card .list-group-item a {
+  padding-left: 0.5rem;
+}
+
 //////////////////////////////////////////////////////////////
 // Code block syntax highlighting:                          //
 // see https://github.com/Chaste/Chaste.github.io/issues/20 //

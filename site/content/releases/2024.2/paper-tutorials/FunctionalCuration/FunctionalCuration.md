@@ -1,9 +1,12 @@
-This tutorial was generated from the file projects/FunctionalCuration/test/TestFunctionalCurationLiteratePaper.hpp at revision [changeset:27416/git_repo](changeset:27416/git_repo).
+---
+title: "High throughput functional curation of cellular electrophysiology models"
+draft: false
+layout: "single"
+paperTutorialTestFile: "https://github.com/Chaste/project_FunctionalCuration/blob/86363bc5190f9b0d420232fb2cd6c6fd2bc22080/test/TestFunctionalCurationLiteratePaper.hpp"
+version: "2024.2"
+---
+
 Note that the code is given in full at the bottom of the page.
-
-
-
-## High throughput functional curation of cellular electrophysiology models
 
 This test reproduces the results from our
 [reference publication on Functional Curation](http://dx.doi.org/10.1016/j.pbiomolbio.2011.06.003)
@@ -29,16 +32,16 @@ very different). This led to us finding a bug in the CellML encoding which we ha
 and now the Decker 2009 model gives a sensible S1-S2 curve, unlike that shown in our paper!)
 
 You can run these simulations using the following command from within the Chaste source tree:
-```
 
+```bash
 scons cl=1 b=GccOptNative ts=projects/FunctionalCuration/test/TestFunctionalCurationPaper.hpp
 ```
 
 
 If you have multiple cores available, these may be used to speed up simulation.  For instance, to use
 8 cores, run
-```
 
+```bash
 scons cl=1 b=GccOptNative_8 ts=projects/FunctionalCuration/test/TestFunctionalCurationPaper.hpp
 ```
 
@@ -54,8 +57,8 @@ Note that some warnings will be printed at the end of the test output.  These ar
 expected, for model/protocol combinations where we cannot run the protocol to completion
 (for instance, some models lack extracellular calcium and so the ICaL protocol is not appropriate).
 
-version: "2024.2"
------
+
+## Code overview
 
 The test starts by including required headers.
 
@@ -439,15 +442,9 @@ We also display results for which no historical data has been saved yet.
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestFunctionalCurationLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestFunctionalCurationLiteratePaper.hpp"}
 #include <boost/pointer_cast.hpp> // NB: Not available on Boost 1.33.1
 #include <boost/shared_ptr.hpp>
 #include <boost/foreach.hpp>
@@ -773,5 +770,3 @@ public:
     }
 };
 ```
-
-

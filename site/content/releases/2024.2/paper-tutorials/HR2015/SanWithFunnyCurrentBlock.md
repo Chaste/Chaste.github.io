@@ -1,15 +1,15 @@
-This tutorial was generated from the file projects/HR2015/test/TestSanWithFunnyCurrentBlockLiteratePaper.hpp at revision r24269.
-Note that the code is given in full at the bottom of the page.
-
-
-
-
-
-## Sino-atrial node simulation with funny current block
+---
+title: "Sino-atrial node simulation with funny current block"
+draft: false
+layout: "single"
+paperTutorialTestFile: "https://github.com/Chaste/project_HR2015/blob/1e6f5888078c4a20005ee259938ccce93e957f12/test/TestSanWithFunnyCurrentBlockLiteratePaper.hpp"
+version: "2024.2"
+---
 
 This is the code that was used to perform the simulation in Capel *et al.*, Heart Rhythm (2015).
 
-### Code Walkthrough
+
+## Code Walkthrough
 
 This include is needed to utilise the cxx test framework, which we use to execute programs
 
@@ -35,8 +35,8 @@ class TestSanWithFunnyCurrentBlock : public CxxTest::TestSuite
 private:
 ```
 
-
 We define a helper method to:
+
 1. Run the model to a 'steady state' for this level of block (100 second run).
 1. Do a fine resolution run for analysis (2 second simulation)
 1. Calculate the cycle length and APD50 and return these to the main program below.
@@ -252,15 +252,9 @@ public:
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestSanWithFunnyCurrentBlockLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestSanWithFunnyCurrentBlockLiteratePaper.hpp"}
 #include <cxxtest/TestSuite.h>
 
 #include "OutputFileHandler.hpp"
@@ -475,5 +469,3 @@ public:
 
 };
 ```
-
-

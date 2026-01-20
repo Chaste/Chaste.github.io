@@ -1,9 +1,11 @@
-This tutorial was generated from the file projects/Frontiers2014/test/TestOdeSolvingTimesLiteratePaper.hpp at revision r23346.
-Note that the code is given in full at the bottom of the page.
+---
+title: "Benchmark ODE solving times with different numerical methods"
+draft: false
+layout: "single"
+weight: 3
+paperTutorialTestFile: "https://github.com/Chaste/project_Frontiers2014/blob/e495d4d2f7ae14f988de496f659f5056470c0434/test/TestOdeSolvingTimesLiteratePaper.hpp"
+---
 
-
-
-## Benchmark ODE solving times with different numerical methods
 
 On this wiki page we describe in detail the code that is used to run this example from the paper.
 
@@ -13,7 +15,8 @@ as calculated by CalculateRequiredTimesteps.
 We then time solving all models under most solvers, using a simulation duration that should give about
 5 seconds of real time based on the calculations in CalculateRequiredTimesteps.
 
-### Code overview
+
+## Code overview
 
 The first thing to do is to include the necessary header files.
 
@@ -491,15 +494,9 @@ Convert the elapsed time into a time per simulated second.
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestOdeSolvingTimesLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestOdeSolvingTimesLiteratePaper.hpp"}
 // The testing framework we use
 #include <cxxtest/TestSuite.h>
 
@@ -867,5 +864,3 @@ private:
 
 };
 ```
-
-
