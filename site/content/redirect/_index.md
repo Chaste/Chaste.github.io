@@ -21,7 +21,9 @@ If you reached this page by following a link, please report it by [opening a new
 
 {{< /callout >}}
 
+
 ## New resource locations
+
 
 ### General
 
@@ -36,6 +38,7 @@ If you reached this page by following a link, please report it by [opening a new
 - [Code documentation (doxygen)](/docs/doxygen/)
 - [Docs for specific releases](/releases/)
 
+
 ### Old trac wiki pages
 
 Most relevant information from the trac wiki was migrated to this website, and should be accessible from either the links above or the navigation bar.
@@ -47,7 +50,11 @@ If you are looking for a specific trac wiki page, the information may be availab
 
 Note: you will need to be authenticated and be a member of the [Chaste organisation](https://github.com/Chaste) to access these links.
 
-### Old subversion repositories
 
-These are currently inaccessible, but we are in the process of migrating them.
-Please [get in touch](https://github.com/Chaste/Chaste/issues/new) if you need to access an old Chaste subversion repository.
+### Old Subversion projects
+
+All user projects that were previously publically accessible via Subversion have now been migrated to the [Chaste GitHub organisation](https://github.com/orgs/Chaste/repositories).
+The names have been prepended by `project_` so, for instance, the Subversion project `Plos2013` has been migrated to the GitHub repository [project_Plos2013](https://github.com/Chaste/project_Plos2013).
+
+Private projects and those marked as not-for-release have not been migrated.
+Please get in touch by opening a [GitHub issue](https://github.com/Chaste/Chaste/issues/new) if you need to access a private Chaste Subversion project.
