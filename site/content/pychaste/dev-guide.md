@@ -122,6 +122,11 @@ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh
 ```
 
+Start a new shell to activate conda
+```sh
+bash
+```
+
 Clone Chaste
 ```sh
 git clone https://github.com/Chaste/Chaste.git
@@ -129,7 +134,7 @@ git clone https://github.com/Chaste/Chaste.git
 
 Create a conda environment
 ```sh
-conda env create -n py311 -f Chaste/pychaste/src/py/conda/envs/env_python3.11.yaml python=3.11
+conda env create -n py311 -f Chaste/pychaste/src/py/conda/envs/env_python3.11.yaml
 conda activate py311
 ```
 
