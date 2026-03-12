@@ -23,7 +23,7 @@ At the end of the workshop, there was a retrospective session to reflect on the 
 
 Some closing thoughts from participants on valuable aspects of the workshop:
 
-{{< callout context="grey" >}}
+{{< callout context="note" icon="outline/rocket" >}}
  *"The matter of actually installing Chaste! Then the hands-on tutorials were very useful in learning how to go about using it."*
 
  *"All the sessions were really useful; guided installation and project tutorials were amazing. I very much enjoyed the scientific case studies too."*
@@ -35,7 +35,7 @@ Some closing thoughts from participants on valuable aspects of the workshop:
 
 ... and suggested enhancements:
 
-{{< callout context="grey" >}}
+{{< callout context="note" icon="outline/adjustments" >}}
  *"Perhaps a little more information about the lung & cardiac components of Chaste?"*
 
  *"Perhaps an indication of hardware requirements - my laptop was not really up to the job ..."*
