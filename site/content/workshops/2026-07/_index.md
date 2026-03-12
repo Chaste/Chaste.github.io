@@ -7,6 +7,12 @@ toc: true
 layout: "single"
 ---
 
-The [2026 Chaste Workshop](./event) will be held in Sheffield, UK, in early July.
+{{< img src="/images/SheffieldLogo.svg" alt="Logo of the University of Sheffield" h="128px" >}}
+
+{{< callout context="caution" icon="outline/calendar" title="Save the date">}}
+
+The 2026 Chaste Workshop will be held at the University of Sheffield, Sheffield, UK, from 01-03 July 2026.
+
+{{< /callout >}}
 
 Details coming soon.
