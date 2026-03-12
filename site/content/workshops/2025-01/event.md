@@ -169,7 +169,7 @@ _Please note that accommodation you book yourself is **not** eligible for a burs
 - [Premier Inn Nottingham Castle Marina](https://www.premierinn.com/gb/en/hotels/england/nottinghamshire/nottingham/nottingham-castle-marina.html)
 - [Holiday Inn Nottingham](https://www.ihg.com/holidayinn/hotels/gb/en/nottingham/notuk/hoteldetail)
 
-{{< callout context="grey" >}}
+{{< callout context="note" icon="outline/mail" >}}
 For additional information, please contact Kwabena Amponsah&lt;kwabena.amponsah1@nottingham.ac.uk&gt;.
 {{< /callout >}}
 

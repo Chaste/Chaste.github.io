@@ -11,10 +11,19 @@ layout: "single"
 
 ## Upcoming workshops
 
+
+### [01-03 July, Sheffield, UK](./2026-07)
+
+A workshop on collaborations with Chaste, and a showcase of the latest additions to the codebase.
+
+
 ## Past workshops
 
-### [8-10 January 2025, Nottingham, UK](./2025-01)
+
+### [08-10 January 2025, Nottingham, UK](./2025-01)
+
 A workshop on cell-based modelling with Chaste.
+
 
 ### [11-14 September, Oxford, UK](./2023-09-11)
 
