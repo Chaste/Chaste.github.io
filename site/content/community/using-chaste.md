@@ -27,7 +27,7 @@ We can advise on design choices, testing expectations, and how best to structure
 
 Sustaining Chaste requires a baseline of continual development effort, in addition to development aligned with scientific need, and both require support through research funding.
 
-When applying for grants that depend on Chaste, we encourage Principal Investigators to cost appropriate Research Software Engineer (RSE) time.
+When applying for grants that depend on Chaste, we encourage Principal Investigators to cost appropriate Research Software Engineering (RSE) time.
 This can support:
 
 1. The baseline effort: maintaining compatibility with evolving platforms and dependencies
@@ -38,6 +38,10 @@ The third categories is especially valuable, as widening the pool of researchers
 
 At the Universities of Oxford, Nottingham, and Sheffield, internal RSE groups have established expertise in Chaste and can be costed directly into grant applications.
 Researchers at other institutions are encouraged to contact us to discuss potential collaboration and inclusion of appropriate software effort.
+
+We also strongly encourage PIs to engage with the Chaste core developers from the early stages of a project.
+Early discussion of planned extensions or new functionality helps shape design decisions, align work with existing architecture, and avoid a large, difficult-to-merge code drop at the end of a grant.
+Ongoing interaction throughout a project leads to smoother integration and more sustainable outcomes.
 
 Embedding RSE support within grants strengthens individual projects, ensures continued availabity of Chaste, and helps ensure Chaste continues to evolve in line with research priorities.
 
@@ -50,5 +54,14 @@ Engaging early with the community can help you identify the most suitable modell
 We recommend developing new work within [user projects](/docs/user-guides/user-projects/) wherever possible.
 This allows you to progress independently while keeping the core codebase stable.
 When functionality matures, you can propose changes for inclusion in Chaste itself, and the more we know about the work you're doing, the easier this process will be.
+
+Where possible, prefer adding new classes or methods rather than modifying existing ones.
+This reduces the risk of unintended side effects and makes review and future maintenance simpler.
+
+If you believe existing functionality needs to be changed, please get in touch first.
+There may be an existing way, or potentially an easier or more maintainable way to achieve what you are aiming for.
+
+When modifying core functionality, aim to work in small, manageable increments and open pull requests early for review.
+Smaller changes are easier to discuss, test, and merge than large diverging branches, and this approach will help you avoid time-consuming integration issues later.
 
 Keeping the community in the loop about what you're developing will significantly increase the likelihood that your developments can be reused and built upon by others.
