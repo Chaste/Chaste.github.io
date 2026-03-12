@@ -101,7 +101,103 @@ fatal error: 'NewCellCycleModel.hpp' file not found
 
 All other references to the removed/renamed class and its instantiations should be removed from the code as well.
 
-## Fixing errors
+## Troubleshooting Problems
+
+### Reproducing PyChaste CI Errors
+
+Start a docker container
+```sh
+docker run -it --init --rm ubuntu:noble
+```
+
+Install system dependencies
+```sh
+apt-get update
+apt-get install -y castxml clang cmake pkg-config libx11-dev xvfb libosmesa6-dev libpthread-stubs0-dev wget git build-essential
+```
+
+Install conda
+```sh
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh
+```
+
+Start a new shell to activate conda
+```sh
+bash
+```
+
+Clone Chaste
+```sh
+git clone https://github.com/Chaste/Chaste.git
+```
+
+Create a conda environment
+```sh
+conda env create -n py311 -f Chaste/pychaste/src/py/conda/envs/env_python3.11.yaml
+conda activate py311
+```
+
+Configure and build PyChaste
+```sh
+cd Chaste
+mkdir build
+cd build
+
+cmake \
+-DChaste_ENABLE_PYCHASTE=ON \
+-DCMAKE_BUILD_TYPE=Release \
+-DBUILD_SHARED_LIBS=ON \
+-DCMAKE_INSTALL_PREFIX="${CONDA_PREFIX}" \
+-DCMAKE_PREFIX_PATH="${CONDA_PREFIX}" \
+-DCMAKE_LIBRARY_PATH="${CONDA_PREFIX}/lib" \
+-DBOOST_ROOT="${CONDA_PREFIX}" \
+-DHDF5_C_COMPILER_EXECUTABLE="${CONDA_PREFIX}/bin/h5pcc" \
+-DPETSC_DIR="${CONDA_PREFIX}" \
+-DPYTHON_EXECUTABLE="$(which python)" \
+-DVTK_DIR="${CONDA_PREFIX}" \
+-DXERCESC_INCLUDE="${CONDA_PREFIX}/include" \
+-DXERCESC_LIBRARY="${CONDA_PREFIX}/lib/libxerces-c.so" \
+-DXSD_EXECUTABLE="${CONDA_PREFIX}/bin/xsd" \
+..
+
+make -j4 pychaste
+```
+
+Install the built package
+```sh
+python3 -m pip install -v pychaste/package
+```
+
+Run PyChaste tests
+```
+xvfb-run --server-args="-screen 0 1024x768x24" ctest -j $(nproc) -L pychaste --output-on-failure
+```
+
+### PETSc-related Errors
+
+**Error:**
+
+```console
+/usr/include/c++/11/type_traits: 
+In instantiation of ‘struct std::is_base_of<pybind11::detail::pyobject_tag, _p_Vec>’:
+/.../Chaste/build/_deps/pybind11-src/include/pybind11/cast.h:2098:68:   
+recursively required by substitution of 
+‘template<class T> class pybind11::detail::type_caster<T, typename std::enable_if<
+  std::is_base_of<
+    pybind11::detail::pyobject_tag, typename std::remove_reference<_Tp>::type>::value, void>::type> 
+[with T = _p_Vec]’
+```
+
+**Solution:**
+
+In `config.yaml`, add the following to `Foo`
+
+```yaml
+- name: Foo
+  source_includes:
+    - PybindPetscTypeCaster.hpp
+```
 
 ### UBLAS-related Errors
 
@@ -126,7 +222,7 @@ In `config.yaml`, add the following to `Foo`
 ```yaml
 - name: Foo
   source_includes:
-    - PythonUblasObjectConverters.hpp
+    - PybindUblasTypeCaster.hpp
 ```
 
 ### VTK-related Errors
@@ -154,7 +250,7 @@ In `config.yaml`, add the following to `Foo`
 ```yaml
 - name: Foo
   source_includes:
-    - PythonVtkObjectConverters.hpp
+    - PybindVTKTypeCaster.hpp
 ```
 
 ### Other Errors
@@ -162,7 +258,8 @@ In `config.yaml`, add the following to `Foo`
 **Error:**
 
 ```console
-pygccxml.declarations.runtime_errors.declaration_not_found_t: Unable to find declaration. Matcher: [(decl type==class_t) and (name==Foo)]
+pygccxml.declarations.runtime_errors.declaration_not_found_t: Unable to find declaration. 
+Matcher: [(decl type==class_t) and (name==Foo)]
 ```
 
 **Solution:**

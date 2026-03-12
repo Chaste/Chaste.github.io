@@ -1,41 +1,45 @@
-This tutorial was generated from the file projects/Wisc2013/test/TestCryptProliferationLiteratePaper.hpp at revision r22049.
+---
+title: "Connecting models to data in multiscale multicellular tissue simulations"
+draft: false
+layout: "single"
+paperTutorialTestFile: "https://github.com/Chaste/project_Wisc2013/blob/8db731800a58c7ffb15b949c87cfd397adb4e5a7/test/TestCryptProliferationLiteratePaper.hpp"
+---
+
 Note that the code is given in full at the bottom of the page.
-
-
-
-## Connecting models to data in multiscale multicellular tissue simulations
 
 This Chaste test file runs the main protocols for the above
 [paper published in ICCS2013](http://dx.doi.org/10.1016/j.procs.2013.05.235).
 
-### How to run this code
+
+## How to run this code
 
 For performance, it is recommended to build Chaste using the `GccOptNative` build type when using
 the Functional Curation extension project, on which this code is built.  You can run the code shown
 below using the commands:
-```
 
+```bash
 cd path_to_Chaste
 scons chaste_libs=1 build=GccOptNative projects/Wisc2013/test/TestCryptProliferationLiteratePaper.hpp
 ```
 
 A clean build of Chaste takes a considerable amount of time.  If you have multiple cores available
 then the process can be sped up greatly using the '-j' flag to scons, e.g.
-```
 
+```bash
 scons -j4 chaste_libs=1 build=GccOptNative projects/Wisc2013/test/TestCryptProliferationLiteratePaper.hpp
 ```
 
 to build on 4 cores.  You can additionally run the code itself in parallel, in order to run each value
 in the main parameter sweep simultaneously, using 5 cores with the `GccOptNative_5` build type, e.g.
-```
 
+```bash
 scons -j4 chaste_libs=1 build=GccOptNative_5 projects/Wisc2013/test/TestCryptProliferationLiteratePaper.hpp
 ```
 
 With these settings on our test machine, reproducing the paper results takes about 19 hours.
 
-### The code itself
+
+## The code itself
 
 The first step is to include the header files we need.  This code is written as a Chaste test suite, for
 easy execution using the Chaste build framework.  We thus need to include the `TestSuite.h` header, along
@@ -278,14 +282,14 @@ figure in the paper (Figure 1).
 
 To visualise the results, open a new terminal, `cd` to the Chaste directory,
 then `cd` to `anim`. Then do:
-```
 
+```bash
 java -cp . Visualize2dCentreCells /tmp/$USER/testoutput/CryptProliferationSteadyState/Stochastic_Generation-based/raw_results/results_from_time_0
 ```
 
 and
-```
 
+```bash
 java -cp . Visualize2dCentreCells /tmp/$USER/testoutput/CryptProliferationSteadyState/Uniform_Wnt/raw_results/results_from_time_0
 ```
 
@@ -319,15 +323,12 @@ plots (a)-(c) in Figure 2.
 ```
 
 
-
-## Code
-The full code is given below
+## Full code
 
 
-### File name `TestCryptProliferationLiteratePaper.hpp`
+### `TestCryptProliferationLiteratePaper.hpp`
 
-
-```cpp
+```cpp {title="TestCryptProliferationLiteratePaper.hpp"}
 #include <cxxtest/TestSuite.h>
 
 #include <vector>
@@ -468,11 +469,9 @@ public:
 ```
 
 
+### `protocols/CryptProliferationSweep.txt`
 
-
-### File name `protocols/CryptProliferationSweep.txt`
-```
-
+```yaml {title="protocols/CryptProliferationSweep.txt"}
 ## A simple parameter sweep over the crypt proliferation protocol, varying crypt height
 
 inputs {
@@ -511,11 +510,9 @@ plots {
 ```
 
 
+### `protocols/CryptProliferation.txt`
 
-
-### File name `protocols/CryptProliferation.txt`
-```
-
+```yaml {title="protocols/CryptProliferation.txt"}
 ## Core protocol for the Crypt Proliferation project, containing a single cell-based simulation and post-processing thereof
 
 ## The 'ontology' to use for referencing model variables
@@ -581,5 +578,3 @@ plots {
     plot 'Cell division locations' { freqs against centres }
 }
 ```
-
-

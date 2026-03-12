@@ -1,0 +1,24 @@
+{{- $title := .Attributes.title -}}
+{{- $titleClass := "" -}}
+{{ with $title -}}
+  {{- $titleClass = " has-title" -}}
+{{- end -}}
+
+{{- $terminalClass := "" -}}
+{{- $frame := .Attributes.frame -}}
+{{- if and (ne $frame "none") $title -}}
+  {{- $terminalClass = " is-terminal" -}}
+{{- end -}}
+
+{{- $result := transform.HighlightCodeBlock . -}}
+
+<div class="expressive-code">
+  <figure class="frame{{ $terminalClass }}{{ $titleClass }} not-content">
+  <figcaption class="header">
+    <span class="title">
+      {{- with $title -}}{{ . }}{{- end -}}
+    </span>
+  </figcaption>
+  {{ $result.Wrapped }}
+  </figure>
+</div>

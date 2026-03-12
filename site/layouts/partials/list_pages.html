@@ -1,0 +1,15 @@
+<div class="card mt-4">
+<div class="card-header">
+    &#128193; {{ .Title | safeHTML }}
+</div>
+<ul class="list-group">
+    {{- $currentPage := .Page -}}
+    {{- range where .Site.Pages "Section" $currentPage.Section -}}
+    {{- if and (ne .File.Path $currentPage.File.Path) (eq .File.Dir $currentPage.File.Dir) -}}
+        <li class="list-group-item">
+        &#x21B3; <a href="{{ .Permalink }}" class="text-decoration-none">{{ .Title | safeHTML }}</a>
+        </li>
+    {{- end -}}
+    {{- end -}}
+</ul>
+</div>

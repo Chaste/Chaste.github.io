@@ -20,7 +20,6 @@ ignore=
   ^.*doxygen-latest.*
   ^.*github.com/Chaste/developer_wiki/.*
   ^.*github.com/Chaste/trac_archive/.*
-  ^.*paper-tutorials/.*
   ^.*memory-testing/.*
   ^.*profiling-gprof/.*
   ^.*old_releases/.*

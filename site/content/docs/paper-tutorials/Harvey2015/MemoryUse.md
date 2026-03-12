@@ -1,29 +1,31 @@
-This tutorial was generated from the file projects/Harvey2015/test/TestMemoryUseLiteratePaper.hpp at revision r23521.
-Note that the code is given in full at the bottom of the page.
+---
+title: "Measure memory use per process (Figure 4)"
+draft: false
+layout: "single"
+weight: 3
+paperTutorialTestFile: "https://github.com/Chaste/project_Harvey2015/blob/a0fc3c6879e9b4bf55f507f3727560cdce653f23/test/TestMemoryUseLiteratePaper.hpp"
+---
 
-
-
-## Measure memory use per process (Figure 4)
 This class was used to produce the results in Figure 4.
 It constructs a large cell population and measures the amount of memory
 in use. By running on larger numbers of processes, a proportionally
 smaller amount of memory is used by each process.
 
 The geometry for the construction of the population is contained in
-```
 
+```text
 projects/Harvey2015/test/data/1024000_2d_cells.dat
 ```
 
 
-### Use
+## Use
 
 This test suite should be run in parallel.  It should be run on several numbers of processes (from 1 to 32 processes in figure
 in the paper.)
 
 A useful for loop (in `bash`) would be
-```
 
+```bash
 for i in {1..32}; do echo $i "processes ===";scons build=GccOptNative_$i projects/Harvey2015/test/TestMemoryUseLiteratePaper.hpp | grep memory; done
 ```
 
@@ -68,7 +70,9 @@ void PrintMemoryUsage(const std::string& rPrefix)
 }
 ```
 
-### The test suite
+
+## The test suite
+
 This class was used to produce the results in Figure 4.
 It constructs a large cell population and measures the amount of memory
 in use. By running on larger numbers of processes, a proportionally
@@ -138,15 +142,9 @@ Print the approximate memory use
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestMemoryUseLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestMemoryUseLiteratePaper.hpp"}
 // The testing framework
 #include <cxxtest/TestSuite.h>
 #include "AbstractCellBasedTestSuite.hpp"
@@ -198,5 +196,3 @@ public:
     }
 };
 ```
-
-

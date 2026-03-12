@@ -1,6 +1,11 @@
-This tutorial was generated from the file projects/EMBC2018/test/TestAnalyticComparisonLiteratePaper.hpp at revision r27516.
-Note that the code is given in full at the bottom of the page.
-
+---
+title: "AnalyticComparison"
+draft: false
+layout: "single"
+weight: 1
+paperTutorialTestFile: "https://github.com/Chaste/project_EMBC2018/blob/4cd02c1602cce9be482da39fb5ad61f661241067/test/TestAnalyticComparisonLiteratePaper.hpp"
+version: "2024.2"
+---
 
 
 
@@ -298,15 +303,9 @@ void TestCylinderImposedPressureWithRandomMeshes() throw (Exception)
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestAnalyticComparisonLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title=TestAnalyticComparisonLiteratePaper.hpp}
 #include <cxxtest/TestSuite.h>
 
 #include <cstdio>
@@ -598,5 +597,3 @@ void TestCylinderImposedPressureWithRandomMeshes() throw (Exception)
 
 };
 ```
-
-

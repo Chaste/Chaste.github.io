@@ -1,9 +1,12 @@
-This tutorial was generated from the file projects/Microvessel/test/tutorials/TestSolvingPdesLiteratePaper.hpp at revision r27265.
-Note that the code is given in full at the bottom of the page.
+---
+title: "Solving PDEs"
+draft: false
+layout: "single"
+weight: 5
+paperTutorialTestFile: "https://github.com/Chaste/project_Microvessel/blob/9a87df2f16da8b433914025dab92ce2324394dc6/test/tutorials/TestSolvingPdesLiteratePaper.hpp"
+---
 
 
-
-## Solving PDEs in the Microvessel Project
 This tutorial demonstrates methods for solving PDEs in the Microvessel Project. It is noted
 that the way to set up PDEs differs from that of Cell Based Chaste, although the same solver
 can be used behind the scenes.
@@ -18,6 +21,7 @@ The following is covered:
 
 
 ## The Test
+
 Start by introducing the necessary header files. The first contain functionality for setting up unit tests,
 smart pointer tools and output management.
 
@@ -184,15 +188,9 @@ Set up the PDE solvers for the oxygen problem
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestSolvingPdesLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestSolvingPdesLiteratePaper.hpp"}
 #include <cxxtest/TestSuite.h>
 #include "AbstractCellBasedWithTimingsTestSuite.hpp"
 #include "SmartPointers.hpp"
@@ -259,5 +257,3 @@ public:
     }
 };
 ```
-
-

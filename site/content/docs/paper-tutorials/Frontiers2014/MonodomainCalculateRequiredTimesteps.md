@@ -1,9 +1,11 @@
-This tutorial was generated from the file projects/Frontiers2014/test/TestMonodomainCalculateRequiredTimestepsLiteratePaper.hpp at revision r23346.
-Note that the code is given in full at the bottom of the page.
+---
+title: "Calculate the required ODE solver timesteps to meet target PDE accuracy"
+draft: false
+layout: "single"
+weight: 5
+paperTutorialTestFile: "https://github.com/Chaste/project_Frontiers2014/blob/e495d4d2f7ae14f988de496f659f5056470c0434/test/TestMonodomainCalculateRequiredTimestepsLiteratePaper.hpp"
+---
 
-
-
-## Calculate the required ODE solver timesteps to meet target PDE accuracy
 
 On this wiki page we describe in detail the code that is used to run this example from the paper.
 
@@ -18,7 +20,8 @@ While this test can be run in parallel, for consistency with the paper results i
 on a single process.  Solving the PDE in parallel will lead to slight differences in the results,
 albeit within the numerical tolerances specified on the linear solver at each time step.
 
-### Code overview
+
+## Code overview
 
 The first thing to do is to include the necessary header files.
 
@@ -399,15 +402,9 @@ Copy time step & error info to repository for storage and use by the timing test
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestMonodomainCalculateRequiredTimestepsLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestMonodomainCalculateRequiredTimestepsLiteratePaper.hpp"}
 // The testing framework we use
 #include <cxxtest/TestSuite.h>
 
@@ -660,5 +657,3 @@ public:
     }
 };
 ```
-
-

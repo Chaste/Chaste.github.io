@@ -1,17 +1,19 @@
-This tutorial was generated from the file projects/CellBasedComparison2017/test/TestMorphogenMonolayerLiteratePaper.hpp at revision r27522.
-Note that the code is given in full at the bottom of the page.
-
-
-
-## Long-range Signalling Example
+---
+title: "Long-range Signalling Example"
+draft: false
+layout: "single"
+weight: 4
+paperTutorialTestFile: "https://github.com/Chaste/CellBasedComparison2017/blob/main/test/TestMorphogenMonolayerLiteratePaper.hpp"
+---
 
 On this wiki page we describe in detail the code that is used to run this example from the paper.
 
 The easiest way to visualize these simulations is with Paraview.
 
-[EmbedYoutube(Yl2GT2x2ohc)](EmbedYoutube(Yl2GT2x2ohc))
+{{< youtube id="Yl2GT2x2ohc" >}}
 
-### Code overview
+
+## Code overview
 
 The first thing to do is to include the necessary header files.
 
@@ -124,6 +126,7 @@ This is a helper method to generate cells and is used in all simulations.
 public:
 ```
 
+
 ### CA
 
 Simulate reaction diffusion on a growing a population of cells in the
@@ -203,6 +206,7 @@ Cellular Automaton model.
         simulator.Solve();
     }
 ```
+
 
 ### CP
 
@@ -291,6 +295,7 @@ Cellular Potts model.
     }
 ```
 
+
 ### OS
 
 Simulate reaction diffusion on a growing a population of cells in the
@@ -365,6 +370,7 @@ Overlapping Spheres model.
     }
 ```
 
+
 ### VT
 
 Simulate reaction diffusion on a growing a population of cells in the
@@ -435,6 +441,7 @@ Voronoi Tesselation model.
         simulator.Solve();
     }
 ```
+
 
 ### VM
 
@@ -516,15 +523,9 @@ Cell Vertex model.
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestMorphogenMonolayerLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title=TestMorphogenMonolayerLiteratePaper.hpp}
 #include <cxxtest/TestSuite.h>
 
 // Must be included before other cell_based headers
@@ -972,5 +973,3 @@ public:
     }
 };
 ```
-
-

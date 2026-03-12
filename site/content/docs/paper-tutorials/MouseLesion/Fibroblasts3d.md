@@ -1,21 +1,21 @@
-This tutorial was generated from the file projects/MouseLesion/test/TestFibroblasts3dLiteratePaper.hpp at revision r27528.
-Note that the code is given in full at the bottom of the page.
-
-
-
-## Three dimensional mouse ventricle with lesion simulation
+---
+title: "Three dimensional mouse ventricle with lesion simulation"
+draft: false
+layout: "single"
+weight: 2
+paperTutorialTestFile: "https://github.com/Chaste/project_MouseLesion/blob/e3ec7ce88b6cfb18e58369923d8afaee558f7bd0/test/TestFibroblasts3dLiteratePaper.hpp"
+---
 
 This is the code that was used to perform the simulation in Mahoney *et al.* (2016).
 
-### Code Walkthrough
 
+## Code Walkthrough
 
 ```cpp
 #include <cxxtest/TestSuite.h>
 ```
 
 These two includes are in this project, and not a standard part of Chaste v3.3
-
 
 ```cpp
 #include "ScarCellFactory.hpp"
@@ -371,15 +371,9 @@ COMPLETE THE SET UP OF PROBLEM
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestFibroblasts3dLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestFibroblasts3dLiteratePaper.hpp"}
 #include <cxxtest/TestSuite.h>
 
 #include "ScarCellFactory.hpp"
@@ -703,5 +697,3 @@ public:
     }
 };
 ```
-
-

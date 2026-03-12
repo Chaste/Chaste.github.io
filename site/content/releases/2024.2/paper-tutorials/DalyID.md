@@ -1,22 +1,22 @@
 ---
-title: "DInference-based assessment of identifiability in nonlinear biological models"
+title: "Inference-based assessment of parameter identifiability in nonlinear biological models"
 draft: false
 layout: "single"
+paperTutorialProject: "https://github.com/Chaste/project_DalyID"
 version: "2024.2"
 ---
 
-This tutorial describes how to download and execute the inferential analyses as
-described in "Inference-based assessment of identifiability in nonlinear biological models",
-submitted to *Journal of the Royal Society Interface* in 2017.
+This tutorial describes how to download and execute the inferential analyses as described in "Inference-based assessment of identifiability in nonlinear biological models", *Journal of the Royal Society Interface*, 2017, [doi 10.1098/rsif.2018.0318](https://doi.org/10.1098/rsif.2018.0318).
 
-### Installation
+
+## Installation
 
 This project requires the Functional Curation add-on to Chaste in order to run, which in turn requires the Chaste source tree to be installed.
 Instructions for this installation can be found for a variety of operating systems under InstallGuides/.
 
 Extra install commands needed as well as the Ubuntu chaste-dependencies package are (on 14.04 at least):
-```
 
+```bash
 #!sh
 sudo apt-get install python-dev python-scipy python-numpy cython python-tables python-matplotlib python-numexpr python-pip
 sudo apt-get install scons
@@ -25,19 +25,18 @@ sudo -H pip install dill pathos
 
 
 Afterwards, obtain the latest version of all the code from the Chaste repositories using:
-```
 
+```bash
 #!sh
-git clone -b develop https://chaste.cs.ox.ac.uk/git/chaste.git Chaste
+git clone -b release_3.4 https://chaste.cs.ox.ac.uk/git/chaste.git Chaste
 cd Chaste/projects
 
-## Use your email address as the password for the 'anonymous' account.
-svn co https://chaste.cs.ox.ac.uk/svn/chaste/projects/FunctionalCuration --username anonymous --password my.email@domain.com
-svn co https://chaste.cs.ox.ac.uk/svn/chaste/projects/DalyID --username anonymous --password my.email@domain.com
+git clone https://github.com/Chaste/project_FunctionalCuration.git FunctionalCuration
+git clone https://github.com/Chaste/project_DalyID.git DalyID
 ```
 
 
-### Usage
+## Usage
 
 Source code for the parameter fitting algorithms and plotting routines is contained in the `src` folder.
 Python scripts for performing inference on all model problems can be found in `tests`.
@@ -71,25 +70,18 @@ Files relevant for inference on the Hodgkin-Huxley model:
 
 To generate all described posterior estimates for the logistic model
 as described in the paper, go to the top-level Chaste directory and use:
-```
 
+```bash
 scons projects/DalyID/test/Logistic.py
 ```
 
 To generate all described posterior estimates for the Hodgkin-Huxley model
 as described in the paper, use:
-```
 
+```bash
 scons projects/DalyID/test/HHVoltage.py
 scons projects/DalyID/test/HHSumStats.py
 ```
 
 To see verbose output on the progress of the fitting algorithms, add the flag `no_store_results=1` to the `scons` commands above.
 Note however that this will prevent storing a copy of the output on disk.
-
-
-
------
-### Section contents
-[SubWiki()](SubWiki())
-

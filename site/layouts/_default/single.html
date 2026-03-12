@@ -32,7 +32,14 @@
 			{{ if .Params.version -}}
 			{{ partial "version_banner.html" . }}
 			{{ end -}}
-			<h1>{{ .Title }}</h1>
+			{{ if .Params.paperTutorialProject -}}
+			{{ partial "paper_tutorial_project.html" . }}
+			{{ end -}}
+			{{ if .Params.paperTutorialTestFile -}}
+			{{ partial "paper_tutorial_test_file.html" . }}
+			{{ end -}}
+			<h1>{{ .Title | safeHTML }}</h1>
+
 			<!-- <p class="lead">{{ .Params.lead | safeHTML }}</p> -->
 			{{ if ne .Params.toc false -}}
 			<nav class="toc-mobile d-xl-none" aria-label="Quaternary navigation">
@@ -45,6 +52,12 @@
 			{{ else -}}
 				{{ .Content }}
 			{{ end -}}
+
+			
+			{{ if .Params.showPageLinks -}}
+			{{ partial "list_pages.html" . }}
+			{{ end -}}
+
 			<div class="page-footer-meta d-flex flex-column flex-md-row justify-content-between">
 				{{ if site.Params.doks.lastMod -}}
 					{{ partial "main/last-modified.html" . }}

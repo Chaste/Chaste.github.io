@@ -46,9 +46,7 @@ the `develop` branch to get the latest features.
   [`heart/src/problem/HeartConfigDefaults.hpp`](https://github.com/Chaste/Chaste/blob/develop/heart/src/problem/HeartConfigDefaults.hpp)
   (ignore the `Simulation` block, which only applies to the old cardiac
   executable).
-- File Formats: This information is given in the version of
-  [`docs/FileFormats.html`](https://raw.githubusercontent.com/Chaste/Chaste/develop/docs/FileFormats.html)
-  supplied with the release.
+- [File Formats](file-formats): This information used to be distributed with the Chaste source code, in `docs/FileFormats.html`.
 
 ## Advanced
 

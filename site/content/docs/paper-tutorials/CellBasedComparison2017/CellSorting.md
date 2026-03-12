@@ -1,17 +1,20 @@
-This tutorial was generated from the file projects/CellBasedComparison2017/test/TestCellSortingLiteratePaper.hpp at revision r27522.
-Note that the code is given in full at the bottom of the page.
+---
+title: "Adhesion Example"
+draft: false
+layout: "single"
+weight: 1
+paperTutorialTestFile: "https://github.com/Chaste/CellBasedComparison2017/blob/main/test/TestCellSortingLiteratePaper.hpp"
+---
 
-
-
-## Adhesion Example
 
 On this wiki page we describe in detail the code that is used to run this example from the paper.
 
 The easiest way to visualize these simulations is with Paraview.
 
-[EmbedYoutube(4YZp_WmBZTI)](EmbedYoutube(4YZp_WmBZTI))
+{{< youtube id="4YZp_WmBZTI" >}}
 
-### Code overview
+
+## Code overview
 
 The first thing to do is to include the necessary header files.
 
@@ -99,6 +102,7 @@ This is a helper method to randomly label cells add is used in all simulations.
 public:
 ```
 
+
 ### CA
 
 Simulate a population of cells exhibiting cell sorting using the
@@ -182,6 +186,7 @@ Cellular Automaton model.
     }
 ```
 
+
 ### CP
 
 Simulate a population of cells exhibiting cell sorting using the
@@ -264,6 +269,7 @@ Cellular Potts model.
     }
 ```
 
+
 ### OS
 
 Simulate a population of cells exhibiting cell sorting using the
@@ -277,7 +283,7 @@ Overlapping Sphere model.
         HoneycombMeshGenerator generator(M_NUM_CELLS_ACROSS, M_NUM_CELLS_ACROSS, 0);
         TetrahedralMesh<2,2>* p_generating_mesh = generator.GetMesh();
 
-		//Extended to allow sorting for longer distances
+        //Extended to allow sorting for longer distances
         double cut_off_length = 2.5;
 
         // Convert this to a NodesOnlyMesh
@@ -419,6 +425,7 @@ Voronoi tesselation model.
     }
 ```
 
+
 ### VM
 
 Simulate a population of cells exhibiting cell sorting using the
@@ -507,15 +514,9 @@ Cell Vertex model.
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestCellSortingLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title=TestCellSortingLiteratePaper.hpp}
 #include <cxxtest/TestSuite.h>
 
 // Must be included before other cell_based headers
@@ -742,7 +743,7 @@ public:
         HoneycombMeshGenerator generator(M_NUM_CELLS_ACROSS, M_NUM_CELLS_ACROSS, 0);
         TetrahedralMesh<2,2>* p_generating_mesh = generator.GetMesh();
 
-		//Extended to allow sorting for longer distances
+        //Extended to allow sorting for longer distances
         double cut_off_length = 2.5;
 
         // Convert this to a NodesOnlyMesh
@@ -952,5 +953,3 @@ public:
     }
 };
 ```
-
-

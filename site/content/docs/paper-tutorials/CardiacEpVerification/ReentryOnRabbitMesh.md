@@ -1,9 +1,11 @@
-This tutorial was generated from the file projects/CardiacEpVerification/test/TestReentryOnRabbitMeshLiteratePaper.hpp at revision r20661.
-Note that the code is given in full at the bottom of the page.
-
-
-
-### Reentry simulations on realistic rabbit geometry
+---
+title: "Reentry simulations on realistic rabbit geometry"
+draft: false
+layout: "single"
+weight: 3
+paperTutorialTestFile: "https://github.com/Chaste/project_CardiacEpVerification/blob/5ad1f6827bba0b03808b98b10da48fc2a9515492/test/TestReentryOnRabbitMeshLiteratePaper.hpp"
+---
+ 
 
 This file provides the code used to run the simulations on the realistic rabbit geometry in the second calculation
 verification case study.
@@ -134,7 +136,7 @@ the monodomain conductivity corresponding the Clerc 1976 intra- and extra-cellul
         {
             case COARSERES_ISOTROPIC:
             {
-             	HeartConfig::Instance()->SetMeshFileName("apps/texttest/weekly/Propagation3d/OxfordRabbitHeart_482um");
+                 HeartConfig::Instance()->SetMeshFileName("apps/texttest/weekly/Propagation3d/OxfordRabbitHeart_482um");
                 break;
             }
             case MEDIUMRES_ISOTROPIC:
@@ -243,15 +245,9 @@ Write the archive if required and print out timings.
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestReentryOnRabbitMeshLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestReentryOnRabbitMeshLiteratePaper.hpp"}
 #include <cxxtest/TestSuite.h>
 #include <boost/assign.hpp>
 #include "CardiacSimulationArchiver.hpp"
@@ -316,7 +312,7 @@ public:
         {
             case COARSERES_ISOTROPIC:
             {
-             	HeartConfig::Instance()->SetMeshFileName("apps/texttest/weekly/Propagation3d/OxfordRabbitHeart_482um");
+                 HeartConfig::Instance()->SetMeshFileName("apps/texttest/weekly/Propagation3d/OxfordRabbitHeart_482um");
                 break;
             }
             case MEDIUMRES_ISOTROPIC:
@@ -405,5 +401,3 @@ public:
     }
 };
 ```
-
-

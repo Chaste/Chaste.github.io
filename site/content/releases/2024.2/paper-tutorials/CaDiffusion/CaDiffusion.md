@@ -1,15 +1,15 @@
-This tutorial was generated from the file projects/CaDiffusion/test/TestCaDiffusionLiteratePaper.hpp at revision r27328.
-Note that the code is given in full at the bottom of the page.
-
-
-
-
-
-## Ca^2+^ Channel Re-localization to Plasma-Membrane Microdomains Strengthens Activation of Ca^2+^-Dependent Nuclear Gene Expression
+---
+title: "Ca<sup>2+</sup> Channel Re-localization to Plasma-Membrane Microdomains Strengthens Activation of Ca<sup>2+</sup>-Dependent Nuclear Gene Expression"
+draft: false
+layout: "single"
+paperTutorialTestFile: "https://github.com/Chaste/project_CaDiffusion/blob/2013ec7101a1f24ddab6ec0396a918f597cd1433/test/TestCaDiffusionLiteratePaper.hpp"
+version: "2024.2"
+---
 
 Code to accompany the paper [Samanta et al. 2015](http://dx.doi.org/10.1016/j.celrep.2015.06.018).
 
-### Code Walkthrough
+
+## Code Walkthrough
 
 The following wiki page provides a walk-through of the Chaste code
 that was used to perform the simulations in this paper.
@@ -33,13 +33,19 @@ First we include some header files:
 #include "PetscSetupAndFinalize.hpp"
 ```
 
-#### Set up a diffusion equation with a source term
 
-d[Ca]/dt = D_Ca Laplacian([Ca]) + Q
+### Set up a diffusion equation with a source term
 
-[Ca] in units of uM
-D_Ca = 300 (nm)^2^/us
-integral of Q per ion channel's worth of elements over which is to be applied = 2.5133e4 uM / us
+The calcium concentration $[\mathrm{Ca}]$ evolves according to
+
+$$\frac{d[\mathrm{Ca}]}{dt} = D_{\mathrm{Ca}} \nabla^2[\mathrm{Ca}] + Q.$$
+
+Here $[\mathrm{Ca}]$ is measured in $\mu\mathrm{M}$, and the diffusion coefficient is
+$D_{\mathrm{Ca}} = 300~~\mathrm{nm}^2~\mu\mathrm{s}^{-1}$.
+
+The integral of the source term over the elements associated with one ion channel satisfies
+
+$$\int Q~dV = 2.5133 \times 10^{4}~~\mu\mathrm{M} ~\mu\mathrm{s}^{-1}.$$
 
 
 ```cpp
@@ -117,9 +123,9 @@ public:
     }
 ```
 
-The Diffusion constant for calcium is 300 um^2^ / s
-This is equivalent to
-300 (nm)^2^ / us
+The diffusion constant for calcium is $300 ~~ \mu\mathrm{m}^2/\mathrm{s}$.
+
+This is equivalent to $300 ~~ \mathrm{nm}^2/\mu\mathrm{s}$.
 
 
 ```cpp
@@ -137,7 +143,8 @@ This is equivalent to
 };
 ```
 
-#### Test class and method to look at Calcium diffusion
+
+### Test class and method to look at Calcium diffusion
 
 
 ```cpp
@@ -185,7 +192,8 @@ the paper were run on the refined version included here:
 Or a square slab of membrane we construct on the fly
 
 Create a 20 by 20 by 1.5 mesh in 3D, this time using the
-```
+
+```text
 [ConstructRegularSlabMesh](https://github.com/Chaste/trac_archive/wiki/Construct-Regular-Slab-Mesh)
 ```
 
@@ -296,18 +304,23 @@ Create a new boundary conditions container and specify u=0.0 on the boundary.
 For parabolic problems, initial conditions are also needed. The solver will expect
 a PETSc vector, where the i-th entry is the initial solution at node i, to be passed
 in. To create this PETSc
-```
+
+```text
 Vec
 ```
+
 , we will use a helper function in the
-```
+
+```text
 [PetscTools](https://chaste.cs.ox.ac.uk/public-docs/classPetscTools.html)
 ```
 
 class to create a
-```
+
+```text
 Vec
 ```
+
  of size num_nodes, with each entry set to 0.0. Then we
 set the initial condition on the solver.
 
@@ -344,15 +357,9 @@ All PETSc vectors should be destroyed when they are no longer needed.
 ```
 
 
+## Full code
 
-## Code
-The full code is given below
-
-
-### File name `TestCaDiffusionLiteratePaper.hpp`
-
-
-```cpp
+```cpp {title="TestCaDiffusionLiteratePaper.hpp"}
 #include <cxxtest/TestSuite.h>
 
 #include "GmshMeshReader.hpp"
@@ -577,5 +584,3 @@ public:
     }
 };
 ```
-
-
