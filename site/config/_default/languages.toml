@@ -6,4 +6,4 @@
     languageISO = "EN"
     languageTag = "en-GB"
     footer = 'Chaste project'
-    alertText = '<a class="alert-link stretched-link fw-normal" href="/blog/example-post/">Doks version 1.0 just shipped!</a>'
+    alertText = 'Save the date: upcoming workshop, 01-03 July 2026, Sheffield, UK. <a class="alert-link stretched-link fw-normal" href="/workshops/2026-07/">Find out more.</a>'
