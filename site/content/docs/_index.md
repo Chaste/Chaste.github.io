@@ -9,6 +9,9 @@ layout: "single"
 
 ## Using Chaste
 
+If you're considering using Chaste in your research, or you're applying for funding that might make use of Chaste, please read our [guidelines](/community/using-chaste/).
+These are simply some suggestions that will help with the onboarding process and ensure the core development team are available to help you.
+
 Chaste is a software library. To use it you need to obtain and compile the
 _source code_, which can then be used to build and run cardiac
 electro-physiological and electro-mechanical simulations, discrete tissue

@@ -14,3 +14,6 @@ The package is being developed by a team mainly based in the [Computational Biol
 
 While Chaste is a generic extensible library, software development to date has focused primarily on two distinct application areas: continuum modelling of cardiac electrophysiology ([Cardiac Chaste](components/cardiac)); and individual-based modelling of cell populations, with specific application to tissue homeostasis and carcinogenesis ([Cell-based Chaste](components/cell-based)).
 A more recent focus has been on reduced dimensional modelling of ventilation in lungs ([Lung Chaste](components/lung)). This website contains information on all aspects of Chaste, with details of the applications given on their own pages, accessible via the links above or on the right.
+
+If you're considering using Chaste in your research, or you're applying for funding that might make use of Chaste, please read our [guidelines](/community/using-chaste/).
+These are simply some suggestions that will help with the onboarding process and ensure the core development team are available to help you.
