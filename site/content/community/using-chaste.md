@@ -36,7 +36,7 @@ This can support:
 
 The third categories is especially valuable, as widening the pool of researchers who can maintain Chaste is critical to its longevity.
 
-At the Universities of Oxford, Nottingham, and Sheffield, internal RSE groups have established expertise in Chaste and can be costed directly into grant applications.
+At the Universities of Oxford, Nottingham and Sheffield, internal RSE groups have established expertise in Chaste and can be costed directly into grant applications.
 Researchers at other institutions are encouraged to contact us to discuss potential collaboration and inclusion of appropriate software effort.
 
 We also strongly encourage PIs to engage with the Chaste core developers from the early stages of a project.
