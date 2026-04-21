@@ -16,9 +16,9 @@ To register for the workshop, please [complete this form](https://docs.google.co
 
 Over the course of the workshop, you will:
 - Learn about how to use chaste for cell-based modelling
-- Hear about the latest software features
+- Get allocated time to sit down with an experienced Chaste developer who can help with how you might be able to integrate chaste with your work and contribute back to the project via "Bring your own project" sessions
 - Have opportunities to network with other researchers in the cell-based modelling sphere throughout the workshop and at the free workshop dinner on the Thursday evening
-- Get personalised help with how you might be able to integrate chaste with your work and contribute back to the project
+- Hear about the latest and upcoming Chaste features
 
 
 ## Event Details
