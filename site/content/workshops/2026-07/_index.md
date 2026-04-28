@@ -10,28 +10,70 @@ layout: "single"
 
 We are pleased to announce an upcoming workshop on [Chaste](https://chaste.github.io).
 
-To **register your interest**, please complete [this form](https://docs.google.com/forms/d/e/1FAIpQLScMO4w7cYvwCEuMRq8_zLNcpcEu0tVQvOEyqEZFHVVo4FA39g/viewform?usp=publish-editor)
-
-Full details will be released soon.
-
-
-
-## Event Details
-
-
-### When & Where
-
-The workshop will be held at the **University of Sheffield** from **Wed 1st - Fri 3rd July**. Most activities will take place in [Pam Liversidge Building](https://www.google.com/maps/place/Pam+Liversidge+Building/@53.382714,-1.4802816,688m/data=!3m3!1e3!4b1!5s0x487978802351bc8f:0x30731602a8415b5f!4m6!3m5!1s0x487978802cec084b:0x60e5580cdf19b137!8m2!3d53.3827108!4d-1.4777067!16s%2Fg%2F1pxwp_ysp?entry=ttu&g_ep=EgoyMDI2MDMxMS4wIKXMDSoASAFQAw%3D%3D), Design Studio 02 - E05.
-
-
+To register for the workshop, please [complete this form](https://docs.google.com/forms/d/e/1FAIpQLSf4OZuaNMfawrjYdsPaAt4NOHPKXxEqRTbWU0DiZpBkSF0OTA/viewform?usp=dialog)
 
 ## Workshop Aims
 
 Over the course of the workshop, you will:
 - Learn about how to use chaste for cell-based modelling
-- Hear about the latest software features
+- Get allocated time to sit down with an experienced Chaste developer who can help with how you might be able to integrate chaste with your work and contribute back to the project via "Bring your own project" sessions
 - Have opportunities to network with other researchers in the cell-based modelling sphere throughout the workshop and at the free workshop dinner on the Thursday evening
-- Get personalised help with how you might be able to integrate chaste with your work and contribute back to the project
+- Hear about the latest and upcoming Chaste features
+
+
+## Event Details
+
+### When & Where
+
+The workshop will be held at the **University of Sheffield** from **Wed 1st - Fri 3rd July**. Most activities will take place in [Pam Liversidge Building](https://www.google.com/maps/place/Pam+Liversidge+Building/@53.382714,-1.4802816,688m/data=!3m3!1e3!4b1!5s0x487978802351bc8f:0x30731602a8415b5f!4m6!3m5!1s0x487978802cec084b:0x60e5580cdf19b137!8m2!3d53.3827108!4d-1.4777067!16s%2Fg%2F1pxwp_ysp?entry=ttu&g_ep=EgoyMDI2MDMxMS4wIKXMDSoASAFQAw%3D%3D), Design Studio 02 - E05.
+
+### Provisional Timetable
+
+**Wednesday 1st July**
+
+| Start | End | Description |
+| ----- | ----- | - |
+| 10:00 | 11:00 | Arrivals
+| 11:00 | 11:15 | Welcome Address |
+| 11:15 | 11:30	| Introductions (1 minute each, optional slide) |
+| 11:30 | 12:30	| Talk: Introduction to vertex models & other cell-based modelling paradigms |
+| 12:30 | 13:30	| Lunch |
+| 13:30 | 14:00	| Hands-on session: Anatomy of a Chaste program |
+| 14:00 | 15:00	| Hands-on session: Cell-based modelling with Chaste |
+| 15:00 | 15:30	| Scientific case study #1: TBC |
+| 15:30 | 16:45	| Bring your own project #1: Get support to code up a model related to your research |
+| 16:45 | 17:00	| Early feedback session |
+
+**Thursday 2nd July**
+
+| Start | End | Description |
+| ----- | ----- | - |
+| 9:30	| 10:15	| Talk: Chaste for cell-based modelling - latest features and future plans | 
+| 10:15	| 11:15	| Hands-on session: Chaste for cell-based modelling - User projects & the C++ API | 
+| 11:15	| 11:30	| Coffee break | 
+| 11:30 | 12:30 | Hands-on session: The subcellular element method |
+| 12:30	| 13:30	| Lunch | 
+| 13:30	| 14:00	| Scientific case study #2: TBC | 
+| 14:00	| 14:30	| Talk: Intro to SBML | 
+| 14:30	| 16:00	| Hands-on session: SBML | 
+| 16:00	| 17:30	| Bring your own project #2 | 
+| 18:30	| 20:30	| Dinner | 
+
+**Friday 3rd July**
+
+| Start | End | Description |
+| ----- | ----- | - |
+| 9:30  | 10:30	| Hands-on session: Creating your own python bindings |
+| 10:30 | 11:30	| Talk: How to get further support / how to contribute to Chaste |
+| 11:30 | 11:45	| Coffee break |
+| 11:45 | 12:15	| Scientific case study #3: TBC |
+| 12:15 | 12:30 | Retrospective: lessons learned, future plans with Chaste |
+| 12:30 | 13:30	| Lunch |
+| 13:30 | 14:30 | Bring your own project #3 |
+| 14:30 | 16:00 | Developers+ meeting (optional): Explore collaboration and funding opportunities |
+| 16:00	| |	Departures |
+
+
 
 
 
