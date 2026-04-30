@@ -99,7 +99,9 @@ to compile Chaste with no problems.
       <br>
       🟢 10.x <sup>1,2,3</sup>
       <br>
-      🟥 &lt;10
+      🟪 &lt;10
+      <br>
+      🟥 &lt;9
     </td>
     <!-- Clang -->
     <td>	
