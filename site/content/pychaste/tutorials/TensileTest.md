@@ -6,7 +6,7 @@ images: []
 toc: true
 layout: "single"
 ---
-This tutorial is automatically generated from [TestPyTensileTestTutorial.py](https://github.com/Chaste/Chaste/blob/develop/pychaste/test/tutorial/TestPyTensileTestTutorial.py) at revision [7fa8a1fe59f6](https://github.com/Chaste/Chaste/commit/7fa8a1fe59f6d98cbf1cb5cc25a5f4c0fd6f1198).
+This tutorial is automatically generated from [TestPyTensileTestTutorial.py](https://github.com/Chaste/Chaste/blob/develop/pychaste/test/tutorial/TestPyTensileTestTutorial.py) at revision [4f629caca177](https://github.com/Chaste/Chaste/commit/4f629caca177b8cfd822427a3c7f3953cb904fb8).
 
 Note that the code is given in full at the bottom of the page.
 
