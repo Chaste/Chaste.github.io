@@ -27,7 +27,7 @@ by a recent interface change then please see here for fix suggestions.
 
 ### Dependency changes
 
-This will be the last Chaste release to support Ubuntu 22.04 LTS (Jammy), and the following dependencies versions will no longer be supported:
+This will be the last Chaste release to support Ubuntu 22.04 LTS (Jammy), and the following dependencies versions will no longer be supported in future releases.
 
 - Boost < 1.83
 - HDF5 < 1.10.10
