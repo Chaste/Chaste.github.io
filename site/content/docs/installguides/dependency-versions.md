@@ -78,8 +78,8 @@ to compile Chaste with no problems.
 
 <table>
   <tr>
-    <th>GCC</th>
-    <th>Clang</th>
+    <th>GCC<sup>†</sup></th>
+    <th>Clang<sup>†</sup></th>
     <th>Intel oneAPI</th>
   </tr>
   <tr>
@@ -89,47 +89,33 @@ to compile Chaste with no problems.
       <br>
       🟢 15.x <sup>4</sup>
       <br>
-      🟩 14.x
+      🟢 14.x
       <br>
       🟢 13.x <sup>3</sup>
       <br>
-      🟢 12.x <sup>2,3</sup>
-      <br>
-      🟨 11.x <sup>2,3</sup>
-      <br>
-      🟢 10.x <sup>1,2,3</sup>
-      <br>
-      🟪 &lt;10
+      🟪 &lt;13
       <br>
       🟥 &lt;9
     </td>
     <!-- Clang -->
     <td>	
-      🟦 22.x <sup>4</sup>
+      🟦 22.x
       <br>
       🟦 21.x <sup>4</sup>
       <br>
-      🟦 20.x <sup>4</sup>
+      🟦 20.x
       <br>
-      🟦 19.x <sup>3,4</sup>
+      🟦 19.x
       <br>
-      🟩 18.x <sup>3,4</sup>
+      🟢 18.x <sup>3</sup>
       <br>
-      🟩 17.x <sup>3,4</sup>
-      <br>
-      🟩 16.x <sup>3</sup>
-      <br>
-      🟩 15.x <sup>3</sup>
-      <br>
-      🟩 14.x <sup>2,3</sup>
-      <br>
-      🟪 &lt;14
+      🟪 &lt;18
       <br>
       🟥 &lt;11
     </td>
     <!-- Intel oneAPI -->
     <td>
-      🟩 2026.x
+      🟢 2026.x
       <br>
       🟨 2025.x
       <br>
@@ -145,6 +131,9 @@ to compile Chaste with no problems.
     </td>
  </tr>
 </table>
+
+<sup>†</sup> Recent Ubuntu versions provide numerous compilers, including older versions and backports of newer ones when available. Therefore we indicate the default versions of GCC and Clang in each Ubuntu LTS, and use that when determininng what is sunsetting and unsupported. The "preferred" versions are either available in a supported Ubuntu LTS, or are regularly tested.
+
 
 ## Libraries
 
