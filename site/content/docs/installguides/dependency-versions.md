@@ -149,6 +149,7 @@ In some instances the version number is linked to the GitHub issue in which supp
     <th>Boost</th>
     <th>HDF5</th>
     <th>ParMETIS</th>
+    <th>PT-Scotch</th>
     <th>PETSc</th>
     <th>SUNDIALS</th>
     <th>VTK</th>
@@ -218,9 +219,15 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- ParMETIS -->
     <td>
-      🟢 4.0 <sup>1,2,3,4</sup>
+      🟢 4.0 <sup>1,2,3</sup>
       <br>
       🟥 &lt;4.0
+    </td>
+    <!-- PT-Scotch -->
+    <td>
+      🟢 7.0 <sup>4</sup>
+      <br>
+      🟥 &lt;7.0
     </td>
     <!-- PETSc -->
     <td>
