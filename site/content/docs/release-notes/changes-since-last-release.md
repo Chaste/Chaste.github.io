@@ -34,7 +34,8 @@ This will be the last Chaste release to support Ubuntu 22.04 LTS (Jammy), and th
 - PETSc < 3.19
 - SUNDIALS < 6.4
 - VTK < 9.1
-- GCC < 10
+- GCC < 13
+- Clang < 18
 - CMake < 3.28
 
 
