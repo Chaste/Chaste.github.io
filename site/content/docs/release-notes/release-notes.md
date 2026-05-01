@@ -70,7 +70,7 @@ toc: true
   - SUNDIALS < 6.4
   - VTK < 9.1
   - GCC < 10
-  - CMake < 3.28>
+  - CMake < 3.28
 
 
 -----
