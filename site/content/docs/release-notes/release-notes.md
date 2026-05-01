@@ -60,6 +60,20 @@ toc: true
 - [#493](https://github.com/Chaste/Chaste/issues/493) The deprecated `pkg_resources` import path has been removed from PyChaste.
 
 
+### Future Plans
+
+- The next release should merge the Subcellular Element Model into Chaste.
+- The next release will be the last to support Ubuntu 22.04 LTS (Jammy), and the following dependencies versions will no longer be supported:
+  - Boost < 1.83
+  - HDF5 < 1.10.10
+  - PETSc < 3.19
+  - SUNDIALS < 6.4
+  - VTK < 9.1
+  - GCC < 10
+  - CMake < 3.28>
+
+
+
 ## Release 2024.2 (changes since Release 2024.1)
 
 ### Headline features
