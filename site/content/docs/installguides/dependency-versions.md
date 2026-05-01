@@ -78,8 +78,8 @@ to compile Chaste with no problems.
 
 <table>
   <tr>
-    <th>GCC</th>
-    <th>Clang</th>
+    <th>GCC<sup>†</sup></th>
+    <th>Clang<sup>†</sup></th>
     <th>Intel oneAPI</th>
   </tr>
   <tr>
@@ -89,47 +89,33 @@ to compile Chaste with no problems.
       <br>
       🟢 15.x <sup>4</sup>
       <br>
-      🟩 14.x
+      🟢 14.x
       <br>
       🟢 13.x <sup>3</sup>
       <br>
-      🟢 12.x <sup>2,3</sup>
-      <br>
-      🟨 11.x <sup>2,3</sup>
-      <br>
-      🟢 10.x <sup>1,2,3</sup>
-      <br>
-      🟪 &lt;10
+      🟪 &lt;13
       <br>
       🟥 &lt;9
     </td>
     <!-- Clang -->
     <td>	
-      🟦 22.x <sup>4</sup>
+      🟦 22.x
       <br>
       🟦 21.x <sup>4</sup>
       <br>
-      🟦 20.x <sup>4</sup>
+      🟦 20.x
       <br>
-      🟦 19.x <sup>3,4</sup>
+      🟦 19.x
       <br>
-      🟩 18.x <sup>3,4</sup>
+      🟢 18.x <sup>3</sup>
       <br>
-      🟩 17.x <sup>3,4</sup>
-      <br>
-      🟩 16.x <sup>3</sup>
-      <br>
-      🟩 15.x <sup>3</sup>
-      <br>
-      🟩 14.x <sup>2,3</sup>
-      <br>
-      🟪 &lt;14
+      🟪 &lt;18
       <br>
       🟥 &lt;11
     </td>
     <!-- Intel oneAPI -->
     <td>
-      🟩 2026.x
+      🟢 2026.x
       <br>
       🟨 2025.x
       <br>
@@ -146,6 +132,9 @@ to compile Chaste with no problems.
  </tr>
 </table>
 
+<sup>†</sup> Recent Ubuntu versions provide numerous compilers, including older versions and backports of newer ones when available. Therefore we indicate the default versions of GCC and Clang in each Ubuntu LTS, and use that when determining what is sunsetting and unsupported. The "preferred" versions are either available in a supported Ubuntu LTS, or are regularly tested.
+
+
 ## Libraries
 
 Preferred library versions are the default versions on Ubuntu LTS releases, and
@@ -160,6 +149,7 @@ In some instances the version number is linked to the GitHub issue in which supp
     <th>Boost</th>
     <th>HDF5</th>
     <th>ParMETIS</th>
+    <th>PT-Scotch</th>
     <th>PETSc</th>
     <th>SUNDIALS</th>
     <th>VTK</th>
@@ -171,7 +161,7 @@ In some instances the version number is linked to the GitHub issue in which supp
     <td>
       🟦 1.91
       <br>
-      🟢 1.90 <sup>4</sup>
+      🟢 <a href="https://github.com/Chaste/Chaste/issues/517">1.90</a> <sup>4</sup>
       <br>
       🟩 <a href="https://github.com/Chaste/Chaste/issues/465">1.89</a>
       <br>
@@ -197,9 +187,9 @@ In some instances the version number is linked to the GitHub issue in which supp
       <br>
       🟦 2.0
       <br>
-      🟢 <a href="https://github.com/Chaste/Chaste/issues/375">1.14.6</a> 
+      🟢 <a href="https://github.com/Chaste/Chaste/issues/375">1.14.6</a> <sup>4</sup>
       <br>
-      🟨 <a href="https://github.com/Chaste/Chaste/issues/375">1.14.5</a> 
+      🟨 <a href="https://github.com/Chaste/Chaste/issues/375">1.14.5</a>
       <br>
       🟨 <a href="https://github.com/Chaste/Chaste/issues/375">1.14.4</a>
       <br>
@@ -211,7 +201,7 @@ In some instances the version number is linked to the GitHub issue in which supp
       <br>
       🟨 <a href="https://github.com/Chaste/Chaste/issues/375">1.14.0</a>
       <br>
-      🟦 1.12.3
+      🟨 1.12.3
       <br>
       🟨 <a href="https://github.com/Chaste/Chaste/issues/163">1.12.2</a>
       <br>
@@ -229,15 +219,23 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- ParMETIS -->
     <td>
-      🟢 4.0 <sup>1,2,3,4</sup>
+      🟢 4.0 <sup>1,2,3</sup>
       <br>
       🟥 &lt;4.0
+    </td>
+    <!-- PT-Scotch -->
+    <td>
+      🟢 7.0 (≥7.0.9) <sup>4</sup>
+      <br>
+      🟩 7.0 (&lt;7.0.9)
+      <br>
+      🟥 &lt;7.0
     </td>
     <!-- PETSc -->
     <td>
       🟦 3.25
       <br>
-      🟢 <a href="https://github.com/Chaste/Chaste/issues/456">3.24</a>
+      🟢 <a href="https://github.com/Chaste/Chaste/issues/456">3.24</a> <sup>4</sup>
       <br>
       🟩 <a href="https://github.com/Chaste/Chaste/issues/405">3.23</a>
       <br>
@@ -255,25 +253,25 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- SUNDIALS -->
     <td>
-      🟦 <a href="https://github.com/Chaste/Chaste/issues/457">7.5</a> 
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/457">7.5</a>
       <br>
-      🟦 <a href="https://github.com/Chaste/Chaste/issues/457">7.4</a> 
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/457">7.4</a>
       <br>
-      🟦 <a href="https://github.com/Chaste/Chaste/issues/457">7.3</a> 
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/457">7.3</a>
       <br>
-      🟩 <a href="https://github.com/Chaste/Chaste/issues/266">7.2</a> 
+      🟩 <a href="https://github.com/Chaste/Chaste/issues/266">7.2</a>
       <br>
-      🟨 <a href="https://github.com/Chaste/Chaste/issues/266">7.1</a> 
+      🟢 <a href="https://github.com/Chaste/Chaste/issues/266">7.1</a> <sup>4</sup>
       <br>
-      🟩 <a href="https://github.com/Chaste/Chaste/issues/266">7.0</a> 
+      🟩 <a href="https://github.com/Chaste/Chaste/issues/266">7.0</a>
       <br>
-      🟩 6.7 
+      🟩 6.7
       <br>
-      🟨 6.6 
+      🟨 6.6
       <br>
-      🟨 6.5 
+      🟨 6.5
       <br>
-      🟢 <a href="https://github.com/Chaste/Chaste/issues/257">6.4</a> <sup>3</sup> 
+      🟢 <a href="https://github.com/Chaste/Chaste/issues/257">6.4</a> <sup>3</sup>
       <br>
       🟪 &lt;6.4
       <br>
@@ -281,13 +279,13 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- VTK -->
     <td>
-      🟦 <a href="https://github.com/Chaste/Chaste/issues/458">9.5</a>  <sup>4</sup>
+      🟢 <a href="https://github.com/Chaste/Chaste/issues/458">9.5</a>  <sup>4</sup>
       <br>
-      🟦 <a href="https://github.com/Chaste/Chaste/issues/458">9.4</a>
+      🟩 <a href="https://github.com/Chaste/Chaste/issues/458">9.4</a>
       <br>
       🟢 <a href="https://github.com/Chaste/Chaste/issues/257">9.3</a>
       <br>
-      🟩 <a href="https://github.com/Chaste/Chaste/issues/36">9.2</a> 
+      🟩 <a href="https://github.com/Chaste/Chaste/issues/36">9.2</a>
       <br>
       🟢 <a href="https://github.com/Chaste/Chaste/issues/36">9.1</a>  <sup>2,3</sup>
       <br>
@@ -311,7 +309,7 @@ In some instances the version number is linked to the GitHub issue in which supp
       <br>
       🟢 4.0 <sup>2,3,4</sup>
       <br>
-      🟥 &lt;4.0 
+      🟥 &lt;4.0
     </td>
  </tr>
 </table>
