@@ -132,7 +132,7 @@ to compile Chaste with no problems.
  </tr>
 </table>
 
-<sup>†</sup> Recent Ubuntu versions provide numerous compilers, including older versions and backports of newer ones when available. Therefore we indicate the default versions of GCC and Clang in each Ubuntu LTS, and use that when determininng what is sunsetting and unsupported. The "preferred" versions are either available in a supported Ubuntu LTS, or are regularly tested.
+<sup>†</sup> Recent Ubuntu versions provide numerous compilers, including older versions and backports of newer ones when available. Therefore we indicate the default versions of GCC and Clang in each Ubuntu LTS, and use that when determining what is sunsetting and unsupported. The "preferred" versions are either available in a supported Ubuntu LTS, or are regularly tested.
 
 
 ## Libraries
