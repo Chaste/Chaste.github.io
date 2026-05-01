@@ -63,7 +63,7 @@ toc: true
 ### Future Plans
 
 - The next release should merge the Subcellular Element Model into Chaste.
-- The next release will be the last to support Ubuntu 22.04 LTS (Jammy), and the following dependencies versions will no longer be supported:
+- The next release will no longer support Ubuntu 22.04 LTS (Jammy), and the following dependencies versions will no longer be supported:
   - Boost < 1.83
   - HDF5 < 1.10.10
   - PETSc < 3.19
