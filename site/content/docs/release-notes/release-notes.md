@@ -8,6 +8,58 @@ images: []
 toc: true
 ---
 
+## Release 2026.1 (changes since Release 2024.2)
+
+
+### Headline features
+
+- [#500](https://github.com/Chaste/Chaste/issues/500) Chaste now supports Ubuntu 26.04 LTS (Resolute).
+- [#273](https://github.com/Chaste/Chaste/issues/273) PyChaste has been merged into the main Chaste repository, simplifying installation and development workflows. For installation instructions, usage examples and API details, consult the [PyChaste documentation](https://chaste.github.io/pychaste/).
+
+
+### Dependency changes
+
+- [#424](https://github.com/Chaste/Chaste/issues/424) ParMETIS has been replaced by SCOTCH (`libparmetis-dev` to `libscotchparmetis-dev`), due to ParMETIS being dropped from Ubuntu 25.04 over licensing issues.
+- [#449](https://github.com/Chaste/Chaste/issues/449) Chaste now supports Ubuntu 25.10 (Questing).
+- [#421](https://github.com/Chaste/Chaste/issues/421) Chaste now supports Ubuntu 25.04 (Plucky).
+- [#339](https://github.com/Chaste/Chaste/issues/339) Chaste now supports Ubuntu 24.10 (Oracular).
+- [#453](https://github.com/Chaste/Chaste/issues/453) [#465](https://github.com/Chaste/Chaste/issues/465) [#517](https://github.com/Chaste/Chaste/issues/517) Chaste now supports Boost up to 1.90.
+- [#375](https://github.com/Chaste/Chaste/issues/375) Chaste now supports HDF5 up to 1.14.6.
+- [#327](https://github.com/Chaste/Chaste/issues/327) [#405](https://github.com/Chaste/Chaste/issues/405) [#456](https://github.com/Chaste/Chaste/issues/456) Chaste now supports PETSc up to 3.24.
+- [#266](https://github.com/Chaste/Chaste/issues/266) Chaste now supports SUNDIALS up to 7.2.
+- [#338](https://github.com/Chaste/Chaste/issues/338) [#458](https://github.com/Chaste/Chaste/issues/458) Chaste now supports VTK up to 9.5.
+
+
+### Core
+
+- [#470](https://github.com/Chaste/Chaste/issues/470) Configure output now links to the Chaste website and GitHub Discussions so users can find support channels more easily.
+- [#459](https://github.com/Chaste/Chaste/issues/459) Python regular expression substitutions used in generated test code have been updated to avoid deprecation warnings on newer Python versions.
+
+
+### Heart
+
+- [#343](https://github.com/Chaste/Chaste/issues/343) Dynamic cell models now use the correct linker flags for newer linkers on Linux systems.
+- [#435](https://github.com/Chaste/Chaste/issues/435) Cardiac electromechanics problems can now output VTK visualisation data for deformed meshes and solution fields, supported by reusable deformed mesh and solution-writer code.
+
+
+### Cell Based
+
+- [#283](https://github.com/Chaste/Chaste/issues/283) Cell-based PDE specifications are now more consistent across the PDE hierarchy, including equivalent methods between box and growing domains.
+- [#400](https://github.com/Chaste/Chaste/issues/400) Off-lattice node-pair handling has moved up the cell population hierarchy so interaction forces can work consistently across populations that maintain node pairs.
+- [#381](https://github.com/Chaste/Chaste/issues/381) `CellBasedSimulationArchiver` now supports binary archives, reducing archive size and avoiding text serialisation edge cases such as NaN values.
+- [#448](https://github.com/Chaste/Chaste/issues/448) Adaptive off-lattice timestep handling now fails out when timestep reduction is not resolving a `StepSizeException`, avoiding rare infinite loops.
+- [#384](https://github.com/Chaste/Chaste/issues/384) The elongation shape factor calculation has been improved.
+- [#394](https://github.com/Chaste/Chaste/issues/394) A magic number has been removed from box collection setup.
+
+
+### PyChaste
+
+- [#368](https://github.com/Chaste/Chaste/issues/368) PyChaste conda build recipes have been updated, with dependency pins by Python version, Python 3.13 support and Python 3.8 support dropped.
+- [#414](https://github.com/Chaste/Chaste/issues/414) A PyChaste Qt xcb runtime issue has been fixed.
+- [#439](https://github.com/Chaste/Chaste/issues/439) PyChaste conda VTK errors have been fixed.
+- [#493](https://github.com/Chaste/Chaste/issues/493) The deprecated `pkg_resources` import path has been removed from PyChaste.
+
+
 ## Release 2024.2 (changes since Release 2024.1)
 
 ### Headline features
@@ -1133,5 +1185,3 @@ tools = {'xsd':'FILL_IN_PATH_TO_XSD_BINARY'
 * For `ELEMENT_DIM == 1` (in any `SPACE_DIM`) `MeshalyzerMeshWriter` will now output a .cnnx file rather than a .tri file for element connections.
 * Added a `CombinedOdeSystem` class for simple coupling of ODE systems.
 * `TimeStepper::GetTimeStepsElapsed()` has now become `TimeStepper::GetTotalTimeStepsTaken()`
-
-
