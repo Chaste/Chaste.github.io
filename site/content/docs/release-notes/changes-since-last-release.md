@@ -15,9 +15,12 @@ by a recent interface change then please see here for fix suggestions.
 
 
 ## Changes since last release appear below
+
 ---
 
+
 ## (changes since Release 2024.2)
+
 
 ### Headline features
 
@@ -26,8 +29,11 @@ simplifying installation and development workflows. For installation
 instructions, usage examples and API details, consult the
 [PyChaste documentation](https://chaste.github.io/pychaste/).
 
+
 ### Dependency changes
+
 This will be the last Chaste release to support
+
 - Clang >=6, <11
 - GCC >=7, <9
 - Boost >=1.67, <1.74
@@ -36,10 +42,14 @@ This will be the last Chaste release to support
 - SUNDIALS >=3.1, <5.8
 - VTK >=6.3, <7.1
 
+
 ### Core
+
 
 ### Heart
 
+
 ### Cell Based
+
 
 ### Future Plans
