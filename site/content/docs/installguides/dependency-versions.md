@@ -225,7 +225,9 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- PT-Scotch -->
     <td>
-      🟢 7.0 <sup>4</sup>
+      🟢 7.0 (≥7.0.9) <sup>4</sup>
+      <br>
+      🟩 7.0 (&lt;7.0.9)
       <br>
       🟥 &lt;7.0
     </td>
