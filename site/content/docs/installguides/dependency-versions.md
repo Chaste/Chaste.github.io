@@ -255,7 +255,7 @@ In some instances the version number is linked to the GitHub issue in which supp
     <td>
       🟩 <a href="https://github.com/Chaste/Chaste/issues/457">7.7</a>
       <br>
-      🟦 <a href="https://github.com/Chaste/Chaste/issues/457">7.6</a>
+      🟨 <a href="https://github.com/Chaste/Chaste/issues/457">7.6</a>
       <br>
       🟦 <a href="https://github.com/Chaste/Chaste/issues/457">7.5</a>
       <br>
