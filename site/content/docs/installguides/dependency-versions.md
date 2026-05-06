@@ -309,7 +309,7 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- XSD  -->
     <td>
-      🟦 <a href="https://github.com/Chaste/Chaste/issues/526">4.2</a>
+      🟩 <a href="https://github.com/Chaste/Chaste/issues/526">4.2</a>
       <br>
       <s>⬛ <a href="https://codesynthesis.com/download/xsd/4.1/README">4.1</a></s>
       <br>
