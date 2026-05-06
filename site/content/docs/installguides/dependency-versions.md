@@ -159,7 +159,7 @@ In some instances the version number is linked to the GitHub issue in which supp
   <tr>
      <!-- Boost -->
     <td>
-      🟦 1.91
+      🟩 <a href="https://github.com/Chaste/Chaste/issues/520">1.91</a>
       <br>
       🟢 <a href="https://github.com/Chaste/Chaste/issues/517">1.90</a> <sup>4</sup>
       <br>
@@ -233,7 +233,7 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- PETSc -->
     <td>
-      🟦 3.25
+      🟩 <a href="https://github.com/Chaste/Chaste/issues/522">3.25</a>
       <br>
       🟢 <a href="https://github.com/Chaste/Chaste/issues/456">3.24</a> <sup>4</sup>
       <br>
@@ -253,6 +253,10 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- SUNDIALS -->
     <td>
+      🟩 <a href="https://github.com/Chaste/Chaste/issues/457">7.7</a>
+      <br>
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/457">7.6</a>
+      <br>
       🟦 <a href="https://github.com/Chaste/Chaste/issues/457">7.5</a>
       <br>
       🟦 <a href="https://github.com/Chaste/Chaste/issues/457">7.4</a>
@@ -279,6 +283,8 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- VTK -->
     <td>
+      🟩 <a href="https://github.com/Chaste/Chaste/issues/523">9.6</a>
+      <br>
       🟢 <a href="https://github.com/Chaste/Chaste/issues/458">9.5</a>  <sup>4</sup>
       <br>
       🟩 <a href="https://github.com/Chaste/Chaste/issues/458">9.4</a>
@@ -295,7 +301,7 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- Xerces-C  -->
     <td>
-      🟦 3.3
+      🟩 <a href="https://github.com/Chaste/Chaste/issues/524">3.3</a>
       <br>
       🟢 3.2 <sup>1,2,3,4</sup>
       <br>
@@ -303,9 +309,9 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- XSD  -->
     <td>
-      🟦 4.2
+      🟦 <a href="https://github.com/Chaste/Chaste/issues/526">4.2</a>
       <br>
-      🟦 4.1
+      <s>⬛ <a href="https://codesynthesis.com/download/xsd/4.1/README">4.1</a></s>
       <br>
       🟢 4.0 <sup>2,3,4</sup>
       <br>
