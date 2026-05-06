@@ -225,9 +225,9 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- PT-Scotch -->
     <td>
-      🟢 7.0 (≥7.0.9) <sup>4</sup>
+      🟢 <a href="https://github.com/Chaste/Chaste/issues/424#issuecomment-3339310468">7.0 (≥7.0.9)</a> <sup>4</sup>
       <br>
-      🟩 7.0 (&lt;7.0.9)
+      🟩 <a href="https://github.com/Chaste/Chaste/issues/424#issuecomment-3339310468">7.0 (&lt;7.0.9)</a>
       <br>
       🟥 &lt;7.0
     </td>
@@ -255,7 +255,7 @@ In some instances the version number is linked to the GitHub issue in which supp
     <td>
       🟩 <a href="https://github.com/Chaste/Chaste/issues/457">7.7</a>
       <br>
-      🟦 <a href="https://github.com/Chaste/Chaste/issues/457">7.6</a>
+      🟨 <a href="https://github.com/Chaste/Chaste/issues/457">7.6</a>
       <br>
       🟦 <a href="https://github.com/Chaste/Chaste/issues/457">7.5</a>
       <br>
@@ -309,7 +309,7 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- XSD  -->
     <td>
-      🟦 <a href="https://github.com/Chaste/Chaste/issues/526">4.2</a>
+      🟩 <a href="https://github.com/Chaste/Chaste/issues/526">4.2</a>
       <br>
       <s>⬛ <a href="https://codesynthesis.com/download/xsd/4.1/README">4.1</a></s>
       <br>
