@@ -225,9 +225,9 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- PT-Scotch -->
     <td>
-      🟢 7.0 (≥7.0.9) <sup>4</sup>
+      🟢 <a href="https://github.com/Chaste/Chaste/issues/424#issuecomment-3339310468">7.0 (≥7.0.9)</a> <sup>4</sup>
       <br>
-      🟩 7.0 (&lt;7.0.9)
+      🟩 <a href="https://github.com/Chaste/Chaste/issues/424#issuecomment-3339310468">7.0 (&lt;7.0.9)</a>
       <br>
       🟥 &lt;7.0
     </td>
