@@ -78,7 +78,41 @@ If cmake configuration has already been run, re-generate the wrappers with:
 make pychaste_wrappers
 ```
 
-The new wrappers will now be stored under `build/pychaste/wrappers` as `NewCellCycleModel.cppwg.[c|h]pp`.
+The new wrappers will now be stored under `build/pychaste/wrappers` as `NewCellCycleModel_[1|2].cppwg.[c|h]pp`.
+
+### Adding template instantiations
+
+The configuration in `config.yaml` has defaults for templated classes that cover common
+instantiations such as `Foo<2>`, `Foo<3>` or `Foo<2,2>` `Foo<3,3>`. If the class being
+added has additional template instantiations beyond these common cases, extra configuration
+should be added to cover its instantiations in `config.yaml`.
+
+For example, if the new class `Foo` has the template signature 
+`<unsigned ELEMENT_DIM, unsigned SPACE_DIM=ELEMENT_DIM>` and the following instantiations:
+
+```cpp
+template class Foo<1,1>;
+template class Foo<1,2>;
+template class Foo<2,2>;
+template class Foo<1,3>;
+template class Foo<2,3>;
+template class Foo<3,3>;
+```
+
+then it can be added to wrappers with the following configuration:
+
+```yml
+- name: Foo
+  template_substitutions:
+    - signature: <unsigned ELEMENT_DIM, unsigned SPACE_DIM=ELEMENT_DIM>
+      replacement: [[1, 1], [1, 2], [2, 2], [1, 3], [2, 3], [3, 3]]
+```
+
+After making the configuration changes, re-generate the wrappers with `make pychaste_wrappers`, then
+re-run cmake configuration to add the newly generated files to the compilation set.
+
+See [*structure of config.yaml*](#structure-of-configyaml) for a full list of
+configuration options.
 
 ### Excluding a class from wrapping
 
@@ -284,6 +318,8 @@ import chaste
 ImportError: /.../lib.so: undefined symbol: _ZN11Foo7BarEv
 ```
 
+**Solution:**
+
 `Foo::Bar` has been declared but not implemented. If `Foo::Bar` is not implemented, it can be excluded from wrapping by modifying `config.yaml`:
 
 ```yaml
@@ -291,6 +327,128 @@ ImportError: /.../lib.so: undefined symbol: _ZN11Foo7BarEv
   excluded_methods:
     - Bar
 ```
+
+**Error**
+
+```console
+undefined symbol: _Z62register_Foo_1_1_classRN8pybind117module_E
+```
+
+**Solution**
+
+A new wrapper has been created for `Foo<1,1>` but this hasn't been added to the set of source 
+files included in the compile. This can be resolved by re-running cmake configuration so that
+it discovers the newly generated wrapper files.
+
+
+**Error**
+
+```console
+ImportError: cannot import name 'Foo_1_1' from 'chaste._pychaste_all'
+```
+
+**Solution**
+- Check if `Foo_1_1` is defined in `__init__.py`. See [*wrapping a new class*](#wrapping-a-new-class) for details.
+- Check if wrappers have been generated for `Foo_1_1` in `build/pychaste/wrappers/all`. If not, check if all template
+instantiations of `Foo` have been included in `config.yaml`. See [*adding template instantiations*](#adding-template-instantiations) for details.
+
+
+## Structure of config.yaml
+
+The example below shows a list of the configuration keys available and explains
+the role that each plays in generating wrappers.
+
+```yml
+# Package name: prepended to all modules.
+name: pychaste
+
+# Smart pointer type for PYBIND11_DECLARE_HOLDER_TYPE in all wrappers.
+smart_ptr_type: std::shared_ptr
+
+# Default value of pybind11::return_value_policy for pointers.
+pointer_call_policy: reference
+
+# Default value of pybind11::return_value_policy for references.
+reference_call_policy: reference_internal
+
+# Set False to not include the common include file (all headers) in all wrappers.
+common_include_file: True
+
+# Headers to include in all wrappers.
+source_includes:
+  - <memory>
+
+# Exclude default arguments from wrapped methods.
+exclude_default_args: False
+
+# Signature/replacement settings for explicit template instantiations.
+template_substitutions:
+  - signature: <unsigned DIM>
+    replacement: [[2], [3]]
+  - signature: <unsigned ELEMENT_DIM, unsigned SPACE_DIM=ELEMENT_DIM>
+    replacement: [[2, 2], [3, 3]]
+
+modules:
+  # Module name
+  - name: all
+
+    # List of source directories for this module relative to the source root.
+    # Restrict to headers from these directories. Blank means unrestricted.
+    source_locations:
+
+    # List of free functions to wrap. Blank means none, CPPWG_ALL means discover all.
+    free_functions: CPPWG_ALL
+
+    # List of classes to wrap. Blank means none, CPPWG_ALL means discover all.
+    classes:
+      # Name of class.
+      - name: RelativeTo
+
+        # Name of class source file. Not required if class name matches file name.
+        source_file: FileFinder.hpp
+
+        # Optional path to the class source file, relative to the source root.
+        source_file_path: global/src/FileFinder.hpp
+
+        # Extra includes to add in the wrapper
+        source_includes:
+          - <map>
+
+        # List of methods that should not be wrapped.
+        excluded_methods:
+          - ExcludedMethod
+
+        # Exclude any methods that have these arg types.
+        arg_type_excludes:
+          - double
+
+        # Exclude any constructors that have these arg types.
+        constructor_arg_type_excludes:
+          - double
+
+        # Exclude any constructors that have these signatures.
+        constructor_signature_excludes:
+          - [int, int, int]
+
+        # Path to a custom script for generating wrappers for this class.
+        # The custom generator must extend cppwg.templates.custom.Custom.
+        # CPPWG_SOURCEROOT can be used in the path for the source root directory.
+        custom_generator: "CPPWG_SOURCEROOT/pychaste/dynamic/templates/RelativeToCustomTemplate.py"
+
+        # Custom C++ code to place at the top of the class wrapper.
+        prefix_code:
+
+        # Custom C++ code to place at the bottom of the class wrapper.
+        suffix_code:
+
+      - name: CellwiseOdeSystemInformation
+        excluded: True # Exclude this class from wrapping.
+
+# Text to add at the top of all wrappers
+prefix_text: |
+  // This file is auto-generated; manual changes will be overwritten.
+```
+
 
 {{< callout context="tip" title="See Also" icon="outline/rocket" >}}
 
