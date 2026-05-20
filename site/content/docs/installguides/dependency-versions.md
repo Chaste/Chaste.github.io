@@ -22,16 +22,18 @@ instead the copy of this page bundled with that release.
 The [Developer Install Guide](../../dev-guides/developer-install-guide) should generally be
 updated to reflect installation instructions for one of the preferred versions.
 
+
 ## Key to tables
 
 | Symbol | Label         | Description                                                                                                                                                                                                                                                                               |
 | :----- | :------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 🟢      | Preferred     | These are preferred versions which we regularly test and have no known problems with. We intend to maintain Chaste compatibility for as long as practical (usually longer than the package developers). Our preferred versions are normally the defaults in an Ubuntu LTS.                |
-| 🟩      | Supported     | These are versions that we test against regularly and so should pass all standard tests. They are not our preferred versions because they might have small bugs, or not have as many features, or won't be supported for as long (e.g. because they're not the default in an Ubuntu LTS). |
-| 🟨      | Should Work   | These versions are expected to work. We've generally tested them at least once, but these versions are not regularly tested with the development code.                                                                                                                                    |
-| 🟦      | Future        | We do not yet support these versions, but plan to add support for them in the future. This may just mean we have not yet had the chance to test them for compatibility and adapt the code for them if needed.                                                                             |
-| 🟪      | Sunsetting    | These versions will not be supported in future releases. However, they may work with the current Chaste release, and perhaps/probably/parts-of the development version.                                                                                                                   |
-| 🟥      | Not Supported | These versions are not compatible/supported, either because they have bugs, or are deprecated because they don't do everything we need now, or are too old to continue tested support for.                                                                                                |
+| 🟢     | Preferred     | These are preferred versions which we regularly test and have no known problems with. We intend to maintain Chaste compatibility for as long as practical (usually longer than the package developers). Our preferred versions are normally the defaults in an Ubuntu LTS.                |
+| 🟩     | Supported     | These are versions that we test against regularly and so should pass all standard tests. They are not our preferred versions because they might have small bugs, or not have as many features, or won't be supported for as long (e.g. because they're not the default in an Ubuntu LTS). |
+| 🟨     | Should Work   | These versions are expected to work. We've generally tested them at least once, but these versions are not regularly tested with the development code.                                                                                                                                    |
+| 🟦     | Future        | We do not yet support these versions, but plan to add support for them in the future. This may just mean we have not yet had the chance to test them for compatibility and adapt the code for them if needed.                                                                             |
+| 🟪     | Sunsetting    | These versions will not be supported in future releases. However, they may work with the current Chaste release, and perhaps/probably/parts-of the development version.                                                                                                                   |
+| 🟥     | Not Supported | These versions are not compatible/supported, either because they have bugs, or are deprecated because they don't do everything we need now, or are too old to continue tested support for.                                                                                                |
+
 
 ## Build Systems
 
@@ -69,6 +71,7 @@ minimum required to work fine.
 Scons was the legacy build system and is no longer supported.
 {{< /callout >}}
 
+
 ## Compilers
 
 Preferred compiler versions are the default versions of GCC and Clang on Ubuntu
@@ -98,7 +101,7 @@ to compile Chaste with no problems.
       🟥 &lt;9
     </td>
     <!-- Clang -->
-    <td>	
+    <td>
       🟦 22.x
       <br>
       🟦 21.x <sup>4</sup>
@@ -243,7 +246,7 @@ In some instances the version number is linked to the GitHub issue in which supp
       <br>
       🟩 <a href="https://github.com/Chaste/Chaste/issues/327">3.21</a>
       <br>
-      🟩 3.20 
+      🟩 3.20
       <br>
       🟢 <a href="https://github.com/Chaste/Chaste/issues/257">3.19</a> <sup>3</sup>
       <br>
@@ -331,3 +334,33 @@ page, but you may find hints in the documentation for the dependency.
 <p>3. Available on Ubuntu 24.04 LTS Noble Numbat.</p>
 <p>4. Available on Ubuntu 26.04 LTS Resolute Raccoon.</p>
 </small>
+
+
+## Links to dependencies
+
+The following are handy external links to pages detailing the released versions of Chaste dependencies.
+
+
+### Build Systems
+
+[CMake](https://github.com/Kitware/CMake/tags)
+
+
+### Compilers
+
+[GCC](https://gcc.gnu.org/releases.html)
+[Clang](https://github.com/llvm/llvm-project/tags)
+[Intel oneAPI](https://oneapi-src.github.io/oneapi-ci/#linux-apt) (search `intel-oneapi-compiler-dpcpp-cpp-202x`)
+
+
+### Libraries
+
+[Boost](https://github.com/boostorg/boost/tags)
+[HDF5](https://github.com/HDFGroup/hdf5/tags)
+[ParMETIS](https://github.com/KarypisLab/ParMETIS/blob/main/Changelog)
+[PT-Scotch](https://github.com/live-clones/scotch/tags)
+[PETSc](https://gitlab.com/petsc/petsc/-/tags)
+[SUNDIALS](https://github.com/llnl/sundials/tags)
+[VTK](https://gitlab.kitware.com/vtk/vtk/-/tags)
+[Xerces-C](https://github.com/apache/xerces-c/tags)
+[XSD](https://github.com/codesynthesis-com/xsd/tags)

@@ -16,7 +16,5 @@
     "siblings_only": true
   },
 
-  "MD033": {
-    "allowed_elements": ["br", "sub", "sup"]
-  }
+  "MD033": false
 }
