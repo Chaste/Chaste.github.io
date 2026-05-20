@@ -407,29 +407,29 @@ The following are handy external links to pages detailing the released versions 
 
 ### Build Systems
 
-[CMake](https://github.com/Kitware/CMake/tags)
+- [CMake](https://github.com/Kitware/CMake/tags)
 
 
 ### Compilers
 
-[GCC](https://gcc.gnu.org/releases.html)
-[Clang](https://github.com/llvm/llvm-project/tags)
-[Intel oneAPI](https://oneapi-src.github.io/oneapi-ci/#linux-apt) (search `intel-oneapi-compiler-dpcpp-cpp-202x`)
+- [GCC](https://gcc.gnu.org/releases.html)
+- [Clang](https://github.com/llvm/llvm-project/tags)
+- [Intel oneAPI](https://oneapi-src.github.io/oneapi-ci/#linux-apt) (search `intel-oneapi-compiler-dpcpp-cpp-202x`)
 
 
 ### Libraries
 
-[Boost](https://github.com/boostorg/boost/tags)
-[HDF5](https://github.com/HDFGroup/hdf5/tags)
-[ParMETIS](https://github.com/KarypisLab/ParMETIS/blob/main/Changelog)
-[PT-Scotch](https://github.com/live-clones/scotch/tags)
-[PETSc](https://gitlab.com/petsc/petsc/-/tags)
-[SUNDIALS](https://github.com/llnl/sundials/tags)
-[VTK](https://gitlab.kitware.com/vtk/vtk/-/tags)
-[Xerces-C](https://github.com/apache/xerces-c/tags)
-[XSD](https://github.com/codesynthesis-com/xsd/tags)
+- [Boost](https://github.com/boostorg/boost/tags)
+- [HDF5](https://github.com/HDFGroup/hdf5/tags)
+- [ParMETIS](https://github.com/KarypisLab/ParMETIS/blob/main/Changelog)
+- [PT-Scotch](https://github.com/live-clones/scotch/tags)
+- [PETSc](https://gitlab.com/petsc/petsc/-/tags)
+- [SUNDIALS](https://github.com/llnl/sundials/tags)
+- [VTK](https://gitlab.kitware.com/vtk/vtk/-/tags)
+- [Xerces-C](https://github.com/apache/xerces-c/tags)
+- [XSD](https://github.com/codesynthesis-com/xsd/tags)
 
 
 ### Python
 
-[python3](https://devguide.python.org/versions/)
+- [python3](https://devguide.python.org/versions/)
