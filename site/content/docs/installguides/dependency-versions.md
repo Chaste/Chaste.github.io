@@ -328,6 +328,70 @@ Some versions of dependencies have quirks that may not be documented on this
 page, but you may find hints in the documentation for the dependency.
 {{< /callout >}}
 
+
+## Python
+
+Chaste builds rely on the Python library [chaste-codegen](https://github.com/ModellingWebLab/chaste-codegen) which is installed during CMake configuration.
+This installation requires `python3` and `python3-venv` to be installed.
+
+In addition, to build with [PyChaste](https://chaste.github.io/pychaste/) enabled (which is controlled by the CMake variable `Chaste_ENABLE_PYCHASTE`), the package `python3-dev` is required.
+
+Chaste is expected to work with all 5 major versions of Python that are [currently supported](https://devguide.python.org/versions/).
+
+<table>
+  <tr>
+    <th>python3</th>
+    <th>python3-venv</th>
+    <th>python3-dev</th>
+  </tr>
+  <tr>
+    <!-- python3 -->
+    <td>
+      🟢 3.14 <sup>4</sup>
+      <br>
+      🟨 3.13
+      <br>
+      🟢 3.12 <sup>3</sup>
+      <br>
+      🟨 3.11
+      <br>
+      🟪 3.10 <sup>2</sup>
+      <br>
+      🟥 &lt;3.10
+    </td>
+    <!-- python3-venv -->
+    <td>
+      🟢 3.14 <sup>4</sup>
+      <br>
+      🟨 3.13
+      <br>
+      🟢 3.12 <sup>3</sup>
+      <br>
+      🟨 3.11
+      <br>
+      🟪 3.10 <sup>2</sup>
+      <br>
+      🟥 &lt;3.10
+    </td>
+    <!-- python3-dev -->
+    <td>
+      🟢 3.14 <sup>4</sup>
+      <br>
+      🟨 3.13
+      <br>
+      🟢 3.12 <sup>3</sup>
+      <br>
+      🟨 3.11
+      <br>
+      🟪 3.10 <sup>2</sup>
+      <br>
+      🟥 &lt;3.10
+    </td>
+ </tr>
+</table>
+
+---
+
 <small>
 <p>1. Available on Ubuntu 20.04 LTS Focal Fossa.</p>
 <p>2. Available on Ubuntu 22.04 LTS Jammy Jellyfish.</p>
@@ -343,24 +407,29 @@ The following are handy external links to pages detailing the released versions 
 
 ### Build Systems
 
-[CMake](https://github.com/Kitware/CMake/tags)
+- [CMake](https://github.com/Kitware/CMake/tags)
 
 
 ### Compilers
 
-[GCC](https://gcc.gnu.org/releases.html)
-[Clang](https://github.com/llvm/llvm-project/tags)
-[Intel oneAPI](https://oneapi-src.github.io/oneapi-ci/#linux-apt) (search `intel-oneapi-compiler-dpcpp-cpp-202x`)
+- [GCC](https://gcc.gnu.org/releases.html)
+- [Clang](https://github.com/llvm/llvm-project/tags)
+- [Intel oneAPI](https://oneapi-src.github.io/oneapi-ci/#linux-apt) (search `intel-oneapi-compiler-dpcpp-cpp-202x`)
 
 
 ### Libraries
 
-[Boost](https://github.com/boostorg/boost/tags)
-[HDF5](https://github.com/HDFGroup/hdf5/tags)
-[ParMETIS](https://github.com/KarypisLab/ParMETIS/blob/main/Changelog)
-[PT-Scotch](https://github.com/live-clones/scotch/tags)
-[PETSc](https://gitlab.com/petsc/petsc/-/tags)
-[SUNDIALS](https://github.com/llnl/sundials/tags)
-[VTK](https://gitlab.kitware.com/vtk/vtk/-/tags)
-[Xerces-C](https://github.com/apache/xerces-c/tags)
-[XSD](https://github.com/codesynthesis-com/xsd/tags)
+- [Boost](https://github.com/boostorg/boost/tags)
+- [HDF5](https://github.com/HDFGroup/hdf5/tags)
+- [ParMETIS](https://github.com/KarypisLab/ParMETIS/blob/main/Changelog)
+- [PT-Scotch](https://github.com/live-clones/scotch/tags)
+- [PETSc](https://gitlab.com/petsc/petsc/-/tags)
+- [SUNDIALS](https://github.com/llnl/sundials/tags)
+- [VTK](https://gitlab.kitware.com/vtk/vtk/-/tags)
+- [Xerces-C](https://github.com/apache/xerces-c/tags)
+- [XSD](https://github.com/codesynthesis-com/xsd/tags)
+
+
+### Python
+
+- [python3](https://devguide.python.org/versions/)
