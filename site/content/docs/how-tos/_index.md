@@ -24,7 +24,7 @@ Do not edit it manually, as your changes will be overwritten!
 
 ### Cell Models
 - Get a cardiac cell model to (roughly) a steady state, given a regular stimulus, using the `SteadyStateRunner` class.
-  - [line 98 of TestSteadyStateRunner.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/ionicmodels/TestSteadyStateRunner.hpp#L98)
+  - [line 99 of TestSteadyStateRunner.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/ionicmodels/TestSteadyStateRunner.hpp#L99)
 
 ### Electro-mechanics
 - Set heterogeneous contraction models by using a contraction cell factory.
