@@ -10,8 +10,6 @@ layout: "single"
 
 We are pleased to announce an upcoming workshop on [Chaste](https://chaste.github.io).
 
-To register for the workshop, please [complete this form](https://docs.google.com/forms/d/e/1FAIpQLSf4OZuaNMfawrjYdsPaAt4NOHPKXxEqRTbWU0DiZpBkSF0OTA/viewform?usp=dialog)
-
 ## Workshop Aims
 
 Over the course of the workshop, you will:
@@ -27,7 +25,7 @@ Over the course of the workshop, you will:
 
 The workshop will be held at the **University of Sheffield** from **Wed 1st - Fri 3rd July**. Most activities will take place in [Pam Liversidge Building](https://www.google.com/maps/place/Pam+Liversidge+Building/@53.382714,-1.4802816,688m/data=!3m3!1e3!4b1!5s0x487978802351bc8f:0x30731602a8415b5f!4m6!3m5!1s0x487978802cec084b:0x60e5580cdf19b137!8m2!3d53.3827108!4d-1.4777067!16s%2Fg%2F1pxwp_ysp?entry=ttu&g_ep=EgoyMDI2MDMxMS4wIKXMDSoASAFQAw%3D%3D), Design Studio 02 - E05.
 
-### Provisional Timetable
+### Timetable
 
 **Wednesday 1st July**
 
@@ -40,24 +38,25 @@ The workshop will be held at the **University of Sheffield** from **Wed 1st - Fr
 | 12:30 | 13:30	| Lunch |
 | 13:30 | 14:00	| Hands-on session: Anatomy of a Chaste program |
 | 14:00 | 15:00	| Hands-on session: Cell-based modelling with Chaste |
-| 15:00 | 15:30	| Scientific case study #1: TBC |
-| 15:30 | 16:45	| Bring your own project #1: Get support to code up a model related to your research |
-| 16:45 | 17:00	| Early feedback session |
+| 15:00 | 15:30	| Scientific case study #1: Vaishnudebi Dutta - An agent-based model to investigate the dynamics of HIF, TGF-𝛼, and EGFR signalling under hypoxic conditions in cancer spheroids
+ |
+| 15:30 | 16:30	| Bring your own project #1: Get support to code up a model related to your research |
 
 **Thursday 2nd July**
 
 | Start | End | Description |
 | ----- | ----- | - |
-| 9:30	| 10:15	| Talk: Chaste for cell-based modelling - latest features and future plans | 
-| 10:15	| 11:15	| Hands-on session: Chaste for cell-based modelling - User projects & the C++ API | 
-| 11:15	| 11:30	| Coffee break | 
+| 9:30  | 9:35	| Early feedback session |
+| 9:35	| 10:15	| Talk: Chaste for cell-based modelling - latest features and future plans |
+| 10:15	| 11:15	| Hands-on session: Chaste for cell-based modelling - User projects & the C++ API |
+| 11:15	| 11:30	| Coffee break |
 | 11:30 | 12:30 | Hands-on session: The subcellular element method |
-| 12:30	| 13:30	| Lunch | 
-| 13:30	| 14:00	| Scientific case study #2: TBC | 
-| 14:00	| 14:30	| Talk: Intro to SBML | 
-| 14:30	| 16:00	| Hands-on session: SBML | 
-| 16:00	| 17:30	| Bring your own project #2 | 
-| 18:30	| 20:30	| Dinner | 
+| 12:30	| 13:30	| Lunch |
+| 13:30	| 14:00	| Scientific case study #2: Joshua Grier |
+| 14:00	| 14:30	| Talk: Intro to SBML |
+| 14:30	| 16:00	| Hands-on session: SBML |
+| 16:00	| 17:30	| Bring your own project #2 |
+| 18:30	| 20:30	| Conference Dinner |
 
 **Friday 3rd July**
 
@@ -72,9 +71,6 @@ The workshop will be held at the **University of Sheffield** from **Wed 1st - Fr
 | 13:30 | 14:30 | Bring your own project #3 |
 | 14:30 | 16:00 | Developers+ meeting (optional): Explore collaboration and funding opportunities |
 | 16:00	| |	Departures |
-
-
-
 
 
 ## Venue and Accommodation
