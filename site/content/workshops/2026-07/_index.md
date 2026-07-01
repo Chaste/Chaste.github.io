@@ -60,7 +60,7 @@ The workshop will be held at the **University of Sheffield** from **Wed 1st - Fr
 | 14:00	| 14:30	| Talk: Intro to SBML |
 | 14:30	| 16:00	| Hands-on session: SBML |
 | 16:00	| 17:30	| Bring your own project #2 |
-| 18:30	| 20:30	| Conference Dinner |
+| 18:30	| 20:30	| Conference Dinner - [Ego Restaurant](https://www.google.com/maps/place/Ego+Sheffield+City+Centre/@53.380185,-1.4706499,17z/data=!3m2!4b1!5s0x487982823f18d9fd:0x6b2ad18926b46774!4m6!3m5!1s0x487982825ceb0457:0x6874de81aa8d6ef9!8m2!3d53.380185!4d-1.468075!16s%2Fg%2F1vqtg9lf?entry=ttu&g_ep=EgoyMDI2MDYyOC4wIKXMDSoASAFQAw%3D%3D) |
 
 **Friday 3rd July**
 
