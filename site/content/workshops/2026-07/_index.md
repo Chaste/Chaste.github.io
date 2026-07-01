@@ -56,7 +56,7 @@ The workshop will be held at the **University of Sheffield** from **Wed 1st - Fr
 | 11:15	| 11:30	| Coffee break |
 | 11:30 | 12:30 | Hands-on session: The subcellular element method |
 | 12:30	| 13:30	| Lunch |
-| 13:30	| 14:00	| Scientific case study #2: Joshua Grier |
+| 13:30	| 14:00	| Scientific case study #2: Joshua Grier - Modelling T cell maturation within the thymus |
 | 14:00	| 14:30	| Talk: Intro to SBML |
 | 14:30	| 16:00	| Hands-on session: SBML |
 | 16:00	| 17:30	| Bring your own project #2 |
