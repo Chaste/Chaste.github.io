@@ -10,6 +10,10 @@ layout: "single"
 
 We are pleased to announce an upcoming workshop on [Chaste](https://chaste.github.io).
 
+## Materials
+
+The workshop materials can be found [in this repository](https://github.com/Chaste/chaste-workshop-materials-2026).
+
 ## Workshop Aims
 
 Over the course of the workshop, you will:
