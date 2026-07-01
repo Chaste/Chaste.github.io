@@ -69,7 +69,7 @@ The workshop will be held at the **University of Sheffield** from **Wed 1st - Fr
 | 9:30  | 10:30	| Hands-on session: Creating your own python bindings |
 | 10:30 | 11:30	| Talk: How to get further support / how to contribute to Chaste |
 | 11:30 | 11:45	| Coffee break |
-| 11:45 | 12:15	| Scientific case study #3: TBC |
+| 11:45 | 12:15	| Scientific case study #3: Gary Mirams - Cardiac Chaste |
 | 12:15 | 12:30 | Retrospective: lessons learned, future plans with Chaste |
 | 12:30 | 13:30	| Lunch |
 | 13:30 | 14:30 | Bring your own project #3 |
