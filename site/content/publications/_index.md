@@ -20,7 +20,13 @@ If you want a single citation for Chaste, please use one of these, especially if
  
 ## Publications using Chaste
 
-Here is a list of preprints and peer-reviewed publications that have used Chaste from its inception up to October 2024.
+Here is a list of preprints and peer-reviewed publications that have used Chaste from its inception up to July 2026.
+
+### 2025
+
+ 1. Yin et al. 2025. The influence of cell phenotype on collective cell invasion into the extracellular matrix. *Bulletin of Mathematical Biology* 87(1):13. doi:[10.1007/s11538-025-01560-9](https://doi.org/10.1007/s11538-025-01560-9)
+ 1. Crossley et al. 2025. Modelling the impact of phenotypic heterogeneity on cell migration: a continuum framework derived from individual-based principles. *Bulletin of Mathematical Biology* 87:123. doi:[10.1007/s11538-025-01502-5](https://doi.org/10.1007/s11538-025-01502-5)
+ 1. Martina-Perez et al. 2025. Modeling cell differentiation in neuroblastoma: insights into development, malignancy, and treatment relapse. *Journal of Theoretical Biology* 614:112230. doi:[10.1016/j.jtbi.2025.112230](https://doi.org/10.1016/j.jtbi.2025.112230)
 
 ### 2024
 
