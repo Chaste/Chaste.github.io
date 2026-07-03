@@ -21,16 +21,13 @@ graphs are easy to interpret. gprof remains supported, but its output is
 unlikely to be very helpful (see [the gprof section](#profiling-with-gprof)
 below).
 
-## Choosing what gets profiled
+## How it works
 
-Profiling runs the `Profile` test pack. Each component's `test` folder may
-contain a `ProfileTestPack.txt` file listing the test files in that pack, e.g.
-`heart/test/ProfileTestPack.txt`.
-
-To profile your own test, simply add its path to the `ProfileTestPack.txt` file
-in the relevant `test` folder (creating the file if necessary — this works in
-[user projects](../../user-guides/user-projects) too). A test does not need any
-modification to be profiled; the build system takes care of everything.
+When profiling is enabled at configure time, every test is automatically run
+with the chosen profiler attached, and the profiling reports are generated as
+soon as the test finishes. So to profile your own test — which needs no
+modification at all — you just configure a build with profiling switched on and
+run the test with `ctest` as normal.
 
 ## Profiling with gperftools
 
@@ -64,18 +61,13 @@ cmake -DChaste_PROFILE_GPERFTOOLS=ON /path/to/Chaste
 ```
 
 Enabling profiling automatically selects a suitable build type, so there is no
-need to set `CMAKE_BUILD_TYPE` yourself. Then build and run the profiled tests
-with:
+need to set `CMAKE_BUILD_TYPE` yourself. Then build the test you want to
+profile, and run it with `ctest` as normal:
 
 ```sh
-make -j4 profile
+make -j4 TestMySimulation
+ctest -V -R TestMySimulation
 ```
-
-This builds every test in the `Profile` test pack, runs each one with the CPU
-profiler attached, and post-processes the results. If you would rather run the
-profiled tests in parallel, configure with e.g.
-`-DChaste_PROFILE_GPERFTOOLS_CPUS=4` instead (but note that timings are most
-reliable when tests run one at a time).
 
 ### The output
 
@@ -85,7 +77,6 @@ Results appear in the `profile` sub-folder of your build folder:
   at the top;
 - `<TestName>.svg`: a call graph, best viewed in a web browser — boxes are
   sized by the time spent in each function;
-- `index.html`: an index page linking to the reports for every test;
 - `<TestName>.prof`: the raw profile data.
 
 The raw profile data can also be explored interactively — this is well worth
@@ -117,18 +108,21 @@ system that can build Chaste). Configure a fresh build folder with:
 cmake -DChaste_PROFILE_GPROF=ON /path/to/Chaste
 ```
 
-then, as for gperftools:
+then build and run your test exactly as for gperftools:
 
 ```sh
-make -j4 profile
+make -j4 TestMySimulation
+ctest -V -R TestMySimulation
 ```
 
-Results again appear in the `profile` sub-folder, as a `<TestName>.txt` report
-per test plus an `index.html` index page.
+Results again appear in the `profile` sub-folder, as a `<TestName>.txt` report.
 
 ## Profiling on continuous integration
 
-The `Profile` test pack is run regularly on GitHub Actions to track Chaste's
-performance over time; see the
+Separately from profiling your own tests, a fixed set of tests — the `Profile`
+test pack, listed in the `ProfileTestPack.txt` files in each component's `test`
+folder — is profiled regularly on GitHub Actions for long-term monitoring of
+Chaste's performance; see the
 [testing strategy](../chaste-strategies/testing-strategy) for the published
-results.
+results. You can run that pack yourself in a profiling-enabled build with
+`make -j4 profile`, which also generates an `index.html` linking every report.
