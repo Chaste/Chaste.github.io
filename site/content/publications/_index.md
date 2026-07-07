@@ -24,15 +24,15 @@ Here is a list of preprints and peer-reviewed publications that have used Chaste
 
 ### 2026
 
-1. Drozdowski, Kocameşe, Boonekamp, Boutros & Schwarz. 2026. Cell bulging and extrusion in a three-dimensional bubbly vertex model for curved epithelial sheets. Physical Review X 16:021023. doi:[10.1103/x82g-cq7n](https://doi.org/10.1103/x82g-cq7n)
-
+1. Drozdowski et al. 2026. Cell bulging and extrusion in a three-dimensional bubbly vertex model for curved epithelial sheets. Physical Review X 16:021023. doi:[10.1103/x82g-cq7n](https://doi.org/10.1103/x82g-cq7n)
+1. Fan et al. 2026. Exploring the relationship between vascular remodelling and tumour growth using agent-based modelling. PLOS Computational Biology 22(5):e1012967. doi:[10.1371/journal.pcbi.1012967](https://doi.org/10.1371/journal.pcbi.1012967)
 
 ### 2025
 
  1. Yin et al. 2025. The influence of cell phenotype on collective cell invasion into the extracellular matrix. *Bulletin of Mathematical Biology* 87(1):13. doi:[10.1007/s11538-025-01560-9](https://doi.org/10.1007/s11538-025-01560-9)
  1. Crossley et al. 2025. Modelling the impact of phenotypic heterogeneity on cell migration: a continuum framework derived from individual-based principles. *Bulletin of Mathematical Biology* 87:123. doi:[10.1007/s11538-025-01502-5](https://doi.org/10.1007/s11538-025-01502-5)
  1. Martina-Perez et al. 2025. Modeling cell differentiation in neuroblastoma: insights into development, malignancy, and treatment relapse. *Journal of Theoretical Biology* 614:112230. doi:[10.1016/j.jtbi.2025.112230](https://doi.org/10.1016/j.jtbi.2025.112230)
-1. Godeau, Marin-Riera, Trubuil, Rogalla, Bengoetxea, Backová, Pujol, Colombelli, Sharpe, Martin-Blanco & Solon. 2025. A transient contractile seam promotes epithelial sealing and sequential assembly of body segments. Nature Communications 16:4010. doi:[10.1038/s41467-025-58566-z](https://doi.org/10.1038/s41467-025-58566-z)
+1. Godeau et al. 2025. A transient contractile seam promotes epithelial sealing and sequential assembly of body segments. Nature Communications 16:4010. doi:[10.1038/s41467-025-58566-z](https://doi.org/10.1038/s41467-025-58566-z)
 
 ### 2024
 
