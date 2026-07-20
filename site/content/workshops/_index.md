@@ -12,6 +12,11 @@ layout: "single"
 ## Upcoming workshops
 
 
+### [16-17 September, Oxford, UK](./2026-09)
+
+A "bring your own project" hackathon: get support to code up a model related to your research.
+
+
 ### [01-03 July, Sheffield, UK](./2026-07)
 
 A workshop on collaborations with Chaste, and a showcase of the latest additions to the codebase.
