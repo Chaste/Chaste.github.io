@@ -21,6 +21,49 @@ Travel and accommodation costs will be covered for UK-based early career researc
 More details coming soon.
 
 
+## Tentative Timetable
+
+This timetable is tentative and subjec to change.
+Venues are yet to be confirmed.
+
+
+### Tuesday 15 Sep
+
+| Start | End | Description |
+| ----- | ----- | - |
+| 19:00 | | Welcome social / dinner for those arriving on Tuesday |
+
+
+### Wednesday 16 Sep
+
+| Start | End | Description |
+| ----- | ----- | - |
+| 09:30 | 10:00 | Arrivals & coffee |
+| 10:00 | 10:30 | Welcome address & introductions |
+| 10:30 | 12:30 | Project work |
+| 12:30 | 14:00 | Lunch |
+| 14:00 | 15:30 | Project work |
+| 15:30 | 15:45 | Coffee break |
+| 15:45 | 16:15 | Scientific case study |
+| 16:15 | 17:30 | Project work |
+| 18:30 | | Workshop dinner |
+
+
+### Thursday 17 Sep
+
+| Start | End | Description |
+| ----- | ----- | - |
+| 09:00 | 09:30 | Arrivals & coffee |
+| 09:30 | 12:00 | Project work |
+| 12:00 | 12:30 | Scientific case study |
+| 12:30 | 14:00 | Lunch |
+| 14:00 | 15:30 | Project work |
+| 15:30 | 15:45 | Coffee break |
+| 15:45 | 16:15 | Project work |
+| 16:15 | 16:30 | Closing remarks |
+| 16:30 | | Departures |
+
+
 ## Register your interest
 
 
