@@ -6,7 +6,7 @@ images: []
 toc: true
 layout: "single"
 ---
-This tutorial is automatically generated from [TestPyTensileTestTutorial.py](https://github.com/Chaste/Chaste/blob/develop/pychaste/test/tutorial/TestPyTensileTestTutorial.py) at revision [4f629caca177](https://github.com/Chaste/Chaste/commit/4f629caca177b8cfd822427a3c7f3953cb904fb8).
+This tutorial is automatically generated from [TestPyTensileTestTutorial.py](https://github.com/Chaste/Chaste/blob/develop/pychaste/test/tutorial/TestPyTensileTestTutorial.py) at revision [2fa4bd9284ad](https://github.com/Chaste/Chaste/commit/2fa4bd9284ade4c2d5447b65a638782728386e5c).
 
 Note that the code is given in full at the bottom of the page.
 
@@ -88,7 +88,7 @@ fixing lateral degress of freedom for simplicity, since we are using an over-dam
         simulator.AddCellPopulationBoundaryCondition(bc)
 
         point = np.array([0.0, 15.5])
-        normal = np.array([0.0, -1.0])
+        normal = np.array([0.0, 1.0])
         bc2 = chaste.cell_based.AttractingPlaneBoundaryCondition[2, 2](cell_population, point, normal)
         simulator.AddCellPopulationBoundaryCondition(bc2)
 ```
@@ -192,7 +192,7 @@ class TestPyTensileTestTutorial(chaste.cell_based.AbstractCellBasedTestSuite):
         simulator.AddCellPopulationBoundaryCondition(bc)
 
         point = np.array([0.0, 15.5])
-        normal = np.array([0.0, -1.0])
+        normal = np.array([0.0, 1.0])
         bc2 = chaste.cell_based.AttractingPlaneBoundaryCondition[2, 2](cell_population, point, normal)
         simulator.AddCellPopulationBoundaryCondition(bc2)
 
