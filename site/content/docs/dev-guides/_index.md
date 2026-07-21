@@ -34,6 +34,8 @@ New developers should read the [User Guides](../user-guides/), and also see:
   users of development versions of Chaste.
 - [Fixing Memory Testing](fixing-memory-testing): Notes on fixing memory leaks.
 - [Git Guide](git-guide): A brief guide on using Git.
+- [Profiling Chaste Code](profiling): A guide to generating CPU profiles of
+  Chaste tests.
 - [Using Debug Macros](using-debug-macros): A guide on using the debug macros in
   Chaste.
 
