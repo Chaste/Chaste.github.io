@@ -37,6 +37,9 @@ Here is a list of preprints and peer-reviewed publications that have used Chaste
 1. Yang et al. 2025. Topological classification of tumour-immune interactions and dynamics. J Math Biol 91(3):25. doi:[10.1007/s00285-025-02253-6](https://doi.org/10.1007/s00285-025-02253-6)
 1. Ntiniakou et al. 2025. Open benchmarking for cell-based multiscale models: lessons from a community initiative. bioRxiv preprint. doi:[10.1101/2025.07.16.664358](https://doi.org/10.1101/2025.07.16.664358)
 1. Weber et al. 2025. Investigating the effect of forces on the morphogenesis of intestinal organoids in a cell-based vertex model. ChemRxiv preprint. doi:[10.26434/chemrxiv-2025-z8hzq](https://doi.org/10.26434/chemrxiv-2025-z8hzq)
+1. Bagchi et al. 2025. Fast yet force-effective mode of supracellular collective cell migration due to extracellular force transmission. PLoS Comput Biol 21(1):e1012664. doi:[10.1371/journal.pcbi.1012664](https://doi.org/10.1371/journal.pcbi.1012664)
+1. Murray & Saurin 2025. A perfusion-based model to explain how paclitaxel achieves tumour-selective killing. bioRxiv preprint. doi:[10.1101/2025.09.28.679015](https://doi.org/10.1101/2025.09.28.679015)
+
 
 ### 2024
 
@@ -49,6 +52,8 @@ Here is a list of preprints and peer-reviewed publications that have used Chaste
  1. Pak et al. 2024. A mathematical framework for the emergence of winners and losers in cell competition. *Journal of Theoretical Biology* 577:111666. doi:[10.1016/j.jtbi.2023.111666](https://doi.org/10.1016/j.jtbi.2023.111666)
  1. Selvamani et al. 2024. Emergence of Spatial Scales and Macroscopic Tissue Dynamics in Active Epithelial Monolayers. *Cells Tissues Organs* 213(4):269-282. doi:[10.1159/000528501](https://doi.org/10.1159/000528501)
  1. Drozdowski & Schwarz 2024. Morphological instability at topological defects in a three-dimensional vertex model for spherical epithelia. *Physical Review Research* 6(2):L022045. doi:[10.1103/PhysRevResearch.6.L022045](https://doi.org/10.1103/PhysRevResearch.6.L022045)
+ 1. Avci et al. 2024. A workflow for creating gastric computational models from SPARC scaffolds. Appl Sci 14(22):10393. doi:[10.3390/app142210393](https://doi.org/10.3390/app142210393)
+1. Ma et al. 2024. Coupling of perinuclear actin cap and nuclear mechanics in regulating flow-induced Yap spatiotemporal nucleocytoplasmic transport. Adv Sci 11(11):2305867. doi:[10.1002/advs.202305867](https://doi.org/10.1002/advs.202305867)
 
 ### 2023
 
