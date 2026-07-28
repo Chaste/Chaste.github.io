@@ -27,6 +27,7 @@ Here is a list of preprints and peer-reviewed publications that have used Chaste
 1. Drozdowski et al. 2026. Cell bulging and extrusion in a three-dimensional bubbly vertex model for curved epithelial sheets. Physical Review X 16:021023. doi:[10.1103/x82g-cq7n](https://doi.org/10.1103/x82g-cq7n)
 1. Fan et al. 2026. Exploring the relationship between vascular remodelling and tumour growth using agent-based modelling. PLOS Computational Biology 22(5):e1012967. doi:[10.1371/journal.pcbi.1012967](https://doi.org/10.1371/journal.pcbi.1012967)
 1. Leach et al. 2026. GPU acceleration of cell-based simulations in Chaste using FLAME GPU 2. bioRxiv preprint. doi:[10.64898/2026.01.13.699201](https://doi.org/10.64898/2026.01.13.699201)
+1. Kim et al. 2026. Effect of airway constriction on ventilation inhomogeneity: multiple-breath washout indices and intrapulmonary reverse flow. Respir Res 27:273. doi:[10.1186/s12931-026-03695-2](https://10.1186/s12931-026-03695-2)
 
 ### 2025
 
@@ -39,7 +40,6 @@ Here is a list of preprints and peer-reviewed publications that have used Chaste
 1. Weber et al. 2025. Investigating the effect of forces on the morphogenesis of intestinal organoids in a cell-based vertex model. ChemRxiv preprint. doi:[10.26434/chemrxiv-2025-z8hzq](https://doi.org/10.26434/chemrxiv-2025-z8hzq)
 1. Bagchi et al. 2025. Fast yet force-effective mode of supracellular collective cell migration due to extracellular force transmission. PLoS Comput Biol 21(1):e1012664. doi:[10.1371/journal.pcbi.1012664](https://doi.org/10.1371/journal.pcbi.1012664)
 1. Murray & Saurin 2025. A perfusion-based model to explain how paclitaxel achieves tumour-selective killing. bioRxiv preprint. doi:[10.1101/2025.09.28.679015](https://doi.org/10.1101/2025.09.28.679015)
-
 
 ### 2024
 
