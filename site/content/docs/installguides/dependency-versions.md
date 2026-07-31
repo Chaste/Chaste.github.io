@@ -186,9 +186,11 @@ In some instances the version number is linked to the GitHub issue in which supp
     </td>
     <!-- HDF5 -->
     <td>
-      🟦 2.1
+      🟦 2.2
       <br>
-      🟦 2.0
+      🟩 <a href="https://github.com/Chaste/Chaste/issues/521">2.1</a>
+      <br>
+      🟨 <a href="https://github.com/Chaste/Chaste/issues/521">2.0</a>
       <br>
       🟢 <a href="https://github.com/Chaste/Chaste/issues/375">1.14.6</a> <sup>4</sup>
       <br>
