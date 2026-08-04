@@ -67,7 +67,7 @@ Venues are yet to be confirmed.
 ## Register your interest
 
 
-If you'd like to attend, please register your interest via this form: [Register your interest](https://forms.cloud.microsoft/e/nH0aBStG2Z).
+If you'd like to attend, please register via this form: [Registration form](https://forms.cloud.microsoft/e/beTwTqvJ8i).
 
 
 ## Supported by
