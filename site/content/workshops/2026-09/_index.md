@@ -18,56 +18,54 @@ Participants will benefit from dedicated time with people who can help develop y
 
 Travel and accommodation costs will be covered for UK-based early career researchers.
 
-More details coming soon.
+**Registration is now open**: [register here](https://forms.cloud.microsoft/e/beTwTqvJ8i).
+
+
+## Venue, accommodation & catering
+
+The exact venue is still to be decided, but the hackathon will take place in **central Oxford**.
+The workshop dinner will be held at [**New College**](https://maps.app.goo.gl/gSYKQpvL2WyPgqWN7).
+
+Accommodation will be at the [**Tamesis Guest House**](https://maps.app.goo.gl/qRwpxZZHfKNL62qV7).
+
+**Lunch on both days and the workshop dinner will be provided** for all participants.
+Please tell us about any dietary requirements when you register.
 
 
 ## Tentative Timetable
 
-This timetable is tentative and subjec to change.
-Venues are yet to be confirmed.
+This timetable is tentative and subject to change.
+The final timetable will be confirmed nearer the time.
+
+| Day | Start | End | Description |
+| --- | ----- | --- | ----------- |
+| **Tue 15 Sep** | 19:00 | | Welcome social / dinner for those arriving on Tuesday |
+| **Wed 16 Sep** | 09:30 | 10:00 | Arrivals & coffee |
+| | 10:00 | 10:30 | Welcome address & introductions |
+| | 10:30 | 12:30 | Project work |
+| | 12:30 | 14:00 | Lunch |
+| | 14:00 | 15:30 | Project work |
+| | 15:30 | 15:45 | Coffee break |
+| | 15:45 | 16:15 | Scientific case study |
+| | 16:15 | 17:30 | Project work |
+| | 18:30 | | Workshop dinner at New College |
+| **Thu 17 Sep** | 09:00 | 09:30 | Arrivals & coffee |
+| | 09:30 | 12:00 | Project work |
+| | 12:00 | 12:30 | Scientific case study |
+| | 12:30 | 14:00 | Lunch |
+| | 14:00 | 15:30 | Project work |
+| | 15:30 | 15:45 | Coffee break |
+| | 15:45 | 16:15 | Project work |
+| | 16:15 | 16:30 | Closing remarks |
+| | 16:30 | | Departures |
 
 
-### Tuesday 15 Sep
-
-| Start | End | Description |
-| ----- | ----- | - |
-| 19:00 | | Welcome social / dinner for those arriving on Tuesday |
+## Register now
 
 
-### Wednesday 16 Sep
+Registration is open: if you'd like to attend, please register via this form: [Registration form](https://forms.cloud.microsoft/e/beTwTqvJ8i).
 
-| Start | End | Description |
-| ----- | ----- | - |
-| 09:30 | 10:00 | Arrivals & coffee |
-| 10:00 | 10:30 | Welcome address & introductions |
-| 10:30 | 12:30 | Project work |
-| 12:30 | 14:00 | Lunch |
-| 14:00 | 15:30 | Project work |
-| 15:30 | 15:45 | Coffee break |
-| 15:45 | 16:15 | Scientific case study |
-| 16:15 | 17:30 | Project work |
-| 18:30 | | Workshop dinner |
-
-
-### Thursday 17 Sep
-
-| Start | End | Description |
-| ----- | ----- | - |
-| 09:00 | 09:30 | Arrivals & coffee |
-| 09:30 | 12:00 | Project work |
-| 12:00 | 12:30 | Scientific case study |
-| 12:30 | 14:00 | Lunch |
-| 14:00 | 15:30 | Project work |
-| 15:30 | 15:45 | Coffee break |
-| 15:45 | 16:15 | Project work |
-| 16:15 | 16:30 | Closing remarks |
-| 16:30 | | Departures |
-
-
-## Register your interest
-
-
-If you'd like to attend, please register via this form: [Registration form](https://forms.cloud.microsoft/e/beTwTqvJ8i).
+Places are limited, so please register as early as you can.
 
 
 ## Supported by
