@@ -6,4 +6,4 @@
     languageISO = "EN"
     languageTag = "en-GB"
     footer = 'Chaste project'
-    alertText = 'Save the date: "bring your own project" hackathon, 16-17 September 2026, Oxford, UK. <a class="alert-link stretched-link fw-normal" href="/workshops/2026-09/">Find out more.</a>'
+    alertText = 'Register now: "bring your own project" hackathon, 16-17 September 2026, Oxford, UK. <a class="alert-link stretched-link fw-normal" href="/workshops/2026-09/">Find out more.</a>'
