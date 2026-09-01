@@ -6,7 +6,7 @@ images: []
 toc: true
 layout: "single"
 ---
-This tutorial is automatically generated from [TestPyCellSortingTutorial.py](https://github.com/Chaste/Chaste/blob/develop/pychaste/test/tutorial/TestPyCellSortingTutorial.py) at revision [7fa8a1fe59f6](https://github.com/Chaste/Chaste/commit/7fa8a1fe59f6d98cbf1cb5cc25a5f4c0fd6f1198).
+This tutorial is automatically generated from [TestPyCellSortingTutorial.py](https://github.com/Chaste/Chaste/blob/develop/pychaste/test/tutorial/TestPyCellSortingTutorial.py) at revision [d84f7317feef](https://github.com/Chaste/Chaste/commit/d84f7317feef645c9f81338e0cdc76a13cdbc155).
 
 Note that the code is given in full at the bottom of the page.
 
@@ -71,7 +71,7 @@ Now we have a mesh and a set of cells to go with it, we can create a `CellPopula
 In order to visualize labelled cells we need to use the following command.
 
 ```python
-        cell_population.AddCellWriterCellLabelWriter()
+        cell_population.AddCellWriter["CellLabelWriter"]()
 ```
 PyChaste can do simple 3D rendering with VTK. We set up a VtkScene so that we can
 see the population evovle in real time.
@@ -165,7 +165,7 @@ class TestPyCellSortingTutorial(chaste.cell_based.AbstractCellBasedTestSuite):
 
         cell_population = chaste.cell_based.PottsBasedCellPopulation[2](mesh, cells)
 
-        cell_population.AddCellWriterCellLabelWriter()
+        cell_population.AddCellWriter["CellLabelWriter"]()
 
         scene = chaste.visualization.VtkScene[2]()
         scene.SetCellPopulation(cell_population)

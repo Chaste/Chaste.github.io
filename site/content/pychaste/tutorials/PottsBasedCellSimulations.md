@@ -6,7 +6,7 @@ images: []
 toc: true
 layout: "single"
 ---
-This tutorial is automatically generated from [TestPyPottsBasedCellSimulationsTutorial.py](https://github.com/Chaste/Chaste/blob/develop/pychaste/test/tutorial/TestPyPottsBasedCellSimulationsTutorial.py) at revision [7fa8a1fe59f6](https://github.com/Chaste/Chaste/commit/7fa8a1fe59f6d98cbf1cb5cc25a5f4c0fd6f1198).
+This tutorial is automatically generated from [TestPyPottsBasedCellSimulationsTutorial.py](https://github.com/Chaste/Chaste/blob/develop/pychaste/test/tutorial/TestPyPottsBasedCellSimulationsTutorial.py) at revision [d84f7317feef](https://github.com/Chaste/Chaste/commit/d84f7317feef645c9f81338e0cdc76a13cdbc155).
 
 Note that the code is given in full at the bottom of the page.
 
@@ -194,7 +194,7 @@ Now we have a mesh and a set of cells to go with it, we can create a CellPopulat
 In order to visualize labelled cells we need to use the following command.
 
 ```python
-        cell_population.AddCellWriterCellLabelWriter()
+        cell_population.AddCellWriter["CellLabelWriter"]()
 ```
 We then pass in the cell population into an `OffLatticeSimulation`, and set the output directory and end time
 
@@ -283,7 +283,7 @@ Now we have a mesh and a set of cells to go with it, we can create a CellPopulat
 In order to visualize labelled cells we need to use the following command.
 
 ```python
-        cell_population.AddCellWriterCellLabelWriter()
+        cell_population.AddCellWriter["CellLabelWriter"]()
 ```
 We then pass in the cell population into an `OffLatticeSimulation`, and set the output directory and end time
 
@@ -416,7 +416,7 @@ class TestPyPottsBasedCellSimulationsTutorial(AbstractCellBasedTestSuite):
 
         cell_population = chaste.cell_based.PottsBasedCellPopulation[2](mesh, cells)
 
-        cell_population.AddCellWriterCellLabelWriter()
+        cell_population.AddCellWriter["CellLabelWriter"]()
 
         simulator = chaste.cell_based.OnLatticeSimulation[2](cell_population)
         simulator.SetOutputDirectory("Python/TestPottsBasedCellSorting")
@@ -461,7 +461,7 @@ class TestPyPottsBasedCellSimulationsTutorial(AbstractCellBasedTestSuite):
 
         cell_population = chaste.cell_based.PottsBasedCellPopulation[3](mesh, cells)
 
-        cell_population.AddCellWriterCellLabelWriter()
+        cell_population.AddCellWriter["CellLabelWriter"]()
 
         simulator = chaste.cell_based.OnLatticeSimulation[3](cell_population)
         simulator.SetOutputDirectory("Python/TestPottsBasedCellSorting3D")

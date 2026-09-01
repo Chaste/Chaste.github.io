@@ -6,7 +6,7 @@ images: []
 toc: true
 layout: "single"
 ---
-This tutorial is automatically generated from [TestPyMeshBasedCellSimulationsTutorial.py](https://github.com/Chaste/Chaste/blob/develop/pychaste/test/tutorial/TestPyMeshBasedCellSimulationsTutorial.py) at revision [7fa8a1fe59f6](https://github.com/Chaste/Chaste/commit/7fa8a1fe59f6d98cbf1cb5cc25a5f4c0fd6f1198).
+This tutorial is automatically generated from [TestPyMeshBasedCellSimulationsTutorial.py](https://github.com/Chaste/Chaste/blob/develop/pychaste/test/tutorial/TestPyMeshBasedCellSimulationsTutorial.py) at revision [d84f7317feef](https://github.com/Chaste/Chaste/commit/d84f7317feef645c9f81338e0cdc76a13cdbc155).
 
 Note that the code is given in full at the bottom of the page.
 
@@ -73,7 +73,7 @@ To view the results of this and the next test in Paraview it is necessary to exp
 generate the required .vtu files.
 
 ```python
-        cell_population.AddPopulationWriterVoronoiDataWriter()
+        cell_population.AddPopulationWriter["VoronoiDataWriter"]()
 ```
 We can set up a `VtkScene` to do a quick visualization of the population before running the analysis.
 
@@ -170,7 +170,7 @@ and should be the same length as the vector of cell pointers.
 Again Paraview output is explicitly requested.
 
 ```python
-        cell_population.AddPopulationWriterVoronoiDataWriter()
+        cell_population.AddPopulationWriter["VoronoiDataWriter"]()
 ```
 We can set up a `VtkScene` to do a quick visualization of the population before running the analysis.
 
@@ -256,7 +256,7 @@ class TestPyMeshBasedCellSimulationsTutorial(AbstractCellBasedTestSuite):
 
         cell_population = chaste.cell_based.MeshBasedCellPopulation[2, 2](mesh, cells)
 
-        cell_population.AddPopulationWriterVoronoiDataWriter()
+        cell_population.AddPopulationWriter["VoronoiDataWriter"]()
 
         scene = chaste.visualization.VtkScene[2]()
         scene.SetCellPopulation(cell_population)
@@ -299,7 +299,7 @@ class TestPyMeshBasedCellSimulationsTutorial(AbstractCellBasedTestSuite):
 
         cell_population = chaste.cell_based.MeshBasedCellPopulationWithGhostNodes[2](mesh, cells, locs)
 
-        cell_population.AddPopulationWriterVoronoiDataWriter()
+        cell_population.AddPopulationWriter["VoronoiDataWriter"]()
 
         scene = chaste.visualization.VtkScene[2]()
         scene.SetCellPopulation(cell_population)
