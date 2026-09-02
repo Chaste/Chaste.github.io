@@ -172,7 +172,7 @@ Do not edit it manually, as your changes will be overwritten!
 
 ## Mesh
 - Construct a distributed regular mesh (rectangle in 2D or cuboid in 3D) which does not have a default split plane.  The default is for parallel code to split 2-D meshes into slices in the y-dimension and 3-D meshes in the z-dimension.
-  - [line 2275 of TestDistributedTetrahedralMesh.hpp](https://github.com/Chaste/Chaste/blob/develop/mesh/test/TestDistributedTetrahedralMesh.hpp#L2275)
+  - [line 2281 of TestDistributedTetrahedralMesh.hpp](https://github.com/Chaste/Chaste/blob/develop/mesh/test/TestDistributedTetrahedralMesh.hpp#L2281)
 - Write meshes to file
   - [line 58 of TestMeshWriters.hpp](https://github.com/Chaste/Chaste/blob/develop/mesh/test/writer/TestMeshWriters.hpp#L58)
 - Convert a linear tetrahedral mesh to quadratic and write back to file.
