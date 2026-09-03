@@ -6,7 +6,7 @@ images: []
 toc: true
 layout: "single"
 ---
-This tutorial is automatically generated from [TestPyMeshBasedCellSimulationsTutorial.py](https://github.com/Chaste/Chaste/blob/develop/pychaste/test/tutorial/TestPyMeshBasedCellSimulationsTutorial.py) at revision [d84f7317feef](https://github.com/Chaste/Chaste/commit/d84f7317feef645c9f81338e0cdc76a13cdbc155).
+This tutorial is automatically generated from [TestPyMeshBasedCellSimulationsTutorial.py](https://github.com/Chaste/Chaste/blob/develop/pychaste/test/tutorial/TestPyMeshBasedCellSimulationsTutorial.py) at revision [11d7c7327ef7](https://github.com/Chaste/Chaste/commit/11d7c7327ef7321c8fe9f108f98ec690d1be8801).
 
 Note that the code is given in full at the bottom of the page.
 
@@ -103,7 +103,7 @@ For a list of possible forces see subclasses of `AbstractForce`. Note that some 
 see the specific class documentation for details. If you try to use an incompatible class then you will receive a warning.
 
 ```python
-        force = chaste.cell_based.GeneralisedLinearSpringForce[2, 2]()
+        force = chaste.cell_based.LinearSpringForce[2, 2]()
         simulator.AddForce(force)
 ```
 Save snapshot images of the population during the simulation
@@ -200,7 +200,7 @@ Again we create a force law, and pass it to the `OffLatticeSimulation`.
 This force law ensures that ghost nodes don't exert forces on real nodes but real nodes exert forces on ghost nodes.
 
 ```python
-        force = chaste.cell_based.GeneralisedLinearSpringForce[2, 2]()
+        force = chaste.cell_based.LinearSpringForce[2, 2]()
         simulator.AddForce(force)
 ```
 To run the simulation, we call `Solve()`.
@@ -269,7 +269,7 @@ class TestPyMeshBasedCellSimulationsTutorial(AbstractCellBasedTestSuite):
 
         simulator.SetSamplingTimestepMultiple(12)
 
-        force = chaste.cell_based.GeneralisedLinearSpringForce[2, 2]()
+        force = chaste.cell_based.LinearSpringForce[2, 2]()
         simulator.AddForce(force)
 
         scene_modifier = chaste.cell_based.VtkSceneModifier[2]()
@@ -316,7 +316,7 @@ class TestPyMeshBasedCellSimulationsTutorial(AbstractCellBasedTestSuite):
         scene_modifier.SetUpdateFrequency(300)
         simulator.AddSimulationModifier(scene_modifier)
 
-        force = chaste.cell_based.GeneralisedLinearSpringForce[2, 2]()
+        force = chaste.cell_based.LinearSpringForce[2, 2]()
         simulator.AddForce(force)
 
         scene.Start()

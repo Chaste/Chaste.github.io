@@ -6,7 +6,7 @@ images: []
 toc: true
 layout: "single"
 ---
-This tutorial is automatically generated from [TestPyNodeBasedCellSimulationsTutorial.py](https://github.com/Chaste/Chaste/blob/develop/pychaste/test/tutorial/TestPyNodeBasedCellSimulationsTutorial.py) at revision [7fa8a1fe59f6](https://github.com/Chaste/Chaste/commit/7fa8a1fe59f6d98cbf1cb5cc25a5f4c0fd6f1198).
+This tutorial is automatically generated from [TestPyNodeBasedCellSimulationsTutorial.py](https://github.com/Chaste/Chaste/blob/develop/pychaste/test/tutorial/TestPyNodeBasedCellSimulationsTutorial.py) at revision [45f87a619bdf](https://github.com/Chaste/Chaste/commit/45f87a619bdf1473152f286b4e80e1296872ab7d).
 
 Note that the code is given in full at the bottom of the page.
 
@@ -97,7 +97,7 @@ We then pass in the cell population into an `OffLatticeSimulation`, and set the 
 We now pass a force law to the simulation.
 
 ```python
-        force = chaste.cell_based.GeneralisedLinearSpringForce[2, 2]()
+        force = chaste.cell_based.LinearSpringForce[2, 2]()
         simulator.AddForce(force)
 ```
 Save snapshot images of the population during the simulation
@@ -189,7 +189,7 @@ We then pass in the cell population into an `OffLatticeSimulation`, and set the 
 We now pass a force law to the simulation.
 
 ```python
-        force = chaste.cell_based.GeneralisedLinearSpringForce[3, 3]()
+        force = chaste.cell_based.LinearSpringForce[3, 3]()
         simulator.AddForce(force)
 ```
 Save snapshot images of the population during the simulation
@@ -262,7 +262,7 @@ We can set up a `VtkScene` to do a quick visualization of the population before 
 We now pass a force law to the simulation.
 
 ```python
-        force = chaste.cell_based.GeneralisedLinearSpringForce[3, 3]()
+        force = chaste.cell_based.LinearSpringForce[3, 3]()
         simulator.AddForce(force)
 ```
 This time we create a CellPopulationBoundaryCondition and pass this to the OffLatticeSimulation.
@@ -350,7 +350,7 @@ class TestPyNodeBasedCellSimulationsTutorial(AbstractCellBasedTestSuite):
         simulator.SetSamplingTimestepMultiple(100)
         simulator.SetEndTime(10.0)
 
-        force = chaste.cell_based.GeneralisedLinearSpringForce[2, 2]()
+        force = chaste.cell_based.LinearSpringForce[2, 2]()
         simulator.AddForce(force)
 
         scene_modifier = chaste.cell_based.VtkSceneModifier[2]()
@@ -399,7 +399,7 @@ class TestPyNodeBasedCellSimulationsTutorial(AbstractCellBasedTestSuite):
         simulator.SetSamplingTimestepMultiple(12)
         simulator.SetEndTime(10.0)
 
-        force = chaste.cell_based.GeneralisedLinearSpringForce[3, 3]()
+        force = chaste.cell_based.LinearSpringForce[3, 3]()
         simulator.AddForce(force)
 
         scene_modifier = chaste.cell_based.VtkSceneModifier[3]()
@@ -444,7 +444,7 @@ class TestPyNodeBasedCellSimulationsTutorial(AbstractCellBasedTestSuite):
         simulator.SetSamplingTimestepMultiple(12)
         simulator.SetEndTime(10.0)
 
-        force = chaste.cell_based.GeneralisedLinearSpringForce[3, 3]()
+        force = chaste.cell_based.LinearSpringForce[3, 3]()
         simulator.AddForce(force)
 
         centre = np.array([0.0, 0.0, 1.0])

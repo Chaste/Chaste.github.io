@@ -6,7 +6,7 @@ images: []
 toc: true
 layout: "single"
 ---
-This tutorial is automatically generated from [TestPySpheroidTutorial.py](https://github.com/Chaste/Chaste/blob/develop/pychaste/test/tutorial/TestPySpheroidTutorial.py) at revision [d84f7317feef](https://github.com/Chaste/Chaste/commit/d84f7317feef645c9f81338e0cdc76a13cdbc155).
+This tutorial is automatically generated from [TestPySpheroidTutorial.py](https://github.com/Chaste/Chaste/blob/develop/pychaste/test/tutorial/TestPySpheroidTutorial.py) at revision [11d7c7327ef7](https://github.com/Chaste/Chaste/commit/11d7c7327ef7321c8fe9f108f98ec690d1be8801).
 
 Note that the code is given in full at the bottom of the page.
 
@@ -106,7 +106,7 @@ We ask for output every 12 increments
 We define how the springs between cells behave using a force law.
 
 ```python
-        force = chaste.cell_based.GeneralisedLinearSpringForce[2, 2]()
+        force = chaste.cell_based.LinearSpringForce[2, 2]()
         simulator.AddForce(force)
 ```
 We set up a PDE for oxygen diffusion and consumption by cells, setting the rate of consumption to 0.1
@@ -215,7 +215,7 @@ class TestPySpheroidTutorial(chaste.cell_based.AbstractCellBasedTestSuite):
 
         simulator.SetSamplingTimestepMultiple(100)
 
-        force = chaste.cell_based.GeneralisedLinearSpringForce[2, 2]()
+        force = chaste.cell_based.LinearSpringForce[2, 2]()
         simulator.AddForce(force)
 
         pde = chaste.pde.CellwiseSourceEllipticPde[2](cell_population, -0.5)
