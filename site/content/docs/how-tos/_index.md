@@ -30,15 +30,15 @@ Do not edit it manually, as your changes will be overwritten!
 - Set heterogeneous contraction models by using a contraction cell factory.
   - [line 148 of TestAbstractContractionCellFactory.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/TestAbstractContractionCellFactory.hpp#L148)
 - Run electro-mechanics with mechano-electric feedback
-  - [line 100 of TestAnotherCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherCardiacElectroMechanicsTutorial.hpp#L100)
+  - [line 99 of TestAnotherCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherCardiacElectroMechanicsTutorial.hpp#L99)
 - Run electro-mechanics with inflation pressures
-  - [line 270 of TestAnotherCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherCardiacElectroMechanicsTutorial.hpp#L270)
+  - [line 269 of TestAnotherCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherCardiacElectroMechanicsTutorial.hpp#L269)
 - Run electro-mechanical simulations using bidomain instead of monodomain
   - [line 215 of TestCardiacElectroMechanicsProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/mechanics/TestCardiacElectroMechanicsProblem.hpp#L215)
 - Run basic electro-mechanics simulations; specify different models, boundary conditions, fibres, visualize electro-mechanics output with VTK (Paraview)
-  - [line 117 of TestCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestCardiacElectroMechanicsTutorial.hpp#L117)
+  - [line 116 of TestCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestCardiacElectroMechanicsTutorial.hpp#L116)
 - Visualise results in Cmgui (very brief description)
-  - [line 206 of TestCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestCardiacElectroMechanicsTutorial.hpp#L206)
+  - [line 205 of TestCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestCardiacElectroMechanicsTutorial.hpp#L205)
 
 ### Output
 - Specify output formats (for different visualisers)
@@ -54,7 +54,7 @@ Do not edit it manually, as your changes will be overwritten!
 - Use the `SingleTraceOutputModifier` to output based on a global index (index AFTER any permutation has been applied)
   - [line 1062 of TestBidomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainProblem.hpp#L1062)
 - Calculating and outputting ionic currents ('derived quantities') in a single cell simulation using [OdeSolution](/doxygen-latest/classOdeSolution.html) - see also [chaste_codegen documentation](/docs/user-guides/code-generation-from-cellml/#derived-quantities).
-  - [line 395 of TestCvodeCells.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/ionicmodels/TestCvodeCells.hpp#L395)
+  - [line 394 of TestCvodeCells.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/ionicmodels/TestCvodeCells.hpp#L394)
 - Calculating and outputting ionic currents ('derived quantities') in a tissue simulation using [HeartConfig](/doxygen-latest/classHeartConfig.html) - see also [chaste_codegen documentation](/docs/user-guides/code-generation-from-cellml/#derived-quantities).
   - [line 236 of TestMonodomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/monodomain/TestMonodomainProblem.hpp#L236)
 - On large-scale parallel simulations it is advantageous to cache HDF5 output and only write to disk at end of simulation (or at checkpoint).  This is achieved with `SetUseHdf5DataWriterCache()`
@@ -68,7 +68,7 @@ Do not edit it manually, as your changes will be overwritten!
 - Convert already generated simulation (HDF5) results to Cmgui format.
   - [line 61 of TestHdf5ToVisualizerConverters.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/postprocessing/TestHdf5ToVisualizerConverters.hpp#L61)
 - Compute pseudo-ECGs
-  - [line 59 of TestPseudoEcgCalculator.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/postprocessing/TestPseudoEcgCalculator.hpp#L59)
+  - [line 58 of TestPseudoEcgCalculator.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/postprocessing/TestPseudoEcgCalculator.hpp#L58)
 
 ### Problem definition
 - Use a CVODE adaptor solver in a tissue simulation
@@ -124,7 +124,7 @@ Do not edit it manually, as your changes will be overwritten!
 
 ## Continuum mechanics
 - Write strain after solve
-  - [line 946 of TestCompressibleNonlinearElasticitySolver.hpp](https://github.com/Chaste/Chaste/blob/develop/continuum_mechanics/test/TestCompressibleNonlinearElasticitySolver.hpp#L946)
+  - [line 945 of TestCompressibleNonlinearElasticitySolver.hpp](https://github.com/Chaste/Chaste/blob/develop/continuum_mechanics/test/TestCompressibleNonlinearElasticitySolver.hpp#L945)
 - Get or output stresses during a solve
   - [line 634 of TestIncompressibleNonlinearElasticitySolver.hpp](https://github.com/Chaste/Chaste/blob/develop/continuum_mechanics/test/TestIncompressibleNonlinearElasticitySolver.hpp#L634)
 - Solve nonlinear elasticity problems
