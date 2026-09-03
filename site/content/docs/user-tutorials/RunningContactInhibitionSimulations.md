@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningContactInhibitionSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningContactInhibitionSimulationsTutorial.hpp) at revision [7fa8a1fe59f6](https://github.com/Chaste/Chaste/commit/7fa8a1fe59f6d98cbf1cb5cc25a5f4c0fd6f1198). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningContactInhibitionSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningContactInhibitionSimulationsTutorial.hpp) at revision [73397ee34484](https://github.com/Chaste/Chaste/commit/73397ee344848c22bbc593f8527a08be5918a1a2). Note that the code is given in full at the bottom of the page.
 ## An example showing how to use a contact inhibition cell cycle model and volume tracking simulation modifier
 
 ### Introduction
@@ -84,7 +84,7 @@ The remaining header files define classes that will be also be used and are pres
 #include "HoneycombMeshGenerator.hpp"
 #include "HoneycombVertexMeshGenerator.hpp"
 #include "OutputFileHandler.hpp"
-#include "GeneralisedLinearSpringForce.hpp"
+#include "LinearSpringForce.hpp"
 #include "NagaiHondaForce.hpp"
 #include "SimpleTargetAreaModifier.hpp"
 #include "SimulationTime.hpp"
@@ -189,7 +189,7 @@ Next, we create a force law (springs) to be applied between cell centres and set
 cut-off length beyond which cells stop interacting. We then pass this to the `VolumeTrackedOffLatticeSimulation`.
 
 ```cpp
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_force);
+        MAKE_PTR(LinearSpringForce<2>, p_force);
         p_force->SetCutOffLength(1.5);
         simulator.AddForce(p_force);
 ```
@@ -338,7 +338,7 @@ Next, we create a force law (springs) to be applied between cell centres and set
 cut-off length beyond which cells stop interacting. We then pass this to the `VolumeTrackedOffLatticeSimulation`
 
 ```cpp
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_force);
+        MAKE_PTR(LinearSpringForce<2>, p_force);
         p_force->SetCutOffLength(1.5);
         simulator.AddForce(p_force);
 ```
@@ -498,7 +498,7 @@ If you run the simulation for a long time these cells occur primarily towards th
 #include "HoneycombMeshGenerator.hpp"
 #include "HoneycombVertexMeshGenerator.hpp"
 #include "OutputFileHandler.hpp"
-#include "GeneralisedLinearSpringForce.hpp"
+#include "LinearSpringForce.hpp"
 #include "NagaiHondaForce.hpp"
 #include "SimpleTargetAreaModifier.hpp"
 #include "SimulationTime.hpp"
@@ -548,7 +548,7 @@ public:
         MAKE_PTR(VolumeTrackingModifier<2>, p_modifier);
         simulator.AddSimulationModifier(p_modifier);
 
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_force);
+        MAKE_PTR(LinearSpringForce<2>, p_force);
         p_force->SetCutOffLength(1.5);
         simulator.AddForce(p_force);
 
@@ -622,7 +622,7 @@ public:
         MAKE_PTR(VolumeTrackingModifier<2>, p_modifier);
         simulator.AddSimulationModifier(p_modifier);
 
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_force);
+        MAKE_PTR(LinearSpringForce<2>, p_force);
         p_force->SetCutOffLength(1.5);
         simulator.AddForce(p_force);
 

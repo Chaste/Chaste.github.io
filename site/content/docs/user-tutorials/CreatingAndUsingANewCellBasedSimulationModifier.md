@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestCreatingAndUsingANewCellBasedSimulationModifierTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellBasedSimulationModifierTutorial.hpp) at revision [7fa8a1fe59f6](https://github.com/Chaste/Chaste/commit/7fa8a1fe59f6d98cbf1cb5cc25a5f4c0fd6f1198). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCreatingAndUsingANewCellBasedSimulationModifierTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellBasedSimulationModifierTutorial.hpp) at revision [4f0dc1be9c55](https://github.com/Chaste/Chaste/commit/4f0dc1be9c550a9f510123eeaab78ba73e8f409b). Note that the code is given in full at the bottom of the page.
 ## An example showing how to create a new cell-based simulation modifier and use it in a simulation
 
 ### Introduction
@@ -44,7 +44,7 @@ Chaste tutorials.
 #include "CellsGenerator.hpp"
 #include "UniformCellCycleModel.hpp"
 #include "TransitCellProliferativeType.hpp"
-#include "RepulsionForce.hpp"
+#include "SimpleLogarithmicRepulsionForce.hpp"
 #include "OffLatticeSimulation.hpp"
 #include "SmartPointers.hpp"
 //This test is always run sequentially (never in parallel)
@@ -232,7 +232,7 @@ to implement some random proliferation in the simulation.
         simulator.SetSamplingTimestepMultiple(12);
         simulator.SetEndTime(20.0);
 
-        MAKE_PTR(RepulsionForce<2>, p_force);
+        MAKE_PTR(SimpleLogarithmicRepulsionForce<2>, p_force);
         simulator.AddForce(p_force);
 ```
 
@@ -269,7 +269,7 @@ and add glyphs to represent cells.
 #include "CellsGenerator.hpp"
 #include "UniformCellCycleModel.hpp"
 #include "TransitCellProliferativeType.hpp"
-#include "RepulsionForce.hpp"
+#include "SimpleLogarithmicRepulsionForce.hpp"
 #include "OffLatticeSimulation.hpp"
 #include "SmartPointers.hpp"
 //This test is always run sequentially (never in parallel)
@@ -352,7 +352,7 @@ public:
         simulator.SetSamplingTimestepMultiple(12);
         simulator.SetEndTime(20.0);
 
-        MAKE_PTR(RepulsionForce<2>, p_force);
+        MAKE_PTR(SimpleLogarithmicRepulsionForce<2>, p_force);
         simulator.AddForce(p_force);
 
         MAKE_PTR(CellHeightTrackingModifier, p_modifier);

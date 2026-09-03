@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestCreatingAndUsingNewCellBasedWritersTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingNewCellBasedWritersTutorial.hpp) at revision [7fa8a1fe59f6](https://github.com/Chaste/Chaste/commit/7fa8a1fe59f6d98cbf1cb5cc25a5f4c0fd6f1198). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCreatingAndUsingNewCellBasedWritersTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingNewCellBasedWritersTutorial.hpp) at revision [83bed3b480a1](https://github.com/Chaste/Chaste/commit/83bed3b480a1a267d2ec5cbba96b5610f4f36571). Note that the code is given in full at the bottom of the page.
 ## An example showing how to create a new cell writer and use it in a cell-based simulation
 
 ### Introduction
@@ -40,7 +40,7 @@ Chaste tutorials.
 #include "DifferentiatedCellProliferativeType.hpp"
 #include "CellLabel.hpp"
 #include "FixedG1GenerationalCellCycleModel.hpp"
-#include "GeneralisedLinearSpringForce.hpp"
+#include "PathmanathanInteractionForce.hpp"
 #include "MeshBasedCellPopulation.hpp"
 #include "NodeBasedCellPopulation.hpp"
 #include "CellMutationStatesCountWriter.hpp"
@@ -254,9 +254,9 @@ and set the output directory, output multiple, and end time.
 Next we create a force law and pass it to the `OffLatticeSimulation`, and call `Solve()` to run the simulation.
 
 ```cpp
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);
-        p_linear_force->SetCutOffLength(1.5);
-        simulator.AddForce(p_linear_force);
+        MAKE_PTR(PathmanathanInteractionForce<2>, p_force);
+        p_force->SetCutOffLength(1.5);
+        simulator.AddForce(p_force);
 
         simulator.Solve();
     }
@@ -286,7 +286,7 @@ Upon running this test, the output file `cellmotilityresults.dat` should be crea
 #include "DifferentiatedCellProliferativeType.hpp"
 #include "CellLabel.hpp"
 #include "FixedG1GenerationalCellCycleModel.hpp"
-#include "GeneralisedLinearSpringForce.hpp"
+#include "PathmanathanInteractionForce.hpp"
 #include "MeshBasedCellPopulation.hpp"
 #include "NodeBasedCellPopulation.hpp"
 #include "CellMutationStatesCountWriter.hpp"
@@ -419,9 +419,9 @@ public:
         simulator.SetSamplingTimestepMultiple(12);
         simulator.SetEndTime(10.0);
 
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);
-        p_linear_force->SetCutOffLength(1.5);
-        simulator.AddForce(p_linear_force);
+        MAKE_PTR(PathmanathanInteractionForce<2>, p_force);
+        p_force->SetCutOffLength(1.5);
+        simulator.AddForce(p_force);
 
         simulator.Solve();
     }

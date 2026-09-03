@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningTumourSpheroidSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningTumourSpheroidSimulationsTutorial.hpp) at revision [e62d6e0df0db](https://github.com/Chaste/Chaste/commit/e62d6e0df0db35c2851353e5c00c3c6f7c0afe93). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningTumourSpheroidSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningTumourSpheroidSimulationsTutorial.hpp) at revision [c2f221b9f5d2](https://github.com/Chaste/Chaste/commit/c2f221b9f5d201ced4372550c3f960eb24b95303). Note that the code is given in full at the bottom of the page.
 ## An example showing how to run tumour spheroid simulations
 
 ### Introduction
@@ -33,7 +33,7 @@ or `CellBasedSimulationArchiver.hpp` must be included as the first Chaste header
 #include "CheckpointArchiveTypes.hpp"
 #include "AbstractCellBasedTestSuite.hpp"
 #include "HoneycombMeshGenerator.hpp"
-#include "GeneralisedLinearSpringForce.hpp"
+#include "LinearSpringForce.hpp"
 #include "MeshBasedCellPopulation.hpp"
 #include "RandomNumberGenerator.hpp"
 #include "SmartPointers.hpp"
@@ -241,9 +241,9 @@ We next set the output directory and end time.
 We must now create one or more force laws, which determine the mechanics of
 the cell population. As in the crypt simulation tutorial, we assume that a cell
 experiences a force from each neighbour that can be represented as a linear overdamped
-spring, so we use a `GeneralisedLinearSpringForce` object.
+spring, so we use a `LinearSpringForce` object.
 Note that we have called the method `SetCutOffLength` on the
-`GeneralisedLinearSpringForce` before passing it to the simulator: this call
+`LinearSpringForce` before passing it to the simulator: this call
 modifies the force law so that two neighbouring cells do not impose
 a force on each other if they are located more than 3 units (=3 cell widths)
 away from each other. This modification is necessary when no ghost nodes are used,
@@ -251,7 +251,7 @@ for example to avoid artificially large forces between cells that lie close toge
 on the spheroid boundary.
 
 ```cpp
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);
+        MAKE_PTR(LinearSpringForce<2>, p_linear_force);
         p_linear_force->SetCutOffLength(3);
         simulator.AddForce(p_linear_force);
 ```
@@ -282,7 +282,7 @@ Open `SpheroidTutorial/results_from_time_0/pde_results_oxygen_..vtu`.
 #include "CheckpointArchiveTypes.hpp"
 #include "AbstractCellBasedTestSuite.hpp"
 #include "HoneycombMeshGenerator.hpp"
-#include "GeneralisedLinearSpringForce.hpp"
+#include "LinearSpringForce.hpp"
 #include "MeshBasedCellPopulation.hpp"
 #include "RandomNumberGenerator.hpp"
 #include "SmartPointers.hpp"
@@ -347,7 +347,7 @@ public:
         simulator.SetOutputDirectory("SpheroidTutorial");
         simulator.SetEndTime(1.0);
 
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);
+        MAKE_PTR(LinearSpringForce<2>, p_linear_force);
         p_linear_force->SetCutOffLength(3);
         simulator.AddForce(p_linear_force);
 

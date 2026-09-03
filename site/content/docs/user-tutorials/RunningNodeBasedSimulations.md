@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningNodeBasedSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningNodeBasedSimulationsTutorial.hpp) at revision [7fa8a1fe59f6](https://github.com/Chaste/Chaste/commit/7fa8a1fe59f6d98cbf1cb5cc25a5f4c0fd6f1198). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningNodeBasedSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningNodeBasedSimulationsTutorial.hpp) at revision [83bed3b480a1](https://github.com/Chaste/Chaste/commit/83bed3b480a1a267d2ec5cbba96b5610f4f36571). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to create, run and visualize node-based simulations
 
 ### Introduction
@@ -39,7 +39,7 @@ simulation test. We encountered some of these header files in
 #include "TransitCellProliferativeType.hpp"
 #include "UniformCellCycleModel.hpp"
 #include "HoneycombMeshGenerator.hpp"
-#include "GeneralisedLinearSpringForce.hpp"
+#include "PathmanathanInteractionForce.hpp"
 #include "OffLatticeSimulation.hpp"
 #include "SmartPointers.hpp"
 ```
@@ -147,7 +147,7 @@ and set the output directory, output multiple and end time.
 We now pass a force law to the simulation.
 
 ```cpp
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_force);
+        MAKE_PTR(PathmanathanInteractionForce<2>, p_force);
         simulator.AddForce(p_force);
 ```
 
@@ -251,7 +251,7 @@ We then pass in the cell population into an `OffLatticeSimulation`,
 Again we create a force law (this time with dimension 3), and pass it to the `OffLatticeSimulation`.
 
 ```cpp
-        MAKE_PTR(GeneralisedLinearSpringForce<3>, p_force);
+        MAKE_PTR(PathmanathanInteractionForce<3>, p_force);
         simulator.AddForce(p_force);
 ```
 
@@ -332,7 +332,7 @@ a radius of interaction.
 As before, we create a linear spring force and pass it to the simulation object.
 
 ```cpp
-        MAKE_PTR(GeneralisedLinearSpringForce<3>, p_force);
+        MAKE_PTR(PathmanathanInteractionForce<3>, p_force);
         simulator.AddForce(p_force);
 ```
 
@@ -402,7 +402,7 @@ and add spherical glyphs to represent cells.
 #include "TransitCellProliferativeType.hpp"
 #include "UniformCellCycleModel.hpp"
 #include "HoneycombMeshGenerator.hpp"
-#include "GeneralisedLinearSpringForce.hpp"
+#include "PathmanathanInteractionForce.hpp"
 #include "OffLatticeSimulation.hpp"
 #include "SmartPointers.hpp"
 #include "NodesOnlyMesh.hpp"
@@ -433,7 +433,7 @@ public:
         simulator.SetSamplingTimestepMultiple(12);
         simulator.SetEndTime(10.0);
 
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_force);
+        MAKE_PTR(PathmanathanInteractionForce<2>, p_force);
         simulator.AddForce(p_force);
 
         simulator.Solve();
@@ -467,7 +467,7 @@ public:
         simulator.SetSamplingTimestepMultiple(12);
         simulator.SetEndTime(10.0);
 
-        MAKE_PTR(GeneralisedLinearSpringForce<3>, p_force);
+        MAKE_PTR(PathmanathanInteractionForce<3>, p_force);
         simulator.AddForce(p_force);
 
         simulator.Solve();
@@ -506,7 +506,7 @@ public:
         simulator.SetSamplingTimestepMultiple(12);
         simulator.SetEndTime(10.0);
 
-        MAKE_PTR(GeneralisedLinearSpringForce<3>, p_force);
+        MAKE_PTR(PathmanathanInteractionForce<3>, p_force);
         simulator.AddForce(p_force);
 
         c_vector<double,3> centre = zero_vector<double>(3);

@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningMeshBasedCryptSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/tutorial/TestRunningMeshBasedCryptSimulationsTutorial.hpp) at revision [7fa8a1fe59f6](https://github.com/Chaste/Chaste/commit/7fa8a1fe59f6d98cbf1cb5cc25a5f4c0fd6f1198). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningMeshBasedCryptSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/tutorial/TestRunningMeshBasedCryptSimulationsTutorial.hpp) at revision [45f87a619bdf](https://github.com/Chaste/Chaste/commit/45f87a619bdf1473152f286b4e80e1296872ab7d). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to run crypt simulations on periodic meshes with different cell-cycle models
 
 ### Introduction
@@ -62,7 +62,7 @@ the mechanical interactions between neighbouring cells in the crypt.
 
 ```cpp
 #include "MeshBasedCellPopulationWithGhostNodes.hpp"
-#include "GeneralisedLinearSpringForce.hpp"
+#include "LinearSpringForce.hpp"
 ```
 
 The next header file defines the class that simulates the evolution of a `CellPopulation`,
@@ -183,12 +183,12 @@ simulator to print results every 6 minutes.
 ```
 
 Before running the simulation, we must add one or more force laws, which determine the mechanical
-behaviour of the cell population. For this test, we use a `GeneralisedLinearSpringForce`, which assumes
+behaviour of the cell population. For this test, we use a `LinearSpringForce`, which assumes
 that every cell experiences a force from each of its neighbours that can be represented as a linear overdamped
 spring.
 
 ```cpp
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);
+        MAKE_PTR(LinearSpringForce<2>, p_linear_force);
         simulator.AddForce(p_linear_force);
 ```
 
@@ -280,7 +280,7 @@ As before, we create a force law and cell killer and pass these objects to the s
 `Solve()`.
 
 ```cpp
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);
+        MAKE_PTR(LinearSpringForce<2>, p_linear_force);
         simulator.AddForce(p_linear_force);
         MAKE_PTR_ARGS(SloughingCellKiller<2>, p_killer, (&cell_population, crypt_height));
         simulator.AddCellKiller(p_killer);
@@ -312,7 +312,7 @@ The results of this test can be visualized as in Test 1, with the correct output
 #include "WntCellCycleModel.hpp"
 #include "CylindricalHoneycombMeshGenerator.hpp"
 #include "MeshBasedCellPopulationWithGhostNodes.hpp"
-#include "GeneralisedLinearSpringForce.hpp"
+#include "LinearSpringForce.hpp"
 #include "CryptSimulation2d.hpp"
 #include "WntConcentration.hpp"
 #include "SloughingCellKiller.hpp"
@@ -339,7 +339,7 @@ public:
         simulator.SetEndTime(1);
         simulator.SetSamplingTimestepMultiple(12);
 
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);
+        MAKE_PTR(LinearSpringForce<2>, p_linear_force);
         simulator.AddForce(p_linear_force);
 
         double crypt_height = 8.0;
@@ -372,7 +372,7 @@ public:
         simulator.SetOutputDirectory("CryptTutorialWntCellCycle");
         simulator.SetEndTime(1);
 
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);
+        MAKE_PTR(LinearSpringForce<2>, p_linear_force);
         simulator.AddForce(p_linear_force);
         MAKE_PTR_ARGS(SloughingCellKiller<2>, p_killer, (&cell_population, crypt_height));
         simulator.AddCellKiller(p_killer);

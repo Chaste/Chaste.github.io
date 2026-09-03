@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningMeshBasedSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningMeshBasedSimulationsTutorial.hpp) at revision [7fa8a1fe59f6](https://github.com/Chaste/Chaste/commit/7fa8a1fe59f6d98cbf1cb5cc25a5f4c0fd6f1198). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningMeshBasedSimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningMeshBasedSimulationsTutorial.hpp) at revision [73397ee34484](https://github.com/Chaste/Chaste/commit/73397ee344848c22bbc593f8527a08be5918a1a2). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to create, run and visualize mesh-based simulations
 
 ### Introduction
@@ -85,7 +85,7 @@ The next header file defines a force law for describing the mechanical interacti
 between neighbouring cells in the cell population.
 
 ```cpp
-#include "GeneralisedLinearSpringForce.hpp"
+#include "LinearSpringForce.hpp"
 ```
 
 The next header file defines a class for writing output that can be visualized in Paraview.
@@ -201,7 +201,7 @@ see the specific class documentation for details.  If you try to use an incompat
 then you will receive a warning.
 
 ```cpp
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_force);
+        MAKE_PTR(LinearSpringForce<2>, p_force);
         simulator.AddForce(p_force);
 ```
 
@@ -237,7 +237,7 @@ to move due long range interactions resulting in an artificially rounded shape.
 There are two solutions to this. The first is to define a cut off length on the force,
 which can be done by using the command
 `p_force->SetCutOffLength(1.5);`
-on the `GeneralisedLinearSpringForce`. Here there will be no forces exerted
+on the `LinearSpringForce`. Here there will be no forces exerted
 on any "springs" which are longer than 1.5 cell radii.
 
 The second solution is to use 'ghost nodes'. Ghost nodes can be added to mesh-based
@@ -322,7 +322,7 @@ force law ensures that ghost nodes don't exert forces on real nodes but real nod
 exert forces on ghost nodes.
 
 ```cpp
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_force);
+        MAKE_PTR(LinearSpringForce<2>, p_force);
         simulator.AddForce(p_force);
 ```
 
@@ -358,7 +358,7 @@ then `cd` to `anim`. Then do: `java Visualize2dCentreCells $CHASTE_TEST_OUTPUT/M
 #include "OffLatticeSimulation.hpp"
 #include "MeshBasedCellPopulation.hpp"
 #include "MeshBasedCellPopulationWithGhostNodes.hpp"
-#include "GeneralisedLinearSpringForce.hpp"
+#include "LinearSpringForce.hpp"
 #include "VoronoiDataWriter.hpp"
 #include "FakePetscSetup.hpp"
 class TestRunningMeshBasedSimulationsTutorial : public AbstractCellBasedTestSuite
@@ -384,7 +384,7 @@ public:
 
         simulator.SetSamplingTimestepMultiple(12);
 
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_force);
+        MAKE_PTR(LinearSpringForce<2>, p_force);
         simulator.AddForce(p_force);
 
         simulator.Solve();
@@ -414,7 +414,7 @@ public:
         simulator.SetSamplingTimestepMultiple(12);
         simulator.SetEndTime(10.0);
 
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_force);
+        MAKE_PTR(LinearSpringForce<2>, p_force);
         simulator.AddForce(p_force);
 
         simulator.Solve();

@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestCellBasedDemoTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCellBasedDemoTutorial.hpp) at revision [7fa8a1fe59f6](https://github.com/Chaste/Chaste/commit/7fa8a1fe59f6d98cbf1cb5cc25a5f4c0fd6f1198). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCellBasedDemoTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCellBasedDemoTutorial.hpp) at revision [4f0dc1be9c55](https://github.com/Chaste/Chaste/commit/4f0dc1be9c550a9f510123eeaab78ba73e8f409b). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to create, run and cell-based simulations in Chaste
 
 ### Introduction
@@ -33,7 +33,7 @@ subsequent cell-based tutorials.
 #include "AdhesionPottsUpdateRule.hpp"
 #include "CellsGenerator.hpp"
 #include "CylindricalHoneycombMeshGenerator.hpp"
-#include "GeneralisedLinearSpringForce.hpp"
+#include "LinearSpringForce.hpp"
 #include "HoneycombMeshGenerator.hpp"
 #include "HoneycombVertexMeshGenerator.hpp"
 #include "MeshBasedCellPopulationWithGhostNodes.hpp"
@@ -46,7 +46,7 @@ subsequent cell-based tutorials.
 #include "PottsBasedCellPopulation.hpp"
 #include "PottsMeshGenerator.hpp"
 #include "RandomCellKiller.hpp"
-#include "RepulsionForce.hpp"
+#include "SimpleLogarithmicRepulsionForce.hpp"
 #include "UniformG1GenerationalCellCycleModel.hpp"
 #include "SurfaceAreaConstraintPottsUpdateRule.hpp"
 #include "TysonNovakCellCycleModel.hpp"
@@ -222,7 +222,7 @@ and output results more often as a larger default timestep is used for these sim
 We use a different `Force` which is suitable for node based simulations.
 
 ```cpp
-        MAKE_PTR(RepulsionForce<2>, p_force); //**Changed**//
+        MAKE_PTR(SimpleLogarithmicRepulsionForce<2>, p_force); //**Changed**//
         simulator.AddForce(p_force);
 ```
 
@@ -314,7 +314,7 @@ We create an `OffLatticeSimulation` object as before, all we change is the outpu
 We use a different `Force` which is suitable for mesh based simulations.
 
 ```cpp
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_force); //**Changed**//
+        MAKE_PTR(LinearSpringForce<2>, p_force); //**Changed**//
         simulator.AddForce(p_force);
 ```
 
@@ -394,7 +394,7 @@ less time to keep cell numbers relatively small for this demo.
 We use the same `Force` as before and run the simulation in the same way.
 
 ```cpp
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_force);
+        MAKE_PTR(LinearSpringForce<2>, p_force);
         simulator.AddForce(p_force);
         simulator.Solve();
 ```
@@ -454,7 +454,7 @@ Again Paraview output is explicitly requested.
         simulator.SetSamplingTimestepMultiple(12);
         simulator.SetEndTime(20.0); //**Changed**//
 
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_force);
+        MAKE_PTR(LinearSpringForce<2>, p_force);
         simulator.AddForce(p_force);
 
         simulator.Solve();
@@ -502,7 +502,7 @@ We make the same `Mesh`, `Cells`, `CellPopulation`,
         simulator.SetSamplingTimestepMultiple(50);
         simulator.SetEndTime(20.0);
 
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_force);
+        MAKE_PTR(LinearSpringForce<2>, p_force);
         simulator.AddForce(p_force);
 ```
 
@@ -631,7 +631,7 @@ java executable.
 #include "AdhesionPottsUpdateRule.hpp"
 #include "CellsGenerator.hpp"
 #include "CylindricalHoneycombMeshGenerator.hpp"
-#include "GeneralisedLinearSpringForce.hpp"
+#include "LinearSpringForce.hpp"
 #include "HoneycombMeshGenerator.hpp"
 #include "HoneycombVertexMeshGenerator.hpp"
 #include "MeshBasedCellPopulationWithGhostNodes.hpp"
@@ -644,7 +644,7 @@ java executable.
 #include "PottsBasedCellPopulation.hpp"
 #include "PottsMeshGenerator.hpp"
 #include "RandomCellKiller.hpp"
-#include "RepulsionForce.hpp"
+#include "SimpleLogarithmicRepulsionForce.hpp"
 #include "UniformG1GenerationalCellCycleModel.hpp"
 #include "SurfaceAreaConstraintPottsUpdateRule.hpp"
 #include "TysonNovakCellCycleModel.hpp"
@@ -705,7 +705,7 @@ public:
         simulator.SetSamplingTimestepMultiple(12); //**Changed**//
         simulator.SetEndTime(20.0);
 
-        MAKE_PTR(RepulsionForce<2>, p_force); //**Changed**//
+        MAKE_PTR(SimpleLogarithmicRepulsionForce<2>, p_force); //**Changed**//
         simulator.AddForce(p_force);
 
         MAKE_PTR_ARGS(RandomCellKiller<2>, p_cell_killer, (&cell_population, 0.01)); //**Changed**//
@@ -736,7 +736,7 @@ public:
         simulator.SetSamplingTimestepMultiple(12);
         simulator.SetEndTime(20.0);
 
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_force); //**Changed**//
+        MAKE_PTR(LinearSpringForce<2>, p_force); //**Changed**//
         simulator.AddForce(p_force);
 
         simulator.Solve();
@@ -765,7 +765,7 @@ public:
         simulator.SetSamplingTimestepMultiple(12);
         simulator.SetEndTime(2.0); //**Changed**//
 
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_force);
+        MAKE_PTR(LinearSpringForce<2>, p_force);
         simulator.AddForce(p_force);
         simulator.Solve();
 
@@ -793,7 +793,7 @@ public:
         simulator.SetSamplingTimestepMultiple(12);
         simulator.SetEndTime(20.0); //**Changed**//
 
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_force);
+        MAKE_PTR(LinearSpringForce<2>, p_force);
         simulator.AddForce(p_force);
 
         simulator.Solve();
@@ -821,7 +821,7 @@ public:
         simulator.SetSamplingTimestepMultiple(50);
         simulator.SetEndTime(20.0);
 
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_force);
+        MAKE_PTR(LinearSpringForce<2>, p_force);
         simulator.AddForce(p_force);
 
         c_vector<double,2> point = zero_vector<double>(2);

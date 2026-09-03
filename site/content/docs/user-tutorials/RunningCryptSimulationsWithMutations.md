@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningCryptSimulationsWithMutationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/tutorial/TestRunningCryptSimulationsWithMutationsTutorial.hpp) at revision [7fa8a1fe59f6](https://github.com/Chaste/Chaste/commit/7fa8a1fe59f6d98cbf1cb5cc25a5f4c0fd6f1198). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningCryptSimulationsWithMutationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/tutorial/TestRunningCryptSimulationsWithMutationsTutorial.hpp) at revision [45f87a619bdf](https://github.com/Chaste/Chaste/commit/45f87a619bdf1473152f286b4e80e1296872ab7d). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to run crypt simulations with various mutations
 
 ### Introduction
@@ -62,7 +62,7 @@ The next header file defines a force law, based on a linear spring, for describi
 the mechanical interactions between neighbouring cells in the crypt.
 
 ```cpp
-#include "GeneralisedLinearSpringForce.hpp"
+#include "LinearSpringForce.hpp"
 ```
 
 The next header file defines the class that simulates the evolution of a `CellPopulation`,
@@ -196,7 +196,7 @@ As before, we create a force law and cell killer and pass these objects to the s
 `Solve()`.
 
 ```cpp
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);
+        MAKE_PTR(LinearSpringForce<2>, p_linear_force);
         simulator.AddForce(p_linear_force);
         MAKE_PTR_ARGS(SloughingCellKiller<2>, p_killer, (&cell_population, crypt_height));
         simulator.AddCellKiller(p_killer);
@@ -274,7 +274,7 @@ These results are just tab separated columns so may be visualized by using gnupl
 #include "SimpleWntCellCycleModel.hpp"
 #include "CylindricalHoneycombMeshGenerator.hpp"
 #include "MeshBasedCellPopulationWithGhostNodes.hpp"
-#include "GeneralisedLinearSpringForce.hpp"
+#include "LinearSpringForce.hpp"
 #include "CryptSimulation2d.hpp"
 #include "WntConcentration.hpp"
 #include "SloughingCellKiller.hpp"
@@ -313,7 +313,7 @@ public:
         simulator.SetSamplingTimestepMultiple(12);
         simulator.SetEndTime(10);
 
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);
+        MAKE_PTR(LinearSpringForce<2>, p_linear_force);
         simulator.AddForce(p_linear_force);
         MAKE_PTR_ARGS(SloughingCellKiller<2>, p_killer, (&cell_population, crypt_height));
         simulator.AddCellKiller(p_killer);

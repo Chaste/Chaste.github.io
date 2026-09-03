@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestCreatingAndUsingANewCellPopulationBoundaryConditionTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellPopulationBoundaryConditionTutorial.hpp) at revision [7fa8a1fe59f6](https://github.com/Chaste/Chaste/commit/7fa8a1fe59f6d98cbf1cb5cc25a5f4c0fd6f1198). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCreatingAndUsingANewCellPopulationBoundaryConditionTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewCellPopulationBoundaryConditionTutorial.hpp) at revision [73397ee34484](https://github.com/Chaste/Chaste/commit/73397ee344848c22bbc593f8527a08be5918a1a2). Note that the code is given in full at the bottom of the page.
 ## An example showing how to create and use a new cell population boundary condition
 
 ### Introduction
@@ -42,7 +42,7 @@ cell-based Chaste tutorials.
 #include "VertexBasedCellPopulation.hpp"
 #include "CellsGenerator.hpp"
 #include "FixedG1GenerationalCellCycleModel.hpp"
-#include "GeneralisedLinearSpringForce.hpp"
+#include "LinearSpringForce.hpp"
 #include "MeshBasedCellPopulation.hpp"
 #include "SmartPointers.hpp"
 #include "FakePetscSetup.hpp"
@@ -341,7 +341,7 @@ and set the output directory, output multiple, and end time.
 We create a force law and pass it to the `OffLatticeSimulation`.
 
 ```cpp
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);
+        MAKE_PTR(LinearSpringForce<2>, p_linear_force);
         p_linear_force->SetCutOffLength(3);
         simulator.AddForce(p_linear_force);
 ```
@@ -380,7 +380,7 @@ you should see that cells are restricted to the domain $0 \leqslant y \leqslant 
 #include "VertexBasedCellPopulation.hpp"
 #include "CellsGenerator.hpp"
 #include "FixedG1GenerationalCellCycleModel.hpp"
-#include "GeneralisedLinearSpringForce.hpp"
+#include "LinearSpringForce.hpp"
 #include "MeshBasedCellPopulation.hpp"
 #include "SmartPointers.hpp"
 #include "FakePetscSetup.hpp"
@@ -550,7 +550,7 @@ public:
         simulator.SetSamplingTimestepMultiple(12);
         simulator.SetEndTime(1.0);
 
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);
+        MAKE_PTR(LinearSpringForce<2>, p_linear_force);
         p_linear_force->SetCutOffLength(3);
         simulator.AddForce(p_linear_force);
 
