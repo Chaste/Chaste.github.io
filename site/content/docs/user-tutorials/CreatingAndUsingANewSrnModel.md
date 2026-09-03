@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestCreatingAndUsingANewSrnModelTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewSrnModelTutorial.hpp) at revision [7fa8a1fe59f6](https://github.com/Chaste/Chaste/commit/7fa8a1fe59f6d98cbf1cb5cc25a5f4c0fd6f1198). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCreatingAndUsingANewSrnModelTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestCreatingAndUsingANewSrnModelTutorial.hpp) at revision [533bd7097bb5](https://github.com/Chaste/Chaste/commit/533bd7097bb58ad7dba0f04aafdf4c993225c8fb). Note that the code is given in full at the bottom of the page.
 ## An example showing how to create a new subcellular reaction network (SRN) model and use it in a cell-based simulation.
 
 ### Introduction
@@ -292,11 +292,11 @@ CHASTE_CLASS_EXPORT(MyOdeSystem)
 CHASTE_CLASS_EXPORT(MySrnModel)
 ```
 
-Need to re-include this after `SerializationExportWrapperForCpp.hpp`. This is to export the
-components that would normally be in a seperate cpp file.
+The solver export wrapper header is already included above. We repeat the export here after
+`SerializationExportWrapperForCpp.hpp` to export the components that would normally be in a
+separate cpp file.
 
 ```cpp
-#include "CellCycleModelOdeSolverExportWrapper.hpp"
 EXPORT_CELL_CYCLE_MODEL_ODE_SOLVER(MySrnModel)
 ```
 
@@ -747,7 +747,6 @@ EXPORT_CELL_CYCLE_MODEL_ODE_SOLVER(MySrnModel)
 CHASTE_CLASS_EXPORT(MyOdeSystem)
 CHASTE_CLASS_EXPORT(MySrnModel)
 
-#include "CellCycleModelOdeSolverExportWrapper.hpp"
 EXPORT_CELL_CYCLE_MODEL_ODE_SOLVER(MySrnModel)
 
 class TestCreatingAndUsingANewSrnModelTutorial : public AbstractCellBasedTestSuite

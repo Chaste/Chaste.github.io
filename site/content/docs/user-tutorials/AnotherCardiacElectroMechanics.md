@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestAnotherCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherCardiacElectroMechanicsTutorial.hpp) at revision [7fa8a1fe59f6](https://github.com/Chaste/Chaste/commit/7fa8a1fe59f6d98cbf1cb5cc25a5f4c0fd6f1198). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestAnotherCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherCardiacElectroMechanicsTutorial.hpp) at revision [fde6e8899967](https://github.com/Chaste/Chaste/commit/fde6e8899967b5dc77ad82873a01b3d949b09ff8). Note that the code is given in full at the bottom of the page.
 ## Cardiac Electro-mechanical Problems (cont.)
 
 It is worth running this test suite with `build=GccOpt_ndebug`
@@ -22,7 +22,6 @@ The same includes as the previous tutorial
 #include "NonlinearElasticityTools.hpp"
 #include "NobleVargheseKohlNoble1998WithSac.hpp"
 #include "CompressibleMooneyRivlinMaterialLaw.hpp"
-#include "NobleVargheseKohlNoble1998WithSac.hpp"
 #include "Hdf5ToMeshalyzerConverter.hpp"
 #include "ZeroStimulusCellFactory.hpp"
 #include "FileFinder.hpp"
@@ -414,7 +413,6 @@ the pressure as a function of time.
 #include "NonlinearElasticityTools.hpp"
 #include "NobleVargheseKohlNoble1998WithSac.hpp"
 #include "CompressibleMooneyRivlinMaterialLaw.hpp"
-#include "NobleVargheseKohlNoble1998WithSac.hpp"
 #include "Hdf5ToMeshalyzerConverter.hpp"
 #include "ZeroStimulusCellFactory.hpp"
 #include "FileFinder.hpp"

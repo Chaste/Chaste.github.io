@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestCardiacElectroMechanicsTutorial.hpp) at revision [e62d6e0df0db](https://github.com/Chaste/Chaste/commit/e62d6e0df0db35c2851353e5c00c3c6f7c0afe93). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestCardiacElectroMechanicsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestCardiacElectroMechanicsTutorial.hpp) at revision [fde6e8899967](https://github.com/Chaste/Chaste/commit/fde6e8899967b5dc77ad82873a01b3d949b09ff8). Note that the code is given in full at the bottom of the page.
 ## Cardiac Electro-mechanical Problems
 
 ### Introduction
@@ -75,7 +75,6 @@ Some other includes that are used
 #include "NonlinearElasticityTools.hpp"
 #include "NobleVargheseKohlNoble1998WithSac.hpp"
 #include "CompressibleMooneyRivlinMaterialLaw.hpp"
-#include "NobleVargheseKohlNoble1998WithSac.hpp"
 #include "ZeroStimulusCellFactory.hpp"
 #include "FileComparison.hpp"
 #include "FileFinder.hpp"
@@ -511,7 +510,6 @@ it will finish. `build=GccOpt_ndebug` will speed this up by a factor of about 5.
 #include "NonlinearElasticityTools.hpp"
 #include "NobleVargheseKohlNoble1998WithSac.hpp"
 #include "CompressibleMooneyRivlinMaterialLaw.hpp"
-#include "NobleVargheseKohlNoble1998WithSac.hpp"
 #include "ZeroStimulusCellFactory.hpp"
 #include "FileComparison.hpp"
 #include "FileFinder.hpp"
