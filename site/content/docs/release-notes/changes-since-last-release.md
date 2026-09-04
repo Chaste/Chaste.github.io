@@ -75,7 +75,6 @@ Removed dependency versions:
 - [#588](https://github.com/Chaste/Chaste/pull/588) PyChaste now builds against [cppwg 0.5.0](https://github.com/Chaste/cppwg/blob/v0.5.0/CHANGELOG.md), which brings two user-facing improvements:
   - Templated methods accept a subscript form, so `population.AddCellWriter["CellLabelWriter"]()` may be written in place of `population.AddCellWriterCellLabelWriter()`.
   - Every wrapped class is now reachable at the top level as `chaste.Foo`, in addition to `chaste.<subpackage>.Foo`.
-- [#551](https://github.com/Chaste/Chaste/pull/551) PyChaste conda packages are built for Python 3.10 to 3.13.
 
 
 ### Future Plans
