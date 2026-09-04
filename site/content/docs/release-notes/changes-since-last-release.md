@@ -24,6 +24,8 @@ by a recent interface change then please see here for fix suggestions.
 
 ### Headline features
 
+- [#513](https://github.com/Chaste/Chaste/pull/513) The cell-based force hierarchy has been refactored, replacing `GeneralisedLinearSpringForce` and related classes with dedicated force classes. This is a breaking API change; see Cell Based below for the replacements.
+
 
 ### Dependency changes
 
@@ -46,6 +48,12 @@ This will be the last Chaste release to support Ubuntu 22.04 LTS (Jammy), and th
 
 
 ### Cell Based
+
+- [#513](https://github.com/Chaste/Chaste/pull/513) The cell-based force hierarchy has been refactored. `GeneralisedLinearSpringForce`, `RepulsionForce` and `DifferentialAdhesionGeneralisedLinearSpringForce` are removed in favour of dedicated classes that work across both mesh-based and node-based populations:
+  - `LinearSpringForce`: Meineke-style linear springs;
+  - `PathmanathanInteractionForce`: logarithmic repulsion / exponential attraction;
+  - `SimpleLogarithmicRepulsionForce`: repulsion only;
+  - `DifferentialAdhesionLinearSpringForce` / `DifferentialAdhesionPathmanathanInteractionForce`: differential-adhesion variants.
 
 
 ### Future Plans
