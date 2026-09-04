@@ -43,6 +43,7 @@ This will be the last Chaste release to support Ubuntu 22.04 LTS (Jammy), and th
 
 Newly supported dependency versions:
 
+- [#521](https://github.com/Chaste/Chaste/issues/521) HDF5 2.0 and 2.1 are now supported.
 - [#522](https://github.com/Chaste/Chaste/issues/522) PETSc 3.25 is now supported.
 - [#526](https://github.com/Chaste/Chaste/issues/526) XSD 4.2 is now supported.
 
