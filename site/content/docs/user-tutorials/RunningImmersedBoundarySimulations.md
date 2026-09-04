@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestRunningImmersedBoundarySimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningImmersedBoundarySimulationsTutorial.hpp) at revision [7fa8a1fe59f6](https://github.com/Chaste/Chaste/commit/7fa8a1fe59f6d98cbf1cb5cc25a5f4c0fd6f1198). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestRunningImmersedBoundarySimulationsTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestRunningImmersedBoundarySimulationsTutorial.hpp) at revision [0668953d44f7](https://github.com/Chaste/Chaste/commit/0668953d44f7c8f48eb6f6a3e9c774e888639e66). Note that the code is given in full at the bottom of the page.
 ## Example showing how to create and run an immersed boundary simulation in Chaste
 
 We create a simple palisade of cells with a basement membrane, and see how to:
@@ -47,7 +47,7 @@ Required for the immersed boundary functionality
 Required for setting up the numerical method
 
 ```cpp
-#include "ForwardEulerNumericalMethod.hpp"
+#include "NoNumericalMethod.hpp"
 #include <boost/make_shared.hpp>
 ```
 
@@ -120,12 +120,12 @@ together. Here we use an `ImmersedBoundaryCellPopulation` and the dimension is <
 We now create an `OffLatticeSimulation` object and pass in the `CellPopulation`. We also set some
 options for the simulation like output directory, output multiple (so we don't visualize every timestep),
 and end time.
-Additionally, we tell the numerical method that we want the cell population to update node locations.
+Additionally, immersed boundary populations manage their own node position updates, so we
+use `NoNumericalMethod` to delegate entirely to the cell population.
 
 ```cpp
         OffLatticeSimulation<2> simulator(cell_population);
-        simulator.SetNumericalMethod(boost::make_shared<ForwardEulerNumericalMethod<2,2> >());
-        simulator.GetNumericalMethod()->SetUseUpdateNodeLocation(true);
+        simulator.SetNumericalMethod(boost::make_shared<NoNumericalMethod<2,2> >());
 
         double dt = 0.01;
         simulator.SetOutputDirectory("TestImmersedBoundaryDemoTutorial");
@@ -185,7 +185,7 @@ Finally we call the `Solve` method on the simulation to run the simulation.
 #include "ImmersedBoundarySimulationModifier.hpp"
 #include "ImmersedBoundaryPalisadeMeshGenerator.hpp"
 
-#include "ForwardEulerNumericalMethod.hpp"
+#include "NoNumericalMethod.hpp"
 #include <boost/make_shared.hpp>
 
 #include "FakePetscSetup.hpp"
@@ -206,8 +206,7 @@ public:
         ImmersedBoundaryCellPopulation<2> cell_population(*p_mesh, cells);
 
         OffLatticeSimulation<2> simulator(cell_population);
-        simulator.SetNumericalMethod(boost::make_shared<ForwardEulerNumericalMethod<2,2> >());
-        simulator.GetNumericalMethod()->SetUseUpdateNodeLocation(true);
+        simulator.SetNumericalMethod(boost::make_shared<NoNumericalMethod<2,2> >());
 
         double dt = 0.01;
         simulator.SetOutputDirectory("TestImmersedBoundaryDemoTutorial");
