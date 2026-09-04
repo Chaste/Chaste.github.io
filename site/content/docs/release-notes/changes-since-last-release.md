@@ -63,7 +63,7 @@ Newly supported dependency versions:
   - `PathmanathanInteractionForce`: logarithmic repulsion / exponential attraction;
   - `SimpleLogarithmicRepulsionForce`: repulsion only;
   - `DifferentialAdhesionLinearSpringForce` / `DifferentialAdhesionPathmanathanInteractionForce`: differential-adhesion variants.
-- [#511](https://github.com/Chaste/Chaste/pull/511) Added `RK4NumericalMethod`, a 4th-order Runge-Kutta numerical method for off-lattice cell mechanics, as a drop-in alternative to `ForwardEulerNumericalMethod`. Also adds `NoNumericalMethod`, required for the cell populations that update node positions with their own machinery (`NodeBasedCellPopulationWithBuskeUpdate` and `ImmersedBoundaryCellPopulation`) rather than the force-collect-and-integrate approach. Fixes a bug in the step-halving adaptive-timestep loop, which may change results for simulations using an adaptive timestep.
+- [#511](https://github.com/Chaste/Chaste/pull/511) Added `RK4NumericalMethod`, a 4th-order Runge-Kutta numerical method for off-lattice cell mechanics, as a drop-in alternative to `ForwardEulerNumericalMethod`. Also adds `NoNumericalMethod`, required for the cell populations that update node positions with their own machinery (`NodeBasedCellPopulationWithBuskeUpdate` and `ImmersedBoundaryCellPopulation`). Fixes a bug in the step-halving adaptive-timestep loop, which may change results for simulations using an adaptive timestep.
 
 
 ### Future Plans
