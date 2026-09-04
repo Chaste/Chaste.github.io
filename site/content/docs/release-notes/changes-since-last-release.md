@@ -25,6 +25,7 @@ by a recent interface change then please see here for fix suggestions.
 ### Headline features
 
 - [#513](https://github.com/Chaste/Chaste/pull/513) The cell-based force hierarchy has been refactored, replacing `GeneralisedLinearSpringForce` and related classes with dedicated force classes. This is a breaking API change; see Cell Based below for the replacements.
+- [#557](https://github.com/Chaste/Chaste/pull/557) Chaste has adopted the [Contributor Covenant](https://www.contributor-covenant.org/) code of conduct.
 
 
 ### Dependency changes
@@ -40,8 +41,16 @@ This will be the last Chaste release to support Ubuntu 22.04 LTS (Jammy), and th
 - Clang < 18
 - CMake < 3.28
 
+Newly supported dependency versions:
+
+- [#522](https://github.com/Chaste/Chaste/issues/522) PETSc 3.25 is now supported.
+- [#526](https://github.com/Chaste/Chaste/issues/526) XSD 4.2 is now supported.
+
 
 ### Core
+
+- [#548](https://github.com/Chaste/Chaste/issues/548) Chaste now sets explicit permissions on the files and directories it creates rather than inheriting the platform default. This resolves some, but not all, of the sporadic permission-related test failures seen in the Docker container on macOS.
+- [#562](https://github.com/Chaste/Chaste/pull/562) gperftools CPU profiling is supported again: the CMake machinery has been restored and runs in CI, and can also be run locally by following the [profiling guide](https://chaste.github.io/docs/dev-guides/profiling/).
 
 
 ### Heart
@@ -54,6 +63,7 @@ This will be the last Chaste release to support Ubuntu 22.04 LTS (Jammy), and th
   - `PathmanathanInteractionForce`: logarithmic repulsion / exponential attraction;
   - `SimpleLogarithmicRepulsionForce`: repulsion only;
   - `DifferentialAdhesionLinearSpringForce` / `DifferentialAdhesionPathmanathanInteractionForce`: differential-adhesion variants.
+- [#511](https://github.com/Chaste/Chaste/pull/511) Added `RK4NumericalMethod`, a 4th-order Runge-Kutta numerical method for off-lattice cell mechanics, as a drop-in alternative to `ForwardEulerNumericalMethod`. Also adds `NoNumericalMethod`, required for the cell populations that update node positions with their own machinery (`NodeBasedCellPopulationWithBuskeUpdate` and `ImmersedBoundaryCellPopulation`). Fixes a bug in the step-halving adaptive-timestep loop, which may change results for simulations using an adaptive timestep.
 
 
 ### Future Plans
