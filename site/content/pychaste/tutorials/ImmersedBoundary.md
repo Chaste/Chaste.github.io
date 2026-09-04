@@ -6,7 +6,7 @@ images: []
 toc: true
 layout: "single"
 ---
-This tutorial is automatically generated from [TestPyImmersedBoundaryTutorial.py](https://github.com/Chaste/Chaste/blob/develop/pychaste/test/tutorial/TestPyImmersedBoundaryTutorial.py) at revision [4f629caca177](https://github.com/Chaste/Chaste/commit/4f629caca177b8cfd822427a3c7f3953cb904fb8).
+This tutorial is automatically generated from [TestPyImmersedBoundaryTutorial.py](https://github.com/Chaste/Chaste/blob/develop/pychaste/test/tutorial/TestPyImmersedBoundaryTutorial.py) at revision [0668953d44f7](https://github.com/Chaste/Chaste/commit/0668953d44f7c8f48eb6f6a3e9c774e888639e66).
 
 Note that the code is given in full at the bottom of the page.
 
@@ -34,11 +34,11 @@ from chaste.cell_based import (
     AbstractCellBasedTestSuite,
     CellsGenerator,
     DifferentiatedCellProliferativeType,
-    ForwardEulerNumericalMethod,
     ImmersedBoundaryCellPopulation,
     ImmersedBoundaryLinearInteractionForce,
     ImmersedBoundaryLinearMembraneForce,
     ImmersedBoundarySimulationModifier,
+    NoNumericalMethod,
     OffLatticeSimulation,
 )
 
@@ -132,8 +132,7 @@ the nodes/cells are not bound to a lattice.
 
 ```python
         simulator = OffLatticeSimulation[2, 2](cell_population)
-        simulator.SetNumericalMethod(ForwardEulerNumericalMethod[2, 2]())
-        simulator.GetNumericalMethod().SetUseUpdateNodeLocation(True)
+        simulator.SetNumericalMethod(NoNumericalMethod[2, 2]())
 ```
 As we have an off-lattice simulation, we need a way to model the
 fluid. This is handled by the `ImmersedBoundarySimulationModifier`.
@@ -268,8 +267,7 @@ Now we create a simulator to manage the simulation
 
 ```python
         simulator = OffLatticeSimulation[2, 2](cell_population)
-        simulator.SetNumericalMethod(ForwardEulerNumericalMethod[2, 2]())
-        simulator.GetNumericalMethod().SetUseUpdateNodeLocation(True)
+        simulator.SetNumericalMethod(NoNumericalMethod[2, 2]())
 ```
 We add an immersed boundary simulation modifier to the simulator
 
@@ -401,8 +399,7 @@ Create a simulator to manage the simulation
 
 ```python
         simulator = OffLatticeSimulation[2, 2](cell_population)
-        simulator.SetNumericalMethod(ForwardEulerNumericalMethod[2, 2]())
-        simulator.GetNumericalMethod().SetUseUpdateNodeLocation(True)
+        simulator.SetNumericalMethod(NoNumericalMethod[2, 2]())
 ```
 Add an immersed boundary simulation modifier
 
@@ -476,11 +473,11 @@ from chaste.cell_based import (
     AbstractCellBasedTestSuite,
     CellsGenerator,
     DifferentiatedCellProliferativeType,
-    ForwardEulerNumericalMethod,
     ImmersedBoundaryCellPopulation,
     ImmersedBoundaryLinearInteractionForce,
     ImmersedBoundaryLinearMembraneForce,
     ImmersedBoundarySimulationModifier,
+    NoNumericalMethod,
     OffLatticeSimulation,
 )
 
@@ -519,8 +516,7 @@ class TestPyImmersedBoundaryTutorial(AbstractCellBasedTestSuite):
         nb_manager.vtk_show(scene, height=300)
 
         simulator = OffLatticeSimulation[2, 2](cell_population)
-        simulator.SetNumericalMethod(ForwardEulerNumericalMethod[2, 2]())
-        simulator.GetNumericalMethod().SetUseUpdateNodeLocation(True)
+        simulator.SetNumericalMethod(NoNumericalMethod[2, 2]())
 
         ib_modifier = ImmersedBoundarySimulationModifier[2]()
         simulator.AddSimulationModifier(ib_modifier)
@@ -566,8 +562,7 @@ class TestPyImmersedBoundaryTutorial(AbstractCellBasedTestSuite):
         nb_manager.vtk_show(scene, height=300)
 
         simulator = OffLatticeSimulation[2, 2](cell_population)
-        simulator.SetNumericalMethod(ForwardEulerNumericalMethod[2, 2]())
-        simulator.GetNumericalMethod().SetUseUpdateNodeLocation(True)
+        simulator.SetNumericalMethod(NoNumericalMethod[2, 2]())
 
         ib_modifier = ImmersedBoundarySimulationModifier[2]()
         simulator.AddSimulationModifier(ib_modifier)
@@ -620,8 +615,7 @@ class TestPyImmersedBoundaryTutorial(AbstractCellBasedTestSuite):
         nb_manager.vtk_show(scene, height=300)
 
         simulator = OffLatticeSimulation[2, 2](cell_population)
-        simulator.SetNumericalMethod(ForwardEulerNumericalMethod[2, 2]())
-        simulator.GetNumericalMethod().SetUseUpdateNodeLocation(True)
+        simulator.SetNumericalMethod(NoNumericalMethod[2, 2]())
 
         ib_modifier = ImmersedBoundarySimulationModifier[2]()
         simulator.AddSimulationModifier(ib_modifier)
