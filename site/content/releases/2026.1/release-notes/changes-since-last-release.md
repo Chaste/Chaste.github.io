@@ -25,14 +25,6 @@ by a recent interface change then please see here for fix suggestions.
 
 ### Headline features
 
-- Cell-based force hierarchy refactor: `GeneralisedLinearSpringForce`, `RepulsionForce`, and `DifferentialAdhesionGeneralisedLinearSpringForce` have been replaced by dedicated force classes.
-  - Use `LinearSpringForce` for the Meineke-style linear spring model.
-  - Use `PathmanathanInteractionForce` for the logarithmic repulsion / exponential attraction model.
-  - Use `SimpleLogarithmicRepulsionForce` if you only need repulsion.
-  - Use `DifferentialAdhesionLinearSpringForce` or `DifferentialAdhesionPathmanathanInteractionForce` for the differential-adhesion variants.
-  - These forces are now available more generally across mesh-based and node-based populations, so some population-specific workarounds or subclasses may no longer be needed.
-
-
 ### Dependency changes
 
 This will be the last Chaste release to support Ubuntu 22.04 LTS (Jammy), and the following dependencies versions will no longer be supported in future releases.
@@ -54,6 +46,11 @@ This will be the last Chaste release to support Ubuntu 22.04 LTS (Jammy), and th
 
 
 ### Cell Based
-
+- Cell-based force hierarchy refactor: `GeneralisedLinearSpringForce`, `RepulsionForce`, and `DifferentialAdhesionGeneralisedLinearSpringForce` have been replaced by dedicated force classes.
+  - Use `LinearSpringForce` for the Meineke-style linear spring model.
+  - Use `PathmanathanInteractionForce` for the logarithmic repulsion / exponential attraction model.
+  - Use `SimpleLogarithmicRepulsionForce` if you only need repulsion.
+  - Use `DifferentialAdhesionLinearSpringForce` or `DifferentialAdhesionPathmanathanInteractionForce` for the differential-adhesion variants.
+  - These forces are now available more generally across mesh-based and node-based populations, so some population-specific workarounds or subclasses may no longer be needed.
 
 ### Future Plans
