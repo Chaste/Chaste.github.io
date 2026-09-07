@@ -46,6 +46,10 @@ Newly supported dependency versions:
 - [#522](https://github.com/Chaste/Chaste/issues/522) PETSc 3.25 is now supported.
 - [#526](https://github.com/Chaste/Chaste/issues/526) XSD 4.2 is now supported.
 
+Removed dependency versions:
+
+- [#559](https://github.com/Chaste/Chaste/pull/559) PyChaste now requires Python 3.10 or later. Python 3.9 is no longer supported.
+
 
 ### Core
 
@@ -64,6 +68,13 @@ Newly supported dependency versions:
   - `SimpleLogarithmicRepulsionForce`: repulsion only;
   - `DifferentialAdhesionLinearSpringForce` / `DifferentialAdhesionPathmanathanInteractionForce`: differential-adhesion variants.
 - [#511](https://github.com/Chaste/Chaste/pull/511) Added `RK4NumericalMethod`, a 4th-order Runge-Kutta numerical method for off-lattice cell mechanics, as a drop-in alternative to `ForwardEulerNumericalMethod`. Also adds `NoNumericalMethod`, required for the cell populations that update node positions with their own machinery (`NodeBasedCellPopulationWithBuskeUpdate` and `ImmersedBoundaryCellPopulation`). Fixes a bug in the step-halving adaptive-timestep loop, which may change results for simulations using an adaptive timestep.
+
+
+### PyChaste
+
+- [#588](https://github.com/Chaste/Chaste/pull/588) PyChaste now builds against [cppwg 0.5.0](https://github.com/Chaste/cppwg/blob/v0.5.0/CHANGELOG.md), which brings two user-facing improvements:
+  - Templated methods accept a subscript form, so `population.AddCellWriter["CellLabelWriter"]()` may be written in place of `population.AddCellWriterCellLabelWriter()`.
+  - Every wrapped class is now reachable at the top level as `chaste.Foo`, in addition to `chaste.<subpackage>.Foo`.
 
 
 ### Future Plans
