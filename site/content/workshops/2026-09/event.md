@@ -35,10 +35,28 @@ Wednesday 16th - Thursday 17th September 2026.
 
 This hackathon is aimed at anyone using, or planning to use, cell-based Chaste in their research, for example to answer questions in developmental biology, cancer biology, or related areas of the life sciences. Participants at all career stages are welcome. Bring along your own model, dataset, or research question and work on it over the two days.
 
+### What to Bring
+
+**Please bring your own laptop.** You don't need Chaste pre-installed: there are several ways to get set up:
+
+1. **Install locally** during the hackathon. This needs a reasonably powerful laptop and admin permissions to install software.
+2. **Use Chaste in the browser** via GitHub Codespaces: no local install required.
+3. **Connect to your own server** if you already have Chaste running somewhere you can access remotely.
+
+Eduroam is available at the Doctoral Training Centre. As all attendees are affiliated with a university, this should cover everyone, but let us know if you need guest WiFi access arranged.
+
+The room will have monitors with USB-C connectivity. If your laptop doesn't have USB-C, please bring your own HDMI or DisplayPort cable.
+
+To get the most out of the two days, come ready to hit the ground running on your problem:
+
+- Your data, or a sufficient subset of it, to work on.
+- A reasonable description of the problem you're trying to solve.
+- Details of any similar modelling efforts, whether your own or others', that you can build on or learn from.
+
 
 ## Registration
 
-Registration is now closed. If you would like to register late minute, please email [Fergus Cooper](mailto:fergus.cooper@dtc.ox.ac.uk) directly.
+Registration is now closed. If you would like to register last minute, please email [Fergus Cooper](mailto:fergus.cooper@dtc.ox.ac.uk) directly.
 
 Travel and accommodation costs will be covered for UK-based early career researchers.
 
@@ -47,16 +65,16 @@ Travel and accommodation costs will be covered for UK-based early career researc
 
 | Location | Description |
 | -------- | ----------- |
-| [**Doctoral Training Centre**](https://maps.app.goo.gl/KnmsHMJ5xUb4WFTR8) | 1-4 Keble Road, Oxford. Main venue — talks and project work take place here (Seminar Room 1B and Student Room 8). |
+| [**Doctoral Training Centre**](https://maps.app.goo.gl/KnmsHMJ5xUb4WFTR8) | 1-4 Keble Road, Oxford. Main venue: talks and project work take place here (Seminar Room 1B and Student Room 8). |
 | [**Linacre College**](https://maps.app.goo.gl/ouJFUM8DieRoRPnE8) | Lunch venue on both days. |
 | [**New College**](https://maps.app.goo.gl/gSYKQpvL2WyPgqWN7) | Workshop dinner venue. |
 | [**Tamesis Guest House**](https://maps.app.goo.gl/qRwpxZZHfKNL62qV7) | Accommodation. |
-| [**Oxford railway station**](https://maps.app.goo.gl/qRwpxZZHfKNL62qV7) | Transport. |
+| [**Oxford railway station**](https://maps.app.goo.gl/eV9SpfqQmjD1k5F99) | Transport. |
 
 
 ## Timetable
 
-Most time will be dedecated to working on your scientific problems alongside experienced Chaste developers.
+Most time will be dedicated to working on your scientific problems alongside experienced Chaste developers.
 
 | Day | Start | End | Description | Location |
 | --- | ----- | --- | ----------- | -------- |
@@ -91,7 +109,7 @@ The following are provided to all attendees:
 
 **Dinner:** The workshop dinner will be at New College on Wednesday 16th.
 
-If you are travelling to the workshop, you may also claim reasonably subsistence along with your travel costs. You should expect to receive an email directly about claiming travel expenses.
+If you are travelling to the workshop, you may also claim reasonable subsistence along with your travel costs. You should expect to receive an email directly about claiming travel expenses.
 
 
 ### Accommodation Information
