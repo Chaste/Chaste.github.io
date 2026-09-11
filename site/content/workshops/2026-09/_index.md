@@ -18,57 +18,10 @@ Participants will benefit from dedicated time with people who can help develop y
 
 Travel and accommodation costs will be covered for UK-based early career researchers.
 
-**Registration is now open**: [register here](https://forms.cloud.microsoft/e/beTwTqvJ8i).
+{{< callout context="tip" icon="outline/info-circle" >}}
+For dates, venue, timetable, registration, and all other logistics, see the [**Event Details**](./event) page.
+{{< /callout >}}
 
-
-## Venue, accommodation & catering
-
-The exact venue is still to be decided, but the hackathon will take place in **central Oxford**.
-The workshop dinner will be held at [**New College**](https://maps.app.goo.gl/gSYKQpvL2WyPgqWN7).
-
-Accommodation will be at the [**Tamesis Guest House**](https://maps.app.goo.gl/qRwpxZZHfKNL62qV7).
-
-**Lunch on both days and the workshop dinner will be provided** for all participants.
-Please tell us about any dietary requirements when you register.
-
-
-## Tentative Timetable
-
-This timetable is tentative and subject to change.
-The final timetable will be confirmed nearer the time.
-
-| Day | Start | End | Description |
-| --- | ----- | --- | ----------- |
-| **Tue 15 Sep** | 19:00 | | Welcome social / dinner for those arriving on Tuesday |
-| **Wed 16 Sep** | 09:30 | 10:00 | Arrivals & coffee |
-| | 10:00 | 10:30 | Welcome address & introductions |
-| | 10:30 | 12:30 | Project work |
-| | 12:30 | 14:00 | Lunch |
-| | 14:00 | 15:30 | Project work |
-| | 15:30 | 15:45 | Coffee break |
-| | 15:45 | 16:15 | Scientific case study |
-| | 16:15 | 17:30 | Project work |
-| | 18:30 | | Workshop dinner at New College |
-| **Thu 17 Sep** | 09:00 | 09:30 | Arrivals & coffee |
-| | 09:30 | 12:00 | Project work |
-| | 12:00 | 12:30 | Scientific case study |
-| | 12:30 | 14:00 | Lunch |
-| | 14:00 | 15:30 | Project work |
-| | 15:30 | 15:45 | Coffee break |
-| | 15:45 | 16:15 | Project work |
-| | 16:15 | 16:30 | Closing remarks |
-| | 16:30 | | Departures |
-
-
-## Register now
-
-
-Registration is open: if you'd like to attend, please register via this form: [Registration form](https://forms.cloud.microsoft/e/beTwTqvJ8i).
-
-Places are limited, so please register as early as you can.
-
-
-## Supported by
+The 2026 Chaste hackathon is generously sponsored by BBSRC Grant [BB/V018930/1](https://gtr.ukri.org/projects?ref=BB%2FV018930%2F1)
 
 {{< img src="/docs/ukri-bbsrc-square-logo.png" alt="BBSRC Logo" h="150px" >}}<br>
-BBSRC Grant BB/V018647/1
