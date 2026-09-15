@@ -16,13 +16,11 @@ layout: "single"
 
 A "bring your own project" hackathon: get support to code up a model related to your research.
 
+## Past workshops
 
 ### [01-03 July, Sheffield, UK](./2026-07)
 
 A workshop on collaborations with Chaste, and a showcase of the latest additions to the codebase.
-
-
-## Past workshops
 
 
 ### [08-10 January 2025, Nottingham, UK](./2025-01)

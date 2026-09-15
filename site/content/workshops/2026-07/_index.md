@@ -8,7 +8,7 @@ layout: "single"
 ---
 # Chaste Workshop - Sheffield 1st - 3rd July 2026
 
-We are pleased to announce an upcoming workshop on [Chaste](https://chaste.github.io).
+This workshop has now concluded.
 
 ## Materials
 
