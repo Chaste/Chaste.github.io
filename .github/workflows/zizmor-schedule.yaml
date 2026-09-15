@@ -23,10 +23,9 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v5
 
-      - name: Run zizmor
+      - name: Generate SARIF for code scanning
         run: |
           uvx zizmor --format sarif .github/workflows > results.sarif
-        continue-on-error: true
 
       - name: Upload SARIF results
         uses: github/codeql-action/upload-sarif@v4
@@ -34,23 +33,16 @@ jobs:
           sarif_file: results.sarif
           category: zizmor
 
-      - name: Generate summary
+      - name: Write step summary
         if: always()
         run: |
-          uvx zizmor .github/workflows > findings.txt || true
           {
             echo "## zizmor findings"
             echo '```'
-            cat findings.txt
+            uvx zizmor --color never .github/workflows || true
             echo '```'
-            echo
-            echo "Full details: https://github.com/${{ github.repository }}/security/code-scanning?query=is%3Aopen"
           } >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Fail if findings were reported
+      - name: Annotate findings and fail if any were found
         run: |
-          count=$(jq '[.runs[].results[]] | length' results.sarif)
-          if [ "$count" -gt 0 ]; then
-            echo "zizmor reported $count finding(s) — see step summary or the Security tab."
-            exit 1
-          fi
+          uvx zizmor --format github .github/workflows
