@@ -33,3 +33,24 @@ jobs:
         with:
           sarif_file: results.sarif
           category: zizmor
+
+      - name: Generate summary
+        if: always()
+        run: |
+          uvx zizmor .github/workflows > findings.txt || true
+          {
+            echo "## zizmor findings"
+            echo '```'
+            cat findings.txt
+            echo '```'
+            echo
+            echo "Full details: https://github.com/${{ github.repository }}/security/code-scanning?query=is%3Aopen"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Fail if findings were reported
+        run: |
+          count=$(jq '[.runs[].results[]] | length' results.sarif)
+          if [ "$count" -gt 0 ]; then
+            echo "zizmor reported $count finding(s) — see step summary or the Security tab."
+            exit 1
+          fi
