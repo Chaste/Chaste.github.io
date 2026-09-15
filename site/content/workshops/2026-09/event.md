@@ -70,6 +70,7 @@ Travel and accommodation costs will be covered for UK-based early career researc
 | [**New College**](https://maps.app.goo.gl/gSYKQpvL2WyPgqWN7) | Workshop dinner venue. |
 | [**Tamesis Guest House**](https://maps.app.goo.gl/qRwpxZZHfKNL62qV7) | Accommodation. |
 | [**Oxford railway station**](https://maps.app.goo.gl/eV9SpfqQmjD1k5F99) | Transport. |
+| [**Cosy Club, Cornmarket**](https://maps.app.goo.gl/9uwsZTV6mSfCSiDLA) | Welcome dinner. |
 
 
 ## Timetable
@@ -78,7 +79,7 @@ Most time will be dedicated to working on your scientific problems alongside exp
 
 | Day | Start | End | Description | Location |
 | --- | ----- | --- | ----------- | -------- |
-| **Tue 15 Sep** | 19:00 | | Welcome social / dinner for those arriving on Tuesday | TBC |
+| **Tue 15 Sep** | 19:30 | | Welcome dinner | Cosy Club, Cornmarket |
 | **Wed 16 Sep** | 09:30 | 10:00 | Arrivals & coffee | Seminar Room 1B |
 | | 10:00 | 10:30 | Welcome address & introductions | Seminar Room 1B |
 | | 10:30 | 12:30 | Project work | Student Room 8 |
