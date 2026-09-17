@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestMonodomain3dRabbitHeartTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestMonodomain3dRabbitHeartTutorial.hpp) at revision [7fa8a1fe59f6](https://github.com/Chaste/Chaste/commit/7fa8a1fe59f6d98cbf1cb5cc25a5f4c0fd6f1198). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestMonodomain3dRabbitHeartTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestMonodomain3dRabbitHeartTutorial.hpp) at revision [b2f91df949cc](https://github.com/Chaste/Chaste/commit/b2f91df949cca6d42525d586d5e0b63dafb1d748). Note that the code is given in full at the bottom of the page.
 ## 3D monodomain rabbit heart example
 
 This tutorial runs a simulation on a whole rabbit heart mesh. Note that this
@@ -155,11 +155,11 @@ but it does demonstrate the principle.
 ```
 
  **Note** if you were doing a 'real' scientific simulation you would want to use a higher
- resolution mesh. A version of this can be found on the [http://www.cs.ox.ac.uk/chaste/download.html Chaste download website]
+ resolution mesh. A version of this can be found on the <https://chaste.cs.ox.ac.uk/old-chaste-data/downloads/data/compat/>.
  
-Navigate to the "Data" tab, and download either
- * [source:/data/public/OxfordRabbitHeart/OxfordRabbitHeart_binary.tgz OxfordRabbitHeart_binary.tgz]  - 599MB, or
- * [source:/data/public/OxfordRabbitHeart/OxfordRabbitHeartWithBath_binary.tgz OxfordRabbitHeartWithBath_binary.tgz]  - 846MB.
+Download either
+ * OxfordRabbitHeart_binary.tgz  - 599MB, or
+ * OxfordRabbitHeartWithBath_binary.tgz  - 846MB.
  
 These will probably require HPC resources, and finer ODE and PDE time steps than we used here.
 
