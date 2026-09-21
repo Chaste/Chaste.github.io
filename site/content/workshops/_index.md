@@ -11,14 +11,18 @@ layout: "single"
 
 ## Upcoming workshops
 
+There are no workshops currently planned.
 
-### [16-17 September, Oxford, UK](./2026-09)
-
-A "bring your own project" hackathon: get support to code up a model related to your research.
 
 ## Past workshops
 
-### [01-03 July, Sheffield, UK](./2026-07)
+
+### [16-17 September 2026, Oxford, UK](./2026-09)
+
+A "bring your own project" hackathon: get support to code up a model related to your research.
+
+
+### [01-03 July 2026, Sheffield, UK](./2026-07)
 
 A workshop on collaborations with Chaste, and a showcase of the latest additions to the codebase.
 
@@ -31,5 +35,3 @@ A workshop on cell-based modelling with Chaste.
 ### [11-14 September, Oxford, UK](./2023-09-11)
 
 A workshop on cell-based Chaste: an introduction to basic functionality, and a showcase of the latest additions to the codebase.
-
-Links to slides and practical materials are available at [https://github.com/Chaste/chaste-workshop-materials-2023](https://github.com/Chaste/chaste-workshop-materials-2023).

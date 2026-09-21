@@ -7,7 +7,8 @@ toc: true
 layout: "single"
 ---
 
-We are pleased to announce an upcoming "bring your own project" hackathon on [Chaste](https://chaste.github.io).
+We were pleased to welcome attendees to the "bring your own project" hackathon on [Chaste](https://chaste.github.io) in Oxford in September 2026.
+Details of the event were as follows.
 
 
 ## Event Details
@@ -34,6 +35,7 @@ Wednesday 16th - Thursday 17th September 2026.
 ## Audience
 
 This hackathon is aimed at anyone using, or planning to use, cell-based Chaste in their research, for example to answer questions in developmental biology, cancer biology, or related areas of the life sciences. Participants at all career stages are welcome. Bring along your own model, dataset, or research question and work on it over the two days.
+
 
 ### What to Bring
 
