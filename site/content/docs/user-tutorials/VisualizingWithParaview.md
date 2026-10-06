@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestVisualizingWithParaviewTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestVisualizingWithParaviewTutorial.hpp) at revision [83bed3b480a1](https://github.com/Chaste/Chaste/commit/83bed3b480a1a267d2ec5cbba96b5610f4f36571). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestVisualizingWithParaviewTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/cell_based/test/tutorial/TestVisualizingWithParaviewTutorial.hpp) at revision [e0d751c9ffdc](https://github.com/Chaste/Chaste/commit/e0d751c9ffdcc24257265702cfe6c33e0efe5cb1). Note that the code is given in full at the bottom of the page.
 ## Examples showing how to visualize simulations in Paraview
 
 ### Introduction
@@ -18,8 +18,7 @@ the third uses a `NodeBasedCellPopulation` (a cell-centre model based on an
 'overlapping spheres' description of cell neighbours); and the fourth uses a
 `VertexBasedCellPopulation` (in which each cell is represented by a polygon).
 To be able to view these simulations, we must first have
-downloaded and installed VTK and Paraview, and updated our hostconfig file
-to ensure that it knows to use VTK.
+downloaded and installed Paraview.
 
 ### The test
 

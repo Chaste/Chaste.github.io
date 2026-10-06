@@ -5,20 +5,12 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestAirwayGenerationTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/lung/test/tutorials/TestAirwayGenerationTutorial.hpp) at revision [7fa8a1fe59f6](https://github.com/Chaste/Chaste/commit/7fa8a1fe59f6d98cbf1cb5cc25a5f4c0fd6f1198). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestAirwayGenerationTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/lung/test/tutorials/TestAirwayGenerationTutorial.hpp) at revision [e0d751c9ffdc](https://github.com/Chaste/Chaste/commit/e0d751c9ffdcc24257265702cfe6c33e0efe5cb1). Note that the code is given in full at the bottom of the page.
 ## An example showing how generate a complete conducting airway model given segmentations of CT airways and lobes
 
 In this tutorial we demonstrate using Chaste's airway generation algorithm to create a complete model of
 the conducting airways (mean generation ~16) from computed tomography segmentations. Note that the execution
 time for this tutorial on a standard desktop PC is several minutes.
-
-Note that the airway generation code is dependent of having VTK installed.  However, we cannot put a guard around the
-whole file since that gives compiler errors if VTK is not installed.  Instead we guard the internals of each test, and
-any includes that will be missing if VTK is not present.
-
-```cpp
-#ifdef CHASTE_VTK
-```
 
 We include some VTK classes to allow STL files to be read
 
@@ -27,8 +19,6 @@ We include some VTK classes to allow STL files to be read
 #include "vtkSmartPointer.h"
 #include "vtkPolyData.h"
 #include "vtkSTLReader.h"
-
-#endif // CHASTE_VTK
 ```
 
 The usual headers are included
@@ -59,8 +49,6 @@ public: // Tests should be public!
 
     void TestGenerateAirways()
     {
-#if defined(CHASTE_VTK) && ( (VTK_MAJOR_VERSION >= 5 && VTK_MINOR_VERSION >= 6) || VTK_MAJOR_VERSION >= 6)
-
         EXIT_IF_PARALLEL;
 ```
 
@@ -181,8 +169,6 @@ and radius information to be view as a series of tubes.
 
 ```cpp
         generator.Generate("TestAirwayGenerationTutorial", "example_complete_conducting_airway");
-
-#endif // VTK >= 5.6
     }
 };
 ```
@@ -190,14 +176,10 @@ and radius information to be view as a series of tubes.
 ## Full code
 
 ```cpp
-#ifdef CHASTE_VTK
-
 #define _BACKWARD_BACKWARD_WARNING_H 1 //Cut out the strstream deprecated warning for now (gcc4.3)
 #include "vtkSmartPointer.h"
 #include "vtkPolyData.h"
 #include "vtkSTLReader.h"
-
-#endif // CHASTE_VTK
 
 #include <cxxtest/TestSuite.h>
 
@@ -211,8 +193,6 @@ public: // Tests should be public!
 
     void TestGenerateAirways()
     {
-#if defined(CHASTE_VTK) && ( (VTK_MAJOR_VERSION >= 5 && VTK_MINOR_VERSION >= 6) || VTK_MAJOR_VERSION >= 6)
-
         EXIT_IF_PARALLEL;
 
         TetrahedralMesh<1,3> airways_mesh;
@@ -271,8 +251,6 @@ public: // Tests should be public!
         generator.DistributePoints();
 
         generator.Generate("TestAirwayGenerationTutorial", "example_complete_conducting_airway");
-
-#endif // VTK >= 5.6
     }
 };
 ```

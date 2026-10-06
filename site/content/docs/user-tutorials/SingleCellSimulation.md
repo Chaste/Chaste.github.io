@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestSingleCellSimulationTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestSingleCellSimulationTutorial.hpp) at revision [7fa8a1fe59f6](https://github.com/Chaste/Chaste/commit/7fa8a1fe59f6d98cbf1cb5cc25a5f4c0fd6f1198). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestSingleCellSimulationTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestSingleCellSimulationTutorial.hpp) at revision [41b8f1b4add0](https://github.com/Chaste/Chaste/commit/41b8f1b4add07b02b0cb05bf43e6b44958454c3b). Note that the code is given in full at the bottom of the page.
 ## An example showing how to run a single cell simulation
 
 ### Introduction
@@ -46,15 +46,6 @@ class TestSingleCellSimulationTutorial : public CxxTest::TestSuite
 public:
     void TestShannonSimulation()
     {
-```
-
-CVODE is still an optional Chaste dependency, but it is highly recommended for
-working with single cell simulations. This tutorial code will only run if CVODE is installed and enabled
-(see [InstallSundials](/docs/dev-guides/developer-install-guide/#sundials) for a manual installation if needed,
-and [CmakeBuildGuide](/docs/dev-guides/cmake-build-guide/)).
-
-```cpp
-#ifdef CHASTE_CVODE
 ```
 
 ### Defining a CVODE model
@@ -260,16 +251,6 @@ with appropriate precision to pass on different versions of CVODE.
 ```cpp
         TS_ASSERT_DELTA(apd, 211.9487, 1e-2);
         TS_ASSERT_DELTA(upstroke_velocity, 337.4159, 1.25);
-```
-
-CVODE is still an optional dependency for Chaste, but is required for this tutorial.
-If CVODE is not installed this tutorial will
-not do anything, but we can at least alert the user to this.
-
-```cpp
-#else
-        std::cout << "Cvode is not enabled.\n";
-#endif
     }
 };
 ```
@@ -291,7 +272,6 @@ class TestSingleCellSimulationTutorial : public CxxTest::TestSuite
 public:
     void TestShannonSimulation()
     {
-#ifdef CHASTE_CVODE
         boost::shared_ptr<RegularStimulus> p_stimulus;
         boost::shared_ptr<AbstractIvpOdeSolver> p_solver;
         boost::shared_ptr<AbstractCvodeCell> p_model(new CellShannon2004FromCellMLCvode(p_solver, p_stimulus));
@@ -338,10 +318,6 @@ public:
 
         TS_ASSERT_DELTA(apd, 211.9487, 1e-2);
         TS_ASSERT_DELTA(upstroke_velocity, 337.4159, 1.25);
-
-#else
-        std::cout << "Cvode is not enabled.\n";
-#endif
     }
 };
 ```

@@ -24,7 +24,7 @@ Do not edit it manually, as your changes will be overwritten!
 
 ### Cell Models
 - Get a cardiac cell model to (roughly) a steady state, given a regular stimulus, using the `SteadyStateRunner` class.
-  - [line 99 of TestSteadyStateRunner.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/ionicmodels/TestSteadyStateRunner.hpp#L99)
+  - [line 98 of TestSteadyStateRunner.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/ionicmodels/TestSteadyStateRunner.hpp#L98)
 
 ### Electro-mechanics
 - Set heterogeneous contraction models by using a contraction cell factory.
@@ -46,39 +46,39 @@ Do not edit it manually, as your changes will be overwritten!
 - Collect and print timings to benchmark different parts of the cardiac code.
   - [line 124 of TestBidomain3D.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomain3D.hpp#L124)
 - Only output data for particular nodes
-  - [line 578 of TestBidomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainProblem.hpp#L578)
+  - [line 573 of TestBidomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainProblem.hpp#L573)
 - Output data using a light-weight output modifier.  This can be used in addition to regular HDF5 output or can replace it.
-  - [line 588 of TestBidomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainProblem.hpp#L588)
+  - [line 583 of TestBidomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainProblem.hpp#L583)
 - Output all cell model state variables for the cell model used in a particular simulation
-  - [line 967 of TestBidomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainProblem.hpp#L967)
+  - [line 956 of TestBidomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainProblem.hpp#L956)
 - Use the `SingleTraceOutputModifier` to output based on a global index (index AFTER any permutation has been applied)
-  - [line 1062 of TestBidomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainProblem.hpp#L1062)
+  - [line 1051 of TestBidomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainProblem.hpp#L1051)
 - Calculating and outputting ionic currents ('derived quantities') in a single cell simulation using [OdeSolution](/doxygen-latest/classOdeSolution.html) - see also [chaste_codegen documentation](/docs/user-guides/code-generation-from-cellml/#derived-quantities).
-  - [line 394 of TestCvodeCells.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/ionicmodels/TestCvodeCells.hpp#L394)
+  - [line 386 of TestCvodeCells.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/ionicmodels/TestCvodeCells.hpp#L386)
 - Calculating and outputting ionic currents ('derived quantities') in a tissue simulation using [HeartConfig](/doxygen-latest/classHeartConfig.html) - see also [chaste_codegen documentation](/docs/user-guides/code-generation-from-cellml/#derived-quantities).
-  - [line 236 of TestMonodomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/monodomain/TestMonodomainProblem.hpp#L236)
+  - [line 234 of TestMonodomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/monodomain/TestMonodomainProblem.hpp#L234)
 - On large-scale parallel simulations it is advantageous to cache HDF5 output and only write to disk at end of simulation (or at checkpoint).  This is achieved with `SetUseHdf5DataWriterCache()`
-  - [line 1648 of TestMonodomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/monodomain/TestMonodomainProblem.hpp#L1648)
+  - [line 1616 of TestMonodomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/monodomain/TestMonodomainProblem.hpp#L1616)
 
 ### Post-processing
 - Compute action potential properties (APD50, APD90, max upstroke velocities, etc) given voltage traces.
   - [line 56 of TestCellProperties.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/postprocessing/TestCellProperties.hpp#L56)
 - Convert already generated simulation (HDF5) results to text, VTK or Meshalyzer format.
-  - [line 64 of TestHdf5Converters.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/utilities/TestHdf5Converters.hpp#L64)
+  - [line 59 of TestHdf5Converters.hpp](https://github.com/Chaste/Chaste/blob/develop/pde/test/utilities/TestHdf5Converters.hpp#L59)
 - Convert already generated simulation (HDF5) results to Cmgui format.
-  - [line 61 of TestHdf5ToVisualizerConverters.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/postprocessing/TestHdf5ToVisualizerConverters.hpp#L61)
+  - [line 56 of TestHdf5ToVisualizerConverters.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/postprocessing/TestHdf5ToVisualizerConverters.hpp#L56)
 - Compute pseudo-ECGs
   - [line 58 of TestPseudoEcgCalculator.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/postprocessing/TestPseudoEcgCalculator.hpp#L58)
 
 ### Problem definition
 - Use a CVODE adaptor solver in a tissue simulation
-  - [line 121 of Test1dMonodomainShannonCvodeBenchmarks.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/performance/Test1dMonodomainShannonCvodeBenchmarks.hpp#L121)
+  - [line 119 of Test1dMonodomainShannonCvodeBenchmarks.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/performance/Test1dMonodomainShannonCvodeBenchmarks.hpp#L119)
 - Use a native CVODE cell in a tissue simulation
-  - [line 168 of Test1dMonodomainShannonCvodeBenchmarks.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/performance/Test1dMonodomainShannonCvodeBenchmarks.hpp#L168)
+  - [line 166 of Test1dMonodomainShannonCvodeBenchmarks.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/performance/Test1dMonodomainShannonCvodeBenchmarks.hpp#L166)
 - Specify fibre directions
   - [line 90 of TestAnotherBidomainSimulationTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherBidomainSimulationTutorial.hpp#L90)
 - Fix phi_e at particular nodes (note: this is not required)
-  - [line 264 of TestBidomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainProblem.hpp#L264)
+  - [line 259 of TestBidomainProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainProblem.hpp#L259)
 - Set discrete **ellipsoid** areas to have heterogeneous (intra- and/or extra-cellular) conductivity tensors.
   - [line 325 of TestBidomainTissue.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/bidomain/TestBidomainTissue.hpp#L325)
 - Run bidomain simulations with a perfusing bath, and apply shocks using electrodes
@@ -118,7 +118,7 @@ Do not edit it manually, as your changes will be overwritten!
 
 ### Simulation
 - Time various aspects of a cell-based simulation using `CellBasedEventHandler`.
-  - [line 436 of TestCryptSimulation2dNightly.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/simulation/TestCryptSimulation2dNightly.hpp#L436)
+  - [line 430 of TestCryptSimulation2dNightly.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/simulation/TestCryptSimulation2dNightly.hpp#L430)
 - Save and load ('checkpoint') a cell-based simulation to file.
   - [line 135 of TestGenerateSteadyStateCrypt.hpp](https://github.com/Chaste/Chaste/blob/develop/crypt/test/simulation/TestGenerateSteadyStateCrypt.hpp#L135)
 
@@ -138,13 +138,13 @@ Do not edit it manually, as your changes will be overwritten!
 
 ### Ventilation
 - Solve a simple ventilation problem with no time variation.
-  - [line 272 of TestMatrixVentilationProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/lung/test/ventilation/TestMatrixVentilationProblem.hpp#L272)
+  - [line 264 of TestMatrixVentilationProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/lung/test/ventilation/TestMatrixVentilationProblem.hpp#L264)
 - Solve a simple ventilation problem defined in a file.
-  - [line 390 of TestMatrixVentilationProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/lung/test/ventilation/TestMatrixVentilationProblem.hpp#L390)
+  - [line 376 of TestMatrixVentilationProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/lung/test/ventilation/TestMatrixVentilationProblem.hpp#L376)
 - Solve a simple ventilation problem with no time variation.
-  - [line 299 of TestVentilationProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/lung/test/ventilation/TestVentilationProblem.hpp#L299)
+  - [line 291 of TestVentilationProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/lung/test/ventilation/TestVentilationProblem.hpp#L291)
 - Solve a simple ventilation problem defined in a file.
-  - [line 416 of TestVentilationProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/lung/test/ventilation/TestVentilationProblem.hpp#L416)
+  - [line 402 of TestVentilationProblem.hpp](https://github.com/Chaste/Chaste/blob/develop/lung/test/ventilation/TestVentilationProblem.hpp#L402)
 
 ## General
 - Read and use parameters from the command line

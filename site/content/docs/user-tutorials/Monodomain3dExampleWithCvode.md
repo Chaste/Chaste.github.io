@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestMonodomain3dExampleWithCvodeTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestMonodomain3dExampleWithCvodeTutorial.hpp) at revision [7fa8a1fe59f6](https://github.com/Chaste/Chaste/commit/7fa8a1fe59f6d98cbf1cb5cc25a5f4c0fd6f1198). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestMonodomain3dExampleWithCvodeTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestMonodomain3dExampleWithCvodeTutorial.hpp) at revision [41b8f1b4add0](https://github.com/Chaste/Chaste/commit/41b8f1b4add07b02b0cb05bf43e6b44958454c3b). Note that the code is given in full at the bottom of the page.
 ## 3D monodomain example using CVODE for ODE solution
 
 This tutorial is based on [Monodomain 3D Example](../monodomain3dexample/) except this time we will
@@ -44,16 +44,6 @@ then include the rest of the headers as usual
 #include "TetrahedralMesh.hpp"
 #include "SimpleStimulus.hpp"
 #include "PetscSetupAndFinalize.hpp"
-```
-
-Since CVODE is an optional extra dependency for Chaste - albeit now
-one that is highly recommended - see the [wiki:InstallGuides/InstallGuide InstallGuide].
-
-We guard any code that relies upon it with the following `#ifdef`.
-This `CHASTE_CVODE` flag is set automatically by `cmake` during the build process.
-
-```cpp
-#ifdef CHASTE_CVODE
 ```
 
 The major changes required to run with CVODE cells are in the cell factory.
@@ -126,18 +116,11 @@ that are better than anything but a ridiculously small Forward Euler step).
     }
 };
 
-#endif // CHASTE_CVODE
-```
-
-The rest of the test is almost identical to the non-CVODE cell case (just note the `#ifdef` tag).
-
-```cpp
 class TestMonodomain3dExampleWithCvodeTutorial : public CxxTest::TestSuite
 {
 public:
     void TestMonodomain3d()
     {
-#ifdef CHASTE_CVODE
         DistributedTetrahedralMesh<3,3> mesh;
         double h=0.02;
         mesh.ConstructRegularSlabMesh(h, 0.8 /*length*/, 0.3 /*width*/, 0.3 /*depth*/);
@@ -195,20 +178,6 @@ The rest of the code is unchanged.
 
 ```cpp
         TS_ASSERT_DELTA(voltage[0], 34.7740, 1e-1); // Slack tolerance for different CVODE versions.
-```
-
-Here we add a visual warning in case CVODE is not installed and/or set up.
-If you want to make sure CVODE is run in your own tests you could add in
-the `TS_ASSERT(false);` line.
-
-Since CVODE is still optional for Chaste we allow the test to pass without it,
-but note that if this is the case, then the test is not doing anything!
-
-```cpp
-#else
-        std::cout << "CVODE is not installed, or CHASTE is not configured to use it, check your hostconfig settings." << std::endl;
-        // TS_ASSERT(false); // uncomment if you want to ensure CVODE is set up on your system.
-#endif // CHASTE_CVODE
     }
 };
 ```
@@ -222,8 +191,6 @@ but note that if this is the case, then the test is not doing anything!
 #include "TetrahedralMesh.hpp"
 #include "SimpleStimulus.hpp"
 #include "PetscSetupAndFinalize.hpp"
-
-#ifdef CHASTE_CVODE
 
 class BenchmarkCellFactory : public AbstractCardiacCellFactory<3> // <3> here
 {
@@ -260,14 +227,11 @@ public:
     }
 };
 
-#endif // CHASTE_CVODE
-
 class TestMonodomain3dExampleWithCvodeTutorial : public CxxTest::TestSuite
 {
 public:
     void TestMonodomain3d()
     {
-#ifdef CHASTE_CVODE
         DistributedTetrahedralMesh<3,3> mesh;
         double h=0.02;
         mesh.ConstructRegularSlabMesh(h, 0.8 /*length*/, 0.3 /*width*/, 0.3 /*depth*/);
@@ -300,11 +264,6 @@ public:
         ReplicatableVector voltage(monodomain_problem.GetSolution());
 
         TS_ASSERT_DELTA(voltage[0], 34.7740, 1e-1); // Slack tolerance for different CVODE versions.
-
-#else
-        std::cout << "CVODE is not installed, or CHASTE is not configured to use it, check your hostconfig settings." << std::endl;
-        // TS_ASSERT(false); // uncomment if you want to ensure CVODE is set up on your system.
-#endif // CHASTE_CVODE
     }
 };
 ```

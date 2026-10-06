@@ -5,7 +5,7 @@ draft: false
 images: []
 toc: true
 ---
-This tutorial is automatically generated from [TestAnotherBidomainSimulationTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherBidomainSimulationTutorial.hpp) at revision [7fa8a1fe59f6](https://github.com/Chaste/Chaste/commit/7fa8a1fe59f6d98cbf1cb5cc25a5f4c0fd6f1198). Note that the code is given in full at the bottom of the page.
+This tutorial is automatically generated from [TestAnotherBidomainSimulationTutorial.hpp](https://github.com/Chaste/Chaste/blob/develop/heart/test/tutorials/TestAnotherBidomainSimulationTutorial.hpp) at revision [e0d751c9ffdc](https://github.com/Chaste/Chaste/commit/e0d751c9ffdcc24257265702cfe6c33e0efe5cb1). Note that the code is given in full at the bottom of the page.
 ## Another example showing how to run a bidomain simulation
 
 In this tutorial we run another bidomain simulation,
@@ -126,7 +126,7 @@ of the simulation using methods in `HeartConfig`,  e.g.
         HeartConfig::Instance()->SetVisualizeWithCmgui(true);
 ```
 
-The other option is to write in VTK format (which needs VTK installed), following
+The other option is to write in VTK format, following
 which the results can be loaded in the visualiser Paraview
 
 ```cpp
