@@ -56,7 +56,7 @@ Removed dependency versions:
 
 - [#548](https://github.com/Chaste/Chaste/issues/548) Chaste now sets explicit permissions on the files and directories it creates rather than inheriting the platform default. This resolves some, but not all, of the sporadic permission-related test failures seen in the Docker container on macOS.
 - [#562](https://github.com/Chaste/Chaste/pull/562) gperftools CPU profiling is supported again: the CMake machinery has been restored and runs in CI, and can also be run locally by following the [profiling guide](https://chaste.github.io/docs/dev-guides/profiling/).
-
+- [#685](https://github.com/Chaste/Chaste/pull/685) Chaste's `CommandLineArguments` class now registers used options with PETSc's argument tracking, so that users don't get PETSc warnings about unused arguments, and any warnings are genuine unused arguments.
 
 ### Heart
 
