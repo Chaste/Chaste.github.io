@@ -148,9 +148,9 @@ Do not edit it manually, as your changes will be overwritten!
 
 ## General
 - Read and use parameters from the command line
-  - [line 46 of TestCommandLineArguments.hpp](https://github.com/Chaste/Chaste/blob/develop/global/test/TestCommandLineArguments.hpp#L46)
+  - [line 48 of TestCommandLineArguments.hpp](https://github.com/Chaste/Chaste/blob/develop/global/test/TestCommandLineArguments.hpp#L48)
 - Use mock (pretend) command line arguments
-  - [line 265 of TestCommandLineArguments.hpp](https://github.com/Chaste/Chaste/blob/develop/global/test/TestCommandLineArguments.hpp#L265)
+  - [line 269 of TestCommandLineArguments.hpp](https://github.com/Chaste/Chaste/blob/develop/global/test/TestCommandLineArguments.hpp#L269)
 
 ### Archiving
 - Use a binary rather than ascii boost archive format, for speed and smaller file sizes.
